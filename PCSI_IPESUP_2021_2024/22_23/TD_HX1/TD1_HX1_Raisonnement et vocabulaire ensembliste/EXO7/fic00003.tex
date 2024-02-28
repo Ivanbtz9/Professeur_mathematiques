@@ -1,0 +1,450 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00003, bodin, 2007/09/01} 
+
+\titre{Injection, surjection, bijection} 
+
+\exercice{185, bodin, 1998/09/01}
+\video{MJjD9ZZkUuE}
+\enonce{000185}{}
+Soient $f : \Rr \rightarrow \Rr$ et $g : \Rr \rightarrow \Rr$ telles que $f(x) = 3x+1$ et $g(x)=x^2-1$.
+A-t-on $f\circ g=g\circ f$ ?
+
+\finenonce{000185} 
+
+
+\finexercice
+\exercice{199, bodin, 1998/09/01}
+\video{7avL2IaR9fg}
+\enonce{000199}{}
+Soit $f: [0,1] \rightarrow [0,1]$ telle que
+$$f(x) =    \begin{cases}
+            x     & \text{si}\ x\in[0,1]\cap\Qq,\\
+            1-x  & \text{sinon.}
+        \end{cases}  $$
+D\'emontrer que $f \circ f= id$.
+
+\finenonce{000199}
+
+
+
+\finexercice
+
+\exercice{202, bodin, 1998/09/01}
+\video{lZLGkwlniv4}
+\enonce{000202}{}
+
+Soit $f  : [1,+\infty[\rightarrow[0,+\infty[$ telle que
+$f(x)=x^2-1$. $f$ est-elle bijective ?
+\finenonce{000202} 
+
+
+\finexercice
+\exercice{190, ridde, 1999/11/01}
+\video{GVJXQpK7lpY}
+\enonce{000190}{}
+Les applications suivantes sont-elles injectives, surjectives, bijectives ?
+\begin{enumerate}
+\item $f : {\Nn} \to {\Nn}, {n} \mapsto {n + 1}$
+\item $g : {\Zz} \to {\Zz}, {n}\mapsto{n + 1}$
+\item $h : {\Rr^2} \to {\Rr^2}, {(x, y)}\mapsto{ (x + y, x-y)}$
+\item $k : {\Rr \setminus \left\{ 1\right\}} \to {\Rr}, {x}\mapsto{\frac{x + 1}{x - 1}}$
+\end{enumerate}
+\finenonce{000190}
+
+
+
+\finexercice
+\exercice{200, bodin, 1998/09/01}
+\video{j8JoMNuw-vc}
+\enonce{000200}{}
+ Soit $ f:\Rr \rightarrow \Cc, \ t\mapsto e^{it}$. 
+Changer les ensembles de départ et d'arrivée afin que
+(la restriction de) $f$ devienne bijective.
+\finenonce{000200} 
+
+
+\finexercice
+\exercice{197, bodin, 1998/09/01}
+\video{h9jrsWR1bYw}
+\enonce{000197}{Exponentielle complexe}
+ Si $z=x+iy$, $(x,y)\in \Rr^2$, on pose $e^z=e^x \times e^{iy}$.
+\begin{enumerate}
+    \item D\'eterminer le module et l'argument de $e^z$.
+    \item Calculer $e^{z+z'}, e^{\overline{z}}, e^{-z}, \left( e^z \right)^n \text{ pour } n \in \Zz$.
+    \item L'application $\exp : \Cc \rightarrow \Cc, z \mapsto e^z$, est-elle
+injective ?, surjective ?
+\end{enumerate}
+
+\finenonce{000197}
+
+
+
+\finexercice
+
+\exercice{193, bodin, 1998/09/01}
+\video{hBxRKn9zxFs}
+\enonce{000193}{}
+
+On consid\`ere quatre ensembles $A,B,C$ et $D$ et des applications $f:A\rightarrow B$, $g:B\rightarrow
+C$, $h:C\rightarrow D$. Montrer que :
+$$g\circ f\text{ injective } \Rightarrow f\text{ injective,}$$
+$$g\circ f\text{ surjective } \Rightarrow g\text{ surjective.}$$
+Montrer que :
+$$\big(\text{$g\circ f$ et $h\circ g$ sont bijectives }\big) \Leftrightarrow
+\big(\text{$f,g$ et $h$ sont bijectives}\big).$$
+\finenonce{000193} 
+
+
+\finexercice
+\exercice{191, bodin, 1998/09/01}
+\video{n2-T6hM33AM}
+\enonce{000191}{}
+
+Soit $f  : \Rr \rightarrow \Rr$ d\'efinie par $f(x) = 2x/(1+x^2)$.
+\begin{enumerate}
+    \item $f$ est-elle injective ? surjective ?
+    \item Montrer que $f(\Rr)=[-1,1]$.
+    \item Montrer que la restriction $g  : [-1,1] \rightarrow [-1,1]$  $g(x) = f(x)$
+est une bijection.
+    \item Retrouver ce r\'esultat en \'etudiant les variations de $f$.
+\end{enumerate}
+
+\finenonce{000191} 
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\indication{000185}
+Prouver que l'\'egalit\'e est fausse.
+\finindication
+\indication{000199}
+$id$ est l'application identité définie par $id(x)=x$ pour tout $x\in[0,1]$.
+Donc $f \circ f= id$ signifie $f\circ f(c) = x$ pour tout $x\in[0,1]$.
+\finindication
+\indication{000202}
+Montrer que $f$ est injective et surjective.
+\finindication
+\indication{000190}
+\begin{enumerate}
+\item $f$ est injective mais pas surjective.
+\item $g$ est bijective. 
+\item $h$ aussi.
+\item $k$ est injective mais par surjective.
+\end{enumerate}
+\finindication
+\indication{000200}
+Montrer que la restriction de $f$ définie par : 
+$[0,2\pi[ \longrightarrow \mathbb{U}$, $t\mapsto e^{it}$ est une bijection.
+Ici $\mathbb{U}$ est le cercle unit\'e de $\Cc$, c'est-\`a-dire 
+l'ensemble des nombres complexes de module \'egal \`a $1$. 
+\finindication
+\noindication
+\indication{000193}
+Pour la premi\`ere assertion le d\'ebut du raisonnement est : ``supposons
+que $g\circ f$ est injective, soient $a,a'\in A$ tels que $f(a)=f(a')$'',... 
+\`a vous de travailler, cela se termine par
+``...donc $a=a'$, donc $f$ est injective.''
+\finindication
+\indication{000191}
+\begin{enumerate}
+    \item $f$ n'est ni injective, ni surjective.
+    \item Pour $y\in \Rr$, r\'esoudre l'\'equation $f(x)=y$.
+    \item On pourra exhiber l'inverse.
+\end{enumerate}
+\finindication
+
+
+\newpage
+
+\correction{000185}
+Si $f\circ g=g\circ f$ alors 
+$$\forall x \in \Rr \ \ f\circ g (x) = g\circ f(x).$$
+Nous allons montrer que c'est faux, en exhibant un contre-exemple.
+Prenons $x=0$. Alors $f\circ g (0) = f(-1) = -2$, et
+$g\circ f(0) = g(1) = 0$ donc $f\circ g (0) \not= g\circ f(0)$.
+Ainsi $f\circ g \not= g\circ f$.
+\fincorrection
+\correction{000199}
+Soit $x\in [0,1]\cap\Qq$ alors $f(x) = x$ donc $f \circ f (x) = f(x) = x$.
+Soit $x\notin [0,1]\cap\Qq$ alors $f(x) = 1-x$ donc $f \circ f (x) = f(1-x)$,
+mais $1-x \notin [0,1]\cap\Qq$ (vérifiez-le !) donc  $f \circ f (x) = f(1-x) = 1 - (1-x) = x$.
+Donc pour tout $x \in [0,1]$ on a  $f \circ f (x) = x$. Et donc $f \circ f= id$.
+\fincorrection
+\correction{000202}
+\begin{itemize}
+    \item[$\bullet$] $f$ est injective : soient $x,y \in [1,+\infty[$ tels que $f(x)=f(y)$ :
+\begin{align*}
+f(x)=f(y) &\Rightarrow x^2-1=y^2-1\\
+&\Rightarrow x = \pm y \text{ or $x,y\in [1,+\infty[$ donc $x,y$ sont de m\^eme signe}\\
+&\Rightarrow x =y.\\
+\end{align*}
+
+    \item[$\bullet$] $f$ est surjective : soit $y\in [0,+\infty[$.
+Nous cherchons un \'el\'ement $x\in [1,+\infty[$ tel que $y = f(x)
+= x^2-1$ . Le r\'eel $x= \sqrt{y+1}$ convient !
+\end{itemize}
+\fincorrection
+\correction{000190}
+\begin{enumerate}
+\item $f$ n'est pas surjective car $0$ n'a pas d'antécédent : en effet il n'existe pas de $n\in\Nn$ tel que $f(n)=0$ (si ce $n$ existait ce serait $n=-1$
+qui n'est pas un élément de $\Nn$). Par contre $f$ est injective : soient $n,n' \in \Nn$ tels que $f(n)=f(n')$ alors
+$n+1=n'+1$ donc $n=n'$. Bilan $f$ est injective, non surjective et donc non bijective.
+
+\item Pour montrer que $g$ est bijective deux méthodes sont possibles. Première méthode : montrer que $g$ est à la fois injective et surjective.
+En effet soient $n,n'\in \Zz$ tels que $g(n)=g(n')$ alors $n+1=n'+1$ donc $n=n'$, alors $g$ est injective. Et $g$ est surjective car chaque $m\in \Zz$
+admet un antécédent par $g$ : en posant $n=m-1 \in \Zz$ on trouve bien $g(n)=m$.
+Deuxième méthode : expliciter directement la bijection réciproque. Soit la fonction $g' : \Zz \to \Zz$ définie par $g'(m)=m-1$
+alors $g' \circ g(n) = n$ (pour tout $n\in \Zz$) et $g \circ g'(m) = m$ (pour tout $m\in \Zz$). Alors $g'$ est la bijection réciproque de $g$
+et donc $g$ est bijective.
+
+\item Montrons que $h$ est injective. Soient $(x,y), (x',y') \in \Rr^2$ tels que $h(x,y)=h(x',y')$.
+Alors $(x + y, x-y)=(x' + y', x'-y')$ donc 
+$$\begin{cases}
+    x+y &= x'+y'\\
+    x-y &= x'-y'\\
+  \end{cases}$$
+En faisant la somme des lignes de ce système on trouve $2x=2x'$ donc $x=x'$ et avec la différence on obtient $y=y'$.
+Donc les couples $(x,y)$ et $(x',y')$ sont égaux. Donc $h$ est injective.
+
+Montrons que $h$ est surjective. Soit $(X,Y) \in \Rr^2$, cherchons lui un antécédent $(x,y)$ par $h$.
+Un tel antécédent vérifie $h(x,y)=(X,Y)$, donc $(x+y,x-y)=(X,Y)$ ou encore :
+$$\begin{cases}
+    x+y &= X\\
+    x-y &= Y\\
+  \end{cases}$$
+Encore une fois on faisant la somme des lignes on obtient $x=\frac{X+Y}{2}$ et avec la différence $y = \frac{X-Y}{2}$,
+donc $(x,y) = (\frac{X+Y}{2},\frac{X-Y}{2})$. La partie ``analyse'' de notre raisonnement en finie passons à la ``synthèse'' :
+il suffit de juste de vérifier que le couple $(x,y)$ que l'on a obtenu est bien solution (on a tout fait pour !).
+Bilan pour $(X,Y)$ donné, son antécédent par $h$ existe et est $(\frac{X+Y}{2},\frac{X-Y}{2})$. Donc $h$ est surjective.
+
+En fait on pourrait montrer directement que $h$ est bijective en exhibant sa bijection réciproque $(X,Y) \mapsto (\frac{X+Y}{2},\frac{X-Y}{2})$.
+Mais vous devriez vous convaincre qu'il s'agit là d'une différence de rédaction, mais pas vraiment d'un raisonnement différent.
+
+
+        
+\item Montrons d'abord que $k$ est injective : soient $x,x' \in \Rr\setminus \{1\}$ tels que $k(x)=k(x')$ alors
+$\frac{x + 1}{x - 1}=\frac{x' + 1}{x' - 1}$ donc $(x+1)(x'-1)=(x-1)(x'+1)$. En développant nous obtenons
+$xx'+x'-x=xx'-x'+x$, soit $2x=2x'$ donc $x=x'$.
+
+Au brouillon essayons de montrer que $k$ est surjective : soit $y\in \Rr$ et cherchons $x\in \Rr\setminus \{1\}$
+tel que $f(x)=y$. Si un tel $x$ existe alors il vérifie $\frac{x + 1}{x - 1}=y$ donc
+$x+1=y(x-1)$, autrement dit $x(y-1)=y+1$. Si l'on veut exprimer $x$ en fonction de $y$ cela se fait par la formule
+$x = \frac{y+1}{y-1}$. Mais attention, il y a un piège ! Pour $y=1$ on ne peut pas trouver d'antécédent $x$ 
+(cela revient à diviser par $0$ dans la fraction précédente).
+Donc $k$ n'est pas surjective car $y=1$ n'a pas d'antécédent.
+
+Par contre on vient de montrer que s'il l'on considérait la restriction $k_| :  {\Rr \setminus \left\{ 1\right\}} \to {\Rr \setminus \left\{ 1\right\}}$
+qui est définie aussi par $k_|(x) = {\frac{x + 1}{x - 1}}$ (seul l'espace d'arrivée change par rapport à $k$) alors
+cette fonction $k_|$ est injective et surjective, donc bijective (en fait sa bijection réciproque est elle même).
+
+\end{enumerate}
+\fincorrection
+\correction{000200}
+Considérons la restriction suivante de $f$ : $f_|:[0,2\pi[ \longrightarrow \mathbb{U}$, 
+$t\mapsto e^{it}$. Montrons que cette nouvelle application $f_|$ est bijective. Ici $\mathbb{U}$
+est le cercle unit\'e de $\Cc$ donn\'e par l'\'equation $(|z|=1)$.
+\begin{itemize}
+    \item[$\bullet$] $f_|$ est surjective car tout nombre complexe de $\mathbb{U}$ s'\'ecrit
+sous la forme polaire $e^{i\theta}$, et l'on peut choisir $\theta
+\in [0,2\pi[$.
+
+    \item[$\bullet$] $f_|$ est injective :
+\begin{align*}
+f_|(t) = f_|(t') &\Leftrightarrow e^{it}=e^{it'}\\
+&\Leftrightarrow t=t' +2k\pi \text{ avec } k\in \Zz\\
+&\Leftrightarrow t=t' \text{ car } t,t'\in[0,2\pi[ \text{ et donc }k=0.\\
+\end{align*}
+\end{itemize}
+En conclusion $f_|$ est injective et surjective donc bijective.
+\fincorrection
+\correction{000197}
+\begin{enumerate}
+     \item Pour $z=x+iy$, le  module de $e^z=e^{x+iy}=e^xe^{iy}$ est $e^x$ et
+son argument est $y$.
+    \item Les r\'esultats : $e^{z+z'} = e^ze^{z'}$, $e^{\overline{z}} =
+\overline{e^z}$, $e^{-z}= \left( e^{z} \right)^{-1}$,
+$(e^z)^n=e^{nz}$.
+    \item La fonction $\exp$ n'est pas surjective car $|e^z| = e^x >0$ et
+donc $e^z$ ne vaut jamais $0$. La fonction $\exp$ n'est pas non
+plus injective car pour $z\in\Cc$, $e^z=e^{z+2i\pi}$.
+\end{enumerate}
+\fincorrection
+\correction{000193}
+\begin{enumerate}
+\item Supposons $g\circ f$ injective, et montrons que $f$ est injective :
+soient $a,\ a' \in A$ avec $f(a)=f(a')$ donc $g\circ f(a)=g\circ
+f(a')$ or $g\circ f$ est injective donc $a= a'$. Conclusion on a
+montr\'e : $$\forall a,a'  \in A \quad  f(a)=f(a') \Rightarrow
+a=a'$$ c'est la d\'efinition de $f$ injective.
+
+\item Supposons $g\circ f$ surjective, et montrons que $g$ est surjective :
+soit $c \in C$ comme $g\circ f$ est surjective il existe $a \in A$
+tel que  $g\circ f(a)=c$ ; posons $b = f(a)$, alors $g(b)=c$, ce
+raisonnement est valide quelque soit $c \in C$ donc $g$ est
+surjective.
+
+\item  Un sens est simple $(\Leftarrow)$ si $f$ et $g$ sont bijectives alors $g\circ f$ l'est \'egalement. De m\^eme avec $h\circ g$.
+
+\par
+
+Pour l'implication directe $(\Rightarrow)$ : si $g\circ f$ est
+bijective alors en particulier elle est surjective et donc
+d'apr\`es la question 2. $g$ est surjective.
+
+ Si $h\circ g$ est bijective, elle est en particulier  injective, donc $g$ est injective (c'est le 1.). Par cons\'equent $g$ est \`a la fois injective et
+surjective donc bijective.
+
+ Pour finir $f=g^{-1} \circ (g\circ f)$ est bijective comme compos\'ee d'applications bijectives, de m\^eme pour $h$.
+
+\end{enumerate}
+\fincorrection
+\correction{000191}
+\begin{enumerate}
+  \item $f$ n'est pas injective car $f(2) = \frac 45 = f(\frac12)$.
+  $f$ n'est pas surjective car $y=2$ n'a pas d'ant\'ec\'edent: en effet 
+  l'\'equation $f(x)=2$ devient $2x=2(1+x^2)$ soit $x^2-x+1=0$ qui n'a pas de solutions r\'eelles.
+  \item $f(x)=y$ est \'equivalent \`a l'\'equation 
+  $yx^2-2x+y=0$. Cette \'equation a des solutions $x$ si et seulement si
+  $\Delta = 4-4y^2 \geq 0$ donc il y a des solutions si et seulement si $y\in[-1,1]$. Nous venons de montrer que $f(\Rr)$ est exactement $[-1,1]$.
+  \item Soit $y\in[-1,1]\setminus\{0\}$ alors les solutions $x$ possibles de l'\'equation $g(x)=y$ sont $x=\frac{1-\sqrt{1-y^2}}{y}$ ou
+  $x=\frac{1+\sqrt{1-y^2}}{y}$. La seule solution $x\in[-1,1]$ est
+  $x=\frac{1-\sqrt{1-y^2}}{y}$ en effet
+  $x=\frac{1-\sqrt{1-y^2}}{y}=\frac{y}{1+\sqrt{1-y^2}} \in[-1,1]$.
+  Pour $y=0$, la seule solution de l'\'equation $g(x)=0$ est $x=0$.
+  Donc pour $g : [-1,1] \longrightarrow [-1,1]$ nous avons trouv\'e un inverse $h : [-1,1] \longrightarrow [-1,1]$ d\'efini par
+  $h(y) = \frac{1-\sqrt{1-y^2}}{y}$ si $y\neq0$ et $h(0)=0$. Donc $g$ est une bijection.
+  \item $f'(x) = \frac{2-2x^2}{1+x^2}$, donc $f'$ est strictement positive sur $]-1,1[$ donc $f$ est strictement croissante sur $[-1,1]$ avec $f(-1)=-1$ et $f(1)=1$. Donc la restriction
+  de $f$, appelée $g : [-1,1] \longrightarrow [-1,1]$, est une bijection.
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

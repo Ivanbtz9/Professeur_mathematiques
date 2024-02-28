@@ -1,0 +1,1191 @@
+\documentclass[a4paper,10pt]{article}
+
+
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{thm-def}{Théorème/Définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+%\def\di{\displaystyle}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{}\chead{}\rhead{}\lfoot{Chapitre 3 - Cours}\cfoot{\thepage/12}\rfoot{M. Botcazou}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+	$$\fbox{\text{\Large{ Chapitre 3 : Vecteurs du plan - Partie 1/2}}}$$
+	
+	$$\fbox{\text{\Large{ \begin{minipage}{0.9\linewidth } Translation et vecteur associé. Opérations sur les vecteurs. Coordonnées.\end{minipage} }}}$$
+	
+
+
+
+\renewcommand{\arraystretch}{1.5}
+$$\begin{tabular}{|l|l|}
+\hline
+\textbf{Contenus} & \textbf{Capacités attendues} \\
+\hline 
+$\bullet$ Vecteur $\V{AA'}$ associé à la translation qui    & $\bullet$ Représenter graphiquement des vecteurs \\
+transforme $A$ en $A'$. &  $\bullet$ Construire géométriquement la sommes de deux vecteurs \\
+$\bullet$ Direction, sens, norme, égalité de deux  & $\bullet$ Représenter un vecteurs dont on connait les coordonnées  \\
+ vecteurs et vecteur nul. & $\bullet$  Lire les coordonnées d'un vecteur \\
+$\bullet$ Base orthonormée, coordonnées d'un vecteur.  & $\bullet$ Calculer la distance entre deux points  \\
+$\bullet$ Expression de la norme d'un vecteur $\V{AB}$. &$\bullet$  Calculer les coordonnées du milieu d'un segment  \\
+$\bullet$ Sommes de vecteurs, lien avec les translations. & $\bullet$ Calculer les coordonnées d'une somme de vecteurs  \\
+\hline
+\end{tabular}$$
+\hfill\\[-0.2cm]
+
+\noindent\textbf{Démonstrations :}
+\begin{enumerate}[$\bullet$]
+	\item Calculer les coordonnées du milieu d'un segment.
+	\item Calculer la distance entre deux points grâce au théorème de pythagore.\\
+\end{enumerate}
+
+\noindent\textbf{Exemples d'algorithme : }
+\begin{enumerate}[$\bullet$]
+	\item Programme Python qui prend en entrée les coordonnées de deux points et qui renvoie la distance euclidienne entre ces deux points à $10^{-3}$\\
+\end{enumerate}
+
+\noindent\textbf{Approfondissements possibles : }
+\begin{enumerate}[$\bullet$]
+	\item Définition vectorielle des homothéties 
+\end{enumerate}
+
+\section{Translation et vecteur associé}
+
+\subsection{Translation}
+
+\subsubsection{Définition}
+
+\medskip
+
+\noindent\fcolorbox{vert}{white}{
+\begin{minipage}{1\linewidth}
+\begin{defi}
+Soient $A$ et $B$ deux points du plan.\\
+On appelle translation qui transforme $A$ en $B$ la transformation qui, à tout point $C$ du plan, associe l'unique point $D$ tel que $ABDC$ est un parallélogramme.
+\end{defi}
+\end{minipage}
+}
+\hfill\\
+
+\begin{ex}\hfill\\[-0.8cm]
+\begin{minipage}{0.6\linewidth}
+On considère la figure ci-contre. Construire :
+\begin{enumerate}[$\diamond$]
+	\item l'image $D$ du point $C$ par la translation qui transforme $A$ en $B$. 
+	\item l'image $E$ du point $B$ par la translation qui transforme $C$ en $A$. 
+\end{enumerate}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+$$\begin{tikzpicture}[scale=0.5]
+\draw[dotted] (0,0) grid (10,7);
+\draw [->, line width = 1pt, >=latex'](1,4) -- (2,1);
+\draw [->, line width = 1pt, >=latex'](5,3) -- (8,5);
+\draw (4,6) node{$\bullet$} node[above left]{$A$};
+\draw (5,3) node{$\bullet$} node[below left]{$B$};
+\draw (1,4) node{$\bullet$} node[below left]{$C$};
+\draw (2,1) node{$+$} node[below left]{$D$};
+\draw (8,5) node{$+$} node[below right]{$E$};
+\end{tikzpicture}$$
+\end{minipage}
+\end{ex}
+\hfill\\[-1cm]
+
+\medskip
+
+\subsubsection{Image d'une figure par une translation}
+
+\medskip
+
+\noindent Construire l'image d'une figure par une translation consiste à construire l'image de chacun des points de la figure par cette translation. 
+
+\medskip
+
+\begin{ex}
+Construire l'image de la figure ci-dessous par la translation qui transforme $B$ en $A$.
+$$\begin{tikzpicture}[scale=0.5]
+\draw[dotted] (0,0) grid (17,11);
+\draw [line width = 1pt] (2,7) -- (2,9) -- (4,9) --  (4,10) -- (9,10) -- (11,8) -- (9,6) -- (4,6) -- (4,7) -- (2,7);
+\draw [line width = 1pt, color=blue,dotted] (6,3) -- (6,5) -- (8,5) --  (8,6) -- (13,6) -- (15,4) -- (13,2) -- (8,2) -- (8,3) -- (6,3);
+\draw [->, line width = 1pt, color=blue, >=latex'](1,5) -- (5,1);
+\draw [->, line width = 1pt, color=red, >=latex'](2,8) -- (6,4);
+\draw [->, line width = 1pt, color=red, >=latex'](4,10) -- (8,6);
+\draw [->, line width = 1pt, color=red, >=latex'](9,6) -- (13,2);
+\draw (1,5) node{$+$} node[above right]{$B$};
+\draw (5,1) node{$+$} node[above right]{$A$};
+\end{tikzpicture}$$
+\end{ex}
+
+
+\subsection{Vecteur associé à une translation}
+
+\medskip
+
+\noindent\fcolorbox{vert}{white}{
+\begin{minipage}{1\linewidth}
+\begin{defi}\hfill\\
+A toute translation, on associe un nouvel objet mathématique qui matérialise le déplacement correspondant à cette translation. Cet objet est appelé un \textbf{vecteur} et il est représenté par une flèche.\\[0.3cm]
+La translation qui transforme chaque point en lui-même est appelée translation de \textbf{vecteur nul}, on le note  $\V{0}$.\\[0.3cm]
+\noindent Tout vecteur non nul $\V{u}$ a trois caractéristiques : 
+\begin{enumerate}[$\diamond$]
+	\item une \textbf{direction} donnée par une droite. 
+	\item un \textbf{sens} donné par la manière dont un se déplace selon la direction. 
+	\item une \textbf{norme}, que l'on note $||\V{u}||$. La norme est une information de distance. 
+\end{enumerate}
+\end{defi}
+\end{minipage}
+}
+\hfill\\
+
+\begin{rmq}
+	Attention, le vecteur nul n'a ni direction, ni sens et sa norme vaut \textbf{0}
+\end{rmq}
+
+\begin{rmq}
+	Deux droites parrallèles définissent la même direction.
+\end{rmq}
+\medskip
+
+\begin{exer} \hfill\\
+	\parbox{0.6\linewidth}{
+		Sur le schéma ci-contre, la figure $\mathcal{F}$ a été transformée en la figure $\mathcal{F'}$ par une translation. On appelle $\V{u}$ le vecteur associé à cette translation.
+	\begin{enumerate}[$\diamond$]
+		\item Tracer en rouge sur la figure le vecteur $\V{u}$.\\[-0.3cm]
+		\item L'image du point $A$ par la translation de vecteur $\V{u}$ est le point $B$.\\[-0.3cm]
+		\item Les vecteurs $\V{u}$ et $\V{AB}$ sont égaux.\\
+		\\
+		On dit que $\V{AB}$ est un représentant de $\V{u}$.\\[-0.3cm]
+		\item Tracer en vert sur la figure deux autres représentants du vecteur $\V{u}$.\\[-0.3cm]
+		\item Combien de représentants a le vecteur $\V{u}$ ? \textbf{Il y en a une infinité}\\[-0.3cm]
+	\end{enumerate}
+}
+	\parbox{0.4\linewidth}{
+		$$\begin{tikzpicture}[scale=0.45]
+		\draw[dotted] (0,0) grid (17,11);
+		\draw [fill=blue!20, line width = 1pt] (4,4) arc [start angle=-90, end angle=90, radius=1];
+		\draw [fill=blue!20, line width = 1pt] (1,1) -- (4,1) -- (4,6) --  (1,1);
+		\draw (1,1) node{$\bullet$} node[below left]{$C$};
+		\draw (4,4) node{$\bullet$} node[left]{$E$};
+		\draw (4,6) node{$\bullet$} node[above]{$A$};
+		\draw (2,3) node[above left]{$\mathcal{F}$};
+		\draw [fill=orange!20, line width = 1pt] (14,6) arc [start angle=-90, end angle=90, radius=1];
+		\draw [fill=orange!20, line width = 1pt] (11,3) -- (14,3) -- (14,8) --  (11,3);
+		\draw (11,3) node{$\bullet$} node[below left]{$D$};
+		\draw (14,6) node{$\bullet$} node[below right]{$F$};
+		\draw (14,8) node{$\bullet$} node[above]{$B$};
+		\draw (12,5) node[below left]{$\mathcal{F'}$};
+		\draw [->, line width = 1pt, color=red, >=latex'](2,7) -- (12,9);
+		\draw[color=red] (5,8)  node[above right]{$\V{u}$};
+		\draw [->, line width = 1pt, color=vert, >=latex'](4,6) -- (14,8);
+		\draw [->, line width = 1pt, color=vert, >=latex'](4,4) -- (14,6);
+		\draw [->, line width = 1pt, color=vert, >=latex'](4,1) -- (14,3);
+		\draw [->, line width = 1pt, color=vert, >=latex'](1,1) -- (11,3);
+		\end{tikzpicture}$$
+	}
+\hfill\\[-0.8cm]
+\begin{enumerate}[$\diamond$]
+	\item Le vecteur $\V{u}$ a trois caractéristiques :\\[-0.3cm]
+		\begin{enumerate}[$\bullet$]
+		\item sa direction : \textbf{est donnée par la droite (AB)}\\[-0.2cm]
+		\item son sens :  \textbf{est de A vers B ou de gauche vers la droite et de baut vers le haut}\\[-0.2cm]
+		\item sa norme : $ \sqrt{10^2+2^2} = \sqrt{104} = \sqrt{4\times 2\times 13} = 2\sqrt{26} \approx 10,2$ (au dixième près).\\[-0.2cm]
+		\end{enumerate}
+	\item L'origine du vecteur $\V{AB}$ est $A$ Son extrémité est $B$.
+	\end{enumerate}
+\end{exer}
+\hfill\\[-0.5cm]
+
+\begin{rmq}\hfill\\
+	Quand on nomme un vecteur à l'aide de deux points, on commence toujours par son origine puis on donne son extrémité. Ainsi, la flèche dans le nom du vecteur va toujours de la gauche vers la droite et indique clairement le sens du déplacement. Par exemple, le vecteur associé à la translation qui transforme $A$ en $B$ s'écrit $\V{AB}$ (déplacement de $A$ vers $B$) mais ne s'écrira jamais $\overleftarrow{BA}$.
+\end{rmq}
+\hfill\\[-0.6cm]
+
+\begin{rmq}\hfill\\
+	Les notions de \textbf{direction} et de \textbf{sens} sont liées, mais attention à \textbf{ne pas les confondre}. \\
+	\begin{minipage}{0.5\linewidth}
+	On a représenté ci-contre plusieurs vecteurs.
+	\begin{enumerate}[$\diamond$]
+		\item Citer tous les vecteurs ayant la même direction.\\
+	$\V{u} , \V{z}, \V{w}$ ont la même direction et  $ \V{v}, \V{x}$ ont la même direction. 
+	
+		\item Parmi ces vecteurs, citer tous ceux qui ont le même sens.\\
+		$\V{t} , \V{u}, \V{v},\V{x}, \V{z}$ ont le même sens.
+		\item Citer tous les vecteurs ayant la même norme.\\
+		$\V{t} , \V{u}, \V{w}$ ont la même norme
+	\end{enumerate}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+	$$\begin{tikzpicture}[scale=0.5]
+	\draw[dotted] (0,0) grid (12,12);
+	\draw [->, line width = 1pt, color=blue, >=latex'](1,5) -- (4,3);
+	\draw (2,4) node[below, color=blue]{$\V{u}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](3,9) -- (4,7);
+	\draw (3,8) node[below, color=blue]{$\V{v}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](12,4) -- (9,6);
+	\draw (10,5) node[below, color=blue]{$\V{w}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](6,12) -- (12,8);
+	\draw (9,10) node[below left, color=blue]{$\V{z}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](0,12) -- (2,9);
+	\draw (1,11) node[below left, color=blue]{$\V{t}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](7,5) -- (9,1);
+	\draw (8,3) node[below left, color=blue]{$\V{x}$};
+	\end{tikzpicture}$$
+	\end{minipage}
+\end{rmq}
+\hfill\\[-0.4cm]
+
+%\begin{rmq}\hfill
+%	 \begin{enumerate}[$\diamond$]
+%	 \item La translation qui transforme $A$ en $B$ est appelée la translation de vecteur $\V{AB}$. On la note $t_{\V{AB}}$.
+%	 \item La translation de vecteur $\V{AA}$ est la translation de vecteur nul. On la note $t_{\V{0}}$.
+%	 \end{enumerate}
+%\end{rmq}
+%\hfill\\
+
+\subsection{Egalité de vecteurs}
+
+\medskip
+
+\fcolorbox{vert}{white}{
+	\hfill\\[0.8cm]
+	\begin{minipage}{0.95\linewidth}
+		\begin{defi}\hfill\\
+			Deux vecteurs non nuls sont égaux si et seulement si leurs trois caractéristiques sont égales, autrement dit si ils ont la même direction, le même sens et la même norme.
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{ex}  \hfill\\
+	\parbox{0.6\linewidth}{
+		\begin{enumerate}[$\diamond$]
+		\item Les vecteurs $\V{u}$ et $\V{x}$ n'ont pas la même direction. Ils ne sont donc pas égaux.\\[-0.1cm]
+		\item Les vecteurs $\V{u}$ et $\V{v}$ ont la même direction et le même sens mais n'ont pas la même norme. Ils ne sont donc pas égaux.\\[-0.1cm]
+		\item Les vecteurs $\V{u}$ et $\V{w}$ ont la même direction et la même norme mais n'ont pas le même sens. Ils ne sont donc pas égaux.\\[-0.1cm]
+\end{enumerate}
+}
+	\parbox{0.4\linewidth}{
+	$$\begin{tikzpicture}[scale=0.5]
+	\draw[dotted] (0,0) grid (11,6);
+	\draw [->, line width = 1pt, color=blue, >=latex'](1,1) -- (4,3);
+	\draw (2,3) node[below, color=blue]{$\V{u}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](5,1) -- (11,5);
+	\draw (8,3) node[below, color=blue]{$\V{v}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](11,2) -- (8,0);
+	\draw (10,1) node[below, color=blue]{$\V{w}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](6,3) -- (4,6);
+	\draw (5,5) node[below left, color=blue]{$\V{x}$};
+	\end{tikzpicture}$$}
+\end{ex}
+
+
+\fcolorbox{rouge}{white}{
+	\hfill\\[0.8cm]
+	\begin{minipage}{0.95\linewidth}
+		\begin{prop} (admise)\hfill\\
+			Soient $A$, $B$, $C$ et $D$ quatre points du plan. Les vecteurs $\V{AB}$ et $\V{CD}$ sont égaux si et seulement si $ABDC$ est un parallélogramme (éventuellement aplati).
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+\begin{rmq}
+	Attention à l'ordre des points dans le nom du parallélogramme !
+	Pour ne pas faire d'erreur, ne pas hésiter à faire une figure à main levée.
+\end{rmq}
+\hfill\\[0.7cm]
+
+\parbox{0.45\linewidth}{
+	$$\begin{tikzpicture}[scale=0.5]
+		\draw[dotted] (1,1) grid (10,8);
+		\draw (2,2) node{$\bullet$} node[above left]{$A$};
+		\draw (5,5) node{$\bullet$} node[above left]{$B$};
+		%\draw (4,4) node{$\bullet$} node[above left]{$D$};
+		\draw (6,2) node{$\bullet$} node[below right]{$C$};	
+	\end{tikzpicture}$$}\hfil\parbox{0.45\linewidth}{
+		$$\begin{tikzpicture}[scale=0.5]
+			\draw[dotted] (1,1) grid (10,8);
+			\draw (2,2) node{$\bullet$} node[above left]{$A$};
+			\draw (5,5) node{$\bullet$} node[above left]{$B$};
+			\draw (4,4) node{$\bullet$} node[above left]{$C$};
+			%\draw (6,2) node{$\bullet$} node[below right]{$D$};	
+		\end{tikzpicture}$$}
+		
+\newpage
+\section{Coordonnées d'un vecteur dans un repère orthonormé}
+
+\medskip
+
+\noindent Avant de commencer :\\
+
+\fcolorbox{vert}{white}{
+	\hfill\\[0.8cm]
+	\begin{minipage}{0.95\linewidth}
+		\begin{defi}\hfill\\[0.2cm]
+			\parbox{0.7\linewidth}{Soient $O$, $I$ et $J$ trois points distincts et non alignés du plan. On dit que $(O;I,J)$ est un repère orthonormé du plan si le triangle $OIJ$ est rectangle et isocèle en $O$. }
+			\parbox{0.3\linewidth}{
+			$$\begin{tikzpicture}[scale=0.5]
+			\draw[dotted] (-3,-3) grid (3,3);
+			\draw [->, line width = 1pt, >=latex'](-3,0) -- (3,0);
+			\draw [->, line width = 1pt, >=latex'](0,-3) -- (0,3);
+			\draw (0,1) node{$+$} node[above left]{$J$};
+			\draw (1,0) node{$+$} node[below left]{$I$};
+			\draw (0,0) node{$+$} node[below left]{$O$};
+			\end{tikzpicture}$$}
+			\hfill\\[-0.3cm]
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{rmq}
+	Par définition, dans un repère orthonormé $(O;I,J)$, on a : 
+	$$O(0;0) \ \ \ ; \ \ \ I(1;0) \ \ \ ; \ \ \ J(0;1) \ \ \ ; \ \ \ OI=OJ=1$$
+\end{rmq}
+
+
+\fcolorbox{rouge}{white}{
+	\hfill\\[0.8cm]
+	\begin{minipage}{0.95\linewidth}
+		\begin{prop}\hfill\\[0.2cm]
+			Soit $(O;I,J)$ un repère orthonormé du plan. Soient $A$ et $B$ deux points du plan et soit $K$ le milieu de $[AB]$. Alors $$K\left(\dfrac{x_A + x_B}{2};\dfrac{y_A + y_B}{2}\right)$$
+			\hfill\\[-0.3cm]
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+\begin{proof} \hfill \\
+\begin{center}
+\begin{minipage}[d]{0.30\linewidth}
+$$\begin{tikzpicture}[scale=0.7]
+			\draw[dotted] (-3,-3) grid (3,3);
+			\draw [->, line width = 1pt, >=latex'](-3,-2) -- (3,-2);
+			\draw [->, line width = 1pt, >=latex'](-2,-3) -- (-2,3);
+			%\draw [->, line width = 1pt, >=latex'](-3,2) -- (-1,-1);
+			%\draw (0,1) node{$+$} node[above left]{$J$};
+			\draw (2,2) node{$+$} node[above left]{$B$};
+			\draw (2,-2) node{$\shortmid$} node[below right]{$x_B$};
+			\draw (-2,2) node{$-$} node[above left]{$y_B$};
+			\draw (-1,-1) node{$+$} node[above left]{$A$};
+			\draw (-1,-2) node{$\shortmid$} node[below left]{$x_A$};
+			\draw (-2,-1) node{$-$} node[below left]{$y_A$};
+			\draw (-2,-2) node{$+$} node[below left]{$O$};
+			\end{tikzpicture}$$
+\end{minipage}
+\hfil 
+\begin{minipage}[d]{0.6\linewidth}
+.\dotfill \\
+\\
+. \dotfill\\
+ \\
+.\dotfill \\
+\\
+.\dotfill \\
+\\
+.\dotfill \\
+\\
+.\dotfill \\
+\end{minipage}
+\end{center}
+
+\end{proof}
+\hfill\\
+\begin{ex}
+	Dans un repère orthonormé $(O;I,J)$, on donne $A(7;-5)$, $B(-4;-1)$ et $C(3;2)$. Alors :
+	\begin{enumerate}[$\diamond$]
+		\item le milieu de $[AB]$ a pour coordonnées :\\
+		\\
+		.\dotfill\\
+		\item Le milieu de $[AC]$ a pour coordonnées :\\
+		\\
+		.\dotfill\\
+	\end{enumerate}
+\end{ex}
+
+
+
+\subsection{Définition}
+
+\medskip
+
+\fcolorbox{vert}{white}{
+	\hfill\\[0.8cm]
+	\begin{minipage}{0.95\linewidth}
+		\begin{defi}\hfill\\[0.2cm]
+			Soit  $(O;I,J)$ un repère orthonormé du plan. Soit $\V{u}$ un vecteur du plan et soit $M$ l'unique point du plan tel que $\V{OM}=\V{u}$.\\[0.2cm] 
+			On appelle \textbf{coordonnées d'un vecteur} $\V{u}$ les coordonnées du point $M$ dans le repère $(O;I,J)$.
+			$$\begin{tikzpicture}[scale=0.7]
+			\draw[dotted] (-3,-3) grid (3,3);
+			\draw [->, line width = 1pt, >=latex'](-3,0) -- (3,0);
+			\draw [->, line width = 1pt, >=latex'](0,-3) -- (0,3);
+			\draw [->, line width = 1pt, >=latex'](-3,2) -- (-1,-1);
+			\draw (-2.5,0.5) node[above left]{$\V{u}$};
+			\draw (0,1) node{$+$} node[above left]{$J$};
+			\draw (1,0) node{$+$} node[below left]{$I$};
+			\draw (2,-3) node{$+$} node[above right]{$M$};
+			\draw (0,0) node{$+$} node[below left]{$O$};
+			\end{tikzpicture}$$   
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\
+
+
+\begin{ex}
+	On considère le vecteur $\V{u}$ de la figure ci-dessus. Ses coordonnées sont : $\V{u}\left(2~;-3\right)$\\
+\end{ex}
+\hfill\\[-1.2cm]
+
+\begin{rmq}
+	Les coordonnées d'un vecteur peuvent aussi s'écrire verticalement afin de faciliter les calculs que l'on apprendra à faire par la suite : 
+	$$\V{u}\begin{pmatrix} 2 \\-3 \end{pmatrix}$$
+\end{rmq}
+\hfill\\
+
+\fcolorbox{red}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}\hfill
+			\begin{enumerate}[$\bullet$]
+				\item Le vecteur nul est \textbf{le} vecteur de coordonnées $\begin{pmatrix} 0 \\ 0 \end{pmatrix}$.
+				\item On note $\V{i}=\V{OI}$. Le vecteur $\V{i}$ est \textbf{le} vecteur de coordonnées $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$.
+				\item On note $\V{j}=\V{OJ}$. Le vecteur $\V{j}$ est \textbf{le} vecteur de coordonnées $\begin{pmatrix} 0 \\1 \end{pmatrix}$.
+			\end{enumerate}
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+
+%\begin{proof}\hfill\\
+%	Cela découle immédiatement de la définition. En effet : 
+%	\begin{enumerate}[$\diamond$]
+%		\item $\V{0}=\V{OO}$ et les coordonnées de $O$ dans le repère $(O;I,J)$ sont $(0;0)$.
+%		\item $\V{i}=\V{OI}$ et les coordonnées de $I$ dans le repère $(O;I,J)$ sont $(1;0)$.
+%		\item $\V{j}=\V{OJ}$ et les coordonnées de $J$ dans le repère $(O;I,J)$ sont $(0;1)$.
+%	\end{enumerate}
+%\end{proof}
+%\hfill\\[-1.2cm]
+
+\begin{rmq}
+	Avec ces nouvelles notations, le repère $(O;I,J)$ peut également se noter à l'aide de vecteurs : $(O;\V{i},\V{j})$.
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw[dotted] (-3,-3) grid (3,3);
+	\draw [->, line width = 1pt, >=latex'](-3,0) -- (3,0);
+	\draw [->, line width = 1pt, >=latex'](0,-3) -- (0,3);
+	\draw [->, line width = 1pt, >=latex'](0,0) -- (1,0);
+	\draw [->, line width = 1pt, >=latex'](0,0) -- (0,1);
+	\draw (0.5,0) node[below]{$\V{i}$};
+	\draw (0,0.5) node[left]{$\V{j}$};
+	\draw (0,0) node{$+$} node[below left]{$O$};
+	\end{tikzpicture}$$
+\end{rmq}
+
+\hfill\\[0.9cm]
+\fcolorbox{red}{white}{
+	\noindent\begin{minipage}{0.95\linewidth}
+		\begin{thm}(admis)
+			Deux vecteurs sont égaux si et seulement si leurs coordonnées sont égales.
+		\end{thm}
+	\end{minipage}
+}
+\hfill\\
+
+\subsection{Calcul des coordonnées d'un vecteur.}
+
+\hfill\\
+\fcolorbox{red}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Soit $(O;I,J)$ un repère quelconque du plan. Soient $A(x_{A};y_{A})$ et $B(x_{B};y_{B})$ deux points du plan.\\
+			\\
+			Alors les coordonnées du vecteur $\V{AB}$ sont $\begin{pmatrix} x_B-x_A \\ y_B-y_A \end{pmatrix}.$\\
+		\end{prop}
+	\end{minipage}
+}
+\begin{rmq}
+Mon moyen mnémotechnique pour m'en souvenir est: \textbf{"L'arrivée moins le départ"}
+\end{rmq}
+\begin{proof}
+	On note $\begin{pmatrix} X\\Y\end{pmatrix}$ les coordonnées du vecteur $\V{AB}$.\\ 
+	\\
+	Soit $M$ l'unique point du plan tel que $\V{OM}=\V{AB}$. Par définition des coordonnées d'un vecteur, on a donc $M( X ; Y)$.\\
+	\\
+	Puisque $\V{AB}=\V{OM}$, le quadrilatère $ABMO$ est un parallélogramme. Ses diagonales $[AM]$ et $[BO]$ ont donc même milieu. Or :\\
+	\begin{enumerate}[$\diamond$]
+		\item le milieu de $[AM]$ a pour coordonnées $\left(\dfrac{x_A+x_M}{2}~;~\dfrac{y_A+y_M}{2}\right) \ = \ \left(\dfrac{x_A+X}{2}~;~\dfrac{y_A+Y}{2}\right)$\\
+		\item le milieu de $[BO]$ a pour coordonnées $\left(\dfrac{x_B+x_0}{2}~;~\dfrac{y_B+y_0}{2}\right) \ = \ \left(\dfrac{x_B+0}{2}~;~\dfrac{y_B+0}{2}\right) \ = \ \left(\dfrac{x_B}{2}~;~\dfrac{y_B}{2}\right)$\\
+	\end{enumerate}
+On en déduit que \ \  $\left(\dfrac{x_B}{2}~;~\dfrac{y_B}{2}\right) \ = \ \left(\dfrac{x_A+X}{2}~;~\dfrac{y_A+Y}{2}\right) $ \\[0.2cm]
+$$\left\{\begin{array}{c}
+\dfrac{x_B}{2} \ = \ \dfrac{x_A+X}{2} \\
+\dfrac{y_B}{2} \ = \ \dfrac{y_A+Y}{2}
+\end{array}\right. \Leftrightarrow \left\{\begin{array}{c}
+\dfrac{x_B}{2} -\dfrac{x_A}{2}\ = \ \frac{X}{2} \\
+\dfrac{y_B}{2}-\dfrac{y_A}{2} \ = \ \frac{Y}{2}
+\end{array}\right. \Leftrightarrow \left\{\begin{array}{c}
+x_B - x_A \ = \ X\\
+y_B-y_A \ = \ Y
+\end{array}\right.$$
+D'où $$\V{AB}\begin{pmatrix} X\\Y\end{pmatrix} \ = \ \begin{pmatrix} x_B-x_A \\ y_B-y_A \end{pmatrix}$$
+\end{proof}
+\indent\hfill\\
+
+\begin{ex}
+	Soient $A(-3;2)$ et $B(4;1)$. Alors le vecteur $\V{AB}$ a pour coordonnées :\dotfill\\
+\end{ex}
+\hfill\\
+
+\noindent On déduit de cette propriété une nouvelle méthode de lecture graphique des coordonnées d'un vecteur.\\\hfill\\
+
+\fcolorbox{blue}{white}{
+	\begin{minipage}{0.95\linewidth}
+		\hfill\\
+		\noindent\textbf{\underline{Lecture graphique des coordonnées d'un vecteur :}}\\
+		\begin{minipage}{0.5\linewidth}
+			\begin{enumerate}[$\diamond$]
+				\item L'abscisse d'un vecteur correspond au déplacement horizontal que l'on effectue pour aller de l'origine jusqu'à l'extrémité du vecteur.
+				\item L'ordonnée d'un vecteur correspond au déplacement vertical que l'on effectue pour aller de l'origine jusqu'à l'extrémité du vecteur.
+			\end{enumerate}
+			Si on reprend l'exemple fait précédemment, 
+			\begin{enumerate}[$\diamond$]
+				\item le déplacement horizontal est $2$ ;
+				\item le déplacement vertical est $-3$. \textcolor{red}{Attention au signe !}
+			\end{enumerate}
+		On retrouve : $\V{u}\begin{pmatrix} 2\\-3 \end{pmatrix}$.
+		\end{minipage}
+		\begin{minipage}{0.5\linewidth}
+			$$\begin{tikzpicture}[scale=0.7]
+			\draw[dotted] (-4,-4) grid (4,4);
+			\draw [->, line width = 1pt, >=latex'](-4,0) -- (4,0);
+			\draw [->, line width = 1pt, >=latex'](0,-4) -- (0,4);
+			\draw [->, line width = 1pt, >=latex'](-3,2) -- (-1,-1);
+			\draw (-2.5,0.5) node[above left]{$\V{u}$};
+			\draw (0,1) node{$+$} node[above left]{$J$};
+			\draw (1,0) node{$+$} node[below left]{$I$};
+			%\draw (2,-3) node{$+$} node[above right]{$M$};
+			\draw (0,0) node{$+$} node[below left]{$O$};
+			\draw [->, red, line width = 1pt, >=latex'](-3,2) -- (-1,2);
+			\draw [->, blue, line width = 1pt, >=latex'](-1,2) -- (-1,-1);
+			\draw[red] (-2,2) node[above]{\small{déplacement horizontal : ...}};
+			\draw[blue] (-1,0.5) node[right]{\small{déplacement vertical : ...}};
+			\end{tikzpicture}$$
+		\end{minipage}
+	\end{minipage}
+}
+\newpage
+
+\begin{exer} Sur la figure ci-contre, lire les coordonnées de chacun des vecteurs dans le repère orthonormé $(O;I,J)$.\\
+	\begin{minipage}{0.4\linewidth}
+		.\dotfill\\
+		\\
+		.\dotfill\\
+		\\
+		.\dotfill\\
+		\\
+		.\dotfill\\
+	\end{minipage}
+	\begin{minipage}{0.6\linewidth}
+		$$\begin{tikzpicture}[scale=0.7]
+		\draw[dotted] (-3,-3) grid (6,5);
+		\draw [->, line width = 1pt, >=latex'](-3,0) -- (6,0);
+		\draw [->, line width = 1pt, >=latex'](0,-3) -- (0,5);
+		\draw [blue, ->, line width = 1pt, >=latex'](0,3) -- (-3,3);
+		\draw [blue, ->, line width = 1pt, >=latex'](0,0) -- (2,-2);
+		\draw [blue, ->, line width = 1pt, >=latex'](1,2) -- (4,3);
+		\draw [blue, ->, line width = 1pt, >=latex'](4,0) -- (4,-3);
+		\draw[blue] (-1.5,3) node[above]{$\V{c}$};
+		\draw[blue] (2.5,2.5) node[above]{$\V{b}$};
+		\draw[blue] (1,-1) node[above right]{$\V{a}$};
+		\draw[blue] (5,-1.5) node[right]{$\V{d}$};
+		\draw (0,1) node{$+$} node[left=0.8pt]{$J$};
+		\draw (1,0) node{$+$} node[below=0.8pt]{$I$};
+		\draw (0,0) node{$+$} node[below left=0.8pt]{$O$};
+		\end{tikzpicture}$$
+	\end{minipage}
+\end{exer}
+\hfill\\
+
+\begin{exer}
+	Soient $A(-1;3)$ et $\V{u}\begin{pmatrix} -2\\-5 \end{pmatrix}$. Déterminer les coordonnées du point $B$ tel que $\V{AB}=\V{u}$.\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+\end{exer}
+
+\begin{exer}
+	Soient $A(0;-2)$, $B(4;6)$ et $C(-4;0)$. Déterminer les coordonnées du point $D$ tel que $ABDC$ soit un parallélogramme.\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+\end{exer}
+
+
+%\subsection{Application : calcul des coordonnées du milieu d'un segment dans un repère orthonormé}
+%
+%\noindent\underline{\textbf{Application : caractérisation du milieu d'un segment à l'aide d'une égalité de vecteurs}}\\
+%
+%\noindent\fcolorbox{red}{white}{
+%	\begin{minipage}{1\linewidth}
+%		\begin{prop}
+%			Soient $A$ et $B$ deux points distincts du plan. Alors :
+%			$$\text{$I$ est le milieu de $[AB]$} \ \ \ \Leftrightarrow \ \ \ \V{AI}=\V{IB}$$
+%		\end{prop}
+%	\end{minipage}
+%}
+%
+%\begin{proof}
+%	Admis
+%\end{proof}
+%\hfill\\[-0.5cm]
+%
+%\begin{rmq}
+%	Attention, il est totalement faux d'écrire :
+%	$$\text{$I$ est le milieu de $[AB]$} \ \ \ \Leftrightarrow \ \ \ AI=IB$$
+%	\noindent Un sens de l'équivalence est vrai. Lequel ? \dotfill\\
+%	\\
+%	.\dotfill\\
+%	
+%	\noindent L'autre sens est faux. Pourquoi ? \\
+%	\\
+%	.\dotfill\\
+%	\\
+%	.\dotfill
+%\end{rmq}
+
+
+
+
+\section{Premières opérations sur les vecteurs}
+
+\subsection{Somme de deux vecteurs}
+
+\bigskip
+
+\subsubsection{Enchaînement de deux translations.}
+
+\bigskip
+
+\noindent\fcolorbox{green}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}
+			Soient $\V{u}$ et $\V{v}$ deux vecteurs du plan. On appelle \textbf{enchaînement} de la translation de vecteur $\V{u}$ puis de la translation de vecteur $\V{v}$ la transformation qui, à tout point $A$ du plan, associe l'unique point $C$ du plan défini de la manière suivante : 
+			\begin{enumerate}[$\diamond$]
+				\item on considère tout d'abord le point $B$ image de $A$ par la translation de vecteur $\V{u}$ (donc tel que $\V{AB}=\V{u}$) ;
+				\item on définit ensuite le point $C$ comme l'image du point $B$ par la translation de vecteur $\V{v}$ (donc $\V{BC}=\V{v}$).
+			\end{enumerate}
+		\end{defi}
+	\end{minipage}
+}
+\indent\hfill\\
+\\
+
+\noindent\fcolorbox{red}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{thm-def}(admis)\hfill\\[0.2cm]
+			\begin{minipage}{0.5\linewidth}
+				Soient $\V{u}$ et $\V{v}$ deux vecteurs du plan.\\
+				L'enchaînement de la translation de vecteur $\V{u}$ puis de la translation de vecteur $\V{v}$ est encore une translation. \\
+				\\
+				Le vecteur associé à cette translation est appellé la \textbf{somme} de $\V{u}$ et de $\V{v}$.\\
+				\\
+				On le note $\V{u} + \V{v}$. 
+			\end{minipage}
+			\begin{minipage}{0.5\linewidth}
+				$$\begin{tikzpicture}[scale=0.6]
+				\draw[dotted] (0,0) grid (10,7);
+				\draw [->, line width = 1pt, color=black, >=latex'](1,5) -- (2,1);
+				\draw (1.1,3) node[above, color=black]{$\V{v}$};
+				\draw [->, line width = 1pt, color=black, >=latex'](2,6) -- (4,7);
+				\draw (3.25,6.6) node[below, color=black]{$\V{u}$};
+				\draw [->, line width = 1pt, color=black, >=latex'](6,4) -- (8,5);
+				\draw (7,4.5) node[above, color=black]{$\V{u}$};
+				\draw [->, line width = 1pt, color=black, >=latex'](8,5) -- (9,1);
+				\draw (8.5,3) node[right, color=black]{$\V{v}$};
+				%\draw [->, line width = 1pt, color=red, >=latex'](6,4) -- (9,1);
+				%\draw (7.2,3) node[below left, color=red]{$\V{u}+\V{v}$};
+				\draw (6,4) node{$\bullet$} node[below left]{$A$};
+				\draw (8,5) node{$\bullet$} node[above right]{$B$};
+				\draw (9,1) node{$\bullet$} node[below left]{$C$};
+				\end{tikzpicture}$$  
+			\end{minipage}
+		\end{thm-def}
+	\end{minipage}
+}
+
+\bigskip\subsubsection{Base orthonormée.}\bigskip
+
+\noindent\fcolorbox{red}{white}{\begin{minipage}{1\linewidth}
+\begin{prop-def} (admis)\hfill\\[0.2cm]
+\begin{minipage}{0.6\linewidth}
+Soient $O$ un point et deux vecteurs $\V{i}$ et $\V{j}$ dont les directions sont perpendiculaires et dont les normes sont égales à  $1$. 
+\begin{itemize}[$\diamond$]
+\item On dit que $\left(\V{i} , \V{j} \right)$ est une \textbf{base orthonormée} du plan,\\ donnant un repère orthonormé $\left(O, \V{i}, \V{j}\right)$. 
+\item Pour tout vecteur $\V{u}$, il existe un unique couple de nombres réels $\left(x ; y\right)$ tel que: \\
+%$$ \V{u} \ =  \ldots\ldots\ldots + \ldots\ldots\ldots$$
+$$ \V{u} \ =  \ x\V{i} + y\V{j}$$ 
+C'est l'unique décomposition dans la base orthonormées $\left(\V{i} , \V{j} \right)$ du vecteur $\V{u}$.
+\end{itemize}
+ 
+\end{minipage}
+\hfil
+\begin{minipage}{0.3\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.8]
+			\draw[dotted] (-3,-3) grid (3,3);
+			\draw [->, line width = 1pt, >=latex'](-1,0) -- (2,2);
+			\draw [->, line width = 1pt, >=latex'](-3,-2) -- (3,-2);
+			\draw [->, line width = 1pt, >=latex'](-2,-3) -- (-2,3);
+			\draw [->, line width = 1pt, >=latex'](-2,-2) -- (-1,-2);
+			\draw [->, line width = 1pt, >=latex'](-2,-2) -- (-2,-1);
+			\draw [->, line width = 1pt, >=latex'](-2,-2) -- (-2,-1);
+			\draw [->, red, line width = 1pt, >=latex'](-1,0) -- (2,0);
+			\draw [->, blue, line width = 1pt, >=latex'](2,0) -- (2,2);
+			\draw[red] (0.5,0) node[below]{$x\V{i}$};
+			\draw[blue] (2,1) node[right]{$y\V{j}$};
+			\draw (0,1) node[above right]{$\V{u}$};
+			\draw (-2,-2) node[above left]{$\V{j}$};
+			\draw (-2,-2) node[below right]{$\V{i}$};
+			\draw (-2,-2) node{$+$} node[below left]{$O$};
+\end{tikzpicture}
+\end{minipage}
+\end{prop-def}	
+\end{minipage}
+}
+\hfil\\
+\begin{rmq}
+Cela revient à décomposer la translation de vecteur $\V{u}$ en un enchaînement de deux translations selon les directions des axes du repère.  
+\end{rmq}
+\bigskip \subsubsection{Propriétés de la somme de vecteurs.}
+\bigskip
+
+\noindent\fcolorbox{red}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}(admise)
+			Soient $\V{u}$, $\V{v}$ et $\V{w}$ trois vecteurs du plan. Alors :
+			\begin{enumerate}[$\diamond$]
+				\item $(\V{u}+\V{v})+\V{w}=\V{u}+(\V{v}+\V{w})$ (on dit que la somme est associative);
+				\item $\V{u}+\V{v}=\V{v}+\V{u}$ (on dit que la somme est commutative);
+				\item $\V{u}+\V{0}=\V{u}$ (le vecteur $\V{0}$ est l'élément neutre pour l'addition);
+			\end{enumerate}
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+
+
+%\noindent Exemples d'applications de la somme de vecteurs :
+%\begin{enumerate}[$\diamond$]
+%	\item résultante des forces en physique
+%	\item navigation en mer : pour obtenir la route réellement suivie, on calcule la somme vectorielle du cap choisi et de la dérive.
+%\end{enumerate}
+
+
+\subsubsection{Relation de Chasles.}
+\bigskip
+
+\noindent\fcolorbox{red}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} (admise)\textbf{Relation de Chasles}\\
+			Soient $A$, $B$ et $C$ trois points du plan. Alors :
+			$$\V{AB}+\V{BC}=\V{AC}$$
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{ex}
+	A l'aide de la relation de Chasles, compléter les égalités vectorielles suivantes :\\
+	\begin{enumerate}[$\diamond$]
+		\item $\V{ \ldots X} = \V{G \ldots } + \V{NX}$ \\[-0.2cm]
+		\item $\V{ LV} = \V{\ldots O} + \V{O \ldots}$ \\
+		\item $\V{ E \ldots} = \V{EF} + \V{\ldots U}$ \\
+	\end{enumerate}
+\end{ex}
+
+\begin{ex}
+	A l'aide de la relation de Chasles, simplifier les sommes vectorielles suivantes :\\
+	\begin{enumerate}[$\diamond$]
+		\item $\V{DJ} + \V{JL} = \dotfill$ \\
+		\item $\V{MN}+\V{EM} = \dotfill$ \\
+		\item $\V{QZ}+\V{JM}+\V{MQ} = \dotfill$ \\
+		\item $\V{ST}+\V{HR}+\V{RS}+\V{EH} = \dotfill$ \\
+		\item $\V{UX}+\V{AO}+\V{SU}+\V{OS} = \dotfill$ \\
+	\end{enumerate}
+\end{ex}
+
+
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{1\linewidth}
+		\noindent\underline{Application : construction de la somme de deux vecteurs avec la méthode \og bout à bout \fg.}\\
+		\\
+		Pour construire la somme de deux vecteurs, il suffit de les mettre \og bout à bout \fg (attention au sens des flèches).\\
+		Le vecteur somme est alors le vecteur ayant :
+		\begin{enumerate}[$\diamond$]
+			\item pour origine l'origine du \textbf{premier} vecteur de la somme ;
+			\item pour extrémité l'extrémité du \textbf{deuxième} vecteur de la somme.
+		\end{enumerate} 
+		%\textbf{Voir feuille d'exercices \og Construction de la somme de deux vecteurs \fg pour davantage de détails.}
+	\end{minipage}
+}
+
+
+
+\bigskip \subsubsection{Coordonnées du vecteur somme}
+\bigskip
+
+\noindent\fcolorbox{red}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Si $\V{u}\begin{pmatrix} x\\y \end{pmatrix}$ et $\V{v}\begin{pmatrix} x'\\y' \end{pmatrix}$ sont deux vecteurs du plan, alors le vecteur $\V{u}+\V{v}$ a pour coordonnées $$\V{u}+\V{v} \ = \ \begin{pmatrix} x+x' \\ y+y' \end{pmatrix}$$\\
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{ex}\hfill\\
+	On munit le plan d'un repère quelconque $(O;I,J)$. Soient $\V{u}\begin{pmatrix} 1\\-2 \end{pmatrix}$ et $\V{v}\begin{pmatrix} 3\\5 \end{pmatrix}$.\\
+	Calculer les coordonnées du vecteur $\V{u}+\V{v}$.\\
+	$$\V{u}+\V{v} \ = \ \begin{pmatrix} 1\\-2 \end{pmatrix} +\begin{pmatrix} 3\\5 \end{pmatrix} \ = \ \begin{pmatrix} 1+3\\-2+5 \end{pmatrix} \ = \ \begin{pmatrix} 4\\3 \end{pmatrix} $$
+\end{ex}
+
+
+\subsection{Loi externe}
+\bigskip\subsubsection{Produit d'un vecteur par un réel}
+\bigskip
+\noindent\fcolorbox{red}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Soient $k\in\R$ et $\V{u}\begin{pmatrix}x\\y
+			\end{pmatrix}$. Le vecteur $k\V{u}$ a pour coordonnées $\begin{pmatrix}kx\\ky\end{pmatrix}$.
+		\end{prop}
+	\end{minipage}
+}
+\newpage
+\begin{ex}\hfill\\
+	On munit le plan d'un repère quelconque $(O;I,J)$. Soient $\V{u}\begin{pmatrix} 5\\3 \end{pmatrix}$ et $\V{v}\begin{pmatrix} -4\\8 \end{pmatrix}$.\\
+	Calculer les coordonnées des vecteurs $3\V{u}$,  $-2\V{v}$ et $\dfrac{1}{4}\V{v}$
+	$$3\V{u} \ = \ 3 \begin{pmatrix} 5\\3 \end{pmatrix} \ = \ \begin{pmatrix} 3\times 5\\ 3\times 3 \end{pmatrix} \ = \ \begin{pmatrix} 15\\ 9 \end{pmatrix}$$
+	$$-2\V{v} \ = \ -2 \begin{pmatrix} -4\\8 \end{pmatrix} \ = \ \begin{pmatrix} -2\times (-4)\\ -2\times 8 \end{pmatrix} \ = \ \begin{pmatrix} 8\\ -16 \end{pmatrix}$$
+	$$\dfrac{1}{4}\V{v} \ = \ \dfrac{1}{4} \begin{pmatrix} -4\\8 \end{pmatrix} \ = \ \begin{pmatrix} \dfrac{1}{4}\times (-4)\\\dfrac{1}{4}\times 8 \end{pmatrix} \ = \ \begin{pmatrix} -1\\ 2 \end{pmatrix}$$
+\end{ex}
+\begin{rmq}
+Les coordonnées des vecteurs~ $\V{u}$~ et ~$k\V{u}$~ sont proportionnelles. 
+\end{rmq}
+\bigskip\subsubsection{Opposé d'un vecteur}
+\bigskip
+
+\noindent\fcolorbox{green}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\hfill
+			\begin{enumerate}[$\diamond$]
+				\item Soit $\V{u}$ un vecteur non nul du plan. On appelle vecteur opposé du vecteur $\V{u}$ et on note $-\V{u}$ le vecteur qui a :\\[-0.2cm]
+				\begin{enumerate}[$\bullet$]
+					\item Le vecteur $\V{u}$ et le vecteur $-\V{u}$ ont la même direction 
+					\item Le vecteur $\V{u}$ et le vecteur $-\V{u}$ ont la même norme
+					\item Le vecteur $\V{u}$ et le vecteur $-\V{u}$ sont de sens opposés
+				\end{enumerate}
+				\item Par convention, l'opposé du vecteur nul est le vecteur nul.
+			\end{enumerate}
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\
+
+\noindent\fcolorbox{red}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Soient $A$ et $B$ deux points du plan. Alors l'opposé du vecteur $\V{AB}$ est le vecteur $-\V{AB} \ = \ \V{BA} $.\\
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+
+
+
+\noindent La propriété suivante justifie la notation adoptée pour l'opposé d'un vecteur.\\
+
+\noindent\fcolorbox{red}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Soit $\V{u}$ un vecteur du plan. Alors $\V{u}+(-\V{u})=\V{0}$.
+		\end{prop}
+	\end{minipage}
+}
+
+\begin{proof}
+	Soient $A$ et $B$ deux points du plan tels que $\V{AB}=\V{u}$ (i.e. $\V{AB}$ est un représentant du vecteur $\V{u}$). Alors d'après la relation de Chasles,
+	$$\V{u}+(-\V{u})=\V{AB}+\V{BA}=\V{AA}=\V{0}$$
+\end{proof}
+
+\noindent\fcolorbox{red}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Si $\V{u}\begin{pmatrix} x\\y \end{pmatrix}$, alors
+			le vecteur $-\V{u}$ a pour coordonnées $\begin{pmatrix}-x\\-y \end{pmatrix}$.\\
+	\end{prop}
+\end{minipage}
+}
+\hfill\\
+
+\begin{ex}\hfill\\
+	On munit le plan d'un repère quelconque $(O;I,J)$. Soient $\V{u}\begin{pmatrix} 1\\-2 \end{pmatrix}$ et $\V{v}\begin{pmatrix} 3\\5 \end{pmatrix}$.\\
+	Calculer les coordonnées des vecteurs $-\V{u}$ et $-\V{v}$.\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\ 
+\end{ex}
+
+
+
+\subsection{Différence de deux vecteurs}
+
+\bigskip
+
+\noindent\fcolorbox{green}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}
+			Soient $\V{u}$ et $\V{v}$ deux vecteurs du plan. On appelle différence de $\V{u}$ et de $\V{v}$ (\textbf{dans cet ordre}) et on note $\V{u}-\V{v}$ le vecteur $\V{u}+(-\V{v})$.
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{ex}
+	Construire ci-dessous le représentant du vecteur $\V{u}-\V{v}$ ayant pour origine $A$.
+	$$\begin{tikzpicture}[scale=0.75]
+	\draw[dotted] (0,0) grid (12,9);
+	\draw [->, line width = 1pt, color=black, >=latex'](0,1) -- (1,4);
+	\draw (0.7,2.1) node[above, color=black]{$\V{u}$};
+	\draw [->, line width = 1pt, color=black, >=latex'](7,3) -- (11,1);
+	\draw (8.5,2) node[below, color=black]{$\V{v}$};
+	\draw (4,3) node{$\bullet$} node[below left]{$A$};
+	\draw [->, line width = 1pt, color=blue, >=latex', dotted](4,3) -- (0,5);
+	\draw [->, line width = 1pt, color=red, >=latex', dotted](0,5) -- (1,8);
+	\draw [->, line width = 1pt, color=red, >=latex', dotted](4,3) -- (5,6);
+	\draw [->, line width = 1pt, color=blue, >=latex', dotted](5,6) -- (1,8);
+	\draw (1,8) node{$\bullet$} node[above left]{$B$};
+	\end{tikzpicture}$$  
+\end{ex}
+
+
+
+\noindent\fcolorbox{red}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Si $\V{u}\begin{pmatrix} x\\y \end{pmatrix}$ et $\V{v}\begin{pmatrix} x'\\y' \end{pmatrix}$ sont deux vecteurs du plan, alors le vecteur $\V{u}-\V{v}$ a pour coordonnées $$\V{u}-\V{v} \ =  \ \begin{pmatrix} x-x'\\y-y' \end{pmatrix}$$
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{ex}\hfill\\
+	On munit le plan d'un repère quelconque $(O;I,J)$. Soient $\V{u}\begin{pmatrix} 1\\-2 \end{pmatrix}$ et $\V{v}\begin{pmatrix} 3\\5 \end{pmatrix}$.\\
+	Calculer les coordonnées du vecteur $\V{u}-\V{v}$.\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+\end{ex}
+
+\section{Calcul de la norme d'un vecteur dans un repère orthonormé}
+
+\hfill\\
+
+\noindent\fcolorbox{red}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Soit $(O;I,J)$ un repère orthonormal du plan et soit $\V{u}$ un vecteur du plan de coordonnées $\begin{pmatrix} a\\b \end{pmatrix}$. Alors le vecteur $\V{u}$ a pour norme :
+			$$||\V{u}||=\sqrt{a^{2}+b^{2}}$$ 
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+\newpage
+\begin{proof} \hfill \\
+\begin{minipage}{1\linewidth}
+\begin{minipage}[d]{0.30\linewidth}
+$$\begin{tikzpicture}[scale=0.7]
+			\draw [dotted] (-3,-3) grid (3,3);
+			\draw [->, line width = 1pt, >=latex'](-3,-2) -- (3,-2);
+			\draw [->, line width = 1pt, >=latex'](-2,-3) -- (-2,3);
+			\draw [->, line width = 1pt, >=latex'](-1,1) -- (2,3);
+			\draw (0,1.8) node[above ]{$\V{u}$};
+			\draw (-1,-2) node{$\shortmid$} node[below]{$I$};
+			\draw (-2,-1) node{$-$} node[left]{$J$};
+			\draw (-2,-2) node{$+$} node[below left]{$O$};
+\end{tikzpicture}$$
+\end{minipage}
+\hfil 
+\begin{minipage}[d]{0.6\linewidth}
+.\dotfill \\
+\\
+. \dotfill\\
+ \\
+.\dotfill \\
+\\
+.\dotfill \\
+\\
+.\dotfill \\
+\\
+.\dotfill \\
+\end{minipage}
+\end{minipage}
+
+\end{proof}
+
+\begin{rmq}
+	En particulier, si $A(x_{A};y_{A})$ et $B(x_{B};y_{B})$ sont deux points du plan, alors $\V{AB}\begin{pmatrix} x_{B}-x_{A}\\y_{B}-y_{A} \end{pmatrix}$ :
+	$$||\V{AB}||=\sqrt{(x_{B}-x_{A})^{2}+(y_{B}-y_{A})^{2}}.$$
+\end{rmq}
+\hfill\\[-0.2cm]
+
+\begin{ex}
+	Dans chacun des cas suivants, calculer la norme du vecteur donné :
+	\begin{enumerate}[$\diamond$]
+		\item $\V{u} \begin{pmatrix} 5 \\ 2 \end{pmatrix}$ \dotfill\\
+		\item $\V{v} \begin{pmatrix} -3 \\ 4 \end{pmatrix}$ \dotfill\\
+		\item $\V{FC}$ où $F(5;1)$ et $C(6;-1)$ \dotfill\\\hfill\\
+		.\dotfill\\
+	\end{enumerate}
+\end{ex}
+\hfill\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Traduction de situations géométriques à l'aide de vecteurs}
+
+\medskip
+
+\noindent Quelques réflexes à avoir :
+\begin{enumerate}[$\diamond$]
+	\item Si on nous demande de démontrer que $ABCD$ est un parallélogramme :\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+%	\item Si on nous demande de démontrer que $ABCD$ est un trapèze :\\
+%	\\
+%	.\dotfill\\
+%	\\
+%	.\dotfill\\
+%	\\
+%	.\dotfill\\
+%	\\
+%	.\dotfill\\
+%	\\
+%	\item Si on nous demande de démontrer que trois points $A$, $B$ et $C$ sont alignés :\\
+%	\\
+%	.\dotfill\\
+%	\\
+%	.\dotfill\\
+%	\\
+%	\item Si on nous demande de démontrer que les droites $(AB)$ et $(CD)$ sont parallèles : \\
+%	\\
+%	.\dotfill\\
+%	\\
+%	.\dotfill\\
+%	\\
+%	.\dotfill\\
+%	\\
+	\item Si on nous demande de calculer les coordonnées du symétrique $C$ de $A$ par rapport à $B$ (les points $A$ et $B$ étant connus) :\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	\item Si on nous demande de calculer les coordonnées du point $D$ tel que $ACBD$ soit parallélogramme (les points $A$, $B$ et $C$ étant connus) :\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+\end{enumerate}
+
+
+
+
+% Set the ending of a LaTeX document
+\end{document}
+ 

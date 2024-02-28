@@ -1,0 +1,2138 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exer}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou}\cfoot{\thepage/28}\rfoot{MPSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+
+
+	\noindent\shadowbox{
+		\begin{minipage}{1\linewidth}
+		\huge{\textbf{ Chapitre 1 : Raisonnement et vocabulaire ensembliste  }}
+		\end{minipage}
+	}
+\bigskip%\hfill\\[5cm]
+	\tableofcontents
+	\newpage
+	
+\section{Rédaction et quelques types de raisonnements}
+\begin{itemize}[\Large$\bullet$]
+	\item Une copie est la seule chose que le correcteur connaîtra de vous lors d'une épreuve écrite, votre note dépendra seulement de celle-ci. Il tentera d'évaluer plusieurs éléments : votre compréhension
+	du sujet, vos connaissances mathématiques, vos capacités à exposer ces connaissances, votre maîtrise de la langue
+	française et enfin le soin dont vous saurez faire preuve.
+	\item Les exemples introduits par le sigle $\happy$ sont des exemples où la rédaction est correcte.
+	\item Ceux introduits par $\sad$ sont des exemples où la rédaction est incorrecte et sanctionnée.
+\end{itemize}
+
+
+
+\subsection{Introduire tous les objets utilisés}
+\begin{itemize}[\Large$\bullet$]
+	\item On présente toujours les nouveaux venus, tous les objets que l'on introduit dans la rédaction doivent être définis au préalable. Introduire un nouvel objet quelconque se fait simplement avec le mot « soit » \\ou « soient » quand il y en a plusieurs.\\ 
+
+\noindent $\sad$ $x\geq0$. Si $x=1$ alors vrai, sinon faux. \\
+\noindent $\happy$ Soit $x\in\R^+$. Si $x=1$ la proposition $\Ps$ est vraie sinon elle est fausse. \\[0.2cm]
+
+\noindent $\sad$ Cherchons les racines du polynôme $X^2 + X - 1$. $\Delta = 5$ donc les racines sont $\dfrac{-1+\sqrt{5}}{2}$ et $\dfrac{-1-\sqrt{5}}{2}$ .\\
+\noindent $\happy$ On note $\Delta$ le discriminant du polynôme $X^2 + X - 1$. On a $\Delta = 5$ donc. . . 
+\end{itemize}
+
+\subsubsection{Quantification}
+\begin{itemize}[$\bullet$]
+	\item Quand vous énoncez une propriété en lien avec des objets mathématiques, il faut impérativement préciser si cette propriété est vérifiée par tous les objets de ce type, par une certaine partie de ces objets, ou par au moins un de ces objets. Pour cela on utilise les quantificateurs:\\
+	
+	\text{"Pour tout" :} {\Large$\forall$}\quad\quad\quad\quad
+	\text{"Il existe" :} {\Large$\exists$}\quad\quad\quad\quad
+	\text{"Il existe un unique" :} {\Large$\exists!$}\quad\quad\quad\quad
+	\text{"Il n'existe pas" :} {\Large$\nexists$}\\
+	
+	
+	\noindent\danger\quad Utiliser un quantificateur n'introduit pas un objet. Par exemple si vous écrivez: \ $\exists x \in \R \ | \  x > 0$\\ Alors $x$ n'est pas
+	introduit pour autant, et vous ne pouvez pas utiliser la lettre $x$ directement après :\\[0.2cm]
+	
+	\noindent $\sad$ $\exists x \in \R \ | \  x > 1$. Alors $x\geq 0$. \\
+	\noindent $\happy$ $\exists x \in \R \ | \  x > 1$. Soit $x\in\R$ tel que $ x > 1$, alors $x\geq 0$.
+\end{itemize}
+
+
+\subsubsection{Le choix des lettres}
+\begin{itemize}[\Large$\bullet$]
+	\item Vous êtes libres de donner absolument tous les noms que vous voulez aux objets que vous introduisez.\\ Les alphabets les plus utilisés sont les
+	alphabets latins et grecs. 
+	\item En mathématiques il y a des \emph{variables libres} qui sont des notations spécifiques et des \emph{variables liées/muettes} qui peuvent être remplacées par une autre lettre sans incidence sur la véracité de ce qui est écrit. 
+	\begin{ex}
+		\begin{itemize}
+			\item[]
+			\item Soit $y\in\R$ et $f\in \R^\R$, pour tout $x\in\R,$ $\ f(x) = (y)$.
+			\item Soit $x\in\R$ et $f$ une fonction continue sur $[0,1]$ on définit le nombre $I_x = \int_{0}^{1}f(u)x^2du$.
+		\end{itemize}
+	\end{ex}
+	
+	
+	
+Les lettres grecques et leurs noms sont à connaître.\\ 
+	
+		\begin{minipage}[t]{1\linewidth}
+			\renewcommand{\arraystretch}{2}
+		\begin{minipage}[t]{0.45\linewidth}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				\text{lettre majuscule} & \text{lettre minuscule} & \text{nom}\\
+				\hline
+				$A$ &$\alpha$&\text{alpha}\\
+				\hline
+				$B$&$\beta$&\text{bêta}\\
+				\hline
+				$\Gamma$&$\gamma$&\text{gamma}\\
+				\hline
+				$\Delta$&$\delta$&\text{delta}\\
+				\hline
+				$E$&$\varepsilon$&\text{epsilon}\\
+				\hline
+				$Z$&$\zeta$&\text{zêta}\\
+				\hline
+				$H$&$\eta$&\text{êta}\\
+				\hline
+				$\Theta$&$\theta$&\text{thêta}\\
+				\hline
+				$I$&$\iota$&\text{iota}\\
+				\hline
+				$K$&$\kappa$&\text{kappa}\\
+				\hline
+				$\Lambda$&$\lambda$&\text{lambda}\\
+				\hline
+				$M$&$\mu$&\text{mu}\\
+				\hline
+				
+			\end{tabular}	
+		\end{minipage} \hfil
+		\begin{minipage}[t]{0.45\linewidth}
+			\begin{tabular}{|c|c|c|}
+				\hline
+				\text{lettre majuscule} & \text{lettre minuscule} & \text{nom}\\
+				\hline
+				$N$&$\nu$&\text{nu}\\
+				\hline
+				$\Xi$&$\xi$&\text{ksi ou xi}\\
+				\hline
+				$O$&$o$&\text{omicron}\\
+				\hline
+				$\Pi$&$\pi$&\text{pi}\\
+				\hline
+				$P$&$\rho$&\text{rhô}\\
+				\hline
+				$\Sigma$&$\sigma$&\text{sigma}\\
+				\hline
+				$T$&$\tau$&\text{tau}\\
+				\hline
+				$\Upsilon$&$\upsilon$&\text{upsilon}\\
+				\hline
+				$\Phi$&$\phi$~\text{ou}~$\varphi$&\text{phi}\\
+				\hline
+				$X$&$\chi$&\text{khi}\\
+				\hline
+				$\Psi$&$\psi$&\text{psi}\\
+				\hline
+				$\Omega$&$\omega$&\text{omega}\\
+				\hline	
+			\end{tabular}
+		\end{minipage}
+	\end{minipage}
+\end{itemize}
+
+
+\subsubsection{Se faire comprendre}
+\noindent \textit{Rapport du jury concours Mines-Télécom 2021:}\\
+- "Soignez la forme, soyez clair, rigoureux et honnête"\\
+- "Les tentatives
+de bluff, moins nombreuses cette année, sont lourdement sanctionnées."\\[0.25cm]
+\textit{Rapport du jury concours Centrale-Supélec  2021:}\\
+- "Pour les corrections des épreuves d'admissibilité, le concours Centrale-Supélec a décidé pour cette session et les suivantes de sanctionner les copies mal présentées"\\[0.3cm]
+\textbf{Point Méthode à la rédaction:}
+\begin{enumerate}
+	\item[\textbf{*}] Annoncer ce que l'on va faire sans recopier la question:\\ \textit{Quelques mots simples suffisent, comme : « montrons que... », « il suffit de montrer que... ».}
+	\item[\textbf{**}] Tout justifier :\\
+	\textit{Il faut toujours justifier chaque étape d'un raisonnement. Lancer des affirmations sans les étayer est tout simplement interprété comme une tentative de bluff.} \newpage
+	\item[\textbf{***}] Utiliser les théorèmes et les propositions :\\ 
+	\textit{N'oubliez jamais de vérifier toutes les hypothèses des théorèmes et propositions utilisés de manière explicite. Lorsque l'on utilise un théorème (exemple : le théorème des valeurs intermédiaires) qui possède un nom, il faut toujours le donner.}
+	\item[\textbf{****}] Écrire la conclusion et la souligner :
+	\textit{Précisez toujours le résultat auquel vous aboutissez et} \fbox{\textit{encadrez-le}} \textit{ou bien} $\underline{\textit{soulignez-le}}$.\\ 
+\end{enumerate}
+
+\noindent\textbf{Une articulation logique:} Une démonstration mathématique est une succession d'arguments et de calculs. Pour que tout cela ait un sens, il faut
+relier ces arguments et ces calculs par l'utilisation des mots suivants : {\large\emph{d'où, alors, donc, par conséquent, ainsi, c'est-à-dire, ce qui équivaut à, ou encore, or, puisque, de plus...}}\\
+
+\noindent\danger\quad On ne mélange pas les quantificateurs et les symboles d'implication avec la rédaction en français :\\[0.25cm]
+
+	\noindent$\sad$ $\forall x\in \N, ~x$ est positif. \\
+	\noindent$\happy$ $\forall x\in \N,~ x\geq0$.\\
+	\noindent$\happy$ Pour tout $x$ dans $\N$, $x$ est positif. \\
+	 \noindent$\happy$ Pour tout $x\in\N$, $x\geq0$. \\[0.25cm]
+
+	 \noindent$\sad$ Le module de $2e^{\frac{3\pi i}{2}}$ vaut $2$ et celui de $2+i$ vaut $\sqrt{5}$ $\Rightarrow 2e^{\frac{3\pi i}{2}} \neq 2+i$.\\
+	\noindent$\happy$ Le module de $2e^{\frac{3\pi i}{2}}$ vaut $2$ et celui de $2+i$ vaut $\sqrt{5}$ donc on a: $2e^{\frac{3\pi i}{2}} \neq 2+i$. \\
+\subsection{Quelques raisonnements}	
+\subsubsection{implication et équivalence}
+
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.9\linewidth}
+	\textbf{Raisonner par implications:}
+	Quand on veut montrer que $p \alors q$ est vraie : 
+	« On suppose p vraie et on montre ce que cela implique dans le but de montrer que q est vraie. »
+	\end{minipage}}
+\hfill\\[0.2cm]
+\begin{ex}	
+	Démontrer que: $\forall x\in[0,1]$,  $x-x^2 \in\N \alors x\in\{0,1\}$.
+\end{ex}
+\begin{ex}
+Démontrer que: $\forall x,x'\in\R\backslash\{1\}$,  $ x\neq x' \alors \dfrac{x+1}{x-1}\neq \dfrac{x'+1}{x'-1}$.
+\end{ex}
+\begin{exer}
+	Soit $n,k\in\N$. Montrons que si l'entier $n$ est un multiple de $k$ alors $n^2$ l'est également.
+\end{exer}
+\hfill\\[0.2cm]
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.9\linewidth}
+		\textbf{Raisonner par implications:}
+		Quand on veut montrer que $p \alors q$ est fausse : 
+		« On suppose p vraie et on montre ce que cela implique dans le but de montrer que (non q) qui se note aussi {\Large$\neg$}$q$ est vraie. Donc que $q$ est fausse. »
+\end{minipage}}\hfill\\[0.2cm]
+\begin{ex}
+	Démontrer qu'il est faux d'affirmer: $\forall x,y\in\R$,  $ x<y \alors \sin(x)<\sin(y)$.
+\end{ex}
+\begin{exer}
+	Démontrer qu'il est faux d'affirmer: $\forall x \in\R$,  $ x^2+x>0 \alors x>0$.
+\end{exer}
+
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.9\linewidth}
+		\textbf{Raisonner par équivalence:}
+		Quand on veut montrer que $p \equi q$ est vraie, deux possibilités :
+		\begin{itemize}[$\bullet$]
+			\item Soit on raisonne par double implication :
+			\begin{itemize}[$\star$]
+				\item Supposons $p$ vraie. Montrons que $q$ est vraie.
+				\item Réciproquement, supposons $q$ vraie. Montrons que $p$ est vraie.
+			\end{itemize}
+			\item soit on raisonne directement par équivalences en changeant peu à peu $p$ en $q$ : $$ p \equi . . . . . . \equi . . . . . . \equi q$$
+		\end{itemize}
+		
+\end{minipage}}\hfill\\[0.2cm]
+\begin{ex}
+	Démontrer que: $\forall x,y\in\R$,  $ x^2+y^2=0 \equi x= y= 0$.
+\end{ex}
+\begin{ex}
+	Démontrer que: pour tout $x \in[-\pi,\pi]$, $\cos(2x) = \dfrac{1}{2} $ si et seulement si $x\in\left\{-\dfrac{5\pi}{6},~ -\dfrac{\pi}{6} ,~\dfrac{\pi}{6},~ \dfrac{5\pi}{6}\right\}$.
+\end{ex}
+
+\subsubsection{Unicité d'un objet mathématique}
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.9\linewidth}
+		\textbf{Unicité d'un objet:} Quand on veut montrer qu'un ensemble E contient au plus un élément vérifiant une propriété $\Ps$ , on peut procéder ainsi:
+		
+		Soient $x, x' \in E$. Faisons l'hypothèse que $x$ et $x'$ vérifies $\Ps$ et montrons que $x = x'$.	
+\end{minipage}}
+\hfill\\[0.2cm]
+\noindent\danger\quad Ci-dessus, il n'est pas nécessaire de supposer $x$ et $x'$ différents et de raisonner par l'absurde.
+\begin{ex}
+Démontrer : $\exists!x \in \R^+ \ | \ x^2 = 1$.  
+\end{ex}
+\begin{ex}
+	Démontrer : $\forall n\in\N^* \ \exists!(p,q)\in\N^2 \ | \ n= (2p+1)2^q$.
+\end{ex}
+\begin{exer}
+	Soit $f : \R\longrightarrow\R$ une application contractante. \\(ie: il existe $k\in [0,1[$ tel que pour tout $(x,y)\in I^2$, $|f(x)-f(y)|\leq k|x-y|)$.\\[0.2cm] 
+	S'il existe $x_0\in \R$ tel que $f(x_0) =x_0$ on dit que la fonction $f$ admet un point fixe.\\[0.2cm]  
+	Montrer qu'il y a unicité  de ce point fixe s'il y a existence de celui-ci.  
+\end{exer}
+\subsubsection{Existence d'un objet mathématique}
+
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.9\linewidth}
+		\textbf{Existence d'un objet:} Quand on veut montrer qu'un ensemble E contient au moins un élément vérifiant une propriété $\Ps$ , on peut procéder ainsi:
+		\begin{itemize}[$\bullet$]
+			\item Faire une preuve constructive qui fait apparaître l'objet vérifiant la propriété $\Ps$. 
+			\item Utiliser des propositions ou des théorèmes qui nous offrent l'existence de l'objet sans pour autant nous donner l'expression explicite de celui-ci. 
+		\end{itemize} 	
+\end{minipage}}
+\hfill\\[0.2cm]
+\begin{ex}
+	Démontrer que pour tout $z\in\C^*$ il existe $z_0\in\C^*$ tel que: $|z_0|=1$ et $Arg(z)=Arg(z_0)$. 
+\end{ex}
+
+\begin{ex}
+	On considère $\forall x\in\R$ $f(x)= 4x^3-3x^2+2x-1$.\\
+	Démontrer que la fonction polynomiale $f$ admet une racine réelle.  
+\end{ex}
+
+\begin{exer}
+	Soit $a,b\in\R$ avec $a<b$.
+	
+	\noindent Montrer que toute application continue $f : [a , b ] \longrightarrow[a , b ]$ admet un point fixe.
+\end{exer}
+
+
+\subsubsection{Inclusion et égalité d'ensembles}
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.9\linewidth}
+	Quand on veut montrer une inclusion $E \subset F$ , on écrit: 
+	Soit $x \in E$ et on montre que $x \in F$.	
+\end{minipage}}
+\hfill\\
+\begin{ex}
+Démontrer : $\{x \in \R \ | \  \exists y \in \R^+ , x > y\} \subset \R^+$.
+\end{ex}
+
+\begin{ex}
+On note $2\N$ l'ensemble des entiers naturels pairs et on pose $E = \{k(k + 1) \ | \ k\in \N\}$.
+
+\noindent Montrer que $E \subset 2\N$.  
+\end{ex}
+
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.9\linewidth}
+	Quand on veut montrer une égalité d'ensembles $E = F$, deux possibilités :
+		\begin{itemize}[$\bullet$]
+			\item Soit on raisonne par double inclusion :
+			\begin{itemize}[$\star$]
+				\item Soit $x \in E$. Montrons que $x \in F$ .
+				\item Réciproquement, soit $x \in F$. Montrons que $x \in E$ .
+			\end{itemize}
+			\item Soit on raisonne directement par équivalences :
+			
+			 $\text{« Pour tout}\  x \in E \ :\  x \in E \equi . . . . . . \equi . . . . . . \equi x\in F.$»
+		\end{itemize}\end{minipage}}\hfill\\[0.2cm]
+	
+\begin{ex}
+	Montrer que : $\R^- = \{x \in\R \ | \  \forall y \in \R^+ , x\leq y\}$.
+\end{ex}
+
+\begin{ex}
+	Soient $E$ un ensemble et $A,B$ deux sous-ensembles de E. 
+	
+	\noindent Pour $X\subset E$ on note $\overline{X}$ le complémentaire de $X$ dans $E$ défini par: $\overline{X} = \{x\in E \ | \ x \not\in F\}$.
+	
+	\noindent Montrer que : $\overline{A\cup B} = \overline{A}\cap \overline{B}$. 
+\end{ex}
+
+	
+\begin{exer}
+	Soit $A=\{(x,y)\in\mathbb R^2;\ 4x-y=1\}$ et $C=\{(t+1,4t+3);\ t\in\mathbb R\}$. Démontrer que $A=C$. 
+\end{exer}
+
+\subsubsection{Le raisonnement par récurrence}
+\begin{enumerate}[$\bullet$]
+	\item Le raisonnement par récurrence repose sur le principe suivant : 
+	
+	
+	\centering Si $\underbrace{\Ps_0 \text{ est vraie}}_{\text{Initialisation}}$ et si $\underbrace{(\forall n \in \N, \ \Ps_n \alors \Ps_{n+1})}_{\text{Hérédité}}$ alors $(\forall n \in \N , \ \Ps_n)$.\hfill\\[0.8cm]
+	
+	
+\raggedright
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.9\linewidth}
+		\centering\textbf{Récurrence simple.}\\
+		
+	\raggedright Quand on veut montrer par récurrence que: ($\forall n \in \N \ , \  \Ps_n$), on rédige ainsi:
+		\begin{itemize}[$\bullet$]
+			\item Expliciter $\Ps_{n}$: Pour $n\in\N$ on note $\Ps_{n} : "\dots\dots\dots\dots"$
+			\item Initialisation: Vérification que $\Ps_0$ est vraie.
+			\item Hérédité: Soit $n \in \N$, supposons $\Ps_n$ vraie. Montrons que $\Ps_{n+1}$ est vraie.
+			\item Conclusion: $\forall n \in \N \ , \  \Ps_n$
+		\end{itemize} 	
+\end{minipage}}
+\hfill\\[0.2cm]
+\noindent\danger \quad Supposer que pour tout $n \in \N$ , $\Ps_n$ est vraie à l'hérédité est une erreur. En effet, c'est ce que nous cherchons à démontrer. 	
+\end{enumerate}
+\begin{ex}
+	Notons, pour tout $n \in \N^*$, $S_n$ la somme des cubes des entiers entre $1$ et $n$ et montrons par récurrence sur $\N^*$  que $S_n = \left(\dfrac{n(n+1)}{2}\right)^2$.
+\end{ex}
+
+\begin{ex}(\textit{Inégalité de Bernoulli})\\
+	Pour tout entier $n > 1$ et tout réel $x$ non nul et supérieur ou égal à $-1$.
+	$$(1+x)^{n}>1+nx$$
+\end{ex}
+\newpage
+\begin{exer}\hfill\\
+	\begin{enumerate}
+		\item Montrer que: pour $n$ dans $N^*$, la somme des $n$ premiers entiers est donnée par la formule:
+		$$1 + 2 + ... + n =
+		\dfrac{n(n + 1)
+		}{2}$$
+		\item Montrer que: pour $n$ dans $N^*$, la somme des $n$ premiers entiers au carré est donnée par la formule:
+		$$1^2 + 2^2 + 3^2 +... + n^2 =
+		\dfrac{n(n + 1)(2n+1)
+		}{6}$$ 
+		\item Montrons par récurrence :
+		$$\forall n \in \N^*, \ 1+ \dfrac{1}{2^2}+ 1+ \dfrac{1}{3^2} + ...+ 1+ \dfrac{1}{n^2} \leq 2 - \dfrac{1}{n}$$\hfil\\
+	\end{enumerate}	
+\end{exer}
+\begin{enumerate}[$\bullet$]
+	\item Il arrive parfois qu'on ne sache pas déduire $\Ps_{n+1}$ de $\Ps_n$ , mais seulement $\Ps_{n+2}$ de $\Ps_{n}$ et $\Ps_{n+1}$. Le principe du
+	raisonnement par récurrence prend dans ce cas la forme suivante :
+	
+	
+	\centering Si $\underbrace{\Ps_0 \text{ et } \Ps_1\text{ sont vraies}}_{\text{Initialisation}}$ et si $\underbrace{(\forall n \in \N, \ \Ps_n \text{ et } \Ps_{n+1} \alors \Ps_{n+2})}_{\text{Hérédité}}$ alors $(\forall n \in \N , \ \Ps_n)$.\hfill\\[0.8cm]
+	
+	
+	\raggedright
+\end{enumerate}
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.9\linewidth}
+		\centering\textbf{Récurrence double.}\\
+		
+		\raggedright Quand on veut montrer par récurrence double que: ($\forall n \in \N \ , \  \Ps_n$), on rédige ainsi:
+		\begin{itemize}[$\bullet$]
+			\item Expliciter $\Ps_{n}$: Pour $n\in\N$ on note $\Ps_{n} : "\dots\dots\dots\dots"$
+			\item Initialisation: Vérification que $\Ps_0$ et $\Ps_1$ sont vraies.
+			\item Hérédité: Soit $n \in \N$, supposons $\Ps_n$ et $\Ps_{n+1}$ vraies. Montrons que $\Ps_{n+2}$ est vraie.
+			\item Conclusion: $\forall n \in \N \ , \  \Ps_n$
+		\end{itemize} 	
+\end{minipage}}
+\hfill\\[0.2cm]
+\begin{ex}
+	On note $(u_n)_{ n\in\N}$ la suite réelle définie par $u_0 = 4$, $u_1 = 5$ et pour tout $n \in\N$ : $u_{n+2} = 3u_{n+1} - 2u_n$.\\
+	Démontrer que pour tout $n \in\N$ : $u_n = 2^n + 3$.\\
+\end{ex}
+
+
+\begin{enumerate}[$\bullet$]
+	\item Il arrive parfois aussi qu'on ne sache déduire $\Ps_{n+1}$ que de \textbf{toutes} les propositions antérieures \\$\Ps_{n},\Ps_{n-1},...,\Ps_{2},\Ps_{1},\Ps_{0}$. Le
+	principe du raisonnement par récurrence prend dans ce cas la forme suivante:
+	
+	
+	\centering Si $\underbrace{\Ps_0\text{ est vraie}}_{\text{Initialisation}}$ et si $\underbrace{(\forall n \in \N, \ (\forall k\in \llbracket0,n\rrbracket,  \Ps_{k}) \alors \Ps_{n+1})}_{\text{Hérédité}}$ alors $(\forall n \in \N , \ \Ps_n)$.\hfill\\[0.8cm]		
+	\raggedright 
+\end{enumerate}
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.9\linewidth}
+		\centering\textbf{Récurrence forte.}\\
+		
+		\raggedright Quand on veut montrer par récurrence forte que: ($\forall n \in \N \ , \  \Ps_n$), on rédige ainsi:
+		\begin{itemize}[$\bullet$]
+			\item Expliciter $\Ps_{n}$: Pour $n\in\N$ on note $\Ps_{n} : "\dots\dots\dots\dots"$
+			\item Initialisation: Vérification que $\Ps_0$ est vraie.
+			\item Hérédité: Soit $n \in \N$, supposons pour tout $k\in \llbracket0,n\rrbracket$ que $\Ps_{k}$ est vraie.\\ Montrons que $\Ps_{n+1}$ est vraie.
+			\item Conclusion: $\forall n \in \N \ , \  \Ps_n$.
+		\end{itemize} 	
+\end{minipage}}
+\hfill\\[0.2cm]
+
+\begin{ex}
+	Soit $(u_n)_{n\in\N}$ une suite réelle. On suppose que $u_0 \in \R^+$ et que pour tout $n \in \N$ : $u_{n+1} \leq \sum\limits_{k=0}^{n}u_k$.
+	
+	Montrer que pour tout $n \in \N$ : $u_n \leq  2^nu_0$.
+\end{ex}
+
+\begin{ex}
+Montrons que tout entier supérieur à $2$ admet une décomposition comme produit de nombres
+premiers.
+\end{ex}
+\subsubsection{Le raisonnement par l'absurde}
+\begin{enumerate}[$\bullet$]
+	\item Pour établir une propriété $\Ps$, on peut raisonner par l'absurde, c'est-à-dire supposer que $\Ps$ est fausse et arriver à une contradiction.\hfill\\[0.2cm]
+\end{enumerate}
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.9\linewidth}
+	Quand on veut montrer qu'une proposition $\Ps$ est vraie, on peut raisonner par l'absurde
+	de la manière suivante : « Faisons l'hypothèse que $\Ps$ est fausse. Contradiction! 
+	
+	Par conséquent $\Ps$ est vraie. »	
+		
+\end{minipage}}
+\hfill\\[0.2cm]
+
+\begin{ex}
+	Montrer que	$\sqrt{3}$ est un irrationnel. Généraliser pour tout $p$ premier, montrer que $\sqrt{p}$ est un irrationnel.
+\end{ex}
+
+\begin{ex}
+	Soient $a, b, c, d$ des nombres rationnels tels que
+	$a + b \sqrt{2} = c + d \sqrt{2}$.
+	
+	\noindent Montrer que $a = c$ et $b = d$.
+\end{ex}
+
+\begin{ex} Montrer qu'il existe une infinité de nombres premiers. 
+
+\end{ex}
+\begin{exer}
+	Démontrer que $\log_{10}(2)$ est irrationnel.
+\end{exer}
+
+\begin{exer} (\textit{Une version faible du théorème de la progression arithmétique})
+		\begin{enumerate}
+		\item Montrer qu'il existe une infinité de nombres premiers de la forme $4k+3$.
+		\item Montrer qu'il existe une infinité de nombres premiers de la forme $6k+5$.
+	\end{enumerate}
+	
+	
+\end{exer}
+
+
+
+\subsubsection{Le raisonnement par analyse-synthèse}
+
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.9\linewidth}
+		Quand on veut déterminer l'ensemble des éléments d'un ensemble $E$ qui satisfont une
+		
+		propriété  $\Ps$, on peut raisonner par analyse-synthèse de la manière suivante:
+		\begin{enumerate}[$\bullet$]
+			\item \textbf{Analyse:} Soit $x \in E$. Faisons l'hypothèse que $\Ps(x)$.
+			\item \textbf{Synthèse:} Posons $x = . . . .$ Vérifions que $x \in E$ et que $\Ps(x)$.
+		\end{enumerate}	
+		
+\end{minipage}}
+\hfill\\[0.2cm]
+\begin{rmq}
+	Dans l'\textbf{analyse}, on part d'un élément quelconque de $E$ et on montre que s'il satisfait la propriété $\Ps$ , alors il a forcément telle ou telle forme. Dans l'analyse, on restreint le champ des solutions	possibles. Dans la \textbf{synthèse}, on vérifie que les possibilités obtenues dans l'analyse sont bel et bien des solutions (parfois
+	ce sera le cas, parfois non).
+\end{rmq}
+\begin{ex}
+	Déterminer l'ensemble des fonctions $f : \R \longrightarrow \R$ pour lesquelles :
+	
+	 $\forall (x, y) \in \R^2$ , $f(y-f(x)) = 2 - x - y$.
+\end{ex}
+\begin{ex}
+	Déterminer l'ensemble des fonctions $f : \R \longrightarrow \R$ pour lesquelles :
+	
+	 $\forall (x, y) \in \R^2$ , $f(y-f(x)) = 2 - x^2 - y$.
+\end{ex}
+
+\begin{enumerate}[$\bullet$]
+	\item Le raisonnement par analyse-synthèse est souvent employé pour montrer les propositions de la forme: $$\exists! x \in E \ | \  \Ps(x)$$
+	Démontrer une telle proposition, revient à chercher l'ensemble des éléments de E qui satisfont la propriété $\Ps$ et	obtenir qu'il en existe un et un seul.\\
+	\begin{center}
+		\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.3\linewidth}
+		\centering
+	Analyse $\equi$ Unicité.\\
+	Synthèse $\equi$ Existence.		
+			
+	\end{minipage}}
+	\hfill\\[0.5cm]
+	\end{center}
+
+\end{enumerate}
+
+\begin{ex}
+Soit $f$ une fonction de $\R$ dans $\R$. Montrer qu'existe un unique couple $(p, i)$ de fonctions de $\R$ dans $\R$ vérifiant les conditions suivantes:
+\begin{itemize}
+	\item $p$ est paire, $i$ est impaire.
+	\item $f = p + i$.
+\end{itemize}
+\end{ex}
+
+\begin{ex}
+	Trouver les fonctions $f$ de $\R^{+*}$ dans $\R$ dérivables et telles que:
+	
+	$\forall (x, y) \in \R^{+*^2}, \ f(xy) = f(x)+f(y)$.
+\end{ex}
+
+\begin{exer}
+	Trouver les fonctions $f$ de $\R$ dans $\R$ dérivables telles que:
+	
+	
+	$\forall (x, y) \in \R^{2}, \ f(x+y) = f(x)+f(y)$.
+\end{exer}
+	
+\begin{exer}
+On cherche toutes les isométries de $\R$, i.e. toutes les fonctions $f : \R \longrightarrow \R$ pour lesquelles:
+$$\forall( x, y) \in \R^2 : \ |f(x) - f(y)| = |x - y|$$
+
+\textit{Indication:} Soit $f$ une isométrie. On note $\delta$ la fonction $x \longmapsto f(x) - f(0)$ sur $\R$.
+
+
+Montrer, en étudiant la quantité $\left(f(x)- f(y)\right)^2$ , que pour tous $x, y \in \R, \ \delta(x) \delta(y) = x y$).
+
+
+\end{exer}
+
+\section{Rudiments de logique et vocabulaire ensembliste}
+\subsection{Connecteurs logiques et quantificateurs}
+\subsubsection{Table de vérité}
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}
+		On appelle \textit{proposition }toute phrase $\Ps$ au sujet de laquelle on peut poser la question : 
+		
+		« $\Ps$ est-elle vraie » ?
+		La \textit{valeur de vérité} d'une proposition est le vrai \textbf{(1)} ou le faux \textbf{(0)}, mais pas les deux !
+		Deux propositions de même valeur de vérité sont dites \textit{équivalentes}.	
+		\end{defi}
+	\end{minipage}
+}
+\begin{ex}
+	« Le nombre entier $n$ est impair » et « Le nombre entier $n$ n'est pas pair » sont deux propositions équivalentes. Démontrer l'une c'est démontrer l'autre.
+\end{ex}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}
+		A partir de propositions, on peut en construire de nouvelles. On appellera \textit{connecteur logique} tout procédé de construction d'une proposition à partir d'une ou plusieurs autres propositions.	
+		\end{defi}
+	\end{minipage}
+}\bigskip
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\hfil\\[-0.8cm]
+			\begin{enumerate}[$\bullet$]
+				\item La proposition « non $\Ps$ » est vraie si $\Ps$ est fausse, et fausse si $\Ps$ est vraie.  \hfill \textbf{(Négation)}
+				\item La proposition « $\Ps$ et $Q$ » est vraie si $\Ps$ et $Q$ sont vraies toutes les deux, et fausse sinon.  \hfill \textbf{(Conjonction)}
+				\item La proposition « $\Ps$ ou $Q$ » est vraie si l'une au moins des propositions $\Ps$ et $Q$ est vraie (éventuellement les deux
+				donc), et fausse dans le seul cas où $\Ps$ et $Q$ sont fausses toutes les deux. \hfill \textbf{(Disjonction)}
+			\end{enumerate}	
+		\end{defi}
+	\end{minipage}
+}
+
+\begin{ex}\hfill\\
+	$$\begin{minipage}[t]{0.9\linewidth}
+	\begin{minipage}[t]{0.2\linewidth}
+		\begin{tabular}{|c|c|}
+			\hline
+			$\Ps$&  {\Large$\neg$}$\Ps$\\
+			\hline
+			&\\\hline&\\\hline
+		\end{tabular}
+	\end{minipage}
+	\begin{minipage}[t]{0.3\linewidth}
+	\begin{tabular}{|c|c|c|}
+	\hline
+	$\Ps$&  $Q$ & $\Ps$ et $Q$\\
+	\hline
+	&&\\\hline&&\\\hline&&\\\hline&&\\\hline
+\end{tabular}
+\end{minipage}
+	\begin{minipage}[t]{0.3\linewidth}
+		\begin{tabular}{|c|c|c|}
+		\hline
+		$\Ps$&  $Q$ & $\Ps$ ou $Q$\\
+		\hline
+		&&\\\hline&&\\\hline&&\\\hline&&\\\hline
+	\end{tabular}
+\end{minipage}
+\end{minipage}$$
+\end{ex}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{thm}\textbf{Règles de calcul sur la négation, la conjonction, la disjonction}
+		\begin{enumerate}[$\bullet$]
+			\item La proposition $\Ps$ et (non $\Ps$) est fausse. \hfill\textbf{(principe de non-contradiction)}
+			\item La proposition $\Ps$ ou (non $\Ps$) est vraie. \hfill\textbf{(principe du tiers exclu)}
+			\item Les propositions $\Ps$ et « non (non $\Ps$) » sont équivalentes. \hfill\textbf{(double négation)}
+			\item Les propositions « non ($\Ps$ et $Q$) » et « (non $\Ps$) ou (non $Q$) »  \hfill\textbf{(négation d'une conjonction)} 
+			
+			sont équivalentes.
+			\item Les propositions « non ($\Ps$ ou $Q$) » et « (non $\Ps$) et (non $Q$) »  \hfill\textbf{(négation d'une disjonction)}
+			
+			sont équivalentes.
+		\end{enumerate}	
+			
+			
+		\end{thm}
+	\end{minipage}
+}
+\begin{proof}
+
+\end{proof}
+\subsubsection{Implication, équivalence, contraposée}
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\hfil\\[-0.8cm]
+			\begin{enumerate}[$\bullet$]
+				\item La proposition « $\Ps \alors Q$ » qu'on lit « $\Ps $ implique $Q$ » ou bien « si $\Ps $ alors $Q$ », est fausse dans le seul cas où $\Ps $ est
+				vraie et $Q$ est fausse.
+				\item La proposition « $\Ps \equi Q$» qu'on lit « $\Ps$ équivaut à $Q$ » ou bien « $\Ps$ si et seulement si $Q$ », est vraie si $\Ps$ et $Q$ ont la
+				même valeur de vérité, et fausse sinon.
+			\end{enumerate}	
+		\end{defi}
+	\end{minipage}
+}
+
+\begin{ex}\hfill\\
+	$$\begin{minipage}[t]{0.9\linewidth}
+	\begin{minipage}[t]{0.3\linewidth}
+	\begin{tabular}{|c|c|c|}
+	\hline
+	$\Ps$&  $Q$ & $\Ps$ $\alors$ $Q$\\
+	\hline
+	&&\\\hline&&\\\hline&&\\\hline&&\\\hline
+	\end{tabular}
+	\end{minipage}
+	\begin{minipage}[t]{0.3\linewidth}
+	\begin{tabular}{|c|c|c|}
+	\hline
+	$\Ps$&  $Q$ & $\Ps$ $\equi$ $Q$\\
+	\hline
+	&&\\\hline&&\\\hline&&\\\hline&&\\\hline
+	\end{tabular}
+	\end{minipage}
+	\end{minipage}$$
+\end{ex}
+\danger \quad Affirmer que l'implication « $\Ps$ $\alors$ $Q$ » est vraie n'entraîne pas que $\Ps$ soit vraie, ni que $Q$ soit vraie. La signification est la suivante : si $\Ps$ est vraie, alors $Q$ l'est aussi. L'implication « $\Ps$ $\alors$ $Q$ » est toujours vraie quand $\Ps$ est fausse.\\
+
+
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\hfil\\[-0.8cm]
+		\begin{enumerate}[$\bullet$]
+			\item On appelle \textit{réciproque} de l'implication « $\Ps$ $\alors$ $Q$ » la proposition «  $Q$ $\alors$ $\Ps$  ».
+			\item On appelle \textit{contraposée} de l'implication « $\Ps$ $\alors$ $Q$ » la proposition « (non $Q$) $\alors$ (non $\Ps$) ».
+		\end{enumerate}		
+		\end{defi}
+	\end{minipage}
+}
+
+\begin{ex} Soit $(u_n)_{n\geq0}\in\R^\N$. Considérons les propositions suivantes\\ $\Ps$: "La suite $(u_n)_{n\geq0}$ est monotone et bornée".\\
+$Q$: "La suite $(u_n)_{n\geq0}$ admet une limite dans $\R$".\\
+On sait que l'implication $\left(\Ps \ \alors \ Q\right)$ est vraie. Donner la contraposée de cette implication.  
+\end{ex}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{thm}\textbf{Règles de calcul sur l'implication et l'équivalence}
+			\begin{enumerate}[$\bullet$]
+				\item Toute implication est équivalente à sa contraposée.\\
+				Les propositions « $\Ps$ $\alors$ $Q$ » et « (non $Q$) $\alors$ (non $\Ps$) » sont équivalentes.
+				\item L'équivalence est une double implication.\\
+				Les propositions « $\Ps$ $\equi$ $Q$ » et « ($\Ps$ $\alors$ $Q$)  et  ($Q$ $\alors$ $\Ps$) » sont équivalentes.
+			\end{enumerate}	
+			
+			
+		\end{thm}
+	\end{minipage}
+}
+\begin{proof}
+	
+\end{proof}
+
+\begin{ex}
+	Le rectangle et le carré (quadrilatère).
+\end{ex}
+
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\hfil\\[-0.8cm]
+			\begin{enumerate}[$\bullet$]
+				\item La proposition : « $\forall x,\  \Ps(x)$ » est vraie si tout objet mathématique possède la propriété $\Ps$ , et fausse sinon,
+				c'est-à-dire si au moins un objet ne possède pas la propriété $\Ps $.
+				\item La proposition : « $\exists x, \  \Ps(x)$ » est vraie si au moins un objet mathématique possède la propriété $\Ps$ , et fausse
+				sinon, c'est-à-dire si aucun objet ne possède la propriété $\Ps$.
+			\end{enumerate}		
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\[0.5cm]
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{thm}\textbf{Négation des quantificateurs}
+			\begin{enumerate}[$\bullet$]
+				\item Les propositions « non $\forall x\in E,\  \Ps(x)$ » et « $\exists x\in E, \  non \ \Ps(x)$ » sont équivalentes.
+				\item Les propositions « non $\exists x\in E,\  \Ps(x)$ » et « $\forall x\in E, \  non \ \Ps(x)$ » sont équivalentes.
+			\end{enumerate}		
+		\end{thm}
+	\end{minipage}
+}
+
+\begin{rmq}
+	Pour nier une phrase contenant un ou plusieurs quantificateurs, on réécrit cette phrase en remplaçant tous les « $\forall$ » par des « $\exists$ » et tous les « $\exists$» par des « $\forall$ », puis on nie le prédicat final.
+\end{rmq}
+
+\begin{ex}
+	Donner la négation de la proposition « $\forall \epsilon > 0, \exists\alpha > 0, \forall x \in \R , |x - 1| \leq \alpha \alors | \sqrt{x} - 1| \leq \epsilon $ ».
+\end{ex}
+\begin{rmq}\hfill
+	
+	
+		\noindent  On peut toujours permuter les quantificateurs « $\forall$ » entre eux, et les quantificateurs « $\exists$ » entre eux.
+\end{rmq}
+
+\begin{ex}\hfill
+	
+	
+	\noindent Les propositions « $\forall x \in \R^+ , \forall y \in \R^- , x > y$ » et « $\forall y \in \R^- , \forall x \in \R^+, x > y$ » sont équivalentes.
+	
+	
+	\noindent Les propositions « $\exists x \in \R^+ , \exists y \in \R^- , x > y$ » et « $\exists y \in \R^- , \exists x \in \R^+, x > y$ » sont équivalentes.
+\end{ex}
+
+\noindent\danger\quad En revanche, la permutation d'un « $\forall$ » et d'un « $\exists$ » n'est pas automatique.
+ \begin{ex}
+ « $\forall n\in \N , \exists p \in \N \ | \ n \leq p$ » est une proposition vraie (pour chaque entier $n$, l'entier $p = n + 1$ convient par
+ exemple). Mais « $\exists p \in \N, \forall n\in \N  \ | \ n \leq p$ » est une proposition fausse car aucun entier est supérieur à tout autre entier
+ (l'ensemble $\N$ n'est pas majoré).
+ \end{ex}
+
+
+\subsection{Vocabulaire ensembliste}
+\subsubsection{Notion d'ensemble}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\hfil\\[-0.8cm]
+			\begin{enumerate}[$\bullet$]
+				\item Un \textit{ensemble} est une « collection » d'éléments. Il peut être défini par la liste de ses éléments (ensemble
+				défini en extension) ou par une propriété (ensemble défini en compréhension). 
+				\item L'\textit{ensemble vide} noté $\emptyset$ est l'ensemble
+				qui ne contient aucun élément.
+				\item Un ensemble ne contenant qu'un seul élément est appelé \textit{singleton}.
+			\end{enumerate}		
+		\end{defi}
+\end{minipage}}
+\begin{ex}
+	$\{3,5,7\}$ \quad $\{n^2, \ n\in\Z\}$ \quad $\{\ n\in\N \  / \ 7~ |~ n \}$ \quad $\{ 0\}$
+\end{ex}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}
+		On dit que $x$ \textit{appartient} à $E$ et on note $x \in E$ si $x$ est un élément de $E$ . Sinon, on note $x \not\in E$ .	
+		\end{defi}
+\end{minipage}}
+\newpage
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}
+			Si $A$ et $B$ sont deux ensembles, on dit que $A$ est inclus dans $B$ ou que $A$ est une partie de $B$ ou un sous-ensemble de $B$ et on note $A \subset B$ si tout élément de $A$ est un élément de $B$ . Sinon, on note $A \not\subset B$.
+		\end{defi}
+\end{minipage}}
+
+\hfill\\[-0.5cm]
+\begin{ex}
+	$\N\subset\Z\subset\Q\subset\R\subset\C$
+\end{ex}
+\begin{ex}
+	Soient $\Cs^0 ( \R , \R )$ l'ensemble des fonctions continues de $\R$ dans $\R$ et $\Ds ( \R , \R )$ l'ensemble des fonctions dérivables de $\R$ dans $\R$. Quelle inclusion y a-t-il entre ces deux ensembles ?
+\end{ex}
+
+\begin{exer}
+	Soit $\Cs$ l'ensemble des suites constantes et $\Gs$ l'ensemble des suites géométriques. A-t-on $\Cs = \Gs$ ?
+\end{exer}
+\hfill\\
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} Soient $A$ et $B$ deux ensembles. Alors : $$A\subset B \equi \forall x\in A, x\in B$$
+		\end{prop}
+	\end{minipage}
+}\hfill\\[-0.15cm]
+
+\begin{rmq}
+	On a donc $A \not\subset B$ si et seulement si $\dots$ 
+\end{rmq}
+
+\subsubsection{Applications}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Le \textit{produit cartésien} de deux ensembles $E$ et $F$ est l'ensemble $E\times F$ des couples formés \\d'un élément de $E$ puis d'un élément de $F$, c'est-à-dire : $\{(x , y ),\ x \in E ,\ y \in F \}$.
+			
+		Si $E = F$ , on note $E^2 = E\times E$.	
+		\end{defi}
+\end{minipage}}
+\begin{rmq}
+	Le produit cartésien $E\times F$ est un ensemble de couples d'éléments donc, en particulier, ne contient ni $E$ ni $F$.
+\end{rmq}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Une application d'un ensemble $E$ dans un ensemble $F$ est un ensemble de couples $G \subset E\times F$ tel que, pour tout $x \in E$, il existe un unique $y \in F$ vérifiant $(x,y) \in G$. L'ensemble des applications de $E$ dans $F$ est noté $F^E$ ou $\mathscr{F}(E , F )$.	
+		\end{defi}
+\end{minipage}}
+
+\begin{rmq}
+	On note $f (x )$, l'unique $y\in F$ tel que $(x , y ) \in G$
+	et on adopte la notation plus simple pour une application:
+	$$f : \ \left\{\begin{array}{l}
+	 E \longrightarrow F \\
+	x \longmapsto f(x)
+	\end{array}\right.$$
+\end{rmq}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}  Soient $f: E\longrightarrow F$ une application et  $E'$ un sous-ensemble $E$. On note $f_{|E'}$ la restriction\\ de $f$ à $E'$.
+			$$f_{|E'} : \ \left\{\begin{array}{l}
+			E' \longrightarrow F \\
+			x \longmapsto f(x)
+			\end{array}\right.$$	
+		\end{defi}
+\end{minipage}}\hfil\\[0.5cm]
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}  Soient $f: E\longrightarrow F$ et $g: F\longrightarrow G$ deux applications.  La composée $g\circ f$ est l'application de $E$ dans $G$ qui associe, à tout $x \in E$, l'élément $g (f (x )) \in G $.	
+		\end{defi}
+\end{minipage}} \hfil\\[0.1cm]
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} Soit $f,g,h \in E^E$. Alors
+			$$ f\circ (g\circ h) \ = \ (f\circ g)\circ h \quad \quad \quad \quad f\circ Id_E \ = \ Id_E\circ f \ = \ f $$
+		\end{prop}
+	\end{minipage}
+}
+\begin{rmq}
+	En général, on ne peut pas permuter les applications, ou en d'autres termes, la composition n'est pas commutative.
+\end{rmq}
+\begin{ex}
+	Trouver deux applications $f,g\in\R^{\R}$ telles que $f\circ g \not= g\circ f$.
+\end{ex}
+\newpage 
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}  Soit $f: E\longrightarrow F$ une application.  \begin{enumerate}[$\bullet$]
+				\item L'\textit{image d'un élément} $x \in E$ par l'application $f$ est l'élément $f (x ) \in F $.
+				\item L'\textit{image} (directe) d'une partie $E' \subset E$ est la partie de $F$ définie par
+				$$f (E') = \{ f (x ), x \in E'\}$$
+				c'est-à-dire l'ensemble des images des éléments de E'.
+			\end{enumerate}
+		\end{defi}
+\end{minipage}} %\hfil\\
+
+\begin{ex}
+	Soit $f : \ \left\{\begin{array}{l}
+	\R \longrightarrow \R \\
+	x \longmapsto x^2
+	\end{array}\right.$\\%%$\fonction{f}{\R}{\R}{x}{x^2}$
+	
+	\noindent Donner l'image des sous-ensembles suivants $E_1 : [0,1]$, $E_2 : [-2,3[$ et $E_3 : \R^+$ par l'application $f$. \\
+\end{ex}
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}  Soit $f: E\longrightarrow F$ une application.  \begin{enumerate}[$\bullet$]
+				\item Un \textit{antécédent} d'un élément $y \in F$ est un élément $x \in E$ tel que $f (x ) = y $.
+				\item L'\textit{image réciproque} d'une partie $F'\subset F$ est la partie de $E$ définie par
+				$$f^{-1}(F') = \{x \in E , \ f (x ) \in F'\}$$
+				\noindent c'est-à-dire l'ensemble de tous les antécédents des éléments de $F'$.
+			\end{enumerate}
+		\end{defi}
+\end{minipage}} 
+
+	\begin{ex}Soit $f : \ \left\{\begin{array}{l}
+	\R \longrightarrow \R \\
+	x \longmapsto x^2
+	\end{array}\right.$\\
+	Donner l'image réciproque des ensembles suivants par la fonction $f$:
+	\begin{multicols}{3}
+		\begin{enumerate}[$\bullet$]
+			\item $F_1 : \R^+$
+			\item $F_2 : \{-2\} $
+			\item $F_3 : \{4\} $
+			\item $F_4 : [0;9]$
+			\item $F_5 : \R$
+			\item $F_6 : \{0\}$
+		\end{enumerate}
+	\end{multicols}
+\end{ex}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} Soit $f: E\longrightarrow F$ une application. 
+			\begin{multicols}{2}
+				\begin{enumerate}
+					\item $\forall A\in\Ps(E)$, \ $A\subset f^{-1}(f(A))$
+					\item $\forall B\in\Ps(F)$, \ $ f(f^{-1}(B))\subset B$
+				\end{enumerate}
+			\end{multicols}
+		\end{prop}
+	\end{minipage}
+}\begin{proof}
+
+\end{proof}
+\noindent\danger\quad Il faut faire attention à ne pas « simplifier » sans réfléchir les expressions avec images directes et réciproques.
+\begin{exer}
+	Avec l'application $f$ de l'exemple précédent, avons-nous $"f^{-1}(f([0,1])) = f(f^{-1}([0,1]))"$? 
+\end{exer}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}  Soit $f: E\longrightarrow F$ une application.  \begin{enumerate}[$\bullet$]
+				\item \textbf{Injection:} l'application $f$ est \textit{injective} si tout élément $y \in F$ a au plus un antécédent $x \in E$.
+				$$\forall x,x'\in E, \ f(x) = f(x') \alors x=x'$$
+				\item \textbf{Surjection:} l'application $f$ est \textit{surjective} si tout élément $y \in F$ a au moins un antécédent $x \in E$.
+				$$\forall y\in F,\exists x\in E \quad f(x) = y$$
+				\item \textbf{Bijection:} l'application $f$ est \textit{bijective} si tout élément $y \in F$ a exactement un antécédent $x \in E$.
+				$$\forall y\in F,\exists! x\in E \quad f(x) = y$$
+			\end{enumerate}
+		\end{defi}
+\end{minipage}}
+
+
+\begin{rmq}
+$f$ est bijective si, et seulement si, $f$ est injective et surjective.
+\end{rmq}
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{0.9\linewidth}
+		
+		\begin{enumerate}[$\bullet$]
+			\item Pour démontrer la \textbf{surjectivité}, on cherche si pour tout $y\in F$ l'équation $y = f (x )$ admet une solution $x$.
+			\item Pour l'\textbf{injectivité}, on étudie l'équation $f (x ) = f (x ' )$ et, dans le cas d'une application injective, on doit en déduire $x = x'$.
+		\end{enumerate}	
+		
+\end{minipage}}
+
+\begin{rmq}
+	Les caractères injectifs, surjectifs et donc bijectifs dépendent des ensembles de départ \\et d'arrivée :
+\end{rmq}
+
+\begin{ex}\hfill\\[-0.15cm]
+	
+	\begin{enumerate}[$\square$]
+		\item $\fonction{k}{\R}{\R}{x}{x^2}$ n'est ni injective, ni surjective.
+		\item $\fonction{l}{\R}{\R^+}{x}{x^2}$ est surjective mais pas injective.
+		\item $\fonction{f}{\R^+}{\R}{x}{x^2}$ est injective mais pas surjective.
+		\item $\fonction{g}{\R}{\R}{x}{x^2}$ est injective et surjective donc bijective.
+	\end{enumerate}
+\end{ex}
+\begin{exer}Intéressez-vous a fonction cube et faite le même type d'exercice que dans l'exemple précédent.  
+\end{exer}
+\begin{ex}
+	 La fonction $x\longmapsto\dfrac{x+1}{x-1}$ est injective sur $\R\backslash\{1\}$.
+\end{ex}
+\begin{ex}
+	Soit $E$ un ensemble et $A$ une partie non vide de $E$. L'application
+	$$\fonction{\varphi}{\Ps(E)}{\Ps(E)}{X}{X\cup A}$$
+	Est-elle injective? Surjective? 
+\end{ex}
+
+\begin{exer}
+Trouver une bijection de $\N^2$ dans $\N \backslash\{0\}$.\\
+\end{exer}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Une application $f: E\longrightarrow F$ est inversible s'il existe une application $g: F\longrightarrow E$ qui satisfait les deux conditions suivantes: $f \circ g = Id_F$ , et $g \circ f = Id_E$. Cette application $g$ est appelée inverse de $f $.  
+		\end{defi}
+\end{minipage}}\hfill\\[0.2cm]
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} Une application est bijective si, et seulement si, elle est inversible.
+			L'inverse d'une application $f$ bijective est appelé bijection réciproque de $f$ et noté $f^{-1}$. 
+		\end{prop}
+\end{minipage}}
+\begin{proof}
+	
+\end{proof}
+\begin{rmq}
+	Il convient de ne pas confondre $f^{-1 }(\{y \})$ l'ensemble des antécédents de $y$ (qui est toujours défini) et
+	$f^{-1} (y )$ l'élément image de $y$ par la bijection réciproque (qui n'est définie que si $f$ est bijective).
+\end{rmq}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} La composée de deux applications injectives (respectivement surjectives, bijectives) est injective (respectivement surjective, bijective). 
+		\end{prop}
+\end{minipage}}
+\begin{proof}
+	
+\end{proof}
+
+\begin{ex}
+	La fonction $x\longmapsto \ln(x+3)$ est bijective de $]-3,+\infty]$ sur $\R$.
+\end{ex}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}Soient $f : E \longrightarrow \R$ une fonction et $A$ une partie de $E$. On dit que $A$ est stable par $f$ \\si $f(A) \subset A$, c'est-à-dire si pour tout $x \in A, \ f (x) \in A$. 
+		\end{defi}
+\end{minipage}}
+
+\begin{ex}
+	L'ensemble $\R^{*}_+$ est stable par la fonction $x\longmapsto \dfrac{1}{x}$.
+\end{ex}
+
+\begin{ex}
+	L'intervalle $[0,1]$ est stable par la fonction $x\longmapsto \sqrt{1-x}$.
+\end{ex}
+
+\subsubsection{Opérations ensemblistes}
+
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\hfil\\[-0.8cm]
+			\begin{enumerate}[$\bullet$]
+				\item L'\textit{ensemble des parties} de $E$ est noté $\Ps(E)$.
+				\item Si $F \subset E$ , alors le \textit{complémentaire} de $F$ dans $E$ est l'ensemble $\overline{F}$ défini par
+				$$\forall x\in E,\quad  \ x\in \overline{F} \equi x\not\in F$$
+				Sur la figure ci-dessous, le complémentaire de $F$ correspond à la zone grisée.
+				\begin{center}
+					\begin{tikzpicture}
+					\node[rectangle,draw=black,
+					fill = gray!30,
+					minimum width = 5cm, 
+					minimum height = 3cm,rounded corners=3pt] (r) at (0,0) {};
+					\draw[fill = white] (-1,-0.25) circle(1);
+					\begin{scriptsize}
+					\draw[color=black] (-1,-0.5) node[above] {\large$F$} ;
+					\draw[color=black] (1.5,-0.5) node[above] {\large$\overline{F}$} (2.5,-1.25) node[right] {\large$E$};
+					\end{scriptsize}	
+					\end{tikzpicture}
+				\end{center}
+				\noindent D'autres notations sont possibles pour le complémentaire de $F$ dans $E$ : $F^{\mathsmaller\complement}$, $E~\backslash F$ (notation à privilégier s'il y a une ambiguïté sur l'ensemble dans lequel on prend le complémentaire) ou encore $\complement^{\mathsmaller F}_{\mathsmaller E}$.\\	
+			\end{enumerate}		
+		\end{defi}
+\end{minipage}}\hfill\\
+\begin{ex}
+	Donner l'ensemble des parties de $\{0,1\}$. 
+\end{ex}
+\begin{exer}
+	Soit $a,b,c\in\R$, expliciter l'ensemble $\Ps(\{a, b, c\})$. 
+\end{exer}
+\begin{ex}
+	L'ensemble des suites convergeant vers $0$ est une partie de l'ensemble des suites réelles. 
+\end{ex}
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}Soient $E$ un ensemble et $A$ une partie de $E$. Alors :\hfill\\[-0.5cm]
+			$$ \overline{E} \ = \ \emptyset  \quad \quad \quad  \overline{\emptyset} \ = \ E \quad\quad \quad   \overline{\overline{A}} \ =  \ A $$
+		\end{prop}
+\end{minipage}}
+\begin{ex}
+	Soient $A$ et $B$ deux parties d'un ensemble $E$ . Montrer que si $A \subset B$ alors : $\overline{B} \subset \overline{A}$.
+\end{ex}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}Pour tout ensemble fini $E$ , on appelle \textit{cardinal} de $E$ et on note $Card(E)$ (ou $\#E$ ou $|E|$) 
+			
+			le nombre d'éléments de $E$ .	
+		\end{defi}
+\end{minipage}}
+\begin{ex}
+	Pour tous $a, b \in \Z$ , on note $\llbracket a, b\rrbracket$ l'ensemble des entiers compris entre $a$ et $b$ :\\
+	$\llbracket a, b\rrbracket \ = \ \{ n\in\Z \backslash a\leq n \leq b \}$. Si $a\leq b$ alors $Card(\llbracket a, b\rrbracket) = b-a+1$. 
+\end{ex}
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}Soient $E$ un ensemble et $n\in\N$ tels que $Card(E)=n$. Alors \  $Card(\Ps(E)) = 2^n$.
+		\end{prop}
+\end{minipage}}
+\begin{proof}
+	
+\end{proof}
+\begin{exer}
+	Donner la valeur de $Card(\Ps\left(\llbracket 0, 3\rrbracket\right))$.
+\end{exer}
+
+\begin{exer}Soit $n \in \mathbb{N}^{*}$, $E$ un ensemble de cardinal $n$. Soit $B$ un sous-ensemble de $E$ de cardinal $r$ avec $r$ un entier entre $0$ et $n$. Montrer que le nombre de sous-ensembles $A$ de $E$ tel que $A \subseteq  B$ vaut $2^r$.
+
+\end{exer}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Soient $F$ et $G$ deux parties d'un ensemble $E $.
+			\begin{enumerate}[$\bullet$]
+				\item L'intersection de $F$ et $G$ est la partie de $E$ , notée $F \cap G$, formée des éléments communs à $F$ et $G$, c'est-à-dire la partie définie par
+				$$\forall x\in E,\quad x\in F \cap G \equi (x\in F \text{ et } x\in G)  $$
+				\item L'union de $F$ et $G$ est la partie de $E$ , notée $F \cup G$, formée des éléments appartenant à $F$ ou appartenant à $G$, c'est-à-dire la partie définie par
+				$$\forall x\in E,\quad x\in F \cup G \equi (x\in F \text{ ou } x\in G)  $$
+			\end{enumerate}		
+		\end{defi}
+\end{minipage}}\hfill\\
+
+\begin{ex}
+	Soient $F$ et $G$ deux parties d'un ensemble $E$ telles que $F \cap G = F \cup G $. Montrer que $F=G$.
+\end{ex}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Soient $I$ un ensemble et $(A_i )_{ i \in I}$ une famille d'ensembles indicé sur $I$ (e.i. pour tout $i \in I$,\\ $A_i$ est un ensemble).
+			\begin{enumerate}[$\bullet$]
+				\item On appelle \textit{réunion} des $A_i$ et on note $ \ \underset{i\in I}{\mathlarger\bigcup}~A_i$ l'ensemble:\\[-0.2cm] 
+				$$ \underset{i\in I}{\mathlarger\bigcup}~A_i \ = \ \{ x \  | \ \exists i\in I \text{ tel que }\ x\in A_i\}$$
+				\item On appelle \textit{intersection} des $A_i$ et on note $ \ \underset{i\in I}{\mathlarger\bigcap}~A_i$ l'ensemble:\\[-0.2cm] 
+				$$ \underset{i\in I}{\mathlarger\bigcup}~A_i \ = \ \{ x \  | \ \forall i\in I, \ x\in A_i\}$$
+			\end{enumerate}		
+		\end{defi}
+\end{minipage}}\hfill\\
+
+\begin{ex}
+	Si $a \in \Z$ , on note $a\Z = \{an, \ n\in\Z\}$ l'ensemble des multiples de $a$. Que vaut $2\Z \cap 3\Z$?
+\end{ex}
+\subsubsection{Loi de composition interne}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Une \textit{loi de composition interne} sur un ensemble $E$ est une application de $E^2$ dans $E$.
+			$$ \begin{array}{cccc}
+			\mathlarger\star:& E\times E& \longrightarrow& E\\
+			  & (x,y)&\longmapsto & x\star y
+			\end{array}$$	
+		\end{defi}
+\end{minipage}}\hfill\\
+
+\begin{ex}
+	\begin{itemize}[$\bullet$]\item[]
+		\item Les opérations $+$, $\times$ définissent des lois de composition interne sur les ensembles de nombres usuels $(\N, \Z, \Q, \R, \C)$.
+		\item La composition $\circ$ est une loi de composition interne sur $\R^\R$. 
+		\item[] 
+	\end{itemize}
+	 
+\end{ex}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Soit $\star$ une loi de composition interne sur un ensemble $E $.
+			\begin{enumerate}[$\bullet$]
+				\item La loi $\star$ est \textit{commutative} si\\[-0.3cm]
+				$$\forall (x,y)\in E^2, \quad x\star y = y \star x$$
+				\item La loi $\star$ est \emph{associative} si\\[-0.3cm]
+				$$\forall (x,y,z)\in E^3, \quad (x\star y) \star z = x \star (y \star z)$$
+				\item La loi $\star$ admet \emph{un élément neutre} si\\[-0.3cm]
+				$$\exists e \in E, \ \forall x\in E, \quad  x\star e =  e \star x = x$$
+				\item Si la loi $\star$ admet un élément neutre $e\in E$, un élément $x \in E$ admet \emph{un symétrique} dans $E$ pour $\star$ si\\[-0.3cm]
+				$$\exists y \in E, \quad  x\star y =  y \star x = e$$
+				
+			\end{enumerate}	
+		\end{defi}
+\end{minipage}}
+\begin{ex}
+	Étudier les caractéristiques des lois de l'exemple précédent.  
+\end{ex}
+\begin{rmq}
+			\begin{enumerate}[$\bullet$]
+				\item[]
+				\item Toutes les lois ne sont pas commutatives: la composition des fonctions est un contre-exemple.
+				\item L'associativité indique qu'il n'y a pas d'ordre de priorité dans les calculs qui n'impliquent que $\star$: on peut
+				donc les mener dans l'ordre que l'on veut.
+			\end{enumerate}	
+\end{rmq}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}Soit $\star$ une loi de composition interne sur un ensemble $E $.
+				\begin{enumerate}[$\bullet$]
+				\item L'élément neutre $e\in E$, lorsqu'il existe, est unique.
+				\item Lorsqu'une loi associative $\star$ admet un élément neutre $e\in E$ et qu'un élément $x$ admet un symétrique, 
+				
+				ce symétrique est unique.
+
+			\end{enumerate}	
+		\end{prop}
+\end{minipage}}
+\begin{proof}
+	
+\end{proof}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Soit $E$ un ensemble muni de deux lois de composition interne $\diamond$ et $\star$. 
+			
+			La loi $\star$ est \emph{distributive} sur la
+			loi $\diamond$ si\\[-0.6cm]
+			$$\forall (x,y,z)\in E^3, \quad z\star (x\diamond y)  = ( z\star x ) \diamond (z \star y )$$
+			$$\forall (x,y,z)\in E^3, \quad (x\diamond y) \star z = (x \star z) \diamond (y \star z)$$
+		\end{defi}
+\end{minipage}}\hfill\\
+
+\begin{ex}
+	Sur les ensembles de nombres usuels, la multiplication $\times$ des nombres est distributive sur l'addition $+$.
+\end{ex}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}Soit $E $ un ensemble.
+			\begin{enumerate}[$\bullet$]
+				\item L'opération $\cup$ est une loi de composition interne commutatives et associatives de $\Ps(E)$,
+				
+				 d'élément neutre $\emptyset$.
+				\item L'opération $\cap$ est une loi de composition interne commutatives et associatives de $\Ps(E)$,
+				
+				 d'élément neutre $E$.
+				
+			\end{enumerate}	
+		\end{prop}
+\end{minipage}}
+\begin{proof}
+	
+\end{proof}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}Soit $A$ une partie de $E$ et $(A_i )_{ i \in I}$ une famille de parties de $E$. Alors
+			\begin{enumerate}[$\bullet$]
+				\item La loi $\bigcup$ est distributive sur la loi $\bigcap$.
+				$$A  \ \bigcup  \  \left( \ \underset{i\in I}{\mathlarger\bigcap}~A_i\right) \ = \ \underset{i\in I}{\mathlarger\bigcap}~ \left(A \cup A_i\right) $$
+				\item  La loi $\bigcap$ est distributive sur la loi $\bigcup$.
+				$$A  \ \bigcap  \  \left( \ \underset{i\in I}{\mathlarger\bigcup}~A_i\right) \ = \ \underset{i\in I}{\mathlarger\bigcup}~ \left(A \cap A_i\right) $$
+				
+			\end{enumerate}	
+		\end{prop}
+\end{minipage}}
+\begin{proof}
+
+\end{proof}
+\noindent\danger\quad On prendra garde de toujours laisser les parenthèses quand il y a des $\cap$ et des $\cup$ à la fois.\\ Ainsi $F \cup G \cap H$ n'a pas de sens.\\
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} La \textit{fonction indicatrice} d'une partie $F$ de $E$ est l'application $\mathbb{1}_F : E \longrightarrow \{0, 1\}$ définie,
+			
+		 pour tout $x \in E$, par
+		 $$ \begin{array}{cccl}
+		 \mathbb{1}_F:& E& \longrightarrow& \{0, 1\}\\[0.2cm]
+		 & x&\longmapsto &\left\{\begin{array}{l}1 \ \text{ si }x\in F\\
+		 0 \ \text{ sinon. }
+		 \end{array}\right.
+		 \end{array}$$
+		\end{defi}
+\end{minipage}}
+
+\begin{ex}\begin{enumerate}[$\bullet$]\item[]\item Les fonctions indicatrices de $E$ et de $\emptyset$ sont respectivement les fonctions constantes sur $E$ égales à 1 et à 0 respectivement. \item Tracer la fonction $\mathbb{1}_{[0,1]}$ sur $\R$ à valeurs dans $\R$.\end{enumerate}
+		
+
+ 	
+\end{ex}
+
+
+\begin{ex}
+	Soient $E$ un ensemble, $A$ et $B$ deux parties de $E$. Exprimer les fonctions $\mathbb{1}_{\overline{A}}, \ \mathbb{1}_{A\cap B}$ et $\mathbb{1}_{A\cup B}$ à l'aide des fonctions $\mathbb{1}_{A}$ et $\mathbb{1}_{B}$. 
+\end{ex}
+
+
+\begin{rmq}
+	$F = \{x \in E,\ \mathbb{1}_F(x) = 1\}$. On en déduit que deux
+	parties ayant la même fonction indicatrice sont égales. Pour montrer une égalité entre ensembles, il suffit de montrer l'égalité des fonctions indicatrices. 
+\end{rmq}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}\textbf{(Les formules de De Morgan)}\\
+			Soient $E$ un ensemble, $F$ et $G$ deux parties de $E$.
+ $$\overline{F \cap G} = \overline{F} \cup \overline{G}, \quad\quad\quad  \overline{F \cup G} = \overline{F} \cap \overline{G} .$$
+		\end{prop}
+\end{minipage}}
+\begin{proof}
+		
+\end{proof}
+
+\begin{exer}
+Soit $A$ et $B$ deux parties d'un ensemble $E$. Résoudre l'équation (d'inconnue $X\in\Ps(E)$) $A \cap X = B$ puis l'équation $A \cup X = B $.	
+\end{exer}
+
+\begin{exer}
+Soit $E$ un ensemble. La différence symétrique de deux parties $F$ et $G$ de $E$ est la partie
+$$F \Delta G =  (\overline{F} \cap G ) \cup (F \cap \overline{G} ).$$
+\begin{enumerate}
+	\item Faire un schéma pour représenter la différence symétrique de $F$ et $G$.
+	\item Montrer que, pour toutes parties $F$ et $G$ de $E$, $F \Delta G = (F \cup G ) \cap \overline{F \cap G }$.
+	\item Vérifier que, pour toutes parties $F$ et $G$ de $E$, la fonction indicatrice de $F\Delta G$ est égale à $$\mathbb{1}_F+\mathbb{1}_G-2\mathbb{1}_F\mathbb{1}_G.$$
+	\item Montrer que $\Delta$ est une loi de composition interne sur $\Ps(E)$ associative, commutative, d'élément neutre $\emptyset$ et telle que toute partie admette un symétrique.
+	\item Montrer que la loi $\cap$ est distributive sur $\Delta$.
+	
+\end{enumerate}	
+\end{exer}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}Soient $E$ un ensemble et $(A_i )_{ i \in I}$ une famille de parties de $E$. La famille est une \emph{partition} de $E$ si
+			\begin{enumerate}[$\bullet$]
+				\item Aucune partie n'est vide\\[-0.5cm]
+				$$\forall i\in I, \quad A_i \neq \emptyset.$$
+				\item Deux parties distinctes sont disjointes\\[-0.5cm]
+				$$\forall(i,j)\in I^2, \quad   i\neq j \ \alors \ A_i \cap A_j = \emptyset.$$
+				\item La réunion est égale à E\\[-0.5cm]
+				$$\ \underset{i\in I}{\mathlarger\bigcup}~A_i \ = \ E.$$
+			\end{enumerate}	
+		\end{defi}
+\end{minipage}}
+\begin{ex}
+	La famille $\left([n , n +1[\right)_{n\in\Z}$ est une partition de $\R$: les parties sont non vides, disjointes et de réunion $\R$. Il s'agit de partitionner l'ensemble des réels selon leur partie entière. Proposer des recouvrements de $\R$ qui ne forment pas une partition.
+\end{ex}
+\section{Relations binaires}
+\subsection{Introduction et définitions}
+	\begin{enumerate}[$\bullet$]
+\item Dès que l'on compare deux objets, qu'on les met en rapport les uns avec les autres, qu'on les classe, on utilise des relations binaires. Par exemple, toutes les phrases suivantes établissent des liens entre des objets :
+\begin{multicols}{2}
+	\begin{enumerate}[$\square$]
+		\item $4\leq 9.$
+		\item $12$ divise $48$.
+		\item $3 + 2i$ et $3 - 2i$ ont le même module.
+		\item $(u_n)$ et $(v_n)$ ont la même limite.
+	\end{enumerate}
+\end{multicols}	\end{enumerate}
+\begin{ex}
+	La relation $<$ sur	$\llbracket 1, 3 \rrbracket$ est entièrement caractérisée par les affirmations $1 < 2, 1 < 3$ et $2 < 3$. On peut définir la relation $<$ sur $\llbracket 1, 3 \rrbracket$ comme l'ensemble $\{(1, 2), (1, 3), (2, 3) \}$ des couples $(x, y) \in \llbracket 1, 3 \rrbracket^2$ pour lesquels $x < y$.
+\end{ex}
+\begin{ex}
+	La relation de divisibilité sur	$\llbracket 1, 7 \rrbracket$ serait l'ensemble: $$\{(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7), (2, 2), (2, 4), (2, 6), (3, 3), (3, 6), (4, 4), (5, 5), (6, 6), (7, 7) \}$$ des couples $(x, y) \in \llbracket 1, 7 \rrbracket^2$ pour lesquels $x \ | \ y$.\\
+	\noindent On peut aussi représenter par un tableau à double entrée cette relation. Une croix dans la case $(x, y)$ indique alors que $x$ divise $y$:
+	 $$\begin{tabular*}{0.5\textwidth}{@{\extracolsep{\fill}}|c|c|c|c|c|c|c|c|}
+	 \hline
+	 \backslashbox{x}{y }&1&2&3&4&5&6&7\\
+	 \hline
+	 1 & $\times$&$\times$ & $\times$& $\times$&$\times$&$\times$& $\times$\\
+	 \hline
+	 2 & &$\times$ & &$\times$& &$\times$ &\\
+	 \hline
+	 3 & & & $\times$& & & $\times$&\\
+	 \hline
+	 4 & & & & $\times$& & &\\
+	 \hline
+	 5 & & & & &$\times$ & &\\
+	 \hline
+	 6 & & & & & &$\times$ &\\
+	 \hline
+	 7 & & & & & & &$\times$\\
+	 \hline
+	 \end{tabular*}$$
+\end{ex}
+
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}Soit $E$ un ensemble. On appelle \emph{relation binaire} sur $E$ toute partie $\Rs$ de $E\times E$. Si $\Rs$ est une relation binaire sur $E$, la proposition $(x, y)\in\Rs$ sera notée $x \Rs y$ et on lira « $x$ est en relation avec $y$ par la relation $\Rs$ ».
+		\end{defi}
+\end{minipage}}\hfill\\
+
+\begin{ex}
+	Représenter graphiquement les relations binaires $\ =, \ <$ et $> $ sur $[0,1]$.	
+\end{ex}
+
+\begin{ex}
+Si $E$ est l'ensemble des droites du plan, on peut définir la relation « être parallèles »
+
+\noindent par $D \ \Rs \ D' \equi D \ // \  D'$.	
+\end{ex}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Soit $\Rs$ une relation binaire sur $E $. 
+			\begin{enumerate}[$\bullet$]
+				\item On dit que la relation $\Rs$ est \emph{réflexive} si et seulement si: $\forall x\in E,\ \ x  \Rs  x$.
+				\item On dit que la relation $\Rs$ est \emph{symétrique} si et seulement si : $\forall (x,y)\in E^2, \ \ x \Rs  y \alors y \Rs x$.
+				\item On dit que la relation $\Rs$ est \emph{transitive} si et seulement si : $\forall (x,y,z)\in E^3, \ \ \left(x  \Rs  y \ et \ y  \Rs  z\right) \alors x \Rs z$.
+				\item On dit que la relation $\Rs$ est \emph{antisymétrique} si et seulement si : $\forall (x,y)\in E^2, \ \ \left(x  \Rs  y \ et \ y  \Rs  x\right) \alors x = y$.
+				
+			\end{enumerate}	
+		\end{defi}
+\end{minipage}}
+\hfill\\[0.1cm]
+\noindent \danger \quad Une relation binaire \textbf{antisymétrique} n'est pas le contraire d'une relation binaire symétrique. Si cela était le cas, une relation antisymétrique ne pourrait pas être réflexive. Penser à la relation $\leq$ sur $\R$. \\[-0.9cm]
+
+\begin{rmq}
+	 Soit $\Rs$ une relation binaire sur $E$ à la fois symétrique et antisymétrique, alors $\Rs$ est la relation d'égalité sur $E$. \\[-0.8cm]
+\end{rmq} 
+
+\begin{ex} Donner les propriétés des relations binaires des exemples suivants dans un tableau. 
+	\begin{enumerate}
+	
+		\item Si $E$ est un ensemble quelconque, on dispose de la relation d'égalité: $x \Rs_1 y \equi x = y$.
+		\item Si $E = \R$, on définit la relation $\leq$ par $x \Rs_2 y \equi x \leq y$.
+		\item Si $E$ est l'ensemble des droites du plan, on définit la relation: $D \ \Rs_3 \ D' \equi D \ \textfractionsolidus\textfractionsolidus\  D'$.
+		\item Si $E = \R$, on définit la relation $>$ par $x \Rs_4 y \equi x > y$.
+		\item Si $E = \Z$, on définit la relation de divisibilité : $x \Rs_5 y$ si et seulement si $x$ divise $y$.
+		\item Si $E = \Z$ et si $n \in \N^*$, on a la relation $x \Rs_6 y \equi x \equiv y ~[n]$.
+		\item Soit $X$ est un ensemble. Si $E = \Ps (X)$ on définit la relation d'inclusion : $A \Rs_7 B$ si et seulement si
+		$A \subset B$.
+	\end{enumerate}
+\end{ex}
+
+
+\begin{exer}
+	Donner les propriétés des relations binaires des exemples suivants dans un tableau. 
+	\begin{enumerate}
+		\item Si $E = \R$ et si $\alpha \in \R^*$, on a la relation $x \Rs_8 y \equi  x \equiv y~[\alpha] \equi \exists k \in \Z  | \ x = y + k\alpha \equi x-y \in \alpha\Z$.
+		\item Si $E = \R^*$, on définit la relation « avoir le même signe » par: $x \Rs_9 y \equi x\times y > 0$.
+		\item Si $E = \R^\R$ , on définit la relation $\preccurlyeq$ par $f \preccurlyeq g \equi  \forall x \in \R , \  f(x) \leq g(x)$. 
+	\end{enumerate}
+\end{exer}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Soit $\Rs$ une relation binaire sur $E $. 
+			\begin{enumerate}[$\bullet$]
+				\item Deux éléments $x, y \in E$ sont dits \emph{comparables} si : $x \Rs y$ ou $y \Rs x$.
+				\item La relation $\Rs$ est \emph{totale} si deux éléments de $E$ sont toujours comparables, c'est-à-dire si:
+				$$\forall x, y \in E,\  x \Rs y \text{ ou } y \Rs x$$
+				\item Si la relation $\Rs$ n'est pas totale, la relation est dite \emph{partielle}.
+				
+			\end{enumerate}	
+		\end{defi}
+\end{minipage}}
+
+\begin{ex}
+	La relation $\leq$ sur $\R$ est totale car pour tout $x,y\in\R$, ces deux nombres sont comparables pour la relation $\leq$. La relation $\preccurlyeq$ sur $\R^\R$ est partielle. La relation $|$ de divisibilité sur $\Z$ est partielle.
+	La relation d'inclusion $\subset$ sur $E = \Ps(X)$ est partielle dès que $X$ contient au moins deux éléments. 
+\end{ex}
+\subsection{Relations d'équivalence, partition et ensemble quotient}
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Une relation binaire $\Rs$ sur un ensemble $E$ est appelée \emph{relation d'équivalence} si et seulement si elle est réflexive,
+			symétrique et transitive. Les relations d'équivalence sont généralement notées $=$ ou $\sim$ ou $\backsimeq$ ou $\approx$  ou $\equiv$ . . .
+		\end{defi}
+\end{minipage}}\hfill\\[0.2cm]
+ \textbf{Schémas:}\\[2cm]
+ \begin{ex}
+ 	\begin{enumerate}[$\bullet$]
+ 		\item[]
+ 		\item La relation d'égalité sur un ensemble quelconque est une relation d'équivalence.
+ 		\item Les relations de congruence sont des relations d'équivalence.
+ 		\item La relation « avoir le même signe » sur $\R^*$ est une relation d'équivalence.
+ 		\item La relation de parallélisme sur les droites du plan est une relation d'équivalence.
+ 	\end{enumerate}
+ \end{ex}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Soit $E$ un ensemble muni d'une relation d'équivalence $\Rs$. Si $x \in E $, on appelle
+			
+			 \emph{classe d'équivalence} de $x$ la partie de $E$ notée $\overline{x}$ ou $\mathring{x}$ ou $cl(x)$ définie par: $$cl(x) = \{y\in E \ | \ x\Rs y\}$$
+		\end{defi}
+\end{minipage}}
+
+\begin{ex}
+Sur $\C$ pour de la relation d'équivalence "avoir le même module", tracer les classes d'équivalence.   
+\end{ex}
+
+\begin{ex}
+ Quelles sont les classes d'équivalence pour la relation d'égalité sur $E$?
+\end{ex}
+
+\begin{ex}
+Quelles sont les classes d'équivalence pour la relation de congruence modulo $2$ sur $\Z$?
+
+\noindent Soit $n\in \N^*$, quelles sont les classes d'équivalence pour la relation de congruence modulo $n$ sur $\Z$?
+\end{ex}
+
+\begin{exer}
+	Soit $f : E \longrightarrow F $. On définit la relation $\sim$ sur $E$ par : $$\forall a, b \in E, \  a \sim b \equi f(a) = f(b)$$ 
+	Montrer qu'il s'agit d'une relation d'équivalence et décrire les classes d'équivalence.
+\end{exer}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{thm}\textbf{Ensemble quotient}\\
+			Soit $\sim$ une relation d'équivalence sur un ensemble $E $.
+			\begin{enumerate}[$\bullet$]
+				\item Les classes d'équivalence pour $\sim$ forment une partition de $E $, c'est-à-dire qu'elles sont non vides, leur
+				réunion est $E$ tout entier et elles sont deux à deux disjointes.
+				\item L'ensemble des classes d'équivalences de $E$ pour $\sim$ est appelé l'\textbf{ensemble quotient} de $E$ par $\sim$ et noté $E/_{\mathlarger\sim}$.
+			\end{enumerate}		
+		\end{thm}
+	\end{minipage}
+}
+\begin{proof}
+\end{proof}
+\begin{rmq}
+	Pour tout $x\in E$, la classe d'équivalence de $x$ est un élément de $\Ps(E)$.
+\end{rmq}
+
+\begin{ex}
+	La relation « avoir le même signe » sur $\R^*$ possède deux classes d'équivalence, la classe $\R^{*+}$ et la classe $\R^{*-}$. L'ensemble quotient associé est donc l'ensemble d'ensembles $\{\R^{*-}, \R^{*+}\}$
+\end{ex}
+
+\begin{exer}
+	On définit une relation $\Rs$ sur $\R$ par $x \Rs y$ si \ $\cos^2(x) + \sin^2(y) = 1$
+	
+	\noindent Montrer que $\Rs$ est une relation d'équivalence puis déterminer ses classes d'équivalence.
+\end{exer}
+
+\begin{exer}
+	Montrer que la relation $(a, b) \Rs (c, d ) \equi a + d = b + c$ est une relation d'équivalence 
+	
+	\noindent sur $\N^2$. Construire une bijection entre $\Z$ et l'ensemble des classes d'équivalence $\N^2/_\Rs$. Ceci est en fait la définition de $\Z$.
+\end{exer}
+
+\subsection{Relation d'ordre}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Une relation binaire $\Rs$ sur un ensemble $E$ est appelée \emph{relation d'ordre} si et seulement si elle est réflexive,
+			antisymétrique et transitive. Le couple $(E , \Rs )$ est alors appelé un ensemble ordonné. Les relations d'ordre sont généralement notées $\leq$ ou $\preccurlyeq$ ou $\precsim$ ou $\leqslant$ . . .
+		\end{defi}
+\end{minipage}}\hfill\\[0.2cm]
+
+\begin{ex}
+	La relation $\leq$ sur $\R$ est une relation d'ordre, la relation est totale comme nous l'avons vu dans l'\textbf{exemple 64}. Donc $\R$ est dit \emph{totalement ordonné} par la relation d'ordre $\leq$. 
+\end{ex}
+
+\begin{ex}Soit $X$ un ensemble avec au moins deux éléments. La relation $\subset$ sur $\Ps(X)$ est une relation d'ordre, la relation est partielle comme nous nous l'avons vu dans l'exemple $64$. Donc $\Ps(X)$ est dit \emph{partiellement ordonné} par la relation d'ordre $\subset$. 
+\end{ex}
+
+\begin{ex}
+	La relation $|$ de divisibilité sur $\Z$ est-elle une relation d'ordre? Donner une relation d'ordre sur $\N$ qui ordonne partiellement cet ensemble. 
+\end{ex}
+
+\begin{ex}
+	Soit $E = \mathscr{F}( [0, 1], \R)$, on définit la relation $\preccurlyeq$ sur $E$ \ $f \preccurlyeq g$ si et seulement si pour tout $x \in [0, 1], \ f(x)\leq g(x)$. Montrer qu'il s'agit d'une relation d'ordre et justifier que $E$ est partiellement ordonné.\end{ex}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}
+			Soit $\leq$ est une relation d'ordre sur $E$, la relation $<$ est définie sur $E$ par : $x<y \equi x \leq y \text{ et } x \neq y$
+			Cette relation $<$ est appelée la \emph{relation stricte} associée à $\leq$.
+		\end{defi}
+\end{minipage}}\hfill\\[0.2cm]
+
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Soient $\leq$ une relation d'ordre sur $E$ et $<$ la relation stricte associée à $\leq$.\\ La relation $<$ est transitive et antisymétrique.
+		\end{prop}
+\end{minipage}}
+\begin{proof}
+\end{proof}
+\noindent\danger\quad La relation $<$ n'est plus une relation d'ordre sur $E$, la relation $<$ n'est pas réflexive.
+\subsection{Majorants/minorants, plus grand/plus petit élément, borne supérieure/inférieure}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} Soient $(E,\leq)$ un ensemble ordonné et $A\subset E$ une partie de $E$. 
+			\begin{enumerate}[$\bullet$]
+				\item On dit que $x \in E$ est un \emph{majorant} de $A$ si et seulement si pour tout $a \in A$, $a \leq x$.\\ On dit alors que $A$ est \emph{majorée} par $x$.
+				\item On dit que $x \in E$ est un \emph{minorant} de $A$ si et seulement si pour tout $a \in A$, $x \leq a$.\\ On dit alors que $A$ est \emph{minoré} par $x$.
+				\item On dit que $A$ est \emph{bornée} pour $\leq$ si $A$ est à la fois majorée et minorée.
+				\item On dit que $A$ possède un \emph{plus grand élément} $x$ (ou un \emph{maximum})  si et seulement si $x$ est un majorant de $A$ et si
+				$x \in A$. On note alors $x = maxA$.
+				\item On dit que $A$ possède un \emph{plus petit élément} $x$ (ou un \emph{minimum}) si et seulement si $x$ est un minorant de $A$ et si
+				$x \in A$. On note alors $x = minA$.
+				
+			\end{enumerate}	
+		\end{defi}
+\end{minipage}}
+\begin{ex}
+	La partie $]-\infty, \pi]$ pour la relation d'ordre $\leq$ sur $\R$ est majorée par $4$ ou $1789$ mais aussi par $\pi$. En revanche, elle n'est pas minorée.
+\end{ex}
+
+\begin{ex} Soit $X$ un ensemble. $\left(\Ps (X ), \subset\right)$ admet-il un plus grand élément? un plus petit élément ?
+\end{ex}
+\begin{ex}
+	L'ensemble $\N$ muni de la relation de divisibilité admet-il un plus petit élément? Un plus grand élément? Et si on considère l'ensemble $\N\backslash\{ 0, 1\}$ ?
+\end{ex}
+\begin{ex}
+	Traiter la partie $\{8, 10, 12\}$ de $\N$ pour la relation de divisibilité $|$\\ (minorant, majorant, minimum, maximum).
+\end{ex}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} Soient $(E,\leq)$ un ensemble ordonné et $A\subset E$ une partie de $E$. Si un plus grand élément ou un plus petit élément existe, il est unique. Ceci justifie les notations \emph{max} et \emph{min} de la \textbf{définition 35}.
+		\end{prop}
+\end{minipage}}\begin{proof} \end{proof}
+\begin{rmq}Soit $E$ un ensemble. Le plus petit élément et le plus grand élément d'un sous-ensemble de $E$ n'existent pas forcément.
+\end{rmq}
+\begin{ex}
+	L'ensemble $]0, 1[$ muni de la relation $\leq$ n'admet ni plus grand ni plus petit éléments.
+\end{ex}
+\begin{exer}
+	Soit $E$ un ensemble avec au moins deux éléments. Sur l'ensemble ordonné $\left(\Ps(E), \subset\right)$, montrer que l'ensemble des singletons de $E$ qui est une partie de $\Ps(E)$ ne possède pas de plus grand élément.
+\end{exer}
+\newpage
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} Soient $A$ et $B$ deux parties d'un ensemble ordonné $(E , \leq)$ admettant chacune un plus grand élément et telles que $A \subset B $. Alors, $maxA \leq max B$.
+		\end{prop}
+\end{minipage}}\begin{proof} \end{proof}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{thm}\textbf{(Propriétés fondamentales des entiers naturels)}\\
+		L'ensemble $\N$ des entiers est un ensemble non vide ordonné tel que :
+			\begin{enumerate}[$\bullet$]
+				\item toute partie non vide de $\N$ admet un plus petit élément.
+				\item toute partie non vide majorée admet un plus grand élément.
+				\item $\N$ n'admet pas de plus grand élément.
+			\end{enumerate}		
+		\end{thm}
+	\end{minipage}
+}
+\begin{proof}
+\textbf{Admis.}
+\end{proof}
+\begin{exer}
+	Donner des énoncés similaires pour $\Z $.
+\end{exer}
+\noindent\danger\quad Ceci est faux dans $\R $.\\
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}Soit $A$ une partie d'un ensemble ordonné $(E , \leq)$.
+			\begin{enumerate}[$\bullet$]
+				\item Si $A$ est majorée, la \emph{borne supérieure} de $A$ notée $supA$ est, lorsqu'elle existe,\\ le plus petit majorant de $A$ dans $E$. 
+				\item Si $A$ est minorée, la \emph{borne inférieure} de $A$ notée $infA$ est, lorsqu'elle existe,\\ le plus grand minorant de $A$ dans $E$.
+			\end{enumerate}		
+		\end{defi}
+	\end{minipage}
+}
+\begin{rmq}
+	On remarque que contrairement à $max A$ et $min A$, $sup A$ et $inf A$ ne sont a priori pas des éléments de $A$.
+\end{rmq}
+
+\begin{ex}\text{}\\
+Soit $A = \{x \in \Q, x^2 < 2\}$, la borne supérieure dans $\R$ est $supA = \sqrt{2} \not\in A$. \\L'ensemble $A$ n'a pas de borne supérieure dans $\Q$.\\
+Soit $B = \{x \in \Z, x^2 < 2\}$, la borne supérieure dans $\Z, \Q$ ou $\R$ est $supB = 1 \in B$.	
+\end{ex}
+
+\begin{ex}
+	Soit $E$ un ensemble, tout sous-ensemble $A$ de $\Ps (E )$ possède une borne supérieure et une borne inférieure pour la relation d'inclusion $\subset$.
+\end{ex}
+
+\begin{exer}
+Pour la relation de divisibilité $|$ sur $\N$, donner la borne inférieure et la borne supérieure de l'ensemble $\{6, 8, 10\}$. Y a-t-il un maximum? un minimum? 
+\end{exer}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} Soient $A$ et $B$ deux parties d'un ensemble ordonné $(E , \leq)$ admettant chacune une borne supérieure et telles que $A \subset B $. Alors, $sup A \leq sup B$.
+		\end{prop}
+\end{minipage}}\begin{proof} \end{proof}
+
+\section{Compléments sur les nombres réels}
+\subsection{Les nombres réels et propriété de la borne supérieure}
+\begin{enumerate}[$\bullet$]
+	 
+	\item La construction de $\N$ est axiomatique, nous allons admettre son existence. Les lois internes sur $\N$ suivantes: l'addition $+$ et la multiplication $\times$ ne seront pas définies et seront supposées admises. 
+	\item Pour les entiers relatifs $\Z$, on peut les définir comme vu dans l'\textbf{exercice 23} par les classes d'équivalences sur $\N^2$ de la manière suivante : pour $(a, b)$ et $(c, d )$ appartenant à $\N^2$, on pose $$(a, b) \sim (c, d ) \equi a+d = c+b \quad \quad (\text{en secret : } a-b=c-d) $$
+	\noindent Le nombre $-5 $ représente alors la classe d'équivalence de $(0, 5)$ qui contient aussi $(1, 6)$, $(2, 7)$ etc.\\
+	\noindent Le nombre $7$ représente pour sa part la classe d'équivalence de $(7, 0)$ qui contient aussi $(8, 1)$,$(9, 2)$ etc.
+	$$"(a,b) = (\text{Gain },\text{ Perte})"$$
+	On définit l'addition sur $\Z$ par:
+	$$(a, b) + (c, d ) = (a + c, b + d )$$
+	
+	On définit la multiplication sur $\Z$  par:
+	$$(a, b) \times (c, d ) = (ac +bd, bc + ad )$$
+	\begin{rmq}\hfill\\
+		\begin{enumerate}[$\square$]
+		\item Pour comprendre la multiplication sur $\Z$ il suffit de développer l'expression littéral $(a-b)\times(c-d)$.
+		\item Nous admettrons que la somme et la multiplication sur $\Z$ qui revient à faire la somme et la multiplication entre deux classes d'équivalence sur $\N^2$ ne dépendent pas des représentants respectifs de chaque classe. 
+	\end{enumerate}
+	\end{rmq}
+\begin{ex}
+	Retrouver avec ce qui précède que $(0,1)\times(0,1) = (1,0)$ et expliquer ainsi la règle des signes que vous avez appris au collège. 
+\end{ex}
+	\item Pour construire les rationnels $\Q$, on procède de la même manière via les classes d'équivalences sur $\Z \times \Z^*$ de la relation : pour $(a, b)$ et $(c, d )$ appartenant à $\Z\times\Z^*$, on pose $$(a, b) \sim (c, d ) \equi ad = cb \quad \quad \left(\text{en secret : } \dfrac{a}{b}=\dfrac{c}{d}\right) $$
+	\begin{exer}
+	Montrer que la relation précédente sur $\Z \times \Z^*$ est une relation d'équivalence. 
+	\end{exer}
+\item La construction de $\R$ à partir de $\Q$ est plus difficile mais se fait également par une relation d'équivalence sur un ensemble de suites à valeurs dans $\Q$.
+
+\item L'ensemble des décimaux $\mathcal{D}$ est un cas particuliers des rationnels. Ce sont les nombres de la forme $\dfrac{a}{10^n}$ avec $a\in\Z$ et $n\in\N$. L'utilisation de $10$ n'a rien de particulier mais se justifie uniquement par nos habitudes de
+calcul en base $10$. On pourrait aussi prendre par exemple $2$ et on obtient les nombres dyadiques.
+\item Les nombres réels qui ne sont pas rationnels sont appelés irrationnels $\R\backslash\Q$.
+\end{enumerate}
+
+\begin{rap}
+	Dans $\R$, une partie non vide et majorée n'a pas toujours de plus grand élément. C'est par exemple le cas de $A = ]0, 1[$. Cependant, l'ensemble de ses majorants est $[1,+\infty[$ qui lui admet $1$ comme plus petit élément.
+\end{rap}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}Soit $A$ une partie de $\R$.	
+			
+			\begin{enumerate}[$\bullet$]
+				\item Si $A$ est majorée on note $\mathscr{M}(A)$ l'ensemble de ses majorants, c'est-à-dire $\{x \in \R  \ | \ \forall a \in A, a \leq x\}$.\\
+				Si $\mathscr{M}(A)$ possède un plus petit élément alors il s'agit de $sup A$.
+				\item Si $A$ est minorée on note $m(A)$ l'ensemble de ses minorants, c'est-à-dire $\{x \in \R  \ | \ \forall a \in A, a \geq x\}$.\\
+				Si $m(A)$ possède un plus grand élément alors il s'agit de $inf A$.
+			\end{enumerate}		
+		\end{defi}
+	\end{minipage}
+}
+
+\begin{rmq}Soient $A\subset\R$ et $x\in\R$.\\
+	$x = sup A$ si et seulement si $x$ est le plus petit des majorants de $A$\\[0.25cm]\noindent si et seulement si \  $\left\{\begin{array}{l}x \text{ majore }A.\\ \text{Si } y \text{ majore } A \text{alors} x\leq y.
+	\end{array}\right.$ si et seulement si \  $\left\{\begin{array}{l}\forall a\in A, \ a\leq x.\\ (\forall y \in \R,\  x> y) \text{ alors } y\text{ ne majore pas } A.
+	\end{array}\right.$ \\[0.25cm]\noindent si et seulement si \  $\left\{\begin{array}{l}\forall a\in A, \ a\leq x.\\ \forall y \in \R,\  x> y,\ \exists a\in A,\ y<a.
+	\end{array}\right.$ si et seulement si \  $\left\{\begin{array}{l}\forall a\in A, \ a\leq x.\\ \forall \epsilon>0,\ \exists a\in A,\ x - \epsilon < a \leq x.
+	\end{array}\right.$
+\end{rmq}
+
+\begin{ex}
+	L'ensemble vide $\emptyset$ admet tout réel pour majorant, donc ne possède pas de borne supérieure car $\R$ n'est pas minoré.
+\end{ex}
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{thm}\textbf{(Opérations sur les bornes supérieures)}\\
+			Soient $A$ et $B$ deux parties de $\R$ possédant chacune une borne supérieure.
+			\begin{enumerate}[$\bullet$]
+				\item La partie $A \cup B$ possède une borne supérieure et $sup(A \cup B ) = max (sup A, sup B )$.
+				\item L'ensemble $A + B = \{a + b \ |\ a \in A \text{ et } b \in B\}$ possède une borne supérieure et $sup(A + B ) = sup A + sup B $.
+				\item Pour tout $\lambda > 0$, l'ensemble $\lambda A = \{\lambda a \ |\ a \in A\}$ possède une borne supérieure et $sup (\lambda A) = \lambda sup A$.
+			\end{enumerate}	
+			
+		\end{thm}
+	\end{minipage}
+}
+\begin{proof}
+	
+\end{proof}
+\begin{exer}
+	Donner des résultats analogues pour la \emph{borne inférieure} et donner les démonstrations associées. 
+\end{exer}
+
+\begin{ex}
+	Donner lorsqu'elles existent la borne inférieure et la borne supérieure dans $\R$ des ensembles   $]- 1, 1]$ et $]- 1, +\infty[$.
+\end{ex}
+
+\begin{ex}
+	Déterminer sup et inf de $A=\left\{ \dfrac{1}{n} \ | \ n\in \N^*\right\}$
+\end{ex}
+\begin{ex}
+	Déterminer sup et inf de $B=\left\{ \dfrac{1}{n} + \dfrac{1}{m} \ | \ n,m\in \N^*\right\}$
+\end{ex}
+
+\begin{exer}
+	Déterminer sup et inf de $C=\left\{ (-1)^n-\dfrac{(-1)^n}{n} \ | \ n\in \N^*\right\}$
+\end{exer}
+
+\begin{rmq}
+	Le théorème suivant est à la base de nombreux résultats d'analyse de première année : théorème de la limite monotone, théorème des suites adjacentes, théorème de Bolzano-Weierstrass, théorème des valeurs intermédiaires, théorème des bornes atteintes, théorème de Heine...
+\end{rmq}
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{thm}\textbf{(Propriété de la borne supérieure/inférieure)}
+			
+			\begin{enumerate}[$\bullet$]
+				\item \textbf{Propriété de la borne supérieure}: Toute partie non vide majorée de $\R$ possède une borne supérieure.
+				\item \textbf{Propriété de la borne inférieure}: Toute partie non vide minorée de $\R$ possède une borne inférieure.
+			\end{enumerate}		
+		\end{thm}
+	\end{minipage}
+}
+\begin{proof}
+	\textbf{Admis.}
+\end{proof}
+
+\noindent\danger \quad La propriété de la borne sup n'est pas valable pour $\Q$. $\{x \in \Q^+ \ | \  x^2 \leq 2\}$ est une partie majorée non vide de $\Q$ mais qu'elle n'admet pas de borne supérieure dans $\Q$.
+
+\begin{ex} Montrons que tout réel positif admet une racine carrée.
+\end{ex}
+\subsection{Droite numérique achevée $\overline{\R}$}
+
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} L'ensemble $\overline{\R} = \R \cup \{-\infty , +\infty\}$ est appelé \emph{droite numérique achevée}.
+		\end{defi}
+\end{minipage}}\hfill\\[0.35cm]
+\noindent On prolonge l'ordre de $\R$ à $\overline{\R}$ par : $\forall x \in \R, -\infty \leq x \leq +\infty$.
+
+\noindent On a $sup ~\overline{\R}  = +\infty = sup ~\R$ est le plus grand élément de $\overline{\R}$ et $inf~ \overline{\R}  = -\infty = inf ~\R$ est
+le plus petit élément de $\overline{\R}$.
+
+\noindent On a ainsi que toute partie de $\overline{\R}$ admet un \emph{sup} et un \emph{inf}, éventuellement $\pm \infty$.
+\newpage
+\begin{ex}
+	\begin{itemize}[$\square$]
+		\item[]\item $sup~ ]0, +\infty[ = +\infty$ dans $\overline{\R}$.
+		\item $sup ~\emptyset = -\infty$  dans $\overline{\R}$.
+		\item $inf ~]-\infty, 3] = -\infty$ dans $\overline{\R}$.
+	\end{itemize}
+ 
+\end{ex}
+
+\begin{exer}
+	Que vaut $inf ~\emptyset$  dans $\overline{\R}$?
+\end{exer}
+
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop-def}\textbf{(Extension des lois internes de $\R$ à $\overline{\R}$)}
+			
+			\begin{enumerate}[$\bullet$]
+				\item On peut prolonger l'addition $+$ sur $\R$ à $\overline{\R}$.
+					\begin{enumerate}[$\square$]
+					\item $\forall x \in \R \cup \{-\infty\},\ x + (- \infty) = -\infty$
+					\item $\forall x \in \R \cup \{+\infty\},\ x + (+ \infty) = +\infty$
+				\end{enumerate}
+				\item On peut prolonger la multiplication $\times$ sur $\R$ à $\overline{\R}$
+				\begin{enumerate}[$\square$]
+					\item $\forall x \in \R^*_+ \cup \{+\infty\},\ x \times (+ \infty) = +\infty$
+					\item $\forall x \in \R^*_+ \cup \{+\infty\},\ x \times (- \infty) = -\infty$
+					\item $\forall x \in \R^*_- \cup \{-\infty\},\ x \times (+ \infty) = -\infty$
+					\item $\forall x \in \R^*_- \cup \{-\infty\},\ x \times (- \infty) = +\infty$
+					\item $\dfrac{1}{- \infty} = \dfrac{1}{+ \infty} = 0$
+				\end{enumerate}
+			\end{enumerate}		
+		\end{prop-def}
+	\end{minipage}
+}
+
+\hfill\\
+
+
+
+\noindent\danger \quad Les expressions suivantes restent des formes indéterminées dont on ne donnera aucun sens:
+
+$$+\infty + (-\infty), \quad \quad -\infty - (-\infty), \quad \quad 0 \times (\pm\infty), \quad \quad\dfrac{\pm\infty}{\pm\infty}.$$
+
+\subsection{Partie entière}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop-def}\textbf{(Partie entière)}
+			
+			
+		Soit $x \in \R$. Il existe un unique entier $n \in \Z$ pour lequel: $n \leq x < n + 1$, appelé la \emph{partie entière} de $x$ et noté $\lfloor x\rfloor$ ou $E(x)$. Cet entier $\lfloor x\rfloor$ est donc le plus grand entier relatif inférieur ou égal à $ x$.
+	
+		\end{prop-def}
+	\end{minipage}
+}
+\begin{proof}
+	\textbf{Admis.}
+\end{proof}
+
+\begin{ex}
+	$\lfloor 11\rfloor = 11$,\quad $\lfloor 5,2\rfloor = 5$,\quad $\lfloor 3\rfloor = -3$,\quad MAIS ATTENTION\quad 
+	$\lfloor -6,6\rfloor = -7$ \
+	(et non pas $-6$).
+\end{ex}
+
+\begin{ex}
+ Tracer la fonction partie entière sur l'intervalle $[-3,4]$. 
+\end{ex}
+
+\begin{rmq}
+	Soit $x\in \R$, $\lfloor x\rfloor = sup\{n\in\Z \ | \ n\leq x\}$.\\
+	On a les encadrements suivants: 
+	$$\fbox{$\lfloor x\rfloor \leq x < \lfloor x\rfloor +1$} \quad\quad\& \quad\quad \fbox{$ x-1< \lfloor x\rfloor \leq  x$}$$ 
+\end{rmq}
+
+\begin{ex}
+	Que vaut $\lfloor -x\rfloor$ en fonction de $\lfloor x\rfloor$ ?
+\end{ex}
+
+\begin{ex}
+	Déterminer pour tout $x\in\R$ la limite de la suite $a$ définie par : $a_n = \dfrac{\lfloor10^nx\rfloor}{10^n}$.
+\end{ex}
+
+\begin{ex}
+	Montrer que pour tout réel $x$, on a : $\left\lfloor\dfrac{ 1}{2}x \right\rfloor+\left\lfloor\dfrac{ 1 }{2}(x +1)\right\rfloor = \lfloor x\rfloor$
+\end{ex}
+\begin{exer}
+	Trouver une condition nécessaire et suffisante sur $x \in\R$ pour que $\lfloor 2x\rfloor = 2\lfloor x\rfloor$.
+\end{exer}
+
+\begin{ex}
+	Soient $T > 0$ et $x \in \R$. Montrer que l'on peut toujours ramener $x$ dans l'intervalle $[0, T [$ en lui ajoutant/retranchant un certain nombre $n_T\in \N$ de fois $T$. Expliciter la valeur de $n_T$.
+\end{ex}
+\begin{ex}
+	Soient $\epsilon> 0$ et $A > 0$ fixés. Le mot « rang » désigne un entier naturel.
+	\begin{enumerate}[$\square$]
+		\item À partir de quel rang a-t-on  $\dfrac{1}{n}< \epsilon$?
+		\item À partir de quel rang a-t-on  $n^2>A$?
+		\item À partir de quel rang a-t-on  $\dfrac{1}{2^n}< \epsilon$?
+	\end{enumerate}
+\end{ex}
+
+\subsection{Rudiments de topologie de $\R$}
+\noindent Le concept de \emph{voisinage} n'est pas au programme de MPSI, mais il éclairera les chapitres d'analyse de l'année donc nous allons l'introduire ci-dessous.\\
+
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\textbf{(Voisinage d'un point de $\overline{\R}$ dans $\R$)}
+
+			\begin{enumerate}[$\bullet$]
+				\item Soit $a \in \R$. On appelle\emph{ voisinage de $a$} (dans $\R$) toute partie $V$ de $\R$ pour laquelle : $\exists \epsilon > 0, \ ]a - \epsilon, a + \epsilon[ \ \subset \ V $.
+				\item On appelle \emph{voisinage de $+\infty$ }(dans $\R$) toute partie $V$ de $\R$ pour laquelle : $\exists A > 0,\  ]A, +\infty[ \ \subset \  V $.
+				\item On appelle \emph{voisinage de $-\infty$ }(dans $\R$) toute partie $V$ de $\R$ pour laquelle : $\exists A < 0,\  ]  -\infty , A[ \ \subset \  V $.
+			\end{enumerate}	
+			
+		\end{defi}
+	\end{minipage}
+}
+
+
+\begin{ex}
+
+	\begin{enumerate}[$\square$]
+		\item[]
+				\item Les ensembles $[-1,1], \quad \{0\}, \quad ]-10^{-12},0.5] \cup \{3\},\quad \Q, \quad \R, \quad \emptyset,\quad $ sont-t-ils des voisinages de $0$?
+				\item Donner deux voisinages de $+\infty$ et $-\infty$.  
+	\end{enumerate}
+\end{ex}
+
+
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{thm}	\textbf{(Propriétés des voisinages)}				
+			\begin{enumerate}[$\bullet$]
+				\item Pour tout $a \in \overline{\R}$, l'intersection de deux voisinages de $a$ est un voisinage de $a$.
+				\item Deux points distincts de $\overline{\R}$ possèdent des voisinages disjoints. En d'autres termes, pour tous $a, b \in \overline{\R}$ distincts, il
+				existe un voisinage $V_a$ de $a$ et un voisinage $V_b$ de $b$ pour lesquels $V_a \cap V_b = \emptyset$.
+			\end{enumerate}
+		\end{thm}
+	\end{minipage}
+}
+\begin{proof}
+\end{proof}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\textbf{(Point intérieur/adhérent à une partie de $\R$)}
+			
+			Soient $A\subset\R$ et $x\in\R$. 
+			\begin{enumerate}[$\bullet$]
+				\item \textbf{Point intérieur :} On dit que $x$ est \emph{intérieur} à $A$ si $A$ contient un	voisinage de $x$,
+				
+				 (i.e. si : $\exists \epsilon > 0,\ ]x - \epsilon, x + \epsilon[ \ \subset \ A $).
+				\item \textbf{Point adhérent :} On dit que $x$ est \emph{adhérent} à $A$ si $A$ rencontre tout voisinage de $x$,
+				
+				(i.e. si : $\forall \epsilon > 0,\ ]x - \epsilon, x + \epsilon[ \ \cap\ A \neq \emptyset$).
+			\end{enumerate}	
+			
+		\end{defi}
+	\end{minipage}
+} \textbf{Schémas:}\\[2cm]
+
+\begin{ex}
+	Donner les points intérieurs et les points adhérents de l'ensemble \ $[0,1[$.
+\end{ex}
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}	\textbf{(Partie dense de $\R$)}
+			
+			Une partie $A$ de $\R$ est dite \emph{dense} dans $\R$ si et seulement si \\[-0.5cm]
+			$$\forall x,y\in\R,\ x<y \ \alors \ \left(\exists a\in A, \ x<a<y\right)$$
+		\end{defi}
+	\end{minipage}
+}
+
+\begin{rmq}
+	$A$ « rencontre » tout intervalle ouvert non vide, c'est-à-dire que dans tout intervalle ouvert non vide il y a au moins un élément de $A$, il y en a même une infinité.
+\end{rmq}
+
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}	%\textbf{(Propriétés des voisinages)}				
+		Une partie $A$ de $\R$ est dense dans $\R$ si et seulement si tout réel est adhérent à $A$.
+		\end{prop}
+	\end{minipage}
+}
+\begin{proof}
+\end{proof}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}	\textbf{(Caractérisation séquentielle de la densité)}
+			
+							
+			Une partie $A$ de $\R$ est dense dans $\R$ si et seulement si tout réel est limite d'une suite d'éléments de $A$.
+		\end{prop}
+	\end{minipage}
+}
+\begin{proof}
+\end{proof}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}	\textbf{(Densité de l'ensemble des rationnels/irrationnels)} $\Q$ et $\R \backslash \Q$ sont denses dans $\R$.
+		\end{prop}
+	\end{minipage}
+}
+\begin{proof}
+\end{proof}
+
+\begin{ex}
+	l'ensemble $\{r^3 ,\ r \in \Q\}$ est dense dans $\R $.
+\end{ex}
+
+\begin{ex}
+	Montrer que l'ensemble des nombres dyadiques $\left\{\dfrac{p}{2^n}, \ p\in\Z, n\in\N\right\}$ est dense dans $\R $.
+\end{ex}
+
+\begin{exer}
+	Montrer que l'ensemble des nombres décimaux $\mathbb{D}$ est dense dans $\R $.
+\end{exer}
+
+\end{document}

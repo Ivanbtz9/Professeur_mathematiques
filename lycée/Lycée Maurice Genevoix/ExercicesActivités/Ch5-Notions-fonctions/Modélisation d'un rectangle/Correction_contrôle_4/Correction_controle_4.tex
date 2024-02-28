@@ -1,0 +1,156 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+\usepackage{array,multirow,makecell}
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+\renewcommand{\baselinestretch}{1.2}
+\renewcommand{\vec}{\overrightarrow}
+
+\begin{document}
+	
+\lhead{}\chead{}\rhead{}\lfoot{Chapitre 5 - Exercice de groupe}\cfoot{\thepage/2}\rfoot{M. Botcazou}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}
+
+$$\fbox{\text{\Large{ Correction fonctions et applications}}}$$
+\hfil\\
+
+
+
+\begin{exo}\textit{\textbf{Les fonctions un outil en géométrie:}}\\
+
+	\begin{enumerate}
+		\item Les données de l'énoncé nous donne que:  $AB \ = \ l$\hfill\textbf{/1}\\
+		Or on sait que la longueur $AB$ est deux fois plus grande que la largeur $AD$. ~Donc: ~ $AD \ = \ \dfrac{AB}{2}\ = \ \dfrac{l}{2}$\\
+		De plus le quadrilatère $ABCD$ est un rectangle.\\ Donc:~~
+		$DC \ = \ l$ ~et~ $CB \ = \ \dfrac{l}{2}$.\\
+		
+		\item Le périmètre $P$ est la somme des tous les cotés du rectangle $ABCD$.\\
+		 Donc $P\ = \ AB + BC + CD + DA \ = \ l + \dfrac{l}{2} + l + \dfrac{l}{2} \ = \ 3l $\hfill\textbf{/0.5}\\
+		 
+		 L'aire d'un rectangle est donné par la formule :~~ $\text{longueur} \times \text{largeur}$.\quad
+		 L'aire $A$ du rectangle $ABCD$ est:\\
+		 $A \ = \ AB \times AD \ = \ l \times \dfrac{l}{2}  \ = \ \dfrac{l^2}{2}$\hfill\textbf{/0.5}
+
+		\item \textbf{\textit{(Voir Annexe 1)}} \hfill\textbf{/2}
+		\item \textit{ \textbf{(Voir Annexe 1)}} \hfill\textbf{/2} 
+		\item Par le calcul on a:
+		
+		 $$ P\left(\dfrac{7}{3}\right) \ = \ 3\times \dfrac{7}{3} \ = \ \dfrac{3\times7}{3} \ = \ 7$$
+		L'image de ~$\dfrac{7}{3}$~ par la fonction P est :~~$7$\hfill\textbf{/0.5}
+		
+		 $$A\left(\dfrac{6}{7}\right) \ = \ \dfrac{\left(\dfrac{6}{7}\right)^2}{2} \ = \ \left(\dfrac{6}{7}\right)^2 \times \dfrac{1}{2} \ = \ \dfrac{36}{49} \times \dfrac{1}{2} \ = \ \dfrac{18}{49} $$
+		 L'image de ~$\dfrac{6}{7}$~ par la fonction A est :~~$\dfrac{18}{49}$ \hfill\textbf{/0.5}
+		\item En résolvant des inéquations on trouve que:
+		\begin{enumerate}
+			\item $P(l)\leq  9$ ~pour~~ $l\in[0~;~3]$\hfill\textbf{/0.75}
+			\item $A(l)\geq 2$ ~pour~~ $l\in[2~;~5]$\hfill\textbf{/0.75}
+		\end{enumerate}  
+		\item  $\bullet$ ~Par la question ~$5.$~ on voit que $\dfrac{7}{3}$ est un antécédent de 7 par la fonction $P$.\hfill\textbf{/0.5}\\[1mm]
+		 $\bullet$ ~Pour trouver un antécédent de ~$4$~ par la fonction ~$A$~ il faut résoudre l'équation:
+		\begin{align*}
+			A(l) \ &= \ 4\\
+			\dfrac{l^2}{2} \ &= \ 4\\
+			l^2 \ &= \ 8 \quad\quad\quad\textit{(on a multiplié par 2 de chaque côté du signe égal)}\\
+			l \ = \ \sqrt{8}\approx 2.83  \quad&\text{ou}\quad l \ = \ -\sqrt{8}\approx -2.83 \quad(\text{arrondi à} 10^{-2})	
+		\end{align*} 
+		L'antécédent de ~$4$~ par la fonction ~$A$~ qui soit compris dans l'intervalle ~~$[0~;~5]$~~est: ~$\sqrt{8}$~.  \hfill\textbf{/1}		
+	\end{enumerate}	
+\end{exo}
+
+
+\newpage
+\section*{ANNEXE:}
+\subsection*{Annexe 1:}
+\noindent$P(l)\ = \  3l $\\\\
+$A(l) \ = \ \dfrac{l^2}{2} $\hfill\textbf{/2}
+
+	
+	\begin{flushleft}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+		
+		\hline
+		$l$ & 0  &0.5  &1  & 1.5 & 2& 2.5 & 3 & 3.5 & 4 &4.5 & 5 \\
+		\hline
+		$P(l)$&0 &1.5 &3 &4.5& 6&7.5 &9 &10.5 &12 &13.5 &15  \\
+		\hline
+		$A(l)$ & 0 & $\frac{1}{8} = 0.125$& 0.5 &$\frac{9}{8} = 1.125$ & 2 & $\frac{25}{8} = 3,125$ & $\frac{9}{2} = 4.5$ & $\frac{49}{8} = 6.125$& 8 & $\frac{81}{8} = 10.125$ & $\frac{25}{2} = 12.5$\\
+		
+		\hline
+		
+	\end{tabular}	
+	\end{flushleft}
+
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\definecolor{ccqqqq}{rgb}{0.8,0.,0.}
+\definecolor{qqwuqq}{rgb}{0.,0.39215686274509803,0.}
+\definecolor{cqcqcq}{rgb}{0.7529411764705882,0.7529411764705882,0.7529411764705882}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm,yscale=0.5,xscale=2.5]
+\draw [color=cqcqcq,, xstep=0.5cm,ystep=1.0cm] (-0.15,-0.7) grid (5.19,17.9);
+\draw[->,color=black] (0.,0.) -- (5.19,0.);
+\foreach \x in {,0.5,1.,1.5,2.,2.5,3.,3.5,4.,4.5,5.}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,0.) -- (0.,17.9);
+\foreach \y in {,1.,2.,3.,4.,5.,6.,7.,8.,9.,10.,11.,12.,13.,14.,15.,16.,17.}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[left] {\footnotesize $0$};
+\clip(-0.15,-0.7) rectangle (5.19,17.9);
+\draw[line width=1.2pt,color=qqwuqq,smooth,samples=100,domain=0.:5.] plot(\x,{3.0*(\x)});
+\draw[line width=1.2pt,color=ccqqqq,smooth,samples=100,domain=0.:5] plot(\x,{(\x)^(2.0)/2.0});
+\draw [color=qqwuqq](4.517735849056604,15.270978441127694) node[anchor=north west] {$\mathcal{C}_P$};
+\draw [color=ffqqqq](4.6983018867924535,11.270480928689883) node[anchor=north west] {$\mathcal{C}_A$};
+\begin{scriptsize}
+%\draw[color=qqwuqq] (-0.6066037735849056,-0.3588723051409598) node {$P$};
+%\draw[color=ccqqqq] (-0.6501886792452829,-0.2968490878938619) node {$A$};
+\end{scriptsize}
+\end{tikzpicture}
+\hfill\textbf{\hfill\textbf{/2}}
+
+
+
+\end{document}

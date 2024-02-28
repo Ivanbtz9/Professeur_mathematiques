@@ -1,0 +1,386 @@
+\documentclass[a4paper,10.5pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{enumerate}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{array,multirow,makecell}
+\usepackage{graphicx}
+\usepackage{diagbox}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{setspace}
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{thm-def}{Théorème/Définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+%\def\di{\displaystyle}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\setcellgapes{6pt}
+\makegapedcells
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{}\chead{}\rhead{}\lfoot{Chapitre 10 - Cours}\cfoot{\thepage/4}\rfoot{M. Botcazou}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	%\tableofcontents
+
+	$$\fbox{\text{\Large{ Chapitre 10 : Arithmétique }}}$$
+	
+	%$$\fbox{\text{\Large{ \begin{minipage}{0.9\linewidth } \centering\hfil\\ ......\hfill \\\hfill \\\end{minipage} }}}$$
+\section*{Introduction:}
+L'arithmétique est l'art et la manière de manipuler les quantités entières. Cette branche des mathématiques est riche en applications dans notre société, cette science des nombres entiers est très utilisée en informatique et particulièrement dans le domaine de la cryptographie. %\noindent(\textit{La\textbf{ cryptographie} est l'ensemble des procédés visant à crypter des informations pour en assurer la confidentialité entre l'émetteur et le destinataire}). 
+
+
+\section{Définitions et premières notations:}
+\subsection{Ensembles de nombres entiers:}
+
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}\begin{defi}\hfill\\[0.25cm]
+		Pour comparer deux ensembles et introduire les notions d'inclusion, d'égalité et de différence entre ensembles,\\ nous utilisons les symboles suivants:
+		$$(~\subset,~\subseteq,~\supset,~\supseteq,~=,~\neq~ )$$\hfill\\[-0.5cm]
+		\end{defi}
+	\end{minipage}\hfill\\}\hfill\\	\hfill\\
+\begin{ex}\hfill\\[-0.25cm]
+	
+	\begin{multicols}{3}
+		\begin{enumerate}[$\square$]
+			\item $\quad \{1,~2\}\ \dots\dots \ \{1,~2,~3\}$
+			\item $\ \  \{4,~5,~6\}\ \dots\dots \ \{4,~6\}$
+			\item $\{1,~3,~2\}\ \dots\dots \ \{1,~2,~3\}$\\
+			
+			\item $ \{4,~5,~6\}\ \dots\dots \ \{1,~2,~3\}$
+			\item $\{0,~2\}\ \dots\dots \ \{1,~2,~3\}$
+			\item $\{4,~5,~6\}\ \dots\dots \ \{5\}$
+		\end{enumerate}
+	\end{multicols}
+\end{ex}
+
+\begin{rmq}\hfill\\[0.25cm]
+	\begin{minipage}[t]{0.9\linewidth}
+	Nous noterons $\mathbb{N}^*$ l'ensemble des entiers naturels privé de l'élément $0$, ce sont tous les entiers strictement positifs.
+	\end{minipage}
+\end{rmq}
+
+\noindent\fcolorbox{rouge}{white}{\begin{minipage}{1\linewidth}\begin{prop}\hfill\\[0.25cm]
+			Nous avons les relations d'inclusions suivantes:
+			\quad $\mathbb{N}^*\subset\mathbb{N}\subset\mathbb{Z}$\\
+		\end{prop}
+	\end{minipage}\hfill\\}
+
+
+\begin{rmq}\hfill\\[0.25cm]
+	\begin{minipage}[t]{1\linewidth}
+	En mathématiques nous utilisons souvent des lettres de l'alphabet grec ancien.\\[0.25cm]
+\begin{minipage}[t]{0.45\linewidth}
+\begin{tabular}{|c|c|c|}
+	\hline
+	\text{lettre majuscule} & \text{lettre minuscule} & \text{nom}\\
+	\hline
+	$A$ &$\alpha$&\text{alpha}\\
+	\hline
+	$B$&$\beta$&\text{bêta}\\
+	\hline
+	$\Gamma$&$\gamma$&\text{gamma}\\
+	\hline
+	$\Delta$&$\delta$&\text{delta}\\
+	\hline
+	$E$&$\varepsilon$&\text{epsilon}\\
+	\hline
+	$Z$&$\zeta$&\text{zêta}\\
+	\hline
+	$H$&$\eta$&\text{êta}\\
+	\hline
+	$\Theta$&$\theta$&\text{thêta}\\
+	\hline
+	$I$&$\iota$&\text{iota}\\
+	\hline
+	$K$&$\kappa$&\text{kappa}\\
+	\hline
+	$\Lambda$&$\lambda$&\text{lambda}\\
+	\hline
+	$M$&$\mu$&\text{mu}\\
+	\hline
+
+\end{tabular}	
+\end{minipage} \hfil
+\begin{minipage}[t]{0.45\linewidth}
+\begin{tabular}{|c|c|c|}
+	\hline
+	\text{lettre majuscule} & \text{lettre minuscule} & \text{nom}\\
+	\hline
+	$N$&$\nu$&\text{nu}\\
+	\hline
+	$\Xi$&$\xi$&\text{ksi ou xi}\\
+	\hline
+	$O$&$o$&\text{omicron}\\
+	\hline
+	$\Pi$&$\pi$&\text{pi}\\
+	\hline
+	$P$&$\rho$&\text{rhô}\\
+	\hline
+	$\Sigma$&$\sigma$&\text{sigma}\\
+	\hline
+	$T$&$\tau$&\text{tau}\\
+	\hline
+	$\Upsilon$&$\upsilon$&\text{upsilon}\\
+	\hline
+	$\Phi$&$\phi$~\text{ou}~$\varphi$&\text{phi}\\
+	\hline
+	$X$&$\chi$&\text{khi}\\
+	\hline
+	$\Psi$&$\psi$&\text{psi}\\
+	\hline
+	$\Omega$&$\omega$&\text{omega}\\
+	\hline	
+\end{tabular}
+\end{minipage}
+\end{minipage}
+\end{rmq}
+\newpage
+\subsection{Multiples, diviseurs et critères de divisibilité:}
+\subsubsection{Multiples et diviseurs:}	
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}\begin{defi}\hfill\\[0.25cm]Soit $a,b\in\mathbb{Z}$, on dit que a est $\dots \dots\dots\dots\dots\dots\dots\dots\dots$ de b s'il existe un entier $k\in\mathbb{Z}$ tel que: $a\ = \dots\dots\dots\dots $ \\
+\end{defi}\end{minipage}}
+\hfill\\
+\begin{ex}\hfill\\[-0.25cm]
+	\begin{itemize}
+		\item[$\square$] $12$ est un multiple de $6$ car il existe le nombre $2$ tel que:\quad $12 \ = \dots\dots\dots\dots\dots $\\
+		\item[$\square$] $54$ est un multiple de $3$ car il existe le nombre $18$ tel que:\quad $54 \ = \dots\dots\dots\dots\dots $\\
+		\item[$\square$] $0$ est un multiple de n'importe quel nombre $a\in\mathbb{Z}$, car: $ 0 \ = \ \dots\dots\dots\dots\dots  $\\
+		\item[$\square$] $1$ n'est un multiple que de $\dots \dots$ et de $\dots \dots$.\\
+	\end{itemize}
+\end{ex}
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}\begin{defi}\hfill\\[0.25cm]Soit $a,b\in\mathbb{Z}$, on dit que b est $\dots \dots\dots\dots\dots\dots\dots\dots\dots$ de a s'il existe un entier $k\in\mathbb{Z}$ tel que: $a\ = \dots\dots\dots\dots $ \\
+\end{defi}\end{minipage}}
+\hfill\\
+
+
+\begin{ex}\hfill\\
+	\begin{itemize}
+		\item[$\square$] Les diviseurs de ~$12$~ sont:\quad $D_{12}=\bigg\{\dots\dots\dots,~\dots\dots\dots,~\dots\dots\dots,~\dots\dots\dots,~\dots\dots\dots,~\dots\dots\dots\bigg\}$\\
+		\item[$\square$] Les diviseurs de ~$45$~ sont:\quad $D_{45}=\bigg\{\dots\dots\dots,~\dots\dots\dots,~\dots\dots\dots,~\dots\dots\dots,~\dots\dots\dots,~\dots\dots\dots\bigg\}$\\
+		\item[$\square$] $1$~ divise tous les nombres car pour tout ~$a\in\mathbb{Z}$~ on a:\quad $\dots\dots\dots \ = \ \dots\dots\dots \ \times \ \dots\dots\dots $\\
+		\item[$\square$] $0$ ne divise personne autre que lui-même.\\
+	\end{itemize}
+\end{ex}
+
+\begin{ex}
+	Contre-exemples et indications:\\
+	\begin{itemize}
+		\item[$\square$] $3$ ne divise pas $5$ car il n'existe pas un entier $k$ tel que $5$ soit égale à:~ $3\times k$\\
+		\item[$\square$] $32$ n'est pas un multiple de $11$ car il n'existe pas un entier $k$ tel que $32$ soit égale à:~ $11\times k$\\
+		\item[$\square$] Ne pas avoir peur de nombres négatifs. ~$2$~ divise ~$6$~ car ~$6=2 \times 3$~mais ~$-2$~est aussi un diviseur de ~$6$~ car ~$6=-2 \times -3$ 
+	\end{itemize}
+\end{ex}	
+
+\noindent\fcolorbox{rouge}{white}{\begin{minipage}{1\linewidth}\begin{prop} Soit $a,b\in\mathbb{Z}$,~ si ~$b$~ divise ~$a$~ alors ~$-b$~ divise aussi ~$a$~
+\end{prop}\end{minipage}}
+
+\begin{proof}\hfil\\
+	
+		\noindent.\dotfill \\
+\end{proof}
+
+\noindent\fcolorbox{rouge}{white}{\begin{minipage}{1\linewidth}\begin{prop} Soit $a,b\in\mathbb{Z}$ deux multiples de $c\in\mathbb{Z}$. Alors $(a+b)$, $(a-b)$ et $(b-a)$ sont des multiples de $c$
+\end{prop}\end{minipage}}
+
+\begin{proof}\hfil\\
+	
+\noindent.\dotfill \\ \\
+\noindent.\dotfill \\ \\
+\noindent.\dotfill \\ \\
+\noindent.\dotfill \\ \\
+	
+\end{proof}
+
+\subsubsection{Parité des entiers relatifs:}
+
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}
+\begin{defi}\hfil\\[-0.2cm]
+	\begin{itemize}[$\square$]
+		\item Un entier $n\in\mathbb{Z}$ est $\dots\dots\dots\dots\dots$ si $2$ est un diviseur de $n$. $\leftrightarrow$ il existe $k\in\mathbb{Z}$ tel que: $n=2k$
+		\item Un entier $n\in\mathbb{Z}$ est $\dots\dots\dots\dots\dots$ si $2$ n'est pas un diviseur de $n$. $\leftrightarrow$ il existe $k\in\mathbb{Z}$ tel que: $n=2k+1$\\
+	\end{itemize}	
+\end{defi}
+\end{minipage}}
+
+
+\begin{rmq}\hfil\\[-0.2cm]
+	\begin{enumerate}[$\square$]
+		\item Un nombre est pair si la division euclidienne de celui-ci par $2$ a un reste égale à $0$.\item Un nombre est impair si la division euclidienne de celui-ci par $2$ a un reste égale à $1$.\\
+	\end{enumerate}
+
+\end{rmq}
+\noindent\fcolorbox{rouge}{white}{\begin{minipage}{1\linewidth}\begin{prop}
+Soit $n,m\in\mathbb{Z}$ on a:\\[-2mm]
+\begin{enumerate}
+	\item $\triangleright$~~ $n^2 \ = \ n\times n$ ~~est pair si et seulement si $n $ est pair.\\[2mm] 
+	$\triangleright$~~ $n^2 \ = \ n\times n$~~ est impair si et seulement si $n $ est impair.\\[1mm]
+	
+	\item $\triangleright$~~$nm \ = \ n\times m$~~ est pair si et seulement si ~$n $~ est pair ou si ~$m$~ est pair.\\[2mm]
+	$\triangleright$~~$nm \ = \ n\times m$~~ est impair si et seulement si $n$ et $m$ sont tous les deux impairs.\\[1mm]
+	
+	\item $\triangleright$~~ $n^3 \ = \ n\times n\times n$~~ est pair si et seulement si n est pair \\[2mm]
+	$\triangleright$~~ $n^3 \ = \ n\times n\times n$~~ est impair si et seulement si $n$ est impair.\\[2mm]
+\end{enumerate}
+\end{prop}
+\end{minipage}}
+
+	
+
+\begin{proof}\hfil \\
+	\begin{enumerate}
+		\item $\triangleright$~~ $n\times n$ est pair si $n $ est pair car si $n$ est un multiple de $2$ alors $n\times n = n^2$ est aussi un multiple de $2$\\[4mm] 
+		$\triangleright$ ~~$n\times n$ est impair si $n $ est impair car si $n $ est impair on a: \\[4mm]$n^2 = \  $\noindent.\dotfill \\ \\%=(2k+1)^2=4k^2+2\times2k\times 1+1^2 = 2\times(2k^2+2k)+1$\\[5mm]
+		\noindent.\dotfill \\ \\
+	
+		
+		\item $\triangleright$ ~~$n\times m$ est pair si $n $ est pair ou si $m$ est pair ou encore si ils sont tous les deux pairs.\\[4mm]
+		$\triangleright$~~ $n\times m$ est impair si $n$ et $m$ sont tous les deux impairs car:\\[4mm]$n\times m=$ \ \ \noindent.\dotfill \\ \\% (2k+1)\times(2k'+1)=4k\times k'+2\times(k+k')\times +1 = 2\times(2k\times k'+k+k')+1$\\[5mm]
+		\noindent.\dotfill \\ \\
+		\noindent.\dotfill \\ \\
+		
+		\item $\triangleright$~~ $n\times n\times n$ est pair si n est pair \\[4mm]
+		$\triangleright$~~ $n\times n\times n$ est impair si n est impair car on a:\\[4mm] $n^3 = \ \ $\noindent.\dotfill \\ \\
+		\noindent.\dotfill \\ \\\noindent.\dotfill \\ \\\noindent.\dotfill \\ \\%(2k+1)^3=(2k)^3+3\times(2k)^2\times 1+3\times(2k)\times1^2+1=2k\times((2k)^2+3\times(2k)\times 1+3\times1^2)+1$\\[2mm]
+		%On voit pour:\quad $k'= k\times((2k)^2+3\times(2k)\times 1+3\times1^2)$\\[2mm] on a:
+		%$$n^3=2k'+1$$
+		%$n^3$ est donc impair si $n$ l'est.\\
+		%\quad
+	\end{enumerate}
+\end{proof}
+\newpage
+
+\subsection{Nombres premiers:}
+\quad\\[1mm]
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}
+\begin{defi}\hfil\\
+	Un nombre entier naturel est dit $\dots\dots\dots\dots\dots\dots$ s'il admet deux uniques diviseurs positifs distincts\\ qui sont $1$ et lui-même.
+\end{defi}
+\end{minipage}}
+
+
+\begin{ex}
+	Les nombres suivants sont premiers:
+	$$\{2; 3; 5; 7; 11; 13; 17; 19; 23; 29\}$$
+	
+\end{ex}
+\begin{rmq}\hfill\\[-0.25cm]
+
+	\begin{itemize}[$\square$]
+		\item Le nombre $0$ n'est pas premier car il a une infinité de diviseur.
+		\item Le nombre 1 n'admet qu'un seul diviseur positif qui est lui-même. Il n'en a pas deux distinct, 1 n'est donc pas premier.   
+	\end{itemize}
+\end{rmq}
+\begin{ex}
+	Les nombres suivants ne sont pas premiers:
+	$$\{0; 1; 4; 9; 15; 32; 49; 121\}$$	
+\end{ex}
+\begin{exer}
+	Donner la liste et apprendre les vingt premiers nombres premiers.
+\end{exer}
+\noindent\fcolorbox{rouge}{white}{\begin{minipage}{1\linewidth}
+\begin{thm}\textit{(\textbf{Théorème fondamental de l'arithmétique})}\\
+	Tout nombre entier supérieure ou égal à deux admet une unique décomposition en produit de facteurs premiers\\ à l'ordre près.
+\end{thm}\end{minipage}}
+
+\begin{ex}\hfill\\
+		\begin{multicols}{3}
+		\begin{itemize}[$\square$]
+			\item $15 = $\\
+			\item $1617 =$\\
+			\item $100 =$\\
+		\end{itemize}
+	\end{multicols}
+
+\end{ex}
+
+\begin{rmq}
+	Tout nombre entier supérieure ou égal à deux admet toujours un diviseur premiers. 
+\end{rmq}
+
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}\begin{defi}\hfil\\
+Un nombre entier supérieure à deux qui n'est pas premier est appelé un nombre $\dots \dots \dots \dots \dots \dots \dots $.
+\end{defi}
+\end{minipage}}
+\hfil\\
+
+\noindent\fcolorbox{rouge}{white}{\begin{minipage}{1\linewidth}\begin{prop}
+		Soit $n$ un nombre composé alors sont plus petit diviseur premier est inférieur ou égale à $\sqrt{n}$.
+	\end{prop}	
+\end{minipage}}
+
+\begin{proof}\hfil\\
+	
+	\noindent.\dotfill \\ \\
+	\noindent.\dotfill \\ \\
+	\noindent.\dotfill \\ \\
+	
+\end{proof}
+
+\noindent\fcolorbox{rouge}{white}{\begin{minipage}{1\linewidth}\begin{prop}\hfil\\[-0.3cm]	\begin{enumerate}
+				\item Il existe une infinité de nombres qui ne sont pas premiers
+				\item Il existe une infinité de nombres qui sont  premiers
+			\end{enumerate}
+		\end{prop}	
+\end{minipage}}
+
+\begin{proof}\hfil\\
+	
+	\noindent.\dotfill \\ \\
+	\noindent.\dotfill \\ \\
+	\noindent.\dotfill \\ \\
+	\noindent.\dotfill \\ \\
+	\noindent.\dotfill \\ \\
+	\noindent.\dotfill 
+	
+\end{proof}
+
+
+\end{document}
+
+

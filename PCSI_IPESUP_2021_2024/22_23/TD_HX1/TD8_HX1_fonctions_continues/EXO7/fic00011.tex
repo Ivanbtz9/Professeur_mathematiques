@@ -1,0 +1,616 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00011, bodin, 2007/09/01} 
+
+\titre{Limites de fonctions}
+
+\section{Théorie}   
+\exercice{612, bodin, 1998/09/01}
+\video{OEzb_HFP0yM}
+\enonce{000612}{}
+\begin{enumerate}
+    \item Montrer que toute fonction p\'eriodique
+et non constante n'admet pas de limite en $+\infty$.
+    \item Montrer que toute fonction croissante
+et major\'ee admet une limite finie en $+\infty$.
+\end{enumerate}
+\finenonce{000612}
+ 
+
+\finexercice
+\exercice{609, bodin, 1998/09/01}
+\video{db5yEXsEbYc}
+\enonce{000609}{}
+\begin{enumerate}
+    \item  D\'emontrer que $\displaystyle{ \lim_{x\rightarrow 0}\frac{\sqrt{1+x}-\sqrt{1-x}}{ x}=1}$.
+    \item  Soient $m,n$ des entiers positifs. \'Etudier $\displaystyle{\lim_{x\rightarrow 0}\frac{\sqrt{1+x^m}-
+\sqrt{1-x^m}}{ x^n}}$.
+    \item D\'emontrer que $\displaystyle{ \lim_{x\rightarrow 0}\frac{1}{ x}(\sqrt{1+x+x^2}-1)=
+\frac{1}{ 2}}$.
+\end{enumerate}
+\finenonce{000609} 
+
+
+\finexercice
+\section{Calculs}
+\exercice{616, vignal, 2001/09/01}
+\video{OYJj7QRtecs}
+\enonce{000616}{}
+ Calculer lorsqu'elles existent les limites suivantes
+$$\begin{array}{lll}
+  a)\ \lim_{x\rightarrow 0}\frac{x^2+2\,|x|}{x} &\quad  b)\
+\lim_{x\rightarrow -\infty}\frac{x^2+2\,|x|}{x}&
+\quad c) \ \lim_{x\rightarrow 2}\frac{x^2-4}{x^2-3\,x+2}\\
+\\
+d) \ \lim_{x\rightarrow\pi}\frac{\sin^2x}{1+\cos x}&
+\quad  e)\ \lim_{x\rightarrow 0}\frac{\sqrt{1+x}-\sqrt{1+x^2}}{x}&
+\quad  f)\ \lim_{x\rightarrow +\infty}\sqrt{x+5}-\sqrt{x-3}\\
+\\
+  g)\ \lim_{x\rightarrow 0}\frac{\sqrt[3]{1+x^2}-1}{x^2}&
+\quad  h)\ \lim_{x\rightarrow 1}\frac{x-1}{x^n-1}
+\end{array}$$
+\finenonce{000616} 
+
+
+\finexercice\exercice{628, bodin, 1998/09/01}
+\video{llaMFH13iLQ}
+\enonce{000628}{}
+Calculer, lorsqu'elles existent, les limites suivantes :
+$$
+\lim_{x\rightarrow \alpha} \frac{x^{n+1}-\alpha^{n+1}}{x^n-\alpha^n},
+$$
+
+$$
+\lim_{x\rightarrow 0} \frac{\tan x - \sin x}{\sin x(\cos 2x - \cos x)},
+$$
+
+$$
+\lim_{x\rightarrow +\infty} \sqrt{x+\sqrt{x+\sqrt{x}}}-\sqrt{x},
+$$
+
+$$
+ \lim_{x\rightarrow \alpha^+} \frac{\sqrt{x}-\sqrt{\alpha}-\sqrt{x-\alpha}}{\sqrt{x^2-\alpha^2}}, \quad (\alpha >0)
+$$
+
+$$
+\lim_{x\rightarrow 0} xE\left(\frac{1}{x}\right),
+$$
+
+$$
+\lim_{x\rightarrow 2} \frac{e^x-e^2}{x^2+x-6},
+$$
+
+$$
+\lim_{x\rightarrow +\infty} \frac{x^4}{1+x^\alpha\sin^2x}, \text{ en fonction de $\alpha \in \Rr$.}
+$$
+\finenonce{000628} 
+
+
+\finexercice
+\exercice{635, gourio, 2001/09/01}
+\video{rxI8iTwhH6E}
+\enonce{000635}{}
+ Calculer :
+$$\lim\limits_{x\rightarrow 0}\frac{x}{2+\sin \frac{1}{x}}
+,\ \ \lim\limits_{x\rightarrow +\infty }(\ln (1+e^{-x}))^{\frac{1}{x}}
+,\ \ \lim\limits_{x\rightarrow 0^{+}}x^{\frac{1}{\ln (e^{x}-1)}}.$$
+\finenonce{000635} 
+
+
+\finexercice
+\exercice{638, gourio, 2001/09/01}
+\video{UAO0DkHX2EQ}
+\enonce{000638}{}
+Trouver pour $(a,b)\in (\Rr^{+*})^{2}$ :
+$$\lim\limits_{x\rightarrow 0^{+}}\left(\frac{a^{x}+b^{x}}{2}\right)^{\frac{1}{x}}.$$
+\finenonce{000638} 
+
+
+\finexercice\exercice{623, cousquer, 2003/10/01}
+\enonce{000623}{}
+\noindent D\'eterminer les limites suivantes, en justifiant vos calculs.
+\begin{enumerate}
+\item $\displaystyle\lim_{x \rightarrow0^+}{x+2 \over x^2 \ln x}$
+
+\item $\displaystyle\lim_{x \rightarrow0^+}2x \ln(x+\sqrt x)$
+
+\item $\displaystyle\lim_{x \rightarrow+ \infty}{x^3-2x^2+3 \over x \ln x}$
+
+\item $\displaystyle\lim_{x \rightarrow+ \infty}{e^{\sqrt x+1} \over x+2}$
+
+\item $\displaystyle\lim_{x \rightarrow0^+}{\ln(3x+1) \over2x}$
+
+\item $\displaystyle\lim_{x \rightarrow0^+}{x^x-1 \over\ln(x+1)}$
+
+\item $\displaystyle\lim_{x \rightarrow- \infty}{2 \over x+1}\ln
+\Bigl({x^3+4 \over1-x^2}\Bigr)$
+
+\item $\displaystyle\lim_{x \rightarrow{(-1)}^+}(x^2-1) \ln(7x^3+4x^2+3)$
+
+\item $\displaystyle\lim_{x \rightarrow2^+}{(x-2)}^2 \ln(x^3-8)$
+
+\item $\displaystyle\lim_{x \rightarrow0^+}{x(x^x-1) \over\ln(x+1)}$
+
+\item $\displaystyle\lim_{x \rightarrow+ \infty}(x \ln x -x \ln(x+2))$
+
+\item $\displaystyle\lim_{x \rightarrow+ \infty}{e^x-e^{x^2} \over x^2-x}$ 
+
+\item $\displaystyle\lim_{x \rightarrow0^+}{{(1+x)}^{\ln x}}$
+
+\item $\displaystyle\lim_{x \rightarrow+ \infty}{\Bigl({x+1 \over x-3}\Bigr)^x}$
+
+\item $\displaystyle\lim_{x \rightarrow+ \infty}{\Bigl({x^3+5 \over
+x^2+2}\Bigr)^{x+1 \over x^2+1}}$
+
+\item $\displaystyle\lim_{x \rightarrow+ \infty}{\Bigl({e^x+1 \over
+x+2}\Bigr)^{1 \over x+1}}$
+
+\item $\displaystyle\lim_{x \rightarrow0^+}\bigl(\ln(1+x)\bigr)^{1\over\ln x}$
+
+\item $\displaystyle\lim_{x \rightarrow+ \infty}{x^{(x^{x-1})} \over
+x^{(x^{x})}}$
+
+\item $\displaystyle\lim_{x \rightarrow+ \infty}{(x+1)^x \over x^{x+1}}$
+
+\item $\displaystyle\lim_{x \rightarrow+ \infty}{x \sqrt{\ln(x^2+1)} \over
+1+e^{x-3}}$
+\end{enumerate}
+\finenonce{000623} 
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\indication{000612}
+\begin{enumerate}
+    \item Raisonner par l'absurde.
+    \item Montrer que la limite est la borne sup\'erieure de l'ensemble des valeurs atteintes $f(\Rr)$.
+\end{enumerate}
+\finindication
+\indication{000609}
+Utiliser l'expression conjugu\'ee.
+\finindication
+\indication{000616}
+Réponses :
+\begin{enumerate}
+  \item La limite \`a droite vaut $+2$, la limite \`a gauche $-2$ donc il n'y a pas de limite.
+  \item $-\infty$
+  \item $4$
+  \item $2$
+  \item $\frac 12$
+  \item $0$
+  \item $\frac 13$ en utilisant par exemple que $a^3-1 = (a-1)(1+a+a^2)$ pour $a = \sqrt[3]{1+x^2}$.
+  \item $\frac 1n$
+\end{enumerate}
+\finindication
+\indication{000628}
+\begin{enumerate}
+    \item Calculer d'abord la limite de $f(x) = \frac{x^k-\alpha^k}{x-\alpha}$.
+    \item Utiliser $\cos 2x =  2\cos^2 x - 1$ et faire un changement de variable $u = \cos x$.
+    \item Utiliser l'expression conjugu\'ee.
+    \item Diviser num\'erateur et d\'enominateur par $\sqrt{x-\alpha}$ puis utiliser l'expression conjugu\'ee.
+    \item On a toujours $y-1 \leq E(y) \leq y$, poser $y=1/x$.
+    \item Diviser num\'erateur et d\'enominateur par $x-2$.
+    \item  Pour $\alpha \geq 4$ il n'y a pas de  limite, pour $\alpha <4$ la limite est $+\infty$.
+\end{enumerate}
+\finindication
+\indication{000635}
+R\'{e}ponses : $0,\frac{1}{e},e.$
+\begin{enumerate}
+ \item Borner $\sin\frac 1x$.
+ \item Utiliser que $\ln(1+t) = t \cdot \mu(t)$, pour une certaine fonction $\mu$ qui vérifie $\mu(t) \to 1$ lorsque $t\to 0$.
+ \item Utiliser que $e^t-1 = t \cdot \mu(t)$, pour une certaine fonction $\mu$ qui vérifie $\mu(t) \to 1$ lorsque $t\to 0$.
+\end{enumerate}
+
+\finindication
+\indication{000638}
+R\'{e}ponse: $\sqrt{ab}$.
+\finindication
+\noindication
+
+
+\newpage
+
+\correction{000612}
+\begin{enumerate}
+  \item Soit $p>0$ la p\'eriode: pour tout $x\in \Rr$,
+$f(x+p) = f(x)$. Par une r\'ecurrence facile on montre :
+$$ \forall n \in \Nn \qquad \forall x\in \Rr \qquad f(x+np)=f(x).$$
+Comme $f$ n'est pas constante il existe $a,b \in \Rr$ tels que $f(a)\not= f(b)$. Notons $x_n = a +np$ et $y_n = b+np$.
+Supposons, par l'absurde, que $f$ a une limite $\ell$ en $+\infty$.
+Comme $x_n \rightarrow +\infty$ alors $f(x_n) \rightarrow \ell$.
+Mais $f(x_n) = f(a +np) = f(a)$, donc $\ell = f(a)$. 
+De m\^eme avec la suite $(y_n)$: $y_n \rightarrow +\infty$ donc $f(y_n) \rightarrow \ell$ et $f(y_n) = f(b +np) = f(b)$, donc $\ell = f(b)$. 
+Comme $f(a) \not= f(b)$ nous obtenons une contradiction.
+  \item Soit $f: \Rr \longrightarrow \Rr$ une fonction croissante et major\'ee par $M\in \Rr$. 
+Notons 
+$$ F = f(\Rr) = \{ f(x) \ | \ x \in \Rr \}.$$
+$F$ est un ensemble (non vide) de $\Rr$, notons $\ell = \sup F$.
+Comme $M\in \Rr$ est un majorant de $F$, alors
+$\ell < +\infty$.
+Soit $\epsilon > 0$, par les propri\'et\'es du $\sup$
+il existe $y_0 \in F$ tel que $\ell - \epsilon \leq y_0 \leq \ell$.
+Comme $y_0\in F$, il existe $x_0 \in \Rr$ tel que $f(x_0) = y_0$.
+Comme $f$ est croissante alors:
+$$ \forall x\geq x_0 \qquad f(x) \geq f(x_0) = y_0 \geq \ell - \epsilon.$$
+De plus par la d\'efinition de $\ell$:
+$$\forall x\in \Rr \ \ f(x) \leq \ell.$$
+Les deux propri\'et\'es pr\'ec\'edentes s'\'ecrivent:
+$$ \forall x\geq x_0 \qquad \ell - \epsilon \leq f(x) \leq \ell.$$
+Ce qui exprime bien que la limite de $f$ en $+\infty$ est $\ell$.
+\end{enumerate}
+\fincorrection
+\correction{000609}
+ G\'en\'eralement pour calculer des limites faisant intervenir des sommes de racines carr\'ees,  il est utile de faire intervenir ``l'expression conjugu\'ee": 
+$$\sqrt a - \sqrt b = \frac{(\sqrt a - \sqrt b)(\sqrt a + \sqrt b)}{\sqrt a + \sqrt b} = \frac{a-b}{\sqrt a + \sqrt b}.$$
+Les racines au num\'erateur ont ``disparu" en utilisant l'identit\'e
+$(x-y)(x+y) = x^2-y^2$.
+
+Appliquons ceci sur un exemple :
+\begin{align*}
+ f(x) &= 
+  \frac{\sqrt{1+x^m}-\sqrt{1-x^m}}{x^n} \\
+     &=  \frac{(\sqrt{1+x^m}-\sqrt{1-x^m})(\sqrt{1+x^m}+\sqrt{1-x^m})}{x^n(\sqrt{1+x^m}+\sqrt{1-x^m})} \\
+   &= \frac{1+x^m-(1-x^m)}{x^n(\sqrt{1+x^m}+\sqrt{1-x^m})}  \\
+   &= \frac{2x^m}{x^n(\sqrt{1+x^m}+\sqrt{1-x^m})}  \\
+   &= \frac{2x^{m-n}}{\sqrt{1+x^m}+\sqrt{1-x^m}}  \\
+\end{align*}
+Et nous avons 
+$$ \lim_{x \rightarrow 0} \frac 2 {\sqrt{1+x^m}+\sqrt{1-x^m}} = 1.$$
+Donc l'\'etude de la limite de $f$ en $0$ est la m\^eme que celle de la fonction $x \mapsto x^{m-n}$.
+
+Distinguons plusieurs cas pour la limite de $f$ en $0$.
+\begin{itemize}
+  \item Si $m > n$ alors $x^{m-n}$, et donc $f(x)$, tendent vers $0$.
+  \item Si $m=n$ alors $x^{m-n}$ et $f(x)$ tendent vers $1$.
+  \item Si $m < n$ alors $x^{m-n} = \frac 1 {x^{n-m}}  = \frac 1 {x^k}$ avec $k = n-m$ un exposant positif. Si $k$ est pair alors les limites 
+\`a droite et \`a gauche de $\frac 1{x^k}$ sont $+\infty$. 
+Pour $k$ impair la limite \`a droite vaut $+\infty$ et la limite \`a gauche vaut $-\infty$. Conclusion pour $k=n-m>0$ pair, la limite de $f$ en $0$ vaut $+\infty$ et pour $k = n-m>0$ impair $f$ \emph{n'a pas de limite en $0$} car les limites \`a droite et \`a gauche ne sont pas \'egales.
+\end{itemize}
+\fincorrection
+\correction{000616}
+\begin{enumerate}
+  \item $\frac{x^2+2|x|}{x} = x + 2 \frac{|x|}{x}$.
+Si $x > 0$ cette expression vaut $x+2$ donc la limite à droite en $x=0$ est $+2$.
+Si $x<0$ l'expression vaut $-2$ donc la limite à gauche en $x=0$ est $-2$.
+Les limites \`a droite et à gauche sont différentes donc il n'y a pas de limite en $x=0$.
+
+  \item $\frac{x^2+2|x|}{x} = x + 2 \frac{|x|}{x} = x -2$ pour $x<0$.
+Donc la limite quand $x \to -\infty$ est $-\infty$.
+
+  \item $\frac{x^2-4}{x^2-3\,x+2}=\frac{(x-2)(x+2)}{(x-2)(x-1)} = \frac{x+2}{x-1}$,
+lorsque $x\to 2$ cette expression tend vers $4$.
+
+  \item $\frac{\sin^2 x}{1+\cos x} = \frac{1-\cos^2 x}{1+\cos x} = \frac{(1-\cos x)(1+\cos x)}{1+\cos x} = 1-\cos x$.
+Lorsque $x\to \pi$ la limite est donc $2$.
+
+  \item $\frac{\sqrt{1+x}-\sqrt{1+x^2}}{x} = \frac{\sqrt{1+x}-\sqrt{1+x^2}}{x}\times\frac{\sqrt{1+x}+\sqrt{1+x^2}}{\sqrt{1+x}+\sqrt{1+x^2}}
+= \frac{1+x - (1+x^2)}{x(\sqrt{1+x}+\sqrt{1+x^2})} = \frac{x - x^2}{x(\sqrt{1+x}+\sqrt{1+x^2})} = \frac{1-x}{\sqrt{1+x}+\sqrt{1+x^2}}$.
+Lorsque $x\to 0$ la limite vaut $\frac 12$.
+
+  \item $\sqrt{x+5}-\sqrt{x-3} = \left( \sqrt{x+5}-\sqrt{x-3}\right) \times \frac{\sqrt{x+5}+\sqrt{x-3}}{\sqrt{x+5}+\sqrt{x-3}}
+= \frac{x+5-(x-3)}{\sqrt{x+5}+\sqrt{x-3}} = \frac{8}{\sqrt{x+5}+\sqrt{x-3}}$. Lorsque $x \to +\infty$, la limite vaut $0$.
+
+  \item Nous avons l'égalité $a^3-1 = (a-1)(1+a+a^2)$. Pour $a = \sqrt[3]{1+x^2}$
+cela donne :
+$$\frac{a-1}{x^2} = \frac{a^3-1}{x^2(1+a+a^2)} = \frac{1+x^2-1}{x^2(1+a+a^2)} = \frac{1}{1+a+a^2}.$$
+Lors que $x\to 0$, alors $a \to 1$ et la limite cherchée est $\frac 13$.
+
+Autre méthode : si l'on sait que la limite d'un taux d'accroissement correspond à la dérivée nous avons une méthode moins
+astucieuse. Rappel (ou anticipation sur un prochain chapitre) : pour une fonction $f$ dérivable en $a$ alors
+$$\lim_{x\to a} \frac{f(x)-f(a)}{x-a} = f'(a).$$
+Pour la fonction $f(x) = \sqrt[3]{1+x} =(1+x)^{\frac 13}$ ayant $f'(x) = \frac 13 (1+x)^{-\frac 23}$ cela donne en $a=0$ :
+$$\lim_{x\to 0} \frac{\sqrt[3]{1+x^2} -1}{x^2} = \lim_{x\to 0} \frac{\sqrt[3]{1+x} -1}{x} = \lim_{x\to 0} \frac{f(x)-f(0)}{x-0} = f'(0) = \frac 13.$$
+
+  \item $\frac{x^n-1}{x-1} = 1+x+x^2+\cdots + x^n$. Donc si $x\to 1$ la limite de  $\frac{x^n-1}{x-1}$ est  $n$.
+Donc la limite de $\frac{x-1}{x^n-1}$ en $1$ est $\frac 1n$.
+
+La méthode avec le taux d'accroissement fonctionne aussi très bien ici. Soit $f(x) = x^n$, $f'(x)=nx^{n-1}$ et $a=1$.
+Alors $\frac{x^n-1}{x-1} = \frac{f(x)-f(1)}{x-1}$ tend vers $f'(1)=n$.
+\end{enumerate}
+\fincorrection
+\correction{000628}
+\begin{enumerate}
+  \item Montrons d'abord que la limite de $$f(x) = \frac{x^k-\alpha^k}{x-\alpha}$$ en $\alpha$ est 
+$k\alpha^{k-1}$, $k$ étant un entier fixé. Un calcul montre que 
+$f(x) = x^{k-1} + \alpha x^{k-2} + \alpha^2x^{k-3} + \cdots + \alpha^{k-1}$ ;
+en effet $(x^{k-1} + \alpha x^{k-2} + \alpha^2x^{k-3} + \cdots + \alpha^{k-1})(x-\alpha) = x^k-\alpha^k$.
+Donc la limite en $x=\alpha$ est $k\alpha^{k-1}$.
+Une autre m\'ethode consiste \`a dire que $f(x)$ est la taux d'accroissement de la fonction $x^k$, et donc la limite de
+$f$ en $\alpha$ est exactement la valeur de la d\'eriv\'ee de $x^k$ en $\alpha$, soit $k\alpha^{k-1}$.
+Ayant fait ceci revenons \`a la limite de l'exercice : comme 
+$$
+\frac{x^{n+1}-\alpha^{n+1}}{x^n-\alpha^n} = \frac{x^{n+1}-\alpha^{n+1}}{x-\alpha} \times \frac{x-\alpha}{x^n-\alpha^n}.$$
+Le premier terme du produit tend vers $(n+1)\alpha^n$ et le second
+terme, \'etant l'inverse d'un taux d'accroissement, tend vers $1/(n\alpha^{n-1})$.
+Donc la limite cherch\'ee est 
+$$\frac {(n+1)\alpha^n}{n\alpha^{n-1}}= \frac {n+1}{n} \alpha.$$
+  \item La fonction $f(x)=\frac{\tan x - \sin x}{\sin x(\cos 2x - \cos x)}$ s'\'ecrit aussi $f(x) = \frac{1-\cos x}{\cos x (\cos 2x- \cos x)}$. Or $\cos 2x =  2\cos^2 x - 1$. Posons $u = \cos x$, alors 
+$$f(x) = \frac {1-u}{u(2u^2-u-1)} = \frac {1-u}{u(1-u)(-1-2u)}= \frac {1}{u(-1-2u)}$$
+Lorsque $x$ tend vers $0$, $u = \cos x$ tend vers $1$, et donc $f(x)$ tend vers $-\frac 13$.
+
+  \item 
+\begin{align*}
+\sqrt{x+\sqrt{x+\sqrt x}}-\sqrt x 
+  &= \frac{\left(\sqrt{x+\sqrt{x+\sqrt x}}-\sqrt x\right)\left(\sqrt{x+\sqrt{x+\sqrt x}}+\sqrt x\right)}{\sqrt{x+\sqrt{x+\sqrt x}}+\sqrt x} \\
+  &= \frac{\sqrt{x+\sqrt x}}{\sqrt{x+\sqrt{x+\sqrt x}}+\sqrt x} \\
+ &= \frac{\sqrt{1+\frac 1 {\sqrt x}}}{\sqrt{1+\frac{\sqrt{x+\sqrt x}}{x}}+1} \\
+\end{align*}
+Quand $x \rightarrow +\infty$ alors $\frac 1 {\sqrt x} \rightarrow 0$
+et $\frac{\sqrt{x+\sqrt x}}{x}=\sqrt{\frac 1x + \frac{1}{x\sqrt{x}}}\rightarrow 0$, donc la limite recherch\'ee 
+est $\frac 12$.
+  \item La fonction s'\'ecrit 
+$$f(x) = \frac{\sqrt{x}-\sqrt{\alpha}-\sqrt{x-\alpha}}{\sqrt{x^2-\alpha^2}} = \frac{\sqrt x - \sqrt \alpha - \sqrt{x-\alpha}}{\sqrt{x-\alpha}\sqrt{x+\alpha}} = 
+\frac{\frac{\sqrt x - \sqrt \alpha}{\sqrt{x-\alpha}}-1}{\sqrt{x+\alpha}}.$$
+Notons $g(x) = \frac{\sqrt x - \sqrt \alpha}{\sqrt{x-\alpha}}$ alors 
+\`a l'aide de l'expression conjugu\'ee $$g(x) = \frac{x -  \alpha}{(\sqrt{x-\alpha})(\sqrt x +\sqrt \alpha)} = \frac{\sqrt{x -  \alpha}}{\sqrt x +\sqrt \alpha}.$$
+Donc $g(x)$ tend vers $0$ quand $x \rightarrow \alpha^+$. Et maintenant 
+$f(x) = \frac{g(x)-1}{\sqrt{x+\alpha}}$ tend vers $-\frac {1}{\sqrt{2 \alpha}}$.
+  \item Pour tout r\'eel $y$ nous avons la double in\'egalit\'e $y-1 < E(y) \leq y$. Donc pour $y>0$,
+$\frac{y-1}{y} < \frac{E(y)}{y} \leq 1$.
+On en d\'eduit que lorsque $y$ tend vers $+\infty$  alors
+$\frac{E(y)}{y}$ tend $1$. On obtient le même résultat quand $y$ tend vers $-\infty$. 
+En posant $y = 1/x$, et en faisant tendre
+$x$ vers $0$, alors $xE(\frac 1x) = \frac{E(y)}{y}$ tend vers $1$.
+  \item 
+$$\frac {e^x-e^2}{x^2+x-6} = \frac {e^x-e^2}{x-2} \times \frac{x-2}{x^2+x-6} =\frac {e^x-e^2}{x-2} \times \frac{x-2}{(x-2)(x+3)} = \frac {e^x-e^2}{x-2} \times \frac{1}{x+3}.$$
+La limite de $\frac {e^x-e^2}{x-2}$ en $2$ vaut $e^2$ ($\frac {e^x-e^2}{x-2}$ est la taux d'accroissement de la fonction $x \mapsto e^x$ en la valeur $x=2$), la limite voulue est $\frac {e^2}{5}$.
+
+  \item Soit $f(x) = \frac{x^4}{1+x^\alpha\sin^2x}$. Supposons $\alpha \geq 4$, alors on prouve que $f$ n'a pas de limite en $+\infty$.
+En effet pour pour $u_k = 2k\pi$, $f(2k\pi) = (2k\pi)^4$ tend vers $+\infty$ lorsque $k$ (et donc $u_k$) tend vers $+\infty$.
+Cependant pour $v_k = 2k\pi + \frac\pi 2$, $f(v_k) = \frac{v_k^4}{1+v_k^\alpha}$ tend vers $0$ (ou vers $1$ si $\alpha = 4$) lorsque $k$ (et donc $v_k$) tend vers $+\infty$. Ceci prouve que $f(x)$ n'a pas de limite lorsque $x$ tend vers $+\infty$.
+
+Reste le cas $\alpha < 4$. Il existe $\beta$ tel que
+$\alpha < \beta < 4$. 
+$$f(x)= \frac {x^4}{1+x^\alpha \sin^2 x}= \frac {x^{4-\beta}}{\frac 1 {x^\beta} +\frac{x^\alpha}{x^\beta} \sin^2 x}.$$
+Le num\'erateur tend $+\infty$ car $4-\beta >0$.
+$\frac 1 {x^\beta}$ tend vers $0$ ainsi que $\frac{x^{\alpha}}{x^\beta} \sin^2 x$ (car $\beta > \alpha$ et $\sin^2 x$ est born\'ee par $1$). Donc le d\'enominateur tend vers $0$ (par valeurs positives). La limite est donc de type $+\infty / 0^+$ (qui n'est pas ind\'etermin\'ee !) et vaut donc $+\infty$.
+\end{enumerate}
+\fincorrection
+\correction{000635}
+\begin{enumerate}
+ \item Comme $-1 \le \sin \frac 1x \le +1$ alors $1 \le 2 + \sin \frac 1x \le +3$.
+Donc pour $x>0$, nous obtenons $\frac x3 \le \frac{x}{2+\sin \frac{1}{x}} \le x$.
+On obtient une inégalité similaire pour $x<0$.
+Cela implique $\lim\limits_{x\rightarrow 0}\frac{x}{2+\sin \frac{1}{x}} = 0$.
+
+ \item Sachant que $\frac{\ln (1+t)}{t} \to 1$ lorsque $t \to 0$, on peut le reformuler
+ainsi $\ln(1+t) = t \cdot \mu(t)$, pour une certaine fonction $\mu$ qui vérifie $\mu(t) \to 1$ lorsque $t\to 0$.
+Donc $\ln (1+e^{-x}) = e^{-x} \mu(e^{-x})$.
+Maintenant 
+
+\begin{align*}
+(\ln (1+e^{-x}))^{\frac{1}{x}} 
+  &= \exp \left(\frac{1}{x} \ln\left( \ln (1+e^{-x}) \right)  \right) \\
+  &= \exp \left(\frac{1}{x} \ln \left( e^{-x} \mu(e^{-x}) \right)  \right) \\
+  &= \exp \left(\frac{1}{x} \left( -x + \ln \mu(e^{-x}) \right)  \right) \\
+  &= \exp \left( -1 + \frac{\ln \mu(e^{-x})}{x}  \right) \\
+\end{align*}
+$\mu(e^{-x}) \to 1$ donc $\ln\mu(e^{-x}) \to 0$, donc $\frac{\ln \mu(e^{-x})}{x} \to 0$ lorsque $x \to +\infty$.
+
+Bilan : la limite est $\exp(-1)=\frac 1 e$.
+ \item
+
+
+ \item Sachant $\frac{e^x - 1}{x} \to 1$ lorsque $x\to 0$, on reformule ceci
+en $e^x-1 = x \cdot \mu(x)$, pour une certaine fonction $\mu$ qui vérifie $\mu(x) \to 1$ lorsque $x\to 0$.
+Cela donne $\ln (e^x-1) = \ln (x \cdot \mu(x)) = \ln x + \ln \mu(x).$
+\begin{align*}
+ x^{\frac{1}{\ln (e^{x}-1)}} 
+  &= \exp\left( \frac{1}{\ln (e^{x}-1)} \ln x  \right) \\
+  &= \exp\left( \frac{1}{\ln x + \ln \mu(x)} \ln x  \right) \\
+  &= \exp\left( \frac{1}{1 + \frac{\ln \mu(x)}{\ln x}} \right) \\
+\end{align*}
+Maintenant $\mu(x) \to 1$ donc $\ln \mu(x) \to 0$, et $\ln x \to - \infty$ lorsque $x \to 0$.
+Donc $\frac{\ln \mu(x)}{\ln x} \to 0$.
+Cela donne 
+$$\lim\limits_{x\rightarrow 0^{+}}x^{\frac{1}{\ln (e^{x}-1)}} = \lim\limits_{x\rightarrow 0^{+}} \exp\left( \frac{1}{1 + \frac{\ln \mu(x)}{\ln x}} \right) = \exp\left(1\right) = e.$$
+
+\fincorrection
+\correction{000638}
+
+Soit 
+$$
+ f(x) = \left(\frac{a^{x}+b^{x}}{2}\right)^{\frac{1}{x}}
+     = \exp\left( \frac 1x \ln \left(\frac{a^{x}+b^{x}}{2}\right) \right) 
+$$
+
+$a^x \to 1$, $b^x \to 1$ donc $\frac{a^{x}+b^{x}}{2} \to 1$ lorsque $x \to 0$
+et nous sommes face à une forme indéterminée.
+Nous savons que $\lim_{t \to 0} \frac{\ln(1+t)}{t} = 1$.
+Autrement dit il existe un fonction $\mu$ telle que $\ln(1+t) = t \cdot \mu(t)$ avec
+$\mu(t) \to 1$ lorsque $t\to 0$.
+
+Appliquons cela à $g(x) = \ln \left(\frac{a^{x}+b^{x}}{2}\right)$.
+Alors 
+$$g(x) = \ln \left(1+ \left(\frac{a^{x}+b^{x}}{2}-1\right)\right) =  \left(\frac{a^{x}+b^{x}}{2}-1\right) \cdot \mu(x)$$
+o\` u $\mu(x) \to 1$ lorsque $x\to 0$. (Nous écrivons pour simplifier $\mu(x)$ au lieu
+de $\mu(\frac{a^{x}+b^{x}}{2}-1)$.)
+
+
+
+\bigskip
+
+Nous savons aussi que $\lim_{t \to 0} \frac{e^t - 1}{t} = 1$.
+Autrement dit il existe un fonction $\nu$ telle que $e^t - 1 = t \cdot \nu(t)$ avec
+$\nu(t) \to 1$ lorsque $t\to 0$.
+
+Appliquons ceci :
+
+\begin{align*}
+ \frac{a^{x}+b^{x}}{2}-1 
+     &= \frac 12 (e^{x \ln a} + e^{x\ln b})-1 \\
+     &= \frac12 (e^{x \ln a}-1 + e^{x\ln b}-1) \\
+     &= \frac12( x \ln a \cdot \nu(x \ln a) + x \ln b \cdot \nu(x \ln b)) \\
+     &= \frac12 x\left(\ln a \cdot \nu(x \ln a) +  \ln b \cdot \nu(x \ln b) \right) \\
+\end{align*}
+
+\bigskip
+
+Reste à rassembler tous les éléments du puzzle :
+\begin{align*}
+ f(x) &= \left(\frac{a^{x}+b^{x}}{2}\right)^{\frac{1}{x}} \\
+      &= \exp\left( \frac 1x \ln \left(\frac{a^{x}+b^{x}}{2}\right) \right) \\
+      &= \exp\left( \frac 1x g(x) \right) \\
+      &= \exp\left( \frac 1x  \left(\frac{a^{x}+b^{x}}{2}-1\right) \cdot \mu(x) \right) \\
+      &= \exp\left( \frac 1x  \cdot \frac12  \cdot x\left(\ln a \cdot \nu(x \ln a) +  \ln b \cdot \nu(x \ln b) \right) \cdot \mu(x) \right) \\
+      &= \exp\left( \frac12 \left(\ln a \cdot \nu(x \ln a) +  \ln b \cdot \nu(x \ln b) \right) \cdot \mu(x) \right) \\
+\end{align*}
+
+Or $\mu(x) \to 1$, $\nu(x \ln a) \to 1$, $\nu(x \ln b) \to 1$ lorsque $x \to 0$.
+Donc 
+$$\lim_{x\to 0} f(x) = \exp\left( \frac12 \left(\ln a + \ln b \right) \right) = \exp\left( \frac12 \ln (ab) \right) = \sqrt{ab}.$$
+\fincorrection
+\correction{000623}
+\begin{enumerate}
+\item $- \infty$
+\item $0$
+\item $+ \infty$
+\item $+ \infty$ 
+\item ${3 \over2}$
+\item $- \infty$
+\item $0$
+\item $0$
+\item $0$
+\item $0$
+\item $-2$
+\item $- \infty$
+\item $1$
+\item $e^4$
+\item $1$
+\item $e$
+\item $e$
+\item $0$
+\item $0$
+\item $0$
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

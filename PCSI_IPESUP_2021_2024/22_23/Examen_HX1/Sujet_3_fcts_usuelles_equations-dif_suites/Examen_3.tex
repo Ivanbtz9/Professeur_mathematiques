@@ -1,0 +1,353 @@
+\documentclass[a4paper,11pt]{article}
+
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{tgbonum}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{paralist}
+\usepackage{xspace,multicol}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{lipsum}
+
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exer}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+\setlist[enumerate]{itemsep=1mm}
+
+
+\pagestyle{fancy}
+
+
+
+\begin{document}
+	\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M.Botcazou \& M.Dupré}\cfoot{\thepage/4}\rfoot{\textbf{Tournez la page S.V.P.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+	\noindent\shadowbox{
+		\begin{minipage}{1\linewidth}
+		$$\huge{\textbf{ Examen n°3 : Mathématiques}}$$
+		$$\left(\text{Temps : }4\text{ heures}\right) $$
+	
+		\end{minipage}
+	}
+\medskip
+
+\bigskip
+
+
+La présentation, la lisibilité, l'orthographe, la qualité de la rédaction et la précision des raisonnements entreront pour
+une part importante dans l'appréciation des copies. Les étudiants sont invités à encadrer dans la mesure du possible les résultats de leurs calculs. Les réponses doivent toutes être soigneusement justifiées. Les calculatrices sont interdites.
+
+\hfill\\[5cm]
+
+\centering\noindent\fcolorbox{black}{white}{
+	\begin{minipage}{0.95\linewidth}
+		$$\text{Barème indicatif:}$$
+		\hfill\\[0.2cm]
+		\centering
+		\begin{minipage}{0.9\linewidth}
+			\begin{enumerate}
+				\item[$\bullet$] Exercice 1 \dotfill 15 points \hfill\\[0.2cm]
+				\item[$\bullet$] Exercice 2 \dotfill  6 points \hfill\\[0.2cm]
+				\item[$\bullet$] Exercice 3 \dotfill 19 points \hfill\\[0.5cm]
+		\end{enumerate}\end{minipage}
+\end{minipage}}
+
+
+
+
+
+
+
+\newpage
+\begin{exer}\textbf{Calculs d'intégrales, équations différentielles linéaires du premier ordre}\\
+	
+	\subsection{Partie I}
+	Soit $h$ la fonction qui, à tout réel strictement positif $x$, associe : $\operatorname{Arctan}(x)+\operatorname{Arctan}\left(\dfrac{1}{x}\right)$.
+	\begin{enumerate}
+	\item Montrer que la fonction $h$ est constante sur $] 0,+\infty$ [ (on précisera la valeur prise par $h$ sur $] 0,+\infty[$ ).
+	
+	 \item \begin{enumerate}
+	 	\item Pour tout réel $t$ de $\left[0, \frac{\pi}{2}\right]$, exprimer $\cos (t)$ en fonction de $\cos \left(\frac{t}{2}\right)$.
+		\item Pour tout réel $t$ de $\left[0, \frac{\pi}{2}\right]$, comparer $\frac{1}{1+\tan ^{2}\left(\frac{t}{2}\right)}$ et $\cos ^{2}\left(\frac{t}{2}\right)$.
+		\item Pour tout réel $t$ de $\left[0, \frac{\pi}{2}\right]$, on pose:
+		
+		$$
+		u=\tan \left(\frac{t}{2}\right)
+		$$
+		
+		Exprimer $\cos (t)$ en fonction de $u$.
+
+\end{enumerate}\end{enumerate}
+	\subsection{Partie II}
+	Pour tout réel $x$ de $]-1,1\left[\right.$, on pose $: F(x)=\int_{0}^{\frac{\pi}{2}} \frac{d t}{1-x \cos (t)}$.
+	
+	\begin{enumerate}
+		\setcounter{enumi}{2}
+		\item Que vaut $F(0)$ ?
+		
+		\item A l'aide du changement de variable $u=\tan \left(\frac{t}{2}\right)$, montrer que, pour tout réel $x$ de $]-1,1[:$
+		
+	\end{enumerate}
+	
+	$$
+	F(x)=\frac{2}{\sqrt{1-x^{2}}} \operatorname{Arctan} \sqrt{\frac{1+x}{1-x}}
+	$$
+	
+	\textit{Indication: on pensera à utiliser la première partie.}
+	
+	\begin{enumerate}
+		\setcounter{enumi}{4}
+		\item En déduire, pour tout réel $x$ de $]-1,1[$, une relation entre $F(x)$ et $F(-x)$.
+		
+		\item En déduire que $F$ est dérivable sur] - 1,1 [ et démontrer que pour tout réel $x$ de] $-1,1[:$
+		
+	\end{enumerate}
+	
+	$$
+	\left(1-x^{2}\right) F^{\prime}(x)=x F(x)+1
+	$$
+	
+	\begin{enumerate}
+		\setcounter{enumi}{6}
+		\item \begin{enumerate}
+			 \item Donner la solution générale sur ] - 1,1[ de l'équation différentielle homogène :
+			 $$
+			 \left(E_{0}\right) \quad\left(1-x^{2}\right) y^{\prime}-x y=0
+			 $$
+			 
+			 \item A l'aide de la méthode de variation de la constante, donner la solution générale sur $]-1,1[$ de l'équation différentielle :
+			 
+			 $$
+			 \text { (E) } \quad\left(1-x^{2}\right) y^{\prime}-x y=1
+			 $$
+			 
+			 \item Donner les solutions respectives des problèmes de Cauchy :
+			 
+			 $$
+			 \left(P_{0}\right) \quad\left\{\begin{array}{l}
+			 \left(1-x^{2}\right) y^{\prime}-x y=1 \\
+			 y(0)=0
+			 \end{array}\right.
+			 $$
+			 
+			 et
+			 
+			 $$
+			 \left(P_{1}\right) \quad\left\{\begin{array}{l}
+			 \left(1-x^{2}\right) y^{\prime}-x y=1 \\
+			 y(0)=\frac{\pi}{2}
+			 \end{array}\right.
+			 $$
+			 
+			 \item Pour tout réel $x$ de $]-1,1\left[\right.$, déduire de la résolution de $\left(P_{1}\right)$ une expression simplifiée de $F(x)$ avec la fonction Arcsin.
+			 
+	\end{enumerate}\end{enumerate}
+	
+	
+	\begin{enumerate}
+		\setcounter{enumi}{7}
+		\item On admet que $F$ est dérivable sur $]-1,1[$ avec pour tout $x \in]-1,1[\ :$ $$F^{\prime}(x)=\int_{0}^{\frac{\pi}{2}} \frac{\cos (t)}{(1-x \cos (t))^{2}} d t.$$
+		
+		En déduire la valeur de $\int_{0}^{\frac{\pi}{2}} \frac{\cos (t)-x}{(1-x \cos (t))^{2}} d t$ pour tout réel $x$ de $]-1,1[$.
+	\end{enumerate}
+	
+	
+	
+\end{exer}
+
+\newpage
+
+
+\begin{exer}\textbf{(\emph{e} un nombre irrationnel)}\\%https://www.youtube.com/watch?v=3F6Se_XRjig&t=72s
+	Soit $(u_n )_n$ une suite réelle vérifiant, pour tout $n \in \N$,
+	$$ u_n = \int_{0}^{1} x^ne^xdx$$ 
+	
+	\begin{enumerate}
+		\item Calculer les trois premiers termes de la suite  $(u_n )_n$.
+		\item Montrer que la suite $(u_n )_n$ est monotone et positive. Justifier que cette suite converge et donner sa limite.  
+		\item Montrer que pour tout $n\in\N$, il existe $a,b\in \Z$ tel que: \ $u_n = a\times e +b$.
+		\item Montrer que \emph{e} n'est pas un nombre rationnel. 
+
+
+	\end{enumerate}
+	
+\end{exer}
+
+\begin{exer}\textbf{(Fractions continues, suites)}\\
+	
+On définit par récurrence pour tout $n \in \mathbb{N}$ une application $F_{n}:\left(t_{0}, \ldots, t_{n}\right) \longmapsto F_{n}\left(t_{0}, \ldots, t_{n}\right)$ de $\left(\mathbb{R}_{+}^{*}\right)^{n+1}$ dans $\mathbb{R}_{+}^{*}$ en posant pour tout $t_{0}>0, \quad F_{0}\left(t_{0}\right)=t_{0}$ et pour tous $n \in \mathbb{N}$ et $t_{0}, \ldots, t_{n+1}>0$ :
+
+$$
+F_{n+1}\left(t_{0}, \ldots, t_{n+1}\right)=t_{0}+\frac{1}{F_{n}\left(t_{1}, \ldots, t_{n+1}\right)}
+$$
+
+On admet qu'une telle définition est bien possible et que pour tous $n \in \mathbb{N}$ et $t_{0}, \ldots, t_{n}>0, \quad F_{n}\left(t_{0}, \ldots, t_{n}\right)>0$.
+
+Les applications ainsi construites sont appelées des fractions continues.
+
+Par exemple :
+
+$$
+F_{3}(1,2,3,4)=1+\frac{1}{F_{2}(2,3,4)}=1+\frac{1}{2+\frac{1}{F_{1}(3,4)}}=1+\frac{1}{2+\frac{1}{3+\frac{1}{F_{0}(4)}}}=1+\frac{1}{2+\frac{1}{3+\frac{1}{4}}}
+$$
+
+	\subsubsection*{Un exemple}
+	
+	On pose pour tout $n \in \mathbb{N}, \quad u_{n}=F_{n}(2, \ldots, 2)$
+	\begin{enumerate}
+	\item Vérifier que pour tout $n \in \mathbb{N}$ on a : $u_{n+1}=2+\frac{1}{u_{n}}$ puis étudier rapidement la fonction $f: x \longmapsto 2+\frac{1}{x}$ sur $[2,+\infty[$ (sens de variation, limites aux bornes).
+	
+	\item Montrer que pour tout $p \in \mathbb{N}$ on a: $\left\{\begin{array}{l}u_{2 p} \leqslant u_{2 p+2} \leqslant \frac{5}{2} \\ u_{2 p+1} \geqslant u_{2 p+3} \geqslant 2\end{array}\right.$
+	
+	\item Déterminer le(s) point(s) fixe(s) de $f \circ f$ et en déduire que la suite $\left(u_{n}\right)_{n \in \mathbb{N}}$ converge. On précisera sa limite.
+ 	\end{enumerate}
+
+
+\subsubsection*{Une nouvelle définition récursive}
+	\begin{enumerate}
+	\setcounter{enumi}{3}
+	\item Montrer par récurrence que pour tout $n \in \mathbb{N}$ et pour tous $t_{0}, \ldots, t_{n+1}>0$ :
+
+$$
+F_{n+1}\left(t_{0}, \ldots, t_{n+1}\right)=F_{n}\left(t_{0}, \ldots, t_{n-1}, t_{n}+\frac{1}{t_{n+1}}\right)
+$$	\end{enumerate}
+\subsubsection*{Un résultat universel de convergence}
+Soit $\left(a_{n}\right)_{n \in \mathbb{N}}$ une suite d'entiers naturels non nuls. On note $\left(p_{n}\right)_{n \in \mathbb{N}}$ et $\left(q_{n}\right)_{n \in \mathbb{N}}$ les suites définies par :
+
+$$
+\left\{\begin{array} { l } 
+{ p _ { 0 } = a _ { 0 } } \\
+{ q _ { 0 } = 1 }
+\end{array} \text { et } \left\{\begin{array}{l}
+p_{1}=1+a_{0} a_{1} \\
+q_{1}=a_{1}
+\end{array} \text { et } \forall n \in \mathbb{N}, \quad\left\{\begin{array}{l}
+p_{n+2}=p_{n+1} a_{n+2}+p_{n} \\
+q_{n+2}=q_{n+1} a_{n+2}+q_{n}
+\end{array}\right.\right.\right.
+$$
+
+On admet que $p_{n}$ et $q_{n}$ sont des entiers naturels non nuls pour tout $n \in \mathbb{N}$.
+
+	\begin{enumerate}
+	\setcounter{enumi}{4}
+	\item Etudier la stricte monotonie de la suite $\left(q_{n}\right)_{n \in \mathbb{N}^{*}}$ et déterminer sa limite.
+
+\item Montrer que pour tout $n \in \mathbb{N}: p_{n+1} q_{n}-p_{n} q_{n+1}=(-1)^{n}$.
+
+\item En déduire que les suites $\left(\frac{p_{2 n}}{q_{2 n}}\right)_{n \in \mathbb{N}}$ et $\left(\frac{p_{2 n+1}}{q_{2 n+1}}\right)_{n \in \mathbb{N}}$ sont adjacentes. On note $\ell$ leur limite commune.
+
+\item Montrer que pour tout $n \in \mathbb{N}^{*}:\left|\ell-\frac{p_{n}}{q_{n}}\right|<\frac{1}{q_{n}^{2}}$. On pourra remarquer que $\ell$ est compris entre $\frac{p_{n}}{q_{n}}$ et $\frac{p_{n+1}}{q_{n+1}}$.
+
+\item En déduire que $\ell$ est irrationnel.
+
+\item Montrer que pour tous $n \in \mathbb{N}$ et $t>0: F_{n+2}\left(a_{0}, \ldots, a_{n+1}, t\right)=\frac{p_{n+1} t+p_{n}}{q_{n+1} t+q_{n}}$.
+
+\item En déduire que pour tout $n \in \mathbb{N}: F_{n}\left(a_{0}, \ldots, a_{n}\right)=\frac{p_{n}}{q_{n}}$.\end{enumerate}
+
+En conclusion, la suite de rationnels $\left(F_{n}\left(a_{0}, \ldots, a_{n}\right)\right)_{n \in \mathbb{N}}$ converge vers un irrationnel, et ceci quelle que soit la suite $\left(a_{n}\right)_{n \in \mathbb{N}}$ d'entiers naturels non nuls choisie au départ.
+
+
+
+
+
+
+
+
+\subsubsection*{Développement d'un irrationnel en fraction continue}
+Soit $x$ un irrationnel supérieur à 1.
+\begin{enumerate}
+	\setcounter{enumi}{11}
+	\item Justifier la bonne définition de la suite $\left(x_{n}\right)_{n \in \mathbb{N}}$ définie par: $x_{0}=x$ et pour tout $n \in \mathbb{N}, \quad x_{n+1}=\frac{1}{x_{n}-\left\lfloor x_{n}\right\rfloor}$.
+	
+	On pose alors pour tout $n \in \mathbb{N}: a_{n}=\left\lfloor x_{n}\right\rfloor$.
+	
+	\item Montrer que $a_{n}$ est un entier naturel non nul pour tout $n \in \mathbb{N}$.
+	
+	On peut dès lors associer à la suite $\left(a_{n}\right)_{n \in \mathbb{N}}$ deux suites $\left(p_{n}\right)_{n \in \mathbb{N}}$ et $\left(q_{n}\right)_{n \in \mathbb{N}}$ comme à la question 3.
+	
+	\item Montrer, en exploitant notamment le résultat de la question 10. , que pour tout $n \in \mathbb{N}: x=\frac{p_{n+1} x_{n+2}+p_{n}}{q_{n+1} x_{n+2}+q_{n}}$.
+	
+	\item En déduire que pour tout $n \in \mathbb{N}$ : $\left|x-\frac{p_{n+1}}{q_{n+1}}\right|<\frac{1}{q_{n+1}^{2}}$, puis que $\lim _{n \rightarrow+\infty} F_{n}\left(a_{0}, \ldots, a_{n}\right)=x$.\\
+	
+\end{enumerate}
+
+
+Conclusion : $x=a_{0}+\frac{1}{a_{1}+\frac{1}{a_{2}+\frac{1}{a_{3}+\ldots}}}$. \\[0.25cm]
+
+La suite $\left(a_{n}\right)_{n \in \mathbb{N}}$ est appelée le développement de $x$ en fraction continue.
+	
+\end{exer}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M.Botcazou \& M.Dupré}\cfoot{\thepage/4}\rfoot{\textbf{FIN.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\end{document}

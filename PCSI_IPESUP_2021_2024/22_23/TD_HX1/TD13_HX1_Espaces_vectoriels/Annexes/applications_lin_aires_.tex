@@ -1,0 +1,199 @@
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 839
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Applications linéaires ou non (sur $\mathbb R^n$)?
+\vskip0.2cm
+Dire si les applications suivantes sont des applications linéaires :
+\begin{enumerate}
+\item $f:\mathbb R^2\to\mathbb R^3,\ (x,y)\mapsto (x+y,x-2y,0)$;
+\item $f:\mathbb R^2\to\mathbb R^3,\ (x,y)\mapsto (x+y,x-2y,1)$;
+\item $f:\mathbb R^2\to\mathbb R,\ (x,y)\mapsto x^2-y^2$.
+\end{enumerate}
+
+
+% Exercice 2944
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Applications linéaires ou non (sur les polynômes)?
+\vskip0.2cm
+Dire si les applications suivantes sont des applications linéaires :
+\begin{enumerate}
+\item $f:\mathbb R[X]\to \mathbb R^2,\ P\mapsto \big(P(0),P'(1)\big)$;
+\item $f:\mathbb R[X]\to \mathbb R[X],\ P\mapsto AP$, où $A\in\mathbb R[X]$ est un polynôme fixé;
+\item $f:\mathbb R[X]\to\mathbb R[X],\ P\mapsto P^2$.
+\end{enumerate}
+
+
+% Exercice 874
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Noyau et image
+\vskip0.2cm
+On considère l'application linéaire $f$ de $\mathbb R^3$
+dans $\mathbb R^4$ définie par
+$$f(x,y,z)=(x+z,y-x,z+y,x+y+2z).$$
+\begin{enumerate}
+\item Déterminer  une base de $\textrm{Im}(f)$.
+\item Déterminer une base de $\ker(f)$.
+\item L'application $f$ est-elle injective? surjective?
+\end{enumerate}
+
+
+% Exercice 841
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Dérivation
+\vskip0.2cm
+Soit $E=\mathcal C^{\infty}(\mathbb R)$ et $\phi\in\mathcal L(E)$ définie par $\phi(f)=f'$. Quel est le noyau de $\phi$? Quelle est son image? $\phi$ est-elle injective? surjective?
+
+
+% Exercice 2947
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - 
+\vskip0.2cm
+Soit $E$ l’espace vectoriel des applications de $\mathbb R$ dans $\mathbb R$. On note $L:E\to E$ l’application qui à $f\in E$ associe $L(f)$ définie par $L(f):x\mapsto f(x)−f(−x)$.
+\begin{enumerate}
+\item Montrer que $L$ est un endomorphisme de E.
+\item Préciser le noyau et l’image de L.
+\item L’application $L$ est-elle injective ? surjective ?
+\end{enumerate}
+
+
+% Exercice 838
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - Application linéaire définie sur un espace de polynôme
+\vskip0.2cm
+Soit $E=\mathbb C[X]$, $p$ un entier naturel et $f$ l'application de $E$ dans $E$ définie par
+$f(P)=(1-pX)P+X^2P'$. $f$ est-elle injective? surjective?
+
+
+
+% Exercice 887
+
+
+\vskip0.3cm\noindent\textsc{Exercice 7} - Applications linéaires dans un espace de polynômes
+\vskip0.2cm
+Soit $E=\mathbb R_3[X]$ l'espace vectoriel des polynômes à coefficients réels de degré inférieur ou égal à 3.
+On définit $u$ l'application de $E$ dans lui-même par
+$$u(P)=P+(1-X)P'.$$
+\begin{enumerate}
+\item Montrer que $u$ est un endomorphisme de $E$.
+\item Déterminer une base de $\textrm{Im}(u)$.
+\item Déterminer une base de $\ker(u)$.
+\item Montrer que $\ker(u)$ et $\textrm{Im}(u)$ sont deux sous-espaces
+vectoriels supplémentaires de $E$.
+\end{enumerate}
+
+
+
+% Exercice 3109
+
+
+\vskip0.3cm\noindent\textsc{Exercice 8} - Une projection dans $\mathbb R[X]$
+\vskip0.2cm
+Soit $A\in\mathbb R[X]$ non nul, et $\phi:\mathbb R[X]\to\mathbb R[X]$ l'application qui à un polynôme $P$ associe son reste dans la division euclidienne par $A$. Démontrer que $\phi$ est un projecteur et préciser ses éléments caractéristiques.
+
+
+% Exercice 853
+
+
+\vskip0.3cm\noindent\textsc{Exercice 9} - Somme de deux projecteurs
+\vskip0.2cm
+Soit $E$ un $\mathbb R$-espace vectoriel. Soient $p$ et $q$ deux projecteurs de $E$.
+\begin{enumerate}
+\item Montrer que $p+q$ est un projecteur si et seulement si $p\circ q=q\circ p=0$.
+\item Montrer que, dans ce cas, on a $\textrm{Im}(p+q)=\textrm{Im}(p)\oplus \textrm{Im}(q)$
+et $\ker(p+q)=\ker p\cap \ker q$.
+\end{enumerate}
+
+
+% Exercice 849
+
+
+\vskip0.3cm\noindent\textsc{Exercice 10} - Endomorphismes qui commutent, noyaux et images
+\vskip0.2cm
+Soit $E$ un espace vectoriel et $u,v\in\mathcal L(E)$. On suppose que $u\circ v=v\circ u$. Démontrer que $\textrm{ker}(u)$ et $\textrm{Im}(u)$ sont stables par $v$, c'est-à-dire que
+$$v(\ker (u))\subset \ker (u)\textrm{ et }v(\textrm{Im}(u))\subset \textrm{Im}(u).$$
+
+
+% Exercice 3107
+
+
+\vskip0.3cm\noindent\textsc{Exercice 11} - Image de la composée et somme de l'image et du noyau
+\vskip0.2cm
+Soit $E$ un espace vectoriel et $f,g\in\mathcal L(E)$. Démontrer que 
+$$E=\textrm{Im}(f)+\ker(g)\iff \textrm{Im}(g\circ f)=\textrm{Im}(g).$$
+
+
+% Exercice 901
+
+
+\vskip0.3cm\noindent\textsc{Exercice 12} - 
+\vskip0.2cm
+Soit $E$ un espace vectoriel et $f\in\mathcal L(E)$.
+\begin{enumerate}
+\item Montrer que
+$$\ker(f)=\ker(f^2)\iff \textrm{Im}f\cap\ker(f)=\{0\}.$$
+\item On suppose que $E$ est de dimension finie. Montrer que
+$$\ker(f)=\ker(f^2)\iff \textrm{Im}f\oplus \ker(f)=E\iff \textrm{Im}(f)=\textrm{Im}(f^2).$$
+\end{enumerate}
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=27129
+\end{document}

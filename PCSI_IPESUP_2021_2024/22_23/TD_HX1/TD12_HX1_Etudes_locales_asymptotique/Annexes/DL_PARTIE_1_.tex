@@ -1,0 +1,165 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 589
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Exponentielle et équivalent
+\vskip0.2cm
+Soient $f$ et $g$ deux fonctions définies au voisinage d'un réel $a$ ou de $a=\pm\infty$. Montrer que
+$e^f\sim_a e^g\iff \lim_a(f-g)=0$.
+A-t-on $f\sim_a g\implies e^f\sim_a e^g$?
+
+
+% Exercice 564
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Quotient de DLs
+\vskip0.2cm
+Déterminer les développements limités des fonctions suivantes :
+$$\begin{array}{lcl}
+\displaystyle \mathbf 1.\ \frac{1}{1+x+x^2}\textrm{ à l'ordre 4 en 0}&&\displaystyle \mathbf 2.\ \tan(x)\textrm{ à l'ordre 5 en 0}\\
+\displaystyle \mathbf 3.\ \frac{\sin x-1}{\cos x+1}\textrm{ à l'ordre 2 en 0}&&\displaystyle \mathbf 4.\ \frac{\ln(1+x)}{\sin x}\textrm{ à l'ordre 3 en 0}.
+\end{array}$$
+
+
+% Exercice 563
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Composition de DLs
+\vskip0.2cm
+Calculer les développements limités suivants :
+$$\begin{array}{lcl}
+\displaystyle \mathbf 1.\ \ln\left(\frac{\sin x}{x}\right)\textrm{ à l'ordre 4 en 0}&&
+\displaystyle \mathbf 2.\ \exp(\sin x)\textrm{ à l'ordre 4 en 0}\\
+\displaystyle \mathbf 3.\ (\cos x)^{\sin x}\textrm{ à l'ordre 5 en 0}&&
+\displaystyle \mathbf 4.\ x\big(\cosh x\big)^{\frac 1x}\textrm{ à l'ordre 4 en 0}.
+\end{array}$$
+
+
+% Exercice 807
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Intégration de DLs
+\vskip0.2cm
+Calculer les développements limités suivants :
+$$\begin{array}{lcl}
+\displaystyle \mathbf 1.\ \arccos x\textrm{ à l'ordre 5 en 0}&&
+\displaystyle \mathbf 2.\ \int_0^x e^{t^2}dt\textrm{ à l'ordre 5 en 0}.
+\end{array}
+$$
+
+
+% Exercice 565
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - DLs pas en 0!
+\vskip0.2cm
+Calculer les développements limités suivants :
+$$\begin{array}{lcl}
+\mathbf 1. \frac 1x\textrm{ à l'ordre 3 en }2&&\displaystyle \mathbf 2. \ln(x)\textrm{ à l'ordre 3 en }2\\
+\displaystyle \mathbf 3. e^x\textrm{ à l'ordre 3 en }1&&\displaystyle \mathbf 4. \cos(x)\textrm{ à l'ordre 3 en }\frac{\pi}3\\
+\displaystyle \mathbf 5. \sqrt x\textrm{ à l'ordre 3 en 2}
+\end{array}$$
+
+
+% Exercice 806
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - DL en l'infini
+\vskip0.2cm
+Calculer les développements limités suivants :
+$$\begin{array}{lcl}
+\mathbf 1. \frac{\sqrt{x+2}}{\sqrt x}\textrm{ à l'ordre 3 en }+\infty&&
+\displaystyle \mathbf 2. \ln\left(x+\sqrt {1+x^2}\right)-\ln x\textrm{ à l'ordre 4 en }+\infty
+\end{array}$$
+
+
+% Exercice 567
+
+
+\vskip0.3cm\noindent\textsc{Exercice 7} - Astucieux!
+\vskip0.2cm
+Calculer, à l'ordre 100, le développement limité en 0 de $\ln\left(\sum_{k=0}^{99}\frac{x^k}{k!}\right)$.
+
+
+% Exercice 808
+
+
+\vskip0.3cm\noindent\textsc{Exercice 8} - Développement limité d'une fonction réciproque
+\vskip0.2cm
+Pour $x\in\mathbb R$, on pose $f(x)=x\exp(x^2)$.
+\begin{enumerate}
+\item Démontrer que $f$ réalise une bijection de $\mathbb R$ sur $\mathbb R$.
+\item Justifier que $f^{-1}$ admet un développement limité à l'ordre $4$ en $0$.
+\item Donner ce développement limité.
+\end{enumerate}
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=26649
+\end{document}

@@ -1,0 +1,239 @@
+\documentclass[a4paper,11pt]{article}
+
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb,amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace,multicol}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+
+
+\theoremstyle{definition}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{defi}{Définition}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+%\def\di{\displaystyle} à voir si nécessaire
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M.Botcazou \& M.Dupré}\cfoot{\thepage/3}\rfoot{\textbf{Tournez la page S.V.P.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+	
+	
+	\noindent\shadowbox{
+		\begin{minipage}{1\linewidth}
+			$$\huge{\textbf{ Examen n°0 }}$$
+			$$\large{\textbf{ 01/09/2022  -- durée : 3 heures}}$$
+		\end{minipage}
+	}
+	\bigskip
+	
+	
+	La présentation, la lisibilité, l'orthographe, la qualité de la rédaction et la précision des raisonnements entreront pour
+	une part importante dans l'appréciation des copies. Les étudiants sont invités à encadrer dans la mesure du possible les résultats de leurs calculs. Les réponses doivent toutes être soigneusement justifiées. Les calculatrices sont interdites.
+	
+	\hfill\\[5cm]
+	\centering\noindent\fcolorbox{black}{white}{
+		\begin{minipage}{0.95\linewidth}
+			$$\text{Barème indicatif:}$$
+			\hfill\\[0.2cm]
+			\centering\begin{minipage}{0.9\linewidth}
+				\begin{enumerate}[$\bullet$]
+					\item Exercice 1 \dotfill 6 points \hfill\\[0.2cm]
+					\item Exercice 2 \dotfill 10 points \hfill\\[0.2cm]
+					\item Exercice 3 \dotfill 10 points \hfill\\[0.2cm]
+					\item Exercice 4 \dotfill 10 points \hfill\\[0.2cm]
+					\item Exercice 5 \dotfill 10 points \hfill\\[0.2cm]
+					\item Exercice 6 \dotfill 10 points \hfill\\[0.2cm]
+					\item Exercice 7 \dotfill 12 points \hfill\\[0.2cm]
+					\item Exercice 8 \dotfill 10 points \hfill\\[0.2cm]
+					\item Exercice 9 \dotfill 11 points \hfill\\[0.2cm]
+					\item Exercice 10 \dotfill 11 points \hfill\\[0.2cm]
+			\end{enumerate}\end{minipage}
+	\end{minipage}}
+	\newpage	
+	
+	
+	\begin{exer}\textit{\space}\\
+		
+		\begin{enumerate}
+			\item Écrire aussi simplement que possible les expressions suivantes.
+			\begin{multicols}{3}
+				\begin{enumerate}
+					
+					\item(*) $A = \left(2+\sqrt{5}\right)^2$ %A= 9+4$\sqrt{5}$
+					\item(*) $B = \left(\sqrt{2\sqrt{3}}\right)^4$ %B= 12$
+					\item (**)$C = \sqrt{11+6\sqrt{2}}$ %$C = (3+\sqrt{2})^2 $
+				\end{enumerate}
+			\end{multicols}
+			\item (**) Exprimer la quantité suivante sans racine carrée au dénominateur.
+			$$D = \dfrac{1}{1+\sqrt{2}+\sqrt{3}}$$ % $D = \dfrac{2+\sqrt{2}-\sqrt{6}}{4}$ 	 
+		\end{enumerate}
+		
+		
+	\end{exer}
+	\bigskip
+	\begin{exer}\textit{\space}\\
+		(***) Montrer que $\sqrt{3}$ est un irrationnel. Généraliser. 
+	\end{exer}
+	
+	\bigskip
+	\begin{exer}\textit{\space}\\
+		Etudier la convergence des suites définies par :
+		\begin{enumerate}
+			\item (**) $u_n = \ln\left(\dfrac{n^n}{2^n}\right) $
+			%\item $u_n = \dfrac{2^{3^n}}{3^{2^n}} $ 
+			
+			%\item $v_n = \sqrt{n}\times\left(\sqrt{1+n}-\sqrt{n-1}\right)$ 
+			\item (**) $v_n = \sqrt{n+\cos(n)}-\sqrt{n}$
+			\item (***) $w_n = \dfrac{\ln(1+e^{-n})}{e^{-n}}$ \hfill (on pourra penser à un taux d'accroissement)
+			\item (***) $\forall n\in\N^*$, $t_n = \dfrac{1}{n^2} \sum\limits_{k=1}^{n} \left\lfloor \dfrac{k^2}{n} \right\rfloor $\\[0.25cm]
+			La partie entière d'un réel x, notée $\lfloor x \rfloor$, désigne le plus grand entier relatif plus petit ou égal à x.  
+			%\item $t_n = \dfrac{\begin{pmatrix}n\\k\end{pmatrix}}{n^k}$ où $k$ est un entier naturel non nul fixé.	 
+		\end{enumerate}
+		
+	\end{exer}
+	\bigskip
+	\begin{exer}\textit{\space}\\
+		On se propose de déterminer les fonctions $f$ de $\R$ dans $\R$
+		deux fois dérivables sur $\R$ et telles que :
+		$$\forall(x, y) \in \R^2 , \ 
+		f (x + y) + f (x - y) = 2 (f (x) + f (y)) .$$
+		Dans  les questions $1.$ et $2.$ on suppose que $f$ est une fonction solution.
+		\begin{enumerate}
+			\item (**) Calculer $f (0)$. Montrer que $f$ est paire.
+			\item (***) Montrer que $f''$ est constante. 
+			\item (**) Conclure 
+		\end{enumerate}
+	\end{exer}
+	\bigskip
+	\begin{exer}\textit{\space}\\
+		On pose, pour $x$ réel :
+		$$B(x) = \sqrt{x+2\sqrt{x-1}} +  \sqrt{x-2\sqrt{x-1}}$$
+		\begin{enumerate}
+			\item (*) Résoudre dans $\R$ l'inéquation : $$ x-2\sqrt{x-1} \geq 0$$
+			\item (*) Donner l'ensemble de définition de $B$.
+			\item (*) Démontrer que pour tout $x \in [1,+\infty[$, on a : 
+			$$\left(B (x)\right)^2 = 2x + 2|x - 2|$$
+			\item (**) En déduire, sans le symbole valeur absolue et selon les valeurs de $x$, la valeur de $B (x)$.
+		\end{enumerate}
+	\end{exer}
+	
+	
+	
+	\newpage
+	\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M.Botcazou \& M.Dupré}\cfoot{\thepage/3}\rfoot{\textbf{FIN.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+	
+	\begin{exer}\textit{\space}\\
+		(***) Pour $x \in [0, 1[$ , calculer
+		$$F(x) = \int_{0}^{x} \ln\left(\dfrac{1+t}{1-t}\right)dt.$$
+		
+		Montrer que $\lim\limits_{x \rightarrow 1} F(x) = 2\ln(2)$ 
+		
+	\end{exer}
+	
+	
+	\bigskip
+	\begin{exer}\textit{\space}\\
+		Pour $n \in \N$, $f_n$ désigne la fonction de $]0, \pi]$ dans $\R$ définie par
+		$$\forall x \in ]0, \pi], \quad f_n(x) = \dfrac{\sin\left(\left(n+\dfrac{1}{2}\right)x\right)}{\sin\left(\dfrac{x}{2}\right)} $$
+		\begin{enumerate}
+			\item (**) En utilisant la définition de la dérivée, montrer que $\lim\limits_{u \rightarrow 0} \dfrac{\sin(u)}{u} = 1$
+			\item (**) En déduire que la fonction $f_n$ admet une limite que l'on précisera en $0$. \\ %\\
+			Ceci permet de prolonger $f_n$ en une fonction continue sur $[0, \pi]$, encore notée $f_n$ et de poser $$I_n =\int_{0}^{\pi}f_n(t) dt$$.
+			\item (***) Si $n \in \N$, calculer $I_{n+1} - I_n$ , puis $I_n$. 
+		\end{enumerate}
+	\end{exer}
+	
+	\bigskip
+	\begin{exer}\textit{\space}\\
+		
+		\begin{enumerate}
+			\item (*) On lance un dé non pipé. On répète $4$ fois l'opération, les lancers successifs étant supposés indépendants. Quelle est la probabilité pour que l'on obtienne au moins un 6?
+			\item (*) On considère deux dés non pipés. Donner la probabilité qu'en $24$ lancers, les dés amènent au moins un double $6$. Est-elle supérieure à $\dfrac{1}{2}$ ?
+			\item Soit $n \in\N^*$ . On considère $n$ dés non pipés. On les
+			jette $4\times6^{n-1}$ fois.
+			\begin{enumerate}
+				\item (***) Déterminer la probabilité $p_n$ d'obtenir au moins une fois $n$ six.
+				\item (***) Déterminer la limite de la suite $(p_n)_{n\geq1}$.  
+			\end{enumerate}
+			
+		\end{enumerate}
+	\end{exer}
+	\bigskip
+	\begin{exer}\textit{}\\%(complexes, mais il y en a aura toujours un qui aura fait maths expertes)
+		
+		\begin{enumerate}
+			\item (**) Trouver les nombres complexes non nuls $z$ tels que $Z = z + \dfrac{1}{z}$ soit réel.
+			\item \begin{enumerate}
+				\item (*) Soient $z$ et $z'$ deux nombres complexes. Montrer :	$$|z + z'|^2 + |z - z' |^2 = 2\left( |z|^2 + |z'|^2\right) .$$ 
+				\item (*) Donner une interprétation géométrique de cette égalité en considérant un parallélogramme, les longueurs de ses côtés, les longueurs de ses diagonales.
+				\item (*) Soient $A, B, C$ trois points non alignés du plan, $I$ le milieu de $[BC]$. Déduire de $(b)$ une expression de $AI^2$ en fonction de $AB^2$ , $BC^2$ , $CA^2$.
+			\end{enumerate}
+			
+		\end{enumerate}
+	\end{exer}
+	
+	\begin{exer}\textit{}\\ %(dénombrement, pour les plus forts)
+		Soit $n \in \mathbb{N}^{*}$, $E$ un ensemble de cardinal $n$
+		\begin{enumerate}
+			
+			\item Soit $B$ un sous-ensemble de $E$ de cardinal $r$ avec $r$ un entier entre $0$ et $n$. Montrer que le nombre de sous-ensembles $A$ de $E$ tel que $A \subseteq  B$ vaut $2^r$
+			\item En déduire que le nombre de couples $(A,B)$ de sous-ensembles de $E$ tels que $A \subset B$ vaut $\displaystyle\sum_{k=0}^{n}{{n \choose k} 2^k}$
+			\item Calculer cette somme et conclure.\\[0.5cm]
+			\item[\textbf{BONUS :}] pouvait-on trouver ce résultat directement?
+		\end{enumerate}
+	\end{exer}
+	
+	
+	
+	
+\end{document}

@@ -1,0 +1,557 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{mathdots}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\K}{\mathbb{K}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/4}\rfoot{PCSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+ %%%%BIBMATH%%%%
+ 
+ %(1) https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/algebrelineaire/matricesal&type=fexo
+	
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 15 : Matrices et applications linéaires }}
+	\end{minipage}}
+
+\smallskip
+\section*{Connaître son cours:}
+\begin{itemize}[$\bullet$]
+	\item Soit $E$, $F$ deux espaces vectoriels de dimension finie, $\beta$ une base de E et $\zeta$ une base de $F$. Montrer que pour tout $u \in \mathcal{L} (E , F )$ et tout $x \in E$ on a : $\text{Mat}_\zeta (u (x )) = \text{Mat}_{\beta,\zeta}(u) \cdot \text{Mat}_\beta(x )$.
+	\item Soit $E $, $F $, $G$ trois espaces vectoriels de dimension finie, $\beta$ une base de $E$ , $\zeta$ une base de $F$ et $\gamma$
+	une base de $G $. Montrer que pour tout $u \in \mathcal{L} (E , F )$ et tout $v \in \mathcal{L} (F , G )$, on a : $\text{Mat}_{\beta, \gamma} (v\circ u ) = \text{Mat}_{\zeta, \gamma} (v ) \cdot \text{Mat}_{\beta, \zeta} ( u )$
+	\item Soit $E$ un espace vectoriel de dimension finie, $\beta =(e_1,e_2,\dots,e_n)$ et $\beta'=(e_1',e_2',\dots,e_n')$ deux bases de $E $. Exprimer la matrice de passage $P_\beta^{\beta'}$ en lien avec une représentation matricielle de l'endomorphisme $Id_E$.
+	
+	En déduire que pour tout $x \in E $, on a : $\text{Mat}_\beta (x ) = P_\beta^{\beta'} \cdot \text{Mat}_{\beta'}(x )$
+	\item Soient $E$ et $F$ deux $\K$-espaces vectoriels de dimensions respectives $p$ et $n$ et $u \in\mathcal L (E, F )$ de rang $r$.  Montrer qu'il existe une base $\beta$ de $E$ et une base $\zeta$ de $F$ tel que : $\text{Mat}_{\beta,\zeta}(u) = J_r = \begin{pmatrix}
+	I_r & 0_{r,p-r} \\
+	0_{n-r,r} & 0_{n-r,p-r}
+	\end{pmatrix}$. 
+
+\end{itemize}
+\raggedright
+
+\section*{Matrice d’une application linéaire dans une base:}\hfill\\%[-0.25cm]
+
+   
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+	
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Soient $S$ et $T$ les deux endomorphismes de $\mathbb R^2$ définis par\quad\\[-0.5cm]
+
+$$
+S(x,y)=(2x-5y,\ -3x+4y)\ \text{et}\ T(x,y)=(-8y,\ 7x+y).
+$$
+\begin{enumerate}
+	\item Déterminer les matrices de $S$ et $T$ dans la base canonique de $\mathbb R^2$.
+	\item Déterminer les applications linéaires $S+T$, $S\circ T$, $T\circ S$ et $S\circ S$ ainsi que leurs matrices dans la base canonique de $\mathbb R^2$.
+\end{enumerate}
+
+	
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+On considère l'endomorphisme $f$ de $\mathbb R^3$ dont la matrice 
+dans la base canonique est :
+
+$$M=\left(
+\begin{array}{ccc}
+1&1&-1\\
+-3&-3&3\\
+-2&-2&2
+\end{array}\right).$$
+
+
+Donner une base de $\ker(f)$ et de $\textrm{Im}(f)$.
+
+En déduire que $M^n=0$ pour tout $n\geq 2$.
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Soient $$A=\left(\begin{array}{cc}-1&2\\1&0\end{array}\right)$$
+
+et $f$ l'application de $M_2(\mathbb R)$ dans $M_2(\mathbb R)$
+définie par $f(M)=AM$.
+\begin{enumerate}
+	\item Montrer que $f$ est linéaire.
+	\item Déterminer sa matrice dans la base canonique de $M_2(\mathbb R)$.
+\end{enumerate}
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Soit $$A = \begin{pmatrix} 
+0&&\dots&0&1 \\ 
+\vdots&&&1&0 \\
+& & \udots && \\
+0&1& & &\vdots \\ 
+1&0&&\dots&0
+\end{pmatrix}$$ \quad \\[0.2cm]
+
+
+En utilisant l'application linéaire associée de 
+$\mathcal{L} (\R^n,\R^n)$, calculer $A^p$ pour $p \in \Z$.
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\end{minipage}\end{minipage} \newpage
+
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+		Soit  $E$  un espace vectoriel et  $f$  une projection sur $E$.
+		\begin{enumerate}
+			\item Montrer que  $E= \text{Ker} f \oplus \text{Im} f$.
+			
+			\item Supposons que  $E$ soit de dimension finie  $n$. 
+			Posons  $r= \text{rg}(f)$. 
+			Montrer qu'il existe une base 
+			$\mathcal{B}= ( e_1, \ldots ,e_n)$ de  $E$  telle que : 
+			$f(e_i)=e_i$ si $i\le r$ et $f(e_i)=0$ si $i>r$. 
+			
+			Déterminer la matrice de  $f$ dans cette base $\mathcal{B}$.
+		\end{enumerate}	
+			
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+		
+			\begin{enumerate}
+				
+				\item Montrer que si $f$ est un endomorphisme d'un espace
+				vectoriel $E$ de dimension $n$, $M$ sa matrice par rapport à
+				une base $e$, $M'$ sa matrice par rapport à une base $e'$,
+				alors $\textrm{tr}\, M = \textrm{tr}\, M'$. 
+				On note $\textrm{tr}\, f$ la valeur commune de ces quantités.
+				
+				\item Montrer que si $g$ est un autre endomorphisme de $E$,
+				$\textrm{tr}(f\circ g - g\circ f) = 0$.
+			\end{enumerate}
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		Soit $\R^2$ muni de la base canonique $\mathcal{B}=(e_1, e_2)$.
+		Soit $f : \R^2 \to \R^2$ la projection sur l'axe des abscisses $ \text{Vect}(e_1)$  
+		parall\`element à $\text{Vect}(e_1+e_2)$.
+		Déterminer $\textrm{Mat}_{\mathcal{B},\mathcal{B}}(f)$, la matrice de $f$ dans la base $\mathcal{B}$.
+		
+		Même question avec $\textrm{Mat}_{\mathcal{B}',\mathcal{B}}(f)$ où $\mathcal{B'}$ est la base 
+		$(e_1 - e_2, -2e_1+3e_2)$ de $\R^2$.
+		Même question avec $\textrm{Mat}_{\mathcal{B}',\mathcal{B}'}(f)$.	
+			
+		\centering\rule{1\linewidth}{0.6pt}\end{exo}
+	
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $f$ l'endomorphisme de $\R^3$ dont la matrice par
+			rapport \`a la base canonique $(e_1, e_2, e_3)$ est
+			$$A= \left( 
+			\begin{array}{ccc}
+			15 & -11 & 5 \\
+			20 & -15 & 8 \\
+			8 &  -7 & 6
+			\end{array}
+			\right).$$
+			Montrer que les vecteurs : $ e'_1 = 2e_1+3e_2+e_3,$ $ e'_2 = 3e_1+4e_2+e_3,$\quad $ e'_3 = e_1+2e_2+2e_3$
+			
+			forment une base de $\R^3$ et calculer la matrice de $f$ par
+			rapport \`a cette base.
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+					\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soient trois vecteurs $e_1,e_2,e_3$ formant une base de $\R^3$.
+			On note $\phi$ l'application linéaire définie par
+			$\phi(e_1)=e_3$, $\phi(e_2)=-e_1+e_2+e_3$ et $\phi(e_3)=e_3$.
+			
+			\begin{enumerate}
+				\item Écrire la matrice $A$ de $\phi$ dans la base $(e_1,e_2,e_3)$.
+				
+				Déterminer le noyau de cette application. 
+				
+				\item On pose $f_1=e_1-e_3$, $f_2=e_1-e_2$,  $f_3=-e_1+e_2+e_3$.
+				
+				Calculer $e_1,e_2,e_3$ en fonction de $f_1,f_2,f_3$.
+				
+				
+				Les vecteurs $f_1,f_2,f_3$ forment-ils une base de $\R^3$ ?
+				
+				\item Calculer $\phi(f_1), \phi(f_2), \phi(f_3)$ en fonction de $f_1,f_2,f_3$.
+				Écrire la matrice $B$ de $\phi$ dans la base $(f_1,f_2,f_3)$ et trouver la nature
+				de l'application $\phi$.
+				
+				\item On pose $P=\begin{pmatrix}1&1&-1\cr 0&-1&1\cr-1&0&1\cr\end{pmatrix}$. Vérifier que $P$ est
+				inversible et calculer $P^{-1}$.
+				
+				Quelle relation lie $A$, $B$, $P$ et $P^{-1}$ ?
+			\end{enumerate}
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			Soit $f$ l'application de $\R_n[X]$  dans  $\R[X]$
+			définie en posant pour tout  
+			$$P\in \R_n[X],\ f(P)(X)=P(X+1)+P(X-1)-2P(X).$$
+			\begin{enumerate}
+				\item Montrer que  $f$  est linéaire et que son image est
+				incluse dans  $\R_n[X]$.
+				\item Dans le cas o\`u  $n=3$, donner la matrice de  $f$  dans
+				la base  $1,X, X^2, X^3$. Déterminer ensuite, pour une valeur de  $n$
+				quelconque, la matrice de  $f$  dans la base  $1,X,\ldots,X^n$.
+				\item Déterminer le noyau et l'image de  $f$. 
+				
+				Calculer leur dimension respective.
+				\item Soit  $Q$  un élément de l'image de  $f$.
+				Montrer qu'il existe un unique  $P\in \R_n[X]$
+				tel que : $f(P)=Q$  et  $P(0)=P'(0)=0$.
+			\end{enumerate}	
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		
+\end{minipage}\end{minipage}\newpage
+
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $E=\K_n[X]$. $u$ est l'endomorphisme de $E$ défini par : $\forall P\in E,\; u(P)(X)=P(X+1)-P(X)$.
+			
+			\begin{enumerate}
+				\item Donner la représentation matricielle de cet endomorphisme dans la base canonique de $E$.
+				\item  Déterminer $\text{Ker}u$  et $\text{Im}u$.
+				
+				\item  Déterminer explicitement une base dans laquelle la matrice de $u$ est  $$\left(
+				\begin{array}{ccccc}
+				0&1&0&\ldots&0\\
+				\vdots&\ddots&\ddots&\ddots&\vdots\\
+				& & &\ddots&0\\
+				\vdots& & &\ddots&1\\
+				0&\ldots& &\ldots&0
+				\end{array}
+				\right)$$
+				\item En déduire que $u$ est nilpotent et donner son indice de nilpotence. 
+			\end{enumerate}
+			
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Calculer l'inverse de la matrice suivante:
+			 $$\left(
+			\begin{array}{cccccc}
+			\dbinom{0}{0}&\dbinom{1}{0}&\dbinom{2}{0}&\ldots&\dbinom{n-1}{0}&\dbinom{n}{0}\\
+			\rule{0mm}{7mm}0&\dbinom{1}{1}&\dbinom{2}{1}&\ldots&\ldots&\dbinom{n}{1}\\
+			\rule{0mm}{7mm}\vdots&\ddots&\dbinom{2}{2}& & &\vdots\\
+			& & &\ddots& & \\
+			\vdots& & &\ddots&\dbinom{n-1}{n-1}&\vdots\\
+			0&\ldots& &\ldots&0&\dbinom{n}{n}
+			\end{array}
+			\right)$$
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soient $E$ un espace vectoriel de dimension finie, $a$ un réel non nul et $u,v\in \mathcal{L}(E)$.
+			
+			Résoudre dans $\mathcal{L}(E)$ l'équation d'inconnue $w$ : $$a\cdot w+ \text{Tr}(w)\cdot u=v$$\quad\\[-0.5cm]
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $f$ une forme linéaire sur $\mathcal{M}_n(\C)$ telle que $\forall (A,B)\in(\mathcal{M}_n(\C))^2$, $f(AB) = f(BA)$. 
+			
+			Montrer qu'il existe un complexe $a$ tel que $f=a\text{Tr}$.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			Soit $A=(a_{i,j})_{1\leqslant i,j\leqslant n}$ définie par $a_{i,j}=1$ si $i=j$, $j$ si $i=j-1$ et $0$ sinon.
+			
+			
+			Montrer que $A$ est inversible et calculer $A^{-1}$.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		\begin{exo}\textbf{(***)}\quad (\textit{Matrice de \textsc{Vandermonde}})\\[0.2cm]
+			Soient $x_1 , \dots , x_n \in \K$.
+				$$(x_i^{j-1})_{1\leq i,j\leq n} \ = \ \left(
+			\begin{array}{ccccc}
+			1&x_1&x_1^2&\ldots&x_1^{n-1}\\
+			1&x_2&x_2^2&\ldots&x_2^{n-1}\\
+			\vdots& \vdots& \vdots&\ddots&\vdots\\
+			1&x_n&x_n^2&\ldots&x_n^{n-1}
+			\end{array}
+			\right)$$
+			Montrer que cette matrice est inversible si et seulement si les scalaires $x_1 , \dots , x_n$ sont deux à deux distincts.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+	
+		
+		
+\end{minipage}\end{minipage}
+
+\section*{Rang d'une matrice et propriétés:}\hfill\\%[-0.25cm]
+
+
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soient $\alpha,\beta$ deux réels et 
+			$$M_{\alpha,\beta}=\left(\begin{array}{cccc}
+			1&3&\alpha&\beta\\
+			2&-1&2&1\\
+			-1&1&2&0
+			\end{array}\right).$$
+			Déterminer les valeurs de $\alpha$ et $\beta$ pour lesquelles l'application linéaire associée à $M_{\alpha,\beta}$
+			est surjective.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		
+				
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soient  
+			$A=\begin{pmatrix} 
+			1 & 2 & 1 \cr
+			3 & 4 & 1 \cr
+			5 & 6 & 1 \cr
+			7 & 8 & 1 \cr
+			\end{pmatrix},\ 
+			B=\begin{pmatrix} 
+			2 & 2 & -1 & 7  \cr
+			4 & 3 & -1 & 11 \cr
+			0 & -1 & 2 & -4 \cr
+			3 & 3 & -2 & 11 \cr 
+			\end{pmatrix} $.\quad\\[0.2cm]
+			Calculer $\textrm{rg}(A)$ et $\textrm{rg}(B)$. Déterminer une base du
+			noyau et une base de l'image pour chacune des applications linéaires associées $f_A$ et $f_B$.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+\end{minipage}\end{minipage} \newpage
+
+
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Soient $A, B$ deux matrices semblables (i.e. il existe $P$
+			inversible telle que $B = P^{-1} A P$). Montrer que si l'une est
+			inversible, l'autre aussi\,; que si l'une est idempotente, l'autre
+			aussi\,; que si l'une est nilpotente, l'autre aussi\,; que si $A =
+			\lambda I$, alors $A = B$.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+			\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Trouver toutes les matrices de $\mathcal{M}_3(\R)$ qui vérifient
+			\begin{enumerate}
+				\item $M^2 = 0$ ;
+				\item $M^2 = M$ ; 
+				\item $M^2 = I$. 
+			\end{enumerate}
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Prouver qu'une matrice $A$ de $M_{n,p}(\mathbb K)$ de rang $r$ s'écrit comme somme de $r$ matrices de rang 1.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+			\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+				Montrer qu'une matrice de $\mathcal M_n(\mathbb K)$ qui n'est pas inversible est équivalente à une matrice nilpotente.
+				
+				\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $B$ la matrice diagonale par blocs 
+			$$B=\left(
+			\begin{array}{cccc}
+			A_1&0&\dots&0\\
+			0&A_2&\ddots&\vdots\\
+			\vdots&\dots&\ddots&\vdots\\
+			0&\dots&0&A_n
+			\end{array}
+			\right).$$
+			Calculer le rang de $B$ en fonction du rang des $A_i$.	
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad(\textit{Théorème de \textsc{Hadamard}})\\[0.2cm]
+			Soit $A=(a_{i,j})_{1\leqslant i,j\leqslant n}\in\mathcal{M}_n(\C)$ telle que $\forall i\in\llbracket1,n\rrbracket$, $|a_{i,i}| >\sum_{j\neq i}^{}|a_{i,j}|$. Montrer que $A\in\mathcal{G}l_n(\C)$. 
+			%(Une matrice à diagonale strictement dominante est inversible.)
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			Donner le rang de la matrice $(i+j+ij)_{1\leqslant i,j\leqslant n}$.
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+		
+		Soit $M\in\mathcal{M}_3(\R)$. Montrer que les deux propriétés suivantes sont équivalentes :
+		
+		\begin{center}
+			(1) $M^2 = 0$ et (2) $\text{rg}M\leqslant 1$ et $\text{tr}M = 0$.
+		\end{center}
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+\end{minipage}\end{minipage}
+
+
+\end{document}

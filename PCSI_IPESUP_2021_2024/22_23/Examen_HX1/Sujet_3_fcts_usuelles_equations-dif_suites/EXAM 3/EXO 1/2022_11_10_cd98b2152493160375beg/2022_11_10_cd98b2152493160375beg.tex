@@ -1,0 +1,52 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+
+\title{EXERCICE 1. }
+
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+On définit par récurrence pour tout $n \in \mathbb{N}$ une application $F_{n}:\left(t_{0}, \ldots, t_{n}\right) \longmapsto F_{n}\left(t_{0}, \ldots, t_{n}\right)$ de $\left(\mathbb{R}_{+}^{*}\right)^{n+1}$ dans $\mathbb{R}_{+}^{*}$ en posant pour tout $t_{0}>0, \quad F_{0}\left(t_{0}\right)=t_{0}$ et pour tous $n \in \mathbb{N}$ et $t_{0}, \ldots, t_{n+1}>0$ :
+
+$$
+F_{n+1}\left(t_{0}, \ldots, t_{n+1}\right)=t_{0}+\frac{1}{F_{n}\left(t_{1}, \ldots, t_{n+1}\right)}
+$$
+
+On admet qu'une telle définition est bien possible et que pour tous $n \in \mathbb{N}$ et $t_{0}, \ldots, t_{n}>0, \quad F_{n}\left(t_{0}, \ldots, t_{n}\right)>0$.
+
+Les applications ainsi construites sont appelées des fractions continues.
+
+Par exemple :
+
+$$
+F_{3}(1,2,3,4)=1+\frac{1}{F_{2}(2,3,4)}=1+\frac{1}{2+\frac{1}{F_{1}(3,4)}}=1+\frac{1}{2+\frac{1}{3+\frac{1}{F_{0}(4)}}}=1+\frac{1}{2+\frac{1}{3+\frac{1}{4}}}
+$$
+
+\section{Un exemple}
+On pose pour tout $n \in \mathbb{N}, \quad u_{n}=F_{n}(2, \ldots, 2)$
+
+(a) Vérifier que pour tout $n \in \mathbb{N}$ on a : $u_{n+1}=2+\frac{1}{u_{n}}$ puis étudier rapidement la fonction $f: x \longmapsto 2+\frac{1}{x}$ sur $[2,+\infty[$ (sens de variation, limites aux bornes).
+
+(b) Montrer que pour tout $p \in \mathbb{N}$ on a: $\left\{\begin{array}{l}u_{2 p} \leqslant u_{2 p+2} \leqslant \frac{5}{2} \\ u_{2 p+1} \geqslant u_{2 p+3} \geqslant 2\end{array}\right.$
+
+(c) Déterminer le(s) point(s) fixe(s) de $f \circ f$ et en déduire que la suite $\left(u_{n}\right)_{n \in \mathbb{N}}$ converge. On précisera sa limite.
+
+\section{Une nouvelle définition récursive}
+Montrer par récurrence que pour tout $n \in \mathbb{N}$ et pour tous $t_{0}, \ldots, t_{n+1}>0$ :
+
+$$
+F_{n+1}\left(t_{0}, \ldots, t_{n+1}\right)=F_{n}\left(t_{0}, \ldots, t_{n-1}, t_{n}+\frac{1}{t_{n+1}}\right)
+$$
+
+
+\end{document}

@@ -1,0 +1,282 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+\usepackage{diagbox,makecell,setspace}
+
+\usepackage{pgf,tikz,pgfplots,tkz-tab}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+\usepackage{tabularx}
+\parindent=0cm
+
+
+
+
+\lstset{
+	literate=
+	{�}{{\'a}}1 {�}{{\'e}}1 {�}{{\'i}}1 {�}{{\'o}}1 {�}{{\'u}}1
+	{�}{{\'A}}1 {�}{{\'E}}1{�}{{\'I}}1 {�}{{\'O}}1 {�}{{\'U}}1
+	{�}{{\`a}}1 {�}{{\`e}}1 {�}{{\`i}}1 {�}{{\`o}}1{�}{{\`u}}1
+	{�}{{\`A}}1 {�}{{\'E}}1 {�}{{\`I}}1 {�}{{\`O}}1 {�}{{\`U}}1
+	{�}{{\"a}}1 {�}{{\"e}}1 {�}{{\"i}}1 {�}{{\"o}}1 {�}{{\"u}}1
+	{�}{{\"A}}1 {�}{{\"E}}1 {�}{{\"I}}1 {�}{{\"O}}1 {�}{{\"U}}1
+	{�}{{\^a}}1 {�}{{\^e}}1 {�}{{\^i}}1 {�}{{\^o}}1 {�}{{\^u}}1
+	{�}{{\^A}}1 {�}{{\^E}}1 {�}{{\^I}}1 {�}{{\^O}}1 {�}{{\^U}}1
+	{?}{{\oe}}1 {?}{{\OE}}1 {�}{{\ae}}1 {�}{{\AE}}1 {�}{{\ss}}1
+	{?}{{\H{u}}}1 {?}{{\H{U}}}1 {?}{{\H{o}}}1 {?}{{\H{O}}}1
+	{�}{{\c c}}1 {�}{{\c C}}1 {�}{{\o}}1 {�}{{\r a}}1 {�}{{\r A}}1
+	{?}{{\EUR}}1 {�}{{\pounds}}1 {?}{{?}}1
+}
+\lstdefinestyle{stylepython}{
+	language=Python, 
+	basicstyle=\ttfamily,
+	%       name=iciNOM,title={Un programme Python}, 
+	%       caption={iciTitre},
+	%       label={iciNom},
+	commentstyle=\footnotesize\color{green!50!black}, 
+	keywordstyle=\color{blue},   
+	stringstyle=\color{olive},   
+	numberstyle=\tiny,  
+	%       mathescape,  
+	%       showstringspaces=false,   
+	tabsize=3,   
+	%framexleftmargin=5mm,  
+	framexrightmargin=5pt,
+	framexbottommargin=5pt
+	xleftmargin=0mm,  
+	%keepspaces=false,   
+	classoffset=1,     
+	numbers=left,    
+	%stepnumber=1,    
+	numbersep=8pt,   
+	%showstringspac0ptes=false,  
+	%frame=single,
+	framerule=1pt,
+	%rulecolor=\color{yellow}, 
+	%       breaklines=true,  
+	%       rulesepcolor=\color{blue}, %avec frame=shadowsbox
+	%backgroundcolor=\color{yellow}
+}
+
+
+
+\setcellgapes{10pt}
+\makegapedcells
+
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{thm-def}{Théorème/Définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\eq}{\Longleftrightarrow}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+
+
+\begin{document}
+
+
+\lhead{Lycée Le Maurice Genevoix}\chead{}\rhead{Année~2021-2022}\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{\textbf{Tourner la page S.V.P.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\hfill\\[-0.7cm]
+$$	\fbox{\text{\Large{ \sc Correction du Contrôle sur les fonctions affines et les probabilités }}}$$
+
+
+\flushleft\normalsize
+
+
+
+\begin{exo} \textbf{"Pièces équilibrée VS pièces truquée"}\\\hfil\\
+
+	\begin{enumerate}%[$\square$]
+		\item Voir en \textbf{Annexe 1}  \hfill\textbf{/1pts}
+		\item On modélise cette expérience à l'aide des valeurs $\{0,1\}$ telles que: $\left\{\begin{array}{c}
+		"Pile" \rightarrow 1\\
+		"Face" \rightarrow 0
+		\end{array}\right.$ \\
+		 Soit $X$ la valeur de la pièce truquée.\hfill\textbf{/3pts}\\
+		La pièce truquée donne 11 fois plus de "Face" que de "Pile".\\
+		Donc $$P(\{X=0\}) = 11 \times P(\{X=1\})$$
+		Or la somme des probabilités de chaque issue est égale à 1.\\
+		Donc $$P(\{X=0\}) + P(\{X=1\}) = 1$$
+		Ainsi par ce qui précède on peut en déduire que:
+		$$11 \times P(\{X=1\}) + P(\{X=1\}) = 1$$
+		Donc: 	$$12 \times P(\{X=1\})= 1$$
+		Donc: $$\times P(\{X=1\})= \dfrac{1}{12}$$
+		Or: $$P(\{X=0\}) = 1 - P(\{X=1\})$$
+		Donc: $$P(\{X=0\}) = \dfrac{11}{12}$$
+		$\underline{Conclusion}:$ la loi de cette expérience aléatoire est donnée par le tableau ci-dessous:
+\begin{center}
+			\begin{tabular}{|c|c|c|}
+			\hline
+			\text{Issue} "a" & 0 & 1\\
+			\hline
+			$P(\{X=a\})$ & $\dfrac{11}{12}$ & $\dfrac{1}{12}$\\
+			\hline
+		\end{tabular}
+\end{center}
+
+		\item  Voir en \textbf{Annexe 2}  \hfill\textbf{/1.5pts}\\[0.3cm]
+		\item Oui nous pouvons affirmer que la probabilité d'obtenir un "Pile" avec la pièce équilibrée est égale à 6 fois la probabilité d'obtenir un "Pile" avec la pièce truquée de l'expérience précédente car: \hfill\textbf{/1pts}\\
+		$$ P(\{"\text{Pile avec la pièce équlibrée}"\}) = \dfrac{1}{2} = \dfrac{6}{12} = 6 \times \dfrac{1}{12} = 6\times P(\{"\text{Pile avec la pièce truquée}"\})$$
+	\end{enumerate}
+\end{exo}
+
+
+\newpage	
+\begin{exo}\textbf{"Fonctions affines et courbes représentatives"}\\\hfil\\
+Soit $F$ une fonction affine définie sur $\R$, il existe $a,b \in\R$ tel que: $\forall x\in \R \ ;\  F(x)= ax+b$\hfill\\[0.2cm]
+
+$U(-9;-3)$ et $V(-1;5)$.\hfill\\[0.2cm]
+\begin{enumerate}
+	\item Par la méthode du taux d'accroissement: 
+	$$a = \dfrac{y_U - y_V}{x_U - x_V} = \dfrac{-3 - 5}{-9  -(-1)} = \dfrac{-8}{-8} = 1$$
+	Donc $F(x) = 1\times x +b = x+b $. De plus grace au point $V$ on sait que:
+
+		 $$F(-1) = 5 \quad 
+		\Longleftrightarrow \quad -1+b = 5\quad 
+		\Longleftrightarrow \quad b = 6$$
+	$\underline{Conclusion}: \forall x\in \R \ ;\  F(x)= x+6$\hfill\textbf{/2.5pts}\\[0.3cm]
+	\item  \hfill\textbf{/1pts}
+	\begin{minipage}[t]{1\linewidth}
+		\begin{minipage}[t]{0.2\linewidth}
+			\scriptsize
+			\begin{align*}
+			&\quad\quad F(x) \leq 0 \\
+			&\eq x+6 \leq 0 \\
+			&\eq x \leq -6 
+			\end{align*}
+		\end{minipage}\hfil\vrule\hfil
+		\begin{minipage}[t]{0.4\linewidth}
+		$$\begin{tikzpicture}[scale=0.9]
+		\tkzTabInit{$x$ / 1 , \text{signe de:} $F(x)$ / 1}{$-\infty$, $-6$, $+\infty$}
+		\tkzTabLine{, -, z, + }
+		\end{tikzpicture}$$
+		\end{minipage}
+	\end{minipage}
+\hfill\\[0.5cm]
+	
+	\item Soit $\alpha\in\R$ et $W(6;\alpha)$, on veut que: \hfill\textbf{/1.5pts}
+$$\dfrac{y_U - y_W}{x_U - x_W} = -4 \quad 
+\Longleftrightarrow \quad  \dfrac{-3-\alpha }{-9-6} = -4 \quad 
+\Longleftrightarrow \quad \dfrac{-3-\alpha }{-15} = -4$$ 
+	$$\Longleftrightarrow \quad -3-\alpha  = -4 \times (-15) \quad 
+	\Longleftrightarrow \quad -3-\alpha  = 60  \quad \Longleftrightarrow \quad \alpha = -63 $$ 
+\end{enumerate}
+
+\end{exo}
+\begin{exo}\textbf{"Des activités à l'université"}\\\hfil\\
+	On choisit au hasard un étudiant de cette université nous sommes donc dans une situation d'équiprobabilité.
+
+		\begin{enumerate}
+			\item Voir \textbf{Annexe 3} \hfill\textbf{/2pts}
+			
+			\item  
+			\begin{enumerate}
+				\item $P(A) = \dfrac{\#A}{\#\Omega} = \dfrac{5500}{12000} = \dfrac{11}{24}$ \hfill\textbf{/1pts}\\[0.2cm]
+				\item $P(A\cap S) = \dfrac{\#A\cap S}{\#\Omega} = \dfrac{1500}{12000} = \dfrac{1}{8}$ \hfill\textbf{/1pts}\\[0.2cm]
+				\item $P(A\cup S) = \dfrac{\#A\cup S}{\#\Omega} = \dfrac{10500}{12000} = \dfrac{7}{8}$ \hfill\textbf{/1pts}\\[0.2cm]
+				\item $P(\overline{A\cup S}) = 1 -P(A\cup S) =1- \dfrac{7}{8} = \dfrac{1}{8}$\hfill\textbf{/1pts}\\[0.2cm]
+				\item  $P(S\backslash A) = \dfrac{\#S\backslash A}{\#\Omega} = \dfrac{5000}{12000} = \dfrac{5}{12}$ \hfill\textbf{/1pts}
+				
+				
+			\end{enumerate}
+			\item \begin{enumerate}
+				\item $P(S) + P(A) = \dfrac{\#S}{\#\Omega} + \dfrac{\#A}{\#\Omega} = \dfrac{13}{24} + \dfrac{11}{24} = 1 $.\hfill\textbf{/0.5pts}\\[0.25cm]
+				\item $P(S\cup A) + P(S\cap A) = \dfrac{7}{8} + \dfrac{1}{8} = 1 $.\hfill\textbf{/0.5pts}\\[0.25cm]
+				\item On remarque que:\hfill\textbf{/0.5pts}\\ 
+				$$P(S) + P(A) = P(S\cup A) + P(S\cap A)$$\\
+				 Donc : $$P(S\cup A) = P(S) + P(A) - P(S\cap A)$$
+			\end{enumerate}\end{enumerate}
+
+	
+\end{exo}
+\lhead{Lycée Le Maurice Genevoix}\chead{}\rhead[t]{Année~2021-2022}\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{\textbf{Fin}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}	
+
+\newpage
+
+		\section*{Annexe 1: une pièce équilibrée}
+\begin{lstlisting}[style=stylepython]
+def piece_equilibree():
+	k = rd.randint(0,1)	
+	return k			
+\end{lstlisting}
+
+\section*{Annexe 2: une pièce truquée}
+\begin{lstlisting}[style=stylepython]
+def piece_truquee():
+	k = rd.randint(1,12)
+	if k <= 11:
+		return 0
+	else:
+		return 1			
+\end{lstlisting}
+
+
+\section*{Annexe 3:}
+\hfil\\[1cm]
+
+$$\begin{tikzpicture}[scale=2]
+\draw[red](-1,0) ellipse [x radius=2cm, y radius=1cm];
+\draw(2,0.05) node{$\#S\backslash A = 5000 $};
+\draw(-2,0.05) node{$\#A\backslash S = 4000$};
+\draw(0,-1.5) node[]{$\#\overline{A\cup S} = 1500$};
+\draw(0,0.05) node{$\#A\cap S = 1500$};
+\draw(2.5,2) node{$\#\Omega = 12000$};
+\draw(-1.5,1.15) node{$\#A = 5500$};
+\draw(1.5,1.15) node{$\#S = 6500$};
+\draw[blue](1,0) ellipse [x radius=2cm, y radius=1cm];
+\draw[black](0,0) ellipse [x radius=4cm, y radius=2cm];
+\end{tikzpicture}$$
+
+
+
+\end{document}
+
+
+

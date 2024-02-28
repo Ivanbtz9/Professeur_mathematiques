@@ -1,0 +1,287 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor,multicol}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	
+	
+	\begin{center}
+		\Large \sc colle 16 = Déterminants et dénombrement 
+	\end{center}
+
+
+
+
+
+
+
+
+
+
+\section*{Déterminants:}\hfill\\[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\
+		Calculer en mettant en évidence la factorisation le déterminant suivant:
+				$$ D = 
+	\begin{vmatrix}
+	1&\cos a& \cos 2a\\1&\cos b& \cos 2b\\1&\cos c& \cos 2c
+	\end{vmatrix}
+	$$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\quad\\
+			Calculer les déterminants des matrices suivantes :
+			
+			$$
+			\begin{pmatrix}
+			a&b&c\\c&a&b\\b&c&a
+			\end{pmatrix}
+			\quad
+			\begin{pmatrix}
+			10 & 0 & -5 & 15 \\ -2 & 7 & 3 & 0 \\ 8 & 14 & 0 & 2 \\ 0 & -21 & 1 & -1
+			\end{pmatrix}
+			$$
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	
+			\begin{exo}\quad\\
+		Soit $a$ un réel.
+		On note $\Delta_n$ le déterminant suivant : 
+		$$
+		\Delta_n = 
+		\left\vert
+		\begin{matrix}
+		a   &    0   & \cdots & 0      & n-1 \\
+		0   &    a   & \ddots & \vdots & \vdots \\
+		\vdots & \ddots & \ddots & 0      & 2 \\
+		0   & \cdots &   0    & a      & 1 \\
+		n-1  & \cdots &   2    & 1      & a
+		\end{matrix}
+		\right\vert
+		$$
+		\begin{enumerate}
+			\item Calculer $\Delta_n$ en fonction de $\Delta_{n-1}$.
+			\item Démontrer que : $\displaystyle \forall n\geq2\quad
+			\Delta_n=a^n-a^{n-2}\sum_{i=1}^{n-1}{i^2}$.
+		\end{enumerate}
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+				\begin{exo}\quad\\[0.25cm]
+			Soit $(a_{0},...,a_{n-1})\in\C^{n}$, $x\in\C$. Calculer
+			$$
+			\Delta_{n}=
+			\left|
+			\begin{matrix}
+			x &  0    &        & a_{0}   \\
+			-1 &\ddots &\ddots  &\vdots  \\
+			&\ddots &x      & a_{n-2} \\
+			0 &       & -1      & x+a_{n-1}
+			\end{matrix}
+			\right|
+			$$
+			\hfill\\[0.25cm]
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+
+		
+		\begin{exo}\quad\\
+		Calculer les déterminants des matrices suivantes :
+		
+		$$
+		\begin{pmatrix}
+		a&a&b&0 \\  a&a&0&b \\  c&0&a&a \\ 0&c&a&a
+		\end{pmatrix}
+		\quad
+		\begin{pmatrix}
+		1&0&3&0&0 \\ 0&1&0&3&0 \\ a&0&a&0&3 \\ b&a&0&a&0 \\ 0&b&0&0&a  
+		\end{pmatrix}
+		$$
+		\hfill\\[0.25cm]
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo} \textit{\textbf{Déterminant de Vandermonde}}\quad\\
+		Montrer que
+		$$\left|
+		\begin{array}{ccccc}
+		1 & t_1 & t_1^2 & \ldots & t_1^{n-1} \\
+		1 & t_2 & t_2^2 & \ldots & t_2^{n-1} \\\
+		\ldots&\ldots&\ldots& \ldots & \ldots \\
+		1 & t_n & t_n^2 & \ldots & t_n^{n-1}
+		\end{array}\right|
+		= \prod_{1 \le i < j \le n} (t_j - t_i) $$
+				\hfill\\[0.25cm]
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}	
+		
+	\end{minipage}
+\end{minipage}
+
+\section*{Dénombrement - Combinatoire:}\hfill\\[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\
+			Dénombrer les anagrammes des mots suivants:
+			$$MATHS, \quad RIRE,\quad ANANAS$$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\quad\\
+			Un damier est un plateau carré contenant 100 cases.
+			\begin{enumerate}
+				\item Combien y a-t-il de manières de placer 50 pièces blanches et 50 pièces noires sur ce damier ?
+				\item Deux pièces sont dîtes côte à côte si l'une des arêtes de la case où elles se situent respectivement est en commun. Combien y a-t-il de manière de placer 50 pièces noires telles q'au moins deux pièces noires soient côte à côte. 
+				\item Soient $n_1,n_2,n_3,n_4 \in\N$ tels que $n_1 + n_2 + n_3 +n_4 = 100$. On dispose de $n_1$ pièces noires, $n_2$ pièces blanches, $n_3$ pièces bleus et $n_4$ pièces rouges. Combien y a-t-il de manières différentes différentes de placer toutes ces pièces sur un damier. 
+			\end{enumerate}
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+
+		
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\quad\\
+			Lors d'une loterie de Noël, $300$ billets sont
+			vendus aux enfants de l'école ; $4$ billets sont gagnants.
+			J'achète $10$ billets, quelle est la probabilité pour que je gagne au moins un lot?
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\quad\\
+			La probabilité pour une population d'être atteinte
+			d'une maladie $A$ est $p$ donné; dans cette même population, un individu
+			peut être atteint par une maladie $B$ avec une probabilité $q$ donnée aussi; 
+			on suppose que les maladies sont indépendantes : quelle est la
+			probabilité d'être atteint par l'une et l'autre de ces maladies?
+			Quelle est la probabilité d'être atteint par l'une ou l'autre de ces
+			maladies?
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo} \quad\\
+			Dans un jeu de $52$ cartes, on prend une carte au hasard : les événements <<tirer un roi>> et 
+			<<tirer un pique>> sont-ils indépendants? quelle est la probabilité de <<tirer un roi ou
+			un pique>> ?
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+
+\end{document}

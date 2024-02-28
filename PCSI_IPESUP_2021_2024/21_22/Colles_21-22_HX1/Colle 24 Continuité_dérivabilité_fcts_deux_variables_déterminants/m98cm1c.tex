@@ -1,0 +1,390 @@
+%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper]{article} 
+%\usepackage{french}							%\`a commenter si vous n'avez pas french
+\makeatletter
+\font\@upstt=cmtt10
+\def\ps@ups{\let\@mkboth\@gobbletwo
+     \let\@oddhead\@empty\def\@oddfoot{\@upstt\hfil\@upstitle\ - page \thepage\ifodd\count0\hfill\fi}%
+     \let\@evenhead\@empty\let\@evenfoot\@oddfoot
+}
+\edef\@upstitle{\jobname.tex}      % nom du fichier
+\pagestyle{ups}
+\ifx\numerodepage\undefined\count0=1\else\count0=\numerodepage\fi   % num\'ero de la premi\`ere page
+\makeatother
+
+																%rectifier alors les << et les >> (voir ci-dessous)
+
+% Si vous n'avez pas le package french, remplacer tous les <<Space
+%	par `` et tous les Space>> par des ''.
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%% Les inputs. Merci de lire les commentaires accompagnateurs.
+
+\def\RR{\mathbf{R}}
+  % \`a remplacer par \def\RR{\ensuremath{\Bbb R}} si vous avez les  bonnes fontes  blackboard.
+\def\ZZ{\mathbf{Z}}
+  % idem, il faudra alors propbablement rajouter un \usepackage{amssymb}  dans l'en t\^ete.
+\def\NN{\mathbf{N}}
+	%idem
+
+%%%%%%%%%%%%%%%%%%%% Page de titre
+\title{Centrale MP, Math\'ematiques I\\
+       \'Epreuve de 4 heures du 27 mai 1998\\
+       version $\alpha 0.1$ Mon 27 April 1998 14:33:49\\
+       version $\alpha 0.2$ Wed 29 April 1998 13:36:16}
+
+\author{Joseph \textsc{Di Valentin}\\
+        Philippe \textsc{Esperet}}
+
+\date{27 avril 1998}
+\maketitle
+  %\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% Introduction
+\vspace*{3em}
+\centerline{\textbf{\Large Introduction}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{enumerate}
+\item
+
+  Titre propos\'e : `` Fonctions absolument monotones '' (ce th\`eme avait
+\'et\'e abord\'e \`a l'X en  1969, puis \`a Saint-Cloud en 1982).
+
+\item
+
+	\'Epreuve un peu trop facile, qui classera assez mal les 500
+premiers (les avis sont cependant partag\'es sur ce point). Les
+candidats sont guid\'es pas \`a pas et ont trop peu d'initiatives \`a
+prendre (les indications ne me semblent d'ailleurs pas toujours
+judicieuses).
+
+\item
+
+	Les calculatrices jouent un r\^ole n\'egligeable.
+
+\item
+
+	La partie I (g\'en\'eralit\'es d'analyse) peut-\^etre donn\'ee en Sup. Les
+parties II et III portent surtout sur les s\'eries enti\`eres et (un peu)
+sur la sommabilit\'e.
+
+\item
+
+  Erreurs ou impr\'ecisions d'\'enonc\'e (une seule est vraiment g\^enante,
+mais on peut se demander pourquoi il en subsiste tant de petites) :
+
+  \begin{enumerate}
+%		 \item																														
+%																																			
+%		Incoh\'erence au niveau des doubles indices : pourquoi $\varphi$ et	
+%	par $\varphi_n$ au I-F-4 et $S_j$ au lieu de $S_j^{(n)} au III-D-2 ?
+
+   \item
+   I-F-2) `` o\`u $f_0(x)=1$ '' : quel $x$ ?
+
+	\item
+   I-F-4) Quel $n$ ? L'indication me para\^{\i}t sans int\'er\^et, focalisant
+   l'attention sur un d\'etail.
+
+	\item
+	I-F-6) Si $\mu$ est solution, tout $\rho \mu$ \'egalement
+	($\rho\ge0$), en particulier la forme lin\'eaire nulle. Ce n'est sans
+	doute pas ce que voulaient les auteurs du probl\`eme.
+
+	\item
+	II-A-1 \`a II-A-4 : indications dans un ordre confus, je ne vois pas \`a
+	quoi sert celle de II-A-4, la question se faisant en une ligne
+	directement.
+
+	\item
+
+	III-C $\Delta_h^n(f)\ge 0$ : o\`u ?
+
+	\item
+	
+	III-D L'intervalle est ind\^ument ferm\'e en $a$ (d\'etail), mais
+$(b-a)/0$ est tout de m\^eme tr\`es g\^enant car on ne peut se passer du cas
+$n=0$ (\^oter \`a $f$ une constante suffisamment grande n'alt\`ere pas les
+$\Delta_i$ ($i\ge1$)).
+ 	
+	\end{enumerate}
+
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace*{3em}
+\centerline{\textbf{\Large Premi\`ere partie}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Partie I
+%%%%%%%%%%%%%%%%%%%%%
+\begin{enumerate}
+\item %1-A,B,C,D,E,F
+%--------------------
+\begin{enumerate}
+
+
+\item 
+
+	Imm\'ediat par Leibniz dans le cas AM comme dans le cas CM. La compos\'ee
+de deux AM en est \'egalement une. En effet, $(g\circ f)^{(n)}$ est dans
+$\NN[X_1,\ldots,X_n,Y_1,\ldots,Y_n]$, o\`u il faut substituer au $X_i$
+les $g^{(i)}\circ f$ et aux $Y_i$ les $f^{(i)}$.
+
+\item
+
+ Cas particulier de la remarque ci-dessus. On a aussi directement :
+$\exp\circ f\ge0,\ (\exp\circ f)'=f'\cdot(\exp\circ f)\ge0$.
+
+	Supposons que pour tout $k\in\NN_{n-1},\ (\exp\circ f)^{(k)}\ge0$,
+alors toujours en utilisant la formule de Leibniz : $(\exp\circ
+f)^{(n)}=\sum_{k=0}^{n-1}C_{n-1}^kf^{(k+1)}\cdot(\exp\circ
+f)^{(n-1-k)}$, qui est bien $\geq0$.
+
+ 
+
+\item 
+
+	Imm\'ediat.
+
+\item
+
+	$(-\log x)^{n)}=(-1)^n (n-1)!/x^n$.
+
+	$(1/\sqrt{1-x^2})^{(n)}=P_n(x)\times (1-x^2)^{-n-\frac12}$ o\`u $P_n(x)$
+est un polyn\^ome de $\NN_n[X]$, de la parit\'e de $n$ (il serait facile
+d'en savoir plus) gr\^ace \`a la formule $P_{n+1}=P'_n(1-x^2)+(2n+1)\,
+P_n(x)$. La propri\'et\'e de l'arcsin en d\'ecoule (l'int\'egrale prise est
+bien positive).
+
+	Une fa\c{c}on plus \'el\'egante d'agir consiste \`a remarquer que le
+d\'eveloppement en s\'erie enti\`ere de la fonction est \`a coefficients positifs.
+
+	Enfin $(\tan x)^{(n)}\in \NN_{n+1}[t]$ (o\`u $t$ d\'esigne $\tan x$)
+permet de conclure.
+
+\item
+
+ C'est la th\'eor\`eme de la convergence monotone (croissante et minor\'ee
+par 0 \`a la borne de gauche), puis le th\'eor\`eme classique cons\'equence des
+accroissement finis sur les limites de d\'eriv\'ees.
+
+\item
+
+	R\'ecurrence. Cela ne s'\'etend pas en $b$ : $e^x$ en $\infty$ par
+exemple.
+
+\item
+
+	$\mu$ est croissante, et pour tout $x$ on a $f(x)\le |f(x)|$ \`a
+laquelle on applique $\mu$. On conclut en changeant $f$ en $-f$.
+
+\item
+
+	Notations $f_0(x)=1$ douteuse : quel $x$ ? Je prends quant \`a moi
+$\overline{1}$ la fonction constante et \'egale \`a 1. C'est alors la
+pour tout $x$, $f(x)\le |f|_{\infty}\times \overline{1}(x)$ qui
+permet de conclure.
+
+\item
+
+$|\mu(e_{x_2})-\mu(e_{x_1})|\le\mu(\overline{1})\times
+\sup|e_{x_2}-e_{x_1}|$. 
+
+	Il n'y a plus qu'\`a utiliser l'uniforme continuit\'e sur un compact
+de $f(x,t)=e^{-xt}$.
+
+Un calcul explicite est \'egalement possible en \'etudiant par
+Taylor-Lagrange la diff\'erence $e^{-xt}-e^{-yt}$.
+
+\item
+
+	L'indication (inutile) de l'\'enonc\'e se d\'emontre \emph{via} un Taylor global
+\`a l'ordre 2. 
+
+\item
+
+	M\^eme remarque : intervient l'uniforme continuit\'e de $f'_x$ (avec
+les notations ci-dessus). On termine par r\'ecurrence.
+
+\item
+
+	Question mal pos\'ee, 0 est d\'ej\`a solution, et puis il y a stabilit\'e
+par multiplication positive. On peut quand m\^eme prendre
+$\mu(f)=f((a+b)/2)$ et $\mu(f)=\int_{[a,b]} f$ (le second d\'ebouche sur
+une non banalit\'e : $(e^{-ax}-a^{-bx})/x$ convenablement prolong\'ee en 0
+est $\mathcal{C}^\infty$ ; oui, directement, car elle est analytique).
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace*{3em}
+\centerline{\textbf{\Large Seconde partie}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% Partie II
+%%%%%%%%%%%%%%%%%%%%%
+%--------------------
+\begin{enumerate}
+\item
+
+	Je ne suis pas l'\'enonc\'e en d\'etail, l'indication de II-A-4
+m'\'echappant. On suppose $0<x<b$ et l'on intercale strictement un $y$
+entre $x$ et $b$. Le cas $x=0$ se rajoutera apr\`es coup. On change de
+variable dans le reste int\'egral pour aboutir \`a :
+
+	$$f(x)-\sum_0^n x^s\,f^{(s)}(0)/s!=R_n(x)=\frac{x^{n+1}}{n!}\cdot
+\int_0^1 (1-u)^{n}\, f^{(n+1)}(xu)\, du\qquad(1)$$
+
+	La croissance en $z$ de $R_n(z)/z^n$ est claire, d'o\`u
+$R_n(x)\le R_n(y)\times (x/y)^n\le f(y)\times (x/y)^n$.  Alors le
+reste tend vers 0, et l'on conclut en passant \`a la limite que $f$
+est somme de sa s\'erie de Taylor sur $]0,b[$, puis en fait sur $[0,b[$.
+
+	Supposons pour fixer les id\'ees $r\le b$, et soit $x'\in ]-r,0[$, il
+est simple de montrer que $|R_n(x')|\le R_n(-x')$ car pour tout $u$ on
+a $f^{(n+1)}(x'u)\le f^{(n+1)}(-x'u)$ (croissance de la d\'eriv\'ee
+$n+1$-i\`eme). Ainsi $|R_n(x')|$ tend \'egalement vers 0, et l'on peut
+conclure.
+
+\textsc{remarque :} si l'on veut respecter l'\'enonc\'e \`a la lettre, on a
+	besoin de $\lim_{x\to0}x\times \int_{[0,1]} (1-u)^n\,
+f^{(n+1)}(xu)\,du=0$, ce qui est acquis car la fonction sous
+l'int\'egrale est continue de deux variables et $\int_{[0,1]} (1-u)^n\,
+f^{(n+1)}(0)\,du=0$ -- il suffit d'ailleurs de $f^{(n+1)}$ born\'ee au
+voisinage de 0 pour conclure.
+
+\textsc{remarque :} l'indication avec $h_{\varepsilon}$ peut
+s'utiliser en remarquant que $h_{\varepsilon}^{(n)}$ est positive sur
+$[0,r[$ (monotonie de la d\'eriv\'ee $n$-i\`eme). On peut donc utiliser la
+question pr\'ec\'edente. Enfin, $h_1$ est paire tandis que $h_{-1}$ est
+impaire, ce qui permet d'\'etendre les formules \`a $|x|<r$.
+
+\item
+
+	Arrive la question la plus d\'elicate du probl\`eme. La formule
+$f^{(s)}(x)=\sum x^p/p!\,f^{(s+p)}(0)$ se prolonge en $a$. En effet le
+membre de gauche est born\'e au voisinage de $a$ par un $M_s$, donc les
+sommes partielles de la s\'erie enti\`ere sont major\'ees par ce $M_s$, et
+l'on peut passer \`a la limite quand $x\to a$ (les sommes partielles
+sont des polyn\^omes). Ainsi la s\'erie enti\`ere converge quand
+$x=a$. Comme tout est positif, il est sans souci de montrer que sa
+limite en $a^+$ de la somme est la valeur qu'elle prend en $a$.
+
+	Il reste \`a regarder la famille positive $\sum_{s,p} (x-a)^s/s! \,
+a^p/p!\, f^{(s+p)}(0)$ qui est sommable car elle l'est en sommant le
+long des $s+p=n_0=\mbox{cste}$ ; ceci donne acc\`es \`a la somme :
+$f(x)$.
+
+\textsc{remarque :} 
+
+\textsc{remarque :} la fin de la d\'emonstration est exactement celle qui
+permet d'avoir l'analycit\'e d'une somme de s\'erie enti\`ere dans son
+disque ouvert de convergence.
+
+
+\item
+
+	Le seul cas possible est que toutes les d\'eriv\'ees en $a$ soit nulles,
+mais alors $f$ est nulle.
+
+\item
+
+	D'apr\`es la question pr\'ec\'edente $f$ est un polyn\^ome de degr\'e
+$p-1$, plus pr\'ecis\'ement un 
+$\sum_0 ^{p-1} \alpha_k\, (x-a)^k$ avec les $\alpha_i\ge0$.
+	
+
+	
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace*{3em}
+\centerline{\textbf{\Large Troisi\`eme partie}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+%% Partie III
+%%%%%%%%%%%%%%%%%%%%%
+%--------------------
+\begin{enumerate}
+\item
+
+  $]a,b-nh[$ (le vide si $b-nh\le a$)
+
+\item
+
+	R\'ecurrence, ou plus \'el\'egamment calculer $(\tau_h-Id)^n$ o\`u $\tau_h$
+est la translation de $h$ (elle commute avec l'identit\'e).
+
+\item
+
+	Question impr\'ecise, il manque `` sur le domaine de d\'efinition de
+$\Delta_h^nf$ ''. Si l'on suit l'indication,
+$X'(h)=\Delta_h^n(f')(x+h)$ (car $\Delta_h^n(f)(x)$ dispara\^{\i}t dans la
+d\'erivation par rapport \`a $h$). Comme $f'$ est tout autant AM que $f$,
+on peut appliquer l'hypoth\`ese de r\'ecurrence, $X$ cro\^{\i}t (sur $[0,b-a[$)
+et est nul en $0$, donc reste positif.
+
+\item
+
+	La division par 0 est g\^enante (de plus l'intervalle devrait \^etre
+ouvert en $a$ et non ferm\'e).
+
+	On a besoin de $n=0$ pour pouvoir dire quoi que soit sur $f$ (sinon,
+on peut toujours \^oter \`a $f$ une constante assez grande sans alt\'erer les
+$\Delta_i$ pour $i$ plus grand que un).
+
+	Je comprends qu'il faut supposer $f$ positive (mais la moiti\'e de la
+question pos\'ee s'\'evapore alors), et je me donne $a<\alpha<\beta<b$, je
+choisis $h=(\beta-\alpha)/K$ avec $K$ entier assez grand pour que
+$h<b-\beta$. Alors $]a,b-h[\supset ]a,\beta[$ et je peux joindre
+$\alpha$ \`a $\beta$ par des petits pas d'amplitude $h$, avec \`a chaque
+fois $0\le f(\alpha_i+h)-f(\alpha_i)$. On ajoute ces in\'egalit\'es pour
+conclure.
+
+\item
+
+	Par th\'eor\`emes d'op\'eration sur les s\'eries produit, $(e^t-1)^n$ est
+d\'eveloppable en s\'erie enti\`ere sur $\RR$, et le premier terme est
+$t^n$ (qui se d\'erivera $n$ fois en $n!$).
+
+\textsc{remarque :} un d\'eveloppement limit\'e va bien s\^ur \'egalement
+donner la r\'eponse.
+
+
+	Mais on peut \'egalement d\'evelopper la puissance par le bin\^ome avant
+de d\'eriver. Identifier les deux points de vue donne le r\'esultat.
+
+\item
+
+	On \'ecrit un Taylor-Young pour $f$ en $x_0$, \`a l'ordre $n$, dans la
+formule qui donne la d\'efinition de $\Delta$ (question III-B). En
+permutant les sommes (finies cette fois), on a (en omettant le
+$o(h^n)$),
+
+	$$\Delta_h^n(f)(x_0)=\sum_s \frac{h^s}{s!}\,f^{(s)}\,\left(\sum_{k=0}^n
+(-1)^{n-k}{k \choose n}\, k^s\right).$$
+
+	Dans la somme interne, seule subsiste la contribution de $s=n$, qui
+donne que $\Delta_h^n(f)(x_0)/h^n\to f^{(n)}(x_0)$ et cette derni\`ere
+quantit\'e se trouve donc \^etre positive.
+
+\end{enumerate}
+
+
+
+
+%--------------------
+\end{enumerate} % fin de la seconde partie
+%--------------------
+
+%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%

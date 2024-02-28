@@ -1,0 +1,999 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00104, rouget, 2010/07/11}
+
+\titre{Fonctions réelles d'une variable réelle dérivables (exclu études de fonctions)} 
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable\quad T~:~pour travailler et mémoriser le cours
+\end{center}
+
+
+\exercice{5407, rouget, 2010/07/06}
+\enonce{005407}{***}
+Soit $f\in C^1([a,b],\Rr)$ telle que $\frac{f(b)-f(a)}{b-a}=\mbox{sup}\{f'(x),\;x\in[a,b]\}$. Montrer que $f$ est affine.
+\finenonce{005407}
+
+
+\finexercice
+\exercice{5408, rouget, 2010/07/06}
+\enonce{005408}{*** Formule de \textsc{Taylor}-\textsc{Lagrange}}
+Soient $a$ et $b$ deux réels tels que $a<b$ et $n$ un entier naturel. Soit $f$ une fonction élément de $C^n([a,b],\Rr)\cap D^{n+1}(]a,b[,\Rr)$. Montrer qu'il existe $c\in]a,b[$ tel que 
+
+$$f(b)=\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(b-a)^k+\frac{(b-a)^{n+1}f^{(n+1)}(c)}{(n+1)!}.$$
+
+Indication. Appliquer le théorème de \textsc{Rolle} à la fonction $g(x)=f(b)-\sum_{k=0}^{n}\frac{f^{(k)}(x)}{k!}(b-x)^k-A\frac{(b-x)^{n+1}}{(n+1)!}$ où $A$ est intelligemment choisi.
+\finenonce{005408}
+
+
+\finexercice
+\exercice{5409, rouget, 2010/07/06}
+\enonce{005409}{*** Formule des trapèzes}
+Soit $f\in C^2([a,b],\Rr)\cap D^3(]a,b[,\Rr)$. Montrer qu'il existe $c\in]a,b[$ tel que
+
+$$f(b)=f(a)+\frac{b-a}{2}(f'(a)+f'(b))-f^{(3)}(c).$$
+
+Indication. Appliquer le théorème de \textsc{Rolle} à $g'$ puis $g$ où $g(x)=f(x)-f(a)-\frac{x-a}{2}(f'(x)+f'(a))-A(x-a)^3$ où $A$ est intelligemment choisi.
+
+Que devient cette formule si on remplace $f$ par $F$ une primitive d'une fonction $f$ de classe $C^1$ sur $[a,b]$ et deux fois dérivable sur $]a,b[$~?~Interprétez géométriquement.
+\finenonce{005409}
+
+
+\finexercice
+\exercice{5410, rouget, 2010/07/06}
+\enonce{005410}{**}
+Soit $f$ une fonction convexe sur un intervalle ouvert $I$ de $\Rr$. Montrer que $f$ est continue sur $I$ et même dérivable à droite et à gauche en tout point de $I$.
+\finenonce{005410}
+
+
+\finexercice
+\exercice{5411, rouget, 2010/07/06}
+\enonce{005411}{*** Inégalités de convexité}
+\begin{enumerate}
+\item  Soient $x_1$, $x_2$,..., $x_n$, $n$ réels positifs ou nuls et $\alpha_1$,..., $\alpha_n$, $n$ réels strictement positifs tels que $\alpha_1+...+\alpha_n=1$. Montrer que $x_1^{\alpha_1}..x_n^{\alpha_n}\leq\alpha_1x_1+...+\alpha_nx_n$. En déduire que $\sqrt[n]{x_1...x_n}\leq\frac{x_1+...+x_n}{n}$.
+\item  Soient $p$ et $q$ deux réels strictement positifs tels que $\frac{1}{p}+\frac{1}{q}=1$.
+\begin{enumerate}
+\item Montrer que, pour tous réels $a$ et $b$ positifs ou nuls, $ab\leq\frac{a^p}{p}+\frac{b^q}{q}$ avec égalité si et seulement si $a^p=b^q$. 
+\item Soient $a_1$,..., $a_n$ et $b_1$,..., $b_n$, $2n$ nombres complexes. Montrer que~:
+
+$$\left|\sum_{k=1}^{n}a_kb_k\right|\leq\sum_{k=1}^{n}|a_kb_k|\leq\left(\sum_{k=1}^{n}|a_k|^p\right)^{1/p} \left(\sum_{k=1}^{n}|b_k|^q\right)^{1/q}\;(\mbox{Inégalité de \textsc{Hölder}}).$$
+
+\item Montrer que la fonction $x\mapsto x^p$ est convexe et retrouver ainsi l'inégalité de \textsc{Hölder}.
+\item Trouver une démonstration directe et simple dans le cas $p=q=2$ (inégalité de \textsc{Cauchy}-\textsc{Schwarz}).
+\end{enumerate}
+\end{enumerate}
+\finenonce{005411}
+
+
+\finexercice
+\exercice{5412, rouget, 2010/07/06}
+\enonce{005412}{***I Polynômes de \textsc{Legendre}}
+Pour $n$ entier naturel non nul donné, on pose $L_n=((X^2-1)^n)^{(n)}$.
+\begin{enumerate}
+\item  Déterminer le degré et le coefficient dominant de $L_n$.
+\item  En étudiant le polynôme $A_n=(X^2-1)^n$, montrer que $L_n$ admet $n$ racines réelles simples et toutes dans $]-1;1[$.
+\end{enumerate}
+\finenonce{005412}
+
+
+\finexercice
+\exercice{5413, rouget, 2010/07/06}
+\enonce{005413}{**}
+Déterminer dans chacun des cas suivants la dérivée $n$-ème de la fonction proposée~:
+
+$$1)\;x\mapsto x^{n-1}\ln(1+x)\;2)\;x\mapsto\cos^3x\sin(2x)\;3)\;x\mapsto\frac{x^2+1}{(x-1)^3}\;4)\;x\mapsto(x^3+2x-7)e^x.$$
+\finenonce{005413}
+
+
+\finexercice
+\exercice{5414, rouget, 2010/07/06}
+\enonce{005414}{***I}
+Montrer que la fonction définie sur $\Rr$ par $f(x)=e^{-1/x^2}$ si $x\neq0$ et $0$ si $x=0$ est de classe $C^\infty$ sur $\Rr$.
+\finenonce{005414}
+
+
+\finexercice
+\exercice{5415, rouget, 2010/07/06}
+\enonce{005415}{**}
+Montrer que pour tout réel strictement positif $x$, on a~:$\left(1+\frac{1}{x}\right)^x<e<\left(1+\frac{1}{x}\right)^{x+1}$.
+\finenonce{005415}
+
+
+\finexercice
+\exercice{5416, rouget, 2010/07/06}
+\enonce{005416}{**}
+Soit $f$ une fonction dérivable sur $\Rr$ à valeurs dans $\Rr$ vérifiant $f(0)=f(a)=f'(0)=0$ pour un certain $a$ non nul. Montrer qu'il existe un point distinct de $O$ de la courbe représentative de $f$ en lequel la tangente passe par l'origine.
+\finenonce{005416}
+
+
+\finexercice
+\exercice{5417, rouget, 2010/07/06}
+\enonce{005417}{**** Toute fonction dérivée vérifie le théorème des valeurs intermédiaires}
+Soit $f$ une fonction dérivable sur un intervalle ouvert $I$  à valeurs dans $\Rr$. Soient $a$ et $b$ deux points distincts de $I$ vérifiant $f'(a)<f'(b)$ et soit enfin un réel $m$ tel que $f'(a)<m<f'(b)$.
+\begin{enumerate}
+\item  Montrer qu'il existe $h>0$ tel que $\frac{f(a+h)-f(a)}{h}<m<\frac{f(b+h)-f(b)}{h}$.
+\item  Montrer qu'il existe $y$ dans $[a,b]$ tel que $m=\frac{f(y+h)-f(y)}{h}$ puis qu'il exsite $x$ tel que $f'(x)=m$.
+\end{enumerate}
+\finenonce{005417}
+
+
+\finexercice
+\exercice{5418, rouget, 2010/07/06}
+\enonce{005418}{****}
+Soit $f$ une fonction de classe $C^3$ sur $\Rr$ vérifiant~:~$\forall(x,y)\in\Rr^2,\;f(x+y)f(x-y)\leq(f(x))^2$.
+Montrer que $\forall x\in\Rr,\;f(x)f''(x)\leq(f'(x))^2$ (Indication. Appliquer la formule de \textsc{Taylor}-\textsc{Laplace} entre $x$ et $x+y$ puis entre $x$ et $x-y$).
+\finenonce{005418}
+
+
+\finexercice
+\exercice{5419, rouget, 2010/07/06}
+\enonce{005419}{*IT}
+Etudier la dérivabilité à droite en $0$ de la fonction $f~:~x\mapsto\cos\sqrt{x}$.
+\finenonce{005419}
+
+
+\finexercice
+\exercice{5420, rouget, 2010/07/06}
+\enonce{005420}{**}
+Soit $P$ un polynôme réel de degré supèrieur ou égal à $2$.
+\begin{enumerate}
+\item  Montrer que si $P$ n'a que des racines simples et réelles, il en est de même de $P'$.
+\item  Montrer que si $P$ est scindé sur $\Rr$, il en est de même de $P'$.
+\end{enumerate}
+\finenonce{005420}
+
+
+\finexercice
+\exercice{5421, rouget, 2010/07/06}
+\enonce{005421}{** Généralisation du théorème des accroissements finis}
+Soient $f$ et $g$ deux fonctions continues sur $[a,b]$ et dérivables sur $]a,b[$.
+
+Soit $\begin{array}[t]{cccc}
+\Delta~:&[a,b]&\rightarrow&\Rr\\
+ &x&\mapsto&\left|
+ \begin{array}{ccc}
+ f(a)&f(b)&f(x)\\
+ g(a)&g(b)&g(x)\\
+ 1&1&1
+ \end{array}
+ \right|
+\end{array}$.
+
+\begin{enumerate}
+\item  Montrer que $\Delta$ est continue sur $[a,b]$, dérivable sur $]a,b[$ et calculer sa dérivée.
+\item  En déduire qu'il existe $c$ dans $]a,b[$ tel que $(g(b)-g(a))f'(c)=(f(b)-f(a))g'(c)$.
+\end{enumerate}
+\finenonce{005421}
+
+
+\finexercice
+\exercice{5422, rouget, 2010/07/06}
+\enonce{005422}{**}
+Soit $f$ de classe $C^1$ sur $\Rr_+^*$ telle que $\lim_{x\rightarrow +\infty}xf'(x)=1$. Montrer que $\lim_{x\rightarrow +\infty}f(x)=+\infty$.
+\finenonce{005422}
+
+
+\finexercice
+\exercice{5423, rouget, 2010/07/06}
+\enonce{005423}{***}
+Soit $f$ de classe $C^1$ sur $\Rr$ vérifiant pour tout $x$ réel, $f\circ f(x)=\frac{x}{2}+3$. En remarquant que $f(\frac{x}{2}+3)=\frac{f(x)}{2}+3$, montrer que $f'$ est constante puis déterminer $f$.
+\finenonce{005423}
+
+
+\finexercice
+\exercice{5424, rouget, 2010/07/06}
+\enonce{005424}{***I}
+Soit $f$ de classe $C^1$ sur $\Rr$ vérifiant $\lim_{x\rightarrow +\infty}(f(x)+f'(x))=0$. Montrer que $\lim_{x\rightarrow +\infty}f(x)=\lim_{x\rightarrow +\infty}f'(x)=0$. (Indication. Considérer $g(x)=e^xf(x)$).
+\finenonce{005424}
+
+
+\finexercice
+\exercice{5425, rouget, 2010/07/06}
+\enonce{005425}{***I}
+Etudier la suite $(u_n)$ dans chacun des cas suivants~:
+
+$$\begin{array}{ll}
+1)\;u_0\geq-1\;\mbox{et}\;\forall n\in\Nn,\;u_{n+1}=\sqrt{1+u_n},&2)\;u_0>-1\;\mbox{et}\;\forall n\in\Nn,\;u_{n+1}=\ln(1+u_n)\\
+3)\;u_0\in\Rr\;\mbox{et}\;\forall n\in\Nn,\;u_{n+1}=\sin u_n,&4)\;u_0\in\Rr\;\mbox{et}\;\forall n\in\Nn,\;u_{n+1}=\cos(u_n),\\
+5)\;u_0\in\Rr\;\mbox{et}\;\forall n\in\Nn,\;u_{n+1}=\sin(2u_n),&6)\;u_0\in\Rr\;\mbox{et}\;\forall n\in\Nn,\;u_{n+1}=u_n^2-2u_n+2.
+\end{array}
+$$
+\finenonce{005425}
+
+
+\finexercice
+\finfiche
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005407}
+$f'$ est continue sur le segment $[a,b]$ et donc est bornée sur ce segment. Soit $M=\mbox{sup}\{f'(x),\;x\in[a,b]\}$, et soit $g$ la fonction affine qui prend les mêmes valeurs que $f$ en $a$ et $b$ (c'est-à-dire $\forall x\in[a,b],\;g(x)=\frac{f(b)-f(a)}{b-a}(x-a)+f(a)=$) puis $h=f-g$. On va montrer que $h=0$ sous l'hypothèse $M=\frac{f(b)-f(a)}{b-a}$.
+
+$h$ est dérivable sur $[a,b]$ et, pour $x\in[a,b]$, $h'(x)=f'(x)-\frac{f(b)-f(a)}{b-a}=f'(x)-M\leq0$. $h$ est donc décroissante sur $[a,b]$. Par suite, $\forall x\in[a,b],\;0=h(b)\leq h(x)\leq h(a)=0$. Ainsi, $\forall x\in[a,b],\;h(x)=0$, ou encore $f=g$. $f$ est donc affine sur $[a,b]$.
+\fincorrection
+\correction{005408}
+On a déjà $g(b)=f(b)-f(b)=0$. Puisque $a\neq b$, on peut choisir $A$ tel que $g(a)=0$ (à savoir $A=\frac{(n+1)!}{(b-a)^{n+1}}(f(b)-\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(b-a)^k$).
+
+Avec les hypothèses faites sur $f$, $g$ est d'autre part continue sur $[a,b]$ et dérivable sur $]a,b[$. Le théorème de \textsc{Rolle} permet alors d'affirmer qu'il existe $c\in]a,b[$ tel que $g'(c)=0$.
+
+Pour $x\in]a,b[$, on a
+
+\begin{align*}\ensuremath
+g'(x)&=-\sum_{k=0}^{n}\frac{f^{(k+1)}(x)}{k!}(b-x)^k+\sum_{k=1}^{n}\frac{f^{(k)}(x)}{(k-1)!}(b-x)^{k-1}
++A\frac{(b-x)^n}{n!}\\
+ &=-\sum_{k=0}^{n}\frac{f^{(k+1)}(x)}{k!}(b-x)^k+\sum_{k=0}^{n-1}\frac{f^{(k+1)}(x)}{k!}(b-x)^{k}
++A\frac{(b-x)^n}{n!}=-\sum_{k=0}^{n}\frac{f^{(n+1)}(x)}{n!}(b-x)^n+A\frac{(b-x)^n}{n!}\\
+ &=\frac{(b-x)^n}{n!}(A-f^{(n+1)}(x)).
+\end{align*}
+
+Ainsi, il existe $c\in]a,b[$ tel que $\frac{(b-c)^n}{n!}(A-f^{(n+1)}(c))=0$, et donc, puisque $c\neq b$, tel que $A=f^{(n+1)}(c)$.
+
+L'égalité $g(a)=0$ s'éxrit alors
+
+$$f(b)=\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(b-a)^k+\frac{(b-a)^{n+1}f^{(n+1)}(c)}{(n+1)!},$$
+
+pour un certain réel $c$ de $]a,b[$.
+\fincorrection
+\correction{005409}
+Pour $x\in[a,b]$, posons $g(x)=f(x)-f(a)-\frac{x-a}{2}(f'(x)+f'(a))-A(x-a)^3$ où $A$ est choisi de sorte que 
+$g(b)=g(a)=0$ (c'est-à-dire $A=\frac{1}{(b-a)^3}(f(b)-f(a)-\frac{b-a}{2}(f'(b)+f'(a)))$.
+
+$f\in C^2([a,b],\Rr)\cap D^3(]a,b[,\Rr)$ et donc $g\in C^1([a,b],\Rr)\cap D^2(]a,b[,\Rr)$. Pour $x\in[a,b]$, on a~: 
+$$g'(x)=f'(x)-\frac{1}{2}(f'(x)+f'(a))-\frac{x-a}{2}f''(x)-3A(x-a)^2,$$ 
+
+puis 
+
+$$g''(x)=\frac{1}{2}f''(x)-\frac{1}{2}f''(x)-\frac{x-a}{2}f^{(3)}(x)-6A(x-a)=\frac{x-a}{2}(-12A-f^{(3)}(x)).$$
+
+$g$ est continue sur $[a,b]$, dérivable sur $]a,b[$ et vérifie de plus $g(a)=g(b)$. Donc, d'après le théorème de \textsc{Rolle}, il existe $d\in]a,b[$ tel que $g'(d)=0$. De même, $g'$ est continue sur $[a,d]\subset[a,b]$, dérivable sur $]a,d[(\neq\emptyset)$ et vérifie de plus $g'(a)=g'(d)(=0)$. D'après le théorème de \textsc{Rolle}, il existe $c\in]a,d[\subset]a,b[$ tel que $g''(c)=0$ ou encore tel que $A=-\frac{1}{12}f^{(3)}(c)$ (puisque $c\neq a$).
+
+En écrivant explicitement l'égalité $g(b)=0$, on a montré que~:
+
+$$\exists c\in]a,b[/\;f(b)=f(a)+\frac{b-a}{2}(f'(b)+f'(a))-\frac{1}{12}f^{(3)}(c)(b-a)^3.$$
+
+Si $f\in C^1([a,b],\Rr)\cap D^2(]a,b[,\Rr)$ et si $F$ est une primitive de $f$ sur $[a,b]$, la formule précédente s'écrit~:
+
+$$\int_{a}^{b}f(t)\;dt=F(b)-F(a)=\frac{b-a}{2}(F'(b)+F'(a))-\frac{1}{12}F^{(3)}(c)(b-a)^3=\frac{b-a}{2}(f(b)+f(a))-\frac{1}{12}f''(c)(b-a)^3.$$
+
+Donc, si $f\in C^1([a,b],\Rr)\cap D^2(]a,b[,\Rr)$, 
+
+$$\exists c\in]a,b[/\;\int_{a}^{b}f(t)\;dt=\frac{b-a}{2}(f(b)+f(a))-\frac{1}{12}f''(c)(b-a)^3.$$
+
+Interprétation géométrique.
+
+Si $f$ est positive, $A_1=\int_{a}^{b}f(t)\;dt$ est l'aire du domaine $D=\{M(x,y)\in\Rr^2/\;a\leq x\leq b\;\mbox{et}\;0\leq y\leq f(x)\}$ et $A_2=\frac{b-a}{2}(f(b)+f(a))$ est l'aire du trapèze $\left(
+\begin{array}{c}
+a\\
+0
+\end{array}
+\right)\left(
+\begin{array}{c}
+b\\
+0
+\end{array}
+\right)\left(
+\begin{array}{c}
+b\\
+f(b)
+\end{array}
+\right)\left(
+\begin{array}{c}
+a\\
+f(a)
+\end{array}
+\right)$. Si $M_2=\mbox{sup}\{|f''(x)|,\;x\in[a,b]\}$ existe dans $\Rr$, on a~:
+
+$$|A_1-A_2|\leq M_2\frac{(b-a)^3}{12}.$$
+
+%$$\includegraphics{../images/img005409-1}$$
+
+\fincorrection
+\correction{005410}
+Supposons que $f$ est convexe sur un intervalle ouvert $I=]a,b[$ ($a$ et $b$ réels ou infinis).
+
+Soit $x_0\in I$. On sait que la fonction pente en $x_0$ est croissante.
+
+Pour $x\neq x_0$, posons $g(x)=\frac{f(x)-f(x_0)}{x-x_0}$. Soit $x'$ un élément de $]x_0,b[$. $\forall x\in]a,x_0[$, on a $g(x)<g(x')$, ce qui montre que $g$ est majorée au voisinage de $x_0$ à gauche. Etant croissante, $g$ admet une limite réelle quand $x$ tend vers $x_0$ par valeurs inférieures ou encore, $\lim_{x\rightarrow x_0,\;x<x_0}\frac{f(x)-f(x_0)}{x-x_0}$ existe dans $\Rr$. $f$ est donc dérivable à gauche en $x_0$. On montre de même que $f$ est dérivable à droite en $x_0$.
+
+Finalement, $f$ est dérivable à droite et à gauche en tout point de $]a,b[$. En particulier, $f$ est continue à droite et à gauche en tout point de $]a,b[$ et donc continue sur $]a,b[$.
+\fincorrection
+\correction{005411}
+\begin{enumerate}
+\item  La fonction $f~:~x\mapsto\ln x$ est deux fois dérivable sur $]0,+\infty[$ et, pour $x>0$, $f''(x)=-\frac{1}{x^2}<0$. Par suite, $f$ est concave sur $]0,+\infty[$. On en déduit que~:
+
+$$\forall n\in\Nn,\;\forall(x_1,...,x_n)\in(]0,+\infty[)^n,\;\forall(\alpha_1,...,\alpha_n)\in(]0,1[)^n,\;
+(\sum_{k=1}^{n}\alpha_k=1\Rightarrow\ln(\sum_{k=1}^{n}\alpha_kx_k)\geq\sum_{k=1}^{n}\alpha_k\ln(x_k),$$
+
+et donc par croissance de $f$ sur $]0,+\infty[$,
+
+$$\prod_{k=1}^{n}x_k^{\alpha_k}\leq\sum_{k=1}^{n}\alpha_kx_k.$$
+
+Si l'un des $x_k$ est nul, l'inégalité précédente est immédiate.
+
+En choisissant en particulier $\alpha_1=...=\alpha_n=\frac{1}{n}$, de sorte que $(\alpha_1,...,\alpha_n)\in(]0,1[)^n$ et que $\sum_{k=1}^{n}\alpha_k=1$, on obtient
+ 
+$$\forall n\in\Nn^*,\;\forall(x_1,...,x_n)\in([0,+\infty[)^n,\;\sqrt[n]{x_1...x_n}\leq\frac{1}{n}(x_1+...+x_n).$$
+
+\item 
+\begin{enumerate}
+\item Soient $p$ et $q$ deux réels strictement positifs vérifiant $\frac{1}{p}+\frac{1}{q}=1$ (de sorte que l'on a même $\frac{1}{p}<\frac{1}{p}+\frac{1}{q}=1$ et donc $p>1$ et aussi $q>1$).
+
+Si $a=0$ ou $b=0$, l'inégalité proposée est immédiate.
+
+Soit alors $a$ un réel strictement positif puis, pour $x\geq0$, $f(x)=\frac{a^p}{p}+\frac{x^q}{q}-ax$.
+
+$f$ est dérivable sur $[0,+\infty[$ (car $q>1$) et pour $x\geq0$, $f'(x)=x^{q-1}-a$.
+$q$ étant un réel strictement plus grand que $1$, $q-1$ est strictement positif et donc, la fonction $x\mapsto x^{q-1}$ est strictement croissante sur $[0,+\infty[$. Par suite,
+
+$$f'(x)>0\Leftrightarrow x^{q-1}>a\Leftrightarrow x>a^{1/(q-1)}.$$
+
+$f$ est donc strictement décroissante sur $[0,a^{1/(q-1)}]$ et strictement croissante sur $[a^{1/(q-1)},+\infty[$. Ainsi,
+
+$$\forall x\geq0,\;f(x)\geq f(a^{1/(q-1)})=\frac{1}{p}a^{p}+\frac{1}{q}a^{q/(q-1)}-a.a^{1/(q-1)}.$$
+
+Maintenant, $\frac{1}{p}+\frac{1}{q}=1$ fournit $q=\frac{p}{p-1}$ puis $q-1=\frac{1}{p-1}$. Par suite, $\frac{q}{q-1}=p$. Il en résulte que
+
+$$\frac{1}{p}a^{p}+\frac{1}{q}a^{q/(q-1)}-a.a^{1/(q-1)}=(\frac{1}{p}+\frac{1}{q}-1)a^p=0.$$
+
+$f$ est donc positive sur $[0,+\infty[$, ce qui fournit $f(b)\geq0$. De plus, 
+
+$$f(b)=0\Leftrightarrow b=a^{1/(q-1)}\Leftrightarrow b^q=a^{q/(q-1)}\Leftrightarrow b^q=a^p.$$
+
+\item Soient $A=\sum_{k=1}^{n}|a_k|^p$ et $B=\sum_{k=1}^{n}|b_k|^q$.
+
+Si $A=0$, alors $\forall k\in\{1,...,n\},\;a_k=0$ et l'inégalité est immédiate. De même, si $B=0$.
+
+Si $A>0$ et $B>0$, montrons que $\sum_{k=1}^{n}\frac{|a_k|}{A^{1/p}}\frac{|b_k|}{B^{1/q}}\leq1$.
+
+D'après a),
+
+$$\sum_{k=1}^{n}\frac{|a_k|}{A^{1/p}}\frac{|b_k|}{B^{1/q}}\leq
+\sum_{k=1}^{n}(\frac{1}{p}\frac{|a_k|^p}{A}+\frac{1}{q}\frac{|b_k|^q}{B})=\frac{1}{pA}.A+\frac{1}{qB}.B=1,$$
+
+ce qu'il fallait démontrer.
+
+\item Pour $p>1$, la fonction $x\mapsto x^p$ est deux fois dérivable sur $]0,+\infty[$ et $(x^p)''=p(p-1)x^{p-2}>0$. Donc, la fonction $x\mapsto x^p$ est strictement convexe sur $]0,+\infty[$ et donc sur $[0,+\infty[$ par continuité en $0$. Donc,
+
+$$\forall(x_1,...,x_n)\in(]0,+\infty[)^n,\;\forall(\lambda_1,...,\lambda_n)\in([0,+\infty[)^n\setminus\{(0,...,0)\},
+\;\left(\frac{\sum_{k=1}^{n}\lambda_kx_k}{\sum_{k=1}^{n}\lambda_k}\right)^p\leq
+\frac{\sum_{k=1}^{n}\lambda_kx_k^p}{\sum_{k=1}^{n}\lambda_k},$$
+
+et donc 
+$$\sum_{k=1}^{n}\lambda_kx_k\leq(\sum_{k=1}^{n}\lambda_k)^{1-\frac{1}{p}}(\sum_{k=1}^{n}\lambda_kx_k^p)^{\frac{1}{p}}.$$
+
+On applique alors ce qui précède à $\lambda_k=|b_k|^q$ puis $x_k=\lambda_k^{-1/p}|a_k|$ (de sorte que $\lambda_kx_k=|a_kb_k|$) et on obtient l'inégalité désirée.
+
+\item Pour $p=q=2$, c'est l'inégalité de \textsc{Cauchy}-\textsc{Schwarz} démontrée dans une planche précédente.
+\end{enumerate}
+\end{enumerate}
+\fincorrection
+\correction{005412}
+\begin{enumerate}
+\item  $(X^2-1)^n$ est de degré $2n$ et donc, $L_n$ est de degré $2n-n=n$. Puis, $\mbox{dom}(L_n)=\mbox{dom}((X^{2n})^{(n)})=\frac{(2n)!}{n!}$.
+
+\item  $1$ et $-1$ sont racines d'ordre $n$ de $A_n$ et donc racines d'ordre $n-k$ de $A_n^{(k)}$, pour tout $k$ élément de $\{0,...,n\}$.
+
+Montrons par récurrence sur $k$ que $\forall k\in\{0,...,n\}$, $A_n^{(k)}$ s'annule en au moins $k$ valeurs deux à deux distinctes de l'intervalle $]-1,1[$.
+
+Pour $k=1$, $A_n$ est continu sur $[-1,1]$ et dérivable sur $]-1,1[$. De plus, $A_n(0)=A_n(1)=0$ et d'après le théorème de \textsc{Rolle}, $A_n'$ s'annule au moins une fois dans l'intervalle $]-1,1[$.
+
+Soit $k$ élément de $\{1,...,n-1\}$. Supposons que $A_n^{(k)}$ s'annule en au moins $k$ valeurs de $]-1,1[$. $A_n^{(k)}$ s'annule de plus en $1$ et $-1$ car $k\leq n-1$ et donc s'annule en $k+2$ valeurs au moins de l'intervalle $[-1,1]$. D'après le théorème de \textsc{Rolle}, $A_n^{(k+1)}$ s'annule en au moins $k+1$ points de $]-1,1[$ (au moins une fois par intervalle ouvert).
+
+On a montré que $\forall k\in\{0,...,n\}$, $A_n^{(k)}$ s'annule en au moins $k$ valeurs de $]-1,1[$. En particulier, $A_n^{(n)}=L_n$ s'annule en au moins $n$ réels deux à deux distincts de $]-1,1[$. Puisque $L_n$ est de degré $n$, on a trouvé toutes les racines de $L_n$, toutes réelles, simples et dans $]-1,1[$.
+\end{enumerate}
+\fincorrection
+\correction{005413}
+\begin{enumerate}
+\item  Pour $n\geq1$, on a d'après la formule de \textsc{Leibniz}~:
+
+\begin{align*}\ensuremath
+(x^{n-1}\ln(1+x))^{(n)}&=\sum_{k=0}^{n}\dbinom{n}{k}(x^{n-1})^{(k)}(\ln(1+x))^{(n-k)}\\
+ &=\sum_{k=0}^{n-1}\dbinom{n}{k}(x^{n-1})^{(k)}(\ln(1+x))^{(n-k)}\;(\mbox{car}\;(x^{n-1})^{(n)})=0)\\
+ &=\sum_{k=0}^{n-1}\dbinom{n}{k}\frac{(n-1)!}{(n-1-k)!}x^{n-1-k}(-1)^{n-1-k}\frac{(n-1-k)!}{(x+1)^{n-k}}\\
+ &(\mbox{car}\;(\ln(1+x))^{(n-k)}=(\frac{1}{1+x})^{(n-k-1)}).
+\end{align*}
+
+Puis, pour $x=0$, $(x^{n-1}\ln(1+x))^{(n)}(0)=n.(n-1)!=n!$, et pour $x\neq0$, 
+
+\begin{align*}\ensuremath
+(x^{n-1}\ln(1+x))^{(n)}(x)&=-\frac{(n-1)!}{x}\sum_{k=0}^{n-1}\dbinom{n}{k}(-\frac{x}{x+1})^{n-k}
+=-\frac{(n-1)!}{x}((1-\frac{x}{x+1})^n-1)\\
+ &=\frac{(n-1)!}{x}\frac{(x+1)^n-1}{(x+1)^n}.
+\end{align*}
+
+\item  On sait dériver facilement des sommes ou plus généralement des combinaisons linéaires. Donc, on linéarise~:
+
+\begin{align*}\ensuremath
+\cos^3x\sin(2x)&=\frac{1}{8}(e^{ix}+e^{-ix})^3(-\frac{1}{4})(e^{2ix}-e^{-2ix})=-\frac{1}{32}
+(e^{3ix}+3e^{ix}+3e^{-ix}+e^{-3ix})(e^{2ix}-2+e^{-2ix})\\
+ &=-\frac{1}{32}(e^{5ix}+e^{3ix}-2e^{ix}-2e^{-ix}+e^{-3ix}+e^{-5ix})=-\frac{1}{16}(\cos(5x)+\cos(3x)-2\cos(x))
+\end{align*}
+
+Puis, pour $n$ naturel donné~:
+
+$$(\cos^3x\sin2x)^{(n)}=-\frac{1}{16}(5^n\cos(5x+n\frac{\pi}{2})+3^n\cos(3x+n\frac{\pi}{2})-2cos(x+n\frac{\pi}{2})),$$
+
+expression que l'on peut détailler suivant la congruence de $n$ modulo $4$.
+
+\item  On sait dériver des objets simples et donc on décompose en éléments simples~:
+
+$$\frac{X^2+1}{(X-1)^3}=\frac{X^2-2X+1+2X-2+2}{(X-1)^3}=\frac{1}{X-1}+\frac{2}{(X-1)^2}+\frac{2}{(X-1)^3}.$$
+
+Puis, pour $n$ entier naturel donné,
+
+\begin{align*}\ensuremath
+\left(\frac{X^2+1}{(X-1)^3}\right)^{(n)}&=\frac{(-1)^nn!}{(X-1)^{n+1}}+2\frac{(-1)^n(n+1)!}{(X-1)^{n+2}}+\frac{(-1)^n(n+2)!}{(X-1)^{n+3}}\\
+ &=\frac{(-1)^nn!}{(X-1)^{n+3}}((X-1)^2+2(n+1)(X-1)+(n+2)(n+1))\\
+ &=\frac{(-1)^nn!(X^2+2nX+n^2+n+1)}{(X-1)^{n+3}}.
+\end{align*}
+
+\item  La fonction proposée est de classe $C^\infty$ sur $\Rr$ en vertu de théorèmes généraux. La formule de \textsc{Leibniz} fournit pour $n\geq3$~:
+
+\begin{align*}\ensuremath
+((x^3+2x-7)e^x)^{(n)}&=\sum_{k=0}^{n}\dbinom{n}{k}(x^3+2x-7)^{(k)}(e^x)^{(n-k)}=\sum_{k=0}^{3}\dbinom{n}{k}(x^3+2x-7)^{(k)}(e^x)^{(n-k)}\\
+ &=((x^3+2x-7)+n(3x^2+2)+\frac{n(n-1)}{2}(6x)+\frac{n(n-1)(n-2)}{6}.6)e^x\\
+ &=(x^3+3nx^2+(3n^2-3n+2)x+n^3-3n^2+4n-7)e^x.
+\end{align*}
+\end{enumerate}
+\fincorrection
+\correction{005414}
+$f$ est de classe $ ^\infty$ sur $\Rr^*$ en vertu de théorèmes généraux.
+
+Montrons par récurrence que $\forall n\in\Nn,\;\exists P_n\in\Rr[X]/\;\forall x\in\Rr^*,\;f^{(n)}(x)=\frac{P_n(x)}{x^{3n}}e^{-1/x^2}$.
+
+C'est vrai pour $n=0$ avec $P_0=1$.
+
+Soit $n\geq0$. Supposons que $\exists P_n\in\Rr[X]/\;\forall x\in\Rr^*,\;f^{(n)}(x)=\frac{P_n(x)}{x^{3n}}e^{-1/x^2}$. Alors, pour $x\in\Rr^*$,
+
+$$f^{(n+1)}(x)=(\frac{2}{x^3}\frac{P_n(x)}{x^{3n}}+(P_n'(x)\frac{1}{x^{3n}}-3nP_n(x)\frac{1}{x^{3n+1}})e^{-1/x^2}
+=\frac{P_{n+1}(x)}{3^{3(n+1)}}e^{-1/x^2},$$
+
+où $P_n+1=2P_n+X^3P_n'-3nX^2P_n$ est un polynôme. On a montré que 
+
+$$\forall n\in\Nn,\;\exists P_n\in\Rr[X]/\;\forall x\in\Rr^*,\;f^{(n)}(x)=\frac{P_n(x)}{x^{3n}}e^{-1/x^2}.$$
+
+Montrons alors par récurrence que pour tout entier naturel $n$, $f$ est de classe $C^n$ sur $\Rr$ et que $f^{(n)}(0)=0$.
+
+Pour $n=0$, $f$ est continue sur $\Rr^*$ et de plus, $\lim_{x\rightarrow 0,\;x\neq0}f(x)=0=f(0)$. Donc, $f$ est continue sur $\Rr$.
+
+Soit $n\geq0$. Supposons que $f$ est de classe $C^n$ sur $\Rr$ et que $f^{(n)}(0)=0$. Alors, d'une part $f$ est de classe $C^n$ sur $\Rr$ et $C^{n+1}$ sur $\Rr^*$ et de plus, d'après les théorèmes de croissances comparées, $f^{(n+1)}(x)=\frac{P_{n+1}(x)}{x^{3n+3}}e^{-1/x^2}$ tend vers $0$ quand $x$ tend vers $0$, $x\neq 0$. D'après un théorème classique d'analyse, $f$ est de classe $C^{n+1}$ sur $\Rr$ et en particulier, $f^{(n+1)}(0)=\lim_{x\rightarrow 0,\;x\neq0}f^{(n+1)}(x)=0$.
+
+On a montré par récurrence que $\forall n\in\Nn$, $f$ est de classe $C^n$ sur $\Rr$ et que $f^{(n)}(0)=0$. $f$ est donc de classe $C^\infty$ sur $\Rr$.
+\fincorrection
+\correction{005415}
+Montrons que ($\forall x>0,\;\left(1+\frac{1}{x}\right)^x<e<\left(1+\frac{1}{x}\right)^{x+1}$. Soit $x>0$.
+
+\begin{align*}\ensuremath
+\left(1+\frac{1}{x}\right)^x<e<\left(1+\frac{1}{x}\right)^{x+1}
+&\Leftrightarrow x\ln(1+\frac{1}{x})<1<(x+1)\ln(1+\frac{1}{x})\\
+ &\Leftrightarrow x(\ln(x+1)-\ln x)<1<(x+1)(\ln(x+1)-\ln x)\Leftrightarrow\frac{1}{x+1}<\ln(x+1)-\ln x<\frac{1}{x}.
+\end{align*} 
+
+Soit $x$ un réel strictement positif fixé. Pour $t\in[x,x+1]$, posons $f(t)=\ln t$. $f$ est continue sur $[x,x+1]$ et dérivable sur $]x,x+1[$. Donc, d'après le théorème des accroissements finis, il existe un réel $c$ dans $]x,x+1[$ tel que $f(x+1)-f(x)=(x+1-x)f'(c)$ ou encore
+
+$$\exists c\in]x,x+1[/\;\ln(x+1)-\ln x=\frac{1}{c},$$
+
+ce qui montre que $\forall x>0,\;\frac{1}{x+1}<\ln(x+1)-\ln x<\frac{1}{x}$, et donc que 
+
+$$\forall x>0,\;\left(1+\frac{1}{x}\right)^x<e<\left(1+\frac{1}{x}\right)^{x+1}.$$
+\fincorrection
+\correction{005416}
+
+%$$\includegraphics{../images/img005416-1}$$
+
+
+Soit $x_0$ un réel non nul. Une équation de la tangente $(T_{x_0})$ à la courbe représentative de $f$ au point d'abscisse $x_0$ est $y=f'(x_0)(x-x_0)+f(x_0)$. $(T_{x_0})$ passe par l'origine si et seulement si 
+
+$$x_0f'(x_0)-f(x_0)=0.$$
+
+Pour $x$ réel, on pose $g(x)=\left\{
+\begin{array}{l}
+\frac{f(x)}{x}\;\mbox{si}\;x\neq0\\
+0\;\mbox{si}\;x=0
+\end{array}
+\right.$ ($g$ est \og~la fonction pente à l'origine~\fg).
+
+Puisque $f$ est continue et dérivable sur $\Rr$, $g$ est déjà continue et dérivable sur $\Rr^*$.
+
+Puisque $f$ est dérivable en $0$ et que $f(0)=f'(0)=0$, $g$ est de plus continue en $0$.
+
+Finalement, $g$ est continue sur $[0,a]$, dérivable sur $]0,a[$ et vérifie $g(0)=g(a)(= 0)$. D'après le théorème de \textsc{Rolle}, il existe un réel $x_0$ dans $]0,a[$ tel que $g'(x_0)=0$. Puisque $x_0$ n'est pas nul, on a $g'(x_0)=\frac{x_0f'(x_0)-f(x_0)}{x_0^2}$. L'égalité $g'(x_0)=0$ s'écrit $x_0f'(x_0)-f(x_0)=0$ et, d'après le début de l'exercice, la tangente à la courbe représentative de $f$ au point d'abscisse $x_0$ passe par l'origine.
+\fincorrection
+\correction{005417}
+\begin{enumerate}
+\item  Soit $m$ un élément de $]f'(a),f'(b)[$. Puisque $\lim_{h\rightarrow 0}\frac{f(a+h)-f(a)}{h}=f'(a)$ et que 
+$\lim_{h\rightarrow 0}\frac{f(b+h)-f(b)}{h}=f'(b)$, on a (en prenant par exemple $\varepsilon=\mbox{Min}\{m-f'(a),f'(b)-m\}>0$) 
+
+$$\begin{array}{l}
+\exists h_1>0/\;\forall h\in]0,h_1[,\;(a+h\in I\Rightarrow\frac{f(a+h)-f(a)}{h}<m\;\mbox{et}\\
+\exists h_2>0/\;\forall h\in]0,h_2[\;(b+h\in I\Rightarrow\frac{f(b+h)-f(b)}{h}> m.
+\end{array}$$
+
+L'ensemble $E=\{h\in]0,\mbox{Min}\{h_1,h_2\}[/\;a+h\;\mbox{et}\;b+h\;\mbox{sont dans}\;I\}$ n'est pas vide (car $I$ est ouvert) et pour tous les $h$ de $E$, on a~:$\frac{f(a+h)-f(a)}{h}<m<\frac{f(b+h)-f(b)}{h}$.
+
+$h>0$ est ainsi dorénavant fixé.
+
+\item  La fonction $f$ est continue sur $I$ et donc, la fonction $g~:~x\mapsto\frac{f(x+h)-f(x)}{h}$ est continue sur $[a,b]$. D'après le théorème des valeurs intermédiaires, comme $g(a)<m<g(b)$, $\exists y\in[a,b]/\;g(y)=m$ ou encore $\exists y\in[a,b]/\;\frac{f(y+h)-f(y)}{h}=m$.
+
+Maintenant, d'après le théorème des accroissements finis, $\exists x\in]y,y+h[\subset I/\;m=\frac{f(y+h)-f(y)}{h}=f'(x)$.
+
+Donc une fonction dérivée n'est pas nécessairement continue mais vérifie tout de même le théorème des valeurs intermédiaires (Théorème de \textsc{Darboux}).
+\end{enumerate}
+\fincorrection
+\correction{005418}
+Soit $(x,y)\in\Rr\times\Rr$. Puisque $f$ est de classe $C^3$ sur $\Rr$, la formule de \textsc{Taylor}-\textsc{Laplace} à l'ordre $2$ permet d'écrire
+
+$$
+\begin{array}{l}
+f(x+y)=f(x)+yf'(x)+\frac{y^2}{2}f''(x)+\int_{x}^{x+y}\frac{(x+y-t)^2}{2}f^{(3)}(t)\;dt\;\mbox{et}\\
+f(x-y)=f(x)-yf'(x)+\frac{y^2}{2}f''(x)\int_{x}^{x-y}\frac{(x-y-t)^2}{2}f^{(3)}(t)\;dt.
+\end{array}$$
+
+Donc,
+
+\begin{align*}\ensuremath
+(f(x)^2)&\geq f(x+y)f(x-y)\\
+ &=(f(x)+yf'(x)+\frac{y^2}{2}f''(x)+\int_{x}^{x+y}\frac{(x+y-t)^2}{2}f^{(3)}(t)\;dt)\times\\
+ &\quad(f(x)-yf'(x)+\frac{y^2}{2}f''(x)+\int_{x}^{x-y}\frac{(x-y-t)^2}{2}f^{(3)}(t)\;dt)\\
+ &=(f(x))^2+y^2(f(x)f''(x)-(f'(x))^2)\\
+ &\quad+(f(x)-yf'(x)+\frac{y^2}{2}f''(x))\int_{x}^{x+y}\frac{(x+y-t)^2}{2}f^{(3)}(t)\;dt\\
+ &\quad+(f(x)+yf'(x)+\frac{y^2}{2}f''(x))\int_{x}^{x-y}\frac{(x-y-t)^2}{2}f^{(3)}(t)\;dt\;(*)
+\end{align*}
+
+Maintenant, pour $y\in[-1,1]$, ($f^{(3)}$ étant continue sur $\Rr$ et donc continue sur le segment $[-1,1]$),
+
+$$\left|\int_{x}^{x+y}\frac{(x+y-t)^2}{2}f^{(3)}(t)\;dt\right|\leq|y|.\frac{y^2}{2}\mbox{Max}\{|f^{(3)}(t)|,\;t\in[x-1,x+1]\},$$
+
+et donc,
+
+$$\frac{1}{y^2}\left|\int_{x}^{x+y}\frac{(x+y-t)^2}{2}f^{(3)}(t)\;dt\right|\leq|y|\mbox{Max}\{|f^{(3)}(t)|,\;t\in[x-1,x+1]\}.$$
+
+Cette dernière expression tend vers $0$ quand $y$ tend vers $0$. On en déduit que $\frac{1}{y^2}\left|\int_{x}^{x+y}\frac{(x+y-t)^2}{2}f^{(3)}(t)\;dt\right|$ tend vers $0$ quand $y$ tend vers $0$. De même, $\frac{1}{y^2}\left|\int_{x}^{x-y}\frac{(x-y-t)^2}{2}f^{(3)}(t)\;dt\right|$ tend vers $0$ quand $y$ tend vers $0$.
+
+On simplifie alors $(f(x)^2$ dans les deux membres de $(*)$. On divise les deux nouveaux membres par $y^2$ pour $y\neq 0$ puis on fait tendre $y$ vers $0$ à $x$ fixé. On obtient $0\geq f(x)f''(x)-(f'(x))^2$, qui est l'inégalité demandée.
+\fincorrection
+\correction{005419}
+Quand $x$ tend vers $0$ par valeurs supérieures,
+
+$$\frac{\cos(\sqrt{x})-1}{x}=\frac{1}{2}\frac{\cos(\sqrt{x})-1}{(\sqrt{x})^2/2}\rightarrow-\frac{1}{2}.$$
+
+$f$ est donc dérivable à droite en $0$ et $f_d'(0)=-\frac{1}{2}$.
+
+Autre solution. $f$ est continue sur $\Rr$ et de classe $C^1$ sur $\Rr^*$ en vertu de théorèmes généraux. Pour $x\neq0$, $f'(x)=-\frac{1}{2\sqrt{x}}\sin(\sqrt{x})$. Quand $x$ tend vers $0$, $f'$ tend vers $-\frac{1}{2}$. En résumé, $f$ est continue sur $\Rr$, de classe $C^1$ sur $\Rr^*$ et $f'$ a une limite réelle quand $x$ tend vers $0$ à savoir $0$. On en déduit que $f$ est de classe $C^1$ sur $\Rr$ et en particulier, $f$ est dérivable en $0$ et $f'(0)=-\frac{1}{2}$.
+
+\fincorrection
+\correction{005420}
+Soit $n\geq2$ le degré de $P$.
+\begin{enumerate}
+\item  Si $P$ admet $n$ racines réelles simples, le théorème de \textsc{Rolle} fournit au moins $n-1$ racines réelles deux à deux distinctes pour $P'$. Mais, puisque $P'$ est de degré $n-1$, ce sont toutes les racines de $P'$, nécessairement toutes réelles et simples.
+
+(Le résultat tombe en défaut si les racines de $P$ ne sont pas toutes réelles. Par exemple, $P=X^3-1$ est à racines simples dans $\Cc$ mais $P'=3X^2$ admet une racine double)
+
+\item  Séparons les racines simples et les racines multiples de $P$. Posons $P=(X-a_1)...(X-a_k)(X-b_1)^{\alpha_1}...(X-b_l)^{\alpha_l}$ où les $a_i$ et les $b_j$ sont $k+l$ nombres réels deux à deux distincts et les $\alpha_j$ des entiers supérieurs ou égaux à $2$ (éventuellement $k=0$ ou $l=0$ et dans ce cas le produit vide vaut conventionnellement $1$).
+
+$P$ s'annule déjà en $k+l$ nombres réels deux à deux distincts et le théorème de \textsc{Rolle} fournit $k+l-1$ racines réelles deux à deux distinctes et distinctes des $a_i$ et des $b_j$. D'autre part, les $b_j$ sont racines d'ordre $\alpha_j$ de $P$ et donc d'ordre $\alpha_j-1$ de $P'$. On a donc trouvé un nombre de racines (comptées en nombre de fois égal à leur ordre de multiplicité) égal à $k+l-1+\sum_{j=1}^{l}(\alpha_j-1)=k+\sum_{j=1}^{l}\alpha_j-1=n-1$ racines réelles et c'est fini.
+\end{enumerate}
+\fincorrection
+\correction{005421}
+En pensant à l'expression développée de $\Delta$, on voit que $\Delta$ est continue sur $[a,b]$, dérivable sur $]a,b[$ et vérifie $\Delta(a)=\Delta(b)(=0)$ (un déterminant ayant deux colonnes identiques est nul).
+
+Donc, d'après le théorème de \textsc{Rolle}, $\exists c\in]a,b[/\;\Delta'(c)=0$.
+
+Mais, pour $x\in]a,b[$, $\Delta'(x)=f'(x)(g(a)-g(b))-g'(x)(f(a)-f(b))$ (dérivée d'un déterminant). L'égalité $\Delta'(c)=0$ s'écrit~: $f'(c)(g(b)-g(a))=g'(c)(f(b)-f(a))$ ce qu'il fallait démontrer.
+
+(Remarque. Ce résultat généralise le théorème des accroissements finis ($g=Id$ \og~est~\fg~le théorème des accroissements finis.))
+\fincorrection
+\correction{005422}
+Puisque $\lim_{x\rightarrow +\infty}xf'(x)=1$, $\exists A>0/\;\forall x>0,\;(x\geq A\Rightarrow xf'(x)\geq\frac{1}{2})$.
+
+Soit $x$ un réel fixé supérieur ou égal à $A$. $\forall t\in[A,x],\;f'(t)\geq\frac{1}{2x}$ et donc, par croissance de l'intégrale, $\int_{A}^{x}f'(t)\;dt\geq\int_{A}^{x}\frac{1}{2t}\;dt$ ce qui fournit~:
+
+$$\forall x\geq A,\;f(x)\geq f(A)+\frac{1}{2}(\ln x-\ln A),$$
+
+et montre que $\lim_{x\rightarrow +\infty}f(x)=+\infty$.
+\fincorrection
+\correction{005423}
+$$\forall x\in\Rr f(\frac{x}{2}+3)=f(f\circ f(x))=f\circ f(f(x))=\frac{f(x)}{2}+3.$$
+
+Puisque $f$ est dérivable sur $\Rr$, on obtient en dérivant $\forall x\in\Rr,\;\frac{1}{2}f'(\frac{x}{2}+3)=\frac{1}{2}f'(x)$,
+
+et donc
+
+$$\forall x\in\Rr,\;f'(\frac{x}{2}+3)=f'(x).$$
+
+Soit alors $x$ un réel donné et $u$ la suite définie par $u_0=x$ et $\forall n\in\Nn,\;u_{n+1}=\frac{1}{2}u_n+3$.
+
+D'après ce qui précède, $\forall n\in\Nn,\;f'(x)=f'(u_n)$.
+Maintenant, $u$ est une suite arithmético-géométrique et on sait que 
+
+$$\forall n\in\Nn,\;u_n-6=\frac{1}{2^n}(u_0-6)$$ 
+
+ce qui montre que la suite $u$ converge vers $6$. La suite $(f'(u_n))_{n\geq0}$ est constante, de valeur $f'(x)$. $f'$ étant continue sur $\Rr$, on en déduit que
+
+$$\forall x\in\Rr,\;f'(x)=\lim_{n\rightarrow +\infty}f'(u_n)=f'(\lim_{n\rightarrow +\infty}u_n)=f'(6),$$
+
+ce qui montre que la fonction $f'$ est constante sur $\Rr$ et donc que $f$ est affine.
+
+Réciproquement, pour $x$ réel, posons $f(x)=ax+b$.
+ 
+\begin{align*}\ensuremath
+f\;\mbox{solution}&\Leftrightarrow\forall x\in\Rr,\;a(ax+b)+b=\frac{x}{2}+3\Leftrightarrow\forall x\in\Rr,\;(a^2-\frac{1}{2})x+ab+b-3=0\\
+ &\Leftrightarrow a^2=\frac{1}{2}\;\mbox{et}\;(a+1)b=3\Leftrightarrow(a=\frac{1}{\sqrt{2}}\;\mbox{et}\;b=3(2-\sqrt{2}))\;\mbox{ou}\;(a=-\frac{1}{\sqrt{2}}\;\mbox{et}\;b=3(2+\sqrt{2})).
+\end{align*}
+
+On trouve deux fonctions solutions, les fonctions $f_1$ et $f_2$ définies par~:
+
+$$\forall x\in\Rr,\;f_1(x)=\frac{1}{\sqrt{2}}x+3(2-\sqrt{2})\;\mbox{et}\;f_2(x)=-\frac{1}{\sqrt{2}}x+3(2+\sqrt{2}).$$
+
+\fincorrection
+\correction{005424}
+Montrons que $\lim_{x\rightarrow +\infty}f(x)=0$.
+
+Pour $x$ réel, posons $g(x)=e^xf(x)$. $g$ est dérivable sur $R$ et $\forall x\in\Rr,\;g'(x)=e^x(f(x)+f'(x))$. Il s'agit donc maintenant de montrer que si $\lim_{x\rightarrow +\infty}e^{-x}g'(x)=0$ alors $\lim_{x\rightarrow +\infty}e^{-x}g(x)=0$.
+
+Soit $\varepsilon$ un réel strictement positif.
+
+$$\exists A>0/\;\forall x\in\Rr,\;(x\geq A\Rightarrow-\frac{\varepsilon}{2}<e^{-x}g'(x)<\frac{\varepsilon}{2}\Rightarrow-\frac{\varepsilon}{2}e^x\leq g'(x)\leq \frac{\varepsilon}{2}e^x).$$
+ 
+Pour $x$ réel donné supérieur ou égal à $A$, on obtient en intégrant sur $[A,x]$~:
+
+$$-\frac{\varepsilon}{2}(e^x-e^A)=\int_{A}^{x}-\frac{\varepsilon}{2}e^t\;dt\leq\int_{A}^{x}g'(t)\;dt=g(x)-g(A)\leq
+\frac{\varepsilon}{2}(e^x-e^A),$$
+
+et donc 
+
+$$\forall x\geq A,\;g(A)e^{-x}-\frac{\varepsilon}{2}(1-e^{A-x})\leq e^{-x}g(x)\leq g(A)e^{-x}+\frac{\varepsilon}{2}(1-e^{A-x}).$$
+
+Maintenant, $g(A)e^{-x}-\frac{\varepsilon}{2}(1-e^{A-x})$ et $g(A)e^{-x}+\frac{\varepsilon}{2}(1-e^{A-x})$ tendent respectivement vers $-\frac{\varepsilon}{2}$ et $\frac{\varepsilon}{2}$ quand $x$ tend vers $+\infty$. Donc,
+
+$$\exists B\geq A/\;\forall x\in\Rr,\;(x\geq B\Rightarrow g(A)e^{-x}-\frac{\varepsilon}{2}(1-e^{A-x})>-\varepsilon\;\mbox{et}\;<g(A)e^{-x}-\frac{\varepsilon}{2}(1-e^{A-x})
+<\varepsilon.$$
+
+Pour $x\geq B$, on a donc $-\varepsilon<e^{-x}g(x)<\varepsilon$.
+
+On a montré que $\forall\varepsilon>0,\;\exists B>0/\;\forall x\in\Rr,\;(x\geq B\Rightarrow|e-xg(x)|<\varepsilon)$ et donc $\lim_{x\rightarrow +\infty}e^{-x}g(x)=0$ ce qu'il fallait démontrer.
+\fincorrection
+\correction{005425}
+\begin{enumerate}
+\item  Pour $x\geq-1$, posons $f(x)=\sqrt{1+x}$ et $g(x)=f(x)-x$.
+
+Soit $u_0\in I=[-1,+\infty[$. $f$ est définie sur $I$ et de plus $f(I)=[0,+\infty[\subset[-1,+\infty[$. On en déduit, par une démonstration par récurrence, que la suite $u$ est définie.
+
+Si la suite $u$ converge, puisque $\forall n\in\Nn,\;u_n\geq-1$, sa limite $\ell$ vérifie $\ell\geq-1$. Puisque $f$ est continue sur $[-1,+\infty[$ et donc en $\ell$,
+
+$$\ell=\lim_{n\rightarrow +\infty}u_{n+1}=\lim_{n\rightarrow +\infty}f(u_n)=f(\lim_{n\rightarrow +\infty}u_n)=f(ell).$$
+
+et $\ell$ est un point fixe de $f$. Or, pour $x\geq-1$,
+
+\begin{align*}\ensuremath
+\sqrt{1+x}=x&\Leftrightarrow1+x=x^2\;\mbox{et}\;x\geq0\Leftrightarrow(x=\frac{1-\sqrt{5}}{2}\;\mbox{ou}\;x=\frac{1+\sqrt{5}}{2})\;
+\mbox{et}\;x\geq0\\
+ &\Leftrightarrow x=\frac{\sqrt{5}+1}{2}.
+\end{align*}
+
+Ainsi, si la suite $(u_n)$ converge, c'est vers le nombre $\alpha=\frac{\sqrt{5}+1}{2}$.
+
+Pour $x\geq-1$,
+
+\begin{align*}\ensuremath
+\mbox{sgn}(f(x)-\alpha)&=\mbox{sgn}(\sqrt{1+x}-\sqrt{1+\alpha})=\mbox{sgn}((1+x)-(1+\alpha))\quad(\mbox{par croissance de}\;x\mapsto x^2\;\mbox{sur}\;[0,+\infty[)\\
+ &=\mbox{sgn}(x-\alpha).
+\end{align*}
+
+Ainsi, les intervalles $[-1,\alpha[$ et $]\alpha,+\infty[$ sont stables par $f$. Donc, si $-1\leq u_0<\alpha$, alors par récurrence $\forall n\in\Nn,\;-1\leq u_n<\alpha$ et si $u_0>\alpha$, alors par récurrence, $\forall n\in\Nn,\;u_n>\alpha$.
+
+Soit $x\geq-1$. Si $x\in[-1,0]$, $\sqrt{1+x}-x\geq0$ et si $x\geq0$,
+
+\begin{align*}\ensuremath
+\mbox{sgn}(g(x))&=\mbox{sgn}(\sqrt{1+x}-x)\\
+ &=\mbox{sgn}((1+x)-x^2)\quad(\mbox{par croissance de}\;x\mapsto x^2\;\mbox{sur}\;[0,+\infty[)\\
+ &=\mbox{sgn}(x+\frac{\sqrt{5}-1}{2})(-x+\frac{1+\sqrt{5}}{2}-x)=\mbox{sgn}(\alpha-x)\;(\mbox{car ici}\;x\geq0).
+\end{align*}
+
+On en déduit que, si $x\in[-1,\alpha[$, $f(x)>x$, et si $x\in]\alpha,+\infty[$, $f(x)<x$. Mais alors, 
+si $-1\leq u_0<\alpha$, puisque $\forall n\in\Nn,\;-1\leq u_n<\alpha$, pour $n$ entier naturel donné, on a
+
+$$u_{n+1}=f(u_n)>u_n.$$
+
+La suite $u$ est donc strictement croissante, majorée par $\alpha$ et donc convergente. On sait de plus que sa limite est nécessairement $\alpha$.
+
+Si $u_0>\alpha$, puisque $\forall n\in\Nn,\;u_n>\alpha$, pour $n$ entier naturel donné, on a
+
+$$u_{n+1}=f(u_n)<u_n.$$
+
+La suite $u$ est donc strictement décroissante, minorée par $\alpha$ et donc convergente. On sait de plus que sa limite est nécessairement $\alpha$. Enfin, si $u_0=\alpha$, la suite $u$ est constante.
+
+En résumé,
+
+si $u_0\in[-1,\frac{\sqrt{5}+1}{2}[$, la suite $u$ est strictement croissante, convergente de limite $\frac{\sqrt{5}+1}{2}[$,
+
+si $u_0\in]\frac{\sqrt{5}+1}{2},+\infty[$, la suite $u$ est strictement décroissante, convergente de limite $\frac{\sqrt{5}+1}{2}[$,
+
+si $u_0=\frac{\sqrt{5}+1}{2}[$, la suite $u$ est constante et en particulier convergente de limite $\frac{\sqrt{5}+1}{2}$.
+
+Ainsi, dans tous les cas, la suite $u$ est convergente et $\lim_{n\rightarrow +\infty}u_n=\frac{1+\sqrt{5}}{2}$.
+
+%$$\includegraphics{../images/img005425-1}$$
+
+
+\item  Si $u_0>0$, alors puisque $f$ est définie sur l'intervalle $I=]0,+\infty[$ et que $I$ est stable par $f$ ($\forall x>0,\;\ln(1+x)>\ln1=0$), la suite $u$ est définie et est strictement positive. Si la suite $u$ converge, sa limite $\ell$ est un réel positif \textbf{ou nul}. Par continuité de $f$ sur $[0,+\infty[$ et donc en $\ell$,
+
+$$\ell=\lim_{n\rightarrow +\infty}u_{n+1}=\lim_{n\rightarrow +\infty}f(u_n)=f(\lim_{n\rightarrow +\infty}u_n)=f(\ell).$$
+
+Pour $x>-1$, posons $g(x)=\ln(1+x)-x$. $g$ est définie et dérivable sur $]-1,+\infty[$ et pour $x>-1$,
+
+$$g'(x)=\frac{1}{1+x}-1=-\frac{x}{1+x}.$$
+
+$g'$ est strictement positive sur $]-1,0[$ et strictement négative sur $]0,+\infty[$. $g$ est donc strictement croissante sur $]-1,0]$ et strictement décroissante sur $[0,+\infty[$. Par suite, si $x\in]-1,0[\cup]0,+\infty[$, $g(x)<0$. En particulier, pour $x\in]-1,0[\cup]0,+\infty[$, $f(x)\neq x$. Puisque $f(0)=0$, $f$ admet dans $]-1,+\infty[$ un et un seul point fixe à savoir $0$.
+
+En résumé, si $u_0>0$, la suite $u$ est définie, strictement positive, et de plus, si la suite $u$ converge, alors $\lim_{n\rightarrow +\infty}u_n=0$.
+
+Mais, pour $n$ entier naturel donné,
+
+$$u_{n+1}-u_n=\ln(1+u_n)-u_n<0.$$
+
+Par suite, la suite $u$ est strictement décroissante, minorée par $0$ et donc, d'après ce qui précède, converge vers $0$.
+
+Si $u_0=0$, la suite $u$ est constante. Il reste donc à étudier le cas où $u_0\in]-1,0[$. Montrons par l'absurde qu'il existe un rang $n_0$ tel que $u_{n_0}\leq-1$. Dans le cas contraire, $\forall n\in\Nn,\;u_n>-1$. Comme précédemment, par récurrence, la suite $u$ est à valeurs dans $]-1,0[$ et strictement décroissante. Etant minorée par $-1$, la suite $u$ converge vers un certain réel $\ell$.
+
+Puisque $\forall n\in\Nn,\;-1<u_n\leq u_0<0$, on a $-1\leq\ell\leq u_0<0$. Donc, ou bien $\ell=-1$, ou bien $f$ est continue en $\ell$ et $\ell$ est un point fixe de $f$ élément de $]-1,0[$.
+
+On a vu que $f$ n'admet pas de point fixe dans $]-1,0[$ et donc ce dernier cas est exclu. Ensuite, si $\ell=-1$, il existe un rang $N$ tel que $u_N\leq -0.9$. Mais alors, $u_{N+1}=\leq\ln(-0,9+1)=-2,3...<-1$ ce qui constitue de nouveau une contradiction.
+
+Donc, il existe un rang $n_0$ tel que $u_{n_0}\leq-1$ et la suite $u$ n'est pas définie à partir d'un certain rang.
+
+En résumé,
+
+si $u_0\in]0,+\infty[$, la suite $u$ est strictement décroissante, convergente et $\lim_{n\rightarrow +\infty}u_n=0$,
+
+si $u_0=0$, la suite $u$ est constante,
+
+et si $u_0\in]-1,0[$, la suite $u$ n'est pas définie à partir d'un certain rang.
+
+%$$\includegraphics{../images/img005425-2}$$
+
+
+\item  Pour tout choix de $u_0$, $u_1\in[-1,1]$. On supposera dorénavant que $u_0\in[-1,1]$. Si $u_0=0$, la suite $u$ est constante. Si $u_0\in[-1,0[$, considérons la suite $u'$ définie par $u_0'=-u_0$ et $\forall n\in\Nn,\;u_{n+1}'=\sin(u_n')$. La fonction $x\mapsto\sin x$, il est clair par récurrence que $\forall n\in\Nn,\;u_n'=-u_n$. On supposera dorénavant que $u_0\in]0,1]$.
+
+Puisque $]0,1]\subset]0,\frac{\pi}{2}]$, on a $\sin]0,1]\subset]0,1]$ et l'intervalle $I=]0,1]$ est stable par $f$. Ainsi, si $u_0\in]0,1]$, alors, $\forall n\in\Nn,\;u_n\in]0,1]$.
+
+Pour $x\in[0,1]$, posons $g(x)=\sin x-x$. $g$ est dérivable sur $[0,1]$ et pour $x\in[0,1]$, $g'(x)=\cos x-1$. $g'$ est strictement négative sur $]0,1]$ et donc strictement décroissante sur $[0,1]$. On en déduit que pour $x\in]0,1]$, $g(x)<g(0)=0$.
+
+Mais alors, pour $n$ entier naturel donné, $u_{n+1}=\sin(u_n)<u_n$. La suite $u$ est ainsi strictement décroissante, minorée par $0$ et donc converge vers $\ell\in[0,1]$. La fonction $x\mapsto\sin x$ est continue sur $[0,1]$ et donc, $\ell$ est un point fixe de $f$. L'étude de $g$ montre que $f$ a un et un seul point fixe dans $[0,1]$ à savoir $0$. La suite $u$ est donc convergente et $\lim_{n\rightarrow +\infty}u_n=0$.
+
+L'étude préliminaire montre la suite $u$ converge vers $0$ pour tout choix de $u_0$.
+
+%$$\includegraphics{../images/img005425-3}$$
+
+
+\item  Si $u_0$ est un réel quelconque, $u_1\in[-1,1]\subset[-\frac{\pi}{2},\frac{\pi}{2}]$ puis $u_2\in[0,1]$. On supposera dorénavant que $u_0\in[0,1]$.
+
+On a $\cos([0,1])=[\cos 1,\cos0]=[0,504...,1]\subset[0,1]$. Donc, la fonction $x\mapsto\cos x$ laisse stable l'intervalle $I=[0,1]$. On en déduit que $\forall n\in\Nn,\;u_n\in[0,1]$.
+
+Pour $x\in[0,1]$, on pose $g(x)=\cos x-x$. $g$ est somme de deux focntions strictement décroissantes sur $[0,1]$ et est donc strictement décroissante sur $[0,1]$. De plus, $g$ est continue sur $[0,1]$ et vérifie $g(0)=\cos0>0$ et $g(1)=\cos1-1<0$. $g$ s'annule donc une et une seule fois sur $[0,1]$ en un certain réel $\alpha$. Ainsi, $f$ admet sur $[0,1]$ un unique point fixe, à savoir $\alpha$. Puisque $f$ est continue sur le segment $[0,1]$, on sait que si la suite $u$ converge, c'est vers $\alpha$.
+
+La fonction $f~:~x\mapsto\cos x$ est dérivable sur $[0,1]$ et pour $x\in[0,1]$,
+
+$$|f'(x)|=|-\sin x|\leq\sin1<1.$$
+
+L'inégalité des accroissements finis montre alors que $\forall(x,y)\in[0,1]^2,\;|\cos x-\cos y|\leq\sin1|x-y|$. Pour $n$ entier naturel donné, on a alors
+
+$$|u_{n+1}-\alpha|=|f(u_n)-f(\alpha)|\leq\sin1|u_n-\alpha|,$$
+
+et donc, pour tout entier naturel $n$,
+
+$$|u_n-\alpha|\leq(\sin1)^n|u_0-\alpha|\leq(\sin1)^n.$$
+
+Comme $0\leq\sin1<1$, la suite $(\sin1)^n$ converge vers $0$, et donc la suite $(u_n)_{n\in\Nn}$ converge vers $\alpha$. On peut noter que puisque la fonction $x\mapsto\cos x$ est strictement décroissante sur $[0,1]$, les deux suites $(u_{2n})_{n\in\Nn}$ et $(u_{2n+1})_{n\in\Nn}$ sont strictement monotones, de sens de variations contraires (dans le cas où $u_0\in[0,1]$. On peut noter également que si $n>\frac{\ln(10^{-2})}{\ln(\sin1)}=26,6...$, alors $(\sin1)^n<10^{-2}$. Par suite, $u_{27}$ est une valeur approchée de $\alpha$ à $10^{-2}$ près. La machine fournit $\alpha=0,73...$ (et même $\alpha=0,739087042.....$).
+
+%$$\includegraphics{../images/img005425-4}$$
+
+\item  Si $u_0$ est un réel quelconque, alors $\forall n\in\Nn^*,\;u_n\in[-1,1]$. On supposera sans perte de généralité que $u_0\in[-1,1]$. Si $u_0=0$, la suite $u$ est constante et d'autre part, l'étude du cas $u_0\in[-1,0[$ se ramème, comme en 3), à l'étude du cas $u_0\in]0,1]$. On supposera dorénavant que $u_0\in]0,1]$.
+
+Si $x\in]0,1]$, alors $2x\in]0,2]\subset]0,\pi[$ et donc $\sin(2x)\in]0,1]$. L'intervalle $I=]0,1]$ est donc stable par la fonction $f~:~x\mapsto\sin(2x)$. On en déduit que $\forall n\in\Nn,\;u_n\in]0,1]$.
+
+Pour $x\in[0,1]$, posons $g(x)=\sin(2x)-x$. $g$ est dérivable sur $[0,1]$ et pour $x\in[0,1]$, $g'(x)=2\cos(2x)-1$. $g$ est donc strictement croissante sur $[0,\frac{\pi}{4}]$ et strictement décroissante sur $[\frac{\pi}{4},1]$. On en déduit que si $x\in]0,\frac{\pi}{4}]$, $g(x)>g(0)=0$. D'autre part, $g$ est continue et strictement décroissante sur $[\frac{\pi}{4},1]$ et vérifie $g(\frac{\pi}{4})=1-\frac{\pi}{4}>0$ et $g(1)=\sin2-1<0$. $g$ s'annule donc une et une seule fois en un certain réel $\alpha\in]\frac{\pi}{4},1[$.
+
+En résumé, $g$ s'annule une et une seule fois sur $]0,1]$ en un certain réel $\alpha\in]\frac{\pi}{4},1[$, $g$ est strictement positive sur $]0,\alpha[$ et strictement négative sur $]\alpha,1]$.
+
+Supposons que $u_0\in]0,\frac{\pi}{4}[$ et montrons par l'absurde que $\exists n_0\in\Nn/\;u_{n_0}\in[\frac{\pi}{4},1]$. Dans le cas contraire, tous les $u_n$ sont dans $]0,\frac{\pi}{4}[$. Mais alors, pour tout entier naturel $n$,
+
+$$u_{n+1}-u_n=f(u_n)-u_n=g(u_n)>0.$$
+
+La suite $u$ est donc strictement croissante. Etant majorée par $\frac{\pi}{4}$, la suite $u$ converge. Comme $g$ est continue sur $[u_0,\frac{\pi}{4}]$ et que $\forall n\in\Nn,\;u_n\in[u_0,\frac{\pi}{4}]$, on sait que la limite de $u$ est un point fixe de $f$ élément de $[u_0,\frac{\pi}{4}]$. Mais l'étude de $g$ a montré que $f$ n'admet pas de point fixe dans cet intervalle ($u_0$ étant strictement positif). On aboutit à une contradiction.
+
+Donc, ou bien $u_0\in[\frac{\pi}{4},1]$, ou bien $u_0\in]0,\frac{\pi}{4}[$ et dans ce cas, $\exists n_0\in\Nn/\;u_{n_0}\in[\frac{\pi}{4},1]$. Dans tous les cas, $\exists n_0\in\Nn/\;u_{n_0}\in[\frac{\pi}{4},1]$. Mais alors, puisque $f([\frac{\pi}{4},1])=[\sin2,\sin\frac{\pi}{2}]\subset[\frac{\pi}{4},1]$ (car $\sin2=0,909...>0,785...=\frac{\pi}{4}$), pour tout entier $n\geq n_0$, $u_n\in[\frac{\pi}{4},1]$.
+
+Pour $x\in[\frac{\pi}{4},1]$, $|g'(x)|=|2\cos(2x)|\leq|2\cos2|$. L'inégalité des accroissements finis montre alors que $\forall n\geq n_0,\;|u_{n+1}-\alpha|\leq|2\cos2|.|u_n-\alpha|$, puis que 
+
+$$\forall n\geq n_0,\;|u_n-\alpha|\leq|2\cos2|^{n-n_0}|u_{n_0}-\alpha|.$$
+
+Comme $|2\cos2|=0,83...<1$, on en déduit que la suite $u$ converge vers $\alpha$. La machine donne par ailleurs $\alpha=0,947...$.
+
+%$$\includegraphics{../images/img005425-5}$$
+
+
+\item  Pour $x\in\Rr$,
+
+$$x^2-2x+2=x\Leftrightarrow x^2-3x+2=0\Leftrightarrow(x-1)(x-2)=0\Leftrightarrow x=1\;\mbox{ou}\;x=2.$$
+
+Donc, si la suite $u$ converge, ce ne peut être que vers $1$ ou $2$.
+
+Pour $n\in\Nn$,
+
+$$\begin{array}{l}
+u_{n+1}-u_n=(u_n^2-2u_n+2)-u_n=(u_n-1)(u_n-2)\quad(I)\\
+u_{n+1}-1=u_n^2-2u_n+1=(u_n-1)^2\quad(II)\\
+u_{n+1}-2=u_n^2-2u_n=u_n(u_n-2)\quad(III).
+\end{array}
+$$
+
+\begin{itemize}
+\item[\textbf{1er cas.}] Si $u_0=1$ ou $u_0=2$, la suite $u$ est constante.
+\item[\textbf{2ème cas.}] Si $u_0\in]1,2[$, $(II)$ et $(III)$ permettent de montrer par récurrence que $\forall n\in\Nn,\;u_n\in]1,2[$. $(I)$ montre alors que la suite $u$ est strictement décroissante. Etant minorée par $1$, elle converge vers un réel $\ell\in[1,u_0]\subset[1,2[$. Dans ce cas, la suite $(u_n)$ converge vers $1$.
+\item[\textbf{3ème cas.}] Si $u_0\in]2,+\infty[$, $(III)$ permet de montrer par récurrence que $\forall n\in\Nn,\;u_n>2$. Mais alors, $(I)$ montre que la suite $u$ est strictement croissante. Si $u$ converge, c'est vers un réel $\ell\in[u_0,+\infty[\subset]2,+\infty[$. $f$ n'ayant pas de point fixe dans cet intervalle, la suite $u$ diverge et, $u$ étant strictement croissante, on a $\lim_{n\rightarrow +\infty}u_n=+\infty$.
+\item[\textbf{4ème cas.}] Si $u_0\in]0,1[$, alors $u_1=(u_0-1)^2+1\in]1,2[$ ce qui ramène au deuxième cas. La suite $u$ converge vers $1$.
+\item[\textbf{5ème cas.}] Si $u_0=0$, alors $u_1=2$ et la suite $u$ est constante à partir du rang $1$. Dans ce cas, la suite $u$ converge vers $2$.
+\item[\textbf{6ème cas.}] Si $u_0<0$, alors $u_1=u_n^2-2u_n+2>2$, ce qui ramène au troisième cas. La suite $u$ tend vers $+\infty$.
+\end{itemize}
+
+En résumé, si $u_0\in]0,2[$, la suite $u$ converge vers $1$, si $u_0\in\{0,2\}$, la suite $u$ converge vers $2$ et si $u_0\in]-\infty,0[\cup]2,+\infty[$, la suite $u$ tend vers $+\infty$.
+
+%$$\includegraphics{../images/img005425-6}$$
+
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

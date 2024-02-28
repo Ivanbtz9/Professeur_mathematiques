@@ -1,0 +1,599 @@
+\documentclass[11pt,a4paper]{article}
+\oddsidemargin 0.1 cm \evensidemargin 0.1cm \textwidth 16cm
+\textheight24cm
+\setlength{\topmargin}{0pt}\setlength{\headsep}{0pt}\pagestyle{empty}
+
+\usepackage{graphicx}
+\usepackage{variations}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage[latin1]{inputenc}  
+\usepackage{fontenc}   
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsthm}
+\usepackage{xypic}
+\usepackage{variations}
+%\usepackage{fancyhdr}
+%\usepackage{xcolor}
+%\usepackage{pstricks-add}
+\usepackage[francais]{babel}
+%\usepackage[french]{babel}
+\newtheorem{defi}{D\'{e}finition}
+\newtheorem{thm}{Th\'{e}or\`{e}me}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propri\'{e}t\'{e}}
+\newtheorem{prop-def}{Propri\'{e}t\'{e}-D\'{e}finition}
+\newtheorem{ex}{Exemple}
+\newtheorem{exs}{Exemples}
+\newtheorem{exer}{Exercice}
+%\newtheorem{proof}{D\'{e}monstration}
+\def\di{\displaystyle}
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\usepackage[top=0.5cm,bottom=0.5cm,right=1.5cm,left=1.5cm]{geometry}
+\usepackage{pstricks,pst-plot} 
+%\usepackage{framed}
+\usepackage{amsmath}
+%\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{multicol}
+%\usepackage{xcolor}
+\usepackage{epsfig}
+\usepackage{pifont}
+%\usepackage[framed]{ntheorem}
+%\usepackage[frenchb]{babel}
+\usepackage{tabularx}
+\def\R{{\mathbb R}}
+\newtheorem{Rem}{Remarque}
+\newcommand{\V}{\overrightarrow}
+\newcommand{\Rep}{(O;\V{\imath};\V{\jmath})}
+\newcommand{\Coor}[2]{\begin{pmatrix} #1\\#2 \end{pmatrix}}
+
+\begin{document}
+\title{}         % Enter your title between curly braces
+\author{}        % Enter your name between curly braces
+\date{}          % Enter your date or \today between curly braces
+\maketitle
+
+\indent\vspace{-3cm}
+$$\fbox{\text{\begin{Large}Vecteurs - Feuille d'exercices niveau 1\end{Large}}}$$
+     
+\hfill\\[0.2cm]
+
+\noindent\underline{\textbf{Exercice 1 : égalité de deux vecteurs.}} Pour chacune des figures, l'égalité $\V{AB}=\V{CD}$ est-elle vraie?\\
+\\
+\begin{minipage}{6cm}
+\psset{unit=0.7}
+   \begin{pspicture}(7,6)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](7,6)
+     % \psline[linecolor=red]{|->}(1,1)(4,2)
+      \rput(2.7,0.7){$B$}
+      \rput(4.2,0.7){$D$}
+      \psdots(3,1)
+       \psdots(4,1)
+     % \psline[linecolor=red]{|->}(2,3)(5,4)
+      \rput(0.5,5.5){$A$}
+      \rput(6.5,5.5){$C$}
+      \psdots(1,5)
+      \psdots(6,5)
+    %  \psline[linecolor=blue](1,1)(2,3)
+     % \psline[linecolor=blue](4,2)(5,4)
+      %\rput(2.6,1.2){\textcolor{red}{$\V{u}$}}
+      %\rput(3.1,3){\textcolor{red}{$\V{u}$}}
+   \end{pspicture}
+\end{minipage}
+\bigskip
+\begin{minipage}{6cm}
+\psset{unit=0.7}
+   \begin{pspicture}(7,6)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](7,6)
+     % \psline[linecolor=red]{|->}(1,1)(4,2)
+     % \rput(0.8,0.8){$A$}
+      %\rput(4.2,1.8){$B$}
+     % \psline[linecolor=red]{|->}(2,3)(5,4)
+      \rput(0.5,5.5){$A$}
+      \rput(6.5,5.5){$B$}
+      \psdots(1,5)
+      \psdots(6,5)
+        \rput(0.5,0.5){$D$}
+      \rput(5.5,0.5){$C$}
+      \psdots(1,1)
+      \psdots(5,1)
+    %  \psline[linecolor=blue](1,1)(2,3)
+     % \psline[linecolor=blue](4,2)(5,4)
+      %\rput(2.6,1.2){\textcolor{red}{$\V{u}$}}
+      %\rput(3.1,3){\textcolor{red}{$\V{u}$}}
+   \end{pspicture}
+\end{minipage}
+\bigskip
+\begin{minipage}{6cm}
+\psset{unit=0.7}
+   \begin{pspicture}(7,6)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](7,6)
+     % \psline[linecolor=red]{|->}(1,1)(4,2)
+     % \rput(0.8,0.8){$A$}
+      %\rput(4.2,1.8){$B$}
+     % \psline[linecolor=red]{|->}(2,3)(5,4)
+      \rput(0.5,5.5){$A$}
+      \rput(2.5,1.5){$B$}
+      \psdots(1,5)
+      \psdots(3,2)
+        \rput(6.5,0.5){$D$}
+      \rput(5.5,4.5){$C$}
+      \psdots(7,1)
+      \psdots(5,4)
+    %  \psline[linecolor=blue](1,1)(2,3)
+     % \psline[linecolor=blue](4,2)(5,4)
+      %\rput(2.6,1.2){\textcolor{red}{$\V{u}$}}
+      %\rput(3.1,3){\textcolor{red}{$\V{u}$}}
+   \end{pspicture}
+\end{minipage}
+
+
+\noindent\underline{\textbf{Exercice 2 : représentants d'un vecteur.}} Tracer quatre vecteurs égaux au vecteur $\V{AB}$.
+$$\begin{minipage}{6cm}
+\psset{unit=0.5}
+   \begin{pspicture}(7,6)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](7,6)
+     % \psline[linecolor=red]{|->}(1,1)(4,2)
+      \rput(0.5,4.5){$A$}
+     % \rput(4.2,0.7){$D$}
+      %\psdots(1,4)
+       %\psdots(4,1)
+      \psline[arrowscale=2,linewidth=1pt,linecolor=red]{->}(1,4)(3,2)                   
+      \rput(3.5,1.5){$B$}
+     % \rput(6.5,5.5){$C$}
+     % \psdots(3,2)
+      %\psdots(6,5)
+    %  \psline[linecolor=blue](1,1)(2,3)
+     % \psline[linecolor=blue](4,2)(5,4)
+      %\rput(2.6,1.2){\textcolor{red}{$\V{u}$}}
+      %\rput(3.1,3){\textcolor{red}{$\V{u}$}}
+   \end{pspicture}
+\end{minipage}$$
+\noindent\vspace{1cm}
+
+\noindent\underline{\textbf{Exercice 3 : égalité de vecteurs}}\\
+
+\begin{minipage}{0.5\linewidth}
+\begin{enumerate}
+\item Construire à partir des points A, B et C les points D, E et F tels que $\V{AB}=\V{CD}$, $\V{EA}=\V{AB}$ et $\V{CF}=\V{BA}$.
+\item Enumérer tous les parallélogrammes que l'on peut obtenir avec ces six points.
+\item En utilisant ces six points, compléter :\\
+$\V{BD}=\dots=\dots$\\
+$\V{BC}=\dots$\\
+$\V{BE}=\dots$
+\end{enumerate}
+\end{minipage}
+\hfill\ \ \ \ \
+\begin{minipage}{0.5\linewidth}
+\psset{unit=0.5}
+   \begin{pspicture}(12,9)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](12,9)
+     % \psline[linecolor=red]{|->}(1,1)(4,2)
+      \rput(5.5,6.5){$B$}
+     % \rput(4.2,0.7){$D$}
+      \psdots(6,6)
+       %\psdots(4,1)
+     % \psline[linecolor=red]{|->}(2,3)(5,4)
+      \rput(2.5,4.5){$A$}
+      \rput(9.5,2.5){$C$}
+      \psdots(3,4)
+      \psdots(9,3)
+    %  \psline[linecolor=blue](1,1)(2,3)
+     % \psline[linecolor=blue](4,2)(5,4)
+      %\rput(2.6,1.2){\textcolor{red}{$\V{u}$}}
+      %\rput(3.1,3){\textcolor{red}{$\V{u}$}}
+   \end{pspicture}
+\end{minipage}
+\hfill\\
+
+\noindent\underline{\textbf{Exercice 4 : translation}}\\
+\begin{minipage}{0.5\linewidth}
+On considère le graphique ci-contre.
+\begin{enumerate}
+\item 
+	\begin{enumerate}[$a.$]
+	\item Quelle est l'image du triangle $ABC$ par la translation qui transforme $M$ en $N$ ?
+	\item Quelle est l'image du point $C$ par cette translation ?
+	\end{enumerate}
+\item
+	\begin{enumerate}[$a.$]
+	\item Par quelle translation obtient-on le triangle $LKG$ à partir du triangle $ABC$ ? 
+	\item Placer le point $P'$ image de $P$ par cette translation. 
+	\end{enumerate}
+\item Tracer l'image du triangle $ABC$ par la translation qui transforme $B$ en $K$.
+\item Le triangle $GKF$ est-il l'image du triangle $GEF$ par une translation ?
+\end{enumerate}
+\end{minipage}
+\hfill \ \ \ \
+\begin{minipage}{0.5\linewidth}
+\psset{unit=0.6}
+   \begin{pspicture}(14,12)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](14,12)
+      \psdots(2,3)
+      \rput(1.7,3.3){$A$}
+      \psdots(4,5)
+      \rput(4.3,5.3){$B$}
+      \psdots(6,2)
+      \rput(6.3,1.7){$C$}
+      \psdots(3,7)
+      \rput(2.7,7.3){$M$}
+      \psdots(5,7)
+      \rput(5.3,7.3){$P$}
+      \psdots(6,4)
+      \rput(5.7,4.3){$L$}
+      \psdots(10,3)
+      \rput(10.3,2.7){$K$}
+      \psdots(8,6)
+      \rput(7.7,6.3){$G$}
+      \psdots(9,10)
+      \rput(8.7,10.3){$N$}
+      \psdots(10,8)
+      \rput(10.3,8.3){$E$}
+      \psdots(12,5)
+      \rput(12.3,4.7){$F$}
+      \pspolygon(2,3)(4,5)(6,2)
+      \pspolygon(6,4)(8,6)(10,3)
+      \pspolygon(8,6)(10,3)(12,5)
+      \pspolygon(8,6)(10,8)(12,5)
+   \end{pspicture}
+\end{minipage}
+\hfill\\
+\\
+
+\newpage
+
+\begin{tabular}{c|c}
+
+\begin{minipage}{0.45\linewidth}
+\noindent\hspace{-0.5cm}\underline{\textbf{Exercice 5 : translation}}\\
+Construire l'image du dessin ci-dessous par la translation de vecteur $\V{u}$.
+$$
+\psset{unit=0.6}
+   \begin{pspicture}(9,7)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](9,7)
+      %\psdots(5,1)
+      %\psdots(7,3)      
+      %\psdots(4,3)
+      \psarc(5.5,3){1.5}{0}{180}
+      \psline(4,3)(5,1)(7,3)
+      \psline[arrowscale=2,linewidth=1pt]{->}(3,0)(0,2)
+      \rput(1.5,1.8){$\V{u}$}
+   \end{pspicture}$$
+\end{minipage}
+
+& 
+
+\begin{minipage}{0.45\linewidth}
+\hfill\\[0.5cm]
+\noindent\underline{\textbf{Exercice 6 : représentant d'un vecteur.}} Nommer tous les représentants du vecteur $\V{u}$ visibles sur la figure :
+\psset{unit=0.7}
+$$\begin{pspicture}(6,5)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](6,5)
+      \psdots(1,1)
+      \psdots(1,2)
+      \psdots(2,2)
+      \psdots(3,2)
+      \psdots(3,3)
+      \psdots(3,4)
+      \psdots(4,4)      
+      \psdots(5,4)
+      \rput(0.7,0.7){$A$}
+      \rput(0.7,1.7){$M$}
+      \rput(2.3,1.7){$B$}
+      \rput(3.3,1.7){$E$}
+      \rput(3.3,2.7){$C$}
+      \rput(3.3,4.3){$P$}
+      \rput(4.3,4.3){$D$}
+      \rput(5.3,4.3){$F$}
+      \rput(1.7,3.3){$\V{u}$}
+      \psline(1,1)(4,4)
+      \psline(3,2)(5,4)
+      \psline[arrowscale=2,linewidth=1pt]{->}(1,2)(3,4)
+   \end{pspicture}$$
+	\hfill\\[0.1cm]
+\end{minipage}
+\end{tabular}
+\hfill\\
+
+\noindent\underline{\textbf{Exercice 7 : direction, sens et norme d'un vecteur}}\\[0.2cm] 
+\begin{minipage}{0.5\linewidth}
+\begin{enumerate}
+\item Citer les vecteurs de même norme que $\V{AB}$ sur la figure ci-contre.
+\item Citer les vecteurs de même direction que $\V{AB}$. Parmi ces vecteurs, quels sont ceux qui sont de même sens que $\V{AB}$ ?
+\item Quels sont les vecteurs égaux à $\V{AB}$ ?
+\item A-t-on $\V{DE}=\V{DC}$ ? 
+\item A-t-on $DE=DC$ ?
+\end{enumerate}
+\end{minipage}
+\hfill \ \ \ \
+\begin{minipage}{0.5\linewidth}
+\psset{unit=0.7}
+\begin{pspicture}(8,6)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](8,6)
+      \psdots(1,4)
+      \psdots(3,5)
+      \psdots(3,2)
+      \psdots(5,3)
+      \psdots(7,4)
+      \psdots(5,1)
+      \psdots(7,2)      
+      \rput(0.7,4.3){$A$}
+      \rput(2.7,5.3){$B$}
+      \rput(2.7,1.7){$C$}
+      \rput(4.7,3.3){$D$}
+      \rput(6.7,4.3){$E$}
+      \rput(5.3,0.7){$F$}
+      \rput(7.3,1.7){$G$}
+   \end{pspicture}
+\end{minipage}
+\hfill\\
+\\
+
+\noindent\underline{\textbf{Exercice 8 : représentant d'un vecteur d'origine donnée}}\\[0.2cm] 
+Soient $A$ et $B$ deux points distincts donnés.
+\begin{enumerate}
+\item On considère le point $M$ tel que $\V{AM}=\V{AB}$. Où se trouve le point $M$ ?
+\item On considère le point $P$ tel que $\V{PA}=\V{AB}$. Où se trouve le point $P$ ?
+\item Existe-t-il un point $R$ tel que $\V{RA}=\V{RB}$ ?
+\item On considère le point $Q$ tel que $\V{QA}=\V{BQ}$. Où se trouve le point $Q$ ?
+\end{enumerate}  
+\hfill\\[-0.5cm]
+
+\noindent\underline{\textbf{Exercice 9 : égalité de deux vecteurs et parallélogramme}}\\[0.2cm] 
+Soit $ABCD$ un parallélogramme. 
+\begin{enumerate}
+\item
+Dire si chacune des affirmations suivantes est vraie :\\
+\begin{minipage}{0.5\linewidth}
+\begin{enumerate}[$\diamond$]
+\item $\V{BA}+\V{BC}=\V{BD}$ ;
+\item $\V{AB}+\V{AD}=\V{CA}$ ;
+\end{enumerate}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{enumerate}[$\diamond$]
+\item $\V{BC}+\V{BA}=\V{AD}+\V{CD}$ ;
+\item $\V{AD}+\V{AC}=\V{DC}$.
+\end{enumerate}
+\end{minipage}	
+\item Soit $CDEF$ un second parallélogramme tel que les points $A$, $D$ et $E$ ne soient pas alignés.
+	\begin{enumerate}[$a.$]
+	\item Ecrire toutes les égalités vectorielles possibles en utilisant les points de la figure.
+	\item En déduire que $ABFE$ est un parallélogramme.
+	\end{enumerate}
+\end{enumerate}
+\hfill\\[-0.5cm]
+
+\noindent\underline{\textbf{Exercice 10 : milieu d'un segment}}\\[0.2cm] 
+Soit $MNP$ un triangle  et soit $I$ le milieu de $[NP]$. On note $Q$ le symétrique de $M$ par rapport au point $I$. Quelles égalités vectorielles peut-on écrire en utilisant les points de la figure ? Justifier.
+\hfill\\
+
+\noindent\underline{\textbf{Exercice 11 : milieu d'un segment}}\\[0.2cm] 
+Soient trois points $A$, $B$ et $C$ tels que $C$ soit le symétrique de $A$ par rapport à $B$. Dire si chacune des affirmations suivantes est vraie :
+$$\V{AB}=\V{BC} \ \ \ ; \ \ \ \V{AC}=\V{AB} \ \ \ ; \ \ \ \V{CB}=\V{AC} \ \ \ ; \ \ \ \V{CB}=\V{AB}$$
+\end{enumerate}
+\hfill\\[-0.5cm]
+
+\newpage
+
+\noindent\underline{\textbf{Exercice 12 : coordonnées d'un vecteur (lecture graphique et calcul)}}\\
+\\
+\begin{tabular}{c|c}
+
+\begin{minipage}{0.5\linewidth}
+\underline{Lecture graphique}\\ 
+On considère la figure ci-dessous. Lire graphiquement les coordonnées des vecteurs :
+$$\V{AB} \ ; \ \V{CD} \ ; \ \V{EF} \ ; \ \V{GH} \ ; \ \V{PS} \ \text{et} \ \V{KL}$$
+\psset{unit=0.7}
+$$\begin{pspicture}(10,9)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](10,9)  
+      \psline(0,4)(10,4)
+      \psline(5,0)(5,9)    
+      \rput(2.7,6.3){$A$}
+      \rput(6.3,7.3){$B$}
+      \rput(6.3,6.3){$C$}
+      \rput(7.3,4.7){$D$}
+      \rput(9.3,6.3){$E$}
+      \rput(8.3,3.7){$F$}
+      \rput(2.7,3.3){$G$}
+      \rput(5.3,2.7){$H$}
+      \rput(5.7,3.7){$I$}
+      \rput(4.7,4.7){$J$}
+      \rput(0.7,5.3){$K$}
+      \rput(2.7,1.7){$L$}
+      \rput(4.7,3.7){$O$}
+      \rput(8.3,1.7){$P$}
+      \rput(4.7,1.7){$S$}
+      \psdots(5,4)
+      \psdots(6,4)
+      \psdots(5,5)
+      \psline[arrowscale=2,linewidth=1pt]{->}(1,5)(3,2)
+      \psline[arrowscale=2,linewidth=1pt]{->}(3,6)(6,7)
+      \psline[arrowscale=2,linewidth=1pt]{->}(3,3)(5,3)
+      \psline[arrowscale=2,linewidth=1pt]{->}(6,6)(7,5)
+      \psline[arrowscale=2,linewidth=1pt]{->}(8,2)(5,2)
+      \psline[arrowscale=2,linewidth=1pt]{->}(9,6)(8,4)
+   \end{pspicture}$$
+\end{minipage}
+
+& 
+
+
+\begin{minipage}{0.5\linewidth}
+\underline{Calcul}\\
+Calculer les coordonnées du vecteur $\V{RT}$ dans les cas suivants :
+\begin{enumerate}[$a.$]
+\item $R(-5 \ ; \ 8)$ et $T(-12 \ ; \ -17)$ ;
+\item $R\left(\di\frac{1}{2} \ ; \ \di\frac{3}{4}\right)$ et $T\left(-2 \ ; \ \di\frac{1}{4}\right)$
+\end{enumerate} 
+\hfill\\[5cm]
+	\end{minipage}
+	\end{tabular}
+\hfill\\
+
+
+\noindent\underline{\textbf{Exercice 13 : coordonnées}}\\[0.2cm]
+Placer dans un repère orthonormé $(O;I,J)$ le point $A(2 \ ;\ -3)$, puis :
+\begin{enumerate}[$a.$]
+\item Le point $M$ tel que $\V{AM}(2 \ ;\ -3)$ ;
+\item Le point $P$ tel que $\V{AP}(-2 \ ; 3)$.
+\end{enumerate}
+\hfill\\[-0.5cm]
+
+\noindent\underline{\textbf{Exercice 14 : coordonnées}}\\[0.2cm] 
+Soit $(O;I,J)$ un repère orthonormé. Soient $A(-2 \ ; \ 5)$ et $C(4 \ ; \ 6)$. 
+\begin{enumerate}
+\item Faire une figure.
+\item Calculer les coordonnées du vecteur $\V{AC}$.
+\item Calculer les coordonnées du point $M$ tel que $\V{OM}=\V{AC}$. Quelle est la nature du quadrilatère $OMCA$ ?
+\item Contrôler les résultats sur la figure.
+\end{enumerate}
+\hfill\\[-0.5cm]
+
+\noindent\underline{\textbf{Exercice 15 : coordonnées}}\\[0.2cm] 
+Soit $(O;I,J)$ un repère orthonormé. Soient $A(-2 \ ;\ 4)$, $B(3\ ; \ 4)$ et $C(0 \ ; \ -3)$.
+\begin{enumerate}
+\item Calculer les coordonnées du point $E$ tel que $\V{AE}=\V{BC}$.
+\item Calculer les coordonnées du point $F$ tel que $\V{AF}=\V{CB}$.
+\item Quelle position occupe le point $A$ par rapport aux points $E$ et $F$ ?
+\end{enumerate}
+\hfill\\[-0.5cm]
+
+\noindent\underline{\textbf{Exercice 16 : relation de Chasles}}\\
+Compléter les égalités suivantes sans faire de figure.\\[0.3cm]
+\begin{minipage}{0.5\linewidth}
+\begin{enumerate}[$\diamond$]
+\item $\V{AB}+\V{BD}=\V{A ..... }$ ;
+\item $\V{AC}+\V{BA}= ........ $ ;
+\item $........ +\V{AM}=\V{NM}$ ;
+\item $\V{AB}+ ........ =\V{0}$.
+\end{enumerate}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{enumerate}[$\diamond$]
+\item $\V{BI}+\V{IN}= ........ $ ;
+\item $\V{MC}+ ........ =\V{MN}$ ;
+\item $\V{A ..... }+\V{BL}=\V{AL}$.
+\end{enumerate}
+\end{minipage}
+\hfill\\
+
+\newpage
+
+
+\noindent\underline{\textbf{Exercice 17 : enchaînement de deux translations - construction du vecteur somme}}\\[0.4cm]
+\begin{minipage}{0.5\linewidth}
+\psset{unit=0.7}
+\begin{pspicture}(10,5)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](10,5)     
+      \rput(0.7,2.7){$A$}
+      \rput(1.7,4.3){$B$}
+      \rput(2.7,4.3){$C$}
+      \rput(4.3,4.3){$D$}
+      \rput(1.7,1.7){$E$}
+      \rput(3.7,0.7){$F$}
+      \rput(7.3,2.3){$G$}
+      \rput(9.3,2.3){$H$}
+      \rput(6.7,0.7){$K$}
+      \rput(5.7,2.7){$I$}
+      \rput(9.3,4.3){$J$}
+      \rput(4.7,0.7){$O$}
+      \psline[arrowscale=2,linewidth=1pt]{->}(1,3)(2,4)
+      \psline[arrowscale=2,linewidth=1pt]{->}(3,4)(4,4)
+      \psline[arrowscale=2,linewidth=1pt]{->}(2,2)(4,1)
+      \psline[arrowscale=2,linewidth=1pt]{->}(5,1)(7,2)
+      \psline[arrowscale=2,linewidth=1pt]{->}(9,2)(7,1)
+      \psline[arrowscale=2,linewidth=1pt]{->}(6,3)(9,4)
+      \uput[u](5,-1.5){$\displaystyle {\text{Question 1}}$} 
+\end{pspicture}
+\end{minipage}
+\hfill \ \ \ \
+\begin{minipage}{0.5\linewidth}
+\psset{unit=0.7}
+\begin{pspicture}(12,8)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](12,8)     
+      \rput(3.7,6.7){$A$}
+      \rput(10.3,5.3){$B$}
+      \rput(2.7,0.7){$C$}
+      \rput(7.3,0.7){$D$}
+      \rput(7.3,1.7){$E$}
+      \rput(4.7,3.3){$F$}
+      \rput(7.3,3.3){$O$}
+      \psdots(4,7)
+      \psdots(7,3)
+      \psdots(10,5)
+      \psline(3,1)(7,1)(7,2)(5,3)(3,1)
+      \uput[u](6,-1.5){$\displaystyle {\text{Question 2}}$}
+   \end{pspicture}
+\end{minipage}
+\hfill\\
+\begin{enumerate}
+\item Indiquer le vecteur égal à $\V{AB}+\V{CD}$.
+\item On considère la figure $2$ ci-avant.\\
+On note $\mathcal{F}_{1}$ l'image du quadrilatère $CDEF$ par la translation de vecteur $\V{OA}$, et $\mathcal{F}_{2}$ l'image du quadrilatère $\mathcal{F}_{1}$ par la translation de vecteur $\V{AB}$.\\
+Construire $\mathcal{F}_{2}$ sans effectuer de tracé en dehors de la figure.
+\item On considère la figure ci-dessous. Construire le point $M$ défini par $\V{AM}=\V{AB}+\V{AD}$.\\
+$$\psset{unit=0.7}
+\begin{pspicture}(9,5)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](9,5)     
+      \rput(0.7,1.7){$A$}
+      \rput(6.3,1.7){$B$}
+      \rput(3.3,3.3){$D$}
+      \psdots(1,2)
+      \psdots(6,2)
+      \psdots(3,3)
+   \end{pspicture}$$
+\end{enumerate}
+\hfill\\[-0.5cm]
+
+
+\noindent\underline{\textbf{Exercice 18 : exercice-bilan}}\\
+On considère la figure ci-dessous :\\
+\psset{unit=0.65}
+$$\begin{pspicture}(16,8)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](16,8)     
+      \rput(0.7,7.3){$M$}
+      \rput(6.7,7.3){$N$}
+      \rput(12.7,7.3){$P$}
+      \rput(8.7,3.7){$Q$}
+      \rput(14.7,3.7){$R$}
+      \rput(4.7,0.7){$S$}
+      \psdots(1,7)
+      \psdots(7,7)
+      \psdots(13,7)
+      \psdots(9,4)
+      \psdots(15,4)
+      \psdots(5,1)
+\end{pspicture}$$
+\begin{enumerate}
+\item Compléter les égalités suivantes en utilisant des points de la figure :\\
+\\
+	\begin{minipage}{0.5\linewidth}
+	\begin{enumerate}[$\diamond$]
+	\item $\V{MN}= \V{N.....}$ ; 
+	\item $\V{QP}+\V{QS}= ........$ ;
+	\item $\V{NM}+\V{NM}= ........$ ;
+	\end{enumerate}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+	\begin{enumerate}[$\diamond$]
+	\item $\V{NM}+\V{PN}= ........$ ;
+	\item $\V{QN}+\V{QP}=\V{....N}$ ;
+	\item $-\V{QN}=\V{....R}$.
+	\end{enumerate}
+	\end{minipage}
+	\hfill\\
+\item Pour chacune des égalités ci-dessous, dire si elle est vraie ou fausse. Si elle est fausse, corriger le second membre pour qu'elle devienne correcte.
+$$\V{MQ}=\V{RN} \ \ \ ; \ \ \ \V{QN}+\V{QR}=\V{SQ} \ \ \ ; \ \ \ \V{QN}+\V{QS}=\V{QM}$$
+	\end{enumerate}
+\end{enumerate}
+\hfill\\
+
+
+
+
+
+\end{document}

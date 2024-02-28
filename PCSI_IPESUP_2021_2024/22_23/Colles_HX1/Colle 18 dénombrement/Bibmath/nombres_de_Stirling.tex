@@ -1,0 +1,85 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge nombres de Stirling}}\end{center}
+
+% Exercice 2537
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Nombre de partitions d'un ensemble à $n$ éléments
+\vskip0.2cm
+Soit $n$ et $k$ deux entiers strictement positifs. 
+\begin{enumerate}
+\item Montrer qu’il n’existe qu’un nombre fini de partitions de l’ensemble $\{1,\dots,n\}$ en $k$ parties. Dans la suite, on notera $S(n,k)$ le nombre de ces partitions. On pose de plus $S(0,0)=1$ et $S(n,0)=S(0,k)=0$.
+\item Que vaut $S(n,k)$ pour $k>n$?
+\item Que vaut $S(n,1)$?
+\item Démontrer que $S(n,k)=S(n-1,k-1)+kS(n-1,k)$.
+\item Rédiger une fonction récursive Python permettant de calculer $S(n,k)$.
+\end{enumerate}
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=28278
+\end{document}

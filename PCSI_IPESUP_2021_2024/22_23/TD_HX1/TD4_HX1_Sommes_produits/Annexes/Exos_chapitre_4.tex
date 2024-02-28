@@ -1,0 +1,129 @@
+\documentclass[a4paper,10pt]{article}
+
+ %Configuration de la feuille 
+\usepackage[landscape]{geometry}
+\usepackage{multicol}
+
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+\begin{multicols}{2}
+
+\begin{center}\textsc{{\huge Chapitre 3 : somme et produits}}\end{center}
+
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M.Botcazou \& M.Dupré}\cfoot{\thepage/3}\rfoot{\textbf{Tournez la page S.V.P.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+
+\textcolor{blue}{\large{\bf Exercice 3.}} (**)
+%TODO : système, ch,sh, équation deuxième degré
+\begin{enumerate}
+\item Soit $(a,b) \in \mathbb{R}^2$ avec $b \neq 0$. Calculer
+$$ C = \displaystyle\sum_{k=0}^{n}{\cosh(a+kb)} \text{ et } S = \displaystyle\sum_{k=0}^{n}{\sinh(a+kb)}$$
+\end{enumerate}
+
+
+
+
+
+\subsection*{Coefficients binomiaux, binôme de Newton}
+
+\textcolor{blue}{\large{\bf Exercice 3.}} (**)
+%TODO : coeff binom
+Calculer $\displaystyle\sum_{k=0}^{n}{k^2 {n \choose k}}$
+
+
+\textcolor{blue}{\large{\bf Exercice 3.}} (**)
+Déterminer l'abscisse du premier maximum local sur $\mathbb{R}_{+}^{*}$ de $f_n : x \longmapsto \displaystyle\sum_{k=1}^{n}{\dfrac{\sin(kx)}{k}}$
+
+
+\subsection*{Changement d'indice, interversion de sommes}
+
+\textcolor{blue}{\large{\bf Exercice 3.}} (*)
+%TODO :
+Soit $n \in \mathbb{N}^{*}$
+Calculer $\displaystyle\sum_{k=0}^{n}{\sin^{3}(kx)}$
+
+\textcolor{blue}{\large{\bf Exercice 3.}} (**)
+%TODO : somme géométrique, interversion de somme
+Calculer de deux manières différentes la somme $$\displaystyle\sum_{i=1}^{n}{\displaystyle\sum_{j = 1}^{i}{2^i}}$$
+En déduire la valeur de $\displaystyle\sum_{i=1}^{n}{i2^i}$
+
+\textcolor{blue}{\large{\bf Exercice 3.}} (**)
+%TODO : 
+Calculer $$\displaystyle\sum_{1 \leq i,j \leq n}{\max(i,j)}$$
+
+\textcolor{blue}{\large{\bf Exercice 3.}} (***)
+%TODO : complexes
+Soit $x \in \mathbb{R}$ tel que $x \neq 0 [2 \pi]$ et $n \in \mathbb{N}^{*}$
+\begin{enumerate}
+\item Calculer et simplifier $D_n(x) = \displaystyle\sum_{k=-n}^{n}{e^{ikx}}$
+\item Calculer et simplifier $F_n(x) = \dfrac{1}{n} \displaystyle\sum_{k=0}^{n-1}{D_k(x)}$
+\end{enumerate}
+
+\textcolor{blue}{\large{\bf Exercice 3.}} (**)
+%TODO : somme géométrique, double somme
+\begin{enumerate}
+\item Calculer $$\displaystyle\sum_{k=0}^{n}{\displaystyle\sum_{l=0}^{n}{2^{2k-l}}}$$
+\end{enumerate}
+
+\textcolor{blue}{\large{\bf Exercice 3.}} (****)
+%TODO : racines de l'unité, changement d'indice complexe
+Soit $n \in \mathbb{N}^{*}$, $\omega = e^{\frac{2 i \pi}{n}}$, on pose $Z = \displaystyle\sum_{k=0}^{n}{\omega^{k^2}}$. \\
+Calculer $|Z|^{2}$
+
+\end{multicols}
+\end{document}

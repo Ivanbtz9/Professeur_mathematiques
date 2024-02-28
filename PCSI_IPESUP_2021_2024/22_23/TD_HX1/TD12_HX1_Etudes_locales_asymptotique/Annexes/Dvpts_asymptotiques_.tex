@@ -1,0 +1,112 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge Dvpts asymptotiques }}\end{center}
+
+% Exercice 579
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Tangente
+\vskip0.2cm
+Soit $n\geq 1$.
+\begin{enumerate}
+\item Montrer que l'équation $\tan x=x$ possède une solution unique $x_n$ dans $\left]n\pi-\frac\pi2,n\pi+\frac\pi2\right[$.
+\item Quelle relation lie $x_n$ et $\arctan(x_n)$?
+\item Montrer que $x_n=n\pi+\frac{\pi}{2}+o(1)$.
+\item En écrivant $x_n=n\pi+\frac{\pi}{2}+\veps_n$ et en utilisant le résultat de la question 2., en déduire que
+$$x_n=n\pi+\frac{\pi}{2}-\frac{1}{n\pi}+\frac{1}{2n^2\pi}+o\left(\frac1{n^2}\right).$$
+\end{enumerate}
+
+
+% Exercice 1153
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Développement asymptotique de la série harmonique
+\vskip0.2cm
+On pose $H_n=1+\frac12+\dots+\frac1n$. 
+\begin{enumerate}
+\item Prouver que $H_n\sim_{+\infty}\ln n$.
+\item On pose $u_n=H_n-\ln n$, et $v_n=u_{n+1}-u_n$.
+\'Etudier la nature de la série $\sum_n v_n$. En déduire que la suite $(u_n)$ est convergente. On notera $\gamma$ sa limite.
+\item Soit $R_n=\sum_{k=n}^{+\infty} \frac{1}{k^2}$. Donner un équivalent de $R_n$.
+\item Soit $w_n$ tel que $H_n=\ln n+\gamma+w_n$, et soit 
+$t_n=w_{n+1}-w_n$. Donner un équivalent du reste $\sum_{k\geq n}t_k$.
+En déduire que $H_n=\ln n+\gamma+\frac{1}{2n}+o\left(\frac1n\right)$.
+\end{enumerate}
+
+
+% Exercice 592
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Equivalence de sommes partielles
+\vskip0.2cm
+Soient $(u_n)$ et $(v_n)$ deux suites réelles positives telles que $u_n\sim_{+\infty}v_n$. On pose
+$$U_n=\sum_{k=1}^n u_k\textrm{ et }V_n=\sum_{k=1}^n v_k,$$
+et on suppose de plus que $V_n\to+\infty$. Démontrer que $U_n\sim_{+\infty} V_n.$
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=26713
+\end{document}

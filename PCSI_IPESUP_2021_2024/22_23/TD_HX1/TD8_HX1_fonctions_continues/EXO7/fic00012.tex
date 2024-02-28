@@ -1,0 +1,568 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00012, bodin, 2007/09/01} 
+
+\titre{Fonctions continues}
+
+\section{Pratique}
+\exercice{671, vignal, 2001/09/01}
+\video{xN3Z9gW5JEs}
+\enonce{000671}{}
+Soit $f$ la fonction r\'eelle \`a valeurs r\'eelles
+d\'efinie par
+$$f(x)=\left\{\begin{array}{ll}
+x & \hbox{ si } x< 1\\
+x^2  & \hbox{ si }1\leq x\leq 4\\
+8\,\sqrt{x}  & \hbox{ si } x>4
+\end{array}\right.$$
+\begin{enumerate}
+  \item Tracer le graphe de $f$.
+  \item  $f$ est elle continue ?
+  \item Donner la formule d\'efinissant $f^{-1}$.
+\end{enumerate}
+\finenonce{000671}
+
+
+\finexercice
+\exercice{670, vignal, 2001/09/01}
+\video{AqwFsD85iiU}
+\enonce{000670}{}
+ Soit $f : \R\setminus\{1/3\}\rightarrow \R$ 
+telle que $f(x)= \frac{2x+3}{3x-1}$.
+
+Pour tout $\epsilon>0$ d\'eterminer $\delta$ tel que,
+($x\not=1/3$ et $|x|\leq\delta)\Rightarrow |f(x)+3|\leq \epsilon$.
+
+Que peut-on en conclure ?
+\finenonce{000670}
+
+
+\finexercice\exercice{677, bodin, 1998/09/01}
+\video{C7uoURImunQ}
+\enonce{000677}{}
+Les fonctions suivantes sont-elles prolongeables par continuit\'e sur
+$\R$ ?
+$$ a)\ f(x)=\sin x \cdot \sin \frac{1}{x}\ ;\ \ \
+b)\ g(x)=\frac{1}{x}\ln\frac{e^x+e^{-x}}{2}\ ;$$
+$$c)\ h(x)=\frac{1}{1-x}-\frac{2}{1-x^2}\ .$$
+\finenonce{000677} 
+
+
+\finexercice
+
+\section{Théorie}
+\exercice{639, bodin, 1998/09/01}
+\video{RMlTCZ6T9wc}
+\enonce{000639}{}
+Soit $I$ un intervalle ouvert de $\Rr$, $f$ et $g$ deux fonctions d\'efinies sur $I$.
+\begin{enumerate}
+        \item Soit $a\in I$. Donner une raison pour laquelle :
+$$\left( \lim_{x\rightarrow a}f(x)=f(a) \right) \Rightarrow
+\left( \lim_{x\rightarrow a} |f(x)|=|f(a)| \right). $$
+    \item On suppose que $f$ et $g$ sont continues sur $I$. En utilisant
+l'implication d\'emontr\'ee ci-dessus, la relation $\sup(f,g)=\frac{1}{2}(f+g+|f-g|)$,
+et les propri\'et\'es des fonctions continues, montrer que la fonction $\sup(f,g)$
+est continue sur $I$.
+\end{enumerate}
+\finenonce{000639} 
+
+
+\finexercice\exercice{645, ridde, 1999/11/01}
+\video{ZeT60IE0owY}
+\enonce{000645}{}
+Soient $I$ un intervalle de $\Rr$ et $f : I \rightarrow \Rr$ continue, telle que pour chaque $x \in I$, $f (x)^2 = 1$.
+Montrer que $f = 1$  ou $f = -1$.
+\finenonce{000645} 
+
+
+\finexercice
+\exercice{642, bodin, 1998/09/01}
+\video{Uh9semrdJvk}
+\enonce{000642}{}
+ Soit $f:[a,b]\longrightarrow\R$ une fonction continue telle que
+$f(a)=f(b)$. Montrer que la fonction $g(t)=f(t+\frac{b-a}{2})-f(t)$ s'annule en au moins un point
+de $[a,\frac{a+b}{2}]$.
+
+\emph{Application :} une personne parcourt 4 km en 1 heure.
+Montrer qu'il existe un intervalle de 30 mn pendant lequel elle parcourt exactement 2 km.
+
+\finenonce{000642}
+
+
+
+\finexercice
+
+\exercice{646, ridde, 1999/11/01}
+\video{gC6TqV9IOPg}
+\enonce{000646}{}
+Soit $f : \Rr^ + \rightarrow \Rr$ continue admettant une limite finie en $ + \infty$.
+Montrer que $f$ est born\'ee. Atteint-elle ses bornes ?
+\finenonce{000646} 
+
+
+\finexercice
+\section{Etude de fonctions}
+\exercice{686, vignal, 2001/09/01}
+\video{XW9frtB7vKc}
+\enonce{000686}{}
+ D\'eterminer les domaines de d\'efinition des fonctions suivantes
+
+$$f(x)=\sqrt{\frac{2+3\,x}{5-2\,x}}\ ;\quad g(x)=\sqrt{x^2-2\,x-5}\ ;\quad
+h(x)=\ln\left(4\,x+3\right).$$
+\finenonce{000686} 
+
+
+\finexercice\exercice{680, ridde, 1999/11/01}
+\video{bdGeuvwKDQA}
+\enonce{000680}{}
+Soit $f : \Rr \rightarrow \Rr$ continue en $0$ telle que pour chaque $x \in \Rr$,
+$f(x) = f(2x)$. Montrer que $f$ est constante.
+\finenonce{000680} 
+
+
+\finexercice\exercice{653, gourio, 2001/09/01}
+\video{ZCT1KDuJcsI}
+\enonce{000653}{}
+Soit $f:[0,1]\rightarrow [0,1]$ croissante, montrer qu'elle a un point fixe.
+
+\emph{Indication} : \'{e}tudier
+$$E=\big\{x\in [0,1] \mid \forall t\in [0,x],f(t)>t\big\}.$$
+\finenonce{000653} 
+
+
+\finexercice
+\exercice{776, ridde, 1999/11/01}
+\video{_TunkNZcaeI}
+\enonce{000776}{}
+R\'esoudre l'\'equation $x^y = y^x$ o\`u $x$ et $y$ sont des entiers positifs non nuls.
+\finenonce{000776} 
+
+
+\finexercice
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\indication{000671}
+Distinguer trois intervalles pour la formule définissant $f^{-1}$.
+\finindication
+\indication{000670}
+Le ``$\epsilon$'' vous est donné, il ne faut pas y toucher.
+Par contre c'est à vous de trouver le ``$\delta$''.
+\finindication
+\indication{000677}
+Oui pour le deux premi\`eres en posant $f(0)=0$, $g(0)=0$, non pour la troisi\`eme.
+\finindication
+\indication{000639}
+\begin{enumerate}
+    \item On pourra utiliser la variante de l'in\'egalit\'e triangulaire $|x-y|\geq \big| |x|-|y| \big|$.
+    \item Utiliser la premi\`ere question pour montrer que $|f-g|$ est continue.
+\end{enumerate}
+\finindication
+\indication{000645}
+Ce n'est pas tr\`es dur mais il y a quand m\^eme quelque chose \`a d\'emontrer :
+ce n'est pas parce que $f(x)$ vaut $+1$ ou $-1$ que la fonction est constante.
+Raisonner par l'absurde et utiliser le th\'eor\`eme des valeurs interm\'ediaires.
+\finindication
+\noindication
+\indication{000646}
+Il faut raisonner en deux temps : d'abord \'ecrire la d\'efinition de la limite en $+\infty$, en fixant par exemple $\epsilon =1$, cela donne une borne sur $[A,+\infty]$. Puis travailler sur $[0,A]$.
+\finindication
+\noindication
+\indication{000680}
+Pour $x$ fix\'e, \'etudier la suite $f(\frac 1{2^n} x)$.
+\finindication
+\indication{000653}
+Un \emph{point fixe} est une valeur $c \in [0,1]$ telle que $f(c)=c$.
+Montrer que $c = \sup E$ est un point fixe. 
+Pour cela montrer que $f(c) \leqslant c$ puis $f(c) \geqslant c$.
+\finindication
+\indication{000776}
+Montrer que l'\'equation $x^y=y^x$ est \'equivalente \`a $\frac{\ln x}{x}= \frac{\ln y}{y}$,
+puis \'etudier la fonction $x \mapsto \frac{\ln x}{x}$.
+\finindication
+
+
+\newpage
+
+\correction{000671}
+\begin{enumerate}
+ \item Le graphe est composé d'une portion de droite au dessus des $x \in ]-\infty,1[$ ;
+d'une portion de parabole pour les $x \in [1,4]$, d'une portion d'une autre parabole pour les 
+$x \in ]4,+\infty$. (Cette dernière branche est bien une parabole, mais elle n'est pas dans le sens ``habituel'',
+en effet si $y=8\sqrt x$ alors $y^2 = 64 x$ et c'est bien l'équation d'une parabole.)
+
+On ``voit'' immédiatemment sur le graphe que la fonction est continue (les portions se recollent !).
+On ``voit'' aussi que la fonction est bijective.
+
+ \item La fonction est continue sur $]-\infty,1[$, $]1,4[$ et $]4,+\infty[$ car sur chacun des ces intervalles elle
+y est définie par une fonction continue. Il faut examiner ce qui se passe en $x=1$ et $x=4$.
+Pour $x<1$, $f(x)=x$, donc  la limite à gauche (c'est-à-dire $x\to 1$ avec $x<1$) est donc $+1$.
+Pour $x\ge 1$, $f(x) = x^2$ donc la limite à droite vaut aussi $+1$. 
+Comme on a $f(1) = +1$ alors les limites à gauche, à droite et la valeur en $1$ coïncident donc $f$
+est continue en $x=1$.
+
+Même travail en $x= 4$. Pour $x \in [1,4]$, $f(x) = x^2$ donc la limite à gauche en $x=4$ est $+16$.
+On a aussi $f(4)=+16$. Enfin pour $x>4$, $f(x) = 8 \sqrt x$, donc la limite à droite en $x=4$ est aussi $+16$.
+Ainsi $f$ est continue en $x=4$.
+
+Conclusion : $f$ est continue en tout point $x \in \Rr$ donc $f$ est continue sur $\Rr$.
+ 
+ \item Le graphe devrait vous aider : tout d'abord il vous aide à se convaincre que $f$ est bien bijective
+et que la formule pour la bijection réciproque dépend d'intervalles. Petit rappel : le graphe de la bijection réciproque $f^{-1}$ s'obtient
+comme symétrique du graphe de $f$ par rapport à la bissectrice d'équation $(y=x)$ (dans un repère orthonormal).
+
+
+
+Ici on se contente de donner directement la formule de $f^{-1}$. 
+Pour $x \in  ]-\infty,1[$, $f(x)=x$. Donc la bijection réciproque est définie par $f^{-1}(y)=y$ pour tout $y \in  ]-\infty,1[$.
+Pour $x \in [1,4]$, $f(x)=x^2$. L'image de l'intervalle $[1,4]$ est l'intervalle $[1,16]$. Donc pour chaque $y \in [1,16]$,
+la bijection réciproque est définie par $f^{-1}(y) = \sqrt y$. 
+Enfin pour $x\in]4,+\infty[$, $f(x) = 8\sqrt x$. L'image de l'intervalle $]4,+\infty[$ est donc $]16,+\infty[$
+et $f^{-1}$ est définie par $f^{-1}(y) = \frac{1}{64} y^2$ pour chaque $y \in ]16,+\infty[$.
+
+Nous avons définie $f^{-1} : \Rr \to \Rr$ de telle sorte que $f^{-1}$ soit la bijection réciproque de $f$.
+
+\bigskip
+
+C'est un bon exercice de montrer que $f$ est bijective sans calculer $f^{-1}$ :
+vous pouvez par exemple montrer que $f$ est injective et surjective.
+Un autre argument est d'utiliser un résultat du cours : $f$ est continue, strictement croissante avec une limite $-\infty$ en$-\infty$
+et $+\infty$ en $+\infty$ donc elle est bijective de $\Rr$ dans $\Rr$ (et on sait même que la bijection réciproque est continue).
+\end{enumerate}
+\fincorrection
+\correction{000670}
+Commençons par la fin, trouver un tel $\delta$ montrera que 
+$$\forall \epsilon > 0 \quad \exists \delta > 0 \quad |x-x_0| < \delta \Rightarrow |f(x)-(-3)| < \epsilon$$
+autrement dit la limite de $f$ en $x_0=0$ est $-3$.
+Comme $f(0)=-3$ alors cela montre aussi que $f$ est continue en $x_0=0$.
+
+\bigskip
+
+On nous donne un $\epsilon>0$, à nous de trouver ce fameux $\delta$.
+Tout d'abord 
+$$\left| f(x)+3 \right| = \left| \frac{2x+3}{3x-1} + 3 \right| = \frac{11|x|}{|3x-1|}.$$
+Donc notre condition devient :
+$$ \left| f(x)+3 \right| < \epsilon \quad
+ \Leftrightarrow \quad \frac{11|x|}{|3x-1|} < \epsilon 
+\quad  \Leftrightarrow \quad |x| < \epsilon\frac{|3x-1|}{11}.$$
+
+Comme nous voulons éviter les problèmes en $x = \frac 13$ pour lequel la fonction $f$ n'est pas définie, nous
+allons nous placer ``loin'' de $\frac 13$.
+Considérons seulement les $x \in \Rr$ tel que $|x| < \frac 16$.
+Nous avons :
+$$|x| < \frac 16 \Rightarrow -\frac 16 < x < + \frac 16 \quad  \Rightarrow \quad  -\frac 32 < 3x-1 < -\frac 12 \quad \Rightarrow \quad \frac 12 < |3x-1|.$$
+Et maintenant explicitons $\delta$ :
+prenons $\delta < \epsilon \cdot \frac{1}{2}\cdot \frac{1}{11}$.
+Alors pour $|x| < \delta$ nous avons 
+$$|x| < \delta = \epsilon \cdot  \frac{1}{2} \cdot \frac{1}{11} < \epsilon \cdot|3x-1|\cdot \frac{1}{11}$$
+ce qui implique par les équivalences précédentes que 
+$\left| f(x)+3 \right| < \epsilon$.
+
+Il y a juste une petite correction à apporter à notre $\delta$ : au cours de nos calculs
+nous avons supposé que $|x| < \frac 16$, mais rien ne garantie que $\delta \le \frac 16$
+(car $\delta$ dépend de $\epsilon$ qui pourrait bien être très grand, même
+si habituellement ce sont les $\epsilon$ petits qui nous intéressent).
+Au final le $\delta$ qui convient est donc :
+$$\delta = \min (\frac 16, \frac{\epsilon}{22}).$$
+
+\bigskip
+
+Remarque finale :
+bien sûr on savait dès le début que $f$ est continue en $x_0=0$. En effet
+$f$ est le quotient de deux fonctions continues, le dénominateur ne s'annulant
+pas en $x_0$. Donc nous savons dès le départ qu'un tel $\delta$ existe,
+mais ici nous avons fait plus, nous avons trouvé une formule explicite pour ce $\delta$.
+
+\fincorrection
+\correction{000677}
+\begin{enumerate}
+  \item La fonction est d\'efinie sur $\Rr^*$ t elle est continue sur $\Rr^*$. Il faut d\'eterminer un \'eventuel prolongement par continuit\'e en $x=0$, c'est-\`a-dire savoir si $f$ a une limite en $0$.
+$$|f(x)| = |\sin x| |\sin 1/x| \leq |\sin x|.$$
+Donc $f$ a une limite en $0$ qui vaut $0$. 
+Donc en posant $f(0) = 0$, nous obtenons une fonction $f : \Rr \longrightarrow \Rr$ qui est continue.
+  \item La fonction $g$ est d\'efinie et continue sur $\Rr^*$. 
+Etudions la situation en $0$. Il faut remarquer que $g$ est la taux d'accroissement en
+$0$ de la fonction $k(x) = \ln \frac{e^x+e^{-x}}{2}$ : en effet $g(x)=\frac{k(x)-k(0)}{x-0}$.
+Donc si $k$ est dérivable en $0$ alors la limite de $g$ en $0$ est \'egale \`a
+la valeur de $k'$ en $0$. 
+
+Or la fonction $k$ est dérivable sur $\Rr$ et $k'(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$
+donc $k'(0)=0$. Bilan : en posant $g(0)=0$ nous obtenons une fonction $g$ d\'efinie et continue sur $\Rr$.
+
+  \item $h$ est d\'efinie et continue sur $\Rr \setminus \{ -1,1 \}$.
+$$h(x) = \frac{1}{1-x} - \frac{2}{1-x^2} = \frac{1+x-2}{(1-x)(1+x)}
+= \frac{-1+x}{(1-x)(1+x)} = \frac{-1}{(1+x)}.$$
+Donc $h$ a pour limite $-\frac 12$ quand $x$ tend vers $1$.
+Et donc en posant $h(1) = -\frac 12$, nous d\'efinissons une fonction
+continue sur $\Rr \setminus \{ -1 \}$.
+En $-1$ la fonction $h$ ne peut \^etre prolong\'ee continuement,
+car en $-1$, $h$ n'admet de limite finie.
+\end{enumerate}
+\fincorrection
+\correction{000639}
+\begin{enumerate}
+    \item On a pour tout $x,y\in\R$ $|x-y|\geq \big| |x|-|y|\big|$
+(c'est la deuxi\`eme formulation de l'in\'egalit\'e triangulaire).
+Donc pour tout $x\in I$ :$ \big| |f(x)|-|f(a)| \big| \leq |f(x)-f(a)| $.
+L'implication annonc\'ee r\'esulte alors imm\'ediatement de la
+d\'efinition de l'assertion $\lim_{x\to a} f(x)=f(a). $
+    \item  Si $f,g$ sont continues
+alors $\alpha f+\beta g$ est continue sur $I$, pour tout
+$\alpha,\beta\in\R$. Donc les fonctions $f+g$ et $f-g$ sont
+continues sur $I$. L'implication de $1.$ prouve alors que $|f-g|$
+est continue sur $I$, et finalement on peut
+conclure :\\
+La fonction $\sup (f,g) = \frac{1}{2}(f+g+|f-g|)$ est continue sur
+$I$.
+\end{enumerate}
+\fincorrection
+\correction{000645}
+Comme $f(x)^2 = 1$ alors $f(x) = \pm 1$. 
+Attention ! Cela ne veut pas dire que 
+la fonction est constante \'egale \`a $1$ ou $-1$.
+Supposons, par exemple, qu'il existe $x$ tel que $f(x)=+1$.
+Montrons que $f$ est constante \'egale \`a $+1$.
+S'il existe $y \not= x$ tel que $f(y) = -1$
+alors $f$ est positive en $x$, n\'egative en $y$
+et continue sur $I$. Donc, par le th\'eor\`eme des valeurs interm\'ediaires,
+il existe $z$ entre $x$ et $y$ tel que $f(z) = 0$, ce qui contredit
+$f(z)^2 = 1$. Donc $f$ est constante \'egale \`a $+1$.
+\fincorrection
+\correction{000642}
+\begin{enumerate}
+  \item $g(a) = f(\frac{a+b}{2})-f(a)$ et
+$g(\frac{a+b}{2}) = f(b) - f(\frac{a+b}{2})$.
+Comme $f(a) = f(b)$ alors nous obtenons que $g(a) = -g(\frac{a+b}{2})$.
+Donc ou bien $g(a) \leq 0$ et $g(\frac{a+b}{2}) \geq 0$
+ou bien $g(a) \geq 0$ et $g(\frac{a+b}{2}) \leq 0$.
+D'après le théorème des valeurs intermédiaires, $g$
+s'annule en $c$ pour un $c$ entre $a$ et $\frac{a+b}{2}$.
+  \item Notons $t$ le temps (en heure) et $d(t)$ la distance parcourue (en km) entre les instants $0$ et $t$.
+Nous supposons que la fonction $t \mapsto d(t)$ est continue.
+Soit $f(t) = d(t) - 4t$. Alors $f(0) = 0$ et par hypothèse $f(1) = 0$.
+Appliquons la question précédente avec $a=0$, $b=1$. 
+Il existe $c\in [0,\frac 12]$ tel que $g(c) = 0$, c'est-à-dire
+$f(c+\frac12)= f(c)$. Donc $d(c+\frac 12)-d(c) = 4(c+\frac12)-4c = 2$.
+Donc entre $c$ et $c+\frac 12$, (soit 1/2 heure), la personne parcourt
+exactement $2$ km.
+\end{enumerate}
+\fincorrection
+\correction{000646}
+Notons $\ell$ la limite de $f$ en $+\infty$:
+$$\forall \epsilon > 0 \quad \exists A \in \Rr
+\quad x>A \Rightarrow \ell - \epsilon \leq f(x) \leq \ell + \epsilon.$$
+Fixons $\epsilon = +1$, nous obtenons un $A$ correspondant tel que
+pour $x>A$, $\ell - 1 \leq f(x) \leq \ell +1$. Nous venons de montrer
+que $f$ est born\'ee ``\`a l'infini''.
+La fonction $f$ est continue sur l'intervalle ferm\'e born\'e $[0,A]$,
+donc $f$ est born\'ee sur cet intervalle: il existe $m,M$ tels que
+pour tout $x\in [0,A]$, $m \leq f(x) \leq M$.
+En prenant $M' = \max (M,\ell+1)$, et $m' = \min(m,\ell-1)$ nous avons que pour tout $x\in \Rr$,
+$m' \leq f(x) \leq M'$. Donc $f$ est born\'ee sur $\Rr$.
+
+La fonction n'atteint pas n\'ecessairement ses bornes: regardez
+$f(x) = \frac{1}{1+x}$.
+\fincorrection
+\correction{000686}
+\begin{enumerate}
+  \item Il faut que le d\'enominateur ne s'annule pas donc $x \not= \frac 52$. En plus il faut
+que le terme sous la racine soit positif ou nul, c'est-\`a-dire $(2+3x)\times(5-2x) \geq 0$, soit
+$x \in [-\frac23, \frac52]$. L'ensemble de d\'efinition est donc  $[-\frac23, \frac52[$.
+
+  \item Il faut $x^2-2\,x-5\geq 0$, soit $x \in ]-\infty, 1-\sqrt6] \cup [1+\sqrt6,+\infty[$.
+  \item Il faut $4x+3>0$ soit $x > -\frac34$, l'ensemble de d\'efinition \'etant $]-\frac34,+\infty[$.
+\end{enumerate}
+\fincorrection
+\correction{000680}
+Fixons $x\in \Rr$ et soit $y = x/2$, comme $f(y) = f(2y)$ nous obtenons $f(\frac 12 x) = f(x)$. Puis en prenant $y = \frac 14 x$, nous obtenons
+$f(\frac 14 x) = f(\frac 12 x)= f(x)$. Par une r\'ecurrence facile nous avons
+$$\forall n \in \Nn \ \ \ \ f(\frac 1{2^n} x) = f(x).$$
+Notons $(u_n)$ la suite d\'efinie par $u_n = \frac 1{2^n} x$ alors
+$u_n \rightarrow 0$ quand $n \rightarrow +\infty$.
+Par la continuit\'e de $f$ en $0$ nous savons alors que:
+$ f(u_n) \rightarrow f(0)$ quand $n \rightarrow +\infty$.
+Mais $f(u_n) = f(\frac 1{2^n} x) = f(x)$, donc $(f(u_n))_n$ est une suite constante \'egale \`a $f(x)$, et donc la limite de cette suite est $f(x)$ ! Donc $f(x) = f(0)$. Comme ce raisonnement est valable pour tout $x \in \Rr$ nous venons de montrer que $f$ est une fonction constante.
+\fincorrection
+\correction{000653}
+\begin{enumerate}
+  \item  Si $f(0) = 0$ et c'est fini, on a trouver le point fixe !
+Sinon $f(0)$ n'est pas nul.  Donc $f(0) > 0$ et $0 \in E$. Donc $E$ n'est pas vide. 
+  \item Maintenant $E$ est un partie de $[0,1]$ non vide
+donc $\sup E$ existe et est fini. Notons $c = \sup E \in [0,1]$.
+Nous allons montrer que $c$ est un point fixe.
+  \item Nous approchons ici $c = \sup E$ par des éléments de $E$ :
+ Soit $(x_n)$ une suite de $E$ telle que $x_n \rightarrow c$
+et $x_n \leq c$. Une telle suite existe d'apr\`es les propri\'et\'es de
+$c= \sup E$. Comme $x_n \in E$ alors
+$x_n < f(x_n)$. Et comme $f$ est croissante $f(x_n) \leq f(c)$.
+Donc pour tout $n$, $x_n < f(c)$ ; comme $x_n \rightarrow c$ alors \`a la limite nous avons $c \leq f(c)$.
+  \item Si $c=1$ alors $f(1)=1$ et nous avons notre point fixe. Sinon, nous utilisons maintenant le fait que 
+les élements supérieurs à $\sup E$ ne sont pas dans $E$ :
+Soit $(t_n)$ une suite telle que 
+$t_n \rightarrow c$, $t_n \geq c$
+et telle que $f(t_n) \leq t_n$. Une telle suite existe
+car sinon $c$ ne serait pas \'egal \`a $\sup E$.
+Nous avons $f(c) \leq f(t_n) \leq t_n$ et donc \`a la limite
+$f(c) \leq c$.
+
+Nous concluons donc que $c \leq f(c) \leq c$, donc $f(c) = c$
+et $c$ est  un point fixe de $f$.
+\end{enumerate}
+\fincorrection
+\correction{000776}
+$$x^y=y^x \Leftrightarrow e^{y\ln x}= e^{x\ln y}
+\Leftrightarrow {y\ln x}= {x\ln y}\Leftrightarrow \frac{\ln x}{x}= \frac{\ln y}{y}$$
+(la fonction exponentielle est bijective).
+Etudions la fonction $f(x) = \frac{\ln x}{x}$ sur $[1,+\infty[$.
+$$f'(x)= \frac{1-\ln x}{x^2},$$
+donc $f$ est croissante sur $[1,e]$ et d\'ecroissante
+sur $[e,+\infty[$. Donc pour $z \in ]0,f(e)[=]0,1/e[$, l'\'equation $f(x)=z$ a exactement deux solutions, une 
+dans $]1,e[$ et une dans $]e,+\infty[$.
+
+Revenons \`a l'\'equation $x^y=y^x$ \'equivalente \`a $f(x)=f(y)$.
+Prenons $y$ un entier, nous allons distinguer trois cas :
+$y=1$, $y=2$ et $y \geq 3$.
+Si $y=1$ alors $f(y)=z=0$ on doit
+donc r\'esoudre $f(x)=0$ et alors $x=1$.
+Si $y=2$ alors il faut r\'esoudre l'\'equation $f(x) = \frac{\ln 2}{2} \in ]0,1/e[$.
+Alors d'apr\`es l'\'etude pr\'ec\'edente, il existe deux solutions
+une sur $]0,e[$ qui est $x=2$ (!) et une sur $]e,+\infty[$
+qui est $4$, en effet $\frac {\ln 4}4= \frac {\ln 2}2$.
+Nous avons pour l'instant les solutions correspondant à $2^2=2^2$ et $2^4=4^2$.
+
+Si $y \geq 3$ alors $y> e$ donc il y a une solution $x$ 
+de l'\'equation $f(x)=f(y)$ dans $]e,+\infty[$ qui est $x=y$,
+et une solution $x$ dans l'intervalle $]1,e[$.
+Mais comme $x$ est un entier alors $x=2$ (c'est le seul entier appartenant à $]1,e[$)
+c'est un cas que nous avons d\'ej\`a \'etudi\'e conduisant à $4^2 = 2^4$.
+
+Conclusion : les couples d'entiers qui v\'erifient l'\'equation $x^y=y^x$
+sont les couples $(x,y=x)$ et les couples $(2,4)$ et $(4,2)$.
+\fincorrection
+
+
+\end{document}
+

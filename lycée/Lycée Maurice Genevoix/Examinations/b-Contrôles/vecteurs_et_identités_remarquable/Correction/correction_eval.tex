@@ -1,0 +1,222 @@
+\documentclass[a4paper,10.9pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{thm-def}{Théorème/Définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+
+
+\begin{document}
+%\lhead{}\chead{}\rhead{}\lfoot{}\cfoot{\thepage/2}\rfoot{\textbf{}}\renewcommand{\headrulewidth}{0.0pt}\renewcommand{\footrulewidth}{0.0pt}
+%\quad
+%\newpage
+
+\lhead{Lycée Le Maurice Genevoix}\chead{}\rhead{Année~2021-2022}\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{\textbf{Tourner la page S.V.P.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\hfill\\[-0.7cm]
+$$	\fbox{\text{\Large{ \sc Correction du Contrôle 15/12/2021}}}$$
+%\centering \Large{ (55 minutes) }\\
+\normalsize
+
+
+%\textbf{\textit{Note aux lecteurs:}} \textit{ce contrôle devra être rédigé sur une copie avec un stylo de couleur foncée. La présentation et la qualité de rédaction seront un facteur important d'appréciation des copies.  Les calculatrices sont autorisées mais un résultat sans l'expression des calculs qui lui est associé ne rapportera pas la totalité des points.}\\[0.7cm]	
+\begin{exo}\textbf{"Une identité remarquable"}\\\hfil\\
+\begin{minipage}[c]{1.0\linewidth}
+
+\noindent Soient $0< a < b$ deux réels.
+\begin{enumerate}
+%\item Reproduire à l'échelle le schéma suivant sur votre copie.\\ 
+\item Les aires des carrés $KLRS$ et $LMNQ$ et les aires des rectangles $NOPQ$ et $PRST$ notées respectivement $A_1$, $A_2$ , $A_3$ et $A_4$ sont:\hfill\textbf{ /1.5pts}\\
+\begin{multicols}{2}
+	\begin{itemize}
+		\item $A_1 = a^2$
+		\item $A_2 = b^2$
+		\item $A_3 = ab$
+		\item $A_4 = ab$
+	\end{itemize}
+\end{multicols}
+
+\item Soit $A$ l'aire du carré $KMOT$, voici deux manières d'exprimer $A$.\hfill\textbf{ /1.5pts}
+$$A = (a+b)^2$$
+$$A = a^2+ 2ab +b^2$$
+\item Voici les trois identitées remarquables: \hfill\textbf{ /1.5pts}
+$$(a+b)^2 = a^2+ 2ab +b^2 $$
+$$(a_b)^2 = a^2- 2ab +b^2 $$
+$$(a+b)(a-b)= a^2 - b^2 $$
+
+\item Développer les expressions littérales suivantes:\hfill\textbf{ /2pts}
+\begin{itemize}[$\square$]
+\item $A = (4x+3)^2 = 16x^2 +24x +9$
+\item $B = (7u-3)(3+7u) = 49u^2 - 9$
+\item $C = (5x-6y)^2 = 25x^2-60xy + 36y^2$\\
+\end{itemize}
+\end{enumerate}
+\end{minipage}
+\end{exo}
+
+\begin{exo} \textbf{"Constructions grâce aux vecteurs"}\\\hfil\\
+
+
+Soient $(O,\V{i}, \V{j})$ un repère orthonormé du plan et $K(-1;-3)$, $L(-4;5)$,  $M(2;-6)$ trois points du plan.\\ 
+\begin{enumerate}
+\item $\V{LM}\begin{pmatrix}
+	x_M-x_L\\y_M-y_L
+\end{pmatrix} = \begin{pmatrix}
+2-(-4)\\-6-5
+\end{pmatrix} = \begin{pmatrix}
+6\\-11
+\end{pmatrix}$,\hfill\textbf{ /1.5pts}\\ La décomposition de ce vecteur dans la base orthonormée est  $\V{LM}= 6\V{i}-11\V{j}$.\\[0.5cm]
+\item Nous cherchons les coordonnées du point $N(x_N;y_N)$ tels que $\V{KN}=\V{LM}$.\hfill\textbf{ /2.5pts}\\
+Ainsi $\V{LM}\begin{pmatrix}
+	6\\-11
+\end{pmatrix}$ par la question précédente.
+On a : $\V{KN} \begin{pmatrix}
+	x_N-x_K\\y_N-y_K
+\end{pmatrix} = \begin{pmatrix}
+x_N-(-1)\\y_N-(-3)
+\end{pmatrix}= \begin{pmatrix}
+x_N+1\\y_N + 3
+\end{pmatrix} $\\[0.2cm]
+Or deux vecteurs sont égaux si ils ont les mêmes coordonnées.\\
+
+Donc il nous reste à résoudre le système d'équations suivants:
+$$\left\{\begin{array}{c}
+	x_N+1 = 6\\y_N + 3 = -11
+\end{array}\right.\quad  \leftrightarrow \quad \left\{\begin{array}{c}
+x_N = 5\\y_N  = -14
+\end{array}\right.$$
+\textbf{Conclusion:} $N(5;-14)$ \\
+\item Soit $O(x_O;y_O)$ le symétrique du point $K$ par rapport au point $M$. Ainsi les vecteurs $\V{KM}$ et $\V{MO}$ sont égaux, ils ont donc les mêmes coordonnées.\hfill\textbf{ /2.5pts}\\
+$$\V{KM} \begin{pmatrix}
+	x_M-x_K\\y_M-y_K
+\end{pmatrix} = \begin{pmatrix}
+	2-(-1)\\ -6 - (-3)
+\end{pmatrix}= \begin{pmatrix}
+	3\\-3
+\end{pmatrix} $$
+
+$$\V{MO} \begin{pmatrix}
+	x_O-x_M\\y_O-y_M
+\end{pmatrix} = \begin{pmatrix}
+	x_O-2\\y_O+6
+\end{pmatrix} $$
+Donc il nous reste à résoudre le système d'équations suivants:
+$$\left\{\begin{array}{c}
+	x_O-2 = 3\\y_O+6 = -3
+\end{array}\right.\quad  \leftrightarrow \quad \left\{\begin{array}{c}
+	x_O =5 \\y_O = -9
+\end{array}\right.$$
+\textbf{Conclusion:} $O(5;-9)$ 
+\end{enumerate}
+
+\end{exo}
+
+\begin{exo} \textbf{"Relation de Chasles et opérations sur les veteurs"}\\\hfil\\
+\begin{enumerate}
+\item À l'aide de la relation de Chasles on trouve les simplifications suivantes:\hfill\textbf{/1pts}
+\begin{multicols}{2}
+\begin{enumerate}[$\diamond$]
+
+		\item $\V{KL}+\V{NK} + \V{LS} =  \V{NS}$\\
+		\item $\V{UT}+\V{OP}+\V{PU}+\V{EO} = \V{ET} $ \\
+
+\end{enumerate}
+\end{multicols}
+ 
+\item Voir \textbf{(Annexe 1)} \hfill\textbf{/1pts}
+\item Voir \textbf{(Annexe 1)} \hfill\textbf{/2pts}
+\item Par lecture graphique on trouve les coordonnées des vecteurs suivants:\hfill\textbf{/3pts}
+$$\V{BA} = \begin{pmatrix} 5\\3.5\end{pmatrix}\quad; \quad\V{BD} = \begin{pmatrix}4\\-0.5\end{pmatrix}\quad;\quad \V{AD} = \begin{pmatrix}-1\\-4\end{pmatrix} \quad; \quad\V{DC}= \begin{pmatrix}-2\\4.5\end{pmatrix}$$\hfill\\[0.5cm]
+\begin{multicols}{2}
+	\begin{enumerate}[$\diamond$]
+		
+		\item $ \V{BA}+\V{BD} = \begin{pmatrix} 5\\3.5\end{pmatrix} + \begin{pmatrix}4\\-0.5\end{pmatrix} = \begin{pmatrix} 9\\3\end{pmatrix}$\\
+		\item $5 ~\V{AD} = 5 \begin{pmatrix}-1\\-4\end{pmatrix} = \begin{pmatrix}-5\\-20\end{pmatrix}$ \\
+		\item $\dfrac{1}{7}~ \V{DC} = \dfrac{1}{7}\begin{pmatrix}-2\\4.5\end{pmatrix} = \begin{pmatrix}\dfrac{-2}{7}\\ \\ \dfrac{4.5}{7}\end{pmatrix}$ \\
+		
+	\end{enumerate} 
+\end{multicols}
+
+
+
+\end{enumerate}
+\end{exo}
+
+\lhead{Lycée Le Maurice Genevoix}\chead{}\rhead{Année~2021-2022}\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{\textbf{Fin}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{exo}\textbf{"Exercice de recherche"}\hfill\textbf{(En Bonus 1.5pts)}\\\hfil\\
+\end{exo}
+
+\section*{Annexe 1}
+$$\begin{tikzpicture}[scale=1]
+	\draw[dotted] (-5,-5) grid (5,5);
+	\draw[->,line width = 1pt, >=latex'] (-5,0)--(5,0);
+	\draw (5,0)  node[below left]{$x$};
+	\draw[->,line width = 1pt, >=latex'] (0,-5)--(0,5);
+	\draw (0,5)  node[below right]{$y$};
+	\draw (0,1) node{$-$} node[below left]{$J$};
+	\draw (1,0) node{$|$} node[below left]{$I$};
+	\draw (2,2) node{$\times$} node[above right]{$A$};
+	\draw (-3,-1.5) node{$\times$} node[above left]{$B$};
+	\draw (-1,2.5) node{$\times$} node[above left]{$C$};
+	\draw (1,-2) node{$\times$} node[below right]{$D$};
+	\draw[->,line width = 1pt, >=latex'] (1,-2)--(-2,-1.5);
+	\draw[->,line width = 1pt, >=latex'] (-2,-1.5)--(3,2);
+	\draw (3,2) node{$\times$} node[above right]{$E$};
+\end{tikzpicture}$$
+
+\end{document}

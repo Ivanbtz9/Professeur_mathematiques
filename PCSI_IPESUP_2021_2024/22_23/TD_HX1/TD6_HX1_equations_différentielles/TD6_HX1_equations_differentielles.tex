@@ -1,0 +1,471 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/3}\rfoot{MPSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+ 	
+	
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 6 : Primitives et équations
+				diﬀérentielles  }}
+	\end{minipage}
+}
+%%%%%%% PRIMITIVES %%%%%%% 
+%https://www.bibmath.net/ressources/index.php?action=affiche&quoi=mpsi/feuillesexo/primitives&type=fexo
+
+%%%%%%% EQUA. DIFF. %%%%%%% 
+%https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/analyse/equadiff/eqlineairessecordre&type=fexo
+
+\section*{Primitives et intégration:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+
+%\subsection*{ Primitives et changement de variables:}	
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Calculer les primitives des fonctions suivantes
+	\begin{multicols}{2}
+		\begin{enumerate}
+		\item $x\mapsto e^x \cos x $
+		\item $x\mapsto \sqrt{e^x -1} $
+		\item $x\mapsto x \sqrt[3]{1 + x } $
+		\item $x \longmapsto e^{ax} \sin b x $
+	\end{enumerate}
+	\end{multicols}
+
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+
+
+
+
+
+%\begin{exo}\textbf{(*)}\quad\\[0.2cm]Montrer que l'intégrale d'une fonction impaire sur un segment symétrique par rapport à $0$ est nulle.\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Calculer les intégrales suivantes:
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item $\int_{0}^{1}x \tan(x^2) dx$
+			\item $\int_{0}^{1}\sqrt{1-y^2} dy$ % \textit{(Donner une interprétation géométrique.)}
+		\end{enumerate}
+	\end{multicols}
+	
+	
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	
+Calculer les intégrales suivantes :
+\begin{enumerate}
+	\item  $\displaystyle \int_0^1\frac{dt}{1+e^t}$ en posant $x=e^t$;
+	\item $\displaystyle \int_1^3\frac{\sqrt t}{t+1}dt$ en posant $x=\sqrt t$;
+	\item $\displaystyle \int_{-1}^1 \sqrt{1-t^2}dt$ en posant $t=\sin\theta$.
+\end{enumerate}
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	\begin{enumerate}
+		\item Calculer $\displaystyle\int_0^2 \frac{2u}{\sqrt{1+u}}du$.
+		\item En déduire $\displaystyle \int_0^{3}\frac{dt}{\sqrt{1+\sqrt{1+t}}}$.
+	\end{enumerate}	
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Calculer les intégrales suivantes :
+	$$\ \int_0^{\pi/4}\frac{\sin^3(t)}{1+\cos^2 t}dt\quad\quad\ \int_{\pi/3}^{\pi/2}\frac{dx}{\sin x}$$ $$ \int_0^{\pi/3}\big(1+\cos(x)\big)\tan(x)dx.$$
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+
+%\subsection*{Intégration par parties:}
+
+\begin{exo}\textbf{(**)}\quad\\[0.1cm]
+	Calculer les intégrales suivantes :
+	$$\ \int_0^{\pi/4}\frac{\tan x}{\sqrt 2\cos x+2\sin^2 x}dx\quad\quad\ \int_0^{\pi/2}\frac{dx}{2+\sin x}.$$
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.1cm]
+	Déterminer une primitive des fonctions suivantes :
+	$$\quad x\mapsto\arctan(x)\quad\quad\quad x\mapsto (\ln x)^2\quad\quad x\mapsto \sin(\ln x).$$
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.1cm]
+	Calculer les intégrales suivantes :
+	$$\quad I=\int_1^2\frac{\ln(1+t)}{t^2}dt\quad \quad J=\int_0^1 x(\arctan x)^2dx$$ $$\quad K=\int_0^1 \frac{x\ln x}{(x^2+1)^2}dx$$
+	
+
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.1cm]
+
+	Soient $(\alpha,\beta,n)\in\mathbb R^2\times\mathbb N$. Calculer
+	$$\int_\alpha^\beta(t-\alpha)^n (t-\beta)^n dt.$$
+	
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(***)}\quad\\[0.1cm]
+	Pour tout $n \in \N$, on pose $I_n =\int_{0}^{\frac{\pi}{2}}
+	\cos^n(t) dt$.
+	\begin{enumerate}
+		\item Calculer $I_0$ et $I_1$
+		\item Pour tout $n\in \N$, trouver une relation entre $I_{n+2}$ et $I_n$.
+		\item En déduire que pour tout $p\in\N$:
+		$$I_{2p}= \dfrac{(2p)!}{(2^pp!)^2} . \dfrac{\pi}{2}\quad \quad I_{2p+1}= \dfrac{(2^pp!)^2}{(2p+1)!}. $$
+	\end{enumerate}
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\end{minipage}
+\end{minipage}
+
+
+\section*{Équations diﬀérentielles linéaires d’ordre 1 :}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+				\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+				La fonction $x \mapsto \arccos x$ est-elle solution de
+				$$y'+ \dfrac{1}{\sqrt{1-x^2}}y = 0\ $$
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+		
+		
+			\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+		Résoudre l'équation $y' - \arctan(x)y = 0$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+				
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Résoudre $y' (x ) - y (x ) = x^2 - 1$ avec la condition initiale $y (0) = \alpha $ en cherchant une solution
+			polynomiale $a x^2 + bx + c$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		
+		
+
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Existe-t-il une fonction bornée définie sur $\R^{+*}$ solution de l’équation $y' + y = \ln x$ ?
+
+
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Résoudre $y' (x ) - y (x ) = e^{-2x}$ avec la condition initiale $y (0) = a$ par la méthode de variation de la constante.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+		
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Résoudre les équations d’ordre 1 suivantes:
+	\begin{multicols}{2}
+		\begin{enumerate}
+\item $y' - 3y = 2e^{3x}$;
+\item $y' - y = x + e^{x}$;
+		\end{enumerate}
+	
+	\end{multicols}
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}		
+
+	
+		
+		
+	\end{minipage}
+\end{minipage}
+
+\section*{Équations diﬀérentielles linéaires d’ordre 2 à coeﬃcients constants :}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Résoudre les équations différentielles suivantes :
+	\begin{enumerate}
+		\item $y''-y=e^{2x}-e^x$;
+		\item $y''+y'+y=\cos(x)$;
+		\item $y''-2y'+y=\sin^2 x$;
+		\item $y''+y'+y=e^x\cos(x)$.
+	\end{enumerate}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Déterminer les fonctions $y,z:\mathbb R\to\mathbb R$ dérivables et qui vérifient le système suivant :
+			$$
+			\left\{
+			\begin{array}{rcl}
+			y'-y&=&z\\
+			z'+z&=&3y
+			\end{array}
+			\right.$$
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Résoudre l'équation $y''' - 2y '' + y' - 2y = 0$ en se ramenant à une équation d'ordre 2.
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	On cherche à résoudre sur $\mathbb R_+^*$ l’équation diﬀérentielle :
+	$$x^2y''-3xy'+4y = 0. \ (E)$$
+	\begin{enumerate}
+		\item Cette équation est-elle linéaire ? 
+		\item Analyse. Soit $y$ une solution de $(E)$ sur $\mathbb R_+^*$. Pour $t\in\mathbb R$, on pose $z(t)=y(e^t)$.
+		\begin{enumerate}
+			\item Calculer pour $t\in\mathbb R$, $z'(t)$ et $z''(t)$.
+			\item En déduire que $z$ vériﬁe une équation diﬀérentielle linéaire d’ordre 2 à coeﬃcients  constants que l’on précisera (on pourra poser $x = e^t$ dans $(E)$). 
+			\item Résoudre l’équation différentielle trouvée à la question précédente.
+			\item En déduire les expressions possibles de $y$.
+		\end{enumerate}
+		\item Synthèse. Vérifier que, réciproquement, les fonctions trouvées sont bien toutes les solutions de (E) et conclure.
+	\end{enumerate}
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+
+		
+		
+	\end{minipage}
+\end{minipage}
+
+\section*{Exercices complémentaires:}\hfill\\[-1cm]
+
+		\raggedright
+		
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+		Soit $a \in \R$. Trouver les fonctions $f$ de classe $\Cs^2$ vérifiant $f'(x) = f (a - x )$ pour tout $x \in \R$.
+		
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\textbf{(***)} \ \textit{(Lemme de Gronwall)}\quad\\[0.2cm]
+ 			Soit $f : \R^+ \rightarrow \R$, $g : \R^+ \rightarrow \R^+$ continues et $A \geq 0$ tels que
+ 			
+ 			$$\forall x \in \R^{*+},\quad
+ 			f (x) \leq A + \int_{0}^{x}f (t )g (t ) dt .$$
+ 			
+ 			Montrer que
+ 			
+ 			$$\forall x \in \R^{*+},\quad
+ 			f (x) \leq A\exp\left(\int_{0}^{x}g (t ) dt\right) .$$
+ 			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(***)} \ \textit{(Oscillateurs linéaires)}\quad\\[0.2cm]
+			Un oscillateur linéaire (ou harmonique) est un système gouverné par une équation diﬀérentielle de la
+			forme
+			$$ (E) \quad \quad y'' + 2\lambda y' + \omega_0^2 y = e(x ),$$
+			
+			avec $\lambda \geq 0$ et $\omega_0 > 0$. Le second membre est appelé excitation du système ; si l’équation est homogène, le système est appelé oscillateur libre. Le terme $2\lambda y'$ est le terme d’amortissement.
+			
+			L’objectif est désormais de décrire quelques oscillateurs linéaires de conditions initiales
+			$$y (0) = a
+			\ \ \text{et} \ \ 
+			y'(0) = 0.$$
+			\begin{enumerate}
+				\item Résoudre $(E)$ associée aux conditions initiales données dans le cas d'un oscillateur libre $(e = 0)$, non amorti $(\lambda = 0)$.
+				\item Résoudre $(E)$ associée aux conditions initiales données dans le cas d'un oscillateur libre $(e = 0)$, amorti.
+				
+				\textit{On introduit quelquefois la quantité} $Q = \frac{\omega_0}{2\lambda}$ \textit{appelée facteur de qualité ; on remarque que} $Q$ \textit{est décroissant en} $\lambda$ \textit{donc qu’un fort taux d’amortissement implique un faible facteur de qualité.}
+				
+				\item Résoudre $(E)$ associée aux conditions initiales données dans le cas d'un oscillateur avec une excitation sinusoïdale $e (x ) = \cos(\omega x )$ avec $\omega \neq 0$.
+				
+				 \textit{Chercher une solution particulière sous la forme d’un polynôme trigonométrique}
+			\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+
+\end{document}

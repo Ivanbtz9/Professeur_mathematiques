@@ -1,0 +1,694 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/4}\rfoot{PCSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+ 	
+	
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 3 : Nombres complexes  }}
+	\end{minipage}
+}
+\medskip
+
+
+
+
+\section*{Forme cartésienne, forme polaire:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+	
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	  Mettre sous la forme $a+ib$ ($a,b \in \R$) les nombres :
+	 $$ \frac{3+6i}{3-4i}  \quad ; \quad \left(\frac{1+i}{2-i}\right)^2 \quad;  \quad
+	 \frac{2+5i}{1-i} + \frac{2-5i}{1+i}. $$
+	 
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+ 	 D\'eterminer pour $(\alpha, \theta) \in \R^2$ le module et l'argument des nombres
+ 	complexes  :
+ 	$$e^{e^{i\alpha}} \quad \text{ et } \quad e^{i\theta}+e^{2i\theta}.$$
+ 	
+ 	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+ 
+Soit $z \in \mathbb{C} \setminus \{-i\}$ \\
+Montrer que 
+$$ \left| \dfrac{1+zi}{1-zi} \right| = 1 \iff z \in \mathbb{R} $$
+
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Trouver l'ensemble des points $\mathrm{M}$ d'affixe $z$ 
+	
+	tels que $\frac{z^2}{z+ i}$ est imaginaire pur.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Pour $\theta\not=2k\pi$, avec $k\in\mathbb{Z}$, on note $z=i\left(\dfrac{1+e^{i\theta}}{1-e^{i\theta}}\right)$. Démontrer que $z$ est un nombre réel.
+	
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	\begin{enumerate}
+		\item Résoudre l'équation $\mathfrak{Re}(z^3) = \mathfrak{Im}(z^3)$.
+		\item Résoudre l'équation $1+\bar{z} = |z|$.
+	\end{enumerate}
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	
+	  On considère la suite $(u_n)$ définie par 
+	  
+	  $$\displaystyle	u_n=\frac{(1+i)^n+ (1-i)^n}{2^{n/2}}$$
+	\begin{enumerate}
+		\item Montrer que $(u_n)$ est une suite de nombres réels. Simplifier
+		les termes $u_n$.
+		\item Étudier la convergence de la suite $(u_n)$.
+	\end{enumerate}
+	
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Considérons l'application
+		$$f : \ \left\{\begin{array}{clc}
+	  \C{\backslash\{-
+	1\}} &\longrightarrow &\C^* \\
+	z &\longmapsto &\dfrac{2}{z+1}
+	\end{array}\right.$$
+	
+	Déterminer $f (\mathbb{U}{\backslash\{-
+		1\}})$.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Soit $\Ps = \{z \in \C ~ |~ \mathfrak{Im}(z) > 0\}$ et $D = \{z \in \C, |z| < 1\}$.
+	
+	\begin{enumerate}
+		\item Soit $z \in \Ps $. Montrer que $\dfrac{z-i}{z+i}\in D$.
+		\item Soit $z \neq -i$ tel que $\dfrac{z-i}{z+i}\in D$. 
+		
+		Montrer que $z \in \Ps $.
+		\item Montrer que l’application
+	\end{enumerate}
+	$$f : \ \left\{\begin{array}{clc}
+	\Ps&\longrightarrow &D \\
+	z &\longmapsto &\dfrac{z-i}{z+i}
+	\end{array}\right.$$
+	
+	est une bijection puis calculer sa réciproque.
+
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	
+	Trouvez l'ensemble des points $\mathrm{M}$ d'affixe~$z$ tels que les
+	points d'affixes $1$,~$z$ et~$z^2$ sont alignés.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\end{minipage}
+\end{minipage}
+
+
+\section*{Racine n-ième:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+		
+		
+
+				
+	
+		
+		
+		
+
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			
+		%TODO : équation racines de l'unité, second degré, 
+		Résoudre les équations suivantes :
+		\begin{enumerate}
+			\item $z^n = -1$
+			\item $(z-i)^n-(z+i)^n=0$
+			\item $\left( \dfrac{z+1}{z-1} \right)^n = e^{in \theta}$
+			\item $\left( \dfrac{z+1}{z-1} \right)^n + \left( \dfrac{z-1}{z+1} \right)^n = 2 \cos(n \theta)$
+		\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+				\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Trouver les racines cubiques de 
+			$2-2i$ et de $11+2i$.
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+				\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Factoriser $X^n-1$ dans $\R[X]$. On pourra commencer par résoudre
+			l'exercice dans le cas $n=5$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+			\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soient $m$ et $n$ deux éléments de $\N^*$. À quelle condition
+			a-t-on l'inclusion $\mathbb{U}_m \subset \mathbb{U}_n $?
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]%https://www.bibmath.net/ressources/index.php?action=affiche&quoi=mathsup/feuillesexo/complexes&type=fexo
+			%TODO : somme géométrique, trigo
+			\begin{enumerate}
+				\item Que vaut $1+e^{\frac{2i\pi}{5}}+e^{\frac{4i\pi}{5}}+e^{\frac{6i\pi}{5}}+e^{\frac{8i\pi}{5}}$ ? 
+				
+				En déduire la valeur de $\cos\left( \dfrac{2\pi}{5} \right)+\cos\left( \dfrac{4\pi}{5} \right)$.
+				%\item Calculer $\cos\left( \dfrac{2\pi}{5} \right) \cos\left( \dfrac{4\pi}{5} \right)$.
+				\item En déduire la valeur de $\cos\left( \dfrac{2\pi}{5} \right)$ puis la valeur de $\cos\left( \dfrac{\pi}{5} \right)$. 
+			\end{enumerate}
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			%TODO : racines de l'unités
+			Soit $\omega = e^{\frac{2i\pi}{7}}$
+			Calculer les nombres
+			$$ A = \omega + \omega^2 + \omega^4 \text{ et } B = \omega^3 + \omega^5 + \omega^6$$
+			On pourra calculer $A+B$ et $AB$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+		Déterminer l'ensemble des complexes s’écrivant comme somme de trois complexes de module 1.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+		
+		
+	\end{minipage}
+\end{minipage}
+
+\section*{Trinôme du second degré à coefficients dans $\C$ :}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	\begin{enumerate}
+		\item Calculer les racines carr\'ees de $\dfrac{1+i}{\sqrt{2}}$.
+		
+		 En d\'eduire les valeurs de $\cos(\frac{\pi}{8})$ et $\sin(\frac{\pi}{8})$.
+		\item Calculer les valeurs de $\cos\left(\frac{\pi}{12}\right)$ et $\sin(\frac{\pi}{12})$.
+	\end{enumerate}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Résoudre dans $\mathbb{C}$ l'équation
+			
+			 $z^2-(3+4i)z-1+5i=0$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+				\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	
+	Résoudre l'équation d'inconnue complexe $z$
+	$
+	(-4-2i)z^2 + (7-i)z + 1 + 3i = 0.
+	$
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+
+		
+
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			 Soit $u \in [0 ; \pi]$. Résoudre l'équation d'inconnue $z \in
+			\C$
+			\[
+			z^2 + 2(1- \cos u) z + 2 (1-\cos u) = 0.
+			\]
+			Préciser le module et l'argument de chaque solution.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		
+	Résoudre l’équation $$z^3 + (i - 2)z^2 + (3 - 3i)z + 2i - 2 = 0$$ sachant qu'elle admet
+	une solution réelle.
+		
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+\section*{Trigonométrie:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			 En utilisant les nombres complexes, calculer $\cos (5\theta)$ et
+			$\sin(5\theta)$ en fonction de $\cos(\theta)$ et $\sin(\theta)$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+		Linéariser $\cos^5x,\ \sin^5x$ et $\cos^2x \sin^3x$.
+
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			 Résoudre le système suivant : 
+			\[
+			\left\{\begin{aligned}
+			\cos a + \cos(a+x)+\cos(a+y) &=0 \\
+			\sin a + \sin(a+x)+\sin(a+y) &=0
+			\end{aligned}\right.
+			\]
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+				\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Sachant que $\cos(\frac{\pi}{8})=\frac{1}{2}\sqrt{2+\sqrt 2}$, déterminer la valeur de $\cos(\frac{3\pi}{8})$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Exprimer le produit $\cos^2(x)\times \sin(3x)$ uniquement à l'aide de la fonction $\sin$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soient $a,b$ deux nombres réels tels que $a, b$ 
+			
+			et $a+b \not\in \dfrac{\pi}{2} + \pi\Z$. 
+			\begin{enumerate}
+				\item Exprimer $\tan (a+b)$ en fonction de $\tan a$
+				
+				 et $ \tan b$. 
+				\item En déduire que si $x\not\in \pm\dfrac{\pi}{4}+ \pi\Z$, alors 
+				$\tan(\dfrac{\pi}{4} - x)+\tan(\dfrac{\pi}{4}+x)=\dfrac{2}{\cos(2x)}$
+				\item Calculer $\tan(\dfrac{\pi}{8})$.
+			\end{enumerate}
+
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+				\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $x\in]-\pi,\pi[+2\pi\Z$. On pose $t=\tan(\frac{x}{2})$.
+			
+			 Exprimer $\cos(x), \sin(x)$ et $\tan(x)$ en fonction de $t$. 
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	
+		
+		
+	\end{minipage}
+\end{minipage}
+	
+\section*{Géométrie du plan complexe:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			D\'eterminer l'ensemble des nombres complexes $z$
+			
+			tels que :
+			\begin{multicols}{2}
+				\begin{enumerate}
+					\item $\displaystyle{\left|\frac{z-3}{z-5}\right|=1},$
+					\item $\displaystyle{\left|\frac{z-3}{z-5}\right|= \frac{\sqrt{2}}{2}}.$
+				\end{enumerate}
+				
+			\end{multicols}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Montrer que pour $u,v \in \C$, on a $$|u+v|^2+|u-v|^2=2(|u|^2+|v|^2).$$
+			Donner une interprétation géométrique.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+		
+		
+
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]%https://www.bibmath.net/ressources/index.php?action=affiche&quoi=mathsup/feuillesexo/complexes&type=fexo
+			Soit $a, b, c \in\C$ deux à deux distincts. Montrer que les propositions suivantes sont équivalentes
+			\begin{enumerate}
+				\item les points d’affixes $a, b, c$ forment un triangle équilatéral ;
+				\item $j$ ou $j^2$ est solution de $az^2 + bz + c = 0 $;
+				\item $a^2 + b^2 + c^2 = ab + ac + bc $;
+					\item $ \dfrac{1}{a-b} + \dfrac{1}{b-c} + \dfrac{1}{c-a} = 0$;
+			\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+
+\section*{Inégalités dans le plan complexe :}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	
+		\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Montrer que, pour tout $z \in\C$, $|z - 1| \leq |z - j| + |z - j^2|$.
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $a, b, c$ et $d$ des complexes de module $1$. 
+			
+			Montrer que  \ \ $|ab-cd| \leq |a-c|+|b-d|$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $z$ et $z'$ des complexes de module au plus $1$. Montrer que
+			$$min(|z + z' |, |z - z'|) \leq \sqrt{2}.$$
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		
+		
+	\end{minipage}
+
+\end{minipage}
+
+\section*{Divers exercices :}\hfill\\[-1.25cm]
+
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $\Z[i] = \{ a+ib \  ; \ a,b \in \Z \}$.
+			\begin{enumerate}
+				\item Montrer que si $\alpha$ et $\beta$ sont dans $\Z[i]$ alors
+				$\alpha + \beta$ et $\alpha\beta$ le sont aussi.
+				
+				\item Trouver les \'elements inversibles de $\Z[i]$, c'est-\`a-dire les
+				\'el\'ements $\alpha \in \Z[i]$ 
+				
+				tels qu'il existe $\beta \in \Z[i]$ avec $\alpha\beta = 1$.
+				
+				\item V\'erifier que quel que soit $\omega \in \C$ il existe $\alpha \in \Z[i]$
+				tel que $|\omega - \alpha| < 1$.
+				
+				\item Montrer qu'il existe sur $\Z[i]$ une division euclidienne,
+				c'est-\`a-dire que,
+				quels que soient $\alpha$ et $\beta$ dans $\Z[i]$ il existe $q$ et $r$ dans
+				$\Z[i]$ v\'erifiant :
+				$$ \alpha = \beta q + r \qquad \text{avec} \qquad |r| < |\beta|.$$
+				(Indication : on pourra consid\'erer le complexe $\frac{\alpha}{\beta}$)
+				
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			On dit qu'un entier naturel $N$ est somme de deux carrés s'il existe deux entiers naturels $a$ et $b$ 
+			
+			\noindent de sorte que $N=a^2+b^2$. 
+			
+			\begin{enumerate}
+				\item On souhaite prouver que, si $N_1$ et $N_2$ sont sommes de deux carrés, alors leur produit $N_1N_2$ est aussi somme de deux carrés. Pour cela, on écrit $N_1=a^2+b^2$ et $N_2=c^2+d^2$, et on introduit $z_1=a+ib$, $z_2=c+id$. Comment écrire $N_1$ et $N_2$ en fonction de $z_1$ et $z_2$ ?
+				En déduire que $N_1N_2$	est somme de deux carrés. 
+				\item Démontrer que si $N$ est somme de deux carrés, alors pour tout entier $p\geq1$, $N^p$ est somme de deux carrés. 
+			\end{enumerate}
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+
+		
+		\begin{exo}\textbf{(**)}\quad\\[-0.8cm]
+			
+			Soient $n$ un entier naturel non nul et $\varphi$ un réel. Résoudre
+			le système \\[-0.2cm]
+			
+			$\left\{\begin{aligned}
+			(z + i t)^n + (z-i t)^n & = 2 \cos \varphi \\
+			z^2 + t^2 & = 1
+			\end{aligned}\right.$\\[0.5cm]
+			où $z$ et $t$ sont des inconnues complexes.
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+	
+
+\end{document}

@@ -1,0 +1,194 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\K}{\mathbb{K}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2022-2023}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: i.botcazou@gmx.fr }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	
+	
+	\begin{center}
+		\Large \sc colle 15 = Matrices et applications linéaires
+	\end{center}
+\raggedright
+
+
+\section*{Connaître son cours:}
+\begin{enumerate}
+\item Soit $E$, $F$ deux espaces vectoriels de dimension finie, $\beta$ une base de E et $\zeta$ une base de $F$. Montrer que pour tout $u \in \mathcal{L} (E , F )$ et tout $x \in E$ on a : $\text{Mat}_\zeta (u (x )) = \text{Mat}_{\beta,\zeta}(u) \cdot \text{Mat}_\beta(x )$.
+\item Soit $E $, $F $, $G$ trois espaces vectoriels de dimension finie, $\beta$ une base de $E$ , $\zeta$ une base de $F$ et $\gamma$
+une base de $G $. Montrer que pour tout $u \in \mathcal{L} (E , F )$ et tout $v \in \mathcal{L} (F , G )$, on a : $\text{Mat}_{\beta, \gamma} (v\circ u ) = \text{Mat}_{\zeta, \gamma} (v ) \cdot \text{Mat}_{\beta, \zeta} ( u )$
+\item Soient $E$ et $F$ deux $\K$-espaces vectoriels de dimensions respectives $p$ et $n$ et $u \in\mathcal L (E, F )$ de rang $r$.  Montrer qu'il existe une base $\beta$ de $E$ et une base $\zeta$ de $F$ tel que : $\text{Mat}_{\beta,\zeta}(u) = J_r = \begin{pmatrix}
+I_r & 0_{r,p-r} \\
+0_{n-r,r} & 0_{n-r,p-r}
+\end{pmatrix}$.
+
+\end{enumerate}
+\quad\\[0.2cm]
+
+\section*{Exercices:} 	
+
+\quad\\[0.2cm]
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Soit $E$ un espace vectoriel de dimension finie $n$ des sous-espaces $E_1 ,  \dots , E_p , F_1 ,\dots , F_p $ tels que
+	\begin{itemize}[$\bullet$]
+		\item Pour tout $i \in \llbracket 1, p \rrbracket, \ F_i \subset E_i$
+		\item $\mathlarger\bigoplus\limits_{i=1}^p F_i \ = \ \mathlarger\bigoplus\limits_{i=1}^p E_i$
+	\end{itemize}
+
+Montrer que, pour tout $i \in \llbracket 1, p \rrbracket, \ F_i = E_i$ .\quad\\[0.2cm]
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}\quad\\[0.2cm]
+\end{exo}
+
+\begin{exo}\textbf{(***)}\quad\\[0.25cm]%An114
+Soit $n$ un entier naturel supérieur ou égal à $2$ et $\omega=e^{2i\pi/n}$.
+
+Soit $A =(\omega^{(j-1)(k-1)})_{1\leqslant j,k\leqslant n}$. Montrer que $A$ est inversible et calculer $A^{-1}$.\quad\\[0.2cm]
+
+	\centering
+\rule{1\linewidth}{0.6pt}\quad\\[0.2cm]
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.25cm]
+	Soit $E$ un espace vectoriel de dimension finie et $f\in\mathcal L(E)$.
+	On suppose que, pour tout $x\in E$, il existe un entier $n_x\in\mathbb N$ tel
+	que $f^{n_x}(x)=0.$ Montrer qu'il existe un entier $n$ tel que $f^n=0$.\quad\\[0.2cm]
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}\quad\\[0.2cm]
+\end{exo}
+
+\begin{exo}\textbf{(***)}\quad\\[0.25cm]%An115
+	Soit E un espace vectoriel de dimension finie. 
+	Soient $f$ et $g$ deux endomorphismes de $E$ telles que $f\circ g-g\circ f=f$. Calculer la trace de $f^{2010}$.\quad\\[0.2cm]
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}\quad\\[0.2cm]
+\end{exo}
+\newpage
+
+\begin{exo}\textbf{(**)}\quad\\[0.25cm]
+	Soient $E, F, G$ des $\mathbb{K}$-espaces vectoriels et soient $u \in \mathcal{L}(E, G), v \in \mathcal{L}(F, G)$.
+	
+	\begin{enumerate}
+		\item Montrer que : $\operatorname{Im} v \subseteq \operatorname{Im} u \Leftrightarrow \exists w \in \mathcal{L}(F, E): v=u \circ w$.
+		\item En déduire que :
+		
+		$u$ surjective $\Leftrightarrow \exists w \in \mathcal{L}(G, E): u \circ w=\operatorname{Id}_{G}$.
+	\end{enumerate}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(***)}\quad\\[0.25cm]%An115
+	Soient $E$ un espace vectoriel de dimension $2$ muni d'une base $\beta = (e_1,e_2)$, $a\in\R$ et pour tout $n\in\N^*$ on définit $f_n\in \mathcal L (E)$ tel que  
+	$f_n(e_1) = e_1 +\dfrac{a}{n}e_2, \ f_n(e_2) = -\dfrac{a}{n}e_2+e_2$.
+	
+	 Justifier que la suite $\left(f_n^n\right)_{n\geq0}$ converge dans $\mathcal L (E)$ et déterminer son expression suivant la base $\beta$. 
+	
+	 %$$A_n=\left(	\begin{array}{cc}1&-\frac{a}{n}\\\frac{a}{n}&1\end{array}\right)$$Calculer $\lim\limits_{n \rightarrow +\infty}A_n^n$.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+
+
+
+
+
+\end{document}

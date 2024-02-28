@@ -1,0 +1,276 @@
+\documentclass[10pt,a4paper]{article}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{times}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{tablists}
+\usepackage[a4paper,bottom = 50pt]{geometry}
+\usepackage{color}
+\usepackage{amsmath,amssymb,amsthm, mathrsfs,pifont}
+\usepackage{pgf,tikz,pgfplots,tkz-tab}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{array}
+\usepackage{xcolor} 
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{pstricks}
+
+\usepackage{geometry}
+
+
+\setcellgapes{1pt}
+\makegapedcells
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
+
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\notni}{\not\owns}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+
+\begin{document}
+	
+	\leftline{\bfseries Optimal Sup Spé, groupe IPESUP \hfill Année~2021-2022}
+	\leftline{\bfseries Niveau: Première année de PCSI  }
+	\leftline{\bfseries M.Botcazou \hfill mail: ibotca52@gmail.com  }
+	\rule[0.5ex]{\textwidth}{0.1mm}	
+	
+	\begin{center}
+		\Large \sc colle 2 = fonctions usuelles, sommes, produits et équations différentielles	
+	\end{center}
+	
+\section*{Fonctions usuelles :}
+
+\begin{center}
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+%\begin{exo}\quad\\ 
+%Soit f une fonction continue sur un intervalle $I$ de $\R$ telle que:
+%$$\forall x \in I ,~f(x)^2 \ = \ 1$$
+%Montrer que la fonction $f$ est constante sur $I$
+%\end{exo}
+\begin{exo}
+Résoudre l'équation $\cosh(x)=2$.
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}
+Montrer que pour tout $x\neq 0$,
+$$\sum\limits_{k=0}^{n} \cosh(kx) \ = \ \dfrac{\cosh\left(\dfrac{nx}{2}\right)\sinh\left(\dfrac{(n+1)x}{2}\right)}{\sinh\left(\dfrac{x}{2}\right)}$$
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}
+Montrer que la fonction 
+$x \longmapsto \dfrac{1}{\cosh(x)}$ possède un unique point fixe.
+\end{exo}
+
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+
+
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+\begin{exo}
+Montrer que pour tout $n\geq 2$:
+$$ \left(1+\dfrac{1}{n}\right)^n \ \leq \ e \ \leq \ \left(1-\dfrac{1}{n}\right)^n$$
+\end{exo}
+
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}
+Démontrer que, pour tout $x\in\R$ et tout $n\geq 1$, on a
+$$\left(\dfrac{1+ \tanh(x)}{1 - \tanh(x)}\right)^n \ = \ \dfrac{1+ \tanh(nx)}{1- \tanh(nx)}$$ 
+\end{exo}
+
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}
+Résoudre l'équation: $$2x\ln(x) + 3(x-1) \ = \ 0 $$
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+
+	\end{minipage}
+\end{center}
+\quad \\
+
+\section*{Sommes et Produits :}
+\begin{center}
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+\begin{exo}\quad\\
+Pour $n\in\N$ montrer que : 
+$$\sum\limits_{k=0}^{n}\sum\limits_{l=0}^{n} \min(k,l) \ = \ \dfrac{n}{6}\left(2n^2+3n+1\right)$$
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center} 
+
+\begin{exo}\quad\\ 
+Calculer $\sum\limits_{k=1}^{n} k \ln\left(1+\dfrac{1}{k}\right)$ pour tout     $n\in\N^*$ en faisant apparaître un téléscopage.
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}\quad\\
+On pose pour tout $n\in\N^*$ 
+$$ H_n  \ = \ \sum_{k=1}^{n} \dfrac{1}{k}$$
+Montrer que:  
+$$\forall n\in\N^* , \  \ \sum_{i=1}^{n} H_i  \ = \ (n+1)H_n - n$$
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+
+\begin{exo}\quad\\
+\begin{enumerate}
+\item Factoriser $(k^3-1)$ par $(k-1)$ et $(k^3+1)$ par $(k+1)$ pour tout $k\geq 2$
+\item En déduire une simplification du produit 
+$$\prod\limits_{k=2}^{n}~\dfrac{k^3-1}{k^3+1}$$
+\item~En déduire l'existence et la valeur de $$\lim\limits_{n \rightarrow +\infty} \prod\limits_{k=2}^{n}~\dfrac{k^3-1}{k^3+1} $$ que l'on notera aussi~~~ $\prod\limits_{k=2}^{+\infty}~\dfrac{k^3-1}{k^3+1}$
+\end{enumerate}
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}\quad\\
+Montrer que pour tout $n\geq 2, n\in\N$ on a :
+
+$$\prod\limits_{k=1}^{n}\prod\limits_{l=1}^{n} \min(k,l) \ = \ n!\prod\limits_{k=1}^{n-1}k!(n-k)^{k}$$
+
+
+
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+
+
+
+	\end{minipage}
+\end{center}
+\quad\\
+\section*{Équations différentielles :}
+\begin{center}
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+\begin{exo}
+Résoudre les équations différentielles suivantes :
+\begin{enumerate}
+\item $y' + 2y = x^2 -2x +3  \ \  \text{sur} \ \R;$
+\item$y' + y =  \dfrac{1}{1+e^x}  \ \  \text{sur} \ \R; $
+\item$y' - 2xy  =  -(2x-1)e^x \  \ \text{sur} \  \R; $
+
+
+\end{enumerate}
+\end{exo} 
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}
+Donner une équation différentielle dont les solutions sont les fonctions de la forme 
+$$x\longmapsto \dfrac{C + x}{1+ x^2}, \  C \in\R$$
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center} 
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+\begin{exo}\quad\\
+Donner l'ensemble solution des équations différentielles suivantes :
+\begin{enumerate}
+\item$y'' -2y'+y \ = \ 0 \ , \  y(0)= y'(0) = 1; $
+\item$y'' +9y \ = \ 0 \ , \  y(0)= 0; $
+\item $y'' +  y'  - y\ = \ 0 $
+\end{enumerate}
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}\quad\\
+Déterminer une équation différentielle vérifiée par la famille de fonctions
+
+$$y(x) \ = \ C_1e^{2x} + C_2e^{-x} + x\cosh(x) ~,~~ C_1,C_2\in\R$$
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+ 
+	\end{minipage}
+\end{center}
+\quad\\
+\section*{Exercice supplémentaire :}
+
+\noindent Soient $n\in\N^*$ et $a_1,...a_n,b_1,...,b_n$ des nombres réels. \\
+On définit la fonction $f$ par:
+
+$$\forall x \in \R ~, ~f(x) \ = \ \sum\limits_{i=1}^{n}(a_ix+b_i)^2$$
+
+Montrer l'inégalité de Cauchy-Schwarz :
+
+ $$\left|\sum\limits_{i=1}^{n}a_ib_i\right| \ \leq \ \sqrt{\sum\limits_{i=1}^{n}a_i^2} \times \sqrt{\sum\limits_{i=1}^{n}b_i^2}$$
+\quad \\
+
+$\left(\textit{\underline{Indication}: remarquer que la fonction f est à valeur dans $\R^+$}\right)$
+
+
+\end{document}

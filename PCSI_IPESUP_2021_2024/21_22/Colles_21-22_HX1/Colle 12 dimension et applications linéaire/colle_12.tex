@@ -1,0 +1,187 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor,multicol}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	
+	
+	\begin{center}
+		\Large \sc colle 12 = dimensions des espaces vectoriels 
+	\end{center}
+
+
+
+
+\section*{Dimensions des espaces vectoriels:}
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\
+		Soit $E = \C_{n-1}[X]$ 
+			et soit $\alpha_1,...,\alpha_n$ des nombres complexes deux à deux distincts. On pose, pour $k= 1,...n$, 
+			$$L_k = \dfrac{\prod\limits^{n}\mathop{}_{\mkern-5mu \substack{i=1\\i\neq k}}(X-\alpha_i)}{\prod\limits^{n}\mathop{}_{\mkern-5mu \substack{i=1\\i\neq k}}(\alpha_k-\alpha_i)}$$
+			Démontrer que $(L_k)_{k=1,...,n}$ est une base de E. Déterminer les coordonnées d'un élément $P\in E$ dans cette base.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+		\begin{exo}\quad\\
+			Soit $E=\R_3[X]$ l'espace vectoriel des polynômes à coefficients réels de degré inférieur ou égal à 3. On définit $u$ l'application de $E$ dans lui-même par $$u(P)=P+(1-X)P'$$
+			\begin{enumerate}
+				\item Montrer que $u$ est un endomorphisme de $E$. 
+				\item Déterminer une base de $Im(u)$.
+				\item Déterminer une base de $ker(u)$.
+				\item Montrer que $ker(u)$
+				et $Im(u)$ sont deux sous-espaces vectoriels supplémentaires de $E$. 
+				
+				
+			\end{enumerate}
+			
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+	\begin{exo}\quad\\
+	Soient $\alpha\in\R$ et $F=\{P\in \R_n[X] ; P(\alpha)=0\}$. \\[0.25cm] Démontrer que $B=\{(X-\alpha)X^k; 0\leq k \leq n-1\}$ est une base de $F$. Quelle est la dimension de $F$? Donner les coordonnées de $(X-\alpha)^n$ dans cette base.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+		\begin{exo}\quad\\
+			Démontrer que les familles suivantes sont libres\\ dans $\mathcal{F}(\R,\R)$:\\[0.25cm]
+			\begin{enumerate}
+				\item $\left(x\longmapsto e^{ax}\right)_{a\in\R}$;\\[0.25cm]
+				\item $\left(x\longmapsto |x-a|\right)_{a\in\R}$;\\[0.25cm]
+				\item $\left(x\longmapsto \cos(ax)\right)_{a\in\R}$;\\[0.25cm]
+				\item $\left(x\longmapsto (\sin x)^n\right)_{n\in\N}$;\\[0.25cm]
+			\end{enumerate} 
+		%Soit $\alpha \in \R$ et $f_\alpha : \R \to \R$, $x\mapsto e^{\alpha x}$.
+		%Montrer que la famille $(f_\alpha)_{\alpha \in \R}$  est libre.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+		
+	
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+	\begin{exo}\quad\\
+		Soit $E$ l'ensemble des fonctions continues sur $[-1,1]$ qui sont affines sur $[-1,0]$ et sur $[0,1]$. Démontrer que $E$ est un espace vectoriel et en donner une base.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+	\begin{exo}\quad\\
+		Soit $E$ un espace vectoriel et $f\in\mathcal{L}(E)$.
+		\begin{enumerate}
+		\item Montrer que les conditions suivantes sont équivalentes:
+		\begin{itemize}[$\square$]
+		\item $ker(f) = ker(f^2)$.
+		\item $ Im(f) \cap ker(f) = \{0\}$.
+		\end{itemize}
+		\item On suppose maintenant que $E$ est de dimension finie. Montrer que les conditions suivantes sont équivalentes:
+		\begin{itemize}[$\square$]
+			\item $ker(f) = ker(f^2)$.
+			\item $ker(f) \oplus Im(f) = E$.
+			\item $Im(f) = Im(f^2)$.
+		\end{itemize}
+		\end{enumerate}
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+\begin{exo}\quad\\
+	Démontrer que l'ensemble des suites arithmétiques complexes est un espace vectoriel. Quelle est sa dimension ? 
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+	Soit $n\geq 1$, $E=\R_n[X]$ et $\phi\in\mathcal{L}(E)$ défini par $\phi(P) = P(X+1)-P(X)$. Déterminer le noyau et l'image de $\phi$. 
+
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+		\begin{exo}\quad\\
+	Soit $E$ un espace vectoriel dans lequel tout sous-espace vectoriel admet un supplémentaire. Soit $F$ un sous-espace vectoriel propre de $E$ (c'est-à-dire que $F\neq \{0\}$ et que $E\neq F$). Démontrer que $F$ admet au moins deux supplémentaires distincts.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+	
+	\end{minipage}
+\end{minipage}
+\end{document}

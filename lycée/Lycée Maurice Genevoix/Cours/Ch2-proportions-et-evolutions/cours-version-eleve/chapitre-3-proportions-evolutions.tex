@@ -1,0 +1,929 @@
+\documentclass[a4paper,10pt]{article}
+
+
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{}\chead{}\rhead{}\lfoot{Chapitre 2 - Cours}\cfoot{\thepage/8}\rfoot{M. Botcazou}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+$$\fbox{\Large{\text{ Chapitre 2 - Information chiffrée : proportions, pourcentages et évolutions }}}$$
+
+\hfill\\[0.5cm]
+\noindent L'information chiffrée et notamment les taux d'évolution sont des notions dominantes de la vie sociale, économique et même de la vie quotidienne : augmentation du nombre de chômeurs de $4\%$, taux d'emprunt, inflation annuelle de $2\%$, soldes, etc.
+
+
+\section{Proportions et pourcentages}
+
+
+\medskip 
+
+
+\subsection{Proportion d'un sous-ensemble}
+ 
+\medskip
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\hfill\\[0.2cm]
+			\parbox{0.65\linewidth}{Soit $E$ un ensemble de référence non vide (appelé \textbf{population}) et $N$ le nombre d'éléments de $E$ (appelé l'effectif de $E$).\\
+				Soit $A$ une partie de $E$ (appelée \textbf{sous-population}) et $n$ le nombre d'éléments de $A$ (appelé l'effectif de $A$).\\
+				On appelle \textbf{proportion de $A$ dans $E$} le nombre réel $p$ défini par :
+				$$\fbox{\text{$p=\dfrac{n}{N}$}}$$}
+			\parbox{0.35\linewidth}{ 
+				$$\begin{tikzpicture}[scale=1.5]
+				\draw[red](0,0) ellipse [x radius=1cm, y radius=0.3cm];
+				\draw[red](0.5,0.05) node{$A$};
+				\draw[blue](0,0) ellipse [x radius=2cm, y radius=0.75cm];
+				\draw[blue](1.75,0.05) node{$E$};
+				\end{tikzpicture}$$}
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{rmq}\hfill
+	\begin{enumerate}[$\diamond$]
+		\item Cette quantité $p$ est aussi appelée la fréquence de $A$ dans $E$.
+		\item Si l'on connait deux des trois quantités parmi $p$, $n$ et $N$, on peut facilement calculer la $3^{\text{ème}}$ à l'aide d'un produit en croix :\\
+		\renewcommand{\arraystretch}{1}
+		$$\begin{tabular}{|c|c|c|}
+		\hline
+		expression de $p$ en & expression de $n$ en & expression de $N$ en \\
+		fonction de $n$ et de $N$ & fonction de $p$ et de $N$ & fonction de $p$ et de $n$ \\
+		\hline
+		& & \\
+		& & \\
+		\ldots \ldots \ldots \ldots & \ldots \ldots \ldots \ldots & \ldots \ldots \ldots \ldots \\
+		& & \\%$p=\dfrac{n}{N}$ & $n = p \times N$ & $N=\dfrac{n}{p}$ \\
+		& & \\
+		\hline
+		\end{tabular}$$
+	\end{enumerate}
+\end{rmq}
+\hfill\\[0.2cm]
+
+\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.png}$ \ Faire : \\[-0.2cm]
+		\begin{enumerate}[$\diamond$]
+			\item en auto-correction : l'exercice résolu 1 p.287 et exercice 1 p.295\\[-0.2cm]
+			\item les exercices 1 et 2 p.299 et l'exercice 12 p.300.
+		\end{enumerate}
+}} 
+\hfill\\
+
+\begin{ex}\hfill
+	\begin{enumerate}[$\diamond$]
+		\item Dans une classe de $32$ élèves, $8$ élèves jouent de la musique.\\[0.2cm]
+		La proportion d'élèves de la classe jouant de la musique est : \dotfill\\[-0.1cm]%$\dfrac{8}{32}=\dfrac{1}{4}$.
+		\item Dans un lycée, la proportion $p$ d'externes est $0,19$. On sait que cela représente $285$ élèves. On cherche le nombre total d'élèves dans ce lycée.\\ % LLS exo 23 p.259
+		\\
+		.\dotfill\\
+		\\
+		.\dotfill\\%D'après l'énoncé, $p=0,19$ et $n=285$ et on cherche $N$. On a $N=\dfrac{n}{p}=\dfrac{285}{0,19}=\np{1500}$
+	\end{enumerate}
+\end{ex}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}\hfill\\
+			Soit $E$ un ensemble non vide et $A$ une partie de $E$. Alors la proportion $p$ de $A$ dans $E$ vérifie :
+			$$0 \leqslant p \leqslant 1$$
+			\hfill\\[0.2cm]
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{proof}\hfill
+	\begin{enumerate}[$\diamond$]
+		\item On commence par démontrer que $p\geqslant 0$.\\
+		\\
+		.\dotfill\\
+		\\
+		.\dotfill\\
+		%Avec les notations de la définition précédente, $p=\dfrac{n}{N}$ avec $n$ l'effectif de $A$ et $N$ l'effectif de $E$. Ainsi, les nombres $n$ et $N$ sont des entiers naturels, avec $N\not=0$ puisque $E$ n'est pas vide. Donc $p$ est positif comme le quotient d'un nombre positif ou nul par un nombre strictement positif.
+		\item Il reste à démontrer que $p\leqslant 1$.\\
+		\\
+		.\dotfill\\
+		\\
+		.\dotfill\\
+		%Comme $A$ est une partie de $E$, on a $n \leqslant N$ (avec égalité si $A=E$). Donc, en divisant les deux membres de cette inégalité par le nombre strictement positif $n_E$, on obtient $\dfrac{n}{N}\leqslant 1$, d'où $p\leqslant 1$.
+	\end{enumerate}
+\end{proof}
+\hfill\\[-0.5cm]
+
+
+%\subsection{Expression d'une proportion en pourcentage}
+
+\begin{rmq}
+	On exprime souvent $p$ en pourcentage pour que le résultat soit plus parlant.\\
+	Pour exprimer le nombre $p$ en pourcentage, il suffit de le multiplier par $100$.\\
+	\\
+	Ainsi, dans l'exemple précédent, le pourcentage d'élèves de la classe jouant de la musique est \ldots \ldots \ldots puisque 
+	$$p \times 100 = \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots$$
+	Inversement, si une proportion est exprimée en pourcentage, on peut l'exprimer sous forme décimale en la divisant par $100$ :
+	\begin{enumerate}[$\bullet$]
+		\item Une proportion de $65,3 \%$ correspond à $p=\ldots \ldots \ldots$ \\[-0.2cm]
+		\item Une proportion de $20\%$ correspond à $p=\ldots \ldots \ldots$.
+	\end{enumerate}
+\hfill\\
+\textcolor{red}{\textbf{Attention, lorsque vous utilisez une formule utilisant une proportion $p$, cette proportion ne doit surtout pas être exprimée en $\%$ au moment d'appliquer la formule.}}
+\end{rmq}
+\hfill\\
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} (pourcentage d'une quantité)\hfill\\
+			Si une quantité $q$ représente $t\%$ d'une quantité $Q$, alors $q=\dfrac{t}{100} \times Q$.
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{proof}
+	Cela découle immédiatement de la définition de proportion.\\
+	La proportion $p$ de $q$ dans $Q$ est $p=\dfrac{q}{Q}$ donc $q=p \times Q$. Ici, $p=\dfrac{t}{100}$ donc $q=\dfrac{t}{100} \times Q$. 
+\end{proof}
+\hfill\\
+
+\begin{rmq}
+	Autrement dit, de manière imagée, on peut voir le symbole \og $\%$ \fg comme un synonyme de \og $\times \dfrac{1}{100}$\fg. 
+\end{rmq}
+\hfill\\
+
+\begin{ex}
+	\og $20\%$ de $45$ \fg se traduit mathématiquement par \og \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \fg, ce qui est égal à \ldots \ldots .
+\end{ex}
+\hfill\\[-0.2cm]
+
+\newpage
+
+\begin{exer}
+	On s'intéresse à la composition d'une tablette de chocolat de $180$ g.
+	\begin{enumerate}
+		\item Elle comporte $72$ g de sucre. Quelle proportion cela représente-t-il ? Traduire cette proportion en pourcentage.\\
+		\\
+		.\dotfill\\
+		\item Le cacao constitue $55\%$ de la tablette. Quelle masse cela représente-t-il ?\\
+		\\
+		.\dotfill\\
+	\end{enumerate}
+\end{exer}
+\hfill\\[-1cm]
+
+\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.png}$ \ Exercices 1, 2 p.283 - Exercice résolu 2 p.287 - Exercices 13, 14, 15 p.300 - Exercices 43 p.304}} \\
+
+\subsection{Pourcentage de pourcentage}
+
+\medskip
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} \hfill\\
+			Soit $E$ un ensemble non vide, $A$ une partie de $E$ et $B$ une partie de $A$.\\
+			On note $p_A$ la proportion de $A$ dans $E$ et $p_B$ la proportion de $B$ dans $A$.\\
+			Alors la proportion $p$ de $B$ dans $E$ est égale à $p=p_B \times p_A$.
+			$$\begin{tikzpicture}[scale=1.5]
+			\draw[red](0,0) ellipse [x radius=1cm, y radius=0.3cm];
+			\draw[red](0.5,0.05) node{$B$};
+			\draw[vert](0,0) ellipse [x radius=2cm, y radius=0.6cm];
+			\draw[vert](1.75,0.05) node{$A$};
+			\draw[blue](0,0) ellipse [x radius=3cm, y radius=1cm];
+			\draw[blue](2.75,0.05) node{$E$};
+			\end{tikzpicture}$$
+			\hfill\\[-0.6cm]
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{rmq}
+	Attention, les proportions ne doivent pas être exprimées en pourcentage au moment du calcul.
+\end{rmq}
+\hfill\\[-1cm]
+
+\begin{ex}
+	Dans un certain lycée, on a observé ceci : 
+	\begin{enumerate}[$\bullet$]
+		\item Il y a $600$ élèves ;
+		\item $15\%$ des élèves sont gauchers ;
+		\item $60\%$ des gauchers portent un jean ;
+		\item $80\%$ des droitiers portent un jean.
+	\end{enumerate} 
+	Quel pourcentage représentent les gauchers en jean parmi les élèves du lycée ? Combien d'élèves cela représente-t-il ? 
+\end{ex}
+\hfill\\
+
+\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.png}$ \ Faire : 
+		\begin{enumerate}[$\diamond$]
+			\item en auto-correction : l'exercice résolu 3 p.287 et l'exercice 2 p.295
+			\item l'exercice 4 p.299 et les exercices 16 et 17 p.300 
+		\end{enumerate}
+}} 
+\hfill\\
+
+\newpage
+
+\section{Évolution d'une quantité positive}
+
+\medskip
+
+\noindent On s'intéresse dans cette partie à une quantité positive qui varie au cours du temps. On cherche à quantifier son évolution.\\
+
+\subsection{Variation absolue, variation relative}
+
+\subsubsection{Variation absolue}
+
+\medskip
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\hfill\\
+			On considère une quantité qui varie au cours du temps. On note :
+			\begin{enumerate}[$\diamond$]
+				\item $V_{d}$ la valeur de départ (on dit aussi valeur initiale) de la quantité ;
+				\item $V_{a}$ la valeur d'arrivée (on dit aussi valeur finale) de la quantité .
+			\end{enumerate}
+			On appelle \textbf{variation absolue} de cette quantité le nombre :
+			$$V_{a} - V_{d}$$
+		\end{defi}
+	\end{minipage}
+}
+\\[0.4cm]
+
+\begin{ex} \hfill
+	\begin{enumerate}[$\diamond$]
+		\item le prix d'un article passe de $120$ euros à $144$ euros. La variation absolue est : \dotfill\\[-0.3cm]
+		\item le nombre d'adhérents d'un club est passé de $96$ à $80$. La variation absolue est \dotfill\\[-0.3cm]
+	\end{enumerate}
+\end{ex}
+\hfill\\
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}\hfill
+			\begin{enumerate}[$\diamond$]
+				\item Lorsque la variation absolue d'une quantité est positive, la quantité augmente.
+				\item Lorsque la variation absolue d'une quantité est négative, la quantité diminue.
+			\end{enumerate}
+		\end{prop}
+	\end{minipage}
+}
+\\[0.4cm]
+
+
+\begin{rmq}
+	Inconvénient de la variation absolue : \dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\[0.2cm]
+	D'où la nécessité de prendre en considération la valeur initiale pour quantifier l'évolution.
+\end{rmq}
+
+\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.png}$ \ Faire en auto-correction l'exercice 3 p.295}} \\
+
+\subsubsection{Taux d'évolution (ou variation relative)}
+
+\medskip
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\hfill\\
+			On considère une quantité qui varie au cours du temps. On note :
+			\begin{enumerate}[$\diamond$]
+				\item $V_{d}$ la valeur de départ (on dit aussi valeur initiale) de la quantité ;
+				\item $V_{a}$ la valeur d'arrivée (on dit aussi valeur finale) de la quantité .
+			\end{enumerate}
+			On appelle \textbf{taux d'évolution} (ou encore \textbf{variation relative}) de cette quantité le nombre :
+			$$\di\frac{V_{a} - V_{d}}{V_d}$$
+		\end{defi}
+	\end{minipage}
+}
+\\[0.4cm]
+
+\begin{rmq}
+	La variation relative (ou taux d'évolution) n'a pas d'unité, mais on peut l'exprimer en pourcentage en multipliant sa valeur par $100$.
+\end{rmq}
+\hfill\\
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}\hfill
+			\begin{enumerate}[$\diamond$]
+				\item Lorsque le taux d'évolution d'une quantité est positif, la quantité augmente.
+				\item Lorsque le taux d'évolution d'une quantité est négatif, la quantité diminue.
+			\end{enumerate}
+		\end{prop}
+	\end{minipage}
+}
+\\[0.4cm]
+
+
+\begin{ex}
+	L'organisation mondiale du tourisme fournit chaque année le nombre de touristes étrangers (en millions) en France :
+	$$\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	Année & $1990$ & $2000$ & $2010$ & $2018$ \\
+	\hline
+	Nombre de touristes étrangers (en millions) & $52,5$ & $77,2$ & $76,8$ & $89,3$ \\
+	\hline
+	\end{tabular}$$
+	\begin{enumerate}
+		\item Calculer le taux d'évolution (arrondi au centième) du nombre de touristes en France entre $1990$ et $2000$. Interpréter ce résultat.\\
+		\\
+		.\dotfill\\
+		\\
+		.\dotfill\\
+		\item Même question entre $2000$ et $2018$ (on arrondira le taux d'évolution au millième).\\
+		\\
+		.\dotfill\\
+		\\
+		.\dotfill\\
+	\end{enumerate}
+\end{ex}
+
+
+\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.png}$ \ Exercices résolu 1, 2 p.289 - TP 4 p.298 - Exercices 18, 19, 20, 21 p.300 - Exercices 55 p.307 - Exercices 59 p.308}} \\
+
+\subsection{Coefficient multiplicateur}
+
+\medskip
+
+\noindent Le coefficient multiplicateur est un outil très efficace pour la résolution de problèmes faisant étudier des évolutions. C'est lui qui permet de faire tous les calculs d'évolution.\\
+\\
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\hfill\\
+			\parbox{0.6\linewidth}{On appelle \textbf{coefficient multiplicateur} de l'évolution de $V_d$ à $V_a$ le nombre positif :\\
+			$$C = \di\frac{V_{a}}{V_d}$$}
+			\parbox{0.4\linewidth}{
+				\begin{center}
+					\begin{tikzpicture}[scale=0.6]
+					\node[draw,circle,fill=gray!50] (0) at (0,0) {$V_d$};
+					\node[draw,circle,fill=gray!50] (1) at (5,0) {$V_a$};
+					%\node[draw,circle,fill=gray!50] (2) at (4,0) {$u_2$};
+					%\node (pouf) at (6,0) {...};
+					%\node [draw,circle,fill=gray!50](n) at (8,0) {$u_n$};
+					\draw[->,>=latex] (0.north) to[out=45, in=135] (1.north) ;
+					%\draw[->,>=latex] (0.south) to[out=-45, in=-135] (1.south) ;
+					%\draw[->,>=latex] (2) to[bend left] (pouf) ;
+					%\draw[->,>=latex] (pouf) to[bend left] (n) ;
+					%\draw[->,>=latex] (0) to[bend left] (2);
+					%\draw[->,>=latex] (0) to[bend right] (n);
+					\node (I1) at (2.5,2.2) {$\times C$};
+					%\node (I2) at (2.5,-2.2) {$\times (1+t)$};
+					%\node (I3) at (5,0.8) {$+r$};
+					%\node (In-1) at (7,0.8) {$+r$};
+					%\node (In) at (4,-1.7) {$+nr$};
+					\end{tikzpicture}
+			\end{center}
+		}
+			
+		\end{defi}
+	\end{minipage}
+}
+\\[0.4cm]
+
+\begin{rmq}
+	Le coefficient multiplicateur n'a pas d'unité.\\
+\end{rmq}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}\hfill
+			\begin{enumerate}[$\diamond$]
+				\item Lorsque le coefficient multiplicateur d'une évolution est supérieur à $1$, cela traduit une augmentation ;
+				\item Lorsque le coefficient multiplicateur d'une évolution est inférieur à $1$, cela traduit une diminution. \\
+			\end{enumerate}
+		\end{prop}
+	\end{minipage}
+}
+\\[0.4cm]
+
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} (lien entre taux d'évolution et coefficient multiplicateur) :\\
+			\parbox{0.6\linewidth}{\hfill\\[-1cm] On considère une évolution de taux d'évolution $t$. Alors :
+			$$C = 1 + t$$}
+			\parbox{0.4\linewidth}{
+				\begin{center}
+					\begin{tikzpicture}[scale=0.5]
+					\node[draw,circle,fill=gray!50] (0) at (0,0) {$V_d$};
+					\node[draw,circle,fill=gray!50] (1) at (5,0) {$V_a$};
+					\draw[->,>=latex] (0.north) to[out=45, in=135] (1.north) ;
+					\draw[->,>=latex] (0.south) to[out=-45, in=-135] (1.south) ;
+					\node (I1) at (2.5,2.4) {$\times C$};
+					\node (I2) at (2.5,-2.4) {$\times (1+t)$};
+					\end{tikzpicture}
+				\end{center}
+			}
+		\end{prop}
+	\end{minipage}
+}
+\\[0.4cm]
+
+\noindent\underline{\textbf{Quelques réflexes à avoir :}}\\[-0.1cm]
+\begin{enumerate}[$\diamond$]
+	\item faire subir à une grandeur une augmentation de $k\%$ revient à la multiplier par $\left(1+\dfrac{k}{100}\right)$ ;
+	\item faire subir à une grandeur une augmentation de $k\%$ revient à la multiplier par $\left(1+\dfrac{k}{100}\right)$.
+\end{enumerate} 
+\hfill\\
+
+\begin{ex}\hfill
+	\begin{enumerate}[$\diamond$]
+		\item une augmentation de $20\%$ correspond à un taux d'accroissement de \ldots \ldots \ldots \ldots \ et à un coefficient multiplicateur de \\[0.3cm]
+		\ldots \ldots \ldots \ldots \\
+		\item une diminution de $30\%$ correspond à un taux d'accroissement de \ldots \ldots \ldots \ldots \ et à un coefficient multiplicateur de \\[0.3cm]
+		\ldots \ldots \ldots \ldots \\
+		\item une augmentation de $3\%$ correspond à un taux d'accroissement de \ldots \ldots \ldots \ldots \ et à un coefficient multiplicateur de \\[0.3cm]
+		\ldots \ldots \ldots \ldots \\
+	\end{enumerate}
+\end{ex}
+\hfill\\[-1cm]
+
+\begin{exer}
+	Les questions de cet exercice sont indépendantes.
+	\begin{enumerate}
+		\item Un objet vaut $12$\euro. Son prix augmente de $4\%$. Quel est son prix final ?\\
+		\\
+		.\dotfill\\
+		\item La population d'une ville est de $52 \ 000$ habitants. Elle diminue de $3\%$ en un an. Quelle est la population finale ?\\
+		\\
+		.\dotfill\\
+		\item La population d'un pays a été multipliée par $1,012$ en un an. Quel est le taux d'évolution de la population ?\\
+		\\
+		.\dotfill\\
+		\item Lors d'une crise économique, un pays subit beaucoup d'inflation et les prix sont multipliés par $3$ en un an. Quel est, en $\%$, le taux d'évolution des prix ? \\
+		\\
+		.\dotfill\\
+		\item Après une baisse de $20\%$, un objet coûte $75$\euro. Quel était son prix initial ?\\
+		\\
+		.\dotfill\\
+	\end{enumerate}
+\end{exer}
+\hfill\\[-1cm]
+
+\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.png}$ \ Faire :
+		\begin{enumerate}[$\diamond$]
+			\item en auto-correction : l'exercice résolu 3 p.289
+			\item les exercice 3 et 8 p.299 et l'exercice 40 p.304
+		\end{enumerate}}} 
+\hfill\\
+
+\newpage
+
+\section{Et dans le cas de plusieurs évolutions ?}
+
+\subsection{Évolutions successives}
+
+\medskip
+
+\noindent On s'intéresse dans cette partie au cas de deux évolutions successives d'une quantité. On note :
+\begin{enumerate}[$\bullet$]
+	\item $V_0$ la valeur initiale (avant la première évolution) ;
+	\item $V_1$ la valeur après la première évolution de coefficient multiplicateur $C_{1}$ ;
+	\item $V_2$ la valeur finale (après la deuxième évolution de coefficient multiplicateur $C_{2}$ ).
+\end{enumerate}
+On a donc le schéma suivant : \\
+\\
+\\
+\\
+\\
+\\
+\\
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} 
+			Lorsqu'on effectue deux évolutions successives de coefficients multiplicateurs respectifs $C_{1}$ et $C_{2}$, on obtient une évolution globale dont le coefficient multiplicateur vaut :
+			$$\ldots \ldots \ldots \ldots$$
+			\hfill\\[-0.9cm]
+		\end{prop}
+	\end{minipage}
+}
+\\[0.4cm]
+
+\begin{rmq}
+	\textbf{Important !} Pour calculer un taux d'évolution global, il faut donc dans un premier temps calculer le coefficient multiplicateur global avec la formule ci-dessus, puis en déduire le taux d'évolution global. 
+\end{rmq}
+\hfill\\[-0.7cm]
+
+\begin{ex}
+	Un prix a subi une augmentation de $60\%$ puis une augmentation de $20\%$. Quel est le taux d'augmentation global ? \\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+\end{ex}
+
+\begin{ex}
+	Un prix a subi une augmentation de $40\%$ puis une baisse de $40\%$. Quel est le taux d'évolution global ? \\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+\end{ex}
+
+\begin{rmq}
+	La méthode de calcul du coefficient multplicateur global se généralise pour un nombre quelconque d'évolutions successives. 
+\end{rmq}
+\hfill\\[-0.7cm]
+
+\begin{ex}
+	La population d'une ville diminue de $17\%$, puis augmente de $15\%$ puis augmente de $10\%$ et enfin diminue de $30\%$. Quel est le taux d'évolution global de la population à la fin de ces quatre évolutions successives ? \\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+\end{ex}
+\hfill\\
+
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} 
+			Dans le cas de plusieurs évolutions successives, le coefficient multiplicateur global est égal au produit des coefficients multiplicateurs des différentes évolutions.
+		\end{prop}
+	\end{minipage}
+}
+\\[0.4cm]
+
+
+\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.png}$ \ Faire : 
+		\begin{enumerate}[$\diamond$]
+			\item en auto-correction : les exercices résolus 1 et 2 p.291 et l'exercice 5 p.295
+			\item exercice 5 p.299
+			\item exercices 22, 23, 24 et 25 p.301
+			\item exercice 42 p.304
+		\end{enumerate}
+	}} 
+\hfill\\
+
+
+
+\subsection{Evolutions réciproques}
+
+\medskip
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} 
+			Soient deux quantités $V_1$ et $V_2$. On dit que deux évolutions sont réciproques si l'une d'entre elles permet de passer de $V_1$ à $V_2$ et que l'autre permet de passer de $V_2$ à $V_1$.
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\
+\\
+\\
+\\
+\\
+\\
+\\
+
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop} 
+			On considère une évolution de coefficient multiplicateur $C$. Alors le coefficient multiplicateur de l'évolution réciproque est :
+			$$\ldots \ldots \ldots \ldots$$
+			\hfill\\[-0.9cm]
+		\end{prop}
+	\end{minipage}
+}
+\\[0.4cm]
+
+\begin{rmq}
+	Autrement dit, les coefficients multiplicateurs de deux évolutions réciproques sont inverses l'un de l'autre.
+\end{rmq}
+\hfill\\
+
+\begin{ex}
+	Calculer le taux d'évolution réciproque d'une baisse de $20\%$.\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+	\\
+	.\dotfill\\
+\end{ex}
+
+\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.png}$ \ Faire en auto-correction l'exercice résolu 3 p.291 et l'exercice 4 p.295}} \\
+\\
+
+\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.png}$ \ Exercices de synthèse du chapitre : exercices 59, 60, 61, 62, 63 et 64 p.308}} \\
+
+
+
+
+%\section{Traduire une évolution}
+%
+%\medskip
+%
+%\noindent Que se passe-t-il lorsque l'on fait une augmentation de $15\%$ ou une baisse de $30\%$ (par exemple pendant les soldes) ? Quel est le pourcentage de réduction lorsqu'un prix passe de $138$ \euro à $111$ \euro ?\\
+%On appelle $v_d$ la valeur initiale (valeur de départ) d'une grandeur et $v_f$ sa valeur finale (valeur d'arrivée), toutes deux positives, suite à une évolution.
+%
+%
+%
+%\begin{rmq}
+%	Si $t>0$, alors il s'agit d'une augmentation de la grandeur.\\
+%	Si $t<0$, alors il s'agit d'une diminution de la grandeur.\\
+%	On préféra exprimer $t$ en pourcentage.
+%\end{rmq}
+%
+%\begin{ex}
+%	Le prix d'une tablette tactile passe de $759$ \euro à $683,10$ \euro. On en déduit alors :
+%	\begin{enumerate}[$\diamond$]
+%		\item la variation absolue de cette quantité : $683,10-759=-75,9$ \euro.
+%		\item le taux d'évolution : $t=\dfrac{-75,9}{759}=-0,1$ soit une baisse de $10\%$.
+%	\end{enumerate}
+%\end{ex}
+%
+%\noindent\fcolorbox{rouge}{white}{
+%	\begin{minipage}{1\linewidth}
+%		\begin{prop}
+%			Faire subir à une grandeur une évolution de $t\%$ revient à la multiplier par $\left(1+\dfrac{t}{100}\right)$.
+%		\end{prop}
+%	\end{minipage}
+%}
+%
+%
+%\noindent\fcolorbox{vert}{white}{
+%	\begin{minipage}{1\linewidth}
+%		\begin{defi}
+%			On appelle taux d'évolution le nombre $t$ en pourcentage.
+%			On appelle coefficient multiplicateur le nombre $c=1+\dfrac{t}{100}$.
+%		\end{defi}
+%	\end{minipage}
+%}
+%
+%\begin{rmq}
+%	Attention, ici $t$ peut être positif ou négatif, en fonction de si c'est une hausse ou une baisse !
+%\end{rmq}
+
+
+%(où  est un pourcentage)
+%Remarques : 
+%? Dans le cas d?une hausse, le coefficient multiplicateur est supérieur à 1.
+%? Dans le cas d?une baisse, le coefficient multiplicateur est inférieur à 1.
+%? Un coefficient multiplicateur n?a pas d?unité.
+%Exemples 5 : 
+%
+%
+%
+%
+%1) Augmenter de 30 % revient à multiplier par 1,30.
+%2) Augmenter de 100 % revient à multiplier par 2.
+%3) Augmenter de 0,5 % revient à multiplier par 1,005.
+%4) Diminuer de 30 % revient à multiplier par 0,70.
+%5) Diminuer de 6 % revient à multiplier par 0,94.
+%6) Un coefficient multiplicateur de  correspond à une baisse de .
+%
+%Exemple 6 :   Compléter ce tableau.
+%
+%Cas n°1
+%Cas n°2
+%Cas n°3
+%Cas n°4
+%Cas n°5
+%Cas n°6
+%Valeur initiale  
+%45 ?
+%156 ?
+%40 ?
+%
+%
+%
+%Valeur finale 
+%72,90 ?
+%
+%
+%72 ?
+%20 ?
+%
+%Variation absolue
+%
+%-24,96 ?
+%
+%
+%4 ?
+%-46,20 ?
+%Variation relative t
+%
+%
+%-30%
+%60%
+%
+%-55%
+%Coefficient multiplicateur 
+%
+%
+%
+%
+%
+%
+%Solution :
+%
+%
+%Cas n°1
+%Cas n°2
+%Cas n°3
+%Cas n°4
+%Cas n°5
+%6
+%Valeur 
+%45 ?
+%156 ?
+%40 ?
+%45 ?
+%16,00 ?
+%84 ?
+%Valeur 
+%72,90 ?
+%131,04 ?
+%28,00 ?
+%72 ?
+%20,00 ?
+%37,80 ?
+%Variation absolue
+%27,90 ?
+%-24,96 ?
+%-12,00 ?
+%27 ?
+%4,00 ?
+%-46,20 ?
+%Variation relative
+%62%
+%-16%
+%-30%
+%60%
+%25%
+%-55%
+%
+%
+%
+%
+%Ch. VIII? Informations chiffrées 2/2
+%? Evolutions successives, évolution réciproque : relation sur les coefficients multiplicateurs (produit, inverse)
+%? Calculer le taux d?évolution global à partir des taux d?évolution successifs. Calculer un taux d?évolution réciproque.
+%
+%Ce chapitre permettra d?éviter des erreurs fréquentes et de répondre, par exemple, aux questions suivantes :
+%? Si une action baisse de 10%, quelle hausse devra-t-elle subir le lendemain pour retrouver sa valeur initiale ?
+%? Vaut-il mieux bénéficier d?une réduction de 30% ou de deux réductions successives de 10% et 20% ?
+%? Y a-t-il une différence entre une hausse de 5% suivie d?une baisse de 15% et une baisse de 15% suivie d?une hausse de 5% ?
+%
+%I- Evolutions successives:
+%
+%Définitions : Une valeur  subit deux évolutions successives aux taux  et .
+%
+%
+%
+%On appelle taux d?évolution global le taux d?évolution de  à .
+%On appelle coefficient multiplicateur global le coefficient multiplicateur correspondant au taux 
+%d?évolution global.
+%
+%
+%
+%Propriété : Si une grandeur subit des évolutions successives (augmentation ou diminution), le coefficient 
+%multiplicateur global est le produit des coefficients multiplicateurs de chaque évolution.
+%
+%Autrement dit :   dans le cas de deux évolutions successives.
+%
+%
+%? Méthode : Pour trouver le taux d?évolution global (en fonction des informations dont on dispose) : 
+%? Soit on calcule 
+%? Soit on calcule (en faisant le produit) puis on en déduit 
+%
+%Exemple 1 :  Un article subit une baisse de 10% puis une baisse de 20%. 
+%Quel est son taux d?évolution global ?
+%
+%Soit  le prix initial de l?article. 
+%Le coefficient multiplicateur associé à la première baisse est  
+%Celui associé à la deuxième baisse est :  
+%On a le schéma 
+%Donc 
+%Le coefficient multiplicateur est donc 0,72.
+%Or   donc  
+%L?article a donc subi une baisse globale de 28% (et non de 30% !)
+%
+%Exemple 2 : Le prix d'un objet augmente de 10% puis diminue de 10%. Revient-on au prix de départ ?
+%
+%Le coefficient multiplicateur global est : 
+%
+%Le pourcentage d'évolution est donc   
+%Le prix de l'objet a globalement diminué de . 
+%
+%Exemple 3 : Un article subit une hausse annuelle de 2% pendant 10 ans. 
+%Quel est son taux d?évolution globale ?
+%
+%Coefficient multiplicateur associé à la première hausse de 2% : 
+%Coefficient multiplicateur associé à la dixième hausse de 2% : 
+%Le coefficient multiplicateur associé à la hausse globale est :  
+%Donc le taux d?évolution est 
+%Le taux d?évolution global est donc de  environ
+%
+%? Conclusions :
+%?  Les pourcentages successifs d?augmentation ou de diminution ne s?ajoutent pas.
+%? Une hausse suivie d?une baisse d?un même pourcentage ne se compensent pas. 
+%
+%
+%II -  Evolutions réciproques :
+%
+%Définitions : Une valeur subit une évolution au taux . Pour revenir à la valeur initiale, on applique un taux 
+%d?évolution , appelé le taux d?évolution réciproque associé à un coefficient multiplicateur 
+%réciproque.
+%
+%
+%
+%
+%Propriété :  L?évolution réciproque d?une évolution est une évolution de coefficient multiplicateur inverse.
+%Plus précisément, l?évolution réciproque d?une évolution de coefficient multiplicateur c a pour 
+%coefficient  multiplicateur .
+%
+%
+%
+%Exemple 4: 
+%Si une action baisse de 10%, quelle hausse devra-t-elle subir le lendemain pour retrouver sa valeur initiale ?
+%
+%Soit  le prix initial de l?action. Le coefficient multiplicateur est alors 
+%On a  , donc .
+%Le taux associé est  
+%L?action devra donc subir une hausse d?environ 11% pour revenir à son prix initial.
+%
+%? Conclusion :
+%L?évolution réciproque d?une baisse de 10% n?est pas une hausse de 10%.
+%
+
+
+
+% Set the ending of a LaTeX document
+\end{document}

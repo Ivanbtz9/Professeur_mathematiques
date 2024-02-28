@@ -1,0 +1,1178 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+
+\fiche{f00163, bodin, 2012/09/01} 
+
+\titre{Développements limités}
+
+Corrections d'Arnaud Bodin.
+
+\section{Calculs}
+
+\exercice{6888, bodin, 2012/09/05}
+\video{oBG5H6nDyhk}
+\enonce{006888}{} Donner le développement limité en $0$ des fonctions :
+
+\begin{enumerate}
+  \item $\cos x \cdot \exp x$ \quad à l'ordre $3$
+
+  \item $\left( \ln (1+x) \right)^2$ \quad à l'ordre $4$
+
+  \item $\displaystyle{\frac{\sh x-x}{x^3}}$ \quad à l'ordre $6$
+
+  \item $\exp\big(\sin(x)\big)$ \quad à l'ordre $4$
+
+  \item  $\sin^6(x)$ \quad à l'ordre $9$
+
+  \item $\ln \big(\cos(x)\big)$ \quad à l'ordre $6$
+
+  \item $\displaystyle{\frac{1}{\cos x}}$ \quad à l'ordre $4$
+
+  \item $\tan x$ \quad à l'ordre $5$ (ou $7$ pour les plus courageux)
+
+  \item $(1+x)^{\frac{1}{1+x}}$ \quad à l'ordre $3$
+
+  \item $\arcsin \left ( \ln(1+x^2) \right )$ \quad à l'ordre $6$
+\end{enumerate}
+\finenonce{006888}
+
+
+
+\finexercice
+\exercice{1243, roussel, 2001/09/01}
+\video{eGl4xUQYh6Q}
+\enonce{001243}{}
+\begin{enumerate}
+\item Développement limité en $1$ à l'ordre $3$ de $f(x)=\sqrt{x}$.
+
+\item Développement limité en $1$ à l'ordre $3$ de $g(x)= e^{\sqrt{x}}$.
+
+\item Développement limité à l'ordre $3$ en $\frac\pi3$ de $h(x)=\ln (\sin x)$.
+\end{enumerate}
+
+\finenonce{001243}
+
+
+
+\finexercice
+\exercice{1244, roussel, 2001/09/01}
+\video{KCxPBmuttZE}
+\enonce{001244}{}
+Donner un développement limité à l'ordre $2$ de $f(x)=
+\displaystyle{\frac{\sqrt{1+x^2}}{1+x+\sqrt{1+x^2}}}$ en $0$.
+En déduire un développement à l'ordre $2$ en $+\infty$.
+Calculer un développement à l'ordre $1$ en $-\infty$.
+\finenonce{001244}
+
+
+
+\finexercice
+
+
+\section{Applications}
+
+\exercice{1247, vignal, 2001/09/01}
+\video{HpQ-7NAmPFs}
+\enonce{001247}{}
+ Calculer les limites suivantes
+ $$\lim_{x\rightarrow 0}\frac{e^{x^2}-\cos x}{x^2}
+ \quad\quad\lim_{x\rightarrow 0}\frac{\ln (1+x)-\sin x}{x}
+ \quad\quad \lim_{x\rightarrow 0}\frac{\cos x-\sqrt{1-x^2}}{x^4}$$
+\finenonce{001247}
+
+
+
+\finexercice
+\exercice{1249, legall, 1998/09/01}
+\video{LJLvAjm8KcY}
+\enonce{001249}{}
+\'Etudier la position du graphe de l'application $x\mapsto \ln(1+x+x^2)$ par rapport 
+à sa tangente en $0$ et $1$.
+\finenonce{001249}
+
+
+
+\finexercice
+
+
+\exercice{1265, legall, 2003/10/01}
+\video{c-IqNr313V8}
+\enonce{001265}{}
+Déterminer:
+\begin{enumerate}
+\item
+\begin{enumerate}
+\item $\displaystyle \lim _{x \rightarrow +\infty} \sqrt{x^2+3x+2} +x$
+\item $\displaystyle \lim _{x \rightarrow -\infty} \sqrt{x^2+3x+2} +x$
+\end{enumerate}
+
+\item $\displaystyle \lim _{x \rightarrow 0^+}(\Arctan x)^{\frac{1}{x^2}}$
+
+\item $\displaystyle \lim _{x \rightarrow 0} \frac{(1+3x)^{\frac{1}{3}}-1-\sin x}{1-\cos x}$
+\end{enumerate}
+
+\finenonce{001265}
+
+
+\finexercice
+
+
+\section{Formules de Taylor}
+
+\exercice{1267, legall, 1998/09/01}
+\video{MY2kvANRkJo}
+\enonce{001267}{}
+Soit $f$ l'application de $\Rr$ dans $\Rr$ définie par
+$f(x)=\displaystyle{\frac{x^3}{1+x^6}}.$ Calculer $f^{(n)}(0)$ pour tout $n \in \Nn.$
+\finenonce{001267}
+
+
+
+\finexercice
+
+\exercice{1268, legall, 1998/09/01}
+\video{kxEXonvTl5g}
+\enonce{001268}{}
+Soit $a$ un nombre réel et $f : ] a , +\infty [ \rightarrow \Rr$ une application de classe $C^2$. 
+On suppose $f$ et $f''$ bornées ; on pose $\displaystyle  M_0=\sup _{x>a}\vert f(x)\vert$ et 
+$\displaystyle  M_2=\sup_{x> a}\vert f''(x)\vert$.
+\begin{enumerate}
+    \item En appliquant une formule de Taylor reliant $f(x)$ et $f(x+h)$, montrer que, pour tout 
+$x>a$ et tout $h>0$, on a~: $\displaystyle \vert f'(x)\vert \leq \frac{h}{2}M_2+\frac{2}{h}M_0$.
+
+    \item En déduire que $f'$ est bornée sur $]a,+\infty[$.
+
+    \item \'Etablir le résultat suivant : soit $g : ]0,+\infty[ \rightarrow \Rr$ une application
+de classe $C^2$ à dérivée seconde bornée et telle que $\displaystyle \lim _{x\rightarrow +\infty }g(x)=0$. 
+Alors $\displaystyle\lim _{x\rightarrow +\infty }g'(x)=0$.
+\end{enumerate}
+\finenonce{001268}
+
+
+
+\finexercice
+\section{DL implicite}
+
+\exercice{4037, quercia, 2010/03/11}
+\video{jBtvOPwMUdQ}
+\enonce{004037}{tan$(x) = x$}
+\begin{enumerate}
+  \item  Montrer que l'équation $\tan x = x$ possède une unique solution
+   $x_n$ dans
+   $\left]n\pi-\frac \pi2, n\pi+\frac \pi2\right[$ $(n\in \N)$.
+  \item  Quelle relation lie $x_n$ et $\arctan(x_n)$ ? \label{relation}
+  \item  Donner un DL de $x_n$ en fonction de $n$ à l'ordre $0$ pour $n\to\infty$.
+  \item  En reportant dans la relation trouvée en \ref{relation},
+     obtenir un DL de $x_n$ à l'ordre 2.
+\end{enumerate}
+\finenonce{004037}
+
+
+
+\finexercice
+
+\section{Equivalents}
+
+
+\exercice{4044, quercia, 2010/03/11}
+
+\video{QO_S3C9WRgc}
+
+\enonce{004044}{Recherche d'équivalents}
+
+Donner des équivalents simples pour les fonctions suivantes :
+
+\begin{enumerate}
+  \item $2e^x - \sqrt{1+4x} - \sqrt{1+6x^2}$,            en $0$      
+  \item $(\cos x)^{\sin x} - (\cos x)^{\tan x}$,         en $0$      
+  \item $\arctan x + \arctan \frac 3x -\frac {2\pi}3$, en $\sqrt3$ 
+  \item $\sqrt{x^2+1} -2\sqrt[3]{x^3+x} + \sqrt[4]{x^4+x^2}$,  en $+\infty$
+  \item $\Argch\left(\frac1{\cos x}\right)$,            en $0$      
+\end{enumerate}
+\finenonce{004044}
+
+
+
+\finexercice
+
+\exercice{4045, quercia, 2010/03/11}
+\video{OchDDAXSqog}
+\enonce{004045}{Approximation de cos}
+Trouver $a,b\in\R$ tels que 
+$$\cos x - \frac{1+ax^2}{1+bx^2}$$
+soit un $o(x^n)$ en $0$ avec $n$ maximal.
+\finenonce{004045}
+
+
+\exercice{2657, matexo1, 2002/02/01}
+\video{2r2CIG013os}
+\enonce{002657}{}
+Calculer
+$$\ell = \lim_{x\to+\infty}\left(\frac{\ln(x+1)}{\ln x}\right)^x.$$
+Donner un équivalent de 
+$$\left(\frac{\ln(x+1)}{\ln x}\right)^x - \ell$$
+lorsque $x \to +\infty$.
+\finenonce{002657}
+
+
+\finexercice
+
+\finfiche
+
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\indication{006888}
+\begin{enumerate}
+  \item $\cos x \cdot \exp x = 1 + x - \frac13 x^3 + o(x^3)$
+
+  \item $\left( \ln (1+x) \right)^2= x^2-x^3+\frac{11}{12}x^4+ o(x^4)$
+
+  \item $\frac{\sh x-x}{x^3} = \frac{1}{3!}+\frac{1}{5!}x^2+\frac{1}{7!}x^4+\frac{1}{9!}x^6 + o(x^6)$
+
+  \item $\exp\big(\sin(x)\big)=1+x + \frac12 x^2 - \frac18 x^4+ o(x^4)$
+
+  \item $\sin^6 (x)  =  x^6-x^8 + o(x^9)$
+
+  \item $\ln(\cos x) =  - \frac{1}{2} x^2 -\frac{1}{12}x^4 -\frac{1}{45}x^6  + o(x^6)$
+
+  \item $\frac{1}{\cos x} = 1+\frac{1}{2}x^2+\frac{5}{24}x^4 + o(x^4)$
+
+  \item $\tan x = x + \frac{x^3}{3} + \frac{2x^5}{15} + \frac{17x^7}{315} + o(x^7)$
+
+  \item $(1+x)^{\frac{1}{1+x}} =  \exp\left( \frac{1}{1+x} \ln(1+x) \right) = 1+x-x^2 + \frac{x^3}{2} + o(x^3)$
+
+  \item  $\arcsin \left ( \ln(1+x^2) \right ) = x^2-\frac{x^4}{2}+\frac{x^6}{2}+o(x^6)$
+\end{enumerate}
+\finindication
+\indication{001243}
+Pour la première question vous pouvez appliquer la formule de Taylor ou bien 
+poser $h=x-1$ et considérer un dl au voisinage de $h=0$.
+\finindication
+\indication{001244}
+En $x=0$ c'est le quotient de deux dl.
+En $x=+\infty$, on pose $h=\frac1x$ et on calcule un dl en $h=0$.
+\finindication 
+\indication{001247}
+Il s'agit bien sûr de calculer d'abord des dl afin d'obtenir la limite.
+On trouve : 
+\begin{enumerate}
+  \item $\lim_{x\rightarrow 0}\frac{e^{x^2}-\cos x}{x^2} = \frac32$
+  \item $\lim_{x\rightarrow 0}\frac{\ln (1+x)-\sin x}{x} = 0$
+  \item $\lim_{x\rightarrow 0}\frac{\cos x-\sqrt{1-x^2}}{x^4}=\frac16$
+\end{enumerate}
+\finindication
+\indication{001249}
+Faire un dl en $x=0$ à l'ordre $2$ cela donne $f(0)$, $f'(0)$ et la position par rapport à la tangente
+donc tout ce qu'il faut pour répondre aux questions. Idem en $x=1$.
+\finindication
+\indication{001265}
+Il s'agit de faire un dl afin de trouver la limite.
+\begin{enumerate}
+  \item 
+  \begin{enumerate}
+    \item $\displaystyle \lim_{x \rightarrow +\infty} \sqrt {x^2+3x+2} +x = + \infty$
+    \item $\displaystyle \lim_{x \rightarrow -\infty} \sqrt {x^2+3x+2} +x = -\frac32$
+  \end{enumerate}
+  \item $\displaystyle \lim_{x \rightarrow 0^+}(\Arctan x )^{\frac{1}{x^2}}=0$
+  \item $\displaystyle \lim_{x \rightarrow 0} \frac{(1+3x)^{\frac{1}{3}}-1-\sin x}{1-\cos x}=-2$
+\end{enumerate}
+
+\finindication
+\indication{001267}
+Calculer d'abord le dl puis utiliser une formule de Taylor.
+\finindication
+\indication{001268}
+\begin{enumerate}
+  \item La formule à appliquer est celle de Taylor-Lagrange à l'ordre $2$.
+  \item \'Etudier la fonction $\phi(h) = \frac{h}{2}M_2+\frac{2}{h}M_0$ et trouver $\inf_{h>0} \phi(h)$.
+  \item Il faut choisir un $a>0$ tel que $g(x)$ soit assez petit sur $]a,+\infty[$ ; puis appliquer
+les questions précédentes à $g$ sur cet intervalle.
+\end{enumerate}
+\finindication
+\noindication
+\noindication
+\indication{004045}
+Identifier les dl de $\cos x$ et $\frac{1+ax^2}{1+bx^2}$ en $x=0$.
+\finindication
+\indication{002657}
+Faites un développement faisant intervenir des $x$ et des $\ln x$.
+Trouvez $\ell=1$.
+\finindication
+
+
+\newpage
+
+\correction{006888}
+\begin{enumerate}
+  \item $\cos x \cdot \exp x$ (à l'ordre $3$).
+  
+Le dl de $\cos x$ à l'ordre $3$ est
+$$\cos x = 1 - \frac{1}{2!} x^2 + \epsilon_1(x)x^3.$$
+
+Le dl de $\exp x$ à l'ordre $3$ est
+$$\exp x =1+x+\frac1{2!}x^2+\frac1{3!}x^3 + \epsilon_2(x)x^3.$$
+
+Par convention toutes nos fonctions $\epsilon_i(x)$ vérifierons $\epsilon_i(x)\to 0$ lorsque $x\to0$.
+
+\bigskip
+
+On multiplie ces deux expressions  
+\begin{align*}
+\cos x \times \exp x 
+  & =  \Big(1 - \frac{1}{2} x^2   + \epsilon_1(x)x^3\Big) \times \Big( 1+x+\frac1{2!}x^2+\frac1{3!}x^3 + \epsilon_2(x)x^3\Big) \\
+  & =  1 \cdot \Big(1+x+\frac1{2!}x^2+\frac1{3!}x^3 + \epsilon_2(x)x^3 \Big)  \quad \text{on développe la ligne du dessus}\\  
+  & \qquad  - \frac{1}{2} x^2 \cdot \Big( 1+x+\frac1{2!}x^2+\frac1{3!}x^3 + \epsilon_2(x)x^3 \Big) \\
+  & \qquad  + \epsilon_1(x)x^3 \cdot \Big(1+x+\frac1{2!}x^2+\frac1{3!}x^3 + \epsilon_2(x)x^3 \Big) \\
+\end{align*}
+
+On va développer chacun de ces produits, par exemple pour le deuxième produit :
+$$- \frac{1}{2!} x^2 \cdot \Big(  1+x+\frac1{2!}x^2+\frac1{3!}x^3 +  \epsilon_2(x)x^3\Big)
+= - \frac{1}{2} x^2 - \frac{1}{2} x^3 - \frac14x^4  -\frac1{12}x^5 -\frac12x^2\cdot \epsilon_2(x)x^3.$$
+
+Mais on cherche un dl à l'ordre $3$ donc tout terme en $x^4$, $x^5$ ou plus se met dans $\epsilon_3(x)x^3$,
+y compris $x^2 \cdot \epsilon_2(x)x^3$ qui est un bien de la forme $\epsilon(x)x^3$.
+Donc $$- \frac{1}{2} x^2 \cdot \Big(1+x+\frac1{2!}x^2+\frac1{3!}x^3 + \epsilon_2(x)x^3\Big)
+= - \frac{1}{2} x^2 - \frac{1}{2} x^3  + \epsilon_3(x)x^3.$$
+
+Pour le troisième produit on a
+$$\epsilon_1(x)x^3 \cdot \Big(1+x+\frac1{2!}x^2+\frac1{3!}x^3 + \epsilon_2(x)x^3\Big) 
+= \epsilon_1(x)x^3+x\epsilon_1(x)x^3+\cdots = \epsilon_4(x)x^3$$
+
+On en arrive à :
+\begin{align*}
+\cos x \cdot \exp x 
+  & =  \Big(1 - \frac{1}{2} x^2 + \epsilon_1(x)x^3 \Big) \times \Big( 1+x+\frac1{2!}x^2+\frac1{3!}x^3 + \epsilon_2(x)x^3\Big) \\
+  & = 1+x+\frac1{2!}x^2+\frac1{3!}x^3 +  \epsilon_1(x)x^3\\
+  & \qquad - \frac{1}{2} x^2- \frac{1}{2} x^3  + \epsilon_3(x)x^3 \\
+  & \qquad  + \epsilon_4(x)x^3 \qquad \text{il ne reste plus qu'à regrouper les termes :}  \\    
+  & =  1 + x + (\frac12-\frac12) x^2 + (\frac{1}{6}- \frac{1}{2})x^3 + \epsilon_5(x)x^3 \\
+  & =  1 + x - \frac13 x^3 + \epsilon_5(x)x^3 \\
+\end{align*}
+
+Ainsi le dl de $\cos x \cdot \exp x$ en $0$ à l'ordre $3$ est :
+$$\cos x \cdot \exp x = 1 + x - \frac13 x^3 + \epsilon_5(x)x^3.$$
+
+
+\item $\left( \ln (1+x) \right)^2$ (à l'ordre $4$).
+
+Il s'agit juste de multiplier le dl de $\ln(1+x)$ par lui-même.
+En fait si l'on réfléchit un peu on s'aperçoit qu'un dl à l'ordre $3$ sera suffisant (car le terme constant est nul) :
+$$\ln(1+x)=x-\frac12x^2+\frac13x^3+ \epsilon(x)x^3$$
+ $\epsilon_5(x)\to 0$ lorsque $x\to0$.
+
+\begin{align*}
+\left( \ln (1+x) \right)^2 
+  & = \ln (1+x)  \times \ln (1+x)  \\
+  & = \left(x-\frac12x^2+\frac13x^3+ \epsilon(x)x^3\right) \times \left( x-\frac12x^2+\frac13x^3+ \epsilon(x)x^3\right) \\
+  & = x \times \left( x-\frac12x^2+\frac13x^3+ \epsilon(x)x^3\right) \\
+  & \qquad  -\frac12x^2\times \left( x-\frac12x^2+\frac13x^3+ \epsilon(x)x^3\right) \\
+  & \qquad +\frac13x^3\times \left( x-\frac12x^2+\frac13x^3+ \epsilon(x)x^3\right) \\
+  & \qquad + \epsilon(x)x^3\times \left( x-\frac12x^2+\frac13x^3+ \epsilon(x)x^3\right) \\
+  & =  x^2-\frac12x^3+\frac13x^4+ \epsilon(x)x^4 \\
+  & \qquad -\frac12x^3+\frac14x^4+ \epsilon_1(x)x^4 \\
+  & \qquad +\frac13x^4 + \epsilon_2(x)x^4 \\
+  & \qquad + \epsilon_3(x)x^4 \\  
+  & =  x^2-x^3+\frac{11}{12}x^4+ \epsilon_4(x)x^4 \\
+\end{align*}
+
+
+\item $\displaystyle{\frac{\sh x-x}{x^3}}$ (à l'ordre $6$).
+
+Pour le dl de $\displaystyle{\frac{\sh x-x}{x^3}}$ on commence par faire un dl du numérateur.
+Tout d'abord :
+$$\sh x = x+\frac{1}{3!}x^3+\frac{1}{5!}x^5+\frac{1}{7!}x^7+\frac{1}{9!}x^9 +\epsilon(x) x^9$$
+donc 
+$$\sh x - x = \frac{1}{3!}x^3+\frac{1}{5!}x^5+\frac{1}{7!}x^7+\frac{1}{9!}x^9 +\epsilon(x) x^9.$$
+
+Il ne reste plus qu'à diviser par $x^3$ :
+$$\frac{\sh x-x}{x^3} = \frac{\frac{1}{3!}x^3+\frac{1}{5!}x^5+\frac{1}{7!}x^7+\frac{1}{9!}x^9 +\epsilon(x) x^9 }{x^3} 
+= \frac{1}{3!}+\frac{1}{5!}x^2+\frac{1}{7!}x^4+\frac{1}{9!}x^6 +\epsilon(x) x^6$$
+
+Remarquez que nous avons commencé par calculer un dl du numérateur à l'ordre $9$,
+pour obtenir après division un dl à l'ordre $6$.
+
+
+  \item $\exp\big(\sin(x)\big)$ (à l'ordre $4$).
+
+On sait $\sin x= x -\frac{1}{3!}x^3 + o(x^4)$
+et $\exp(u)=1+u+\frac1{2!} u^2+\frac{1}{3!}u^3+\frac{1}{4!}u^4+o(u^4)$.
+
+
+On note désormais toute fonction $\epsilon(x)x^n$ (où $\epsilon(x)\to 0$ lorsque $x\to0$) par $o(x^n)$.
+Cela évite les multiples expressions $\epsilon_i(x)x^n$.
+
+
+On substitue $u=\sin(x)$, il faut donc calculer $u, u^2, u^3$ et $u^4$ : 
+$$u = \sin x= x -\frac{1}{3!}x^3 + o(x^4)$$
+$$u^2 = \big( x -\frac{1}{3!}x^3 + o(x^4)\big)^2 = x^2-\frac13 x^4 + o(x^4)$$
+$$u^3 = \big( x -\frac{1}{3!}x^3 + o(x^4)\big)^3 = x^3 + o(x^4)$$
+$$u^3 = x^4 + o(x^4) \quad \text{ et } \quad o(u^4)=o(x^4)$$
+
+Pour obtenir :
+\begin{align*}
+  \exp(\sin(x)) 
+    & =  1+ x -\frac{1}{3!}x^3 + o(x^4)\\
+    &  \qquad   + \frac1{2!}\big(x^2-\frac13 x^4 + o(x^4)\big) \\
+    &  \qquad   + \frac1{3!}\big(x^3 + o(x^4)\big) \\
+    &  \qquad   + \frac1{4!}\big(x^4 + o(x^4)\big) \\    
+    & \qquad + o(x^4) \\
+    & = 1+x + \frac12 x^2 - \frac18 x^4 + o(x^4).
+\end{align*}
+
+
+
+  \item  $\sin^6(x)$ (à l'ordre $9$).
+
+On sait $\sin (x)= x -\frac{1}{3!}x^3 + o(x^4)$.
+
+
+
+Si l'on voulait calculer un dl de $\sin^2(x)$ à l'ordre $5$ on écrirait :
+$$\sin^2 (x)  =  \big(x -\frac{1}{3!}x^3 + o(x^4)\big)^2 =  
+\big(x -\frac{1}{3!}x^3 + o(x^4)\big) \times  \big(x -\frac{1}{3!}x^3 + o(x^4)\big) 
+= x^2 -2\frac{1}{3!}x^4 + o(x^5).$$
+En effet tous les autres termes sont dans $o(x^5)$.
+
+
+Le principe est le même pour $\sin^6(x)$:
+$$\sin^6 (x)  =  \big(x -\frac{1}{3!}x^3 + o(x^4)\big)^6 =  
+\big(x -\frac{1}{3!}x^3 + o(x^4) \big) \times  \big(x -\frac{1}{3!}x^3 + o(x^4) \big) 
+\times  \big(x -\frac{1}{3!}x^3 + o(x^4) \big) \times \cdots$$
+Lorsque l'on développe ce produit en commençant par les termes de plus petits degrés on obtient 
+$$\sin^6 (x)  =  x^6 + 6 \cdot x^5 \cdot (-\frac1{3!} x^3) + o(x^9) = x^6-x^8 + o(x^9)$$
+
+
+
+  \item $\ln \big(\cos(x)\big)$ (à l'ordre $6$).
+
+Le dl de $\cos x$ à l'ordre $6$ est
+$$\cos x = 1 - \frac{1}{2!} x^2 + \frac{1}{4!}x^4 - \frac{1}{6!}x^6 + o(x^6).$$
+Le dl de $\ln(1+u)$ à l'ordre $6$ est
+$\ln(1+u)=u-\frac12u^2+\frac13u^3-\frac14u^4+\frac15u^5-\frac16u^6+o(u^6)$.
+
+On pose $u= - \frac{1}{2!} x^2 + \frac{1}{4!}x^4 - \frac{1}{6!}x^6 + o(x^6)$ de sorte que
+$$\ln(\cos x) = \ln (1+u)=u-\frac12u^2+\frac13u^3-\frac14u^4+\frac15u^5-\frac16u^6+o(u^6).$$
+
+Il ne reste qu'à développer les $u^k$, ce qui n'est pas si dur que cela si les calculs sont bien menés et 
+les puissances trop grandes écartées.
+
+Tout d'abord :
+\begin{align*}
+u^2
+  & = \left(- \frac{1}{2!} x^2 + \frac{1}{4!}x^4 - \frac{1}{6!}x^6 + o(x^6)\right)^2 \\
+  & = \left(- \frac{1}{2!} x^2 + \frac{1}{4!}x^4 \right)^2 + o(x^6) \\
+  & = \left(- \frac{1}{2!} x^2\right)^2 + 2 \left(- \frac{1}{2!} x^2\right) \left(\frac{1}{4!}x^4 \right) + o(x^6) \\
+  & = \frac14 x^4 - \frac1{24} x^6 + o(x^6) \\
+\end{align*}
+
+Ensuite :
+\begin{align*}
+u^3 
+  & = \left(- \frac{1}{2!} x^2 + \frac{1}{4!}x^4 - \frac{1}{6!}x^6 + o(x^6)\right)^3 \\
+  & = \left(- \frac{1}{2!} x^2 \right)^3 + o(x^6) \\
+  & =  -\frac18 x^6 + o(x^6) \\
+\end{align*}
+En effet lorsque l'on développe $u^3$ le terme $(x^2)^6$ est le seul terme dont l'exposant est $\le 6$.
+
+Enfin les autres termes $u^4$, $u^5$, $u^6$ sont tous des $o(x^6)$. Et en fait développer $\ln(1+u)$ à l'ordre $3$ est suffisant.
+
+Il ne reste plus qu'à rassembler :
+\begin{align*}
+\ln(\cos x) 
+  & = \ln (1+u) \\
+  & = u-\frac12u^2+\frac13u^3+o(u^3) \\
+  & = \left(- \frac{1}{2!} x^2 + \frac{1}{4!}x^4 - \frac{1}{6!}x^6 + o(x^6)\right)\\
+  & \qquad   -\frac12 \left(\frac14 x^4 - \frac{1}{24} x^6 + o(x^6)\right) \\
+  & \qquad   +\frac13 \left(-\frac18 x^6 + o(x^6)\right)\\
+  & = - \frac{1}{2} x^2 -\frac{1}{12}x^4 -\frac{1}{45}x^6  + o(x^6)\\
+\end{align*}
+
+  \item $\displaystyle{\frac{1}{\cos x}}$ à l'ordre $4$.
+
+Le dl de $\cos x$ à l'ordre $4$ est
+$$\cos x = 1 - \frac{1}{2!} x^2 + \frac{1}{4!}x^4 + o(x^4).$$
+Le dl de $\frac{1}{1+u}$ à l'ordre $2$ (qui sera suffisant ici) est
+$\frac{1}{1+u}=1-u+u^2+o(u^2)$.
+
+On pose $u=- \frac{1}{2!} x^2 + \frac{1}{4!}x^4 + o(x^4)$ et on a $u^2 = \frac14 x^4 + o(x^4)$.
+
+\begin{align*}
+\frac{1}{\cos x}
+  & =  \frac{1}{1+u} \\
+  & =  1-u+u^2+o(u^2) \\
+  & = 1 -\big(- \frac{1}{2!} x^2 + \frac{1}{4!}x^4 + o(x^4)\big)+\big(- \frac{1}{2!} x^2 + \frac{1}{4!}x^4 + o(x^4)\big)^2 +o(x^4)  \\
+  & = 1+\frac{1}{2}x^2+\frac{5}{24}x^4 + o(x^4) \\
+\end{align*}
+
+
+  \item $\tan x$ (à l'ordre $5$ (ou $7$ pour les plus courageux)).
+
+Pour ceux qui souhaitent seulement un dl à l'ordre $5$ de $\tan x =\sin x \times \frac{1}{\cos x}$ alors
+il faut multiplier le dl de $\sin x$ à l'ordre $5$ par le dl de $\frac{1}{\cos x}$ à l'ordre $4$ (voir question précédente).
+
+
+Si l'on veut un dl de $\tan x$ à l'ordre $7$ il faut d'abord refaire le dl $\frac{1}{\cos x}$ mais cette fois à l'ordre $6$ :
+$$\frac{1}{\cos x}=1+\frac{1}{2}x^2+\frac{5}{24}x^4 +\frac{61}{720}x^6 + o(x^6)$$
+
+Le dl à l'ordre $7$ de $\sin x$ étant :
+$$\sin x = x -\frac{1}{3!}x^3 +\frac{1}{5!}x^5 - \frac{1}{7!}x^7 +o(x^7)$$
+
+Comme  $\tan x = \sin x \times \frac{1}{\cos x}$, il ne reste donc qu'à multiplier les deux dl
+pour obtenir après calculs :
+$$\tan x = x + \frac{x^3}{3} + \frac{2x^5}{15} + \frac{17x^7}{315} + o(x^7)$$
+
+
+
+  \item $(1+x)^{\frac{1}{1+x}}$ (à l'ordre $3$).
+
+Si l'on pense bien à écrire $(1+x)^{\frac{1}{1+x}}= \exp\left( \frac{1}{1+x} \ln(1+x) \right)$
+alors c'est juste des calculs utilisant les dl à l'ordre $3$ de $\ln(1+x)$, $\frac{1}{1+x}$ et 
+$\exp x$.
+
+On trouve 
+$$(1+x)^{\frac{1}{1+x}} = 1+x-x^2 + \frac{x^3}{2} + o(x^3).$$
+
+
+  \item $\arcsin \left ( \ln(1+x^2) \right )$ (à l'ordre $6$).
+
+Tout d'abord $\ln(1+x^2)=x^2-\frac{x^4}{2}+\frac{x^6}{3}+o(x^6)$.
+Et $\arcsin u =  u + \frac{u^3}{6} + o(u^3)$.
+Donc en posant $u=x^2-\frac{x^4}{2}+\frac{x^6}{3}+o(x^6)$ on a :
+\begin{align*}
+\arcsin \left ( \ln(1+x^2) \right ) 
+  & =  \arcsin \left ( x^2-\frac{x^4}{2}+\frac{x^6}{3}+o(x^6) \right )  \\
+  & = \arcsin u \\
+  & = u + \frac{1}{6}u^3 + o(u^3) \\
+  & = \left ( x^2-\frac{x^4}{2}+\frac{x^6}{3} \right ) + \frac{1}{6}\left (x^2-\frac{x^4}{2}+\frac{x^6}{3} \right )^3 + o(x^6) \\
+  & = \left ( x^2-\frac{x^4}{2}+\frac{x^6}{3}\right ) + \frac{x^6}{6} + o(x^6) \\
+  & = x^2-\frac{x^4}{2}+\frac{x^6}{2}+o(x^6) \\
+\end{align*}
+
+
+\end{enumerate}
+\fincorrection
+\correction{001243}
+\begin{enumerate}
+  \item 
+Première méthode.
+On applique la formule de Taylor (autour du point $x=1$)
+$$f(x)=f(1)+f'(1)(x-1)+\frac{f''(1)}{2!}(x-1)^2 + \frac{f'''(1)}{3!}(x-1)^3 + o((x-1)^3)$$
+Comme $f(x) = \sqrt x= x^{\frac12}$ alors $f'(x) = \frac12 x^{-\frac12}$ et donc $f'(1)=\frac12$.
+Ensuite on calcule $f''(x)$ (puis $f''(1)$), $f'''(x)$ (et enfin $f'''(1)$).
+
+On trouve le dl de $f(x)=\sqrt x$ au voisinage de $x=1$ :
+$$\sqrt x = 1 + \frac12 (x-1) - \frac18 (x-1)^2 + \frac{1}{16} (x-1)^3 + o((x-1)^3)$$
+
+
+\bigskip
+
+Deuxième méthode.
+Posons $h=x-1$ (et donc $x=h+1$). On applique la formule du dl de $\sqrt{1+h}$ autour de $h=0$.
+\begin{align*}
+f(x)=\sqrt x  
+  & = \sqrt{1+h} \\
+  & = 1 + \frac 12 h - \frac18 h^2 + \frac{1}{16} h^3 + o(h^3)   \quad \text{ c'est la formule du dl de } \sqrt{1+h} \\
+  & = 1 + \frac12 (x-1) - \frac18 (x-1)^2 + \frac{1}{16} (x-1)^3 + o((x-1)^3) \\
+\end{align*}
+
+
+  \item La première méthode consiste à calculer $g'(x)=\frac{1}{2\sqrt x}\exp{\sqrt x}$, $g''(x)$, $g'''(x)$
+ puis $g(1)$, $g'(1)$, $g''(1)$, $g'''(1)$ pour pouvoir appliquer la formule de Taylor conduisant à :
+$$\exp(\sqrt x)= e + \frac{e}{2} (x-1) + \frac{e}{48} (x-1)^3 + o((x-1)^3)$$
+(avec $e=\exp(1)$).
+
+\bigskip
+
+Autre méthode. Commencer par calculer le dl de $k(x)=\exp x$ en $x=1$ ce qui est très facile car pour tout $n$, $k^{(n)}(x)=\exp x$
+et donc $k^{(n)}(1)=e$ :
+$$\exp x= e + e (x-1) + \frac{e}{2!} (x-1)^2 + \frac{e}{3!} (x-1)^3 + o((x-1)^3).$$
+
+Pour obtenir le dl $g(x)= h(\sqrt x)$ en $x=1$ on écrit d'abord :
+$$\exp (\sqrt x)= e + e (\sqrt{x}-1) + \frac{e}{2!} (\sqrt{x}-1)^2 + \frac{e}{3!} (\sqrt{x}-1)^3 + o((\sqrt{x}-1)^3).$$
+Il reste alors à substituer $\sqrt{x}$ par son dl obtenu dans la première question.
+
+  \item 
+
+Posons $u=x-\frac\pi3$ (et donc $x=\frac\pi3+u$).
+Alors 
+$$\sin(x)=\sin(\frac\pi3+u) = \sin(\frac\pi3)\cos(u)+\sin(u)\cos(\frac\pi3) = \frac{\sqrt3}{2}\cos u +\frac12\sin u$$
+On connaît les dl de $\sin u$ et $\cos u$ autour de $u=0$ (car on cherche un dl autour de $x=\frac\pi3$) donc
+
+\begin{align*}
+\sin x 
+  & = \frac{\sqrt3}{2}\cos u +\frac12\sin u \\
+  & = \frac{\sqrt3}{2} \bigg(1-\frac{1}{2!}u^2 + o(u^3) \bigg) + \frac{1}{2} \bigg( u -\frac{1}{3!}u^3 + o(u^3) \bigg) \\
+  & = \frac{\sqrt3}{2} + \frac{1}{2} u -  \frac{\sqrt3}{4} u^2 -\frac{1}{12}u^3 + o(u^3) \\
+  & = \frac{\sqrt3}{2} + \frac{1}{2} (x-\frac\pi3) -  \frac{\sqrt3}{4}(x-\frac\pi3)^2 -\frac{1}{12}(x-\frac\pi3)^3 + o((x-\frac\pi3)^3) \\
+\end{align*}
+
+
+\bigskip
+
+Maintenant pour le dl de la forme $\ln(a+v)$ en $v=0$ on se ramène au dl de $\ln(1+v)$ ainsi :
+$$\ln(a+v)=\ln\big(a(1 + \frac v a)\big) = \ln a + \ln(1 + \frac v a)
+= \ln a + \frac v a - \frac12 \frac{v^2}{a^2}  + \frac13 \frac{v^3}{a^3} + o(v^3)$$
+
+On applique ceci à $h(x)= \ln(\sin x)$ en posant toujours $u=x-\frac\pi3$ :
+\begin{align*}
+h(x)= \ln(\sin x)
+  & = \ln\left(\frac{\sqrt3}{2} + \frac{1}{2} u -  \frac{\sqrt3}{4} u^2 -\frac{1}{12}u^3 + o(u^3)\right) \\
+  & = \ln\left(\frac{\sqrt3}{2}\right) + \ln\left(1 + \frac{2}{\sqrt3}\left(\frac{1}{2} u -  \frac{\sqrt3}{4} u^2 -\frac{1}{12}u^3 + o(u^3)\right) \right) \\
+  & = \ \cdots \qquad \text{ on effectue le dl du } \ln \text{ et on regroupe les termes} \\
+  & = \ln\left(\frac{\sqrt3}{2}\right) + \frac{1}{\sqrt 3} u -\frac23 u^2 + \frac{4}{9\sqrt3}u^3 + o(u^3) \\
+  & = \ln\left(\frac{\sqrt3}{2}\right) + \frac{1}{\sqrt 3}(x-\frac\pi3)  -\frac23 (x-\frac\pi3)^2 + \frac{4}{9\sqrt3}(x-\frac\pi3)^3 + o((x-\frac\pi3)^3) \\
+\end{align*}
+
+On trouve donc :
+$$\ln(\sin x) = \ln\left(\frac{\sqrt3}{2}\right) + \frac{1}{\sqrt 3}(x-\frac\pi3) 
+ -\frac23 (x-\frac\pi3)^2 + \frac{4}{9\sqrt3}(x-\frac\pi3)^3 + o((x-\frac\pi3)^3)$$
+
+
+\bigskip Bien sûr une autre méthode consiste à calculer $h(1)$, $h'(1)$, $h''(1)$ et $h'''(1)$.
+
+\end{enumerate}
+\fincorrection
+\correction{001244}
+\begin{enumerate}
+  \item Dl de $f(x)$ à l'ordre $2$ en $0$.
+\begin{align*}
+f(x) 
+  & =   \frac{\sqrt{1+x^2}}{1+x+\sqrt{1+x^2}} \\
+  & = \frac{1+\frac{x^2}{2} + o(x^2)}{1 + x + 1+\frac{x^2}{2} + o(x^2)} 
+\quad \text{ car } \sqrt{1+x^2} = 1 + \frac12 x^2+o(x^2) \\  
+  & = \big(1+\frac{x^2}{2} + o(x^2) \big) \times \frac 12 \frac{1}{1+\frac{x}{2}+\frac{x^2}{4} + o(x^4)} 
+\quad \text{ on pose } u=\frac{x}{2}+\frac{x^2}{4} + o(x^4)  \\
+  & = \frac 12 \big(1+\frac{x^2}{2} + o(x^2) \big) \times \frac{1}{1+u} \\
+  & = \frac 12 \big(1+\frac{x^2}{2} + o(x^2) \big) \times \big(1-u+u^2+o(u^2)\big)  \\
+  & = \frac 12 \big(1+\frac{x^2}{2} + o(x^2) \big) \times \big(1- \big(\frac{x}{2}+\frac{x^2}{4}\big) + \big(\frac{x}{2}+\frac{x^2}{4}\big)^2+o(x^2)\big)  \\
+  & = \frac 12 \big(1+\frac{x^2}{2} + o(x^2) \big) \times \big(1- \frac{x}{2}+o(x^2)\big)  \\
+  & = \frac 12 \big(1- \frac{x}{2}+\frac{x^2}{2} + o(x^2) \big)  \\
+  & = \frac 12 - \frac{x}{4}+\frac{x^2}{4} + o(x^2)   \\ 
+\end{align*}
+
+  \item En $+\infty$ on va poser $h=\frac1x$ et se ramener à un dl en $h=0$.
+
+$$f(x)= \frac{\sqrt{1+x^2}}{1+x+\sqrt{1+x^2}} =  \frac{x\sqrt{\frac{1}{x^2}+1}}{x\big(\frac1x+1+\sqrt{\frac{1}{x^2}+1}\big)}
+=  \frac{\sqrt{1+h^2}}{1+h+\sqrt{1+h^2}} = f(h).$$
+
+Ici -miraculeusement- on retrouve exactement l'expression de $f$ dont on a déjà calculé le dl en $h=0$ :
+$f(h) =  \frac 12 - \frac{h}{4}+\frac{h^2}{4} + o(h^2)$. Ainsi 
+$$f(x) = f(h) = \frac 12 - \frac{1}{4x}+\frac{1}{4x^2} + o(\frac1{x^2})$$
+
+  \item Attention cela ne fonctionne plus du tout en $-\infty$.
+Dans le calcul de la deuxième question on était on voisinage de $+\infty$ et nous avons considéré que $x$ était positif.
+En $-\infty$ il faut faire attention au signe, par exemple $\sqrt{1+x^2}= |x|\sqrt{\frac{1}{x^2}+1} = -x \sqrt{\frac{1}{x^2}+1}$.
+
+Ainsi toujours en posant $h=\frac1x$.
+\begin{align*}
+f(x) 
+  & = \frac{\sqrt{1+x^2}}{x+1+\sqrt{1+x^2}} \\
+  & = \frac{-x\sqrt{\frac{1}{x^2}+1}}{x\big(1+\frac1x-\sqrt{\frac{1}{x^2}+1}\big)} \\
+  & = -\frac{\sqrt{1+h^2}}{1+h-\sqrt{1+h^2}} \\
+  & = -\frac{1+\frac12 h^2 + o(h^2)}{1+h - \big(1+\frac12 h^2 + o(h^2) \big)} \\
+  & = - \frac{1+\frac12 h^2 + o(h^2)}{h  - \frac12 h^2 + o(h^2)} \\
+  & = -\frac1h \frac{1+\frac12 h^2 + o(h^2)}{1 - \frac12 h + o(h)} \\
+  & = -\frac1h \big(1+\frac12 h^2 + o(h^2)\big)\times\big(1+\frac12h +\frac14 h^2 + o(h^2) \big) \\
+  & = -\frac1h\big(1 +\frac12h +\frac34 h^2 + o(h^2) \big) \\
+  & =  -\frac1h -\frac12 -\frac34 h + o(h) \\
+  & = -x -\frac12 -\frac34 \frac1x + o(\frac1x) \\
+\end{align*}  
+
+Ainsi un développement (asymptotique) de $f$ en $-\infty$ est 
+$$f(x) = -x -\frac12 -\frac34 \frac1x + o(\frac1x)$$
+On en déduit par exemple que $f(x)$ se comporte essentiellement comme la fonction $-x$
+en $-\infty$ et en particulier $\lim_{x\to -\infty} f = +\infty$.
+\end{enumerate}
+
+\fincorrection
+\correction{001247}
+\begin{enumerate}
+  \item 
+On a 
+$$e^{x^2} = 1+x^2+\frac{x^4}{2!} + o(x^4) \quad \text{ et } \quad  \cos x= 1-\frac{x^2}{2!}+\frac{x^4}{4!} + o(x^4)$$
+
+On s'aperçoit qu'en fait un dl à l'ordre $2$ suffit :
+$$e^{x^2}-\cos x 
+= \big(1+x^2 + o(x^2) \big) - \big(1-\frac{x^2}{2}+ o(x^2) \big)
+= \frac32 x^2 + o(x^2)$$
+Ainsi $\frac{e^{x^2}-\cos x}{x^2} = \frac32 + o(1)$ (où $o(1)$ désigne une fonction qui tend vers $0$)
+ et donc
+$$\lim_{x\rightarrow 0}\frac{e^{x^2}-\cos x}{x^2} = \frac32$$
+
+
+  \item 
+On sait que 
+$$\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+o(x^3) 
+\quad \text{ et } \quad \sin x = x-\frac{x^3}{3!} + o(x^3).$$
+
+Les dl sont distincts dès le terme de degré $2$ donc un dl à l'ordre $2$ suffit :
+$$\ln (1+x)-\sin x = \big(x - \frac{x^2}{2} + o(x^2) \big) - \big(x + o(x^2) \big) = -\frac{x^2}{2} + o(x^2)$$
+donc 
+$$\frac{\ln (1+x)-\sin x}{x} = -\frac{x}{2} + o(x)$$
+et ainsi 
+$$\lim_{x\rightarrow 0}\frac{\ln (1+x)-\sin x}{x} = 0.$$
+
+
+  \item 
+Sachant
+$$\cos x= 1-\frac{x^2}{2!}+\frac{x^4}{4!}+ o(x^4)$$
+et 
+$$\sqrt{1-x^2} = 1-\frac12x^2-\frac18x^4 + o(x^4)$$ alors
+
+\begin{align*}
+\frac{\cos x-\sqrt{1-x^2}}{x^4}
+ & =\frac{\big(1-\frac{x^2}{2}+\frac{x^4}{24}+ o(x^4)\big)-\big(1-\frac12x^2-\frac18x^4 + o(x^4)\big)}{x^4} \\
+ & = \frac{\frac 16 x^4 + o(x^4)}{x^4}  \\
+ &= \frac16+o(1) \\
+\end{align*}
+Ainsi 
+$$\lim_{x\rightarrow 0}\frac{\cos x-\sqrt{1-x^2}}{x^4}=\frac16$$
+\end{enumerate}
+\fincorrection
+\correction{001249}
+
+Commençons en $x=0$, le dl de $f(x)=\ln(1+x+x^2)$ à l'ordre $2$
+est 
+$$\ln(1+x+x^2)
+=(x+x^2)-\frac{(x+x^2)^2}{2} + o(x^2)
+= x + \frac12 x^2 + o(x^2)$$
+Par identification avec
+$f(x)= f(0)+f'(0)x+f''(0)\frac{x^2}{2!}+o(x^2)$
+cela entraîne donc $f(0)=0$, $f'(0)=1$ (et $f''(0)=1$).
+L'équation de la tangente est donc
+$y=f'(0)(x-0)+f(0)$ donc $y=x$.
+
+La position par rapport à la tangente correspond à l'étude du signe de 
+$f(x)-y(x)$ où $y(x)$ est l'équation de la tangente.
+$$f(x)-y(x)=x + \frac12 x^2 + o(x^2) \  - \  x = \frac12 x^2 + o(x^2).$$
+
+Ainsi pour $x$ suffisamment proche de $0$, $f(x)-y(x)$ est du signe de $\frac12 x^2$
+et est donc positif. Ainsi dans un voisinage de $0$ la courbe de $f$ est au-dessus de la tangente
+en $0$.
+
+\bigskip
+
+Même étude en $x=1$.
+
+Il s'agit donc de faire le dl de $f(x)$ en $x=1$.
+On pose $x=1+h$ (de sorte que $h=x-1$ est proche de $0$) :
+\begin{align*}
+f(x)=\ln(1+x+x^2) 
+  & = \ln \big(1+ (1+h)+(1+h)^2\big)  \\
+  & = \ln \big(3 + 3h + h^2 \big)  \\
+  & = \ln \left(3 \big(1 + h + \frac{h^2}{3} \big)\right) \\
+  & = \ln 3 + \ln \big(1 + h + \frac{h^2}{3} \big) \\
+  & = \ln 3 +  \big( h + \frac{h^2}{3} \big) - \frac{\big( h + \frac{h^2}{3} \big)^2}{2} + o\big((h + \frac{h^2}{3})^2 \big) \\ 
+  & = \ln 3 + h  + \frac{h^2}{3} -\frac{h^2}{2}  + o(h^2) \\
+  & = \ln 3 + h -\frac16 h^2 + o(h^2) \\
+  & = \ln 3 + (x-1) - \frac16 (x-1)^2 + o((x-1)^2) \\
+\end{align*}
+
+La tangente en $x=1$ est d'équation $y=f'(1)(x-1)+f(1)$ et est donc donnée par le dl à l'ordre $1$ : c'est  $y = (x-1) + \ln 3$.
+Et la différence 
+$f(x)-\big(\ln 3 + (x-1)\big) = - \frac16 (x-1)^2 + o((x-1)^2)$ est négative pour $x$ proche de $1$.
+Donc, dans un voisinage de $1$, le graphe de $f$ est en-dessous de la tangente en $x=1$.
+\fincorrection
+\correction{001265}
+\begin{enumerate}
+  \item 
+  \begin{enumerate}
+    \item La première limite n'est pas une forme indéterminée, en effet 
+$$\lim_{x \rightarrow +\infty} \sqrt {x^2+3x+2}  = +\infty \quad \text{ et } \quad \lim_{x \rightarrow +\infty} x = +\infty$$
+donc 
+$$\lim_{x \rightarrow +\infty} \sqrt {x^2+3x+2} +x = + \infty$$
+    \item Lorsque $x\to -\infty$ la situation est tout autre car
+$$\lim_{x \rightarrow -\infty} \sqrt {x^2+3x+2} = +\infty \quad \text{ et } \quad \lim_{x \rightarrow -\infty} x = -\infty$$
+donc $\sqrt {x^2+3x+2} +x$ est une forme indéterminée !
+
+Calculons un développement limité à l'ordre $1$ en $-\infty$ en faisant très attention au signe (car par exemple $|x|=-x$):
+\begin{align*}
+\sqrt{x^2+3x+2} +x 
+  & = |x| \left( \sqrt{1+\frac{3}{x}+\frac{2}{x^2}} -1 \right) \\
+  & = |x| \left( 1+\frac12\left(\frac{3}{x}+\frac{2}{x^2}\right)+o(\frac1x) \ -1)  \right) \\
+  & = |x| \left( \frac12\frac{3}{x}+o(\frac1x) \right) \\
+  & = -\frac32 + o(1) \\
+\end{align*}
+Et donc  
+$$\lim_{x \rightarrow -\infty} \sqrt {x^2+3x+2} +x = -\frac32$$
+
+  \end{enumerate}
+  \item 
+Nous utiliserons que 
+
+\begin{align*}
+(\Arctan x)^{\frac{1}{x^2}}
+  & = \exp\left(\frac{1}{x^2} \ln \left( \Arctan x \right) \right) \\
+  & = \exp\left(\frac{1}{x^2} \ln \big( x + o(x)\big) \right) \quad \text{ car } \Arctan x = x + o(x) \\
+\end{align*}
+Mais lorsque $x\to 0^+$ on sait que $\ln (x+o(x)) \to -\infty$, $x^2 \to 0$ 
+donc :
+$$\lim_{x\to0^+} \frac{\ln (x+o(x))}{x^2} = -\infty$$
+
+Composé avec l'exponentielle on trouve :
+$$\lim_{x \rightarrow 0^+}(\Arctan x )^{\frac{1}{x^2}}=0$$
+
+
+
+  \item 
+Effectuons le dl à l'ordre $2$ :
+comme 
+$$(1+x)^\alpha = 1+\alpha x + \frac{\alpha(\alpha-1)}{2}x^2+o(x^2)$$
+alors
+$$(1+3x)^{\frac{1}{3}} = 1+x-x^2 + o(x^2).$$
+
+$$\sin x = x + o(x^2) \quad \text{ et } \cos x = 1 - \frac{x^2}{2!} + o(x^2).$$
+Ainsi
+
+\begin{align*}
+\frac{(1+3x)^{\frac{1}{3}}-1-\sin x}{1-\cos x}  
+ & = \frac{-x^2+o(x^2)}{\frac12x^2 + o(x^2)} \\
+ & = \frac{-1+o(1)}{\frac12 + o(1)} \quad \text{ après factorisation par } x^2 \\
+ &= -2 + o(1) \\
+\end{align*}
+Donc 
+
+$$\lim_{x \rightarrow 0} \frac{(1+3x)^{\frac{1}{3}}-1-\sin x}{1-\cos x}=-2$$
+
+\end{enumerate}
+\fincorrection
+\correction{001267}
+Habituellement on trouve le développement limité d'une fonction 
+à partir des dérivées successives. Ici on va faire l'inverse.
+
+Calcul du dl (à un certain ordre) :
+\begin{align*}
+f(x) & = \frac{x^3}{1+x^6} = x^3 \frac{1}{1+x^6}\\
+     & =  x^3 \left( 1-x^6 + x^{12} - \cdots \pm x^{6\ell} \cdots \right) \\
+     &= x^3 - x^9 + x^{15} -\cdots \pm x^{3+6\ell} \cdots \\
+     &= \sum_{\ell \ge 0} (-1)^\ell x^{3+6\ell} \\
+\end{align*}
+
+Il s'agit d'identifier ce développement avec la formule de Taylor :
+$$f(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2 + \cdots + \frac{f^{(n)}(0)}{n!} x^n + \cdots$$
+
+
+Par unicité des DL, en identifiant les coefficients devant $x^n$ on trouve :
+$$\begin{cases}
+\frac{f^{(n)}(0)}{n!} = (-1)^\ell & \text{ si } n = 3+6\ell \\
+\frac{f^{(n)}(0)}{n!} = 0         & \text{ sinon.} \\    
+\end{cases}$$
+
+Si $n=3+6\ell$ (avec $\ell\in \Nn$) alors on peut écrire $\ell = \frac{n-3}{6}$
+et donc on peut conclure :
+$$\begin{cases}
+f^{(n)}(0) = (-1)^{\frac{n-3}{6}} \cdot n! & \text{ si } n \equiv 3 \pmod{6} \\
+f^{(n)}(0) = 0         & \text{ sinon.} \\    
+\end{cases}$$
+\fincorrection
+\correction{001268}
+\begin{enumerate}
+  \item La formule de Taylor-Lagrange à l'ordre $2$ entre $x$ et $x+h$ (avec $h>0$) donne :
+$$f(x+h) = f(x) + f'(x) h  + f''(c_{x,h}) \frac{h^2}{2!} $$
+où $c_{x,h} \in ]x,x+h[$.
+
+Cela donne :
+$$f'(x) h = f(x+h) - f(x)  - f''(c_{x,h}) \frac{h^2}{2!}.$$
+
+On peut maintenant majorer $f'(x)$ :
+\begin{align*}
+h|f'(x)| 
+   & \le \left|f(x+h) \right| + \left| f(x) \right| + \frac{h^2}{2}\left| f''(c_{x,h})\right|  \\
+   & \le 2M_0 + \frac {h^2}{2} M_2 \\
+\end{align*}
+Donc
+$$|f'(x)|\le \frac{2}{h}{M_0} + \frac{h}{2}M_2.$$
+
+  \item Soit $\phi : ]0,+\infty[ \rightarrow \Rr$ la fonction définie par $\phi(h) = \frac {h}{2}M_2+\frac{2}{h}M_0$.
+C'est une fonction continue et dérivable. La limite en $0$ et $+\infty$ est $+\infty$.
+La dérivée $\phi'(h)=\frac12 M_2-\frac{2M_0}{h^2}$ s'annule en $h_0 = 2\sqrt{\frac{M_0}{M_2}}$ et en ce point 
+$\phi$ atteint son minimum
+$\phi(h_0) = 2\sqrt{M_0M_2}$.
+
+Fixons $x>a$. Comme pour tout $h>0$ on a $|f'(x)| \le \frac {h}{2}M_2+\frac{2}{h}M_0 =\phi(h)$ alors en particulier pour 
+$h=h_0$ on obtient $|f'(x)| \le \phi(h_0)= 2\sqrt{M_0M_2}$. Et donc $f'$ est bornée.
+
+  \item Fixons $\epsilon >0$. $g''$ est bornée, notons $M_2 = \sup_{x> 0}\vert g''(x)\vert$. Comme $g(x)\to 0$ alors il 
+existe $a>0$ tel que sur l'intervalle $]a,+\infty[$, $g$ soit aussi petit que l'on veut. Plus précisément nous choisissons $a$ de sorte que 
+$$M_0 = \sup_{x>a}\vert g(x)\vert \le \frac{\epsilon^2}{4M_2}.$$
+
+
+La première question appliquée à $g$ sur l'intervalle $]a,+\infty[$ implique 
+que pour tout $h>0$ : 
+$$|g'(x)| \le  \frac{2}{h}M_0 + \frac {h}{2} M_2 $$
+
+En particulier pour $h = \frac{\epsilon}{M_2}$ et en utilisant $M_0  \le \frac{\epsilon^2}{4M_2}$
+on obtient :
+$$|g'(x)| \le  \frac{2}{\frac{\epsilon}{M_2}}\frac{\epsilon^2}{4M_2} + \frac{\frac{\epsilon}{M_2}}{2} M_2 \le \epsilon.$$
+
+Ainsi pour chaque $\epsilon$ on a trouvé $a>0$ tel que si $x>a$ alors $|g'(x)|\le \epsilon$.
+C'est exactement dire que $\lim_{x\to+\infty} g'(x)=0$.
+
+\end{enumerate}
+\fincorrection
+\correction{004037}
+\begin{enumerate}
+  \item Notons $I_n$ l'intervalle  $\left]n\pi-\frac \pi2, n\pi+\frac \pi2\right[$.
+Alors sur chaque $I_n$ la fonction définie par $f(x) = \tan x-x$ est un fonction continue et dérivable.
+De plus $f'(x) = 1+\tan^2x -1 = \tan ^2 x$. La dérivée est strictement positive sauf en un point où elle est nulle et ainsi 
+la fonction $f$ est strictement croissante sur $I_n$. La limite à gauche est $-\infty$ et
+la limite à droite est $+\infty$. Par le théorème des valeurs intermédiaires il existe un unique $x_n \in I_n$
+tel que $f(x_n)=0$ c'est-à-dire $\tan x_n=x_n$.
+
+  \item $x \mapsto \arctan x$ est la bijection réciproque de la restriction de la tangente  
+$\tan_| : ]-\frac\pi2,+\frac\pi2[ \to ]-\infty,+\infty[$. Sur ces intervalles on a bien
+$\tan x = y \iff x = \arctan y$. Mais si $y \notin ]-\frac\pi2,+\frac\pi2[$ il faut d'abord se ramener dans l'intervalle
+ $]-\frac\pi2,+\frac\pi2[$.
+
+Ainsi $x_n \in I_n$ donc $x_n-n\pi \in ]-\frac\pi2,+\frac\pi2[$.
+Maintenant $x_n = \tan (x_n)=\tan(x_n-n\pi)$. 
+
+Donc $\arctan x_n = \arctan \big(\tan(x_n-n\pi) \big) = x_n - n\pi$.
+Ainsi $$x_n = \arctan x_n + n\pi.$$
+
+
+L'erreur classique est de penser que $\arctan (\tan x) = x$. Ce qui n'est vrai que pour 
+$x \in ]-\frac\pi2,+\frac\pi2[$ !
+
+  \item Comme $x_n \in I_n$ alors $x_n \to +\infty$ lorsque $n\to +\infty$.
+
+On sait par ailleurs que pour $x>0$ on a $\arctan x + \arctan \frac 1x = \frac\pi 2$.
+Ainsi $\arctan x_n = \frac \pi 2 - \arctan \frac{1}{x_n}$
+
+Lorsque $n$ tend vers $+\infty$ alors $\frac{1}{x_n}\to 0$ donc 
+$\arctan \frac{1}{x_n} \to 0$.
+
+Ainsi 
+$$x_n = n\pi + \arctan x_n = n\pi +\frac \pi 2 - \arctan \frac{1}{x_n} = n\pi +\frac \pi 2 + o(1).$$
+
+  \item 
+
+On va utiliser le dl obtenu précédemment pour obtenir un dl à un ordre plus grand :
+
+\begin{align*}
+x_n 
+ & = n\pi + \arctan x_n \\
+ & = n\pi +\frac \pi 2 - \arctan \frac{1}{x_n} \\
+ & = n\pi +\frac \pi 2 - \arctan \frac{1}{n\pi +\frac \pi 2 + o(1)} \\
+ & = n\pi +\frac \pi 2 - \frac{1}{n\pi +\frac \pi 2 + o(1)} +o(\frac1{n^2}) \qquad \text{ car } \arctan u = u + o(u^2) \text{ en } u=0\\
+ & = n\pi +\frac \pi 2 - \frac{1}{n\pi} \frac{1}{1+\frac{1}{2n} + o(\frac1n)}+o(\frac1{n^2}) \\
+ & = n\pi +\frac \pi 2 - \frac{1}{n\pi}\big(1-\frac{1}{2n} + o(\frac1n) \big) +o(\frac1{n^2})\\
+ & = n\pi +\frac \pi 2 -\frac{1}{n\pi} + \frac{1}{2\pi n^2} + o(\frac1{n^2}) \\
+\end{align*}
+
+Ainsi en $+\infty$ on a le développement :
+$$x_n  = n\pi +\frac \pi 2 -\frac{1}{n\pi} + \frac{1}{2\pi n^2} + o(\frac1{n^2}).$$
+\end{enumerate}
+ \fincorrection
+\correction{004044}
+
+Il s'agit bien sûr de calculer un développement limité, le premier terme de ce développement donne l'équivalent cherché.
+
+\begin{enumerate}
+  \item 
+Le dl à l'ordre $3$ en $0$ est 
+$$2e^x - \sqrt{1+4x} - \sqrt{1+6x^2} = -\frac {11x^3}3 + o(x^3)$$
+donc 
+$$2e^x - \sqrt{1+4x} - \sqrt{1+6x^2} \sim -\frac {11x^3}3.$$
+
+  \item De même 
+$$(\cos x)^{\sin x} - (\cos x)^{\tan x} \sim \frac {x^5}4.$$
+
+  \item On pose $h=x-\sqrt 3$ alors 
+$$ \arctan x + \arctan \frac 3x -\frac {2\pi}3 = -\frac {h^2}{8\sqrt3} + o(h^2)$$
+donc 
+$$ \arctan x + \arctan \frac 3x -\frac {2\pi}3 \sim -\frac {(x-\sqrt 3)^2}{8\sqrt3}.$$
+
+  \item En $+\infty$
+$$\sqrt{x^2+1} -2\sqrt[3]{x^3+x} + \sqrt[4]{x^4+x^2}= \frac 1{12x} + o(\frac 1x)$$
+donc $$\sqrt{x^2+1} -2\sqrt[3]{x^3+x} + \sqrt[4]{x^4+x^2} \sim \frac 1{12x}.$$
+
+  \item Il faut distinguer les cas $x>0$ et $x<0$ pour trouver :
+$$\Argch\left(\frac1{\cos x}\right) \sim |x|.$$
+\end{enumerate}
+ \fincorrection
+\correction{004045}
+Le dl de $\cos x$ en $0$ à l'ordre $6$ est :
+$$\cos x = 1 - \frac{1}{2!} x^2 + \frac{1}{4!}x^4  - \frac{1}{6!} x^6 + o(x^6).$$
+
+Calculons celui de $\frac{1+ax^2}{1+bx^2}$ :
+
+\begin{align*}
+\frac{1+ax^2}{1+bx^2} 
+  & = (1+ax^2) \times \frac{1}{1+bx^2} \\
+  & = (1+ax^2)\times \big(1-bx^2+b^2x^4-b^3x^6+o(x^6) \big) \quad \text{ car } \frac{1}{1+u} = 1-u+u^2 - u^3+o(u^3) \\
+  &= \ \ \cdots  \qquad \text{ on développe } \\
+  &= 1 + (a-b) x^2 - b(a-b) x^4 + b^2(a-b) x^6 + o(x^6) \\
+\end{align*}
+
+Notons $\Delta(x) = \cos x - \frac{1+ax^2}{1+bx^2}$ alors 
+$$\Delta(x) = \big(-\frac12-(a-b)\big)x^2 + \big(\frac{1}{24} + b(a-b)\big) x^4 
++ \big(-\frac{1}{720}-b^2(a-b)\big) x^6 + o(x^6).$$
+
+Pour que cette différence soit la plus petite possible (lorsque $x$ est proche de $0$)
+il faut annuler le plus possible de coefficients de bas degré.
+On souhaite donc avoir 
+$$-\frac12-(a-b) = 0 \qquad \text{et} \qquad \frac{1}{24} + b(a-b)=0.$$
+En substituant l'égalité de gauche dans celle de droite on trouve :
+$$a=-\frac{5}{12}  \qquad \text{et} \qquad b=\frac{1}{12}.$$
+
+On obtient alors 
+$$\Delta(x) =  \big(-\frac{1}{720}-b^2(a-b)\big) x^6 + o(x^6) = \frac{1}{480} x^6 + o(x^6).$$
+
+\bigskip
+
+Avec notre choix de $a,b$ nous avons obtenu une très bonne approximation de $\cos x$.
+Par exemple lorsque l'on évalue  $\frac{1+ax^2}{1+bx^2}$ (avec $a=-\frac{5}{12}$ et $b=\frac{1}{12}$)
+en $x=0.1$ on trouve :
+$$0.9950041631\ldots$$
+Alors que 
+$$\cos(0.1)=0.9950041652\ldots$$
+En l'on trouve ici $\Delta(0.1) \simeq 2\times 10^{-9}$.
+\fincorrection
+\correction{002657}
+
+$$\ln(x+1) = \ln \Big(x \times (1+\frac1x)\Big) = \ln x+\ln\big(1+{\frac1x}\big) = \ln x + \frac 1x + o(\frac1x)$$
+Donc 
+$$\frac{\ln(x+1)}{\ln x} = 1 + \frac1{x\ln x} + o(\frac1{x\ln x}).$$
+Ainsi
+\begin{align*}
+\left(\frac{\ln(x+1)}{\ln x}\right)^x 
+  & = \exp\left( x \ln \left( \frac{\ln(x+1)}{\ln x}\right) \right)  \\
+  & = \exp\left( x \ln \left(1 + \frac1{x\ln x} + o(\frac1{x\ln x})\right)  \right)  \\
+  & = \exp\left( x \left(\frac1{x\ln x} + o(\frac1{x\ln x})\right) \right)  \\
+  & = \exp\left( \frac1{\ln x} + o(\frac1{\ln x})\right)  \\
+  & = 1 + \frac1{\ln x} + o(\frac1{\ln x}) \\
+\end{align*}
+On en déduit immédiatement que 
+$$\lim_{x\to+\infty}\left(\frac{\ln(x+1)}{\ln x}\right)^x = 1$$
+et que lorsque $x\to + \infty$
+$$\left(\frac{\ln(x+1)}{\ln x}\right)^x - 1 \sim \frac1{\ln x}.$$
+\fincorrection
+
+
+\end{document}
+

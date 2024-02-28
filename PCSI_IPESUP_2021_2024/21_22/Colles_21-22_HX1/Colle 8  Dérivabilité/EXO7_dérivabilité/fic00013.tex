@@ -1,0 +1,663 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00013, bodin, 2007/09/01} 
+
+\titre{Fonctions dérivables}
+
+\section{Calculs}
+\exercice{699, bodin, 1998/09/01}
+\video{XPnRztcUKK4}
+\enonce{000699}{}
+D\'eterminer $a,b \in \Rr$ de mani\`ere \`a ce que la fonction $f$ d\'efinie sur $\Rr_+$ par :
+$$ f(x)=\sqrt{x} \quad \text{ si } 0\leqslant x \leqslant 1 \quad \text{\ \  et\ \  } \quad f(x) = ax^2+bx+1 \quad \text{ si } x>1$$
+soit d\'erivable sur $\Rr_+^*$.
+\finenonce{000699} 
+
+
+\finexercice
+\exercice{700, bodin, 1998/09/01}
+\video{K9yZt1R0xW8}
+\enonce{000700}{}
+Soit $f : \Rr^* \longrightarrow \Rr$ d\'efinie par
+$\displaystyle{f(x)= x^2\sin \frac{1}{x} }$. Montrer que
+$f$ est prolongeable par continuit\'e en $0$ ; on note encore
+$f$ la fonction prolong\'ee. Montrer que $f$ est
+d\'erivable sur $\Rr$ mais que $f'$ n'est pas continue en $0$.
+\finenonce{000700} 
+
+
+\finexercice
+\exercice{698, bodin, 1998/09/01}
+\video{yNbsJ0UALww}
+\enonce{000698}{}
+\'Etudier  la d\'erivabilit\'e des fonctions suivantes :
+$$f_1(x)=x^2\cos \frac{1}{x}, \text{\ \  si }x\not=0 \qquad ; \qquad f_1(0)=0 ;$$
+
+$$f_2(x)= \sin x \cdot \sin \frac{1}{x}, \text{\ \  si }x\not=0 \qquad ; \qquad f_2(0)=0 ;$$
+
+$$f_3(x) = \frac{|x|\sqrt{x^2-2x+1}}{x-1}, \text{\ \  si } x\not= 1 \qquad ; \qquad f_3(1)=1.$$
+\finenonce{000698}
+ 
+
+\finexercice
+\exercice{739, bodin, 2001/11/01}
+\video{OFIk3Tj3QIA}
+\enonce{000739}{}
+ Soit $n \geq 2$ un entier fix\'e et $f:\R^{+} = [0,
++ \infty[ \longrightarrow \R$ la fonction d\'efinie par la formule
+suivante:
+$$ f (x) = \frac{1 + x^n}{(1 + x)^n}, \ \ x \geq 0.$$
+\begin{enumerate}
+  \item
+  \begin{enumerate}
+     \item Montrer que $f$ est d\'erivable sur $\R^{+}$ et calculer $f' (x)$
+pour $x \geq 0.$
+     \item En \'etudiant le signe de $f' (x)$ sur $\R^{+},$ montrer que $f$
+atteint un minimum sur $\R^{+}$ que l'on d\'eterminera.
+  \end{enumerate}
+  \item
+  \begin{enumerate}
+     \item En d\'eduire l'in\'egalit\'e suivante:
+$$ (1+ x)^n \leq 2^{n - 1} (1+ x^n), \ \ \forall x \in \R^{+}.$$
+     \item Montrer que si  $x \in \R^{+}$ et $y \in \R^{+}$ alors on a
+$$ (x + y)^n \leq 2^{n - 1} (x^n + y^n).$$
+   \end{enumerate}
+ \end{enumerate}
+\finenonce{000739} 
+
+
+\finexercice
+\section{Théorème de Rolle et accroissements finis}
+\exercice{717, legall, 1998/09/01}
+\video{w_zY_6IuJnE}
+\enonce{000717}{}
+Montrer que le polyn\^ome $  X^n+aX+b  $,  ($  a  $ et $  b  $ r\' eels) admet au plus trois racines r\' eelles.
+\finenonce{000717} 
+
+
+\finexercice\exercice{715, bodin, 1998/09/01}
+\video{J-dlr6vwO8A}
+\enonce{000715}{}
+Montrer que le polyn\^ome $P_n$ d\'efini par
+$$P_n(t)=\left[ \left( 1-t^2 \right)^n \right]^{(n)}$$
+est un polyn\^ome de degr\'e $n$ dont les racines sont
+ r\'eelles, simples, et appartiennent \`a $[-1,1]$.
+\finenonce{000715} 
+
+
+\finexercice
+\exercice{721, bodin, 1998/09/01}
+\video{wAM4vww5WSo}
+\enonce{000721}{}
+Dans l'application du th\'eor\`eme des accroissements finis
+\`a la fonction
+$$ f(x) =\alpha x^2+\beta x+\gamma$$
+sur l'intervalle $[a,b]$
+pr\'eciser le nombre ``$c$'' de $]a,b[$.
+Donner une interpr\'etation g\'eom\'etrique.
+\finenonce{000721} 
+
+
+\finexercice\exercice{724, bodin, 1998/09/01}
+\video{CfqCgc6zKgg}
+\enonce{000724}{}
+Soient $x$ et $y$ r\'eels avec $0<x<y$.
+\begin{enumerate}
+    \item Montrer que
+$$ x < \frac{y-x}{\ln y - \ln x} < y.$$
+    \item On consid\`ere la fonction $f$ d\'efinie sur
+$[0,1]$ par
+$$\alpha \mapsto f(\alpha) = \ln (\alpha x +(1-\alpha)y)-\alpha
+\ln x -(1-\alpha)\ln y.$$
+De l'\'etude de $f$ d\'eduire que pour tout $\alpha$ de $]0,1[$
+$$ \alpha
+\ln x +(1-\alpha)\ln y < \ln (\alpha x +(1-\alpha)y) .$$
+Interpr\'etation g\'eom\'etrique ?
+\end{enumerate}
+\finenonce{000724} 
+
+
+\finexercice
+
+\section{Divers}
+\exercice{733, ridde, 1999/11/01}
+\video{_YeLn2_0Tso}
+\enonce{000733}{}
+D\'eterminer les extremums de $f (x) = x^4-x^3 + 1$ sur $\Rr$.
+\finenonce{000733} 
+
+
+\finexercice\exercice{738, bodin, 2001/11/01}
+\video{MqjLEkOQD3w}
+\enonce{000738}{}
+ Soient $f,g :[a , b] \longrightarrow \R$ deux
+fonctions continues
+ sur $[a, b]$ ($a < b$) et d\'erivables sur $]a , b[.$ On suppose que
+ $g' (x) \neq 0$ pour tout $x \in ]a , b[.$
+
+\begin{enumerate}
+\item
+ Montrer que $g (x) \neq g (a)$ pour tout $x \in ]a , b[.$
+
+\item Posons $p = \frac{f (b) - f (a)}{g (b) - g (a)}$ et
+consid\'erons  la fonction $h (x) = f
+ (x) - p g (x)$ pour $x \in [a , b].$
+ Montrer que $h$ v\'erifie les hypoth\`eses du th\'eor\`eme de Rolle
+ et en d\'eduire qu'il existe un nombre r\'eel $c \in ]a , b[$ tel que
+ $$ \frac{f (a) - f (b)}{g (a) - g (b)} = \frac{f' (c)}{g' (c)}.$$
+\item On suppose que $\lim_{x \to b^{-}} \frac{f' (x)}{g' (x)} =
+\ell,$ o\`u $\ell $ est un nombre r\'eel.
+ Montrer que  $$ \lim_{x \to b^{-}} \frac{f (x) - f (b)}{g (x) - g (b)} = \ell.$$
+\item  \emph{Application.} Calculer la limite suivante:
+ $$ \lim_{x \to 1^{-}} \frac{\Arccos x}{\sqrt{1- x^{2}}}.$$
+\end{enumerate}
+\finenonce{000738} 
+
+
+\finexercice\exercice{740, monthub, 2001/11/01}
+\video{EVKKvovB3ps}
+\enonce{000740}{}
+On consid\`ere la fonction $f : \R \to \R$ d\'efinie par
+\begin{equation*}
+f(t) =
+\begin{cases}
+  e^{1/t} & \mathrm{\ si\ } t<0\\
+0  & \mathrm{\ si\ } t \geq 0
+\end{cases}
+\end{equation*}
+
+\begin{enumerate}
+\item D\'emontrer  que $f$ est d\'erivable sur $\R$, en particulier en $t=0$.
+\item Etudier l'existence de $f''(0)$.
+\item On veut montrer que pour $t<0$, la d\'eriv\'ee $n$-i\`eme de $f$ s'\'ecrit
+$$f^{(n)}(t)=\frac{P_n(t)}{t^{2n}}e^{1/t}$$
+o\`u $P_n$ est un polyn\^ome.
+\begin{enumerate}
+\item Trouver $P_1$ et $P_2$.
+\item Trouver une relation de r\'ecurrence entre $P_{n+1}, P_n$ et $P'_n$ pour
+  $n\in \N^*$.
+\end{enumerate}
+\item Montrer que $f$ est de classe $C^{\infty}$.
+\end{enumerate}
+\finenonce{000740}
+
+
+\finexercice
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\indication{000699}
+Vous avez deux conditions : il faut que la fonction soit continue (car on veut qu'elle soit d\'erivable donc elle doit \^etre continue) et ensuite la condition de d\'erivabilit\'e proprement dite.
+\finindication
+\indication{000700}
+$f$ est continue en $0$ en la prolongeant par $f(0)=0$.
+$f$ est alors d\'erivable en $0$ et $f'(0)=0$.
+\finindication
+\indication{000698}
+Les probl\`emes sont seulement en $0$ ou $1$. 
+$f_1$ est d\'erivable en $0$ mais pas $f_2$.  $f_3$ n'est dérivable ni en $0$, ni en $1$.
+\finindication
+\noindication
+\indication{000717}
+On peut appliquer le th\'eor\`eme de Rolle plusieurs fois.
+\finindication
+\indication{000715}
+Il faut appliquer le th\'eor\`eme de Rolle une fois au polyn\^ome $(1-t^2)^n$,
+puis deux fois \`a sa d\'eriv\'ee premi\`ere, puis trois fois \`a sa d\'eriv\'ee seconde,...
+\finindication
+\noindication
+\indication{000724}
+\begin{enumerate}
+    \item Utiliser le th\'eor\`eme des accroissements finis avec la fonction $t \mapsto \ln t$
+    \item Montrer d'abord que $f''$ est n\'egative. Se servir du th\'eor\`eme des valeurs interm\'ediaires pour $f'$.
+\end{enumerate}
+\finindication
+\noindication
+\indication{000738}
+\begin{enumerate}
+ \item Raisonner par l'absurde et appliquer le th\'eor\`eme de Rolle.
+ \item Calculer $h(a)$ et $h(b)$.
+ \item Appliquer la question 2. sur l'intervalle $[x,b]$.
+ \item Calculer $f'$ et $g'$.
+\end{enumerate}
+\finindication
+\noindication
+
+
+\newpage
+
+\correction{000699}
+La fonction $f$ est continue et dérivable sur $]0,1[$ et sur
+$]1,+\infty[$. Le seul problème est en $x=1$.
+
+Il faut d'abord que la fonction soit continue en $x=1$.
+La limite \`a gauche est
+$\lim_{x\rightarrow 1^-} \sqrt x = +1$
+et \`a droite 
+$\lim_{x\rightarrow 1^+} ax^2+bx+1 = a+b+1$.
+Donc  $a+b+1=1$. Autrement dit $b = -a$.
+
+Il faut maintenant que les d\'eriv\'ees \`a droite et \`a gauche soient
+\'egales.
+Comme la fonction $f$ restreinte à $]0,1]$ est définie par $x \mapsto \sqrt{x}$ alors elle est dérivable
+à gauche et la dérivée à gauche s'obtient en évaluant la fonction dérivée $x \mapsto \frac{1}{2\sqrt x}$
+en $x=1$. Donc $f'_g(1)=\frac 12$.
+
+Pour la dérivée à droite il s'agit de calculer la limite du taux d'accroissement
+$\frac{f(x)-f(1)}{x-1}$, lorsque $x \to 1$ avec $x>1$.
+Or 
+$$
+\frac{f(x)-f(1)}{x-1} = \frac{ax^2+bx+1 - 1}{x-1} = \frac{ax^2-ax}{x-1} = \frac{ax(x-1)}{x-1} = ax.
+$$
+Donc $f$ est dérivable à droite et $f'_d(1) = a$.
+Afin que $f$ soit dérivable, il faut et il suffit que les dérivées à droite et à gauche
+existent et soient égales, donc ici la condition est $a=\frac 12$.
+
+
+Le seul couple $(a,b)$ que rend $f$ dérivable sur $]0,+\infty[$ 
+est $(a=\frac 12, b= -\frac 12)$.
+\fincorrection
+\correction{000700}
+$f$ est $C^\infty$ sur $\Rr^*$.
+\begin{enumerate}
+  \item Comme $|\sin (1/x)| \leq 1$ alors
+$f$ tend vers $0$ quand $x\rightarrow 0$. Donc en prolongeant $f$ par $f(0) =0$,
+la fonction  $f$ prolongée est continue sur $\Rr$.
+  \item Le taux d'accroissement est
+$$\frac{f(x)-f(0)}{x-0}= x \sin\frac{1}{x}.$$
+Comme ci-dessus il y a une limite (qui vaut $0$) en $x=0$.
+Donc $f$ est d\'erivable en $0$ et $f'(0)=0$.
+  \item Sur $\Rr^*$, $f'(x) = 2x\sin (1/x) -\cos(1/x)$,
+Donc $f'(x)$ n'a pas de limite quand $x\rightarrow 0$.
+Donc $f'$ n'est pas continue en $0$.
+\end{enumerate}
+\fincorrection
+\correction{000698}
+\begin{enumerate}
+  \item La fonction $f_1$ est d\'erivable en dehors de $x=0$.
+En effet $x \mapsto \frac 1x$ est dérivable sur $\Rr^*$ et $x \mapsto \cos x$ est dérivable sur $\Rr$,
+donc par composition $x \mapsto  \cos \frac 1x$ est dérivable sur $\Rr^*$. Puis par multiplication par la fonction dérivable 
+$x \mapsto x^2$, la fonction $f_1$ est dérivable sur $\Rr^*$. 
+Par la suite on omet souvent ce genre de discussion ou on l'abrège sous la forme ``$f$ est dérivable sur $I$ comme somme, produit,
+composition de fonctions dérivables sur $I$''.
+
+Pour savoir si $f_1$ est d\'erivable en $0$ regardons le taux d'accroissement:
+$$ \frac{f_1(x)-f_1(0)}{x-0}= x\cos \frac 1 x.$$
+Mais $x \cos (1/x)$ tend vers $0$ (si $x\rightarrow 0$) car
+$|\cos (1/x)| \leq 1$.
+Donc le taux d'accroissement tend vers $0$. Donc $f_1$ est d\'erivable en $0$ et $f_1'(0)=0$.
+  \item Encore une fois $f_2$ est d\'erivable en dehors de $0$.
+Le taux d'accroissement en $x=0$ est :
+$$ \frac{f_2(x)-f_2(0)}{x-0}= \frac{\sin x}{x} \sin \frac 1 x$$
+Nous savons que $\frac{\sin x}{x} \rightarrow 1$ et que
+$\sin 1/x$ n'a pas de limite quand $x\rightarrow 0$. Donc le taux d'accroissement n'a pas de limite, donc $f_2$ n'est pas d\'erivable en $0$.
+  \item 
+La fonction $f_3$ s'\'ecrit :
+$$f_3(x) = \frac{|x||x-1|}{x-1}.$$
+\begin{itemize}
+  \item
+  Donc pour $x \geq 1$ on a $f_3(x) = x$ ;
+pour $0 \leq x < 1$ on a $f_3(x) = -x$ ;
+pour $x <0$ on a $f_3(x) = x$.
+
+\item La fonction $f_3$ est d\'efinie, continue et d\'erivable sur 
+$\Rr \setminus \{0,1\}$. Attention ! La fonction $x \mapsto |x|$ n'est pas dérivable en $0$.
+
+\item 
+La fonction $f_3$ n'est pas continue en $1$, en effet
+$\lim_{x \rightarrow 1+} f_3(x) = +1$ et  $\lim_{x \rightarrow 1-} f_3(x) = -1$. Donc la fonction n'est pas d\'erivable en $1$.
+
+\item
+La fonction $f_3$ est continue en $0$. 
+Le taux d'accroissement pour $x>0$ est 
+$$\frac{f_3(x)-f_3(0)}{x-0}= \frac{-x}{x} = -1$$
+et pour $x <0$, 
+$$\frac{f_3(x)-f_3(0)}{x-0}= \frac{x}{x} = +1.$$
+Donc le taux d'accroissement n'a pas de limite en $0$ et donc $f_3$ n'est pas d\'erivable en $0$.
+\end{itemize}
+\end{enumerate}
+\fincorrection
+\correction{000739}
+\begin{enumerate}
+\item
+  \begin{enumerate}
+  \item
+ Il est clair que la fonction $f$ est d\'erivable sur $\R^{+}$
+puisque c'est une fonction rationnelle sans p\^ole dans cet
+intervalle. De plus d'apr\`es la formule de la d\'eriv\'ee d'un
+quotient, on obtient pour $x \geq 0$ :
+$$ f' (x) = \frac{n (x^{n-1} - 1)}{(1 + x)^{n + 1}}.$$
+  \item  Par l'expression pr\'ec\'edente $f' (x)$ est du signe de $x^{n - 1} - 1$ sur $\R^{+}.$ Par
+cons\'equent on obtient: $ f' (x) \leq 0$ pour $0 \leq x \leq 1$
+et $ f' (x) \geq 0$ pour $x \geq 1.$ Il en r\'esulte que $f$ est
+d\'ecroissante sur $[0 , 1]$ et croissante sur $[1, + \infty[$ et
+par suite $f$ atteint son minimum sur $\R^{+}$ au point $1$ et ce
+minimum vaut $f (1) = 2^{1 - n}.$
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \item
+ Il   r\'esulte de la
+question 1.b que $f (x) \geq f (1)$ pour tout $x \in \R^{+}$ et
+donc
+$$ (1 + x)^n \leq 2^{n - 1} (1 + x^n).$$
+ \item En appliquant l'in\'egalit\'e pr\'ec\'edente avec $ x = b \slash
+a,$ on en d\'eduit imm\'ediatement l'in\'egalit\'e requise (le cas du couple $(0,0)$ étant trivial).
+  \end{enumerate}
+\end{enumerate}
+\fincorrection
+\correction{000717}
+\begin{enumerate}
+\item Par l'absurde on suppose qu'il y a (au moins) quatre racines distinctes  pour 
+$  P_n(X) =  X^n+aX+b  $. Notons les $x_1 <x_2<x_3<x_4$.
+Par le th\'eor\`eme de Rolle appliqu\'e trois fois (entre $x_1$ et $x_2$, entre $x_2$ et $x_3$,...) il existe $x'_1<x'_2<x'_3$ des racines de $P'_n$. On applique deux fois le th\'eor\`eme Rolle entre $x'_1$ et $x'_2$ et entre $x'_2$ et $x'_3$. On obtient deux racines distinctes pour $P''_n$. Or 
+$P''_n = n(n-1)X^{n-2}$ ne peut avoir que $0$ comme racines. Donc nous avons 
+obtenu une contradiction. 
+\item \emph{Autre m\'ethode :} 
+Le r\'esultat est \'evident si $  n\leq 3  .$ On suppose donc $
+n\geq 3  .$ Soit $  P_n  $ l'application $  X\mapsto X^n+aX+b  $
+de $  \R   $ dans lui-m\^eme. Alors $  P'_n(X)=nX^{n-1}+a  $
+s'annule en au plus deux valeurs. Donc $P_n$ est successivement
+croissante-d\'ecroissante-croissante ou bien
+d\'ecroissante-croissante-d\'ecroissante. Et donc $P_n$ s'annule au plus 
+trois fois.
+\end{enumerate}
+\fincorrection
+\correction{000715}
+$Q_n(t) = (1-t^2)^n$ est un polyn\^ome de degr\'e $2n$, on le d\'erive $n$ fois, on obtient un polyn\^ome de degr\'e $n$.
+Les valeurs $-1$ et $+1$ sont des racines d'ordre $n$ de $Q_n$, donc
+$Q_n(1)=Q_n'(1)=\ldots = Q_n^{(n-1)}(1)=0$. M\^eme chose en $-1$.
+Enfin $Q(-1)=0=Q(+1)$ donc d'apr\`es le th\'eor\`eme de Rolle il existe $c \in ]-1,1[$ telle que $Q_n'(c)=0$. 
+
+Donc $Q_n'(-1)=0$, $Q_n'(c)=0$, $Q_n'(-1)=0$. En appliquant le th\'eor\`eme de Rolle deux fois 
+(sur $[-1,c]$ et sur $[c,+1]$), on obtient l'existence
+de racines $d_1,d_2$ pour $Q_n''$, qui s'ajoutent aux racines $-1$ et $+1$.
+
+
+On continue ainsi par r\'ecurrence. On obtient pour $Q_n^{(n-1)}$,
+$n+1$ racines: $-1, e_1,\ldots, e_{n-1}, +1$. Nous appliquons le th\'eor\`eme de Rolle $n$ fois. Nous obtenons $n$ racines pour 
+$P_n = Q_n^{(n)}$.  Comme un polyn\^ome de degr\'e $n$ a au plus
+$n$ racines, nous avons obtenu toutes les racines. Par constructions ces racines sont r\'eelles distinctes, donc simples.
+\fincorrection
+\correction{000721}
+La fonction $f$ est continue et dérivable sur $\Rr$ donc en particulier sur $[a,b]$.
+Le théorème des accroissement finis assure l'existence d'un nombre $c \in ]a,b[$ tel que
+$f(b)-f(a) = f'(c) (b-a)$.
+
+Mais pour la fonction particulière de cet exercice nous pouvons expliciter ce $c$.
+En effet $f(b)-f(a) = f'(c) (b-a)$ implique $\alpha(b^2-a^2)+\beta(b-a)= (2\alpha c+\beta)(b-a)$.
+Donc $c = \frac{a+b}{2}$. 
+
+G\'eom\'etriquement, le graphe $\mathcal{P}$ de $f$ est une parabole.
+Si l'on prend deux points $A = (a,f(a))$ et $B = (b,f(b))$ appartenant 
+à cette parabole, alors la droite $(AB)$
+est parall\`ele \`a la tangente en $\mathcal{P}$ qui passe en $M=(\frac{a+b}{2}, f(\frac{a+b}{2}))$.
+L'abscisse de $M$ étant le milieu des abscisses de $A$ et $B$.
+\fincorrection
+\correction{000724}
+\begin{enumerate}
+  \item Soit $g(t) = \ln t$. Appliquons le th\'eor\`eme des accroissements finis sur $[x,y]$. Il existe $c \in ]x,y[$, 
+$g(y)-g(x) = g'(c)(y-x)$. Soit $\ln y - \ln x = \frac 1c (y-x)$.
+Donc $\frac{\ln y - \ln x}{y-x} = \frac 1c$.
+Or $x <c<y$ donc $\frac 1y < \frac 1c < \frac 1x$.
+Ce qui donne les in\'egalit\'es recherch\'ees. 
+  \item $f'(\alpha)= \frac{x-y}{\alpha x + (1-\alpha)y} - \ln x + \ln y$. Et $f''(\alpha) = -\frac{(x-y)^2}{(\alpha x + (1-\alpha)y)^2}$.
+Comme $f''$ est n\'egative alors $f'$ est d\'ecroissante sur $[0,1]$.
+Or $f'(0) = \frac{x-y - y(\ln x - \ln y)}{y} >0$ d'apr\`es la premi\`ere question et de m\^eme $f'(1) < 0$. Par le th\'eor\`eme des valeurs interm\'ediaires, il existe $c \in [x,y]$ tel que $f'(c) = 0$.
+Maintenant $f'$ est positive sur $[0,c]$ et n\'egative sur $[c,1]$.
+Donc $f$ est croissante sur $[0,c]$ et d\'ecroissante sur $[c,1]$.
+Or $f(0)=0$ et $f(1)=0$ donc pour tout $x\in[0,1]$, $f(x) \geq 0$.
+Cela prouve l'in\'egalit\'e demand\'ee.
+  \item G\'eom\'etriquement nous avons prouv\'e que la fonction $\ln$
+est concave, c'est-\`a-dire que la corde
+(le segment qui va de $(x,f(x))$ \`a $(y,f(y)$) est sous la courbe d'\'equation $y=f(x)$.
+\end{enumerate}
+\fincorrection
+\correction{000733}
+$f'(x) = 4x^3-3x^2 = x^2(4x-3)$ donc les extremums
+appartiennent à  $\{0,\frac 34\}$. Comme $f''(x) = 12x^2-6x
+= 6x(2x-1)$. Alors $f''$ ne s'annule pas en $\frac 34$, donc
+$\frac 34$ donne un extremum local (qui est même un minimum global).
+Par contre $f''(0) = 0$ et $f'''(0)\not=0$ donc $0$ est
+un point d'inflexion qui n'est pas un extremum (m\^eme pas local,
+pensez \`a un fonction du type  $x \mapsto x^3$). 
+\fincorrection
+\correction{000738}
+
+ Le th\'eor\`eme de Rolle dit que si $h :[a,b]
+\longrightarrow \R$ est une fonction continue sur l'intervalle
+ferm\'e $[a,b]$ et d\'erivable sur l'ouvert $]a,b[$ alors il
+existe $c \in ]a,b[$ tel que $h' (c) = 0.$
+
+  \begin{enumerate}
+  \item Supposons par l'absurde, qu'il existe $x_{0}\in ]a,b]$  tel
+que $g (x_{0}) = g (a).$ Alors en appliquant le th\'eor\`eme de
+Rolle \`a la restriction de $g$ \`a l'intervalle $[a,x_{0}]$ (les
+hypoth\`eses \'etant clairement v\'erifi\'ees), on en d\'eduit
+qu'il existe $c \in ]a,x_{0}[$ tel que $g' (c) = 0,$ ce qui
+contredit les hypoth\`eses faites sur $g.$ Par cons\'equent on a
+d\'emontr\'e que $g (x) \neq g (a)$ pour tout $x \in ]a,b].$
+
+  \item D'apr\`es la question pr\'ec\'edente, on a en particulier  $g (b)
+\neq g (a)$ et donc $p$ est un nombre r\'eel bien d\'efini et $h =
+f - p \cdot g$ est alors une fonction continue sur $[a,b]$ et
+d\'erivable sur $]a,b[.$ Un calcul simple montre que $h (a) = h
+(b).$ D'apr\`es le th\'eor\`eme de Rolle il en r\'esulte  qu'il
+existe $c \in ]a,b[$ tel que $h' (c) = 0.$ Ce qui implique la
+relation requise.
+
+  \item  Pour chaque $x \in ]a,b[,$ on peut appliquer
+la question 2. aux
+ restrictions de $f$ et $g$ \`a l'intervalle $[x,b],$ on en d\'eduit qu'il
+ existe un point $c (x) \in ]x,b[,$ d\'ependant de $x$ tel que
+ $$\frac{f (x) - f (b)}{g (x) - g (b)} = \frac{f' (c (x))}{g' (c (x))} .
+ \leqno (*)$$
+ Alors, comme $\lim_{x \to b^{-}} \frac{f' (t)}{g' (t)} = \ell$ et
+ $\lim_{x \to b^{-}} c (x) = b,$ (car $c(x) \in ]x,b[$) on en d\'eduit en passant \`a la
+ limite dans $(*)$ que
+ $$ \lim_{x \to b^{-}} \frac{f (x) - f (b)}{g (x) - g (b)} = \ell.$$
+ Ce r\'esultat est connu sous le nom de ``r\`egle de
+ l'H\^opital''.
+
+ \item Consid\'erons les deux fonctions $f
+ (x) = \Arccos x$ et $g (x) = \sqrt{1-x^2}$ pour $x \in [0,1].$ Ces fonctions sont continues sur  $[0,1]$ et
+ d\'erivables sur $]0,1[$ et $f' (x) = - 1 \slash \sqrt{1-x^2}$,
+ $g' (x) = - x \slash \sqrt{1-x^2} \neq 0$ pour tout $ x
+ \in ]0,1[.$ En appliquant les r\'esultats de la question 3., on en
+ d\'eduit que
+ $$ \lim_{x \to 1^{-}} \frac{\Arccos x}{\sqrt{1-x^2}} = \lim_{x \to 1^{-}} \frac{\frac{-1}{\sqrt{1-x^2}}} {\frac{-x}{\sqrt{1-x^2}}}= \lim_{x \to 1^{-}} \frac{1}{x} = 1.$$
+\end{enumerate}
+\fincorrection
+\correction{000740}
+\begin{enumerate}
+\item $f$ est d\'erivable sur $\R_-^*$ en tant que compos\'ee de fonctions
+  d\'erivables, et sur $\R_+^*$ car elle est nulle sur cet intervalle ; \'etudions donc la
+  d\'erivabilit\'e en $0$.
+
+On a
+$$\frac{f(t)-f(0)}{t}=\begin{cases}
+  e^{1/t}/t & \mathrm{\ si\ } t<0\\
+0  & \mathrm{\ si\ } t > 0
+\end{cases}$$
+or $e^{1/t}/t$ tend vers $0$ quand $t$ tend vers $0$ par valeurs
+n\'egatives. Donc $f$ est d\'erivable \`a gauche et \`a droite en 0 et ces
+d\'eriv\'ees sont identiques, donc $f$ est d\'erivable et $f'(0)=0$.
+\item On a
+$$f'(t)=\begin{cases}
+  -e^{1/t}/t^2 & \mathrm{\ si\ } t<0\\
+0  & \mathrm{\ si\ } t \geq 0
+\end{cases}$$
+donc le taux d'accroissement de $f'$ au voisinage de 0 est
+$$\frac{f'(t)-f'(0)}{t}=\begin{cases}
+  -e^{1/t}/t^3& \mathrm{\ si\ } t<0\\
+0  & \mathrm{\ si\ } t > 0
+\end{cases}$$
+et il tend vers $0$ quand $t$ tend vers $0$ par valeurs sup\'erieures
+comme inf\'erieures. Donc $f$ admet une d\'eriv\'ee seconde en $0$, et
+$f''(0)=0$.
+
+\item
+  \begin{enumerate}
+  \item On a d\'ej\`a trouv\'e que $f'(t)=-e^{1/t}/t^2$, donc  $f'(t)=P_1(t)/t^2
+    e^{1/t}$ si on pose $P_1(t)=-1$.
+
+Par ailleurs, $f''(t)=e^{1/t}/t^4+e^{1/t}
+(2/t^3)=\frac{1+2t}{t^4}e^{1/t}$ donc la formule est vraie pour
+$n=2$ en posant $P_2(t)=1+2t$.
+\item Supposons que la formule est vraie au rang $n$.
+Alors $f^{(n)}(t)=\frac{P_n(t)}{t^{2n}}e^{1/t}$ d'o\`u
+\begin{equation*}
+\begin{split}
+  f^{(n+1)}(t)&=\frac{P'_n(t)t^{2n}-P_n(t)(2n)t^{2n-1}}{t^{4n}}e^{1/t}+\frac{P_n(t)}{t^{2n}}e^{1/t}(-1/t^2)\\
+&= \frac{P'_n(t)t^{2}-(2n t+1) P_n(t)}{t^{2(n+1)}}e^{1/t}
+\end{split}
+\end{equation*}
+donc la formule est vraie au rang $n+1$ avec
+$$P_{n+1}(t)=P'_n(t)t^{2}-(2n t+1) P_n(t).$$
+  \end{enumerate}
+\item Sur $\R_-^*$ et sur $\R_+^*$, $f$ est ind\'efiniment d\'erivable, donc il
+  suffit d'\'etudier ce qui se passe en $0$.
+
+Montrons  par r\'ecurrence que $f$ est ind\'efiniment d\'erivable en $0$,
+et que pour tout   $n \in \N,   f^{(n)}(0)=0$. On sait que
+  c'est vrai au rang 1. Supposons que $f$ est $n$-fois d\'erivable, et que
+  $f^{(n)}(0)=0$. Alors le taux d'accroissement de $f^{(n)}$ en $0$ est :
+$$\frac{f^{(n)}(t)-f^{(n)}(0)}{t}=\begin{cases}
+  P_n(t)e^{1/t}/t^{2n+1} & \mathrm{\ si\ } t<0\\
+0  & \mathrm{\ si\ } t > 0
+\end{cases}$$
+et sa limite est $0$ quand  $t$ tend vers $0$ par valeurs sup\'erieures
+comme inf\'erieures. Donc $f^{(n)}$ est d\'erivable  en $0$, et
+$f^{(n+1)}(0)=0$. Donc l'hypoth\`ese de r\'ecurrence est v\'erifi\'ee  au
+rang $n+1$.
+
+Par cons\'equent, $f$ est de classe $C^\infty$.
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

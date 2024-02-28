@@ -1,0 +1,94 @@
+\documentclass[a4paper,10pt]{article}
+
+ %Configuration de la feuille 
+\usepackage[landscape]{geometry}
+\usepackage{multicol}
+
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+\begin{multicols}{4}
+
+\begin{center}\textsc{{\huge Chapitre 3 : somme et produits}}\end{center}
+
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M.Botcazou \& M.Dupré}\cfoot{\thepage/3}\rfoot{\textbf{Tournez la page S.V.P.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+%TODO : rajouter du binôme de Newton, des sommes simples, l'exo avec l'égalité de la moyenne (développement), retrouver une nouvelle esthétique
+
+\subsection*{Variables muettes}
+
+\textcolor{blue}{\large{\bf Exercice 3.1}} (*)
+%TODO : injectif, surjectif
+Calculer les primitives des fonctions suivantes
+ 
+\begin{enumerate}
+\item $x \mapsto e^{x} \cos(x)$
+\item $x \mapsto \sqrt{e^x-1}$
+\item $x \mapsto x \sqrt[3]{1+x}$
+\end{enumerate}
+
+\textcolor{blue}{\large{\bf Exercice 3.2}} (*)
+
+Trouver les couples $(a,b) \in \mathbb{R}^2$ tels que l'équation
+$$ y" + a y' + by = 0 $$ admet une unique solution sur $\mathbb{R}$ de la forme $x \mapsto e^{\alpha x}$ avec $\alpha \in \mathbb{R}$
+
+\textcolor{blue}{\large{\bf Exercice 3.2}} (*)
+
+Trouver les couples $(a,b) \in \mathbb{R}^2$ tels que l'équation
+$$ y" + a y' + by = 0 $$ admet une unique solution sur $\mathbb{R}$ de la forme $x \mapsto e^{\alpha x}$ avec $\alpha \in \mathbb{R}$
+
+\end{multicols}
+\end{document}

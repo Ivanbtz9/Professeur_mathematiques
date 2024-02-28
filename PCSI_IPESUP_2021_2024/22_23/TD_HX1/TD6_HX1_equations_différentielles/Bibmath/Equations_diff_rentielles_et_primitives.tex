@@ -1,0 +1,199 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge Equations différentielles et primitives}}\end{center}
+
+% Exercice 398
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Intégration par parties - Niveau 2
+\vskip0.2cm
+Déterminer une primitive des fonctions suivantes :
+$$\mathbf{1.}\quad x\mapsto\arctan(x)\quad\quad\mathbf{2.}\quad x\mapsto (\ln x)^2\quad\quad\mathbf{3.} x\mapsto \sin(\ln x).$$
+
+
+% Exercice 399
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Intégration par parties - Niveau 3
+\vskip0.2cm
+Calculer les intégrales suivantes :
+$$\mathbf{1.}\quad I=\int_1^2\frac{\ln(1+t)}{t^2}dt\quad \mathbf{2.}\quad J=\int_0^1 x(\arctan x)^2dx\quad\quad\mathbf{3.}\quad K=\int_0^1 \frac{x\ln x}{(x^2+1)^2}dx$$
+
+
+% Exercice 401
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Une suite d'intégrales
+\vskip0.2cm
+Pour $(n,p)$ éléments de $\mathbb N^*\times\mathbb N$, on pose 
+$$I_{n,p}=\int_0^1 x^n (\ln x)^p dx.$$
+Calculer $I_{n,p}$.
+
+
+
+% Exercice 400
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Une suite d'intégrales
+\vskip0.2cm
+Soient $(\alpha,\beta,n)\in\mathbb R^2\times\mathbb N$. Calculer
+$$\int_\alpha^\beta(t-\alpha)^n (t-\beta)^n dt.$$
+
+
+% Exercice 394
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Changements de variables - Niveau 2
+\vskip0.2cm
+En effectuant le changement de variables indiqué, calculer les intégrales suivantes :
+\begin{enumerate}
+\item  $\displaystyle \int_0^1\frac{dt}{1+e^t}$ en posant $x=e^t$;
+\item $\displaystyle \int_1^3\frac{\sqrt t}{t+1}dt$ en posant $x=\sqrt t$;
+\item $\displaystyle \int_{-1}^1 \sqrt{1-t^2}dt$ en posant $t=\sin\theta$.
+\end{enumerate}
+
+
+% Exercice 3156
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - Double changement de variables
+\vskip0.2cm
+\begin{enumerate}
+\item Calculer $\displaystyle\int_0^2 \frac{2u}{\sqrt{1+u}}du$.
+\item En déduire $\displaystyle \int_0^{3}\frac{dt}{\sqrt{1+\sqrt{1+t}}}$.
+\end{enumerate}
+
+
+% Exercice 440
+
+
+\vskip0.3cm\noindent\textsc{Exercice 7} - Intégrale trigonométrique - 1
+\vskip0.2cm
+Calculer les intégrales suivantes :
+$$\mathbf{1.}\ \int_0^{\pi/4}\frac{\sin^3(t)}{1+\cos^2 t}dt\quad\quad\mathbf{2.}\ \int_{\pi/3}^{\pi/2}\frac{dx}{\sin x}\quad\quad\mathbf{3.}\ \int_0^{\pi/3}\big(1+\cos(x)\big)\tan(x)dx.$$
+
+
+% Exercice 441
+
+
+\vskip0.3cm\noindent\textsc{Exercice 8} - Intégrale trigonométrique - 2
+\vskip0.2cm
+Calculer les intégrales suivantes :
+$$\mathbf{1.}\ \int_0^{\pi/4}\frac{\tan x}{\sqrt 2\cos x+2\sin^2 x}dx\quad\quad\mathbf{2.}\ \int_0^{\pi/2}\frac{dx}{2+\sin x}.$$
+
+
+% Exercice 3159
+
+
+\vskip0.3cm\noindent\textsc{Exercice 9} - \'Equations du second ordre à coefficients constants - second membre exponentiel
+\vskip0.2cm
+Résoudre les équations différentielles suivantes :
+\begin{enumerate}
+\item $y''-y=e^{2x}-e^x$;
+\item $y''+y'+y=\cos(x)$;
+\item $y''-2y'+y=\sin^2 x$;
+\item $y''+y'+y=e^x\cos(x)$.
+\end{enumerate}
+
+
+% Exercice 3158
+
+
+\vskip0.3cm\noindent\textsc{Exercice 10} - Un système différentiel qui se ramène à une équation du second ordre
+\vskip0.2cm
+Déterminer les fonctions $y,z:\mathbb R\to\mathbb R$ dérivables et qui vérifient le système suivant :
+$$
+\left\{
+\begin{array}{rcl}
+y'-y&=&z\\
+z'+z&=&3y
+\end{array}
+\right.$$
+
+
+% Exercice 1458
+
+
+\vskip0.3cm\noindent\textsc{Exercice 11} - Changement de variables
+\vskip0.2cm
+On cherche à résoudre sur $\mathbb R_+^*$ l’équation diﬀérentielle :
+$$x^2y"−3xy'+4y = 0.\ (E)$$
+\begin{enumerate}
+\item Cette équation est-elle linéaire ? Qu’est-ce qui change par rapport au cours ?
+\item Analyse. Soit $y$ une solution de $(E)$ sur $\mathbb R_+^*$. Pour $t\in\mathbb R$, on pose $z(t)=y(e^t)$.
+\begin{enumerate}
+\item Calculer pour $t\in\mathbb R$, $z'(t)$ et $z''(t)$.
+\item En déduire que $z$ vériﬁe une équation diﬀérentielle linéaire d’ordre 2 à coeﬃcients  constants que l’on précisera (on pourra poser $x = e^t$ dans $(E)$). 
+\item Résoudre l’équation diﬀérentielle trouvée à la question précédente.
+\item En déduire le ”portrait robot” de $y$.
+\end{enumerate}
+\item Synthèse. Vérifier que, réciproquement, les fonctions trouvées à la ﬁn de l’analyse sont bien toutes les solutions de (E) et conclure.
+\end{enumerate}
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{http://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=25223
+\end{document}

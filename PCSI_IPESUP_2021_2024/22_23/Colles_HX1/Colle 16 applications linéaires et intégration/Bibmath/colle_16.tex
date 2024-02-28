@@ -1,0 +1,129 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 935
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - D'un produit à l'autre
+\vskip0.2cm
+Soit $A\in\mathcal M_{3,2}(\mathbb R)$, $B\in\mathcal M_{2,3}(\mathbb R)$ tels que 
+$$AB=\left(
+\begin{array}{ccc}
+0&0&0\\
+0&1&0\\
+0&0&1
+\end{array}
+\right).$$
+Démontrer que $BA=I_2$.
+
+
+% Exercice 3122
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Base adaptée à un endomorphisme dont le carré est nul
+\vskip0.2cm
+Soit $f\in\mathcal L(\mathbb R^3)$ tel que $f\neq 0$ et $f^2=0$.
+\begin{enumerate}
+\item Démontrer que $\dim(\ker(f))=2$.
+\item En déduire qu'il existe une base $\mathcal B$ de $\mathbb R^3$ dans laquelle la matrice de $f$ est $\begin{pmatrix}0&0&1\\0&0&0\\0&0&0\end{pmatrix}$. 
+\end{enumerate}
+
+
+% Exercice 403
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Intégration par parties itérée
+\vskip0.2cm
+\begin{enumerate}
+\item Soient $f,g:[a,b]\to\mathbb R$ deux fonctions de classe $C^n$. Montrer que
+$$\int_{a}^b f^{(n)}g=\sum_{k=0}^{n-1}(-1)^k \big(f^{(n-k-1)}(b)g^{(k)}(b)-f^{(n-k-1)}(a)g^{(k)}(a)\big)+(-1)^n \int_a^b fg^{(n)}.$$
+\item Application : On pose $Q_n(x)=(1-x^2)^n$ et $P_n(x)=Q_n^{(n)}(x)$. Justifier que $P_n$ est un polynôme de degré $n$, puis prouver
+que $\int_{-1}^1 QP_n=0$ pour tout polynôme $Q$ de degré inférieur ou égal à $n-1$.
+\end{enumerate}
+
+
+% Exercice 386
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Retrouver la fonction
+\vskip0.2cm
+Soit $f:[a,b]\to\mathbb R$ continue telle que $|f(x)|\leq 1$ pour tout $x\in[a,b]$
+et $\int_a^b f(x)dx=b-a$. Que dire de $f$?
+
+
+% Exercice 1104
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Valeur moyenne
+\vskip0.2cm
+Soit $f:[a,b]\to\mathbb R$ continue. Démontrer que sa valeur moyenne est atteinte : il existe $c\in [a,b]$ tel que 
+$$f(c)=\frac{1}{b-a}\int_a^b f(t)dt.$$
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=27976
+\end{document}

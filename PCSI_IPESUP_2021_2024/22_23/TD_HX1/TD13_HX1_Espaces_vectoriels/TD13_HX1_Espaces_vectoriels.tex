@@ -1,0 +1,519 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\K}{\mathbb{K}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/4}\rfoot{PCSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+ %%%%BIBMATH%%%%
+ 
+ %(1)EV https://www.bibmath.net/ressources/index.php?action=affiche&quoi=mpsi/feuillesexo/ev&type=fexo	
+ 
+ %(2)APLICATIONS LINEAIRES https://www.bibmath.net/ressources/index.php?action=affiche&quoi=mpsi/feuillesexo/al&type=fexo	
+ 
+ %(3)EV_GENERALITÉES https://www.bibmath.net/ressources/index.php?action=affiche&quoi=mathsup/feuillesexo/ev&type=fexo
+ 
+ %(4)Symétrie https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/algebrelineaire/als-prat&type=fexo
+	
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 13 : Espaces vectoriels }}
+	\end{minipage}}
+
+\smallskip
+\section*{Connaître son cours:}
+\begin{itemize}[$\bullet$]
+	\item Soit $e_1 , \dots , e_p$ des vecteurs d’un $\K$-espace vectoriel $E $. 
+	
+	Montrer que pour tous $\lambda \in \K$ et $i\neq j \ \in \llbracket1, p\rrbracket$ , $\text{Vect}(e_1 ,\dots , e_p) = \text{Vect}(e_1 ,\dots , e_i + \lambda e_j , \dots, e_p) $.
+	\item Montrer que la somme de deux sous-espaces vectoriels est directe si, et seulement si, leur intersection est égale à $\{0_E\} $. Ceci reste-t-il vrai pour plus de deux sous-espaces vectoriels? Donner un exemple de deux sous-espaces vectoriels de $E=\R^\R$ qui sont supplémentaires dans E. 
+	\item Soit $u$ une application linéaire entre deux $\K$ espaces vectoriels $E$ et $F$.Montrer que:\begin{enumerate}[$\square$]
+		\item L'image directe par $u$ d’un sous-espace vectoriel de $E$ est un sous-espace vectoriel de $F$.
+		\item L'image réciproque par $u$ d’un sous-espace vectoriel de $F$ est un sous-espace vectoriel de $E$.
+		\item L’application $u$ est injective si, et seulement si, $\text{Ker}(u) = \{0_E \} $. Cela reste-t-il vrai si l’application $u$ n'est plus linéaire?
+	\end{enumerate} 
+	\item Soit $p$ un projecteur d’un espace vectoriel $E$. Montrer que $\text{Ker}(p)$ et $\text{Im}(p)$ sont supplémentaires et expliciter le projecteur complémentaire de $p$.
+	\item Soit $E$ un $\K$ espace vectoriel et $u$ un endomorphisme de $E$ tel que, pour tout $x \in E $, il existe $\lambda_x \in \K$
+	tel que $u (x) = \lambda_x\cdot x $, montrer que $u$ est une homothétie. En déduire que les endomorphismes de $E$ commutant avec tous les endomorphismes de $E$
+	sont les homothéties.
+\end{itemize}
+
+
+\raggedright
+
+\section*{Structure d’espace vectoriel:}\hfill\\%[-0.25cm]
+
+   
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+	
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+D\' eterminer lesquels des
+ensembles suivants sont des sous-espaces
+vectoriels de ${\R}^3$. 
+
+$E_1 =\{ (x,y,z)\in {\R}^3\ \mid \ 3x-7y = z \} $ 
+
+$E_2 =\{(x,y,z)\in {\R}^3\ \mid \ x^2-z^2=0 \} $  
+
+$E_3=\{ (x,y,z)\in {\R}^3\ \mid \ x+y-z=x+y+z=0  \} $ 
+
+	
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Soit $E = \Delta (\R, \R)$ l'espace des fonctions dérivables
+	et $F = \left\{ f \in E \mid f (0) = f' (0) = 0\right\}$. Montrer que $F$
+	est un sous-espace vectoriel de $E$ et d\'eterminer un
+	suppl\'ementaire de $F$ dans $E$.
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Soit $E=\big\{(u_{n})_{n\in
+		\N}\in \R^{\N}\ |\ (u_{n})_{n} \text{ converge }\big\}.$
+	Montrer que
+	l'ensemble des suites constantes et l'ensemble des suites convergeant
+	vers $0$ sont des sous-espaces suppl\'{e}mentaires dans $E.$
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+\begin{enumerate}
+	\item D\'ecrire les sous-espaces vectoriels de $\R$ ;  puis de $\R^2$ et $\R^3$.
+	\item Dans $\mathbb{R}^3$ donner un exemple de deux sous-espaces dont l'union 
+	n'est pas un sous-espace vectoriel.
+\end{enumerate}	
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Soit $E$ un espace vectoriel.
+	\begin{enumerate}
+		\item Soient $F$ et $G$ deux sous-espaces de $E$. Montrer l'équivalence entre les points suivants: 
+		\begin{enumerate}[$\bullet$]
+			\item $F\cup G \hbox{ est un sous-espace vectoriel de } E.$
+			\item $F\subset G \hbox{ ou } G \subset F.$
+		\end{enumerate}
+		
+		\item Soit $H$ un troisi\`eme sous-espace vectoriel de $E$. Prouver
+		que
+		$G \subset F \alors F\cap(G+H) = G + (F\cap H) .$
+	\end{enumerate}	
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+\end{minipage}\end{minipage} \newpage 
+
+    
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+		
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Déterminer si les parties suivantes sont des sous-espaces vectoriels de $M_2(\mathbb R)$ : 
+ $E_1=\left\{\begin{pmatrix}
+	a & b \\
+	c & d \\
+	\end{pmatrix}\in M_2(\mathbb R):\ ad-bc=1\right\}$;
+	
+
+$E_2=\left\{A\in M_2(\mathbb R):\ {}^tA=A\right\}$.
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+\begin{enumerate}
+	\item Dans $\mathbb R[X]$, $P(X)=16X^3-7X^2+21X-4$ est-il combinaison linéaire de $P_1(X)=8X^3-5X^2+1$ et $P_2(X)=X^2+7X-2$?
+	\item Dans $\mathcal F(\mathbb R,\mathbb R)$, la fonction $x\mapsto \sin(2x)$ est-elle combinaison linéaire des fonctions $\sin$ et $\cos$?
+\end{enumerate}
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Les sous-espaces vectoriels de $\mathbb R^3$ suivants sont-ils en somme directe?
+\begin{enumerate}
+	\item $F=\left\{(x,y,z)\in \mathbb R^3\mid x+2y+z=0\right\}$ et $G=\left\{(x,y,z)\in \mathbb R^3\mid \left\{\begin{array}{l}
+	2x + y + 3z = 0 \\
+	x - 2y - z = 0 \\
+	\end{array}\right.\right\}$; 
+	\item $H=\left\{(x,y,z)\in \mathbb R^3\mid x+y+2z=0\right\}$ et $I=\left\{(x,y,z)\in \mathbb R^3\mid \left\{\begin{array}{l}
+	2x + y + 3z = 0 \\
+	x - 2y - z = 0 \\
+	\end{array}\right.\right\}$.
+\end{enumerate}
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+Soit $E$ l'espace vectoriel des fonctions de $\mathbb R$ dans $\mathbb R$, $F$ le sous-espace vectoriel des fonctions périodiques de période 1 et $G$ le sous-espace vectoriel des fonctions $f$ telles que $\lim\limits_{+\infty}f=0$. Démontrer que $F\cap G=\{0\}$. Est-ce que $F$ et $G$ sont supplémentaires?
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+Soient $F$ et $G$ deux sous-espaces vectoriels d'un espace vectoriel $E$ tels que
+$F+G=E$. Soit $F'$ un supplémentaire de $F\cap G$ dans $F$. 
+
+Montrer que $F'\oplus G=E$.
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Déterminer parmi les ensembles suivants ceux qui sont des sous-espaces vectoriels de $\R^\R$.
+\begin{enumerate}
+	\item L’ensemble des fonctions réelles 1-lipschitziennes.
+	\item L’ensemble des fonctions réelles f telles que
+	 
+	\centering$\exists k \in \R,\ \forall x \in\R,\ | f (x )| \leq  k |x |$.
+	
+	\raggedright
+	\item L’ensemble des fonctions réelles f telles que
+	
+	\centering$\exists k \in \R,\ \forall x \in\R,\ | f (x )| \geq  k |x |$.
+	
+	\raggedright
+\end{enumerate}
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+1. \ Montrer par des opérations sur les Vect les égalités :\\[-0.5cm]
+
+ $$\R_2 [X ] \ = \  \text{Vect}\left((X - 1)^2 , (X - 1)(X + 1), (X + 1)^2\right)  .$$
+
+2. \ Montrer que pour tout $n \in \N$ :
+ $$\underset{0\leq k\leq n}{\text{Vect}}\Big(\big(x\mapsto \cos(kx)\big)\Big)= \underset{0\leq k\leq n}{\text{Vect}}\Big(\big(x\mapsto \cos^k(x)\big)\Big).$$
+
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Montrer que $a=(1,2,3)$ et $b=(2,-1,1)$ engendrent le même sous espace de $\R^3$ que $c=(1,0,1)$ et $d=(0,1,1)$.
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Soit $F$ le sous-espace vectoriel de $\R^4$ engendré par $u=(1,2,-5,3)$ et $v=(2,-1,4,7)$. Déterminer $\lambda$ et
+$\mu$ réels tels que $(\lambda,\mu,-37,-3)$ appartienne à $F$.
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+
+\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+Soit $E$ un espace vectoriel dans lequel tout sous-espace vectoriel admet un supplémentaire.
+ 
+Soit $F$ un sous-espace vectoriel propre de $E$ (c'est-à-dire que $F\neq \{0\}$ et que $F\neq E$). 
+
+Démontrer que $F$ admet au moins deux supplémentaires distincts.
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+\end{minipage}\end{minipage}
+                 
+
+\section*{Applications linéaires:}\hfill\\%[-0.25cm]
+
+    
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Dire si les applications suivantes sont des applications linéaires :
+\begin{enumerate}
+	\item $f:\mathbb R^2\to\mathbb R^3,\ (x,y)\mapsto (x+y,x-2y,0)$;
+	\item $f:\mathbb R^2\to\mathbb R^3,\ (x,y)\mapsto (x+y,x-2y,1)$;
+	\item $f:\mathbb R[X]\to \mathbb R^2,\ P\mapsto \big(P(0),P'(1)\big)$;
+	\item $f:\mathbb R[X]\to \mathbb R[X],\ P\mapsto AP$, où $A\in\mathbb R[X]$ est un polynôme fixé;
+\end{enumerate}
+\hfill\\[-0.25cm]
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+On considère l'application linéaire $f$ de $\mathbb R^3$
+dans $\mathbb R^4$ définie par $f(x,y,z)=(x+z,y-x,z+y,x+y+2z).$
+L'application $f$ est-elle injective? surjective?
+\hfill\\[-0.25cm]
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Soit $E=\mathcal C^{\infty}(\mathbb R)$ et $\phi\in\mathcal L(E)$ définie par $\phi(f)=f'$. Quel est le noyau de $\phi$? Quelle est son image? $\phi$ est-elle injective? surjective?
+\hfill\\[-0.25cm]
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+Soit $E$ l’espace vectoriel des applications de $\mathbb R$ dans $\mathbb R$. On note $L:E\to E$ l’application qui à $f\in E$ associe $L(f)$ définie par $L(f):x\mapsto f(x)-f(-x)$.
+\begin{enumerate}
+	\item Montrer que $L$ est un endomorphisme de E.
+	\item Préciser le noyau et l’image de L.
+	\item L’application $L$ est-elle injective ? surjective ?
+\end{enumerate}
+\hfill\\[-0.25cm]
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+Soit $E=\mathbb C[X]$, $p$ un entier naturel et $f$ l'application de $E$ dans $E$ définie par
+$f(P)=(1-pX)P+X^2P'$. $f$ est-elle injective? surjective?
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+Soit $u$ un endomorphisme de $E$ , $\lambda \neq \mu$ deux scalaires.
+Montrer que les sous-espaces $\text{Ker}(u - \lambda\text{Id})^2$ et $\text{Ker}(u - \mu\text{Id})^2$ sont en somme directe.
+\hfill\\[-0.25cm]
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+Soit $E$ un e.v. , $F$ un s.e.v. de $E$ et $u \in \mathcal L (E )$.
+	\begin{enumerate}
+		\item Montrer que $u^{-1} (u (F)) = F + \text{Ker}(u)$.
+		\item Déterminer $u (u^{-1}(F ))$.
+	\end{enumerate}
+	\hfill\\[-0.25cm]
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+Soit $E=\mathbb R_3[X]$ l'espace vectoriel des polynômes à coefficients réels de degré inférieur ou égal à 3.
+On définit $u$ l'application de $E$ dans lui-même par\quad\\[-0.4cm]
+$$u(P)=P+(1-X)P'.$$\quad\\[-0.8cm]
+\begin{enumerate}
+	\item Montrer que $u$ est un endomorphisme de $E$.
+	\item L'application $u$ est-elle injective? surjective?
+\end{enumerate}
+\hfill\\[-0.25cm]
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+Soit $E$ un espace vectoriel et $u,v\in\mathcal L(E)$. On suppose que $u\circ v=v\circ u$. Démontrer que $\textrm{ker}(u)$ et $\textrm{Im}(u)$ sont stables par $v$, c'est-à-dire que\quad\\[-0.4cm]
+$$v(\ker (u))\subset \ker (u)\textrm{ et }v(\textrm{Im}(u))\subset \textrm{Im}(u).$$\quad\\[-0.4cm]
+
+\hfill\\[-0.25cm]
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+Soit $E$ un espace vectoriel et $f,g\in\mathcal L(E)$.
+
+Démontrer que \\[-0.8cm]
+$$E=\textrm{Im}(f)+\ker(g)\iff \textrm{Im}(g\circ f)=\textrm{Im}(g).$$\quad\\[-0.4cm]
+\hfill\\[-0.25cm]
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+Soit $E$ un espace vectoriel et $f\in\mathcal L(E)$.
+\begin{enumerate}
+	\item Montrer que
+	$\ker(f)=\ker(f^2)\iff \textrm{Im}f\cap\ker(f)=\{0\}.$
+
+	\item On suppose que $E$ est de dimension finie. Montrer que conditions suivantes sont équivalentes:
+	\begin{enumerate}[$\square$]
+		\item $\ker(f)=\ker(f^2)$
+		\item $\textrm{Im}f\oplus \ker(f)=E$
+		\item $\textrm{Im}(f)=\textrm{Im}(f^2)$
+\end{enumerate}\end{enumerate}
+\hfill\\[-0.25cm]
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\end{minipage}\end{minipage}\newpage
+
+
+\section*{Endomorphismes remarquables:}\hfill\\%[-0.25cm]
+
+    
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]		
+On considère l'application linéaire $f:\mathbb R^3\to\mathbb R^3$ définie par $f(x,y,z)=(2x-2z,y,x-z)$. $f$ est-elle une symétrie? une projection? 
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Soit $A\in\mathbb R[X]$ non nul, et $\phi:\mathbb R[X]\to\mathbb R[X]$ l'application qui à un polynôme $P$ associe son reste dans la division euclidienne par $A$. Démontrer que $\phi$ est un projecteur et préciser ses éléments caractéristiques.
+	
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+	Soit $E$ un $\mathbb R$-espace vectoriel. Soient $p$ et $q$ deux projecteurs de $E$.
+	\begin{enumerate}
+		\item Montrer que $p+q$ est un projecteur si et seulement si $p\circ q=q\circ p=0$.
+		\item Montrer que, dans ce cas, on a $\textrm{Im}(p+q)=\textrm{Im}(p)\oplus \textrm{Im}(q)$
+		et $\ker(p+q)=\ker p\cap \ker q$.
+	\end{enumerate}
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Considérons deux projections $p$ et $q$ sur le même sous-espace $G$ (mais de directions différentes) et $\lambda\in \R$.
+	Montrer que $\lambda p + (1 - \lambda)q$ est une projection sur $G$.
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+On considère l'endomorphisme $s\colon\mathbb R^3\rightarrow\mathbb R^3$ défini par
+\[
+s(x,y,z)=(-x-4y-2z,\ 4x+9y+4z,\ -8x-16y-7z).
+\]
+Montrer que $s$ est une symétrie.
+	
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+
+\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+	Soit $E$ un $\K$-espace vectoriel.
+	\begin{enumerate}
+		\item  Par définition, un endomorphisme $p$ de $E$ est un projecteur si et seulement si $p^2=p$.
+		
+		Montrer que\hfill\\[-0.5cm]
+		$$\left[p\;\mbox{projecteur}\Leftrightarrow Id-p\;\mbox{projecteur}\right]$$\hfill\\[-0.25cm]
+		puis que\hfill\\[-0.5cm]
+		$$\left[p\;\mbox{projecteur}\Rightarrow\mbox{Im}p=\mbox{Ker}(Id-p)\right]$$
+		\hfill\\[-0.5cm]
+		$$\left[p\;\mbox{projecteur}\Rightarrow\mbox{Ker}p=\mbox{Im}(Id-p)\right]$$
+		\hfill\\[-0.5cm]
+		$$\left[p\;\mbox{projecteur}\Rightarrow E=\mbox{Ker}p\oplus\mbox{Im}p\right]$$
+		
+		\item  Soient $p$ et $q$ deux projecteurs, montrer que~:~$[\mbox{Ker}p=\mbox{Ker}q\Leftrightarrow p=p\circ
+		q\;\mbox{et}\;q=q\circ p]$.
+		\item  $p$ et $q$ étant deux projecteurs vérifiant $p\circ q+q\circ p=0$, montrer que $p\circ q=q\circ p=0$. Donner
+		une condition nécessaire et suffisante pour que $p+q$ soit un projecteur lorsque $p$ et $q$ le sont. Dans ce
+		cas, déterminer $\mbox{Im}(p+q)$ et $\mbox{Ker}(p+q)$ en fonction de $\mbox{Ker}p$, $\mbox{Ker}q$, $\mbox{Im}p$ et
+		$\mbox{Im}q$.
+	\end{enumerate}
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+
+\end{minipage}\end{minipage}
+
+
+\end{document}

@@ -1,0 +1,856 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+
+\fiche{f00086, rouget, 2010/07/11}
+
+\titre{Le binôme. Les symboles $\sum_{}^{}$ et $\prod_{}^{}$} 
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable\quad T~:~pour travailler et mémoriser le cours
+\end{center}
+
+
+\exercice{5137, rouget, 2010/06/30}
+\enonce{005137}{IT Identités combinatoires}
+ \emph{La difficulté va en augmentant graduellement de facile à assez difficile sans être
+insurmontable.}
+
+\begin{enumerate}
+\item  Calculer $\binom{n}{0}+\binom{n}{1}+...+\binom{n}{n}$.
+\item  Montrer que $\binom{n}{0}+\binom{n}{2}+\binom{n}{4}+...=\binom{n}{1}+\binom{n}{3}+\binom{n}{5}+...$ et trouver la valeur commune des
+deux sommes.
+\item  Calculer les sommes $\binom{n}{0}+\binom{n}{3}+\binom{n}{6}+...$ et $\binom{n}{0}+\binom{n}{4}+\binom{n}{8}+...$.
+
+\item  Montrer que $\forall n\in\Nn^*,\;\forall k\in\llbracket1,n\rrbracket,\;k\binom{n}{k}=n\binom{n-1}{k-1}$.
+\item  Montrer que $\binom{n}{0}^2 +\binom{n}{1}^2 + ... +\binom{n}{n}^2 =\binom{2n}{n}$ (utiliser le polynôme $(1+x)^{2n}$).
+\item  Calculer les sommes $0.\binom{n}{0}+1.\binom{n}{1}+ ...+n.\binom{n}{n}$ et $\frac{\binom{n}{0}}{1}+\frac{\binom{n}{1}}{2}+...
++\frac{\binom{n}{n}}{n+1}$ (considérer dans chaque cas un certain polynôme astucieusement choisi).
+\item  Montrer que $\binom{p}{p}+\binom{p+1}{p}... +\binom{n}{p}=\binom{n+1}{p+1}$ où $0\leq p\leq n$. Interprétation dans le triangle de \textsc{Pascal}~?
+\item 
+\begin{enumerate}
+\item Soit $I_n=\int_{0}^{1}(1-x^2)^n\;dx$. Trouver une relation de récurrence liant $I_n$ et $I_{n+1}$ et en déduire
+$I_n$ en fonction de $n$ (faire une intégration par parties dans $I_n-I_{n+1}$).
+\item Démontrer l'identité valable pour
+$n\geq1$~:~$1-\frac{\binom{n}{1}}{3}+\frac{\binom{n}{2}}{5}+...+(-1)^n\frac{\binom{n}{n}}{2n+1}
+=\frac{2.4.....(2n)}{1.3...(2n+1)}$.
+\end{enumerate}
+\end{enumerate}
+\finenonce{005137}
+
+
+\finexercice
+\exercice{5138, rouget, 2010/06/30}
+\enonce{005138}{**}
+Quel est le coefficient de $a^4b^2c^3$ dans le développement de $(a-b+2c)^9$.
+\finenonce{005138}
+
+
+\finexercice
+\exercice{5139, rouget, 2010/06/30}
+\enonce{005139}{**I}
+Développer $(a+b+c+d)^2$ et $(a+b+c)^3$.
+\finenonce{005139}
+
+
+\finexercice
+\exercice{5140, rouget, 2010/06/30}
+\enonce{005140}{***}
+Soit $(n,a,b)\in\Nn^*\times]0,+\infty[\times]0,+\infty[$. Quel est le plus grand terme du développement de $(a+b)^n$~?
+\finenonce{005140}
+
+
+\finexercice
+\exercice{5141, rouget, 2010/06/30}
+\enonce{005141}{*}
+Résoudre dans $\Nn*$ l'équation $\binom{n}{1}+\binom{n}{2}+\binom{n}{3}= 5n$.
+\finenonce{005141}
+
+
+\finexercice
+\exercice{5142, rouget, 2010/06/30}
+\enonce{005142}{IT}
+Cet exercice est consacré aux sommes de termes consécutifs d'une suite arithmétique ou d'une suite géométrique.
+\begin{enumerate}
+\item (*) Calculer $\sum_{i=3}^{n}i$, $n\in\Nn\setminus\{0,1,2\}$, $\sum_{i=1}^{n}(2i-1)$, $n\in\Nn^*$, et
+$\sum_{k=4}^{n+1}(3k+7)$, $n\in\Nn\setminus\{0,1,2\}$.
+
+\item (*) Calculer le nombre $1,1111...=\lim_{n\rightarrow +\infty}1,\underbrace{11...1}_n$ et le nombre
+$0,9999...=\lim_{n\rightarrow +\infty}0,\underbrace{99...9}_n$.
+
+\item (*) Calculer $\underbrace{1-1+1-...+(-1)^{n-1}}_n$,
+$n\in\Nn^*$.
+
+\item (*) Calculer
+$\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+...=\lim_{n\rightarrow +\infty}\sum_{k=1}^{n}\frac{1}{2^k}$.
+
+\item (**) Calculer
+$\sum_{k=0}^{n}\cos\frac{k\pi}{2}$, $n\in\Nn$.
+
+\item (**) Soient $n\in\Nn$ et $\theta\in\Rr$. Calculer $\sum_{k=0}^{n}\cos(k\theta)$ et
+$\sum_{k=0}^{n}\sin(k\theta)$.
+
+\item (***) Pour $x\in[0,1]$ et $n\in\Nn^*$, on pose
+$S_n=\sum_{k=1}^{n}(-1)^{k-1}\frac{x^k}{k}$. Déterminer$\lim_{n\rightarrow +\infty}S_n$.
+
+\item (**) On pose $u_0=1$ et, pour $n\in\Nn$, $u_{n+1}=2u_n-3$.
+\begin{enumerate}
+\item Calculer la suite $(u_n-3)_{n\in\Nn}$.
+\item Calculer $\sum_{k=0}^{n}u_k$.
+\end{enumerate}
+\end{enumerate}
+\finenonce{005142}
+
+
+\finexercice\exercice{5143, rouget, 2010/06/30}
+\enonce{005143}{Sommes télescopiques}
+\label{exo:suprou7}
+Calculer les sommes suivantes~:
+\begin{enumerate}
+\item (**) $\sum_{k=1}^{n}\frac{1}{k(k+1)}$ et $\sum_{k=1}^{n}\frac{1}{k(k+1)(k+2)}$
+\item (***) Calculer $S_p=\sum_{k=1}^{n}k^p$ pour $n\in\Nn^*$ et $p\in\{1,2,3,4\}$ (dans chaque cas, chercher un
+polynôme $P_p$ de degré $p+1$ tel que $P_p(x+1)-P_p(x)=x^p$).
+\item (**) Calculer $\sum_{k=1}^{n}\Arctan\frac{1}{k^2+k+1}$ (aller relire certaines formules établies dans une planche précédente).
+\item (**) Calculer $\sum_{k=1}^{n}\Arctan\frac{2}{k^2}$.
+\end{enumerate}
+\finenonce{005143}
+
+
+\finexercice
+\exercice{5144, rouget, 2010/06/30}
+\enonce{005144}{I}
+Calculer les sommes suivantes~:
+\begin{enumerate}
+\item (**) $\sum_{1\leq i<j\leq n}^{}1$.
+\item (**) $\sum_{1\leq i,j\leq n}^{}j$ et $\sum_{1\leq i<j\leq n}^{}j$.
+\item (*) $\sum_{1\leq i,j\leq n}^{}ij$.
+\item (***) Pour $n\in\Nn^*$, on pose $u_n=\frac{1}{n^5}\sum_{k=1}^{n}\sum_{h=1}^{n}(5h^4-18h^2k^2+5k^4)$.
+Déterminer$\lim_{n\rightarrow +\infty}u_n$ (utiliser les résultats de l'exercice \ref{exo:suprou7}, 2)).
+\end{enumerate}
+\finenonce{005144}
+
+
+\finexercice
+\exercice{5145, rouget, 2010/06/30}
+\enonce{005145}{I}
+\begin{enumerate}
+\item (*) Calculer $\prod_{k=1}^{n}(1+\frac{1}{k})$, $n\in\Nn^*$.
+\item (***) Calculer $\prod_{k=1}^{n}\cos\frac{a}{2^k}$, $a\in]0,\pi[$, $n\in\Nn^*$.
+\end{enumerate}
+\finenonce{005145}
+
+
+\finexercice
+\finfiche
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005137}
+\begin{enumerate}
+\item  D'après la formule du binôme de \textsc{Newton},
+\begin{center}
+\shadowbox{
+$\forall n\in\Nn,\;\sum_{k=0}^{n}\binom{n}{k}=(1+1)^n=2^n.$
+}
+\end{center}
+
+\item  Soit $n$ un entier naturel non nul. Posons $S_1=\sum_{k=0}^{E(n/2)}\binom{n}{2k}$ et
+$S_2=\sum_{k=0}^{E((n-1)/2)}\binom{n}{2k+1}$. Alors
+
+$$S_1-S_2=\sum_{k=0}^{n}(-1)^k\binom{n}{k}=(1-1)^n=0\;(\mbox{car}\;n\geq1),$$
+et donc $S_1=S_2$. Puis $S_1+S_2=\sum_{k=0}^{n}\binom{n}{k}=2^n$, et donc $S_1=S_2=2^{n-1}$.
+\begin{center}
+\shadowbox{
+$\forall n\in\Nn^*,\;\binom{n}{0}+\binom{n}{2}+\binom{n}{4}+\ldots=\binom{n}{1}+\binom{n}{3}+\binom{n}{5}+\ldots=2^{n-1}.$
+}
+\end{center}
+
+\item  En posant $j=e^{2i\pi/3}$, on a~:
+
+$$\sum_{k=0}^{n}\binom{n}{k}=(1+1)^n=2^n,\;\sum_{k=0}^{n}\binom{n}{k}j^k=(1+j)^n\;\mbox{et}\;\sum_{k=0}^{n}\binom{n}{k}j^{2k}
+=(1+j^2)^n.$$
+
+En additionnant ces trois égalités, on obtient
+
+$$\sum_{k=0}^{n}\binom{n}{k}(1+j^k+j^{2k})=2^n+(1+j)^n+(1+j^2)^n.$$
+
+Maintenant,
+\begin{itemize}
+\item[-] si $k\in3\Nn$, il existe $p\in\Nn$ tel que $k=3p$ et $1+j^k+j^{2k}=1+(j^3)^p+(j^3)^{2p}=3$ car $j^3=1$.
+\item[-] si $k\in3\Nn+1$, il existe $p\in\Nn$ tel que $k=3p+1$ et $1+j^k+j^{2k}=1+j(j^3)^p+j^2(j^3)^{2p}=1+j+j^2=0$
+\item[-] si $k\in3\Nn+2$, il existe $p\in\Nn$ tel que $k=3p+2$ et
+$1+j^k+j^{2k}=1+j^2(j^3)^p+j^4(j^3)^{2p}=1+j^2+j=0$.
+\end{itemize}
+
+Finalement, $\sum_{k=0}^{n}\binom{n}{k}(1+j^k+j^{2k})=3\sum_{k=0}^{E(n/3)}\binom{n}{3k}$. Par suite,
+
+\begin{align*}
+\sum_{k=0}^{E(n/3)}\binom{n}{3k}&=\frac{1}{3}(2^n+(1+j)^n+(1+j^2)^n)=\frac{1}{3}(2^n+2\Re((1+j)^n))\\
+ &=\frac{1}{3}(2^n+2\Re((-j^2)^n))=\frac{1}{3}(2^n+2\cos\frac{n\pi}{3})
+\end{align*}
+
+\item  Pour $1\leq k\leq n$, on a
+
+$$k\binom{n}{k}=k\frac{n!}{k!(n-k)!}=n\frac{(n-1)!}{(k-1)!((n-1)-(k-1))!}=k\binom{n-1}{k-1}.$$
+
+\item  $\binom{2n}{n}$ est le coefficient de $x^n$ dans le développement de $(1+x)^{2n}$. Mais d'autre part ,
+
+$$(1+x)^{2n}=(1+x)^n(1+x)^n=(\sum_{k=0}^{n}\binom{n}{k}x^k)(\sum_{k=0}^{n}\binom{n}{k}x^k).$$
+
+Dans le développement de cette dernière expression, le coefficient de $x^n$ vaut $\sum_{k=0}^{n}\binom{n}{k}\binom{n}{n-k}$ ou
+encore $\sum_{k=0}^{n}\binom{n}{k}^2$. Deux polynômes sont égaux si et seulement si ils ont mêmes
+coefficients et donc
+
+$$\binom{2n}{n}=\sum_{k=0}^{n}\binom{n}{k}^2.$$
+
+\item 
+\begin{itemize}
+\item[\textbf{1ère solution.}] Pour $x$ réel, posons $P(x)=\sum_{k=1}^{n}k\binom{n}{k}x^{k-1}$.
+
+Pour $x$ réel, $$P(x)=(\sum_{k=0}^{n}\binom{n}{k}x^{k})'=((1+x)^n)'=n(1+x)^{n-1}.$$
+
+En particulier, pour $x=1$, on obtient~:
+
+$$\sum_{k=1}^{n}k\binom{n}{k}=n(1+1)^{n-1}=n2^{n-1}.$$
+
+\item[\textbf{2ème solution.}] D'après 4),
+
+$$\sum_{k=1}^{n}k\binom{n}{k}=\sum_{k=1}^{n}n\binom{n-1}{k-1}=n\sum_{k=0}^{n-1}\binom{n-1}{k}=n(1+1)^{n-1}=n2^{n-1}.$$
+\end{itemize}
+
+\begin{itemize}
+\item[\textbf{1ère solution.}] Pour $x$ réel, posons $P(x)=\sum_{k=0}^{n}\binom{n}{k}\frac{x^{k+1}}{k+1}$. On a
+
+$$P'(x)=\sum_{k=0}^{n}\binom{n}{k}x^k=(1+x)^n,$$
+
+et donc, pour $x$ réel,
+
+$$P(x)=P(0)+\int_{0}^{x}P'(t)\;dt=\int_{0}^{1}(1+t)^n\;dt=\frac{1}{n+1}((1+x)^{n+1}-1).$$
+
+En particulier, pour $x=1$, on obtient
+
+$$\sum_{k=0}^{n}\frac{\binom{n}{k}}{k+1}=\frac{2^{n+1}-1}{n+1}.$$
+
+\item[\textbf{2ème solution.}] D'après 4), $(n+1)\binom{n}{k}=(k+1)\binom{n+1}{k+1}$ et donc
+
+$$\sum_{k=0}^{n}\frac{\binom{n}{k}}{k+1}=\sum_{k=0}^{n}\frac{\binom{n+1}{k+1}}{n+1}=\frac{1}{n+1}\sum_{k=1}^{n+1}\binom{n+1}{k}
+=\frac{1}{n+1}((1+1)^{n+1}-1)=\frac{2^{n+1}-1}{n+1}.$$
+\end{itemize}
+
+\item  Pour $1\leq k\leq n-p$, $\binom{p+k}{p}=\binom{p+k+1}{p+1}-\binom{p+k}{p+1}$ (ce qui reste vrai pour $k=p$ en tenant
+compte de $\binom{p}{p+1}=0$). Par suite,
+
+\begin{align*}
+\sum_{k=0}^{n-p}\binom{p+k}{p}&=1+\sum_{k=1}^{n-p}\binom{p+k+1}{p+1}-\binom{p+k}{p+1}=1+\sum_{k=2}^{n-p+1}\binom{p+k}{p+1}
+-\sum_{k=1}^{n-p}\binom{p+k}{p+1}\\
+ &=1+\binom{n+1}{p+1}-1=\binom{n+1}{p+1}.
+\end{align*}
+
+Interprétation dans le triangle de \textsc{Pascal}. Quand on descend dans le triangle de \textsc{Pascal}, le long de la
+colonne $p$, du coefficient $\binom{p}{p}$ (ligne $p$) au coefficient $\binom{p}{n}$ (ligne $n$), et que l'on additionne ces
+coefficients, on trouve$\binom{n+1}{p+1}$ qui se trouve une ligne plus bas et une colonne plus loin.
+
+\item 
+\begin{enumerate}
+\item Pour $n$ naturel donné, posons $I_n=\int_{0}^{1}(1-x^2)^n\;dx$. Une intégration par parties fournit:
+
+\begin{align*}
+I_n-I_{n+1}&=\int_{0}^{1}((1-x^2)^n-(1-x^2)^{n+1})\;dx=\int_{0}^{1}x^2(1-x^2)^n\;dx=\int_{0}^{1}x.x(1-x^2)^{n+1}\;dx\\
+ &=\left[-x\frac{(1-x^2)^{n+1}}{2(n+1)}\right]_{0}^{1}+\frac{1}{2(n+1)}\int_{0}^{1}(1-x^2)^{n+1}\;dx
+=\frac{1}{2(n+1)}I_{n+1}
+\end{align*}
+
+et donc $2(n+1)(I_n-I_{n+1})=I_{n+1}$ ou encore~:
+
+$$\forall n\in\Nn,\;(2n+3)I_{n+1}=2(n+1)I_n.$$
+
+On a déjà $I_0=1$. Puis, pour $n\geq1$,
+
+\begin{align*}
+I_n=\frac{2n}{2n+1}I_{n-1}=\frac{2n}{2n+1}\frac{2n-2}{2n-1}...\frac{2}{3}I_0=\frac{(2n)(2n-2)...2}{(2n+1)(2n-1)...3
+.1}.
+\end{align*}
+
+\item Pour $n$
+naturel non nul donné~:
+
+\begin{align*}
+1-\frac{\binom{n}{1}}{3}+\frac{\binom{n}{2}}{5}+...+(-1)^n\frac{\binom{n}{n}}{2n+1}&=\int_{0}^{1}(1-\binom{n}{1}x^2+\binom{n}{2}x^4+...
++(-1)^n\binom{n}{n}x^{2n})\;dx\\
+ &=\int_{0}^{1}(1-x^2)^n\;dx=I_n
+=\frac{(2n)(2n-2)...2}{(2n+1)(2n-1)...3.1}.
+\end{align*}
+
+\end{enumerate}
+\end{enumerate}
+\fincorrection
+\correction{005138}
+La formule du binôme de \textsc{Newton} fournit
+
+$$(a-b+2c)^9=\sum_{k=0}^{9}\binom{9}{k}(a-b)^k(2c)^{9-k}=(a-b)^9+...+\binom{9}{6}(a-b)^6(2c)^3+...+(2c)^9.$$
+
+Ensuite,
+
+$$(a-b)^6=\sum_{k=0}^{6}\binom{6}{k}a^k(-b)^{6-k}=a^6-...+\binom{6}{4}a^4b^2-..+b^6.$$
+
+Le coefficient cherché est donc
+
+$$\binom{9}{6}\binom{6}{4}2^3=\frac{9.8.7}{3.2}\frac{6.5}{2}.2^3=3.4.7.3.5.8=10080.$$
+\fincorrection
+\correction{005139}
+ $$(a+b+c+d)^2=a^2+b^2+c^2+d^2+2(ab+ac+ad+bc+bd+cd)$$ et
+
+$$(a+b+c)^3=a^3+b^3+c^3+3(a^2b+ab^2+a^2c+ac^2+b^2c+bc^2)+6abc.$$
+\fincorrection
+\correction{005140}
+Soit $n$ un entier naturel non nul. Le terme général du développement de $(a+b)^n$ est $u_k=\binom{n}{k}a^kb^{n-k}$, $0\leq
+k\leq n$. Pour $0\leq k\leq n-1$, on a~:
+
+$$\frac{u_{k+1}}{u_k}=\frac{\binom{n}{k+1}a^{k+1}b^{n-k-1}}{\binom{n}{k}a^kb^{n-k}}=\frac{n-k}{k+1}\frac{a}{b}.$$
+
+Par suite,
+
+$$\frac{u_{k+1}}{u_k}>1\Leftrightarrow\frac{n-k}{k+1}\frac{a}{b}>1\Leftrightarrow(n-k)a>(k+1)b\Leftrightarrow k<\frac{na-b}{a+b}.$$
+
+\begin{itemize}
+\item[1er cas.] Si $\frac{na-b}{a+b}>n-1$ (ce qui équivaut à $n<\frac{a}{b}$), alors la suite $(u_k)_{0\leq k\leq n}$
+est strictement croissante et le plus grand terme est le dernier~:~$a^n$.
+
+\item[2ème cas.] Si $\frac{na-b}{a+b}\leq0$ (ce qui équivaut à $n\leq\frac{b}{a}$), alors la suite $(u_k)_{0\leq k\leq
+n}$ est strictement décroissante et le plus grand terme est le premier~:~$b^n$.
+
+\item[3ème cas.] Si $0<\frac{na-b}{a+b}\leq n-1$. Dans ce cas, la suite est strictement croissante puis éventuellement
+momentanément constante, suivant que $\frac{na-b}{a+b}$ soit un entier ou non, puis strictement décroissante (on dit
+que la suite u est unimodale).
+
+Si $\frac{na-b}{a+b}\notin\Nn$, on pose $k=E(\frac{na-b}{a+b})+1$, la suite $u$ croit strictement jusqu'à ce rang
+puis redécroit strictement. Le plus grand des termes est celui d'indice $k$, atteint une et une seule fois.
+
+Si $\frac{na-b}{a+b}\in\Nn$, le plus grand des termes est atteint deux fois à l'indice $k$ et à l'indice $k+1$.
+\end{itemize}
+\fincorrection
+\correction{005141}
+Pour $n\geq3$,
+\begin{align*}
+\binom{n}{1}+\binom{n}{2}+\binom{n}{2}=5n&\Leftrightarrow n+\frac{n(n-1)}{2}+\frac{n(n-1)(n-2)}{6}=5n\\
+ &\Leftrightarrow n(-24+3(n-1)+(n-1)(n-2))=0\Leftrightarrow n^2-25=0\\
+ &\Leftrightarrow n=5.
+\end{align*}
+\fincorrection
+\correction{005142}
+\begin{enumerate}
+\item  Soit $n\geq3$.
+
+$$\sum_{i=3}^{n}i=\frac{(3+n)(n-2)}{2}=\frac{(n-2)(n+3)}{2}.$$
+
+Soit $n\in\Nn^*$.
+
+$$\sum_{i=1}^{n}(2i-1)=\frac{(1+(2n-1))n}{2}=n^2$$
+
+et
+
+$$\sum_{k=4}^{n+1}(3k+7)=\frac{(19+3n+10)(n-2)}{2}=\frac{1}{2}(3n+29)(n-2)=\frac{1}{2}(3n^2+23n-58).$$
+
+\item  Soit $n\in\Nn^*$. Posons $u_n=1,\underbrace{11...1}_n$. On a
+
+$$u_n=1+\sum_{k=1}^{n}\frac{1}{10^k}=1+\frac{1}{10}\frac{1-\frac{1}{10^n}}{1-\frac{1}{10}}
+=1+\frac{1}{9}(1-\frac{1}{10^n})=\frac{10}{9}-\frac{1}{9.10^n}.$$
+
+Quand $n$ tend vers $+\infty$, $\frac{1}{9.10^n}$ tend vers $0$, et donc, $u_n$ tend vers $\frac{10}{9}$.
+\begin{center}
+\shadowbox{
+$1,11111....=\frac{10}{9}.$
+}
+\end{center}
+
+Soit $n\in\Nn^*$. Posons $u_n=0,\underbrace{99...9}_n$. On a
+
+$$u_n=\sum_{k=1}^{n}\frac{9}{10^k}=\frac{9}{10}\frac{1-\frac{1}{10^n}}{1-\frac{1}{10}}
+=1-\frac{1}{10^n}.$$
+
+Quand $n$ tend vers $+\infty$, $\frac{1}{10^n}$ tend vers $0$, et donc, $u_n$ tend vers $1$.
+\begin{center}
+\shadowbox{
+$0,9999....=1.$
+}
+\end{center}
+
+\item  Soit $n\in\Nn^*$. Posons $u_n=\underbrace{1-1+1-...+(-1)^{n-1}}_n$.  On a
+
+$$u_n=\sum_{k=0}^{n-1}(-1)^k=\frac{1-(-1)^n}{1-(-1)}=\frac{1}{2}(1-(-1)^n)=\left\{
+\begin{array}{l}
+0\;\mbox{si}\;n\;\mbox{est pair}\\
+1\;\mbox{si}\;n\;\mbox{est impair}
+\end{array}
+\right..$$
+
+\item  Soit $n\in\Nn^*$.
+$\sum_{k=1}^{n}\frac{1}{2^k}=\frac{1}{2}\frac{1-\frac{1}{2^n}}{1-\frac{1}{2}}=1-\frac{1}{2^n}$. Quand $n$ tend vers
+$+\infty$, on obtient
+\begin{center}
+\shadowbox{
+$\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+...=1.$
+}
+\end{center}
+\item  Soit $n\in\Nn$.
+
+\begin{align*}
+\sum_{k=0}^{n}\cos\frac{k\pi}{2}&=\Re(\sum_{k=0}^{n}e^{ik\pi/2})(=\Re(\sum_{k=0}^{n}i^k))\\
+ &=\Re(\frac{1-e^{(n+1)i\pi/2}}{1-e^{i\pi/2}})=\Re(\frac{e^{i(n+1)\pi/4}}{e^{i\pi/4}}\frac{-2i\sin\frac{(n+1)\pi}{4}}
+ {-2i\sin\frac{\pi}{4}})=\sqrt{2}\sin\frac{(n+1)\pi}{4}\cos\frac{n\pi}{4}\\
+ &=\frac{1}{\sqrt{2}}\sin\frac{(2n+1)\pi}{4}+\frac{1}{2}
+=\left\{
+\begin{array}{l}
+1\;\mbox{si}\;n\in4\Nn\cup(4\Nn+1)\\
+0\;\mbox{si}\;n\in(4\Nn+2)\cup(4\Nn+3)
+\end{array}
+\right.
+\end{align*}
+
+En fait, on peut constater beaucoup plus simplement que $\cos0+\cos\frac{\pi}{2}+\cos\pi+\cos\frac{3\pi}{2}=1+0-1+0=0$,
+on a immédiatement $S_{4n}=1$, $S_{4n+1}=S_{4n}+0=1$, $S_{4n+2}=S_{4n+1}-1=0$ et $S_{4n+3}=S_{4n+2}+0=0$.
+\item  Soient $n\in\Nn$ et $\theta\in\Rr$. Posons $C_n=\sum_{k=0}^{n}\cos(k\theta)$ et
+$S_n=\sum_{k=0}^{n}\sin(k\theta)$. Alors, d'après la formule de \textsc{Moivre},
+
+$$C_n+iS_n=\sum_{k=0}^{n}(\cos(k\theta)+i\sin(k\theta))=\sum_{k=0}^{n}e^{ik\theta}=\sum_{k=0}^{n}(e^{i\theta})^k.$$
+
+\begin{itemize}
+\item[\textbf{- 1er cas.}] Si $\theta\notin2\pi\Zz$, alors $e^{i\theta}\neq1$. Par suite,
+
+$$C_n+iS_n=\frac{1-e^{i(n+1)\theta}}{1-e^{i\theta}}=e^{i\theta(n+1-1)/2}\frac{-2i\sin\frac{(n+1)\theta}{2}}{-2i\sin
+\frac{\theta}{2}}=e^{in\theta/2}\frac{\sin\frac{(n+1)\theta}{2}}{\sin
+\frac{\theta}{2}}.$$
+
+Par suite,
+
+$$C_n=\Re(C_n+iS_n)=\frac{\cos\frac{n\theta}{2}\sin\frac{(n+1)\theta}{2}}{\sin\frac{\theta}{2}}\;\mbox{et}\;S_n=\Im(C_
+n+iS_n)=\frac{\sin\frac{n\theta}{2}\sin\frac{(n+1)\theta}{2}}{\sin\frac{\theta}{2}}.$$
+
+\item[\textbf{- 2ème cas.}] Si $\theta\in2\pi\Zz$, on a immédiatement $C_n=n+1$ et $S_n=0$.
+\end{itemize}
+
+Finalement,
+\begin{center}
+\shadowbox{
+$\forall n\in\Nn,\;\sum_{k=0}^{n}\cos(k\theta)=
+\left\{
+\begin{array}{l}
+\frac{\cos\frac{n\theta}{2}\sin\frac{(n+1)\theta}{2}}{\sin\frac{\theta}{2}}\;\mbox{si}\;\theta\notin2\pi\Zz\\
+n+1\;\mbox{si}\;\theta\in2\pi\Zz
+\end{array}
+\right.
+\;\text{et}\;\sum_{k=0}^{n}\sin(k\theta)=
+\left\{
+\begin{array}{l}
+\frac{\sin\frac{n\theta}{2}\sin\frac{(n+1)\theta}{2}}{\sin\frac{\theta}{2}}\;\mbox{si}\;\theta\notin2\pi\Zz\\
+0\;\mbox{si}\;\theta\in2\pi\Zz
+\end{array}
+\right.
+.$
+}
+\end{center}
+
+\item  Soient $x\in[0,1]$ et $n\in\Nn^*$. Puisque $-x\neq1$, on a
+
+\begin{align*}
+S_n'(x)&=\sum_{k=1}^{n}(-1)^{k-1}x^{k-1}=\sum_{k=0}^{n-1}(-x)^{k}=\frac{1-(-x)^{n}}{1-(-x)}=\frac{1}{1+x}(1-(-x)^{n}).
+\end{align*}
+
+Par suite,
+
+$$S_n(x)=S_n(0)+\int_{0}^{x}S_n'(t)\;dt=\int_{0}^{x}\frac{1-(-t)^{n}}{1+t}\;dt=\int_{0}^{x}\frac{1}{1+t}\;dt-
+\int_{0}^{x}\frac{(-t)^{n}}{1+t}\;dt=\ln(1+x)-\int_{0}^{x}\frac{(-t)^{n}}{1+t}\;dt.$$
+
+Mais alors,
+
+$$|S_n(x)-\ln(1+x)|=\left|\int_{0}^{x}\frac{(-t)^{n}}{1+t}\;dt\right|\leq\int_{0}^{x}
+\left|\frac{(-t)^{n}}{1+t}\right|\;dt=\int_{0}^{x}\frac{t^n}{1+t}\;dt
+\leq\int_{0}^{x}t^{n}dt=\frac{x^{n+1}}{n+1}\leq\frac{1}{n+1}.$$
+
+Comme $\frac{1}{n+1}$ tend vers $0$ quand $n$ tend vers $+\infty$, on en déduit que
+\begin{center}
+\shadowbox{
+$\forall x\in[0,1],\;\lim_{n\rightarrow +\infty}\sum_{k=1}^{n}(-1)^{k-1}x^{k-1}=\ln(1+x).$
+}
+\end{center}
+En particulier, 
+\begin{center}
+\shadowbox{$\ln2=\lim_{n\rightarrow +\infty}(1-\frac{1}{2}+\frac{1}{3}-...+\frac{(-1)^{n-1}}{n})$}.
+\end{center}
+
+\item 
+
+\begin{enumerate}
+\item Soit $n\in\Nn$. $u_{n+1}-3=2u_n-6=2(u_n-3)$. La suite $(u_n-3)_{n\in\Nn}$ est donc une suite géométrique, de
+raion $q=2$ et de premier terme $u_0-3=-2$. On en déduit que, pour $n$ enteir naturel donné, $u_n-3=-2.2^n$. Donc,
+
+$$\forall n\in\Nn,\;u_n=3-2^{n+1}.$$
+
+\item Soit $n\in\Nn$.
+
+$$\sum_{k=0}^{n}u_k=\sum_{k=0}^{n}3-2\sum_{k=0}^{n}2^k=3(n+1)-2\frac{2^{n+1}-1}{2-1}=-2^{n+2}+3n+5.$$
+\end{enumerate}
+\end{enumerate}
+
+\fincorrection
+\correction{005143}
+\begin{enumerate}
+\item  Pour tout naturel non nul $k$, on a $\frac{1}{k(k+1)}=\frac{(k+1)-k}{k(k+1)}=\frac{1}{k}-\frac{1}{k+1}$,
+et donc
+
+$$\sum_{k=1}^{n}\frac{1}{k(k+1)}=\sum_{k=1}^{n}(\frac{1}{k}-\frac{1}{k+1})=1-\frac{1}{n+1}=\frac{n}{n+1}.$$
+
+Pour tout naturel non nul $k$, on a
+$\frac{1}{k(k+1)(k+2)}=\frac{1}{2}\frac{(k+2)-k}{k(k+1)(k+2)}=\frac{1}{2}(\frac{1}{k(k+1)}-\frac{1}{(k+1)(k+2)})$,
+et donc
+
+$$\sum_{k=1}^{n}\frac{1}{k(k+1)(k+2)}=\frac{1}{2}\sum_{k=1}^{n}(\frac{1}{k(k+1)}-\frac{1}{(k+1)(k+2)})=\frac{1}{2}(
+\frac{1}{2}-\frac{1}{(n+1)(n+2)})=
+\frac{n(n+3)}{4(n+1)(n+2)}.$$
+
+\item  Soit $n\in\Nn^*$.
+\begin{itemize}
+\item[\textbf{- Calcul de} $\bf{S_1}$.] Posons $P_1=aX^2+bX+c$. On a
+
+$$P_1(X+1)-P_1(X)=a((X+1)^2-X^2)+b((X+1)-X)=2aX+(a+b).$$
+
+Par suite,
+
+\begin{align*}
+P_1(X+1)-P_1(X)=X&\Leftrightarrow 2a=1\;\mbox{et}\;a+b=0\Leftrightarrow a=\frac{1}{2}\;\mbox{et}\;b=-\frac{1}{2}\\
+ &\Leftarrow
+P_1=\frac{X^2}{2}-\frac{X}{2}=\frac{X(X-1)}{2}.
+\end{align*}
+
+Mais alors,
+
+$$\sum_{k=1}^{n}k=\sum_{k=1}^{n}(P_1(k+1)-P_1(k))=P_1(n+1)-P_1(1)=\frac{n(n+1)}{2}.$$
+
+\item[\textbf{- Calcul de} $\bf{S_2}$.] Posons $P_2=aX^3+bX^2+cX+d$. On a
+
+$$P_2(X+1)-P_2(X)=a((X+1)^3-X^3)+b((X+1)^2-X^2)+c((X+1)-X)=3aX^2+(3a+2b)X+a+b+c.$$
+
+Par suite,
+
+\begin{align*}
+P_2(X+1)-P_2(X)=X^2&\Leftrightarrow 3a=1\;\mbox{et}\;3a+2b=0\;\mbox{et}\;a+b+c=0\Leftrightarrow
+a=\frac{1}{3}\;\mbox{et}\;b=-\frac{1}{2}\;\mbox{et}\;c=\frac{1}{6}\\
+ &\Leftarrow P_2=\frac{X^3}{3}-\frac{X^2}{2}+\frac{X}{6}=\frac{X(X-1)(2X-1)}{6}.
+\end{align*}
+
+Mais alors,
+
+$$\sum_{k=1}^{n}k^2=\sum_{k=1}^{n}(P_2(k+1)-P_2(k))=P_2(n+1)-P_2(1)=\frac{n(n+1)(2n+1)}{6}.$$
+
+\item[\textbf{- Calcul de} $\bf{S_3}$.] Posons $P_3=aX^4+bX^3+cX^2+dX+e$. On a
+
+\begin{align*}
+P_3(X+1)-P_3(X)&=a((X+1)^4-X^4)+b((X+1)^3-X^3)+c((X+1)^2-X^2)+d((X+1)-X)\\
+ &=4aX^3+(6a+3b)X^2+(4a+3b+2c)X+a+b+c+d.
+\end{align*}
+
+Par suite,
+
+\begin{align*}
+P_3(X+1)-P_3(X)=X^3&\Leftrightarrow4a=1,\;6a+3b=0,\;4a+3b+2c=0\;\mbox{et}\;a+b+c+d=0\\
+ &\Leftrightarrow
+a=\frac{1}{4},\;b=-\frac{1}{2},\;c=\frac{1}{4}\;\mbox{et}\;d=0\\
+ &\Leftarrow P_3=\frac{X^4}{4}-\frac{X^3}{2}+\frac{X^2}{4}=\frac{X^2(X-1)^2}{4}.
+\end{align*}
+
+Mais alors,
+
+$$\sum_{k=1}^{n}k^3=\sum_{k=1}^{n}(P_3(k+1)-P_3(k))=P_3(n+1)-P_3(1)=\frac{n^2(n+1)^2}{4}.$$
+
+\item[\textbf{- Calcul de} $\bf{S_4}$.] Posons $P_4=aX^5+bX^4+cX^3+dX^2+eX+f$. On a
+
+\begin{align*}
+P_4(X+1)-P_4(X)&=a((X+1)^5-X^5)+b((X+1)^4-X^4)+c((X+1)^3-X^3)+d((X+1)^2-X^2)\\
+ &\;+e((X+1)-X)\\
+ &=5aX^4+(10a+4b)X^3+(10a+6b+3c)X^2+(5a+4b+3c+2d)X+a+b+c+d+e.
+\end{align*}
+
+Par suite,
+
+\begin{align*}
+P_4(X+1)-P_4(X)=X^4&\Leftrightarrow5a=1,\;10a+4b=0,\;10a+6b+3c=0,\;5a+4b+3c+2d=0\\
+ &\;\;\mbox{et}\;a+b+c+d+e=0\\
+ &\Leftrightarrow
+a=\frac{1}{5},\;b=-\frac{1}{2},\;c=\frac{1}{3},\;d=0\;\mbox{et}\;e=-\frac{1}{30}\\
+ &\Leftarrow P_4=\frac{X^5}{5}-\frac{X^4}{2}+\frac{X^3}{3}-\frac{X}{30}=\frac{X(X-1)(6X^3-9X^2+X+1)}{30}.
+\end{align*}
+
+Mais alors,
+
+$$\sum_{k=1}^{n}k^4=\sum_{k=1}^{n}(P_4(k+1)-P_4(k))=P_4(n+1)-P_4(1)=\frac{n(n+1)(6n^3+9n^2+n-1)}{30}.$$
+\end{itemize}
+\begin{center}
+\shadowbox{
+\begin{tabular}{c}
+$\forall n\in\Nn^*$,\\
+$\sum_{k=1}^{n}k=\frac{n(n+1)}{2},\;\sum_{k=1}^{n}k^2=\frac{n(n+1)(2n+1)}{6},\;
+\sum_{k=1}^{n}k^3=\frac{n^2(n+1)^2}{4}=\left(\sum_{k=1}^{n}k\right)^2$\\
+$\text{et}\;\sum_{k=1}^{n}k^4=\frac{n(n+1)(6n^3+9n^2+n-1)}{30}$.
+\end{tabular}
+}
+\end{center}
+
+\item  Soit $n\in\Nn^*$.
+
+On rappelle que 
+\begin{center}
+\shadowbox{
+$\forall(a,b)\in]0,+\infty[^2,\;\Arctan a-\Arctan b=\Arctan\frac{a-b}{1+ab}.$
+}
+\end{center}
+
+Soit alors $k$ un entier naturel non nul. On a
+
+$$\Arctan\frac{1}{k^2+k+1}=\Arctan\frac{(k+1)-k}{1+k(k+1)}=\Arctan(k+1)-\Arctan k.$$
+
+Par suite,
+
+$$\sum_{k=1}^{n}\Arctan\frac{1}{k^2+k+1}=\sum_{k=1}^{n}(\Arctan(k+1)-\Arctan
+k)=\Arctan(n+1)-\Arctan1=\Arctan(n+1)-\frac{\pi}{4}.$$
+
+\item  Soit $n\in\Nn^*$.
+
+Pour $k$ entier naturel non nul donné, on a
+
+$$\Arctan\frac{2}{k^2}=\Arctan\frac{(k+1)-(k-1)}{1+(k-1)(k+1)}=\Arctan(k+1)-\Arctan(k-1).$$
+
+Par suite,
+
+\begin{align*}
+\sum_{k=1}^{n}\Arctan\frac{2}{k^2}&=\sum_{k=1}^{n}(\Arctan(k+1)-\Arctan
+(k-1))=\sum_{k=1}^{n}\Arctan(k+1)-\sum_{k=1}^{n}\Arctan(k-1)\\
+ &=\sum_{k=2}^{n+1}\Arctan k-\sum_{k=0}^{n-1}\Arctan k=\Arctan(n+1)+\Arctan n-\Arctan1-\Arctan0\\
+ &=\Arctan(n+1)+\Arctan n-\frac{\pi}{4}.
+\end{align*}
+
+\end{enumerate}
+
+\fincorrection
+\correction{005144}
+\begin{enumerate}
+\item  Soit $n$ un entier supérieur ou égal à $2$. Parmi les $n^2$ couples $(i,j)$ tels que $1\leq i,j\leq n$, il y
+en a $n$ tels que $i=j$ et donc $n^2-n=n(n-1)$ tels que $1\leq i,j\leq n$ et $i\neq j$. Comme il y a autant de couples
+$(i,j)$ tels que $i>j$ que de couples $(i,j)$ tels que $i<j$, il y a $\frac{n(n-1)}{2}$ couples $(i,j)$ tels que $1\leq
+i<j\leq n$. Finalement,
+$$\sum_{1\leq i<j\leq n}^{}1=\frac{n(n-1)}{2}.$$
+
+\item  Soit $n\in\Nn^*$.
+
+$$\sum_{1\leq i,j\leq n}^{}j=\sum_{j=1}^{n}\left(\sum_{i=1}^{n}j\right)=\sum_{j=1}^{n}nj=n\sum_{j=1}^{n}j=n.\frac{n(n+1)}{2}
+=\frac{n^2(n+1)}{2}.$$
+
+Soit $n$ un entier supérieur ou égal à $2$.
+
+\begin{align*}
+\sum_{1\leq i<j\leq
+n}^{}j&=\sum_{j=2}^{n}\left(\sum_{i=1}^{j-1}j\right)=\sum_{j=2}^{n}(j-1)j=\sum_{j=2}^{n}j^2-\sum_{j=2}^{n}j\\
+ &=(\frac{n(n+1)(2n+1)}{6}-1)-(\frac{n(n+1)}{2}-1)=\frac{n(n+1)}{2}(\frac{2n+1}{3}-1)\\
+ &=\frac{n(n+1)^2}{6}.
+\end{align*}
+
+\item  Soit $n\in\Nn^*$.
+
+$$\sum_{1\leq i,j\leq n}^{}ij=(\sum_{1\leq i\leq n}^{}i)(\sum_{1\leq j\leq n}^{}j)=\frac{n^2(n+1)^2}{4}.$$
+
+\item  Soit $n\in\Nn^*$.
+
+$$\sum_{1\leq h,k\leq
+n}^{}h^2k^2=\sum_{h=1}^{n}(h^2\sum_{k=1}^{n}k^2)=(\sum_{k=1}^{n}k^2)(\sum_{h=1}^{n}h^2)=\left(\frac{n(n+1)(2n+1)}{6}\right)^
+2.$$
+
+Comme d'autre part, $\sum_{h=1}^{n}h^4=\sum_{k=1}^{n}k^4=\frac{n(n+1)(6n^3+9n^2+n-1)}{30}$, on a
+
+$$\sum_{1\leq h,k\leq
+n}^{}h^4=\sum_{h=1}^{n}(\sum_{k=1}^{n}h^4)=\sum_{h=1}^{n}nh^4=n\sum_{h=1}^{n}h^4=\frac{n^2(n+1)(6n^3+9n^2+n-1)}{30},$$
+
+et bien sûr $\sum_{1\leq h,k\leq
+n}^{}k^4=\frac{n^2(n+1)(6n^3+9n^2+n-1)}{30}$. Par suite,
+
+\begin{align*}
+u_n&=\frac{1}{n^5}\left(2.5\frac{n^2(n+1)(6n^3+9n^2+n+14)}{30}-18\frac{n^2(n+1)^2(2n+1)^2}{36}\right)\\
+ &=\frac{1}{n^5}(2n^6-2n^6+n^5(\frac{15}{3}-\frac{12}{2})+\mbox{termes de degré au plus}\;4)\\
+ &=-1+\mbox{termes tendant vers}\;0
+\end{align*}
+
+Par suite,
+
+$$\lim_{n\rightarrow +\infty}u_n=-1.$$
+
+\end{enumerate}
+\fincorrection
+\correction{005145}
+\begin{enumerate}
+\item  Soit $n\in\Nn^*$.
+
+\begin{align*}
+\prod_{k=1}^{n}(1+\frac{1}{k})&=\prod_{k=1}^{n}\frac{k+1}{k}=\frac{\prod_{k=1}^{n}(k+1)}{\prod_{k=1}^{n}k}=\frac{(n+1)!}
+{n!}=n+1
+\end{align*}
+
+\item  Soit $a\in]0,\pi[$ et $n\in\Nn^*$. Alors, pour tout naturel non nul $k$, on a
+$0<\frac{a}{2^k}\leq\frac{a}{2}<\frac{\pi}{2}$ et donc $\sin\frac{a}{2^k}\neq0$.
+
+On sait alors que pour tout réel $x$, $\sin(2x)=2\sin x\cos x$. Par suite, pour tout naturel $k$,
+
+$$\sin(2.\frac{a}{2^k})=2\sin\frac{2^k}\cos\frac{a}{2^k}\quad\mbox{et donc}\quad
+\cos\frac{a}{2^k}=\frac{\sin(a/2^{k-1})}{2\sin(a/2^k)}.$$
+
+Mais alors,
+
+\begin{align*}
+\prod_{k=1}^{n}\cos\frac{a}{2^k}&=\prod_{k=1}^{n}\frac{\sin(a/2^{k-1})}{2\sin(a/2^k)}=\frac{1}{2^n}\frac{\prod_{k=1}^{n
+}\sin(a/2^{k-1})}{\prod_{k=1}^{n}\sin(a/2^{k})}
+ =\frac{1}{2^n}\frac{\prod_{k=0}^{n-1}
+\sin(a/2^{k})}{\prod_{k=1}^{n}\sin(a/2^{k})}
+=\frac{\sin a}{2^n\sin(a/2^n)}.
+\end{align*}
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

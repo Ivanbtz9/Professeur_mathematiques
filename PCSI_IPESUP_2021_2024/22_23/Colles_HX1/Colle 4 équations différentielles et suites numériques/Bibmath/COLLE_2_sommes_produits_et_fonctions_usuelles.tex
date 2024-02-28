@@ -1,0 +1,118 @@
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge COLLE 2 sommes produits et fonctions usuelles}}\end{center}
+
+% Exercice 451
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Somme et somme des carrés
+\vskip0.2cm
+Soit $n\geq 1$ et $x_1,\dots,x_n$ des réels vérifiant 
+$$\sum_{k=1}^n x_k=n\textrm{ et }\sum_{k=1}^n x_k^2=n.$$
+Démontrer que, pour tout $k$ dans $\{1,\dots,n\}$, $x_k=1$.
+
+
+% Exercice 462
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Une somme
+\vskip0.2cm
+Soient $n,p$ des entiers naturels avec $n\geq p$. Démontrer que
+$$\sum_{k=p}^n \dbinom{k}{p}=\dbinom{n+1}{p+1}.$$
+
+
+% Exercice 463
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Somme avec des nombres complexes
+\vskip0.2cm
+Calculer $(1+i)^{4n}$. En déduire les valeurs de 
+$$\sum_{p=0}^{2n}(-1)^p \dbinom{4n}{2p}\textrm{ et }\sum_{p=0}^{2n-1}(-1)^p \dbinom{4n}{2p+1}.$$
+
+
+% Exercice 3048
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Périodicité
+\vskip0.2cm
+Soit $\alpha\in\mathbb R$ et $f$ la fonction définie sur $\mathbb R$ par $f(x)=\cos(x)+\cos(\alpha x)$. On veut démontrer que $f$ est périodique si et seulement si $\alpha\in\mathbb Q$.
+\begin{enumerate}
+\item On suppose que $\alpha=p/q\in\mathbb Q$. Démontrer que $f$ est périodique.
+\item On suppose que $\alpha\notin\mathbb Q$. Résoudre l'équation $f(x)=2$. En déduire que $f$ n'est pas périodique.
+\end{enumerate}
+
+
+% Exercice 372
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Simplifier!
+\vskip0.2cm
+Soit $f$ la fonction définie par 
+$$f(x)=\arcsin\left(2x\sqrt{1-x^2}\right).$$
+\begin{enumerate}
+\item Quel est l'ensemble de définition de $f$?
+\item En posant $x=\sin t$, simplifier l'écriture de $f$.
+\end{enumerate}
+
+
+% Exercice 381
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - Polynômes de Chebychev
+\vskip0.2cm
+Pour $n\in\mathbb N$, on pose $f_n(x)=\cos(n\arccos x)$ et $g_n(x)=\frac{\sin(n \arccos x)}{\sqrt{1-x^2}}$.
+Prouver que $f_n$ et $g_n$ sont des fonctions polynomiales.
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{http://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=25215
+\end{document}

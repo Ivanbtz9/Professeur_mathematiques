@@ -1,0 +1,168 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage{diagbox}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{thm-def}{Théorème/Définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\notni}{\not\owns}
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+
+
+
+\begin{document}
+	
+\lhead{Lycée Maurice Genevoix}\chead{}\rhead{Année~2021-2022}\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{\textbf{Tourner la page S.V.P.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\hfill\\[-0.7cm]
+$$	\fbox{\text{\Large{ \sc Activités d'introduction aux Probabilités}}}$$
+
+\hfill\\[-0.5cm]
+
+\begin{exo}\textbf{"Maximum de deux dés"}\hfill\\[0.25cm]
+	On lance deux dés équilibrés à six faces numérotés de $1$ à $6$: un dé bleu et un dé rouge. On note le résultat du lancer sous la forme d'un couple.\\
+	 Par exemple (2 ; 5) signifie que l'on a obtenu le $2$ avec le dé bleu et $5$ avec le dé rouge (\textit{mettre des couleurs si besoin}).\\[0.5cm]
+	\textbf{QUESTIONS:}
+	
+	\begin{enumerate}
+		\item 
+		\begin{enumerate}
+			\item Combien de couples différents peut-on obtenir ? 
+			\item Quelle est la probabilité d'obtenir le couple (3 ; 5) et le couple (6 ; 6) ?
+		\end{enumerate}
+		\item On s'intéresse à l'expérience aléatoire suivante:\\[0.25cm]
+		Après avoir lancé ces deux dés, on observe la valeur maximale des faces supérieures obtenues. Le couple (2 ; 5) donne ainsi un maximum de 5 et le couple (6 ; 6) donne ainsi un maximum de 6. \\[-0.25cm]
+		\begin{enumerate}
+			\item  Remplir en \textbf{Annexe 1} le tableau associé à cette expérience aléatoire. 
+			\item Quelles sont les issues de cette expérience aléatoire, en déduire l'univers \large{$\Omega$} \normalsize associé à cette expérience aléatoire
+			\item En utilisant les questions précédentes, associer à chacune des issues possibles la probabilité qui lui correspond. 
+			%\item Donner un exemple d'un évènement certain pour cette expérience aléatoire. 
+			%\item Donner un exemple d'un évènement impossible pour cette expérience aléatoire.
+		\end{enumerate}
+		
+	\end{enumerate}
+\bigskip	  
+\end{exo}
+
+\begin{exo}\textbf{"Notion d'évènements"}\hfill\\[0.25cm]
+	Dans un verger, trois variétés de pommes sont cultivées: des Golden Délicious ($50 \%$ de la production), des Gala ($30 \%$ de la production) et des Granny Smith. Malheureusement, ces variétés sont sensibles à une maladie appelée Tavelure. La Tavelure affecte $6\%$ des pommiers Golden, $4\%$ des Gala et $7\%$ des Granny Smith. \\[0.1cm]
+	
+	On choisit un pommier et on note:\\
+	\begin{itemize}[$\square$]
+		\item D l'évènement \textit{"Le pommier est de variété Golden Délicious"}
+		\item G l'évènement \textit{"Le pommier est de variété Gala"}
+		\item S l'évènement \textit{"Le pommier est de variété Granny Smith"}
+		\item U l'évènement \textit{"Le pommier n'est pas atteint de Tavelure"}
+		\item T l'évènement \textit{"Le pommier est atteint de Tavelure"}
+	\end{itemize}
+	\hfill \\
+	\textbf{QUESTIONS:}
+	
+	
+	\begin{enumerate}
+		\item Remplir le tableau présent en \textbf{Annexe 2}.
+		\item À partir de l'évènement T, on peut définir l'évènement contraire de l'évènement T, on le note $\overline{T}$.\\ Ainsi $\overline{T} = U$. 
+		\begin{enumerate}
+			\item Donner les valeurs de $P(T)$ et de $P(\overline{T})$.  
+			\item En déduire une relation entre $P(T)$ et de $P(\overline{T})$
+		\end{enumerate}
+		\item À partir du tableau en \textbf{Annexe 2} :
+		\begin{enumerate}
+			\item Déterminer les probabilités $P(T \cap D)$, $P(\overline{T} \cap D)$ et $P(\overline{D} \cap T)$. 
+			\item Interpréter les trois probabilités précédentes dans le contexte. En déduire $P(T \cup D)$.
+			\item Comparer $P(T) + P(D)$ et $P(T \cup D) + P(T \cap D)$. Que remarque-t-on?
+		\end{enumerate}
+		
+	\end{enumerate}	  
+\end{exo}
+
+\newpage
+\lhead{Lycée Le Maurice Genevoix}\chead{}\rhead{Année~2021-2022}\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{\textbf{FIN.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+\subsection*{Annexe 1:}
+\hfill\\
+\begin{center}
+		\setlength{\extrarowheight}{0.25cm}
+	\begin{tabular*}{0.7\linewidth}{@{\extracolsep{\stretch{0.5}}}|c|c|c|c|c|c|c|}
+		\hline
+		\diagbox{D\'{e} rouge}{D\'{e} bleu} & 
+		1 & 2 & 3 & 4 & 5 & 6 \\ 
+		\hline
+		1   & 1 &  & & &5 & \\[0.2cm] \hline
+		2 &  2 &   &  & & & \\[0.2cm] \hline
+		3    &  3 &  & & & &  \\[0.2cm] \hline
+		4    &  &   &  & & &  \\[0.2cm] \hline
+		5    &  &   &  & & &  \\[0.2cm] \hline
+		6    &  & 6  &  & & &  \\[0.2cm] \hline
+	\end{tabular*}
+\end{center}
+\hfill\\
+\subsection*{Annexe 2:}
+\hfill\\
+\begin{center}
+	\setlength{\extrarowheight}{0.25cm}
+	\begin{tabular*}{0.7\linewidth}{@{\extracolsep{\stretch{0.5}}}|c|c|c|c|c|}
+		\hline
+		\diagbox{Maladie}{Vari\'{e}t\'{e}} & 
+		D & G & S & TOTAL  \\ 
+		\hline
+		U   &  &  & & \\[0.2cm] \hline
+		T &  0.03 &   &  & \\[0.2cm] \hline
+		TOTAL    & 0.5  &  & &  1 \\[0.2cm] \hline
+	
+	\end{tabular*}
+\end{center}
+	
+
+\end{document}

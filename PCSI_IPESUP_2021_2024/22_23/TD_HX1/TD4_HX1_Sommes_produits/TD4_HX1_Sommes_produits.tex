@@ -1,0 +1,755 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.25cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/5}\rfoot{PCSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+ 	
+	
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 4 :  Sommes et produits }}
+	\end{minipage}
+}
+\bigskip
+
+%https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/algebre/calculalgebrique&type=fexo
+\raggedright
+
+\section*{Sommes et produits classiques:}\hfill\\%[-0.25cm]
+
+
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+\subsection*{Exemples de sommes et de produits}		
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Calculer les sommes suivantes pour $n\in\N$.
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item$ \quad\mathlarger\sum\limits_{k=0}^{n}k(3k+1)$
+			\item$ \quad\mathlarger\sum\limits_{k=0}^{n} \frac{2^{k-1}}{3^{k+1}}$
+			\item$ \quad\mathlarger\sum\limits_{k=0}^{n}(-1)^kk$
+			\item$ \quad\mathlarger\sum\limits_{k=0}^{n}k(k+1)(k-1)$
+		\end{enumerate}
+		  
+	\end{multicols}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Simplifier les produits suivants:
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item $\mathlarger\prod\limits_{k=1}^{n}\sqrt{k(k+1)}$
+			\item$\mathlarger\prod\limits_{k=1}^{n}(-5)^{k^2-k}$
+		\end{enumerate}
+	\end{multicols}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Montrer en raisonnant par récurrence que\\ pour tout $ n\in\N^*$
+	$$\sum\limits_{k=1}^{2n} \frac{(-1)^{k-1}}{k} \ = \ \sum\limits_{k=1}^{n} \frac{1}{n+k} $$ 
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Calculer $\mathlarger\sum\limits_{k=2}^{n-1} \frac{3^k}{2^{2k-1}}$ pour tout     $n\in\N,~n\geq 3$\\ \quad\\
+	
+	En déduire:  
+	$$\lim\limits_{n \rightarrow +\infty} ~\sum\limits_{k=2}^{n-1} \frac{3^k}{2^{2k-1}} $$
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+	
+
+
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Soient $n \geq 1$ un entier et $a \in \C$. Calculer la somme et le
+	produit des racines $n$-ièmes de $a$.
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Soit $z$ un nombre complexe de module~$\rho$, d'argument~$\theta$. Calculer
+	
+	\centering$(z+\bar{z})(z^2+\bar{z}^2) \cdots (z^n+\bar{z}^n)
+	$
+	
+	\raggedright en fonction de~$\rho$ et de~$\theta$.
+	
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	%\begin{enumerate}
+	%\item 
+	Calculer le produit $\mathlarger\prod\limits_{k=1}^{n}\frac{2k-1}{2k}$.
+	%\item Calculer le produit $\mathlarger\prod\limits_{k=1}^{n}\frac{1+k(k+1)+i}{1+k(k+1)-i}$.
+	%\end{enumerate}	
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	\begin{enumerate}
+
+		
+		\item  Calculer les nombres suivants:
+		
+		 $\bullet \ \ 1,1111...=\lim_{n\rightarrow +\infty}1,\underbrace{111...1}_n$ 
+		 
+		$ \bullet \ \  0,9999...=\lim_{n\rightarrow +\infty}0,\underbrace{999...9}_n$
+		
+		\item Calculer $\underbrace{1-1+1-...+(-1)^{n-1}}_n$,
+		$n\in\N^*$.
+		
+
+		\item Soient $n\in\N$ et $\theta\in\R$.
+		
+		 Calculer $\sum\limits_{k=0}^{n}\cos(k\theta)$ et
+		$\sum\limits_{k=0}^{n}\sin(k\theta)$.
+		
+		\item  Pour $x\in[0,1]$ et $n\in\N^*$, on pose
+		$$S_n=\sum_{k=1}^{n}(-1)^{k-1}\frac{x^k}{k}$$ Déterminer $\lim\limits_{n\rightarrow +\infty}S_n$.
+		
+		\item  On pose $u_0=1$ et, pour $n\in\N$, $u_{n+1}=2u_n-3$.
+		\begin{enumerate}
+			\item Calculer la suite $(u_n-3)_{n\in\N}$.
+			\item Calculer $\sum_{k=0}^{n}u_k$.
+		\end{enumerate}
+	\end{enumerate}
+
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	 Soient $n \in \N^*$ et $x \in \ ]0 , \frac{\pi}{2}[$. Calculer la
+	somme $\displaystyle \sum_{k=0}^{n-1} \cos^k (x) \cos(kx)$.
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+\end{minipage}
+\end{minipage}
+
+\raggedright
+
+\begin{minipage}[t]{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Soit $n \in \mathbb{N}^{*}$,
+			calculer $\displaystyle\sum_{k=0}^{n}{\sin^{3}(kx)}$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+			\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		Soit $n \in \mathbb{N}^{*}$, calculer $S_n=\sum\limits_{k=n}^{3n}\min(k,2n)$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $(a,b) \in \mathbb{R}^2$ avec $b \neq 0$. Calculer
+			$$ C = \displaystyle\sum_{k=0}^{n}{\cosh(a+kb)} \text{ et } S = \displaystyle\sum_{k=0}^{n}{\sinh(a+kb)}$$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+
+			\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+		En utilisant la formule de la progression géométrique et la
+		dérivation, calculer, pour $x$ réel et $n$ dans $\N^*$:
+	
+		\centering$\displaystyle\sum_{k=0}^{n}kx^k$
+		
+		\raggedright Pour $|x| < 1$, déterminer la limite de la somme
+		précédente lorsque $n$ tend vers $+\infty$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+		
+		\subsection*{Coefficients binomiaux, binôme de Newton}	
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			\begin{enumerate}
+				\item Rappeler la formule du binôme de Newton et calculer $\sum_{k=0}^{n}\binom{n}{k}$
+				\item Soit $n\geq1$ un entier. Exprimer les sommes suivantes $S_1 = \binom{n}{0}+\binom{n}{2}+\binom{n}{4}+...$ et $S_2 = \binom{n}{1}+\binom{n}{3}+\binom{n}{5}+...$ à l'aide du symbole $\sum$ et de la fonction partie entière.
+				
+				\noindent Vérifier que $S_1 = S_2 = 2^{n-1}$. 
+			\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		
+		Pour $n$ dans $\N$, $x$ dans $\R$, donner une expression simple
+		de : $\displaystyle\sum\limits_{k=0}^{n}{ {n \choose k}\frac{x^{k+1}}{k+1}}$.
+		
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			Calculer $\displaystyle\sum\limits_{k=0}^{n}{k^2 {n \choose k}}$.
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+	\raggedright
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Donner des expressions simples de:\\[0.2cm]
+			
+			\centering$\displaystyle\sum\limits_{k=0}^{n}{ {n \choose k}(-1)^k\cos(kx)}$, \quad$\displaystyle\sum\limits_{k=0}^{n}{ {n \choose k}(-1)^k\sin(kx)}$.
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			Calculer les sommes\\[0.4cm]
+			
+			\centering$\displaystyle\mathlarger\sum\limits_{\underset{k\equiv0[3]}{k=0}}^{n}{ {n \choose k}},\quad \mathlarger\sum\limits_{k=0}^{n}{ {n \choose 
+					2k}(-1)^k},\quad \mathlarger\sum\limits_{k=0}^{n}{ {2n+1 \choose 2k+1}t^{2k+1}}.$
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Montrer que $\binom{n}{0}^2 +\binom{n}{1}^2 + ... +\binom{n}{n}^2 =\binom{2n}{n}$
+			
+			 (utiliser le polynôme $(1+x)^{2n}$).
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Calculer les sommes\quad  $\displaystyle\mathlarger\sum\limits_{\underset{k\equiv0[4]}{k=0}}^{n}{ {n \choose k}}$
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+		\subsection*{Sommes et produits télescopiques}
+		
+	
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+		Calculer $\sum_{k=1}^n k\cdot k!$.
+		
+		
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+				\begin{enumerate}
+				\item (*) Calculer $\prod_{k=1}^{n}(1+\frac{1}{k})$, $n\in\N^*$.
+				\item (***) Calculer $\prod_{k=1}^{n}\cos\frac{a}{2^k}$, $a\in]0,\pi[$, $n\in\N^*$.
+			\end{enumerate}
+			
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+
+	
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			Montrer que $\binom{p}{p}+\binom{p+1}{p}... +\binom{n}{p}=\binom{n+1}{p+1}$ où $0\leq p\leq n$. Donner un interprétation dans le triangle de \textsc{Pascal}~?
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		
+		\begin{enumerate}
+			\item Déterminer une suite $(u_k)$ telle que, pour tout $k\geq 0$, on ait
+			
+			\centering$u_{k+1}-u_k=(k+2) 2^k.$
+			
+			\raggedright
+			\item En déduire $\sum_{k=0}^{n}(k+2)2^k.$
+		\end{enumerate}
+		
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+	
+		
+	\end{minipage}
+\end{minipage}
+
+
+
+
+
+
+\begin{minipage}[c]{1\linewidth}
+	\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			\begin{enumerate}
+				\item Si $n$ est dans $\N^*$, simplifier:
+				
+				\centering$\displaystyle\sum\limits_{k=1}^{n}{\ln\left(1+\dfrac{1}{k}\right)}$.
+				
+				\raggedright Quelle est la limite de cette expression lorsque $n$ tend vers $+\infty$?
+				
+				\item Si $n$ est un entier $n \geq 2$, simplifier :
+				
+				\centering$\displaystyle\sum\limits_{k=2}^{n}{\ln\left(1-\dfrac{1}{k^2}\right)}$.
+				
+				\raggedright Quelle est la limite de cette expression lorsque $n$ tend vers $+\infty$?
+			\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Déterminer trois réels $a, b, c$ tels que :\quad\\[0.25cm]
+			
+			\centering$\forall x\in\R\backslash\{0,-1,-2\},\ \dfrac{1}{x(x+1)(x+2)} = \dfrac{a}{x} + \dfrac{b}{x+1} + \dfrac{c}{x+2}$\quad\\[0.25cm]
+			
+			Donner pour $n$ dans $\N^*$, une expression simple de\quad\\[0.25cm]
+			
+			\centering$ U_n = \displaystyle\sum\limits_{k=1}^{n}{\dfrac{1}{k(k+1)(k+2)}}$.\quad\\[0.25cm]
+			
+			\raggedright Donner la limite de $(U_n)_{n\geq 1}$ lorsque $n$ tend vers $+\infty$?
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			
+			\begin{enumerate}
+				\item Pour $x\in\R$ étudier la quantité $x^3-(x-1)^3$ et retrouver l'expression simple de\quad\\[0.25cm]
+				
+				\centering$ \displaystyle\sum\limits_{k=1}^{n}{k^2}$.
+				
+				\raggedright
+				\item Adapter cette méthode pour calculer :\quad\\[0.25cm]
+				
+				\centering$ \displaystyle\sum\limits_{k=1}^{n}{k^3}$.
+				
+				
+			\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+			\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			
+			Calculer les sommes suivantes 
+			\begin{enumerate}
+				\item $ \displaystyle\sum\limits_{k=0}^{n}{\dfrac{k}{(k+1)!}}$
+				\item $ \displaystyle\sum\limits_{k=1}^{n}{\dfrac{1}{\sqrt{k+1} + \sqrt{k}}}$ 
+			\end{enumerate}
+		
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	
+	\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	
+		\begin{enumerate}
+			\item  Montrer pour $k\geq2$ que : $\dfrac{1}{k^2}\leq \dfrac{1}{k-1}- \dfrac{1}{k}$
+			 \item En déduire que la suite  \ $ \left(\displaystyle\sum\limits_{k=1}^{n}{\dfrac{1}{k^2}}\right)_{n\geq1}$ converge.
+		\end{enumerate}
+		
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			Soit $x$ un nombre réel non multiple
+			entier de $\pi$. En remarquant que :\quad\\[0.25cm]
+			
+			\centering
+			
+			$\forall y\in\R, \ \sin(2y)= 2\sin(y)\cos(y)$\quad\\[0.25cm]
+			
+		
+			
+			\raggedright simplifier, pour $n$ dans $\N^*$, le produit :\quad\\[0.25cm]
+			
+			\centering$ P_n(x) = \displaystyle\prod\limits_{k=1}^{n}{\cos\left(\dfrac{x}{2^k}\right)}$.\quad\\[0.25cm]
+			
+			\raggedright En utilisant, après l’avoir justifiée, la relation \quad\\[0.25cm]
+			
+			\centering$ \dfrac{\sin u}{u} \underset{u \rightarrow 0}{\longrightarrow} 1$\quad\\[0.25cm]
+			
+			\raggedright donner la limite de $P_n(x)$ lorsque $n$ tend vers $+\infty$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Pour $n$ dans $\N^*$, soit:\quad\\[0.25cm]
+			
+			\centering
+			
+			$u_n= \sqrt{2+\sqrt{2+\sqrt{2+...+\sqrt{2}}}}$ \quad ($n$ radicaux)\quad\\[0.25cm]
+			
+			\begin{enumerate}
+				\item Montrer : \quad $\forall n\in\N^*,$ \ $u_n = 2\cos\left(\dfrac{\pi}{2^{n+1}}\right)$
+				\item Pour $n$ dans $\N^*$, on pose :\quad\\[0.25cm]
+				
+				\centering$ v_n = \displaystyle\prod\limits_{k=1}^{n}{u_k}$.\quad\\[0.25cm]
+				
+				\raggedright Montrer que: \quad\\[0.25cm]
+				
+				\centering$ \dfrac{v_n}{2^n} \underset{n \rightarrow +\infty}{\longrightarrow} \dfrac{2}{\pi}$\quad\\[0.35cm]
+				
+				\raggedright Cette formule a été découverte par Viète (1593), elle donne une expression de $\pi$ comme « produit infini ».
+			\end{enumerate}
+			
+			\raggedright
+			
+	
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			Soient $(a_n)_{n\in\mathbb N}$ et $(B_n)_{n\in\mathbb N}$ deux suites de nombres complexes. On définit deux suites $(A_n)_{n\in\mathbb N}$ et $(b_n)_{n\in\mathbb N}$ en posant :
+			$$A_n=\sum_{k=0}^n a_k,\quad\quad b_n=B_{n+1}-B_n.$$
+			\begin{enumerate}
+				\item Démontrer que $\sum_{k=0}^n a_kB_k=A_n B_n-\sum_{k=0}^{n-1}A_kb_k.$
+				\item En déduire la valeur de $\sum_{k=0}^n 2^kk$.
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+\newpage
+\section*{Sommes et produits doubles:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+		
+				
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Calculer les sommes doubles suivantes :
+			\begin{enumerate}
+				\item $\sum_{1\leq i,j\leq n}ij$.
+				\item $\sum_{1\leq i\leq j\leq n}\frac ij$.
+			\end{enumerate}
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+				
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Pour $n\in\mathbb N$, on note
+	$$a_n=\sum_{k=1}^n k,\ b_n=\sum_{k=1}^n k^2\textrm{ et }c_n=\sum_{k=1}^n k^3.$$
+	Pour cet exercice,
+	
+	 on admettra que $\displaystyle a_n=\frac{n(n+1)}2$,
+	  que $\displaystyle b_n=\frac{n(n+1)(2n+1)}6$ et que $c_n=a_n^2$.\quad\\[0.2cm]
+	\begin{enumerate}
+		\item Calculer $\displaystyle \sum_{1\leq i\leq j\leq n} ij$.
+		\item  Calculer $\displaystyle \sum_{i=1}^n\sum_{j=1}^n \min(i,j)$.
+	\end{enumerate}
+	
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+
+				
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			Calculer de deux manières différentes la somme $$\displaystyle\sum_{i=1}^{n}{\displaystyle\sum_{j = 1}^{i}{2^i}}$$
+			En déduire la valeur de $\displaystyle\sum_{i=1}^{n}{i2^i}$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Calculer $$\displaystyle\sum_{1 \leq i,j \leq n}{\max(i,j)}$$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			
+			Calculer $$\displaystyle\sum_{k=0}^{n}{\displaystyle\sum_{l=0}^{n}{2^{2k-l}}}$$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Montrer, pour tout entier $n \geq 2$,
+			$$\sum_{k=1}^{n-1}{H_k}=n H_n - n$$
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+
+		
+		
+	\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+		
+		Soit $x \in \mathbb{R}$ tel que $x \neq 0 [2 \pi]$ et $n \in \mathbb{N}^{*}$
+		\begin{enumerate}
+			\item Calculer et simplifier $D_n(x) = \displaystyle\sum_{k=-n}^{n}{e^{ikx}}$
+			\item Calculer et simplifier $F_n(x) = \dfrac{1}{n} \displaystyle\sum_{k=0}^{n-1}{D_k(x)}$
+		\end{enumerate}
+		
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+	\begin{enumerate}
+		\item Soit $I_n=\int_{0}^{1}(1-x^2)^n\;dx$. Trouver une relation de récurrence liant $I_n$ et $I_{n+1}$ et en déduire
+		$I_n$ en fonction de $n$ 
+		
+		(faire une intégration par parties dans $I_n-I_{n+1}$).
+		\item Démontrer l'identité valable pour
+		$n\geq1$~:~$1-\frac{\binom{n}{1}}{3}+\frac{\binom{n}{2}}{5}+...+(-1)^n\frac{\binom{n}{n}}{2n+1}
+		=\frac{2.4.....(2n)}{1.3...(2n+1)}$.
+	\end{enumerate}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+	\begin{exo}\textbf{(****)}\quad\\[0.2cm]%exercice G du Mansuy
+	
+	%TODO : racines de l'unité, changement d'indice complexe
+	Soit $n \in \mathbb{N}^{*}$, $\omega = e^{\frac{2 i \pi}{n}}$, on pose $Z = \displaystyle\sum_{k=0}^{n}{\omega^{k^2}}$. \\
+	Calculer $|Z|^{2}$
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+	
+
+\end{document}

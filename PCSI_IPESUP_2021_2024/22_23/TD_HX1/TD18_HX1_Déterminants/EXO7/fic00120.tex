@@ -1,0 +1,1046 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+
+\fiche{f00120, rouget, 2010/10/16}
+
+\titre{Déterminants}
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable
+\end{center}
+
+
+\exercice{5635, rouget, 2010/10/16}
+\enonce{005635}{**}
+Soient $A=(a_{i,j})_{1\leqslant i,j\leqslant n}$ une matrice carrée et $B= (b_{i,j})_{1\leqslant i,j\leqslant n}$ où $b_{i,j}=(-1)^{i+j}a_{i,j}$. Calculer $\text{det}(B)$ en fonction de $\text{det}(A)$. 
+\finenonce{005635}
+
+
+\finexercice
+\exercice{5636, rouget, 2010/10/16}
+\enonce{005636}{***I}
+On définit par blocs une matrice $A$ par $A=\left(
+\begin{array}{cc}
+B&D\\
+0&C
+\end{array}
+\right)$ où $A$, $B$ et $C$ sont des matrices carrées de formats respectifs $n$, $p$ et $q$ avec $p+q=n$. Montrer que $\text{det}(A)=\text{det}(B)\times\text{det}(C)$.
+\finenonce{005636}
+
+
+\finexercice
+\exercice{5637, rouget, 2010/10/16}
+\enonce{005637}{***I Déterminants de \textsc{Vandermonde}}
+Soient $x_0$,..., $x_{n-1}$ $n$ nombres complexes. Calculer $\text{Van}(x_0,...,x_{n-1})= \text{det}(x_{j-1}^{i-1})_{1\leqslant i,j\leqslant n}$.
+\finenonce{005637}
+
+
+\finexercice
+\exercice{5638, rouget, 2010/10/16}
+\enonce{005638}{****I Déterminant de \textsc{Cauchy}}
+Soient $a_1$,..., $a_n$, $b_1$,..., $b_n$ $2n$ nombres complexes tels que toutes les sommes $a_i+b_j$, $1\leqslant i,j\leqslant n$, soient non nulles. Calculer $C_n=\text{det}\left(\frac{1}{a_i+b_j}\right)_{1\leqslant i,j\leqslant n}$. Cas particulier : $\forall i\in\llbracket1,n\rrbracket$, $a_i= b_i =i$ (déterminant de \textsc{Hilbert}).
+\finenonce{005638}
+
+
+\finexercice
+\exercice{5639, rouget, 2010/10/16}
+\enonce{005639}{**}
+Résoudre le système $MX = U$ où $M =(j^{i-1})_{1\leqslant i,j\leqslant n}\in M_n(\Rr)$, $U=(\delta_{i,1})_{1\leqslant i\leqslant n}\in M_{n,1}(\Rr)$ et $X$ est un vecteur colonne inconnu.
+\finenonce{005639}
+
+
+\finexercice
+\exercice{5640, rouget, 2010/10/16}
+\enonce{005640}{**}
+Calculer $\text{det}(\sin(a_i+a_j))_{1\leqslant i,j\leqslant n}$ où $a_1$,..., $a_n$ sont $n$ réels donnés ($n\geqslant 2$).
+\finenonce{005640}
+
+
+\finexercice
+\exercice{5641, rouget, 2010/10/16}
+\enonce{005641}{**}
+Calculer $\text{det}(a_i+b_j)_{1\leqslant i,j\leqslant n}$ où $a_1$,..., $a_n$, $b_1$,\ldots, $b_n$ sont $2n$ complexes donnés.
+\finenonce{005641}
+
+
+\finexercice
+\exercice{5642, rouget, 2010/10/16}
+\enonce{005642}{**}
+Calculer $\text{det}((a+i+j)^2)_{1\leqslant i,j\leqslant n}$ où $a$ est un complexe donné.
+\finenonce{005642}
+
+
+\finexercice
+\exercice{5643, rouget, 2010/10/16}
+\enonce{005643}{****}
+Soient $x_1$,..., $x_n$ $n$ entiers naturels tels que $x_1<...<x_n$. A l'aide du calcul de $\text{det}(C_{x_j}^{i-1})_{1\leqslant i,j\leqslant n}$, montrer
+que $\prod_{1\leqslant i,j\leqslant n}^{}\frac{x_j-x_i}{j-i}$ est un entier naturel.
+\finenonce{005643}
+
+
+\finexercice
+\exercice{5644, rouget, 2010/10/16}
+\enonce{005644}{**** Déterminants circulants}
+Soient $a_0$,...,$a_{n-1}$ $n$ nombres complexes. Calculer $\left|
+\begin{array}{ccccc}
+a_0&a_1&\ldots&a_{n-2}&a_{n-1}\\
+a_{n-1}&a_0&\ddots& &a_{n-2}\\
+\vdots&\ddots&\ddots&\ddots&\vdots\\
+a_2& &\ddots&\ddots&a_1\\
+a_1&a_2&\ldots&a_{n-1}&a_0
+\end{array}
+\right|=\text{det}A$.
+Pour cela, on calculera d'abord $A\Omega$ où $\Omega=(\omega^{(j-1)(k-1)})_{1\leqslant j,k\leqslant n}$ avec $\omega=e^{2i\pi/n}$.
+\finenonce{005644}
+
+
+\finexercice
+\exercice{5645, rouget, 2010/10/16}
+\enonce{005645}{**I}
+\begin{enumerate}
+ \item  Soient $a_{i,j}$, $1\leqslant i,j\leqslant n$, $n^2$ fonctions dérivables sur $\Rr$ à valeurs dans $\Cc$. Soit $d=\text{det}(a_{i,j})_{1\leqslant i,j\leqslant n}$.
+
+Montrer que $d$ est dérivable sur $\Rr$ et calculer $d'$.
+
+\item  Application : calculer $d_n(x)=\left|
+\begin{array}{cccc}
+x+1&1&\ldots&1\\
+1&\ddots&\ddots&\vdots\\
+\vdots&\ddots&\ddots&1\\
+1&\ldots&1&x+1
+\end{array}
+\right|$.
+\end{enumerate}
+\finenonce{005645}
+
+
+\finexercice
+\exercice{5646, rouget, 2010/10/16}
+\enonce{005646}{***}
+Soient $A$ et $B$ deux matrices carrées réelles de format $n$. Montrer que le déterminant de la matrice $\left(
+\begin{array}{cc}
+A&-B\\
+B&A
+\end{array}
+\right)$ de format $2n$  est un réel positif.
+\finenonce{005646}
+
+
+\finexercice
+\exercice{5647, rouget, 2010/10/16}
+\enonce{005647}{***}
+Soient $A$, $B$, $C$ et $D$ quatre matrices carrées de format $n$. Montrer que si $C$ et $D$ commutent et si $D$ est inversible alors $\text{det}\left(
+\begin{array}{cc}
+A&B\\
+C&D
+\end{array}
+\right)=\text{det}(AD-BC)$. Montrer que le résultat persiste si $D$ n'est pas inversible.
+\finenonce{005647}
+
+
+\finexercice
+\exercice{5648, rouget, 2010/10/16}
+\enonce{005648}{***}
+Soit $A$ une matrice carrée complexe de format $n$ ($n\geqslant 2$) telle que pour tout élément $M$ de $M_n(\Cc)$, on ait $\text{det}(A+M)=\text{det}A+\text{det}M$. Montrer que $A = 0$.
+\finenonce{005648}
+
+
+\finexercice
+\exercice{5649, rouget, 2010/10/16}
+\enonce{005649}{**I}
+\label{exo:rou15}
+Soient $a_0$, ... , $a_{n-1}$ $n$ nombres complexes et $A=\left(
+\begin{array}{ccccc}
+0&\ldots&\ldots&0&a_0\\
+1&\ddots& &\vdots&a_1\\
+0&\ddots&\ddots&\vdots&\vdots\\
+\vdots&\ddots&\ddots&0&\vdots\\
+0&\ldots&0&1&a_{n-1}
+\end{array}
+\right)$. Calculer $\text{det}(A-xI_n)$.
+\finenonce{005649}
+
+
+\finexercice
+\exercice{5650, rouget, 2010/10/16}
+\enonce{005650}{**}
+Calculer les déterminants suivants :
+
+\begin{enumerate}
+ \item  $\text{det}A$ où $A\in M_{2n}(\Kk)$ est telle que $a_{i,i}= a$ et $a_{i,2n+1-i}=b$ et $a_{i,j}= 0$ sinon.
+
+\item  $\left|\begin{array}{cccccc}
+1&0&\ldots&\ldots&0&1\\
+0&0& & &0&0\\
+\vdots& & & & &\vdots\\
+\vdots& & & & &\vdots\\
+0&0& & &0&0\\
+1&0&\ldots&\ldots&0&1
+\end{array}
+\right|$ \item  $\left|\begin{array}{ccccc}
+1&\ldots& &\ldots&1\\
+\vdots&0&1&\ldots&1\\
+ &1&\ddots&\ddots&\vdots\\
+\vdots&\vdots&\ddots&\ddots&1\\
+1&1&\ldots&1&0
+\end{array}
+\right|$ et $\left|\begin{array}{ccccc}
+0&1&\ldots&\ldots&1\\
+1&\ddots&\ddots& &\vdots\\
+\vdots&\ddots& &\ddots&\vdots\\
+\vdots& &\ddots&\ddots&1\\
+1&\ldots&\ldots&1&0
+\end{array}
+\right|$ $(n\geqslant2$)
+
+\item (I) $\left|\begin{array}{cccc}
+a&b&\ldots&b\\
+b&\ddots&\ddots&\vdots\\
+\vdots&\ddots&\ddots&b\\
+b&\ldots&b&a
+\end{array}
+\right|$ $(n\geqslant2$).
+\end{enumerate}
+\finenonce{005650}
+
+
+\finexercice
+
+\finfiche
+
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005635}
+\textbf{1ère solution.} 
+
+\begin{align*}\ensuremath
+\text{det}B&=\sum_{\sigma\in S_n}^{}\varepsilon(\sigma)b_{\sigma(1),1}...b_{\sigma(n),n}=\sum_{\sigma\in S_n}^{}\varepsilon(\sigma)(-1)^{1+2+...+n+\sigma(1)+...+\sigma(n)}a_{\sigma(1),1}...a_{\sigma(n),n}\\
+ &=\sum_{\sigma\in S_n}^{}\varepsilon(\sigma)(-1)^{2(1+2+...+n)}a_{\sigma(1),1}...a_{\sigma(n),n}=\sum_{\sigma\in S_n}^{}\varepsilon(\sigma)a_{\sigma(1),1}...a_{\sigma(n),n}\\
+ &=\text{det}A.
+\end{align*}
+
+\textbf{2ème solution.} On multiplie les lignes numéros $2$, $4$,... de $B$ par $-1$ puis les colonnes numéros $2$, $4$,... de la matrice obtenue par $-1$. On obtient la matrice $A$ qui se déduit donc de la matrice $B$ par multiplication des lignes ou des colonnes par un nombre pair de $-1$ (puisqu'il y a autant de lignes portant un numéro pair que de colonnes portant un numéro pair). Par suite, $\text{det}(B)=\text{det}(A)$.
+\fincorrection
+\correction{005636}
+Soient $C\in \mathcal{M}_q(\Kk)$ et $D\in\mathcal{M}_{p,q}(\Kk)$. Soit $\begin{array}[t]{cccc}
+\varphi~:&(\mathcal{M}_{p,1}(\Kk))^p&\rightarrow&\Kk\\
+ &(C_1,\ldots,C_p)&\mapsto&\text{det}\left(
+ \begin{array}{cc}
+ X&D\\
+ 0&C
+ \end{array}
+ \right)
+ \end{array}$ où $X=(C_1\ldots C_p)\in\mathcal{M}_p(\Kk)$.
+ 
+
+\textbullet~$\varphi$ est linéaire par rapport à chacune des colonnes $C_1$,\ldots, $C_p$.
+
+\textbullet~Si il existe $(i,j)\in\llbracket1,p\rrbracket^2$ tel que $i\neq j$ et $C_i=C_j$, alors $\varphi(C_1,\ldots,C_p)=0$.
+
+Ainsi, $\varphi$ est une forme $p$-linéaire alternée sur l'espace $\mathcal{M}_{p,1}(\Kk)$ qui est de dimension $p$. On sait alors qu'il existe $\lambda\in\Kk$ tel que $\varphi=\lambda\;\text{det}_{\mathcal{B}_0}$ (où $\text{det}_{\mathcal{B}_0}$ désigne la forme déterminant dans la base canonique de $\mathcal{M}_{p,1}(\Kk)$) ou encore il existe $\lambda\in\Kk$ indépendant de $(C_1,\ldots,C_p)$ tel que $\forall (C_1,\ldots,C_p)\in(\mathcal{M}_{p,1}(\Kk))^p$, $f(C_1,\ldots,C_p)=\lambda\;\text{det}_{\mathcal{B}_0}(C_1,\ldots,C_p)$ ou enfin il existe $\lambda\in\Kk$ indépendant de $X$ tel que $\forall X\in\mathcal{M}_{p}(\Kk)$, $\text{det}\left(
+ \begin{array}{cc}
+ X&D\\
+ 0&C
+ \end{array}
+ \right)=\lambda\;\text{det}(X)$. Pour $X=I_p$, on obtient $\lambda=\text{det}\left(
+ \begin{array}{cc}
+ I_p&D\\
+ 0&C
+ \end{array}
+ \right)$ et donc
+ 
+ \begin{center}
+ $\forall B\in\mathcal{M}_p(\Kk)$, $\text{det}\left(
+ \begin{array}{cc}
+ B&D\\
+ 0&C
+ \end{array}
+ \right)=\text{det}(B)\times\text{det}\left(
+ \begin{array}{cc}
+ I_p&D\\
+ 0&C
+ \end{array}
+ \right)$.
+ \end{center}
+ 
+
+De même, l'application $Y\mapsto\text{det}\left(
+ \begin{array}{cc}
+ I_p&D\\
+ 0&Y
+ \end{array}
+ \right)$ est une forme $q$-linéaire alternée des lignes de $Y$ et donc il existe $\mu\in\Kk$ tel que $\forall Y\in\mathcal{M}_q(\Kk)$, $\text{det}\left(
+ \begin{array}{cc}
+ I_p&D\\
+ 0&Y
+ \end{array}
+ \right)=\mu\;\text{det}(Y)$ puis $Y=I_q$ fournit $\mu=\text{det}\left(
+ \begin{array}{cc}
+ I_p&D\\
+ 0&I_q
+ \end{array}
+ \right)$ et donc 
+ 
+ \begin{center}
+ $\forall B\in\mathcal{M}_p(\Kk)$, $\forall C\in\mathcal{M}_q(\Kk)$, $\forall D\in\mathcal{M}_{p,q}(\Kk)$, $\text{det}\left(
+ \begin{array}{cc}
+ B&D\\
+ 0&C
+ \end{array}
+ \right)=\text{det}(B)\times\text{det}(C)\times\text{det}\left(
+ \begin{array}{cc}
+ I_p&D\\
+ 0&I_q
+ \end{array}
+ \right)=\text{det}(B)\times\text{det}(C)$,
+ \end{center}
+ 
+
+(en supposant acquise la valeur d'un déterminant triangulaire qui peut s'obtenir en revenant à la définition d'un déterminant et indépendamment de tout calcul par blocs).
+
+ \begin{center}
+ \shadowbox{
+ $\forall (B,C,D)\in\mathcal{M}_p(\Kk)\times\mathcal{M}_q(\Kk)\times\mathcal{M}_{p,q}(\Kk)$, $\text{det}\left(
+ \begin{array}{cc}
+ B&D\\
+ 0&C
+ \end{array}
+ \right)=\text{det}(B)\times\text{det}(C)$.
+ }
+ \end{center}
+
+\fincorrection
+\correction{005637}
+Soit $n$ un entier naturel non nul. On note $L_0$, $L_1$,\ldots, $L_n$ les lignes  du déterminant $\text{Van}(x_0,\ldots,x_n)$
+
+A la ligne numéro $n$ du déterminant $\text{Van}(x_0,\ldots,x_n)$,  on ajoute une combinaison linéaire des lignes précédentes du type $L_{n}\leftarrow L_{n}+\sum_{i=0}^{n-1}\lambda_iL_i$. La valeur du déterminant n'a pas changé mais sa dernière ligne s'écrit maintenant $(P(x_0),...,P(x_n))$ où $P$ est un polynôme unitaire de degré $n$. On choisit alors pour
+$P$ (le choix des $\lambda_i$ équivaut au choix de $P$) le polynôme $P=\prod_{i=0}^{n-1}(X-x_i)$ (qui est bien unitaire de degré $n$).
+La dernière ligne s'écrit alors $(0,...,0,P(x_{n+1}))$ et en développant ce déterminant suivant cette dernière ligne, on obtient la relation de récurrence :
+
+\begin{center}
+$\forall n\in\Nn^*,\;\text{Van}(x_0,\ldots,x_n)=P(x_n)\text{Van}(x_0,\ldots,x_{n-1})=\prod_{i=0}^{n-1}(x_n-x_i)\text{Van}(x_0,\ldots,x_{n-1})$.
+\end{center}
+
+En tenant compte de $\text{Van}(x_0)=1$, on obtient donc par récurrence
+
+\begin{center}
+\shadowbox{
+$\forall n\in\Nn^*,\;\forall(x_i)_{0\leqslant i\leqslant n}\in\Kk^n,\;\text{Van}(x_i)_{0\leqslant i\leqslant n-1}=\prod_{0\leqslant i<j\leqslant n-1}^{}(x_j-x_i)$.
+}
+\end{center}
+En particulier, $\text{Van}(x_i)_{0\leqslant i\leqslant n-1}\neq 0$ si et seulement si les $x_i$ sont deux à deux distincts.
+\fincorrection
+\correction{005638}
+Si deux des $a_i$ sont égaux ou deux des $b_j$ sont égaux, $C_n$ est nul car $C_n$ a soit deux lignes identiques, soit deux colonnes identiques.
+
+On suppose dorénavant que les $a_i$ sont deux à deux distincts de même que les $b_j$ (et toujours que les sommes $a_i+b_j$ sont toutes non nulles).
+
+Soit $n\in\Nn^*$. On note $L_1$,\ldots, $L_{n+1}$ les lignes de $C_{n+1}$.
+
+On effectue sur $C_{n+1}$ la transformation $L_{n+1}\leftarrow\sum_{i=1}^{n+1}\lambda_iL_i$ avec $\lambda_{n+1}\neq 0$.
+
+On obtient $C_{n+1}=\frac{1}{\lambda_{n+1}}D_{n+1}$ où $D_{n+1}$ est le  déterminant obtenu en remplaçant la dernière ligne de $C_{n+1}$ par la ligne $(R(b_1),...,R(b_{n+1}))$ avec $R=\sum_{i=1}^{n+1}\frac{\lambda_i}{X+a_i}$. On prend $R=\frac{(X-b_1)\ldots(X-b_n)}{(X+a_1)\ldots(X+a_{n+1})}$. 
+
+\textbullet~Puisque les $-a_i$ sont distincts des $b_j$, $R$ est  irréductible. 
+
+\textbullet~Puisque les $a_i$ sont deux à deux distincts, les pôles de $R$ sont simples.
+
+\textbullet~Puisque $\text{deg}((X-b_1)...(X-b_n))<\text{deg}((X+a_1)...(X+a_{n+1}))$, la partie entière de $R$ est nulle.
+
+$R$ admet donc effectivement une décomposition en éléments simples de la forme $R=\sum_{i=1}^{n+1}\frac{\lambda_i}{X+a_i}$ où $\lambda_{n+1}\neq 0$.
+
+Avec ce choix des $\lambda_i$, la dernière ligne de $D_{n+1}$ s'écrit $(0,...,0,R(b_{n+1}))$ et en développant $D_{n+1}$ suivant sa dernière ligne, on obtient la relation de récurrence : 
+
+\begin{center}
+$\forall n\in\Nn^*,\;C_{n+1}=\frac{1}{\lambda_{n+1}}R(b_{n+1})C_n$.
+\end{center}
+
+Calculons $\lambda_{n+1}$. Puisque $-a_{n+1}$ est un pôle simple de $R$, 
+
+\begin{center}
+$\lambda_{n+1}=\lim{x \rightarrow -a_{n+1}}(x+a_{n+1})R(x)=\frac{(-a_{n+1}-b_1)\ldots(-a_{n+1}-b_n)}{(-a_{n+1}+a_1)\ldots(-a_{n+1}+a_n)}=\frac{(a_{n+1}+b_1)\ldots(a_{n+1}+b_n)}{(a_{n+1}-a_1)\ldots(a_{n+1}-a_n)}$.
+\end{center}
+
+On en déduit que
+
+\begin{center}
+$\frac{1}{\lambda_{n+1}} R(b_{n+1}) =\frac{(a_{n+1}-a_1)\ldots(a_{n+1}-a_n)}{(a_{n+1}+b_1)\ldots(a_{n+1}+b_n)}\frac{(b_{n+1}-b_1)\ldots(b_{n+1}-b_n)}{(b_{n+1}+a_1)\ldots(b_{n+1}+a_n)}$
+\end{center}
+
+puis la relation de récurrence
+
+\begin{center}
+$\forall n\in\Nn^*,\;C_{n+1}=\frac{\prod_{i=1}^{n}(a_{n+1}-a_i)\prod_{i=1}^{n}(b_{n+1}-b_i)}{\prod_{i=n+1\;\text{ou}\;j=n+1}(a_{i}+b_j)}C_n$.
+\end{center}
+
+En tenant compte de $C_1=\frac{1}{a_1+b_1}$, on obtient par récurrence
+
+\begin{center}
+\shadowbox{
+$\text{det}\left(\frac{1}{a_i+b_j}\right)_{1\leqslant i,j\leqslant n}=\frac{\prod_{1\leqslant i<j\leqslant n}^{}(a_j-a_i)\prod_{1\leqslant i<j\leqslant n}^{}(b_j-b_i)}{\prod_{1\leqslant i,j\leqslant n}^{}(a_i+b_j)}=\frac{\text{Van}(a_i)_{1\leqslant i\leqslant n}\times\text{Van}(b_j)_{1\leqslant j\leqslant n}}{\prod_{1\leqslant i,j\leqslant n}^{}(a_i+b_j)}$.   
+}
+\end{center}
+
+(y compris dans les cas particuliers analysés en début d'exercice).
+
+Calcul du déterminant de \textsc{Hilbert}. On est dans le cas particulier où $\forall i\in\llbracket1,n\rrbracket$, $a_i = b_i = i$.
+D'abord
+
+\begin{center}
+$\text{Van}(1,...,n)=\prod_{j=2}^{n}\left(\prod_{i=1}^{j-1}(j-i)\right)=\prod_{j=2}^{n}(j-1)! =\prod_{j=1}^{n-1}i!$.
+\end{center}
+
+Puis $\prod_{1\leqslant i,j\leqslant n}^{}(i+j)=\prod_{i=1}^{n}\left(\prod_{j=1}^{n}(i+j)\right)=\prod_{i=1}^{n}\frac{(i+n)!}{i!}=$   et donc
+
+\begin{center}
+\shadowbox{
+$\forall n\in\Nn^*,\;H_n=\frac{\left(\prod_{i=1}^{n}i!\right)^4}{n!^2\prod_{i=1}^{2n}i!}$.
+}
+\end{center}  
+\fincorrection
+\correction{005639}
+ Le déterminant du système est $\Delta=\text{Van}(1,\ldots,n)\neq0$. Le système proposé est donc un système de \textsc{Cramer}.
+
+Les formules de \textsc{Cramer} donnent : $\forall j\in\llbracket1,n\rrbracket$, $x_j=\frac{\Delta_j}{\Delta}$   où
+
+\begin{align*}\ensuremath
+\Delta_j&=\left|
+\begin{array}{ccccccc}
+1&\ldots&1&1&1&\ldots&1\\
+1& &j-1&0&j+1& &n\\
+\vdots& &\vdots&\vdots&\vdots& &\vdots\\
+ & \\
+ & \\
+\vdots& &\vdots&\vdots&\vdots& &\vdots\\
+1&\ldots&(j-1)^{n-1}&0&(j+1)^{n-1}&\ldots&n^{n-1}
+\end{array}
+\right|\\
+ &= (-1)^{j+1}\left|
+\begin{array}{cccccc}
+1&\ldots&j-1&j+1&\ldots&n\\
+\vdots& &\vdots&\vdots& &\vdots\\
+ & \\
+  & \\
+\vdots& &\vdots&\vdots& &\vdots\\
+1&\ldots&(j-1)^{n-1}&(j+1)^{n-1}&\ldots&n^{n-1}
+\end{array}
+\right|(\text{en développant suivant la}\;j\text{-ème colonne})\\
+  &= (-1)^{j+1}1...(j-1)(j+1)...n\left|
+\begin{array}{cccccc}
+1&\ldots&1&1&\ldots&1\\
+1& &j-1&j+1& &n\\
+\vdots& &\vdots&\vdots& &\vdots\\
+  & \\
+\vdots& &\vdots&\vdots& &\vdots\\
+1&\ldots&(j-1)^{n-2}&(j+1)^{n-2}&\ldots&n^{n-2}
+\end{array}
+\right|(\text{par}\;n-\text{linéarité})\\
+ & = (-1)^{j+1}\frac{n!}{j}\text{Van}(1,...,(j-1),(j+1),...,n) = (-1)^{j+1}\frac{n!}{j}\frac{\text{Van}(1,...,n)}{(j-1)\ldots(j-(j-1))((j+1)-j)\ldots(n-j)}\\
+  &= (-1)^{j+1}\frac{n!}{j!(n-j)!}\text{Van}(1,...,n)=(-1)^{j+1}\dbinom{n}{j}\text{Van}(1,...,n).
+\end{align*}
+
+Finalement,
+
+\begin{center}
+\shadowbox{
+$\forall j\in\llbracket1,n\rrbracket$, $x_j =(-1)^{j+1}\dbinom{n}{j}$.
+}
+\end{center}
+\fincorrection
+\correction{005640}
+On note $C_1$,\ldots, $C_n$ les colonnes du déterminant de l'énoncé puis on pose  $C=(\cos(a_i))_{1\leqslant i\leqslant n}$ et $S=(\sin(a_i))_{1\leqslant i\leqslant n}$.
+
+Pour tout $j\in\llbracket1,n\rrbracket$, $Cj =\sin(a_j)C+\cos(a_j)S$. Ainsi, les colonnes de la matrice proposée sont dans $\text{Vect}(C,S)$ qui est un espace de dimension au plus deux et donc,
+
+\begin{center}
+\shadowbox{
+si $n\geqslant3$, $\text{det}(\sin(a_i+a_j))_{1\leqslant i,j\leqslant n}= 0$.
+}
+\end{center}
+
+Si $n=2$, on a $\left|
+\begin{array}{cc}
+\sin(2a_1)&\sin(a_1+a_2)\\
+\sin(a_1+a_2)&\sin(2a_2)
+\end{array}
+\right|=\sin(2a_1)\sin(2a_2)-\sin^2(a_1+a_2)$.
+\fincorrection
+\correction{005641}
+Soient les vecteurs colonnes $A=(a_i)_{1\leqslant i\leqslant n}$ et $U =(1)_{1\leqslant i\leqslant n}$.
+
+$\forall j\in\llbracket1,n\rrbracket$, $C_j=A +b_jU$. Les colonnes de la matrice proposée sont dans un espace de dimension au plus deux et donc,
+
+\begin{center}
+\shadowbox{
+si $n\geqslant3$, $\text{det}(a_i+b_j)_{1\leqslant i,j\leqslant n}= 0$.
+}
+\end{center}
+
+Si $n=2$, on a $\left|
+\begin{array}{cc}
+a_1+b_1&a_1+b_2\\
+a_2+b_1&a_2+b_2
+\end{array}
+\right|=(a_1+b_1)(a_2+b_2)-(a_1+b_2)(a_2+b_1)=a_1b_2+a_2b_1-a_1b_1-a_2b_2=(a_2-a_1)(b_1-b_2)$.
+\fincorrection
+\correction{005642}
+Pour tout $j\in\llbracket1,n\rrbracket$,
+
+\begin{center}
+$C_j =((a+i+j)^2)_{1\leqslant i\leqslant n}= j^2(1)_{1\leqslant i\leqslant n}+ 2(a+j)(i)_{1\leqslant i\leqslant n}+ (i^2)_{1\leqslant i\leqslant n}$.
+\end{center}
+
+Les colonnes de la matrice proposée sont dans un espace de dimension au plus trois et donc,
+
+\begin{center}
+\shadowbox{
+si $n\geqslant 4$, $\text{det}((a+i+j)^2)_{1\leqslant i,j\leqslant n}= 0$.
+}
+\end{center}
+
+Le calcul est aisé pour $n\in\{1,2,3\}$.
+\fincorrection
+\correction{005643}
+$\frac{x_j-x_i}{j-i}$ est déjà un rationnel strictement positif.
+
+Posons $P_i= 1$ si $i = 1$, et si $i\geqslant2$, $P_i=\frac{X(X-1)\ldots(X-(i-2))}{(i-1)!}$.
+
+Puisque, pour $i\in\llbracket1,n\rrbracket$, $\text{deg}(P_i)=i-1$, on sait que la famille $(P_i)_{1\leqslant i\leqslant n}$ est une base de $\Qq_{n-1}[X]$.
+De plus, pour $i\geqslant 2$, $P_i -\frac{X^{i-1}}{(i-1)!}$ est de degré $i-2$ et est donc combinaison linéaire de $P_1$, $P_2$,..., $P_{i-2}$ ou encore, pour $2\leqslant i\leqslant n$, la ligne numéro $i$ du déterminant $\text{det}\left(C_{x_j}^{i-1}\right)_{1\leqslant i,j\leqslant n}$ est somme de la ligne $\left(\frac{x_j^{i-1}}{(i-1)!}\right)_{1\leqslant j\leqslant n}$ et d'une combinaison linéaire des lignes qui la précède. En partant de la dernière ligne et en remontant jusqu'à la deuxième, on retranche la combinaison linéaire correspondante des lignes précedentes sans changer la valeur du déterminant. On obtient par linéarité par rapport à chaque ligne
+
+\begin{center}
+$\text{det}\left(C_{x_j}^{i-1}\right)_{1\leqslant i,j\leqslant n}=\frac{1}{\prod_{i=1}^{n}(i-1)!}\text{Van}(x_1,...,x_n)=\frac{\prod_{1\leqslant i<j\leqslant n}^{}(x_j-x_i)}{\prod_{1\leqslant i<j\leqslant n}^{}(j-i)}.$
+\end{center}
+
+Finalement,
+
+\begin{center}
+\shadowbox{
+$\prod_{1\leqslant i<j\leqslant n}^{}\frac{x_j-x_i}{j-i}=\text{det}\left(C_{x_j}^{i-1}\right)_{1\leqslant i,j\leqslant n}\in\Nn^*$.
+}
+\end{center}
+\fincorrection
+\correction{005644}
+Le coefficient ligne $j$, colonne $k$, $(j,k)\in\llbracket1,n\rrbracket^2$, de la matrice $A$ vaut $a_{k-j}$ avec la convention : si $-(n-1)\leqslant u\leqslant -1$, $a_u = a_{n+u}$.
+
+Le coefficient ligne $j$, colonne $k$, $(j,k)\in\llbracket1,n\rrbracket^2$, de la matrice  $A\Omega$ vaut 
+
+\begin{align*}\ensuremath
+\sum_{u=1}^{n}a_{u-j}\omega^{(u-1)(k-1)}&=\sum_{v=-(j-1)}^{n-j}a_v\omega^{(v+j-1)(k-1)}=\sum_{v=-(j-1)}^{-1}a_v\omega^{(v+j-1)(k-1)}+\sum_{v=0}^{n-j}a_v\omega^{(v+j-1)(k-1)}\\
+ &=\sum_{v=-(j-1)}^{-1}a_{v+n}\omega^{(v+n+j-1)(k-1)}+\sum_{u=0}^{n-j}a_u\omega^{(u+j-1)(k-1)}\;(\text{car}\;a_{v+n}=a_v\;\text{et}\;\omega^n = 1)\\
+ &=\sum_{u=n-j+1}^{n-1}a_{u}\omega^{(u+j-1)(k-1)}+\sum_{u=0}^{n-j}a_u\omega^{(u+j-1)(k-1)}=\sum_{u=0}^{n-1}a_u\omega^{(u+j-1)(k-1)}\\
+ &=\omega^{(j-1)(k-1)}\sum_{u=0}^{n-1}a_u\omega^{u(k-1)}.
+\end{align*}
+
+Pour $k\in\llbracket1,n\rrbracket$, posons $S_k =\sum_{u=0}^{n-1}a_u\omega^{u(k-1)}$. Le coefficient ligne $j$, colonne $k$ de $A\Omega$ vaut donc $\omega^{(j-1)(k-1)}S_k$. Par passage au détereminant, on en déduit que :
+
+\begin{center}
+$\text{det}(A\Omega)=\text{det}\left(\omega^{(j-1)(k-1)}S_k\right)_{1\leqslant j,k\leqslant n}=\left(\prod_{k=1}^{n}S_k\right)\text{det}(\omega^{(j-1)(k-1)})_{1\leqslant j,k\leqslant n}$
+\end{center}
+
+($S_k$ est en facteur de la colonne $k$) ou encore $(\text{det}A)(\text{det}\Omega)=\left(\prod_{k=1}^{n}S_k\right)(\text{det}\Omega)$. Enfin, $\Omega$ est la matrice de \textsc{Vandermonde} des racines $n$-èmes de l'unité et est donc inversible puisque celles-ci sont deux à deux distinctes. Par suite $\text{det}\Omega\neq0$ et après simplification on obtient
+
+\begin{center}
+\shadowbox{
+$\text{det}A=\prod_{k=1}^{n}S_k$ où $S_k=\sum_{u=0}^{n-1}a_u\omega^{u(k-1)}$.
+}
+\end{center}
+
+Par exemple, $\left|
+\begin{array}{ccc}
+a&b&c\\
+c&a&b\\
+b&c&a
+\end{array}
+\right|=S_1S_2S_3 =(a+b+c)(a+jb+j^2c)(a+j^2b+jc)$ où $j =e^{2i\pi/3}$.
+
+Un calcul bien plus simple sera fourni dans la planche \og Réduction \fg.
+\fincorrection
+\correction{005645}
+\begin{enumerate}
+ \item  $d=\sum_{\sigma\in  S_n}^{}\varepsilon(\sigma)a_{\sigma(1),1}...a_{\sigma(n),n}$ est dérivable sur $\Rr$ en tant que combinaison linéaire de produits de fonctions dérivables sur $\Rr$ et de plus
+
+\begin{align*}\ensuremath
+d'&=\sum_{\sigma\in  S_n}^{}\varepsilon(\sigma)(a_{\sigma(1),1}...a_{\sigma(n),n})'=\sum_{\sigma\in  S_n}^{}\varepsilon(\sigma)\sum_{i=1}^{n}a_{\sigma(1),1}...a_{\sigma(i),i}'\ldots a_{\sigma(n),n}=\sum_{i=1}^{n}\sum_{\sigma\in  S_n}^{}\varepsilon(\sigma)a_{\sigma(1),1}...a_{\sigma(i),i}'\ldots a_{\sigma(n),n}\\
+   &=\sum_{i=1}^{n}\text{det}(C_1,...,C_i',...,C_n)\;(\text{où}\;C_1,...,C_n\;\text{sont les colonnes de la matrice}).
+\end{align*}
+
+\item  \textbf{1 ère solution.} D'après ce qui précède, la fonction $d_n$ est dérivable sur $\Rr$ et pour $n\geqslant 2$ et $x$ réel, on a
+
+\begin{align*}\ensuremath
+d_n'(x)&=\sum_{i=1}^{n}\left|
+\begin{array}{ccccccccc}
+x+1&1&\ldots&1&0&1&\ldots&\ldots&1\\
+1&\ddots&\ddots&\vdots&\vdots&\vdots\\
+\vdots&\ddots&\ddots&1&\vdots\\
+ & &\ddots&x+1&0&\vdots\\
+\vdots& & &1&1&1\\
+ & & &\vdots&0&x+1&\ddots\\
+ & & & &\vdots&1&\ddots&\ddots&\vdots\\
+\vdots& & &\vdots&\vdots&\vdots&\ddots&\ddots&1\\
+1&\ldots&\ldots&1&0&1&\ldots&1&x+1
+\end{array}
+\right|(\text{la colonne particulière est la colonne}\;i)\\
+ &=\sum_{i=1}^{n}d_{n-1}(x)(\text{en développant le}\;i\text{-ème déterminant par rapport à sa}\;i\text{-ème colonne})\\
+ &=nd_{n-1}(x).
+\end{align*}
+
+En résumé, $\forall n\geqslant 2$, $\forall x\in\Rr$, $d_n(x)=nd_{n-1}(x)$. D'autre part $\forall x\in\Rr$, $d_1(x)=x+1$ et $\forall n\geqslant 2$, $d_n(0) = 0$ (déterminant ayant deux colonnes identiques).
+
+Montrons alors par récurrence que 
+$\forall n\geqslant 1$, $\forall x\in\Rr$, $d_n(x) =x^n+nx^{n-1}$.
+
+\textbullet~C'est vrai pour $n=1$.
+
+\textbullet~Soit $n\geqslant1$. Supposons que $\forall n\geqslant 1$, $\forall x\in\Rr$, $d_n(x) =x^n+nx^{n-1}$. Alors, pour $x\in\Rr$,
+
+\begin{center}
+$d_{n+1}(x)=d_{n+1}(0)+\int_{0}^{x}d_{n+1}'(t)\;dt=(n+1)\int_{0}^{x}d_n(t\;dt)=x^{n+1}+(n+1)x^n$.
+\end{center}
+
+On a montré que
+
+\begin{center}
+\shadowbox{
+$\forall n\geqslant 1$, $\forall x\in\Rr$, $d_n(x)=x^n+nx^{n-1}$.
+}
+\end{center}
+
+\textbf{2 ème solution.} $d_n$ est clairement un polynôme de degré $n$ unitaire.
+Pour $n\geqslant 2$, puisque dn(0) = 0 et que $d_n'= nd_{n-1}$, $0$ est racine de $d_n$, $d_n'$, ..., $d_n^{(n-2)}$ et est donc racine d'ordre $n-1$ au moins de $d_n$. 
+Enfin, $d_n(-n)=0$ car la somme des colonnes du déterminant obtenu est nulle.
+Finalement $\forall n\geqslant2$, $\forall x\in\Rr$, $d_n(x) = x^{n-1}(x+n)$ ce qui reste vrai pour $n=1$.
+
+Une variante peut être obtenue avec des connaissances sur la réduction.
+\end{enumerate}
+\fincorrection
+\correction{005646}
+On effectue sur la matrice $\left(
+\begin{array}{cc}
+A&-B\\
+B&A
+\end{array}
+\right)$ les transformations : $\forall j\in\llbracket1,n\rrbracket$, $C_j\leftarrow C_j+iC_{n+j}$ (où $i^2 = -1$) sans modifier la valeur du déterminant. On obtient $\text{det}\left(
+\begin{array}{cc}
+A&-B\\
+B&A
+\end{array}
+\right)=\text{det}\left(
+\begin{array}{cc}
+A-iB&-B\\
+B+iA&A
+\end{array}
+\right)$.
+
+Puis en effectuant les transformations : $\forall j\in\llbracket n+1,2n\rrbracket$, $L_j\leftarrow L_j - iL_{j-n}$, on obtient 
+
+\begin{center}
+$\text{det}\left(
+\begin{array}{cc}
+A&-B\\
+B&A
+\end{array}
+\right)=\text{det}\left(
+\begin{array}{cc}
+A-iB&-B\\
+B+iA&A
+\end{array}
+\right)=\text{det}\left(
+\begin{array}{cc}
+A-iB&-B\\
+0&A+iB
+\end{array}
+\right)=\text{det}(A+iB)\times\text{det}(A-iB)$.
+\end{center}
+
+Comme les matrices $A$ et $B$ sont réelles, $\text{det}(A-iB)=\overline{\text{det}(A+iB)}$ et donc
+
+\begin{center}
+$\text{det}\left(
+\begin{array}{cc}
+A&-B\\
+B&A
+\end{array}
+\right)=|\text{det}(A+iB)|^2\in\Rr^+$.
+\end{center}
+\fincorrection
+\correction{005647}
+Si $D$ est inversible, un calcul par blocs fournit
+ 
+ 
+\begin{center}
+$\left(
+\begin{array}{cc}
+A&B\\
+C&D
+\end{array}
+\right)\left(
+\begin{array}{cc}
+D&0\\
+-C&D^{-1}
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+AD-BC&BD^{-1}\\
+CD-DC&I
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+AD-BC&BD^{-1}\\
+0&I
+\end{array}
+\right)$ (car $C$ et $D$ commutent)
+\end{center}
+
+et donc, puisque
+
+\begin{align*}\ensuremath
+\text{det}\left(\left(
+\begin{array}{cc}
+A&B\\
+C&D
+\end{array}
+\right)\left(
+\begin{array}{cc}
+D&0\\
+-C&D^{-1}
+\end{array}
+\right)\right)&=\text{det}\left(
+\begin{array}{cc}
+A&B\\
+C&D
+\end{array}
+\right)\text{det}\left(
+\begin{array}{cc}
+D&0\\
+-C&D^{-1}
+\end{array}
+\right)=\text{det}\left(
+\begin{array}{cc}
+A&B\\
+C&D
+\end{array}
+\right)\times\text{det}D\times\text{det}D^{-1}\\
+ &=\text{det}\left(
+\begin{array}{cc}
+A&B\\
+C&D
+\end{array}
+\right)
+\end{align*}
+
+et que $\text{det}\left(
+\begin{array}{cc}
+AD-BC&BD^{-1}\\
+0&I
+\end{array}
+\right)=\text{det}(AD-BC)$, on a bien $\text{det}\left(
+\begin{array}{cc}
+A&B\\
+C&D
+\end{array}
+\right)=\text{det}(AD-BC)$ (si $C$ et $D$ commutent).
+
+Si $D$ n'est pas inversible, $\text{det}(D-xI)$ est un polynôme en $x$ de degré $n$ et donc ne s'annule qu'un nombre fini de fois. Par suite, la matrice $D-xI$ est inversible sauf peut-être pour un nombre fini de valeurs de $x$. D'autre part, pour toute valeur de $x$, les matrices $C$ et $D-xI$ commutent et d'après ce qui précède, pour toutes valeurs de $x$ sauf peut-être pour un nombre fini, on a
+
+\begin{center}
+$\text{det}\text{det}\left(
+\begin{array}{cc}
+A&B\\
+C&D
+\end{array}
+\right)=\text{det}(A(D-xI)-BC)$.
+\end{center}
+
+Ces deux expressions sont encore des polynômes en $x$ qui coïncident donc en une infinité de valeurs de $x$ et sont donc égaux. Ces deux polynômes prennent en particulier la même valeur en $0$ et on a montré que
+
+\begin{center}
+si $C$ et $D$ commutent, $\text{det}\left(
+\begin{array}{cc}
+A&B\\
+C&D
+\end{array}
+\right)=\text{det}(AD-BC)$.
+\end{center}
+\fincorrection
+\correction{005648}
+$A = 0$ convient.
+
+Réciproquement, on a tout d'abord $\text{det}(A+A)=\text{det}A+\text{det}A$ ou encore $(2^n-2)\text{det}A=0$ et, puique $n\geqslant2$, $\text{det}A = 0$. Donc,
+
+\begin{center}
+$A\notin GL_n(\Kk)$ et $A$ vérifie : $\forall M\in M_n(\Kk)$, $\text{det}(A+M)=\text{det}M$.
+\end{center}
+
+Supposons $A\neq 0$. Il existe donc une colonne $C_j\neq0$.
+
+La colonne $-C_j$ n'est pas nulle et d'après le théorème de la base incomplète, on peut construire une matrice $M$ inversible dont la $j$-ème colonne est $-C_j$. Puisque $M$ est inversible, $\text{det}M\neq0$ et puisque la $j$-ème colonne de la matrice $A+M$ est nulle, $\text{det}(A+M)= 0$. Pour cette matrice $M$, on a $\text{det}(A+M)\neq\text{det}A +\text{det}M$ et $A$ n'est pas solution du problème. Finalement
+
+\begin{center}
+\shadowbox{
+$(\forall M\in M_n(\Kk)$, $\text{det}(A+M)=\text{det}A+\text{det}M)/lra A = 0$.
+}
+\end{center}
+\fincorrection
+\correction{005649}
+En développant suivant la dernière colonne, on obtient
+
+\begin{center}
+$\text{det}(A-xI_n)=\left|
+\begin{array}{ccccc}
+-x&0&\ldots&0&a_0\\
+1&\ddots&\ddots&\vdots&a_1\\
+0&\ddots&\ddots&0&\vdots\\
+\vdots&\ddots&\ddots&-x&a_{n-1}\\
+0&\ldots&0&1&a_n-x
+\end{array}
+\right|= (-x)^n(a_n-x)+\sum_{k=0}^{n-1}(-1)^{n-k+1}a_k\Delta_k$
+\end{center}
+
+où $\Delta_k=\left|
+\begin{array}{cccccccc}
+-x&0&\ldots&0&\times&\ldots&\ldots&\times\\
+\times&\ddots&\ddots&\vdots&\vdots& & &\vdots\\
+\vdots&\ddots&\ddots&0&\vdots& &  &\vdots\\
+\times&\ldots&\times&-x&\times&\ldots&\ldots&\times\\
+0&\ldots&\ldots&0&1&\times&\ldots&\times\\
+\vdots& & &\vdots&0&\ddots &\ddots&\vdots\\
+\vdots& & &\vdots&\vdots&\ddots&\ddots&\times\\
+0&\ldots&\ldots&0&0&\ldots&0&1\\
+\end{array}
+\right|= (-x)^k1^{n-k}=(-x)^k$ (déterminant par blocs)
+		
+
+Finalement, 
+
+\begin{align*}\ensuremath
+\text{det}(A-xI_n)=(-x)^n(a_n-x) +\sum_{k=0}^{n-1}(-1)^{n-k+1}a_k(-x)^k=(-1)^{n+1}\left(x^{n+1}-\sum_{k=0}^{n}a_kx^k\right).
+\end{align*}
+\fincorrection
+\correction{005650}
+\begin{enumerate}
+ \item  Sans modifier la valeur de $\text{det}A$, on effectue les transformations :$\forall j\in\llbracket1,n\rrbracket$, $C_j\leftarrow C_j+C_{2n+1-j}$.
+
+On obtient alors par linéarité du déterminant par rapport à chacune des $n$ premières colonnes
+
+\begin{center}
+$\text{det}A =(a+b)^p\left|
+\begin{array}{cccccccc}
+1&0&\ldots&0&0&\ldots&0&b\\
+0&\ddots&\ddots&\vdots&\vdots& & &0\\
+\vdots&\ddots&\ddots&0&0& & &\vdots\\
+0&\ldots&0&1&b&0&\ldots&0\\
+0&\ldots&0&1&a&0&\ldots&0\\
+\vdots& & &0&0&\ddots&\ddots&\vdots\\
+0& & &\vdots&\vdots&\ddots&\ddots&0\\
+1&0&\ldots&0&0&\ldots&0&a 
+\end{array}
+\right|$.
+\end{center}
+
+On effectue ensuite les transformations : $\forall i\in\llbracket n+1, 2n\rrbracket$, $L_i\leftarrow L_i - L_{2n+1-i}$ et par linéarité du déterminant par rapport aux $n$ dernières lignes, on obtient
+
+\begin{center}
+$\text{det}A = (a+b)^n(a-b)^n= (a^2-b^2)^n$.
+\end{center}
+
+\item  Ce déterminant a deux colonnes égales et est donc nul.
+
+\item  On retranche la première colonne à toutes les autres et on obtient un déterminant triangulaire : $D_n=(-1)^{n-1}$.
+
+Pour le deuxième déterminant, on ajoute les $n-1$ dernières colonnes à la première puis on met $n-1$ en facteur de la première colonne et on retombe sur le déterminant précédent. On obtient :
+$D_n=(-1)^{n-1}(n-1)$.
+
+\item  On ajoute les $n-1$ dernières colonnes à la première puis on met $a+(n-1)b$ en facteur de la première colonne. On obtient
+
+\begin{center}
+$D_n=(a+(n-1)b)\left|
+\begin{array}{ccccc}
+1&b&\ldots&\ldots&b\\
+\vdots&a&\ddots& &\vdots\\
+ &b&\ddots&\ddots&\vdots\\
+\vdots&\vdots&\ddots&\ddots&b\\
+1&b&\ldots&b&a
+\end{array}
+\right|$.
+\end{center}
+
+On retranche ensuite la première ligne à toutes les autres et on obtient
+
+\begin{center}
+$D_n=(a+(n-1)b)\left|
+\begin{array}{ccccc}
+1&b&\ldots&\ldots&b\\
+0&a-b&0&\ldots&0\\
+\vdots&0&\ddots&\ddots&\vdots\\
+\vdots&\vdots&\ddots&\ddots&0\\
+0&0&\ldots&0&a-b
+\end{array}
+\right|=(a+(n-1)b)(a-b)^{n-1}$.
+\end{center}
+
+\begin{center}
+\shadowbox{
+$\left|\begin{array}{cccc}
+a&b&\ldots&b\\
+b&\ddots&\ddots&\vdots\\
+\vdots&\ddots&\ddots&b\\
+b&\ldots&b&a
+\end{array}
+\right|=(a+(n-1)b)(a-b)^{n-1}$.
+}
+\end{center}
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

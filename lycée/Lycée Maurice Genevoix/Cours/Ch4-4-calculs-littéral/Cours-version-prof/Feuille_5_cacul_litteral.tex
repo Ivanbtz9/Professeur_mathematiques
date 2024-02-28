@@ -1,0 +1,385 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{thm-def}{Théorème/Définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+%\def\di{\displaystyle}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{}\chead{}\rhead{}\lfoot{Chapitre 3 - Cours}\cfoot{\thepage/4}\rfoot{M. Botcazou}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+	$$\fbox{\text{\Large{ Chapitre 4 : Calcul littéral et applications}}}$$
+	
+	%$$\fbox{\text{\Large{ \begin{minipage}{0.9\linewidth } Translation et vecteur associé. Opérations sur les vecteurs. Coordonnées.\end{minipage} }}}$$
+	
+
+
+
+\renewcommand{\arraystretch}{1.5}
+$$\begin{tabular}{|l|l|}
+\hline
+\textbf{Contenus} & \textbf{Capacités attendues} \\
+\hline 
+$\bullet$ Règles de calcul sur les puissances entières relatives     & $\bullet$ Effectuer des calculs numériques ou littéraux mettant \\
+sur les racines carrées. & en jeu des puissances, des racines carrées,  \\
+$\bullet$ Relation $\sqrt{a^2} = |a|$.   & des écritures fractionnaires.\\
+$\bullet$ Les trois identités remarquables dans les deux sens:    & $\bullet$ Mettre en relation des variables en fonction des autres.   \\
+$(a+b)^2 = a^2+2ab+b^2$ et $(a-b)^2 = a^2-2ab+b^2$  & $\bullet$ Choisir la forme la plus adaptée à la résolution d'un problème  \\
+
+et $(a+b)(a-b) = a^2-b^2$ & (développée réduite et ordonnée, factorisée)\\
+
+$\bullet$ Exemple de calcul sur les expressions algébriques, & $\bullet$ Comparer deux quantités en utilisant leur différence. \\
+en particulier sur des expressions fractionnaires & ou leur quotient dans le cas positif.\\
+$\bullet$ Travailler avec les inégalités et ensemble solution. & $\bullet$ Modéliser un problème à l'aide d'une inéquation. \\
+\hline
+\end{tabular}$$
+\hfill\\[-0.2cm]
+
+\noindent\textbf{Démonstrations :}
+\begin{enumerate}[$\square$]
+	\item  Pour $a,b\in\R^+$  on a $\sqrt{ab} = \sqrt{a}\sqrt{b}$
+	\item Pour $a,b\in\R^+$ on a $\sqrt{a+b} \leq \sqrt{a} + \sqrt{b}$
+	\item Illustrations géométriques des identitées remarquables 
+\end{enumerate}
+
+\noindent\textbf{Exemples d'algorithme : }
+\begin{enumerate}[$\square$]
+	\item Déterminer la première puissance d'un nombre positif donné supérieure ou inférieure à une valeur donnée.  
+\end{enumerate}
+
+\noindent\textbf{Approfondissements possibles : }
+\begin{enumerate}[$\square$]
+	\item $(a+b+c)^2$
+	\item $(a+b)^3$
+\end{enumerate}
+
+\section{Puissances entières:}
+\subsection{Un entier naturel en exposant}
+\medskip
+\noindent\fcolorbox{vert}{white}{
+\begin{minipage}{1\linewidth}
+\begin{defi}
+Soient $a\in\R$ et  $n\in\N$,
+\begin{multicols}{3}
+\begin{enumerate}[$\bullet$]
+\item Pour $n\leq 2$, $a^n = \dots \dots\dots\dots \dots$
+\item $a^1= \dots $
+\item Pour $a\neq 0$, $a^0= \dots $\\
+\end{enumerate}
+\end{multicols}
+\end{defi}
+\end{minipage}
+}
+\hfill\\
+\begin{ex}\hfill\\[0.5cm]
+.\dotfill
+\end{ex}
+\subsection{Un entier négatif en exposant}
+\medskip
+\noindent\fcolorbox{vert}{white}{
+\begin{minipage}{1\linewidth}
+\begin{defi}
+Soient $a\in\R^*$ un réel non nul et  $n\in\N$. On note $a^{-n}$ l'inverse de $a^{n}$
+$$a^{-n} =  \dfrac{1}{a^{n}}$$
+\end{defi}
+\end{minipage}
+\hfill\\
+}
+\hfill\\
+\begin{ex}\hfill\\[-0.5cm]
+
+\begin{multicols}{3}
+\begin{enumerate}[$\bullet$]
+\item $10^{-5}= \dots\dots \dots \dots \dots  $
+\item $2^{-6}= \dots\dots \dots \dots \dots  $
+\item $\left(\sqrt{4}~\right)^{-3}= \dots\dots \dots \dots \dots  $
+\end{enumerate}
+\end{multicols}
+\end{ex}
+\hfill\\
+
+\subsection{Règles de calcul sur les puissances}
+\medskip
+\noindent\fcolorbox{rouge}{white}{
+\begin{minipage}{1\linewidth}
+\begin{prop}
+Soient $a\in\R^*$ un réel non nul et  $m,n\in\Z$ deux entiers realtifs.
+\begin{multicols}{3}
+\begin{enumerate}[$\bullet$]
+\item $a^n \times a^m = \dots \dots\dots$
+\item $\dfrac{a^n}{a^m}  =  \dots \dots\dots $
+\item  $\left(a^n\right)^m=  \dots \dots\dots $\\
+\end{enumerate}
+\end{multicols}
+\end{prop}
+\end{minipage}
+}
+\hfill\\
+
+\begin{ex}\hfill\\[-0.5cm]
+
+\begin{multicols}{3}
+\begin{enumerate}[$\bullet$]
+\item $10^{-5}\times10^2= \dots\dots \dots \dots \dots  $
+\item $\dfrac{2,3^{6}}{2,3^{4}}= \dots\dots \dots \dots \dots  $
+\item $\left(\left(\sqrt{4}~\right)^{-3}~\right)^{-2}= \dots\dots \dots \dots \dots  $
+\end{enumerate}
+\end{multicols}
+\end{ex}
+\hfill\\
+\noindent\fcolorbox{rouge}{white}{
+\begin{minipage}{1\linewidth}
+\begin{prop}
+Soient $a,b\in\R^*$ deux réels non nul et  $n\in\Z$ un entier relatif.
+\begin{multicols}{2}
+\begin{enumerate}[$\bullet$]
+\item $\left(\dfrac{a}{b}\right)^n  =  \dots \dots\dots $
+\item  $\left(ab\right)^n=  \dots \dots\dots $\\
+\end{enumerate}
+\end{multicols}
+\end{prop}
+\end{minipage}
+}
+\hfill\\
+
+\begin{ex}\hfill\\[-0.5cm]
+
+\begin{multicols}{2}
+\begin{enumerate}[$\bullet$]
+\item $\left(\dfrac{\pi}{\sqrt{5}}\right)^2 = \dots\dots \dots \dots \dots  $
+\item $\left(3\sqrt{4}~\right)^{2}= \dots\dots \dots \dots \dots  $
+\end{enumerate}
+\end{multicols}
+\end{ex}
+\hfill\\[-0.7cm]
+\begin{rmq}
+	Attention il n'existe pas de règle pour les sommes et les puissances. Penser aux formules des identités remarquables. 
+\end{rmq}
+
+\section{Racine carrée d'un nombre réel positif: }
+\subsection{Définition}
+\medskip
+\noindent\fcolorbox{vert}{white}{
+\begin{minipage}{1\linewidth}
+\begin{defi}
+Soit $a\in\R^+$ un réel positif ou nul. La racine carrée de $a$ est un \dots\dots\dots\dots\dots\dots\dots\dots \ que l'on note \dots\dots\dots %nombre réel positif 
+et qui vérifie d'être égale au nombre \dots\dots \dots %a
+lorsqu'on la met au carré.
+$$\left(\sqrt{a} \ \right)^2 \ = \ a$$
+\end{defi}
+\end{minipage}
+\hfill\\
+}
+\hfill\\
+\begin{ex}\hfill\\[-0.5cm]
+
+\begin{multicols}{3}
+\begin{enumerate}[$\bullet$]
+\item $\sqrt{9}= \dots\dots \dots \dots \dots  $
+\item $\sqrt{2,5}= \dots\dots \dots \dots \dots  $
+\item $
+ \sqrt{5}= \dots\dots \dots \dots \dots  $
+\end{enumerate}
+\end{multicols}
+\end{ex}
+\hfill\\
+\noindent\fcolorbox{rouge}{white}{
+\begin{minipage}{1\linewidth}
+\begin{prop}
+Pour tout réel $a\in\R$
+$$\sqrt{a^2} \  =  \  |a| $$
+\hfil\\[-0.5cm]
+\end{prop}
+\end{minipage}
+}
+\hfill\\
+
+\begin{ex}\hfill\\[-0.5cm]
+
+\begin{multicols}{2}
+\begin{enumerate}[$\bullet$]
+\item $\sqrt{6^2}= \dots\dots \dots \dots \dots  $
+\item $\sqrt{(-2,3)^2}= \dots\dots \dots \dots \dots  $\\
+\item $ \sqrt{(-\pi)^2}= \dots\dots \dots \dots \dots  $
+ \item $
+  \sqrt{\left(-\dfrac{1}{3}\right)^2}= \dots\dots \dots \dots \dots  $
+\end{enumerate}
+\end{multicols}
+\end{ex}
+\subsection{Règles de calcul avec les racines carrées}
+\medskip
+\hfill\\[-0.7cm]
+\begin{rmq}
+	Attention comme avec les puissances il n'existe pas de règle de calcul avec les sommes et les racines carrés. Vous le découvrirez plus tard, la racine carrée est une forme de puissance, plus exactement une puissance $\dfrac{1}{2}$. %"Vennez me voir à la fin du cours pour plus de spoil..."
+\end{rmq}
+\hfill\\
+\noindent\fcolorbox{rouge}{white}{
+\begin{minipage}{1\linewidth}
+\begin{prop}
+Soient $a,b\in\R^+$ deux réels positis.
+\begin{multicols}{2}
+\begin{enumerate}[$\bullet$]
+\item $\sqrt{ab} =  \dots \dots\dots $
+\item  $\sqrt{\dfrac{a}{b}}=  \dots \dots\dots $\\
+\end{enumerate}
+\end{multicols}
+\hfill\\[-0.7cm]\end{prop}
+\end{minipage}
+}\hfill\\
+\begin{proof}
+
+\hfill\\\hfill\\
+. \dotfill\\
+ \\
+.\dotfill \\
+\\
+.\dotfill \\
+\end{proof}
+
+\hfill\\
+\noindent\fcolorbox{rouge}{white}{
+\begin{minipage}{1\linewidth}
+\begin{prop}
+Soient $a,b\in\R^{*+}$ deux réels positis non nul alors:
+$$\sqrt{a+b} < \sqrt{a} + \sqrt{b}$$
+\hfill\\[-0.7cm]
+\end{prop}
+\end{minipage}
+}\hfill\\
+\begin{proof}
+\hfill\\\hfill\\
+. \dotfill\\
+ \\
+.\dotfill \\
+\\
+.\dotfill \\
+\end{proof}
+
+\section{Expressions littérales:}
+\medskip
+
+\noindent\fcolorbox{vert}{white}{
+\begin{minipage}{1\linewidth}
+\begin{defi}\hfil\\[-0.5cm]
+\begin{enumerate}[$\bullet$]
+\item \textbf{Développer}, c'est transformer  une expression sous forme de produit en une expression sous forme de sommes
+\item \textbf{Factoriser}, c'est transformer  une expression sous forme de sommes en une expression sous forme de produits.
+\end{enumerate}
+\end{defi}
+\end{minipage}
+}
+\hfill\\
+\begin{ex}\hfill\\[-0.5cm]
+\hfill\\\hfill\\
+$\bullet$ \ Factorisation de $A =(x+1) (4x-1)+8x(x+1)$. \dotfill\\
+ \\
+.\dotfill \\
+\\
+$\bullet$ \ Développement de $A = (x+1) (4x-1)+8x(x+1)$.\dotfill \\\\
+.\dotfill \\
+\\
+\end{ex}
+\hfil\\
+\noindent\fcolorbox{rouge}{white}{
+\begin{minipage}{1\linewidth}
+\begin{prop}
+Soient $a,b\in\R$ deux réels, on a trois \textbf{identités remarquables}:
+$$(a+b)^2 = a^2+2ab+b^2$$  $$(a-b)^2 = a^2-2ab+b^2$$ $$(a+b)(a-b) = a^2-b^2$$
+\hfill\\[-0.7cm]
+\end{prop}
+\end{minipage}
+}\hfill\\\hfill\\\hfill\\
+
+\begin{exer}\hfil\\
+\begin{enumerate}
+\item Développer les expressions suivantes:\\
+\begin{enumerate}[$\square$]
+\item $(6x-3)^2$\dotfill \\
+\item $(7x+3y)^2$\dotfill \\
+\item$(x-5y)(5y+x)$\dotfill \\
+\end{enumerate}
+\item Factoriser les expressions suivantes:\\
+\begin{enumerate}[$\square$]
+\item $9x^2+30x+25$\dotfill \\
+\item $64y^2-x^2$\dotfill \\
+\item$47y^2+16x^2+36xy$\dotfill \\
+\end{enumerate}
+\end{enumerate}
+\end{exer}
+\hfill\\
+\begin{rmq}
+Pour faire une somme (ou une différence) de deux expressions fractionnaires littérales, il faut les réduire au même dénominateur.
+\end{rmq}
+\hfill \\
+\begin{exer} Réduire au même dénominateur les expressions fractionnaires:\\\\
+\begin{enumerate}[$\square$]
+\item $\dfrac{6x-3}{4} + \dfrac{5x-5}{8}$\dotfill \\\\.\dotfill \\\\
+.\dotfill \\\\
+\item $\dfrac{6x-3}{5} - \dfrac{5x-5}{7}$\dotfill \\\\
+.\dotfill \\\\\.\dotfill \\\\
+\item $\dfrac{2x-1}{x^2+1} - \dfrac{5x-9}{4x^2+4}$\dotfill \\\\
+.\dotfill \\\\.\dotfill \\\\
+\item $\dfrac{6x-8}{x+1} - \dfrac{x+1}{x+4}$\dotfill \\\\
+.\dotfill \\\\.\dotfill \\\\
+\end{enumerate}
+
+
+\end{exer}
+
+\end{document}
+
+
+

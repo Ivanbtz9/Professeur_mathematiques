@@ -1,0 +1,135 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace,xypic}
+\usepackage{xcolor,multicol,tabularx}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{relsize,exscale}
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\p}{\mathbb{P}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Cours Hadrien}\chead{Année~2021-2022}\rhead{Niveau: MP Sup}\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+ 	
+
+\begin{center}
+\Large \sc Préparer sa colle = Algèbre linéaire, espaces euclidiens
+\end{center}
+
+\section*{Exercices mixtes:}%[-0.25cm]
+
+\raggedright
+
+\begin{exo}\quad\\[0.25cm]
+	Soit $E$ l'ensemble des fonctions continues strictement positives sur $[a,b]$.
+	
+	Soit $\begin{array}[t]{cccc}
+	\varphi~:&E&\rightarrow&\R\\
+	&f&\mapsto&\left(\int_{a}^{b}f(t)\;dt\right)\left(\int_{a}^{b}\frac{1}{f(t)}\;dt\right)
+	\end{array}$.
+	
+	\begin{enumerate}
+		\item  Montrer que $\varphi(E)$ n'est pas majoré.
+		\item  Montrer que $\varphi(E)$ est minoré. Trouver $m=\mbox{Inf}\{\varphi(f),\;f\in E\}$. Montrer que cette borne infèrieure est atteinte et trouver toutes les $f$ de $E$ telles que $\varphi(f)=m$.
+	\end{enumerate}	
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(Concours communs Polytechniques 2018)}\quad\\[0.25cm]
+	On note $E$ l’espace vectoriel des applications continues sur le segment $[-1,1]$ et à valeurs réelles.
+\begin{enumerate}
+	\item Démontrer que l’on définit un produit scalaire sur $E$ en posant pour $f$ et $g$ éléments de $E$ :
+	$$\left(f|g\right) = \int_{-1}^{1}f(t)g(t)dt$$
+	\item On note $u : t \mapsto1$, $v : t \mapsto t$ et $F = vect \{ u , v \}$ , déterminer une base orthonormée de $F$.
+	\item Déterminer le projeté orthogonal de la fonction $w : t \mapsto e^t$ sur le sous-espace $F$ et en déduire \\la valeur du réel:
+	$$\underset{(a,b)\in\R^2}{inf}\left[\int_{-1}^{1}\left(e^t-(a+bt)\right)^2dt\right]$$
+\end{enumerate}
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\[0.25cm]
+Soit $E$ un $\R$ espace vectoriel de dimension finie. Soit $||\;||$ une norme sur $E$ vérifiant l'identité du parallèlogramme, c'est-à-dire~:~$\forall(x,y)\in E^2,\;||x+y||^2+||x-y||^2=2(||x||^2+||y||^2)$. On se propose de démontrer que $||\;||$ est associée à un produit scalaire.
+On définit sur $E^2$ une application $f$ par~:~$\forall(x,y)\in E^2,\;f(x,y)=\frac{1}{4}(||x+y||^2-||x-y||^2)$.
+\begin{enumerate}
+	\item  Montrer que pour tout $(x,y,z)$ de $E^3$, on a~:~$f(x+z,y)+f(x-z,y)=2f(x,y)$.
+	\item  Montrer que pour tout $(x,y)$ de $E^2$, on a~:~$f(2x,y)=2f(x,y)$.
+	\item  Montrer que pour tout $(x,y)$ de $E^2$ et tout rationnel $r$, on a~:~$f(rx,y)=rf(x,y)$.
+	
+	On admettra que pour tout réel $\lambda$ et tout $(x,y)$ de $E^2$ on a~:~$f(\lambda x,y)=\lambda f(x,y)$ ( ce résultat provient de la continuité de $f$).
+	\item  Montrer que pour tout $(u,v,w)$ de $E^3$, $f(u,w)+f(v,w)=f(u+v,w)$.
+	\item  Montrer que $f$ est bilinéaire.
+	\item  Montrer que $||\;||$ est une norme euclidienne.
+\end{enumerate}
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}			
+
+
+
+
+
+
+
+
+\end{document}

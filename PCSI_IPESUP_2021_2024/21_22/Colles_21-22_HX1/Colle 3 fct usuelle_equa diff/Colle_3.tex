@@ -1,0 +1,333 @@
+\documentclass[10pt,a4paper]{article}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{times}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{tablists}
+\usepackage[a4paper,bottom = 50pt]{geometry}
+\usepackage{color}
+\usepackage{amsmath,amssymb,amsthm, mathrsfs,pifont}
+\usepackage{pgf,tikz,pgfplots,tkz-tab}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{array}
+\usepackage{xcolor} 
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{pstricks}
+
+\usepackage{geometry}
+
+
+\setcellgapes{1pt}
+\makegapedcells
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
+
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\notni}{\not\owns}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+
+\begin{document}
+	
+	\leftline{\bfseries Optimal Sup Spé, groupe IPESUP \hfill Année~2021-2022}
+	\leftline{\bfseries Niveau: Première année de PCSI  }
+	\leftline{\bfseries M.Botcazou \hfill mail: ibotca52@gmail.com  }
+	\rule[0.5ex]{\textwidth}{0.1mm}	
+	
+	\begin{center}
+		\Large \sc colle 3 = équations différentielles	et suites numériques
+	\end{center}
+	
+
+
+\section*{ Équations différentielles :}
+\begin{center}
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+\begin{exo}\quad\\
+Déterminer les fonctions $f\in\mathcal{C}(\R,\R)$ telles que pour tout $x\in\R$:
+
+$$f(x)  + \int_{0}^{x}tf(t)dt \ = \ 1$$
+
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center} 
+
+\begin{exo}\quad\\ 
+On dira qu'une fonction à valeurs réelles dérivable sur $\R$ est solution de \eqref{equ1} si pour tous $x,y\in\R$:
+\begin{equation}
+f(x+y) \ = \ f(x) + f(y)
+\label{equ1}
+\end{equation}
+
+\begin{enumerate}
+\item Montrer que toute solution de \eqref{equ1} est solution d'une équation différentielle du premier ordre à préciser.
+\item En déduire toutes les solutions de \eqref{equ1}
+
+\end{enumerate}
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}\quad\\
+Résoudre les équations différentielles suivantes :
+\begin{enumerate}
+\item $y' + y\tanh(x) = \tanh(x)  \ \  \text{sur} \ \R;$
+\item$\sqrt{1-x^2}y'  + xy + 3(x-x^3)  = 0 \  \ \text{sur} \  ]-1;1[; $
+\end{enumerate}
+\end{exo} 
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+
+\begin{exo}\quad\\
+Donner une équation différentielle dont les solutions sont les fonctions de la forme 
+$$x\longmapsto \dfrac{C + x}{1+ x^2}, \  C \in\R$$
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+\begin{exo}\quad\\
+Donner l'ensemble solution des équations différentielles suivantes :
+\begin{enumerate}
+\item$y'' + y'-2y \ = \ 0 \ , \text{ avec }  \  y(0)=0 \ \text{ et } \  y'(0) = 1; $
+\item$y'' \ = \  4y -4y'\ , \text{ avec }  \   y(0)=y'(0)= 1; $
+\end{enumerate}
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}\quad\\
+\begin{enumerate}
+\item
+\begin{enumerate}
+\item Monter que l'équation : $y'' + y = 3x^2$ a une solution de la forme: $ \ x \mapsto ax^2 +bx +c$ avec $a,b,c\in\R$.
+\item En déduire une expression explicite de l'unique solution sur $\R$ de l'équation différentielle:  
+$$y'' + y = 3x^2 , \text{ avec }  \  y(0)=1 \ \text{ et } \  y'(0) = 2 $$
+\end{enumerate}
+\item
+\begin{enumerate}
+\item Monter que l'équation : $2y'' -3y'+  y = xe^x$ a une solution de la forme:  $ \ x \mapsto \left(ax^2+bx\right)e^x$ \quad avec $a,b\in\R$.
+\item En déduire toutes les solutions réelles sur $\R$ de l'équation différentielle:  
+$$2y'' -3y'+  y = xe^x $$
+\end{enumerate}
+\end{enumerate}
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}\quad\\
+Déterminer une équation différentielle vérifiée par la famille de fonctions
+$$y(x) \ = \ C_1e^{3x} + C_2e^{-2x} + x\sinh(x) ~,~~ C_1,C_2\in\R$$
+\end{exo}
+
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+	\end{minipage}
+\end{center}
+
+\newpage
+
+\section*{Suites numériques :}
+
+\begin{center}
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+\begin{exo}\quad\\
+On dira qu'une suite réelle $\left(u_n\right)_{n\in\N} $ est solution de \eqref{equ2} si pour tous $n\in\N$:
+\begin{equation}
+u_{n+2} = 2u_{n+1} +8u_n+9n^2
+\label{equ2}
+\end{equation}
+
+\begin{enumerate}
+\item Montrer que \eqref{equ2} possède une solution de la forme $\left(an^2+bn+c\right)_{n\in\N} $ avec $a,b,c\in\R$.
+
+\item En déduire une expression explicite de l'unique solution de \eqref{equ2} pour laquelle:
+$$u_{0} = 0 \ \text{ et } u_1 = 1$$
+
+\end{enumerate}
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}\quad\\
+Pour tout vecteur du plan fixé $\left(\begin{array}{c}
+x_0\\
+y_0
+\end{array}\right) \ \in\R^2$, on considère la suite définie par récurrence :
+$$\left(\begin{array}{c}
+x_{n+1}\\
+y_{n+1}
+\end{array}\right) \ = \ \left(\begin{array}{cc}
+0 & -1\\
+1 & 0
+\end{array}\right) \left(\begin{array}{c}
+x_n\\
+y_n
+\end{array}\right)$$
+\begin{enumerate}
+\item En partant de $\left(\begin{array}{c}
+x_0\\
+y_0
+\end{array}\right)  =  \left(\begin{array}{c}
+1\\
+0
+\end{array}\right) $, représenter les $8$ premiers termes de la suite.
+\item Cette suite est elle convergente ? 
+\end{enumerate}
+\end{exo}
+
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+\begin{exo}\quad\\
+Soient $a$ et $b$ deux réels, $(u_n)_{n\geq 0}$ une suite telle que :
+$$\forall n\in \N,\quad  u_{n+1} =au_n +b.$$
+\begin{enumerate}
+\item Traiter le cas $a = 1$.\\
+On suppose désormais $a\neq 1$
+\item Résoudre l'équation $x = ax + b$. On note $l$ la solution. \\
+ On pose, pour $n$ dans $\N$:
+$$v_n = u_n - l$$
+\item Montrer que $(v_n)_{n\in\N}$ est une suite géométrique. Conclure.
+\item La suite $(u_n)_{n\in\N}$ est-elle convergente ? 
+\item Calculer en fonction de $n$ le terme général de la suite $\left(u_n\right)_{n\in\N}$ définie par :
+$$\left\{\begin{array}{l}
+u_{n+1} = 5u_n - 3\\
+u_0 = 1
+\end{array}\right.$$
+\end{enumerate}
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}\quad\\
+Calculer en fonction de $n$ le terme général de la suite $\left(u_n\right)_{n\in\N}$ définie par :
+\begin{enumerate}
+\item $u_0 = 1$ et pour tout $n\in\N$:  %\mathcal{U}
+$$u_{n+1} = 2u_n^2$$
+\item $u_0 = 1$, $u_1 = 2$ et pour tout $n\in\N$:
+$$u_{n+2} = \dfrac{u_{n+1}^6}{u_{n}^5}$$
+\end{enumerate}
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+	\end{minipage}
+\end{center}
+\quad \\
+
+
+
+\quad\\
+\section*{Exercices supplémentaires :}
+
+\begin{center}
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+
+\begin{exo}\quad\\
+\begin{enumerate}
+\item Pour tous $\alpha\in\R$ et $x>-1$ comparer $\left(1+x\right)^{\alpha}$ et $1+\alpha x$.\quad (\textbf{indication}: dérivées successives)
+
+\begin{remarque}
+Si $\alpha\in\N^*$ on parle de l'inégalité de Bernouilli.
+\end{remarque}
+\item En déduire que pour tous $\alpha\in[0;1]$ et $n\in\N^{*}:$
+
+$$\prod_{k=1}^{n}\left(1+\dfrac{\alpha}{k}\right) \geq \left(n+1\right)^{\alpha}$$
+\end{enumerate}
+
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\begin{exo}\quad\\
+Montrer que la fonction 
+$x \longmapsto \dfrac{1}{\cosh(x)}$ possède un unique point fixe.
+\end{exo}
+
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+\begin{exo}\quad\\
+\begin{enumerate}
+\item Montrer que la fonction $\sinh$ est bijective de $\R$ sur $\R$ et déterminer une expression explicite de sa réciproque en résolvant l'équation : $y = \sinh(x)$ d'inconnue $x\in\R$ pour tout $y\in\R$.
+\item Même question avec la fonction $\tanh$, bijective de $\R$ sur $]-1;1[$. 
+\item Même question avec la fonction $\cosh$, bijective de $\R^+$ sur $[1;+\infty[$.
+\end{enumerate}
+\end{exo}
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+\begin{exo}\quad\\
+Montrer que pour tous $x,y\in\R$ tels que $0<x<y$\\
+ on a:
+$$\dfrac{y-x}{\ln(y)-\ln(x)} < \dfrac{x+y}{2}$$
+\textbf{indication:} on utilisera   $t=\dfrac{y}{x}$. 
+\end{exo}
+
+\begin{center}
+\rule{1\linewidth}{0.6pt}
+\end{center}
+	\end{minipage}
+\end{center}
+
+
+\end{document}

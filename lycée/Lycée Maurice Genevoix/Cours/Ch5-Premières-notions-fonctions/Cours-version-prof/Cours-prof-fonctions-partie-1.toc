@@ -1,0 +1,12 @@
+\babel@toc {french}{}\relax 
+\contentsline {section}{\numberline {I }Vocabulaire et applications:}{1}{section.1}%
+\contentsline {subsection}{\numberline {1 }Le vocabulaire:}{1}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {a }Notion de fonction réelle:}{1}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {b }Notion de l'image d'un nombre par une fonction:}{3}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {c }Notion d'antécédent d'un nombre par une fonction:}{3}{subsubsection.1.1.3}%
+\contentsline {subsubsection}{\numberline {d }Exercices d'applications:}{4}{subsubsection.1.1.4}%
+\contentsline {section}{\numberline {II }Courbe représentative et lecture graphique:}{5}{section.2}%
+\contentsline {subsection}{\numberline {1 }Courbe représentative d'une fonction:}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2 }Lecture graphique avec la courbe représentative d'une fonction:}{6}{subsection.2.2}%
+\contentsline {section}{\numberline {III }Résolution d’équations et d’inéquations:}{6}{section.3}%
+\contentsline {section}{\numberline {IV }Variations et extremums:}{6}{section.4}%

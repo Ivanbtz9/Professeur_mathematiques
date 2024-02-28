@@ -1,0 +1,1074 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00107, rouget, 2010/07/11}
+
+\titre{Intégration} 
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable\quad T~:~pour travailler et mémoriser le cours
+\end{center}
+
+
+\exercice{5444, rouget, 2010/07/10}
+\enonce{005444}{****}
+Soient $f$ et $g$ deux fonctions continues et strictement positives sur $[a,b]$. Pour $n$ entier naturel non nul donné, on pose $u_n=\left(\int_{a}^{b}(f(x))^ng(x)\;dx\right)^{1/n}$.
+
+Montrer que la suite $(u_n)$ converge et déterminer sa limite (commencer par le cas $g=1$).
+\finenonce{005444}
+
+
+\finexercice
+\exercice{5445, rouget, 2010/07/10}
+\enonce{005445}{**I}
+\begin{enumerate}
+\item  Soit $f$ une application de classe $C^1$ sur $[0,1]$ telle que $f(1)\neq0$.
+
+Pour $n\in\Nn$, on pose $u_n=\int_{0}^{1}t^nf(t)\;dt$. Montrer que $\lim_{n\rightarrow +\infty}u_n=0$ puis déterminer un équivalent simple de $u_n$ quand $n$ tend vers $+\infty$ (étudier $\lim_{n\rightarrow +\infty}nu_n$).
+\item  Mêmes questions en supposant que $f$ est de classe $C^2$ sur $[0,1]$ et que $f(1)=0$ et $f'(1)\neq0$.
+\end{enumerate}
+\finenonce{005445}
+
+
+\finexercice
+\exercice{5446, rouget, 2010/07/10}
+\enonce{005446}{***IT}
+Limites de 
+$$\begin{array}{llll}
+1)\;\frac{1}{n^3}\sum_{k=1}^{n}k^2\sin\frac{k\pi}{n}&2)\;(\frac{1}{n!}\prod_{k=1}^{n}(a+k))^{1/n}\;(a>0\;\mbox{donné})&3)\;\sum_{k=1}^{n}\frac{n+k}{n^2+k}&4)\;\sum_{k=1}^{n}\frac{1}{\sqrt{n^2-k^2}}\\  
+5)\;\frac{1}{n\sqrt{n}}\sum_{k=1}^{n}E(\sqrt{k})&6)\;\sum_{k=1}^{n}\frac{k^2}{8k^3+n^3}&7)\;\sum_{k=n}^{2n-1}\frac{1}{2k+1}&8)\;n\sum_{k=1}^{n}\frac{e^{-n/k}}{k^2}
+\end{array}  
+$$
+\finenonce{005446}
+
+
+\finexercice
+\exercice{5447, rouget, 2010/07/10}
+\enonce{005447}{***I}
+Soit $f$ une fonction de classe $C^2$ sur $[0,1]$. Déterminer le réel $a$ tel que :
+ 
+$$\int_{0}^{1}f(t)\;dt-\frac{1}{n}\sum_{k=1}^{n-1}f(\frac{k}{n})\underset{n\rightarrow+\infty}{=}\frac{a}{n}+o(\frac{1}{n}).$$
+
+\finenonce{005447}
+
+
+\finexercice
+\exercice{5448, rouget, 2010/07/10}
+\enonce{005448}{**I Le lemme de \textsc{Lebesgue}}
+\begin{enumerate}
+\item  On suppose que $f$ est une fonction de classe $C^1$ sur $[a,b]$. Montrer que $\lim_{\lambda\rightarrow +\infty}\int_{a}^{b}\sin(\lambda t)f(t)\;dt=0$.
+\item  (***) Redémontrer le même résultat en supposant simplement que $f$ est continue par morceaux sur $[a,b]$ (commencer par le cas des fonctions en escaliers).
+\end{enumerate}
+\finenonce{005448}
+
+
+\finexercice
+\exercice{5449, rouget, 2010/07/10}
+\enonce{005449}{***T}
+Soit $E$ l'ensemble des fonctions continues strictement positives sur $[a,b]$.
+
+Soit $\begin{array}[t]{cccc}
+\varphi~:&E&\rightarrow&\Rr\\
+ &f&\mapsto&\left(\int_{a}^{b}f(t)\;dt\right)\left(\int_{a}^{b}\frac{1}{f(t)}\;dt\right)
+ \end{array}$.
+	   
+\begin{enumerate}
+\item  Montrer que $\varphi(E)$ n'est pas majoré.
+\item  Montrer que $\varphi(E)$ est minoré. Trouver $m=\mbox{Inf}\{\varphi(f),\;f\in E\}$. Montrer que cette borne infèrieure est atteinte et trouver toutes les $f$ de $E$ telles que $\varphi(f)=m$.
+\end{enumerate}
+\finenonce{005449}
+
+
+\finexercice
+\exercice{5450, rouget, 2010/07/10}
+\enonce{005450}{***}
+Etude complète de la fonction $f(x)=\frac{1}{x-1}\int_{1}^{x}\frac{t^2}{\sqrt{1+t^8}}\;dt$. 
+\finenonce{005450}
+
+
+\finexercice
+\exercice{5451, rouget, 2010/07/10}
+\enonce{005451}{***}
+Pour $x$ réel, on pose $f(x)=e^{-x^2}\int_{0}^{x}e^{t^2}\;dt$.
+\begin{enumerate}  
+\item  Montrer que $f$ est impaire et de classe $C^\infty$ sur $\Rr$. 
+\item  Montrer que $f$ est solution de l'équation différentielle $y'+2xy=1$.
+\item  Montrer que $\lim_{x\rightarrow +\infty}2xf(x)=1$.
+\item  Soit $g(x)=\frac{e^{x^2}}{2x}f'(x)$. Montrer que $g$ est strictement décroissante sur $]0,+\infty[$ et que $g$ admet sur $]0,+\infty[$ un unique zéro noté $x_0$ vérifiant de plus $0<x_0<1$.
+\item  Dresser le tableau de variations de $f$.
+\end{enumerate}
+\finenonce{005451}
+
+
+\finexercice
+\exercice{5452, rouget, 2010/07/10}
+\enonce{005452}{***}
+Soit $f$ une fonction de classe $C^1$ sur $[0,1]$ telle que $f(0)=0$. Montrer que $2\int_{0}^{1}f^2(t)\;dt\leq\int_{0}^{1}{f'}^2(t)\;dt$. 
+\finenonce{005452}
+
+
+\finexercice
+\exercice{5453, rouget, 2010/07/10}
+\enonce{005453}{****}
+Soit $f$ une fonction continue sur $[a,b]$. Pour $x$ réel, on pose $F(x)=\int_{a}^{b}|t-x|f(t)\;dt$. Etudier la dérivabilité de $F$ sur $\Rr$.
+\finenonce{005453}
+
+
+\finexercice
+\exercice{5454, rouget, 2010/07/10}
+\enonce{005454}{***}
+Soit $a$ un réel strictement positif et $f$ une application de classe $C^1$ et strictement croissante sur $[0,a]$ telle que $f(0)=0$. Montrer que $\forall x\in[0,a],\;\forall y\in[0,f(a)],\;xy\leq\int_{0}^{x}f(t)\;dt+\int_{0}^{y}f^{-1}(t)\;dt$.
+\finenonce{005454}
+
+
+\finexercice
+\exercice{5455, rouget, 2010/07/10}
+\enonce{005455}{**}
+Soit $f$ continue sur $[0,1]$ telle que $\int_{0}^{1}f(t)\;dt=\frac{1}{2}$. Montrer que $f$ admet un point fixe.
+\finenonce{005455}
+
+
+\finexercice
+\exercice{5456, rouget, 2010/07/10}
+\enonce{005456}{**}
+Soient $f$ et $g$ deux fonctions continues par morceaux et positives sur $[0,1]$ telles que
+
+$\forall x\in[0,1],\;f(x)g(x)\geq1$. Montrer que $(\int_{0}^{1}f(t)\;dt)(\int_{0}^{1}g(t)\;dt)\geq1$.
+\finenonce{005456}
+
+
+\finexercice
+\exercice{5457, rouget, 2010/07/10}
+\enonce{005457}{***}
+Partie principale quand $n$ tend vers $+\infty$ de $u_n=\sum_{k=1}^{n}\sin\frac{1}{(n+k)^2}$. 
+\finenonce{005457}
+
+
+\finexercice
+\exercice{5458, rouget, 2010/07/10}
+\enonce{005458}{**}
+Montrer que  $\sum_{k=1}^{n}\sin\frac{k}{n}=\frac{1}{2}+\frac{1}{2n}+o(\frac{1}{n})$.
+\finenonce{005458}
+
+
+\finexercice
+\exercice{5459, rouget, 2010/07/10}
+\enonce{005459}{**}
+Déterminer les limites quand $n$ tend vers $+\infty$ de
+ 
+$$1)\;u_n=\frac{1}{n!}\int_{0}^{1}\Arcsin^nx\;dx\;2)\;\int_{0}^{1}\frac{x^n}{1+x}\;dx\;3)\;\int_{0}^{\pi}\frac{n\sin x}{x+n}\;dx.$$ 
+
+\finenonce{005459}
+
+
+\finexercice\exercice{5460, rouget, 2010/07/10}
+\enonce{005460}{***}
+Etude complète de $F(x)=\int_{x}^{2x}\frac{dt}{\sqrt{t^4+t^2+1}}$. 
+\finenonce{005460}
+
+
+\finexercice\exercice{5461, rouget, 2010/07/10}
+\enonce{005461}{***}
+Trouver toutes les applications continues sur $\Rr$ vérifiant~:~$\forall(x,y)\in\Rr^2,\;f(x)f(y)=\int_{x-y}^{x+y}f(t)\;dt$.  
+\finenonce{005461}
+
+
+\finexercice
+\exercice{5462, rouget, 2010/07/10}
+\enonce{005462}{***}
+Soit $f$ une fonction de classe $C^1$ sur $[a,b]$ telle que $f(a)=f(b)=0$ et soit $M=\mbox{sup}\{|f '(x)|,\;x\in[a,b]\}$. Montrer que $\left|\int_{a}^{b}f(x)\;dx\right|\leq M\frac{(b-a)^2}{4}$. 
+\finenonce{005462}
+
+
+\finexercice
+\exercice{5463, rouget, 2010/07/10}
+\enonce{005463}{**}
+Déterminer les fonctions $f$ continues sur $[0,1]$ vérifiant $\left|\int_{0}^{1}f(t)\;dt\right|=\int_{0}^{1}|f(t)|\;dt$. 
+\finenonce{005463}
+
+
+\finexercice\exercice{5464, rouget, 2010/07/10}
+\enonce{005464}{***I}
+\begin{itemize}
+\item  Déterminer $\lim_{x\rightarrow 1}\int_{x}^{x^2}\frac{dt}{\ln t}$. 
+\item  Etude complète de $F(x)=\int_{x}^{x^2}\frac{dt}{\ln t}$.
+\end{itemize}
+\finenonce{005464}
+
+
+\finexercice\exercice{5465, rouget, 2010/07/10}
+\enonce{005465}{****}
+Soit $f(t)=\frac{t^2}{e^t-1}$ si $t\neq0$ et $0$ si $t=0$.
+\begin{enumerate}
+\item  Vérifier que $f$ est continue sur $\Rr$.
+\item  Soit $F(x)=\int_{0}^{x}f(t)\;dt$. Montrer que $F$ a une limite réelle $\ell$ quand $x$ tend vers $+\infty$ puis que $\ell=2\lim_{n\rightarrow +\infty}\sum_{k=1}^{n}\frac{1}{k^3}$.
+\end{enumerate}
+\finenonce{005465}
+
+
+\finexercice
+
+\finfiche
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005444}
+$f$ est continue sur le segment $[a,b]$ et admet donc un maximum $M$ sur ce segment. Puisque $f$ est strictement positive sur $[a,b]$, ce maximum est strictement positif.
+
+Pour $n\in\Nn^*$, posons $u_n=\left(\int_{a}^{b}(f(x))^n\;dx\right)^{1/n}$. Par croissance de l'intégrale, on a déjà 
+
+$$u_n\leq\left(\int_{a}^{b}M^n\;dx\right)^{1/n}=M(b-a)^{1/n},$$
+ 
+(car $\forall x\in[a,b],\;0\leq f(x)\leq M\Rightarrow \forall x\in[a,b],\;(f(x))^n\leq M^n$ par croissance de la fonction $t\mapsto t^n$ sur $[0,+\infty[$).
+
+D'autre part, par continuité de $f$ en $x_0$ tel que $f(x_0)=M$, pour $\varepsilon\in]0,2M[$ donné, $\exists[\alpha,\beta]\subset[a,b]/\;\alpha<\beta\;\mbox{et}\;\forall x\in[\alpha,\beta],\;f(x)\geq M-\frac{\varepsilon}{2}$.
+
+Pour $n$ élément de $\Nn^*$, on a alors 
+
+$$u_n\geq\left(\int_{\alpha}^{\beta}(f(x))^n\;dx\right)^{1/n}\geq\left(\int_{\alpha}^{\beta}(M-\frac{\varepsilon}{2})^n\;dx\right)^{1/n}=(M-\frac{\varepsilon}{2})(\beta-\alpha)^{1/n}.$$
+
+En résumé,
+
+$$\forall\varepsilon\in]0,2M[,\;\exists(\alpha,\beta)\in[a,b]^2/\;\alpha<\beta\;\mbox{et}\;\forall n\in\Nn^*,\;
+(M-\frac{\varepsilon}{2})(\beta-\alpha)^{1/n}\leq u_n\leq M(b-a)^{1/n}.$$
+
+Mais, $\lim_{n\rightarrow +\infty}M(b-a)^{1/n}=M$ et $\lim_{n\rightarrow +\infty}(M-\frac{\varepsilon}{2})(\beta-\alpha)^{1/n}=(M-\frac{\varepsilon}{2})(\beta-\alpha)^{1/n}$.
+
+Par suite, $\exists n_1\in\Nn^*/\;\forall n\geq n_1,\;M(b-a)^{1/n}<M+\varepsilon$ et $\exists n_2\in\Nn^*/\;\forall n\geq n_2,\;(M-\frac{\varepsilon}{2})(\beta-\alpha)^{1/n}>M-\varepsilon$.
+
+Soit $n_0=\mbox{Max}\{n_1,n_2\}$. Pour $n\geq n_0$, on a $M-\varepsilon<u_n<M+\varepsilon$. On a montré que 
+
+$$\forall\varepsilon>0,\;\exists n_0\in\Nn^*/\;\forall n\in\Nn,\;(n\geq n_0\Rightarrow|u_n-M|<\varepsilon),$$
+
+et donc que $\lim_{n\rightarrow +\infty}u_n=M$.
+
+Plus généralement, si $g$ continue sur $[a,b]$, $g$ admet un minimum $m_1$ et un maximum $M_1$ sur cet intervalle, tous deux strictement positifs puisque $g$ est strictement positive. Pour $n$ dans $\Nn^*$, on a
+ 
+$$m_1^{1/n}\left(\int_{a}^{b}(f(x))^n\;dx\right)^{1/n}\leq\left(\int_{a}^{b}(f(x))^ng(x)\;dx\right)^{1/n}\leq M_1^{1/n}\left(\int_{a}^{b}(f(x))^n\;dx\right),$$
+
+et comme d'après l'étude du cas $g=1$, on a $\lim_{n\rightarrow +\infty}m_1^{1/n}\left(\int_{a}^{b}(f(x))^n\;dx\right)^{1/n}=\lim_{n\rightarrow +\infty}M_1^{1/n}\left(\int_{a}^{b}(f(x))^n\;dx\right)^{1/n}=M$, le théorème de la limite par encadrements permet d'affirmer que $\lim_{n\rightarrow +\infty}\left(\int_{a}^{b}(f(x))^ng(x)\;dx\right)^{1/n}=M$. On a montré que 
+
+$$\lim_{n\rightarrow +\infty}\left(\int_{a}^{b}(f(x))^ng(x)\;dx\right)^{1/n}=\mbox{Max}\{f(x),\;x\in[a,b]\}.$$
+
+\fincorrection
+\correction{005445}
+\begin{enumerate}
+\item  $f$ est continue sur le segment $[0,1]$ et est donc bornée sur ce segment. Soit $M$ un majorant de $|f|$ sur $[0,1]$. Pour $n\in\Nn$,
+
+$$|u_n|\leq\int_{0}^{1}t^n|f(t)|\;dt\leq M\int_{0}^{1}t^n\;dt=\frac{M}{n+1},$$
+
+et comme $\lim_{n\rightarrow +\infty}\frac{M}{n+1}=0$, on a montré que $\lim_{n\rightarrow +\infty}u_n=0$.
+
+Soit $n\in\Nn$. Puisque $f$ est de classe $C^1$ sur $[0,1]$, on peut effectuer une intégration par parties qui fournit
+
+$$u_n=\left[\frac{t^{n+1}}{n+1}f(t)\right]_{0}^{1}-\frac{1}{n+1}\int_{0}^{1}t^{n+1}f'(t)\;dt=\frac{f(1)}{n+1}-\frac{1}{n+1}\int_{0}^{1}t^{n+1}f'(t)\;dt.$$
+
+Puisque $f'$ est continue sur $[0,1]$, $\lim_{n\rightarrow +\infty}\int_{0}^{1}t^{n+1}f'(t)\;dt=0$ ou encore $-\frac{1}{n+1}\int_{0}^{1}t^{n+1}f'(t)\;dt=o(\frac{1}{n})$. D'autre part, puisque $f(1)\neq0$, $\frac{f(1)}{n+1}\sim\frac{f(1)}{n}$ ou encore $\frac{f(1)}{n+1}=\frac{f(1)}{n}+o(\frac{1}{n})$. Finalement, $u_n=\frac{f(1)}{n}+o(\frac{1}{n})$, ou encore
+
+$$u_n\sim\frac{f(1)}{n}.$$
+
+\item  Puisque $f$ est de classe $C^1$ sur $[0,1]$ et que $f(1)=0$, une intégration par parties fournit
+
+$u_n=-\frac{1}{n+1}\int_{0}^{1}t^{n+1}f'(t)\;dt$. Puisque $f'$ est de classe $C^1$ sur $[0,1]$ et que $f'(1)\neq0$, le 1) appliqué à $f'$ fournit
+
+$$u_n=-\frac{1}{n+1}\int_{0}^{1}t^{n+1}f'(t)\;dt\sim-\frac{1}{n}\frac{f'(1)}{n}=-\frac{f'(1)}{n^2}.$$
+
+Par exemple, $\int_{0}^{1}t^n\sin\frac{\pi t}{2}\;dt\sim\frac{1}{n}$ et $\int_{0}^{1}t^n\cos\frac{\pi t}{2}\;dt\sim\frac{\pi}{2n^2}$
+\end{enumerate}
+
+\fincorrection
+\correction{005446}
+
+\begin{enumerate}
+\item  Pour $n\geq1$, 
+
+$$u_n=\frac{1}{n^3}\sum_{k=1}^{n}k^2\sin\frac{k\pi}{n}=\frac{1}{n}\sum_{k=1}^{n}(\frac{k}{n})^2\sin\frac{k\pi}{n}
+=\frac{1}{n}\sum_{k=1}^{n}f(\frac{k}{n}),$$
+
+où $f(x)=x^2\sin(\pi x)$. $u_n$ est donc une somme de \textsc{Riemann} à pas constant associée à la fonction continue $f$ sur $[0,1]$. Quand $n$ tend vers $+\infty$, le pas $\frac{1}{n}$ tend vers $0$ et on sait que $u_n$ tend vers
+ 
+\begin{align*}\ensuremath
+\int_{0}^{1}x^2\sin(\pi x)\;dx&=\left[-\frac{1}{\pi}x^2\cos(\pi x)\right]_{0}^{1}+\frac{2}{\pi}\int_{0}^{1}x\cos(\pi x)\;dx
+=\frac{1}{\pi}+\frac{2}{\pi}(\left[\frac{1}{\pi}x\sin(\pi x)\right]_{0}^{1}-\frac{1}{\pi}\int_{0}^{1}\sin(\pi x)\;dx)\\
+  &=\frac{1}{\pi}-\frac{2}{\pi^2}\left[-\frac{1}{\pi}\cos(\pi x)\right]_{0}^{1}=\frac{1}{\pi}-\frac{2}{\pi^2}(\frac{1}{\pi}+\frac{1}{\pi})\\
+  &=\frac{1}{\pi}-\frac{4}{\pi^3}.
+\end{align*}
+
+\item  On peut avoir envie d'écrire~:~
+
+$$\ln(u_n)=\frac{1}{n}(\sum_{k=1}^{n}(\ln(a+k)-\ln k))=\frac{1}{n}\sum_{k=1}^{n}\ln(1+\frac{a}{k}).$$
+
+La suite de nombres $a$, $\frac{a}{2}$,..., $\frac{a}{n}$ \og est une subdivision (à pas non constant) de $[0,a]$~\fg~mais malheureusement son pas $a-\frac{a}{2}=\frac{a}{2}$ ne tend pas vers $0$ quand $n$ tend vers $+\infty$. On n'est pas dans le même type de problèmes.
+
+Rappel. (exo classique) Soit $v$ une suite strictement positive telle que la suite $(\frac{v_{n+1}}{v_n})$ tend vers un réel positif $\ell$, alors la suite $(\sqrt[n]{v_n})$ tend encore vers $\ell$.
+
+Posons $v_n=\frac{1}{n!}\prod_{k=1}^{n}(a+k)$ puis $u_n=\sqrt[n]{v_n}$.
+
+$$\frac{v_{n+1}}{v_n}=\frac{a+n+1}{n+1}\rightarrow1,$$
+
+et donc $\lim_{n\rightarrow +\infty}u_n=1$.
+
+\item  Encore une fois, ce n'est pas une somme de \textsc{Riemann}. On tente un encadrement assez large~:~pour $1\leq k\leq n$, 
+
+$$\frac{n+k}{n^2+n}\leq\frac{n+k}{n^2+k}\leq\frac{n+k}{n^2}.$$
+
+En sommant ces inégalités, il vient 
+
+$$\frac{1}{n^2+n}\sum_{k=1}^{n}(n+k)\leq\sum_{k=1}^{n}\frac{n+k}{n^2+k}\leq\frac{1}{n^2}\sum_{k=1}^{n}(n+k),$$
+
+et donc ((premier terme + dernier terme)$\times$nombre de termes/2),
+
+$$\frac{1}{n^2+n}\frac{((n+1)+2n)n}{2}\leq u_n\leq\frac{1}{n^2}\frac{((n+1)+2n)n}{2},$$
+
+et finalement, $\frac{3n+1}{2(n+1)}\leq u_n\leq\frac{3n+1}{2n}$. Or, $\frac{3n+1}{2(n+1)}$ et $\frac{3n+1}{2n}$ tendent tous deux vers $\frac{3}{2}$. Donc, $u_n$ tend vers $\frac{3}{2}$.
+
+\item  Tout d'abord
+
+$$u_n=\sum_{k=1}^{n}\frac{1}{\sqrt{n^2-k^2}}=\frac{1}{n}\sum_{k=1}^{n}\frac{1}{\sqrt{1-(\frac{k}{n})^2}}=
+\frac{1}{n}\sum_{k=1}^{n}f(\frac{k}{n}),$$ 
+
+où $f(x)=\frac{1}{\sqrt{1-x^2}}$ pour $x\in[0,1[$. $u_n$ est donc effectivement une somme de \textsc{Riemann} à pas constant associée à la fonction $f$ mais malheureusement, cette fonction n'est pas continue sur $[0,1]$, ou même prolongeable par continuité en $1$. On s'en sort néanmoins en profitant du fait que $f$ est croissante sur $[0,1[$.
+
+Puisque $f$ est croissante sur $[0,1[$, pour $1\leq k\leq n-2$, on a $\frac{1}{n}\frac{1}{\sqrt{1-(\frac{k}{n})^2}}\leq\int_{k/n}^{(k+1)/n}\frac{1}{\sqrt{1-x^2}}\;dx$, et pour $1\leq k\leq n-1$, $\frac{1}{n}\frac{1}{\sqrt{1-(\frac{k}{n})^2}}\geq\int_{(k-1)/n}^{k/n}\frac{1}{\sqrt{1-x^2}}\;dx$. En sommant ces inégalités, on obtient
+
+$$u_n=\frac{1}{n}\sum_{k=1}^{n-1}\frac{1}{\sqrt{1-(\frac{k}{n})^2}}\geq\sum_{k=1}^{n-1}\int_{(k-1)/n}^{k/n}\frac{1}{\sqrt{1-x^2}}\;dx=\int_{0}^{1-\frac{1}{n}}\frac{1}{\sqrt{1-x^2}}\;dx=\Arcsin(1-\frac{1}{n}),$$
+
+et 
+
+\begin{align*}\ensuremath
+u_n&=\frac{1}{n}\sum_{k=1}^{n-2}\frac{1}{\sqrt{1-(\frac{k}{n})^2}}+\frac{1}{\sqrt{n^2-(n-1)^2}}\leq\int_{\frac{1}{n}}^{1-\frac{1}{n}}\frac{1}{\sqrt{1-x^2}}\;dx+\frac{1}{\sqrt{2n-1}}\\
+ &=\Arcsin(1-\frac{1}{n})-\Arcsin\frac{1}{n}+\frac{1}{\sqrt{2n-1}}.
+\end{align*}
+
+Quand $n$ tend vers $+\infty$, les deux membres de cet encadrement tendent vers $\Arcsin1=\frac{\pi}{2}$, et donc $u_n$ tend vers $\frac{\pi}{2}$.
+
+\item  Pour $1\leq k\leq n$, $\sqrt{k}-1\leq E(\sqrt{k})\leq \sqrt{k}$, et en sommant,
+
+$$\frac{1}{n\sqrt{n}}\sum_{k=1}^{n}\sqrt{k}-\frac{1}{\sqrt{n}}\leq u_n\leq \frac{1}{n\sqrt{n}}\sum_{k=1}^{n}\sqrt{k}.$$
+
+Quand $n$ tend vers $+\infty$, $\frac{1}{\sqrt{n}}$ tend vers $0$ et la somme de \textsc{Riemann} $\frac{1}{n\sqrt{n}}\sum_{k=1}^{n}\sqrt{k}=\frac{1}{n}\sum_{k=1}^{n}\sqrt{\frac{k}{n}}$ tend vers $\int_{0}^{1}\sqrt{x}\;dx=\frac{3}{2}$. Donc, $u_n$ tend vers $\frac{3}{2}$.
+
+\item  $u_n=\frac{1}{n}\sum_{k=1}^{n}\frac{(k/n)^2}{1+8(k/n)^3}$ tend vers $\int_{0}^{1}\frac{x^2}{8x^3+1}\;dx=\left[\frac{1}{24}\ln|8x^3+1|\right]_{0}^{1}=\frac{\ln3}{12}$.
+
+\item  $u_n=\sum_{k=0}^{n-1}\frac{1}{2(k+n)+1}=\frac{1}{2}\frac{2}{n}\sum_{k=0}^{n-1}\frac{1}{2+\frac{2k+1}{n}}$ tend vers $\frac{1}{2}\int_{0}^{2}\frac{1}{2+x}\;dx=\frac{1}{2}(\ln4-\ln2)=\ln2$.
+
+\item  Soit $f(x)=\frac{1}{x^2}e^{-1/x}$ si $x>0$ et $0$ si $x=0$. $f$ est continue sur $[0,1]$ (théorèmes de croissances comparées). Donc, $u_n=\frac{1}{n}\sum_{k=1}^{n}f(\frac{k}{n})$ tend vers $\int_{0}^{1}f(x)\;dx$. Pour $x\in[0,1]$, posons $F(x)=\int_{x}^{1}f(t)\;dt$. Puisque $f$ est continue sur $[0,1]$, $F$ l'est et
+
+$$\int_{0}^{1}f(x)\;dx=F(0)=\lim_{x\rightarrow 0,\;x>0}F(x)=\lim_{x\rightarrow 0,\;x>0}\left[e^{-1/t}\right]_{x}^{1}=\lim_{x\rightarrow 0,\;x>0}(e^{-1}-e^{-1/x})=\frac{1}{e}.$$
+
+Donc, $u_n$ tend vers $\frac{1}{e}$ quand $n$ tend vers $+\infty$.
+
+\end{enumerate}
+\fincorrection
+\correction{005447}
+Supposons $f$ de classe $C^2$ sur $[0,1]$.
+Soit $F$ une primitive de $f$ sur $[0,1]$. Soit $n$ un entier naturel non nul.
+
+$$u_n=\int_{0}^{1}f(t)\;dt-\frac{1}{n}\sum_{k=0}^{n-1}f(\frac{k}{n})=\sum_{k=0}^{n-1}(\int_{k/n}^{(k+1)/n}f(t)\;dt-\frac{1}{n}f(\frac{k}{n}))=\sum_{k=0}^{n-1}(F(\frac{k+1}{n})-F(\frac{k}{n})-\frac{1}{n}F'(\frac{k}{n})).$$
+
+$f$ est de classe $C^2$ sur le segment $[0,1]$. Par suite, $F^{(3)}=f''$ est définie et bornée sur ce segment. En notant $M_2$ la borne supérieure de $|f''|$ sur $[0,1]$, l'inégalité de \textsc{Taylor}-\textsc{Lagrange} à l'ordre 3 appliquée à $F$ sur le segment $[0,1]$ fournit
+
+$$\left|F(\frac{k+1}{n})-F(\frac{k}{n})-\frac{1}{n}F'(\frac{k}{n})-\frac{1}{2n^2}F''(\frac{k}{n})\right|
+\leq\frac{(1/n)^3M_2}{6},$$
+
+et donc,
+ 
+\begin{align*}\ensuremath
+\left|\sum_{k=0}^{n-1}[F(\frac{k+1}{n})-F(\frac{k}{n})-\frac{1}{n}F'(\frac{k}{n})-\frac{1}{2n^2}F''(\frac{k}{n})]
+\right|&\leq\sum_{k=0}^{n-1}|F(\frac{k+1}{n})-F(\frac{k}{n})-\frac{1}{n}F'(\frac{k}{n})-\frac{1}{2n^2}F''(\frac{k}{n})|\\
+ &\leq\sum_{k=0}^{n-1}\frac{(1/n)^3M_2}{6}=\frac{M_2}{6n^2}.
+\end{align*}
+
+Ainsi, $\sum_{k=0}^{n-1}[F(\frac{k+1}{n})-F(\frac{k}{n})-\frac{1}{n}F'(\frac{k}{n})-\frac{1}{2n^2}F''(\frac{k}{n})]=O(\frac{1}{n^2})$, ou encore $\sum_{k=0}^{n-1}[F(\frac{k+1}{n})-F(\frac{k}{n})-\frac{1}{n}F'(\frac{k}{n})-\frac{1}{2n^2}F''(\frac{k}{n})]=o(\frac{1}{n})$, ou enfin,
+
+$$u_n=\sum_{k=0}^{n-1}\frac{1}{2n^2}F''(\frac{k}{n})+o(\frac{1}{n}).$$
+
+Maintenant, 
+
+$$\sum_{k=0}^{n-1}\frac{1}{2n^2}F''(\frac{k}{n})=\frac{1}{2n}.\frac{1}{n}\sum_{k=0}^{n-1}f'(\frac{k}{n}).$$
+
+Or, la fonction $f'$ est continue sur le segment $[0,1]$. Par suite, la somme de \textsc{Riemann} $\frac{1}{n}\sum_{k=0}^{n-1}f'(\frac{k}{n})$ tend vers $\int_{0}^{1}f'(t)\;dt=f(1)-f(0)$ et donc 
+
+$$\frac{1}{2n}\frac{1}{n}\sum_{k=0}^{n-1}f'(\frac{k}{n})=\frac{1}{2n}(f(1)-f(0)+o(1))=\frac{f(1)-f(0)}{2n}+o(\frac{1}{n}).$$
+
+Finalement,
+
+$$\int_{0}^{1}f(t)\;dt-\frac{1}{n}\sum_{k=0}^{n-1}f(\frac{k}{n})=\frac{f(1)-f(0)}{2n}+o(\frac{1}{n}).$$
+
+\fincorrection
+\correction{005448}
+\begin{enumerate}
+\item  Puisque $f$ est de classe $C^1$ sur $[a,b]$, on peut effectuer une intégration par parties qui fournit pour $\lambda>0$~:
+
+$$\left|\int_{a}^{b}f(t)\sin(\lambda t)\;dt\right|=\left|\frac{1}{\lambda}(-\left[\cos(\lambda t)f(t)\right]_{a}^{b}+\int_{a}^{b}f'(t)\cos(\lambda t)\;dt)\right|\leq\frac{1}{\lambda}(|f(a)|+|f(b)|+\int_{a}^{b}|f'(t)|\;dt).$$ 
+
+Cette dernière expression tend vers $0$ quand $\lambda$ tend vers $+\infty$, et donc $\int_{a}^{b}f(t)\sin(\lambda t)\;dt$ tend vers $0$ quand $\lambda$ tend vers $+\infty$.
+
+\item  Si $f$ est simplement supposée continue par morceaux, on ne peut donc plus effectuer une intégration par parties.
+
+Le résultat est clair si $f=1$, car pour $\lambda>0$, $\left|\int_{a}^{b}\sin(\lambda t)\;dt\right|=...\leq\frac{2}{\lambda}$.
+
+Le résultat s'étend aux fonctions constantes par linéarité de l'intégrale puis aux fonctions constantes par morceaux par additivité par rapport à l'intervalle d'intégration, c'est-à-dire aux fonctions en escaliers.
+
+Soit alors $f$ une fonction continue par morceaux sur $[a,b]$. 
+
+Soit $\varepsilon>0$. On sait qu'il existe une fonction en escaliers $g$ sur $[a,b]$ telle que $\forall x\in[a,b],\;|f(x)-g(x)|<\frac{\varepsilon}{2(b-a)}$.
+
+Pour $\lambda>0$, on a alors 
+
+\begin{align*}\ensuremath
+\left|\int_{a}^{b}f(t)\sin(\lambda t)\;dt\right|&=\left|\int_{a}^{b}(f(t)-g(t))\sin(\lambda t)\;dt+\int_{a}^{b}g(t)\sin(\lambda t)\;dt\right|\\
+ &\leq\int_{a}^{b}|f(t)-g(t)|\;dt+\left|\int_{a}^{b}g(t)\sin(\lambda  t)\;dt\right|\leq(b-a)\frac{\varepsilon}{2(b-a)}+\left|\int_{a}^{b}g(t)\sin(\lambda t)\;dt\right|\\
+ &=\frac{\varepsilon}{2}+\left|\int_{a}^{b}g(t)\sin(\lambda t)\;dt\right|.
+\end{align*}
+
+Maintenant, le résultat étant établi pour les fonctions en esacliers, 
+
+$$\exists A>0/\;\forall\lambda\in\Rr,\;
+(\lambda>A\Rightarrow\left|\int_{a}^{b}g(t)\sin(\lambda t)\;dt\right|<\frac{\varepsilon}{2}).$$
+
+Pour $\lambda>A$, on a alors $\left|\int_{a}^{b}f(t)\sin(\lambda t)\;dt\right|<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon$. On a montré que 
+
+$$\forall\varepsilon>0,\exists A>0/\;\forall\lambda\in\Rr,\;(\lambda>A\Rightarrow\left|\int_{a}^{b}f(t)\sin(\lambda t)\;dt\right|<\varepsilon),$$
+
+et donc que $\int_{a}^{b}f(t)\sin(\lambda t)\;dt$ tend vers $0$ quand $\lambda$ tend vers $+\infty$.
+\end{enumerate}
+
+\fincorrection
+\correction{005449}
+\begin{enumerate}
+\item  Soient $m$ un réel strictement positif et, pour $t\in\Rr$, $f_m(t)=e^{mt}$. $f_m$ est bien un élément de $E$ et de plus,
+
+\begin{align*}\ensuremath
+\varphi(f_m)&=\frac{1}{m^2}(e^{mb}-e^{ma})(e^{-ma}-e^{-mb})\\
+ &=\frac{1}{m^2}e^{m(a+b)/2}(e^{m(b-a)/2}+e^{-m(b-a)/2})e^{-m(a+b)/2}(e^{m(b-a)/2}+e^{-m(b-a)/2})\\
+ &=\frac{4\sh^2(m(b-a)/2)}{m^2}.
+\end{align*} 
+
+Cette expression tend vers $+\infty$ quand $m$ tend vers $+\infty$ et $\varphi(E)$ n'est pas majoré.
+
+\item  Soit $f$ continue et strictement positive sur $[a,b]$. L'inégalité 
+de \textsc{Cauchy}-\textsc{Schwarz} montre que~:
+
+$$\varphi(f)=\int_{a}^{b}\left(\sqrt{f(t)}\right)^2\;dt\int_{a}^{b}\left(\frac{1}{\sqrt{f(t)}}\right)^2\;dt\geq\left(
+\int_{a}^{b}\sqrt{f(t)}\frac{1}{\sqrt{f(t)}}\;dt\right)^2=(b-a)^2,$$
+
+avec égalité si et seulement si la famille de fonctions $(\sqrt{f(t)},\frac{1}{\sqrt{f(t)}})$ est liée ou encore si et seulement si $\exists\lambda\in\Rr_+^*/\;\forall t\in[a,b],\;\sqrt{f(t)}=\lambda\frac{1}{\sqrt{f(t)}}$ ou enfin si et seulement si $\exists\lambda\in\Rr_+^*/\;\forall t\in[a,b],\;f(t)=\lambda$, c'est-à-dire que $f$ est une constante strictement positive.
+
+Tout ceci montre que $\varphi(E)$ admet un minimum égal à $(b-a)^2$ et obtenu pour toute fonction $f$ qui est une  constante strictement positive.
+\end{enumerate}
+\fincorrection
+\correction{005450}
+Pour $t$ réel, posons $g(t)=\frac{t^2}{\sqrt{1+t^8}}$ puis, pour $x$ réel, $G(x)=\int_{1}^{x}g(t)\;dt$. Puisque $g$ est définie et continue sur $\Rr$, $G$ est définie sur $\Rr$ et de classe $C^1$ et $G'=g$ ($G$ est la primitive de $g$ sur $\Rr$ qui s'annule en $1$). Plus précisément, $g$ est de classe $C^\infty$ sur $\Rr$ et donc $G$ est de classe $C^\infty$ sur $\Rr$.
+
+Finalement, $f$ est définie et de classe $C^\infty$ sur $]-\infty,1[\cup]1,+\infty[$.
+
+\textbf{Etude en 1.}
+
+Pour $x\neq1$, 
+
+$$f(x)=\frac{G(x)}{x-1}=\frac{G(1)+G'(1)(x-1)+\frac{G''(1)}{2}(x-1)^2+o((x-1)^2)}{x-1}=g(1)+g'(1)(x-1)+o((x-1)).$$
+
+Donc, $f$ admet en $1$ un développement limité d'ordre $1$. Par suite, $f$ se prolonge par continuité en $1$ en posant $f(1)=g(1)=\frac{1}{\sqrt{2}}$ puis le prolongement est dérivable en $1$ et $f'(1)=\frac{1}{2}g'(1)$. Or, pour tout réel $x$, $g'(x)=2x\frac{1}{\sqrt{1+x^8}}+x2.(-\frac{4x^7}{(1+x^8)\sqrt{1+x^8}})=2x\frac{1-x^8}{(1+x^8)\sqrt{1+x^8}}$ et $g'(1)=0$. Donc, $f'(1)=0$.
+
+\textbf{Dérivée. Variations}
+
+Pour $x\neq1$, $f'(x)=\frac{G'(x)(x-1)-G(x)}{(x-1)^2}$.
+
+$f'(x)$ est du signe de $h(x)=G'(x)(x-1)-G(x)$ dont la dérivée est $h'(x)=G''(x)(x-1)+G'(x)-G'(x)=(x-1)g'(x)$.
+$h'$ est du signe de $2x(1-x^8)(x-1)$ ou encore du signe de $-2x(1+x)$. $h$ est donc décroissante sur $]-\infty,-1]$ et sur $[0,+\infty[$ et croissante sur $[-1,0]$.
+
+Maintenant, quand $x$ tend vers $+\infty$ (ou $-\infty$), $G'(x)(x-1)=g(x)(x-1)\sim x\frac{1}{x^2}=\frac{1}{x}$ et donc $G'(x)(x-1)$ tend vers $0$. Ensuite, pour $x\geq1$
+
+$$0\leq G(x)\leq\int_{1}^{x}\frac{t^2}{\sqrt{t^8}}\;dt=1-\frac{1}{x}\leq1,$$
+
+et $G$ est bornée au voisinage de $+\infty$ (ou de $-\infty$). Comme $G$ est croissante sur $\Rr$, $G$ a une limite réelle en $+\infty$ et en $-\infty$. Cette limite est strictement positive en $+\infty$ et strictement négative en $-\infty$. Par suite, $h$ a une limite strictement positive en $-\infty$ et une limite strictement négative en $+\infty$.
+Sur $[0,+\infty[$, $h$ est décroissante et s'annule en $1$. Donc, $h$ est positive sur $[0,1]$ et négative sur $[1,+\infty[$.
+
+Ensuite, 
+
+$$h(-1)=\int_{-1}^{1}\frac{t^2}{\sqrt{1+t^8}}\;dt-\sqrt{2}=2\int_{0}^{1}\frac{t^2}{\sqrt{1+t^8}}\;dt-\sqrt{2}<2\int_{0}^{1}\frac{1}{\sqrt{2}}\;dt-\sqrt{2}=0,$$
+
+et $h(-1)<0$. $h$ s'annule donc, une et une seule fois sur $]-\infty,-1[$ en un certain réel $\alpha$ et une et une seule fois sur $]-1,0[$ en un certain réel $\beta$. De plus, $h$ est strictement positive sur $]-\infty,\alpha[$, strictement négative sur $]\alpha,\beta[$, strictement positive sur $]\beta,1[$ et strictement négative sur $]1,+\infty[$.
+
+$f$ est strictement croissante sur $]-\infty,\alpha]$, strictement décroissante sur $[\alpha,\beta]$, strictement croissante sur $[\beta,1]$ et strictement décroissante sur $[1,+\infty[$.
+
+\textbf{Etude en l'infini.}
+
+En $+\infty$ ou $-\infty$, $G$ a une limite réelle et donc $f$ tend vers $0$.
+\fincorrection
+\correction{005451}
+\begin{enumerate}
+\item  La fonction $t\mapsto e^{t^2}$ est de classe $C^\infty$ sur $\Rr$. Donc, la fonction $x\mapsto\int_{0}^{x}e^{t^2}\;dt$ est de classe $C^\infty$ sur $\Rr$ et il en est de même de $f$.
+
+La fonction $t\mapsto e^{t^2}$ est paire et donc la fonction $x\mapsto\int_{0}^{x}e^{t^2}\;dt$ est impaire. Comme la fonction $x\mapsto e^{-x^2}$ est paire, $f$ est impaire.
+
+\item  Pour $x$ réel, $f'(x)=-2xe^{-x^2}\int_{0}^{x}e^{t^2}\;dt+e^{-x^2}e^{x^2}=-2xf(x)+1$.
+\item  Pour $x\geq1$, une intégration par parties fournit~:
+
+$$\int_{1}^{x}e^{t^2}\;dt=\int_{1}^{x}\frac{1}{2t}.2te^{t^2}\;dt=\left[\frac{1}{2t}e^{t^2}\right]_{1}^{x}+\frac{1}{2}\int_{1}^{x}\frac{e^{t^2}}{t^2}\;dt=\frac{e^{x^2}}{2x}-\frac{e}{2}+\frac{1}{2}\int_{1}^{x}\frac{e^{t^2}}{t^2}\;dt,$$
+
+et donc,
+ 
+\begin{align*}\ensuremath
+|1-2xf(x)|&=\left|1-2xe^{-x^2}\int_{1}^{x}e^{t^2}\;dt-2xe^{-x^2}\int_{0}^{1}e^{t^2}\;dt\right|\\
+ &\leq xe^{-x^2}\int_{1}^{x}\frac{e^{t^2}}{t^2}\;dt+exe^{-x^2}+2xe^{-x^2}\int_{0}^{1}e^{t^2}\;dt.
+\end{align*}
+
+Les deux derniers termes tendent vers $0$ quand $x$ tend vers $+\infty$. Il reste le premier.
+
+Pour $x\geq2$, 
+
+\begin{align*}\ensuremath
+0\leq xe^{-x^2}\int_{1}^{x}\frac{e^{t^2}}{t^2}\;dt&=xe^{-x^2}\int_{1}^{x-1}\frac{e^{t^2}}{t^2}\;dt+
+xe^{-x^2}\int_{x-1}^{x}\frac{e^{t^2}}{t^2}\;dt\\
+ &\leq x(x-1)e^{-x^2}\frac{e^{(x-1)^2}}{1^2}+xe^{-x^2}e^{x^2}\int_{x-1}^{x}\frac{1}{t^2}\;dt\\
+ &=x(x-1)e^{-2x+1}+x\left(\frac{1}{x-1}-\frac{1}{x}\right)=x(x-1)e^{-2x+1}+\frac{1}{x-1}.
+\end{align*}
+
+Cette dernière expression tend vers $0$ quand $x$ tend vers $+\infty$. On en déduit que $xe^{-x^2}\int_{1}^{x}\frac{e^{t^2}}{t^2}\;dt$ tend vers $0$ quand $x$ tend vers $+\infty$. Finalement, $1-2xf(x)$ tend vers $0$ quand $x$ tend vers $+\infty$, ou encore, $f(x)\sim\frac{1}{2x}$.
+
+\item  Pour $x>0$, $g(x)=\frac{e^{x^2}}{2x}(1-2xf(x))=\frac{e^{x^2}}{2x}-\int_{0}^{x}e^{t^2}\;dt$ puis,
+
+$$g'(x)=e^{x^2}-\frac{e^{x^2}}{2x^2}-e^{x^2}=-\frac{e^{x^2}}{2x^2}<0.$$
+
+$g$ est donc strictement décroissante sur $]0,+\infty[$ et donc, $g$ s'annule au plus une fois sur $]0,+\infty[$. Ensuite, $f'(1)=1-2f(1)=1-2e^{-1}\int_{0}^{1}e^{t^2}\;dt$. Or, la méthode des rectangles fournit $\int_{0}^{1}e^{t^2}\;dt =1,44... >1,35...=\frac{e}{2}$, et donc $f'(1)<0$ puis $g(1)<0$. Enfin, comme en $0^+$, $g(x)\sim\frac{1}{2x}f'(0)=\frac{1}{2x}$, $g(0^+)=+\infty$.
+
+Donc, $g$ s'annule exactement une fois sur $]0,+\infty[$ en un certain réel $x_0$ de $]0,1[$.
+
+\item  $g$ est strictement positive sur $]0,x_0[$ et strictement négative sur $]x_0,+\infty[$. Il en de même de $f'$. $f$ est ainsi strictement croissante sur $[0,x_0]$ et strictement décroissante sur $[x_0,+\infty[$.
+\end{enumerate}
+
+\fincorrection
+\correction{005452}
+Pour $t\in[0,1]$,
+
+\begin{align*}\ensuremath
+f^2(t)&=\left(\int_{0}^{t}f'(u)\;du\right)^2\leq(\int_{0}^{t}{f'}^2(u)\;du)(\int_{0}^{t}1\;du)\quad(\textsc{Cauchy}-\textsc{Schwarz})\\
+ &=t\int_{0}^{t}{f'}^2(u)\;du\leq t\int_{0}^{1}{f'}^2(u)\;du,
+\end{align*}
+ 
+et donc, par croissance de l'intégrale,
+
+$$\int_{0}^{1}f^2(t)\;dt\leq\int_{0}^{1}t(\int_{0}^{1}{f'}^2(u)\;du)\;dt=(\int_{0}^{1}{f'}^2(u)\;du)\int_{0}^{1}t\;dt=\frac{1}{2}\int_{0}^{1}{f'}^2(u)\;du.$$
+\fincorrection
+\correction{005453}
+Pour $x$ réel donné, la fonction $t\mapsto|t-x|f(t)$ est continue sur $[a,b]$ et donc $F(x)$ existe. Pour $x\leq a$,
+$F(x)=\int_{a}^{b}(t-x)f(t)\;dt=-x\int_{a}^{b}f(t)\;dt+\int_{a}^{b}tf(t)\;dt$. $F$ est donc de classe $C^1$ sur $]-\infty,a]$ en tant que fonction affine et, pour $x<a$, $F'(x)=-\int_{a}^{b}f(t)\;dt$ (en particulier $F'_g(a)=-\int_{a}^{b}f(t)\;dt$)..
+
+De même, pour $x\geq b$, $F(x)=x\int_{a}^{b}f(t)dt-\int_{a}^{b}tf(t)\;dt$. $F$ est donc de classe $C^1$ sur $[b,+\infty[$ en tant que fonction affine et, pour $x\geq b$, $F'(x)=\int_{a}^{b}f(t)\;dt$ (en particulier $F'_d(b)=\int_{a}^{b}f(t)\;dt$).
+
+Enfin, si $a\leq x\leq b$, 
+
+$$F(x)=\int_{a}^{x}(x-t)f(t)\;dt+\int_{x}^{b}(t-x)f(t)\;dt=x(\int_{a}^{x}f(t)\;dt-\int_{x}^{b}f(t)\;dt)-\int_{a}^{x}tf(t)\;dt+\int_{x}^{b}tf(t)\;dt.$$
+
+$F$ est donc de classe $C^1$ sur $[a,b]$ et, pour $a\leq x\leq b$, 
+
+\begin{align*}\ensuremath
+F'(x)&=\int_{a}^{x}f(t)\;dt-\int_{x}^{b}f(t)\;dt+x(f(x)-(-f(x)))-xf(x)-xf(x)\\
+ &=\int_{a}^{x}f(t)dt-\int_{x}^{b}f(t)\;dt.
+\end{align*}
+
+(et en particulier, $F'_d(a)=-\int_{a}^{b}f(t)\;dt=F'_g(a)$ et $F'_g(b)=\int_{a}^{b}f(t)\;dt=F'_d(b)$).
+
+$F$ est continue $]-\infty,a]$, $[a,b]$ et $[b,+\infty[$ et donc sur $\Rr$. $F$ est de classe $C^1$ sur $]-\infty,a]$, $[a,b]$ et $[b,+\infty[$. De plus, $F'_g(a)=F'_d(a)$ et $F'_g(b)=F'_d(b)$. $F$ est donc de classe $C^1$ sur $\Rr$.
+\fincorrection
+\correction{005454}
+Puisque $f$ est continue et strictement croissante sur $[0,a]$, $f$ réalise une bijection de $[0,a]$ sur $f([0,a])=[0,f(a)]$.
+
+Soit $x\in[0,a]$. Pour $y\in[0,f(a)]$, posons $g(y)=\int_{0}^{x}f(t)\;dt+\int_{0}^{y}f^{-1}(t)\;dt-xy$. Puisque $f$ est continue sur $[0,a]$, on sait que $f^{-1}$ est continue sur $[0,f(a)]$ et donc la fonction $y\mapsto\int_{0}^{y}f^{-1}(t)\;dt$ est définie et de classe $C^1$ sur $[0,f(a)]$. Donc $g$ est de classe $C^1$ sur 
+$[0,f(a)]$ et pour $y\in[0,f(a)]$, $g'(y)=f^{-1}(y)-x$.
+
+Or, $f$ étant strictement croissante sur $[0,a]$, $g'(y)>0\Leftrightarrow f^{-1}(y)>x\Leftrightarrow y>f(x)$. Par suite, $g'$ est strictement négative sur $[0,f(x)[$ et strictement positive sur $]f(x),f(a)]$, et $g$ est strictement décroissante sur $[0,f(x)]$ et strictement croissante sur $[f(x),f(a)]$. $g$ admet en $y=f(x)$ un minimum global égal à
+$g(f(x))=\int_{0}^{x}f(t)\;dt+\int_{0}^{f(x)}f^{-1}(t)\;dt-xf(x)$. Notons $h(x)$ cette expression.
+
+$f$ est continue sur $[0,a]$. Donc, $x\mapsto\int_{0}^{x}f(t)\;dt$ est de classe $C^1$ sur $[0,a]$. Ensuite $f$ est de classe $C^1$ sur $[0,a]$ à valeurs dans $[0,f(a)]$ et $y\mapsto\int_{0}^{y}f^{-1}(t)\;dt$ est de classe $C^1$ sur $[0,f(a)]$ (puisque $f^{-1}$ est continue sur $[0,f(a)]$). On en déduit que $x\mapsto\int_{0}^{f(x)}f^{-1}(t)\;dt$ est de classe $C^1$ sur $[0,a]$. Il en est de même de $h$ et pour $x\in[0,a]$,
+
+$$h'(x)=f(x)+f'(x)f^{-1}(f(x))-f(x)-xf'(x)=0.$$
+
+$h$ est donc constante sur $[0,a]$ et pour $x\in[0,a]$, $h(x)=h(0)=0$.
+
+On a montré que 
+
+$$\forall(x,y)\in[0,a]\times[0,f(a)],\;\int_{0}^{x}f(t)\;dt+\int_{0}^{y}f^{-1}(t)\;dt-xy\geq
+\int_{0}^{x}f(t)\;dt+\int_{0}^{f(x)}f^{-1}(t)\;dt-xf(x)=0.$$
+\fincorrection
+\correction{005455}
+Soit, pour $x\in[0,1]$, $g(x)=f(x)-x$. g est continue sur $[0,1]$ et 
+$$\int_{0}^{1}g(x)\;dx=\int_{0}^{1}f(x)\;dx-\int_{0}^{1}x\;dx=\frac{1}{2}-\frac{1}{2}=0.$$
+
+Si $g$ est de signe constant, $g$ étant de plus continue sur $[0,1]$ et d'intégrale nulle sur $[0,1]$, on sait que $g$ est nulle. Sinon, $g$ change de signe sur $[0,1]$ et le théorème des valeurs intermédiaires montre que $g$ s'annule au moins une fois. Dans tous les cas, $g$ s'annule au moins une fois sur $[0,1]$ ou encore, $f$ admet au moins un point fixe dans $[0,1]$.
+\fincorrection
+\correction{005456}
+D'après l'inégalité de \textsc{Cauchy}-\textsc{Schwarz},
+
+$$\left(\int_{0}^{1}f(t)\;dt\right)\left(\int_{0}^{1}g(t)\;dt\right)=\left(\int_{0}^{1}(\sqrt{f(t)})^2\;dt\right)\left(\int_{0}^{1}(\sqrt{g(t)})^2\;dt\right)\geq\left(\int_{0}^{1}\sqrt{f(t)}\sqrt{g(t)}\;dt\right)^2\geq\left(\int_{0}^{1}1\;dt\right)^2=1.$$
+\fincorrection
+\correction{005457}
+Soit $x\in[0,1]\subset[0,\frac{\pi}{2}]$. 
+
+D'après la formule de \textsc{Taylor}-\textsc{Laplace} à l'ordre 1 fournit
+ 
+$$\sin x=x-\int_{0}^{x}(x-t)\sin t\;dt\leq x,$$
+
+car pour $t\in[0,x]$, $(x-t)\geq0$ et pour $t\in[0,x]\subset[0,\frac{\pi}{2}]$, $\sin t\geq0$. 
+
+De même, la formule de \textsc{Taylor}-\textsc{Laplace} à l'ordre 3 fournit
+ 
+$$\sin x=x-\frac{x^3}{6}+\int_{0}^{x}\frac{(x-t)^3}{6}\sin t\;dt\geq x-\frac{x^3}{6}.$$
+
+Donc, $\forall x\in[0,1],\;x-\frac{x^3}{6}\leq\sin x\leq x$.
+
+Soient alors $n\geq1$ et $k\in\{1,...,n\}$. On a $0\leq\frac{1}{(n+k)^2}\leq1$ et donc 
+
+$$\frac{1}{(n+k)^2}-\frac{1}{6(n+k)^6}\leq\sin\frac{1}{(n+k)^2}\leq\frac{1}{(n+k)^2},$$
+
+puis en sommant 
+
+$$\sum_{k=1}^{n}\frac{1}{(n+k)^2}-\sum_{k=1}^{n}\frac{1}{6(n+k)^6}\leq\sum_{k=1}^{n}\sin\frac{1}{(n+k)^2}\leq\sum_{k=1}^{n}\frac{1}{(n+k)^2}.$$
+
+Maintenant, quand $n$ tend vers $+\infty$,
+
+$$\sum_{k=1}^{n}\frac{1}{(n+k)^2}=\frac{1}{n}.\frac{1}{n}\sum_{k=1}^{n}\frac{1}{(1+\frac{k}{n})^2}
+=\frac{1}{n}\left(\int_{0}^{1}\frac{1}{(1+x)^2}\;dx+o(1)\right)=\frac{1}{2n}+o(\frac{1}{n}).$$
+
+D'autre part,
+
+$$0\leq\sum_{k=1}^{n}\frac{1}{6(n+k)^6}\leq n.\frac{1}{6n^6}=\frac{1}{6n^5},$$
+
+et donc, $\sum_{k=1}^{n}\frac{1}{6(n+k)^6}=o(\frac{1}{n})$.
+
+On en déduit que $2n(\frac{1}{(n+k)^2}-\frac{1}{6(n+k)^6})=2n(\frac{1}{2n}+o(\frac{1}{n}))=1+o(1)$ et que $2n\frac{1}{(n+k)^2}=1+o(1)$. Mais alors, d'après le théorème des gendarmes, $2n\sum_{k=1}^{n}\sin\frac{1}{(n+k)^2}$ tend vers $1$ quand $n$ tend vers $+\infty$, ou encore
+
+$$\sum_{k=1}^{n}\sin\frac{1}{(n+k)^2}\underset{n\rightarrow+\infty}{\sim}\frac{1}{2n}.$$
+\fincorrection
+\correction{005458}
+Soit $n\in\Nn^*$.
+
+\begin{align*}\ensuremath
+\sum_{k=1}^{n}\sin\frac{k}{n^2}&=\mbox{Im}(\sum_{k=1}^{n}e^{ik/n^2})=\mbox{Im}\left(e^{i/n^2}\frac{1-e^{ni/n^2}}{1-e^{i/n^2}}\right)
+=\mbox{Im}\left(e^{i(1+\frac{n}{2}-\frac{1}{2})/n^2}\frac{\sin\frac{1}{2n}}{\sin\frac{1}{2n^2}}\right)
+=\frac{\sin\frac{n+1}{2n^2}\sin\frac{1}{2n}}{\sin\frac{1}{2n^2}}\\
+ &\underset{n\rightarrow+\infty}{=}(\frac{1}{2n}+\frac{1}{2n^2}+o(\frac{1}{n^2}))(\frac{1}{2n}+o(\frac{1}{n^2}))(\frac{1}{2n^2}+o(\frac{1}{n^3}))^{-1}\\
+ &=(1+\frac{1}{n}+o(\frac{1}{n}))(\frac{1}{2}+o(\frac{1}{n}))(1+o(\frac{1}{n}))^{-1}=\frac{1}{2}+\frac{1}{2n}
+ +o(\frac{1}{n}),
+\end{align*}
+
+(on peut aussi partir de l'encadrement $\frac{k}{n^2}-\frac{k^3}{6n^6}\leq\sin\frac{k}{n^2}\leq\frac{k}{n^2}$).
+\fincorrection
+\correction{005459}
+\begin{enumerate}
+\item  Soit $n\in\Nn$. Pour $x\in[0,\frac{\pi}{2}]$, $0\leq\Arcsin^x\leq(\frac{\pi}{2})^n$ et donc, par croissance de l'intégrale,
+
+$$0\leq u_n\leq\frac{1}{n!}\int_{0}^{1}(\frac{\pi}{2})^ndx=\frac{1}{n!}(\frac{\pi}{2})^n.$$
+
+D'après un théorème de croissances comparées, $\frac{1}{n!}(\frac{\pi}{2})^n$ tend vers $0$ quand $n$ tend vers $+\infty$. D'après le théorème des gendarmes, $u_n$ tend vers $0$ quand $n$ tend vers $+\infty$.
+
+\item  $0\leq\int_{0}^{1}\frac{x^n}{1+x}\;dx\leq\int_{0}^{1}\frac{x^n}{1+0}\;dx=\frac{1}{n+1}$. Comme $\frac{1}{n+1}$ tend vers $0$ quand $n$ tend vers $+\infty$, $\int_{0}^{1}\frac{x^n}{1+x}\;dx$ tend vers $0$ quand $n$ tend vers $+\infty$.
+
+\item  Soit $n\in\Nn^*$.
+
+\begin{align*}\ensuremath
+\left|\int_{0}^{\pi}\frac{n\sin x}{x+n}\;dx-\int_{0}^{\pi}\sin x\;dx\right|=\left|
+\int_{0}^{\pi}\frac{-x\sin x}{x+n}\;dx\right|\leq\int_{0}^{\pi}\left|\frac{-x\sin x}{x+n}\;dx\right|
+\leq\int_{0}^{\pi}\frac{\pi}{0+n}\;dx=\frac{\pi^2}{n}.
+\end{align*}
+
+Or, $\frac{\pi^2}{n}$ tend vers $0$ quand $n$ tend vers $+\infty$, et donc $\int_{0}^{\pi}\frac{n\sin x}{x+n}\;dx$ tend vers $\int_{0}^{\pi}\sin x\;dx=2$ quand $n$ tend vers $+\infty$.
+
+\end{enumerate}
+\fincorrection
+\correction{005460}
+Pour $t\in\Rr$, posons $g(t)=\frac{1}{\sqrt{t^4+t^2+1}}$. $g$ est continue sur $\Rr$ et admet donc des primitives sur $\Rr$. Soit $G$ une primitive de $g$ sur $\Rr$.
+
+\textbf{Définition, dérivabilté, dérivée.}
+
+Puisque $g$ est continue sur $\Rr$, $F$ est définie sur $\Rr$ et pour tout réel $x$, $F(x)=G(2x)-G(x)$. $G$ est de classe $C^1$ sur $\Rr$ et donc $F$ est de classe $C^1$ sur $\Rr$ et pour tout réel $x$,
+
+$$F'(x)=2G'(2x)-G'(x)=2g(2x)-g(x)=\frac{2}{\sqrt{16x^4-4x^2+1}}-\frac{1}{\sqrt{x^4+x^2+1}}.$$
+
+\textbf{Parité.}
+
+Soit $x\in\Rr$. En posant $t=-u$ et donc $dt=-du$, on obtient, en notant que $g$ est paire
+
+$$F(-x)=\int_{-x}^{-2x}g(t)\;dt=\int_{x}^{2x}g(-u).-du=-\int_{x}^{2x}g(u)\;du=-F(x).$$
+
+$F$ est donc impaire.
+
+\textbf{Variations.}
+
+Pour $x$ réel,
+
+\begin{align*}\ensuremath
+\mbox{sgn}(F'(x))&=\mbox{sgn}(\frac{2}{\sqrt{16x^4-4x^2+1}}-\frac{1}{\sqrt{x^4+x^2+1}})=\mbox{sgn}(2\sqrt{x^4+x^2+1}-\sqrt{16x^4-4x^2+1})\\
+ &=\mbox{sgn}(4(x^4+x^2+1)-(16x^4+4x^2+1))\;(\mbox{par croissance de}\;t\mapsto t^2\;\mbox{sur}\;\Rr^+)\\
+  &=\mbox{sgn}(-12x^4+3)=\mbox{sgn}(1-4x^4)=\mbox{sgn}(1-2x^2).
+\end{align*}
+
+$F$ est donc strictement croissante sur $[-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}]$ et strictement décroissante sur $]-\infty,-\frac{1}{\sqrt{2}}]$ et sur $[\frac{1}{\sqrt{2}},+\infty[$.
+
+\textbf{Etude en} $\bf{+{\infty}}$.
+
+Pour $x>0$, $0\leq F(x)\leq\int_{x}^{2x}\frac{1}{\sqrt{x^4}}\;dt=\frac{2x-x}{x^2}=\frac{1}{x}$. Comme $\frac{1}{x}$ tend vers $0$ quand $x$ tend vers $+\infty$, le théorème des gendarmes permet d'affirmer que $\lim_{x\rightarrow +\infty}F(x)=0$.
+
+\textbf{Graphe.}
+
+%$$\includegraphics{../images/img005460-1}$$
+
+\fincorrection
+\correction{005461}
+$f$ est continue sur $\Rr$ et admet donc des primitives sur $\Rr$. Soit $F$ une primitive donnée de $f$ sur $\Rr$. Notons $(*)$ la relation~:
+
+$$\forall(x,y)\in\Rr^2,\;f(x)f(y)=F(x+y)-F(x-y).$$
+
+Pour $x=y=0$, on obtient $forall x\in\Rr$, $f(0)=0$. Puis $x=0$ fournit $\forall y\in\Rr,\;F(y)-F(-y)=0$. $F$ est donc nécessairement paire et sa dérivée $f$ est nécessairement impaire.
+
+La fonction nulle est solution du problème. Soit $f$ une éventuelle solution non nulle. Il existe alors un réel $y_0$ tel que $f(y_0)\neq0$. Pour tout réel $x$, on a alors 
+
+$$f(x)=\frac{1}{f(y_0)}\int_{x-y_0}^{x+y_0}f(t)\;dt=\frac{1}{f(y_0)}(F(x+y_0)-F(x-y_0)).$$
+
+$f$ est continue sur $\Rr$ et donc $F$ est de classe $C^1$ sur $\Rr$. Il en est de même de la fonction $x\mapsto\frac{1}{f(y_0)}(F(x+y_0)-F(x-y_0))$ et donc de $f$. Mais alors, $F$ est de classe $C^2$ sur $\Rr$ et donc $f$ l'est aussi ($f$ est en fait de classe $C^\infty$ par récurrence).
+
+En dérivant $(*)$ à $y$ fixé, on obtient $f'(x)f(y)=f(x+y)-f(x-y)$ $(**)$, mais en dérivant à $x$ fixé, on obtient aussi $f(x)f'(y)=f(x+y)+f(x-y)$ $(***)$. En redérivant $(**)$ à $y$ fixé, on obtient $f''(x)f(y)=f'(x+y)-f'(x-y)$ et en dérivant $(***)$ à $x$ fixé, on obtient $f(x)f''(y)=f'(x+y)-f'(x-y)$. Mais alors,
+
+$$\forall(x,y)\in\Rr^2,\;f''(x)f(y)=f(x)f''(y),$$
+
+et en particulier,
+
+$$\forall x\in\Rr,\;f''(x)-\frac{f''(y_0)}{f(y_0)}f(x)=0.$$
+
+On a montré que si $f$ est solution du problème, il existe un réel $\lambda$ tel que $f$ est solution de l'équation différentielle $y''-\lambda y=0$ $(E)$.
+
+\begin{itemize}
+\item[- si $\lambda>0$], en posant $k=\sqrt{\lambda}$, $(E)$ s'écrit $y''-k^2y=0$. Les solutions de $(E)$ sont les fonctions de la forme $x\mapsto A\sh(kx)+B\ch(kx)$, $(A,B)\in\Rr^2$ et les solutions impaires de $(E)$ sont les fonctions de la forme $x\mapsto A\sh(kx)$, $A\in\Rr$.
+
+Réciproquement, soit $k$ un réel strictement positif. Pour $A\in\Rr^*$ (on sait que la fonction nulle est solution) et $x\in\Rr$, posons $f(x)=A\sh(kx)$. Alors
+
+$$\int_{x-y}^{x+y}f(t)\;dt=\frac{A}{k}(\ch(k(x+y))-\ch(k(x-y)))\frac{2A}{k}\sh(kx)\sh(ky)=\frac{2}{kA}f(x)f(y).$$
+
+$f$ est solution si et seulement si $\frac{2}{kA}=1$ ou encore $A=\frac{2}{k}$.
+
+\item[- si $\lambda<0$], en posant $k=\sqrt{-\lambda}$, $(E)$ s'écrit $y''+k^2y=0$. Les solutions de $(E)$ sont les fonctions de la forme $x\mapsto A\sin(kx)+B\cos(kx)$, $(A,B)\in\Rr^2$ et les solutions impaires de $(E)$ sont les fonctions de la forme $x\mapsto A\sin(kx)$, $A\in\Rr$.
+
+Réciproquement, soit $k$ un réel strictement positif. Pour $A\in\Rr^*$ et $x\in\Rr$, posons $f(x)=A\sin(kx)$. Alors
+
+$$\int_{x-y}^{x+y}f(t)\;dt=\frac{A}{k}(\cos(k(x-y))-\cos(k(x+y)))=\frac{2A}{k}\sin(kx)\sin(ky)=\frac{2}{kA}f(x)f(y).$$
+
+$f$ est solution si et seulement si $\frac{2}{kA}=1$ ou encore $A=\frac{2}{k}$.
+
+\item[- si $\lambda=0$], $(E)$ s'écrit $y''=0$. Les solutions de $(E)$ sont les fonctions affines et les solutions impaires de $(E)$ sont les fonctions de la forme $x\mapsto Ax$, $A\in\Rr$.
+
+Réciproquement, si $f(x)=Ax$
+
+$$\int_{x-y}^{x+y}f(t)\;dt=\frac{A}{2}((x+y)^2-(x-y)^2)=2Axy=\frac{2}{A}f(x)f(y),$$
+
+et $f$ est solution si et seulement si $A=2$.
+
+\end{itemize}
+
+Les solutions sont la fonction nulle, la fonction $x\mapsto2x$, les fonctions $x\mapsto\frac{2}{k}\sin(kx)$, $k>0$ et les fonctions $x\mapsto\frac{2}{k}\sh(kx)$, $k>0$.
+\fincorrection
+\correction{005462}
+Soit $F$ une primitive de $f$ sur $[a,b]$. $F$ est de classe $C^2$ sur le segment $[a,b]$ et l'inégalité de \textsc{Taylor}-\textsc{Lagrange} permet d'écrire
+
+$$|F(\frac{a+b}{2})-F(a)-\frac{b-a}{2}F'(a)|\leq\frac{1}{2}\frac{(b-a)^2}{4}\sup\{|F''(x)|,\;x\in[a,b]\}.$$
+
+Mais $F'(a)=f(a)=0$ et $F''=f'$. Donc,
+
+$$|F(\frac{a+b}{2})-F(a)|\leq\frac{1}{2}M\frac{(b-a)^2}{4}.$$
+
+De même, puisque $F'(b)=f(b)=0$,
+
+$$|F(\frac{a+b}{2})-F(b)|\leq\frac{1}{2}M\frac{(b-a)^2}{4}.$$
+
+Mais alors,
+
+$$\left|\int_{a}^{b}f(t)\;dt\right|=|F(b)-F(a)|\leq|F(b)-F(\frac{a+b}{2})|+|F(\frac{a+b}{2})-F(a)|\leq\frac{1}{2}M\frac{(b-a)^2}{4}+\frac{1}{2}M\frac{(b-a)^2}{4}=M\frac{(b-a)^2}{4}.$$
+\fincorrection
+\correction{005463}
+Si $\int_{0}^{1}f(t)\;dt\geq0$,
+
+\begin{align*}\ensuremath
+\left|\int_{0}^{1}f(t)\;dt\right|=\int_{0}^{1}|f(t)|\;dt&\Leftrightarrow\int_{0}^{1}f(t)\;dt=\int_{0}^{1}|f(t)|\;dt\Leftrightarrow
+\int_{0}^{1}(|f(t)|-f(t))\;dt=0\\
+ &\Leftrightarrow|f|-f=0\;(\mbox{fonction continue positive d'intégrale nulle})\\
+ &\Leftrightarrow f=|f|\Leftrightarrow f\geq0.
+\end{align*}
+
+Si $\int_{0}^{1}f(t)\;dt\leq0$, alors $\int_{0}^{1}-f(t)\;dt\geq0$ et d'après ce qui précède, $f$ est solution si et seulement si $-f=|-f|$ ou encore $f\leq0$.
+
+En résumé, $f$ est solution si et seulement si $f$ est de signe constant sur $[0,1]$.
+\fincorrection
+\correction{005464}
+\begin{enumerate}
+\item  Si $x>1$, $[x,x^2]\subset]1,+\infty[$ et $t\mapsto\frac{1}{\ln t}$ est continue sur $]1,+\infty[$. Par suite, $\int_{x}^{x^2}\frac{dt}{\ln t}$ existe. De plus,
+
+$$x\int_{x}^{x^2}\frac{1}{t\ln t}\;dt\leq\int_{x}^{x^2}\leq\int_{x}^{x^2}\frac{dt}{\ln t}=\int_{x}^{x^2}t\frac{1}{t\ln t}\;dt\leq x^2\int_{x}^{x^2}\frac{1}{t\ln t}\;dt.$$
+
+Mais, 
+
+$$\int_{x}^{x^2}\frac{1}{t\ln t}\;dt=\left[\ln|\ln t|\right]_{x}^{x^2}=\ln|\ln(x^2)|-\ln|\ln(x)|=\ln\left|\frac{2\ln x}{\ln x}\right|=\ln2.$$
+
+Donc, $\forall x>1,\;x\ln2\leq F(x)\leq x^2\ln2$. On en déduit que $\lim_{x\rightarrow 1,\;x>1}F(x)=\ln2$.
+
+Si $0<x<1$, on a $x^2<x$ puis $[x^2,x]\subset]0,1[$. Donc, $t\mapsto\frac{1}{\ln t}$ est continue sur $[x^2,x]$ et $F(x)=-\int_{x^2}^{x}\frac{1}{\ln t}\;dt$ existe.
+
+Pour $t\in[x^2,x]$, on a $t\ln t<0$ et $x^2\leq t\leq x$. Par suite, 
+
+$$x\frac{1}{t\ln t}\leq t\frac{1}{t\ln t}=\frac{1}{\ln t}\leq x^2\frac{1}{t\ln t},$$
+
+puis, $\int_{x^2}^{x}x\frac{1}{t\ln t}\;dt\leq\int_{x^2}^{x}\frac{1}{\ln t}\;dt\leq\int_{x^2}^{x}x^2\frac{1}{t\ln t}\;dt$, et finalement,
+
+$$x^2\ln2=\int_{x}^{x^2}x^2\frac{1}{t\ln t}\;dt\leq F(x)=\int_{x}^{x^2}\frac{1}{\ln t}\;dt\leq\int_{x}^{x^2}x\frac{1}{t\ln t}\;dt=x\ln 2.$$
+
+On obtient alors $\lim_{x\rightarrow 1,\;x<1}F(x)=\ln2$ et finalement, $\lim_{x\rightarrow 1}F(x)=\ln2$. On en déduit que $F$ se prolonge par continuité en $1$ en posant $F(1)=\ln 2$ (on note encore $F$ le prolongement obtenu).
+
+\item  On a déjà vu que $F$ est définie (au moins) sur $]0,+\infty[$ ($F$ désignant le prolongement). Il ne parait pas encore possible de donner un sens à $F(0)$ et encore moins à $F(x)$ quand $x<0$, car alors $[x,0]$ est un intervalle de longueur non nulle contenu dans $[x,x^2]$, sur lequel la fonction $t\mapsto\frac{1}{\ln t}$ n'est même pas définie.
+
+$$D_F=]0,+\infty[.$$
+
+Pour $t\in]0,1[\cup]1,+\infty[$, posons $g(t)=\frac{1}{\ln t}$ et notons $G$ une primitive de $g$ sur cet ensemble. Alors, pour $x$ dans $]0,1[\cup]1,+\infty[$, $F(x)=G(x^2)-G(x)$. On en déduit que $F$ est dérivable (et même de classe $C^1$) sur $]0,1[\cup]1,+\infty[$ et que pour $x$ dans $]0,1[\cup]1,+\infty[$,
+
+$$F'(x)=2xg(x^2)-g(x)=\frac{2x}{\ln(x^2)}-\frac{1}{\ln x}=\frac{x-1}{\ln x}.$$
+
+Maintenant, quand $x$ tend vers $1$, $\frac{x-1}{\ln x}$ tend vers $1$. Ainsi, $F$ est continue sur $]0,+\infty[$, de classe $C^1$ sur $]0,1[\cup]1,+\infty[$ et $F'$ a une limite réelle en $1$. Un théorème classique d'analyse permet d'affirmer que  $F$ est de classe $C^1$ sur $D_F$ et en particulier, dérivable en $1$ avec $F'(1)=1$.
+
+$$\forall x\in]0,+\infty[,\;F'(x)=\left\{
+\begin{array}{l}
+\frac{x-1}{\ln x}\;\mbox{si}\;x\neq1\\
+1\;\mbox{si}\;x=1.
+\end{array}
+\right..$$
+
+Si $x>1$, $x-1>0$ et $\ln x>0$ et si $0<x<1$, $x-1<0$ et $\ln x<0$. Dans tous les cas ($0<x<1$, $x=1$, $x>1$)  $F'(x)>0$. $F$ est strictement croissante sur $]0,+\infty[$.
+
+On a vu que $\forall x>1,\;F(x)>x\ln2$ et donc $\lim_{x\rightarrow +\infty}F(x)=+\infty$. Plus précisément, pour $x>1$,
+
+$$\frac{F(x)}{x}=\frac{1}{x}\int_{x}^{x^2}\frac{1}{\ln t}\;dt\geq\frac{x^2-x}{x\ln x}=\frac{x-1}{\ln x}.$$
+
+Comme $\frac{x-1}{\ln x}$ tend vers $+\infty$ quand $x$ tend vers $+\infty$, on en déduit que $\frac{F(x)}{x}$ tend vers $+\infty$ quand $x$ tend vers $+\infty$ et donc que la courbe représentative de $F$ admet en $+\infty$ une branche parabolique de direction $(Oy)$.
+
+Pour $x\in]0,1[$ et $t\in[x^2,x]$, on a $2\ln x=\ln(x^2)\leq\ln t\leq\ln x<0$ et donc $\frac{1}{\ln x}\leq\frac{1}{\ln t}\leq\frac{1}{2\ln x}$, puis $(x-x^2)\frac{1}{\ln x}\leq\int_{x^2}^{x}\frac{1}{\ln t}\;dt\leq(x-x^2)\frac{1}{2\ln x}$ et finalement,
+
+$$\forall x\in]0,1[,\;\frac{x-x^2}{-2\ln x}\leq F(x)\leq\frac{x-x^2}{-\ln x}.$$
+
+On obtient déjà $\lim_{x\rightarrow 0}F(x)=0$. On peut prolonger $F$ par continuité en $0$ en posant $F(0)=0$. Ensuite, $\frac{F(x)-F(0)}{x-0}=\frac{F(x)}{x}$ est compris entre $\frac{1-x}{-2\ln x}$ et $\frac{1-x}{-\ln x}$. Comme ces deux expressions tendent vers $0$ quand $x$ tend vers $0$, on en déduit que $\frac{F(x)-F(0)}{x-0}$ tend vers $0$ quand $x$ tend vers $0$. $F$ est donc dérivable en $0$ et $F'(0)=0$.
+
+%$$\includegraphics{../images/img005464-1}$$
+
+\end{enumerate}
+
+\fincorrection
+\correction{005465}
+\begin{enumerate}
+\item  $f$ est continue sur $\Rr^*$ en tant que quotient de fonctions continues sur $\Rr^*$ dont le dénominateur ne s'annule pas sur $\Rr^*$. D'autre part, quand $t$ tend vers $0$, $f(t)\sim\frac{t^2}{t}=t$ et $\lim_{t\rightarrow 0,\;t\neq0}f(t)=0=f(0)$. Ainsi, $f$ est continue en $0$ et donc sur $\Rr$.
+
+\item  $f$ est continue sur $\Rr$ et donc $F$ est définie et de classe $C^1$ sur $\Rr$. De plus, $F'=f$ est positive sur $[0,+\infty[$, de sorte que $F$ est croissante sur $[0,+\infty[$. On en déduit que $F$ admet en $+\infty$ une limite dans $]-\infty,+\infty]$.
+
+Vérifions alors que $F$ est majorée sur $\Rr$. On contate que $t^2.\frac{t^2}{e^t-1}$ tend vers $0$ quand $t$ tend vers $+\infty$, d'après un théorème de croissances comparées. Par suite, il existe un réel $A$ tel que pour $t\geq A$, 
+$0\leq t^2.\frac{t^2}{e^t-1}\leq1$ ou encore $0\leq f(t)\leq\frac{1}{t^2}$. Pour $x\geq A$, on a alors
+
+\begin{align*}\ensuremath
+F(x)&=\int_{0}^{A}f(t)\;dt+\int_{A}^{x}\frac{t^2}{e^t-1}\;dt\leq\int_{0}^{A}f(t)\;dt+\int_{A}^{x}\frac{1}{t^2}\;dt\\
+ &=\int_{0}^{A}f(t)\;dt+\frac{1}{A}-\frac{1}{x}\leq\int_{0}^{A}f(t)\;dt+\frac{1}{A}.
+\end{align*}
+
+$F$ est croissante et majorée et donc a une limite réelle $\ell$ quand $n$ tend vers $+\infty$.
+
+Soit $n\in\Nn^*$. Pour $t\in]0,+\infty[$,
+
+\begin{align*}
+f(t)&=t^2e^{-t}\frac{1}{1-e^{-t}}=t^2e^{-t}(\sum_{k=0}^{n-1}(e^{-t})^k+\frac{(e^{-t})^{n}}{1-e^{-t}})\\
+ &=\sum_{k=0}^{n-1}t^2e^{-(k+1)t}+\frac{t^2e^{-t}}{1-e^{-t}}e^{-nt}=\sum_{k=1}^{n}t^2e^{-kt}+f_n(t)\;(*),
+\end{align*}
+
+où $f_n(t)=\frac{t^2e^{-t}}{1-e^{-t}}e^{-nt}$ pour $t>0$. En posant de plus $f_n(0)=0$, d'une part, $f_n$ est continue sur $[0,+\infty[$ et d'autre part, l'égalité $(*)$ reste vraie quand $t=0$. En intégrant, on obtient
+
+$$\forall x\in[0,+\infty[,\;\forall n\in\Nn^*,\;F(x)=\sum_{k=1}^{n}\int_{0}^{x}t^2e^{-kt}\;dt+\int_{0}^{x}f_n(t)\;dt\;(**).$$
+
+Soient alors $k\in\Nn^*$ et $x\in[0,+\infty[$. Deux intégrations par parties fournissent~:
+
+\begin{align*}\ensuremath
+\int_{0}^{x}t^2e^{-kt}\;dt&=\left[-\frac{1}{k}t^2e^{-kt}\right]_{0}^{x}+\frac{2}{k}\int_{0}^{x}te^{-kt}\;dt
+=-\frac{1}{k}x^2e^{-kx}+\frac{2}{k}(\left[-\frac{1}{k}te^{-kt}\right]_{0}^{x}+\frac{1}{k}\int_{0}^{x}e^{-kt}\;dt)\\
+ &=-\frac{1}{k}x^2e^{-kx}-\frac{2}{k^2}xe^{-kx}-\frac{2}{k^3}e^{-kx}+\frac{2}{k^3}.
+\end{align*}
+
+Puisque $k>0$, quand $x$ tend vers $+\infty$, on obtient $\lim_{x\rightarrow +\infty}\int_{0}^{x}t^2e^{-kt}\;dt=\frac{2}{k^3}$. On fait alors tendre $x$ vers $+\infty$ dans $(**)$ et on obtient
+
+$$\forall n\in\Nn^*,\;\ell-2\sum_{k=1}^{n}\frac{1}{k^3}=\lim_{x\rightarrow +\infty}\int_{0}^{x}f_n(t)\;dt\;(***).$$
+
+Vérifions enfin que $\lim_{n\rightarrow +\infty}\left(\lim_{x\rightarrow +\infty}\int_{0}^{x}f_n(t)\;dt\right)=0$. La fonction $t\mapsto\frac{t^2e^{-t}}{1-e^{-t}}$ est continue sur $]0,+\infty[$, se prolonge par continuité en $0$ et a une limite réelle en $+\infty$. On en déduit que cette fonction est bornée sur $]0,+\infty[$. Soit $M$ un majorant de cette fonction sur $]0,+\infty[$. Pour $x\in[0,+\infty[$ et $n\in\Nn^*$, on a alors
+
+$$0\leq\int_{0}^{x}f_n(t)\;dt\leq M\int_{0}^{x}e^{-nt}\;dt=\frac{M}{n}(1-e^{-nx}).$$
+
+A $n\in\Nn^*$ fixé, on passe à la limite quand $n$ tend vers $+\infty$ et on obtient
+
+$$0\leq\lim_{x\rightarrow +\infty}\int_{0}^{x}f_n(t)\;dt\leq\frac{M}{n},$$
+
+puis on passe à la limite quand $n$ tend vers $+\infty$ et on obtient
+
+$$\lim_{n\rightarrow +\infty}\left(\lim_{x\rightarrow +\infty}\int_{0}^{x}f_n(t)\;dt\right)=0.$$
+
+Par passage à la limite quand $x$ tend vers $+\infty$ puis quand $n$ tend vers $+\infty$ dans $(***)$, on obtient enfin
+
+$$\lim_{x\rightarrow +\infty}\int_{0}^{x}\frac{t^2}{e^t-1}\;dt=2\lim_{n\rightarrow +\infty}\sum_{k=1}^{n}\frac{1}{k^3}.$$
+ 
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

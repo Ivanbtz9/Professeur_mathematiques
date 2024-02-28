@@ -1,0 +1,1438 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00092, rouget, 2010/07/11}
+
+\titre{Suites} 
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable\quad T~:~pour travailler et mémoriser le cours
+\end{center}
+
+
+\exercice{5220, rouget, 2010/06/30}
+\enonce{005220}{***IT}
+Soient $(u_n)_{n\in\Nn}$ une suite réelle et $(v_n)_{n\in\Nn}$ la suite définie par~:~$\forall n\in\Nn,\;v_n=\frac{u_0+u_1+...+u_n}{n+1}$.
+
+\begin{enumerate}
+\item  Montrer que si la suite $(u_n)_{n\in\Nn}$ vers un réel $\ell$, la suite $(v_n)_{n\in\Nn}$ converge et a pour limite $\ell$. Réciproque~?
+\item  Montrer que si la suite $(u_n)_{n\in\Nn}$ est bornée, la suite $(v_n)_{n\in\Nn}$ est bornée. Réciproque~?
+\item  Montrer que si la suite $(u_n)_{n\in\Nn}$ est croissante alors la suite $(v_n)_{n\in\Nn}$ l'est aussi.
+\end{enumerate}
+\finenonce{005220}
+
+
+\finexercice
+\exercice{5221, rouget, 2010/06/30}
+\enonce{005221}{***}
+Soit $(u_n)_{n\in\Nn}$ une suite réelle. Montrer que si la suite $(u_n)_{n\in\Nn}$ converge au sens de \textsc{Césaro} et est monotone, alors la suite $(u_n)_{n\in\Nn}$ converge.
+\finenonce{005221}
+
+
+\finexercice
+\exercice{5222, rouget, 2010/06/30}
+\enonce{005222}{**IT}
+\label{exo:suprou3bis}
+Pour $n$ entier naturel non nul, on pose $H_n=\sum_{k=1}^{n}\frac{1}{k}$ (série harmonique).
+
+\begin{enumerate}
+\item  Montrer que~:~$\forall n\in\Nn^*,\;\ln(n+1)<H_n<1+\ln(n)$ et en déduire $\lim_{n\rightarrow +\infty}H_n$.
+\item  Pour $n$ entier naturel non nul, on pose $u_n=H_n-\ln(n)$ et $v_n=H_n-\ln(n+1)$. Montrer que les suites $(u_n)$ et $(v_n)$ convergent vers un réel $\gamma\in\left[\frac{1}{2},1\right]$ ($\gamma$ est appelée la constante d'\textsc{Euler}). Donner une valeur approchée de $\gamma$ à $10^{-2}$ près.
+\end{enumerate}
+\finenonce{005222}
+
+
+\finexercice
+\exercice{5223, rouget, 2010/06/30}
+\enonce{005223}{**}
+Soit $(u_n)_{n\in\Nn}$ une suite arithmétique ne s'annulant pas. Montrer que pour tout entier naturel $n$, on a $\sum_{k=0}^{n}\frac{1}{u_ku_{k+1}}=\frac{n+1}{u_0u_{n+1}}$.
+\finenonce{005223}
+
+
+\finexercice
+\exercice{5224, rouget, 2010/06/30}
+\enonce{005224}{**}
+Calculer $\lim_{n\rightarrow +\infty}\sum_{k=1}^{n}\frac{1}{1^2+2^2+...+k^2}$.
+\finenonce{005224}
+
+
+\finexercice\exercice{5225, rouget, 2010/06/30}
+\enonce{005225}{***}
+Soient $a$ et $b$ deux réels tels que $0<a<b$. On pose $u_0=a$ et $v_0=b$ puis, pour $n$ entier naturel donné, $u_{n+1}= \frac{u_n+v_n}{2}$ et $v_{n+1}=\sqrt{u_{n+1}v_n}$.
+Montrer que les suites $(u_n)$ et $(v_n)$ sont adjacentes et que leur limite commune est égale à $\frac{b\sin(\Arccos(\frac{a}{b}))}{\Arccos(\frac{a}{b})}$.
+\finenonce{005225}
+
+
+\finexercice
+\exercice{5226, rouget, 2010/06/30}
+\enonce{005226}{**}
+Limite quand $n$ tend vers $+\infty$ de 
+\begin{enumerate}
+ \item $\frac{\sin n}{n}$,
+ \item $\left(1+\frac{1}{n}\right)^n$,
+ \item $\frac{n!}{n^n}$,
+ \item $\frac{E\left((n+\frac{1}{2})^2\right)}{E\left((n-\frac{1}{2})^2\right))}$,
+ \item $\sqrt[n]{n^2}$,
+ \item $\sqrt{n+1}-\sqrt{n}$,
+ \item $\frac{\sum_{k=1}^{n}k^2}{n^3}$,
+ \item $\prod_{k=1}^{n}2^{k/2^{2^k}}$.
+\end{enumerate}
+
+\finenonce{005226}
+
+
+\finexercice
+\exercice{5227, rouget, 2010/06/30}
+\enonce{005227}{**}
+Etudier la suite $(u_n)$ définie par $\sqrt{n+1}-\sqrt{n}=\frac{1}{2\sqrt{n+u_n}}$.
+\finenonce{005227}
+
+
+\finexercice
+\exercice{5228, rouget, 2010/06/30}
+\enonce{005228}{**T Récurrences homographiques}
+Déterminer $u_n$ en fonction de $n$ quand la suite $u$ vérifie~:
+\begin{enumerate}
+ \item $\forall n\in\Nn,\;u_{n+1}=\frac{u_n}{3-2u_n}$,
+ \item $\forall n\in\Nn,\;u_{n+1}=\frac{4(u_n-1)}{u_n}$ (ne pas se poser de questions d'existence).
+\end{enumerate}
+\finenonce{005228}
+
+
+\finexercice
+\exercice{5229, rouget, 2010/06/30}
+\enonce{005229}{**}
+Soient $(u_n)$ et $(v_n)$ les suites définies par la donnée de $u_0$ et $v_0$ et les relations de récurrence 
+
+$$u_{n+1}=\frac{2u_n+v_n}{3}\;\mbox{et}\;v_{n+1}=\frac{u_n+2v_n}{3}.$$
+Etudier les suites $u$ et $v$ puis déterminer $u_n$ et $v_n$ en fonction de $n$ en recherchant des combinaisons linéaires intéressantes de $u$ et $v$. En déduire $\lim_{n\rightarrow +\infty}u_n$ et $\lim_{n\rightarrow +\infty}v_n$.
+\finenonce{005229}
+
+
+\finexercice
+\exercice{5230, rouget, 2010/06/30}
+\enonce{005230}{**}
+Soient $(u_n)$, $(v_n)$ et $(w_n)$ les suites définies par la donnée de $u_0$,
+$v_0$ et $w_0$ et les relations de récurrence 
+$$u_{n+1}=\frac{v_n+w_n}{2},\,v_{n+1}=\frac{u_n+w_n}{2}\;\mbox{et}\;
+w_{n+1}=\frac{u_n+v_n}{2}.$$
+
+Etudier les suites $u$, $v$ et $w$ puis déterminer $u_n$, $v_n$ et $w_n$ en fonction de $n$
+en recherchant des combinaisons linéaires intéressantes de $u$, $v$ et $w$. En
+déduire $\lim_{n\rightarrow +\infty}u_n$, $\lim_{n\rightarrow +\infty}v_n$et $\lim_{n\rightarrow +\infty}w_n$.
+
+\finenonce{005230}
+
+
+\finexercice
+\exercice{5231, rouget, 2010/06/30}
+\enonce{005231}{***}
+Montrer que les suites définies par la donnée de $u_0$, $v_0$ et $w_0$ réels tels que $0<u_0<v_0<w_0$ et les relations de récurrence~:
+ 
+$$\frac{3}{u_{n+1}}=\frac{1}{u_n}+\frac{1}{v_n}+\frac{1}{w_n}\;\mbox{et}\;v_{n+1}=\sqrt[3]{u_nv_nw_n}\;\mbox{et}\;w_{n+1}=\frac{u_n+v_n+w_n}{3},$$  
+ 
+ 
+ont une limite commune que l'on ne cherchera pas à déterminer.
+
+\finenonce{005231}
+
+
+\finexercice\exercice{5232, rouget, 2010/06/30}
+\enonce{005232}{***}
+Soit $u$ une suite complexe et $v$ la suite définie par $v_n=|u_n|$. On suppose que la suite $(\sqrt[n]{v_n})$ converge vers un réel positif $l$. Montrer que si $0\leq\ell<1$, la suite $(u_n)$ converge vers $0$ et si $\ell>1$, la suite $(v_n)$ tend vers $+\infty$.
+Montrer que si $\ell=1$, tout est possible.
+\finenonce{005232}
+
+
+\finexercice
+\exercice{5233, rouget, 2010/06/30}
+\enonce{005233}{***}
+\begin{enumerate}
+\item  Soit $u$ une suite de réels strictement positifs. Montrer que si la suite $(\frac{u_{n+1}}{u_n})$ converge vers un réel $\ell$, alors $(\sqrt[n]{u_n})$ converge et a même limite.
+\item  Etudier la réciproque.
+\item  Application~:~limites de 
+  \begin{enumerate}
+  \item $\sqrt[n]{C_{2n}^n}$,
+  \item $\frac{n}{\sqrt[n]{n!}}$,
+  \item $\frac{1}{n^2}\sqrt[n]{\frac{(3n)!}{n!}}$.
+  \end{enumerate}
+\end{enumerate}
+\finenonce{005233}
+
+
+\finexercice
+\exercice{5234, rouget, 2010/06/30}
+\enonce{005234}{*}
+Soient $u$ et $v$ deux suites de réels de $[0,1]$ telles que $\lim_{n\rightarrow +\infty}u_nv_n=1$. Montrer que $(u_n)$ et $(v_n)$ convergent vers $1$.
+
+\finenonce{005234}
+
+
+\finexercice
+\exercice{5235, rouget, 2010/06/30}
+\enonce{005235}{**}
+Montrer que si les suites $(u_n^2)$ et $(u_n^3)$ convergent alors $(u_n)$ converge.
+\finenonce{005235}
+
+
+\finexercice
+\exercice{5236, rouget, 2010/06/30}
+\enonce{005236}{***T}
+Etudier les deux suites $u_n=\left(1+\frac{1}{n}\right)^n$  et $v_n=\left(1+\frac{1}{n}\right)^{n+1}$.
+\finenonce{005236}
+
+
+\finexercice
+\exercice{5237, rouget, 2010/06/30}
+\enonce{005237}{**T}
+Etudier les deux suites $u_n=\sum_{k=0}^{n}\frac{1}{k!}$ et $v_n=u_n+\frac{1}{n.n!}$.
+
+\finenonce{005237}
+
+
+\finexercice
+\exercice{5238, rouget, 2010/06/30}
+\enonce{005238}{}
+Etudier les deux suites $u_n=\left(\sum_{k=1}^{n}\frac{1}{\sqrt{k}}\right)-2\sqrt{n+1}$ et $v_n=\left(\sum_{k=1}^{n}\frac{1}{\sqrt{k}}\right)-2\sqrt{n}$.
+\finenonce{005238}
+
+
+\finexercice
+\exercice{5239, rouget, 2010/06/30}
+\enonce{005239}{**T}
+Déterminer $u_n$ en fonction de $n$ et de ses premiers termes dans chacun des cas suivants~:
+
+\begin{enumerate}
+\item  $\forall n\in\Nn,\;4u_{n+2}=4u_{n+1}+3u_n$.
+\item  $\forall n\in\Nn,\;4u_{n+2}=u_n$.
+\item  $\forall n\in\Nn,\;4u_{n+2}=4u_{n+1}+3u_n+12$.
+\item  $\forall n\in\Nn,\;\frac{2}{u_{n+2}}=\frac{1}{u_{n+1}}-\frac{1}{u_n}$.
+\item  $\forall n\geq2,\;u_n= 3u_{n-1}-2u_{n-2}+n^3$.
+\item  $\forall n\in\Nn,\;u_{n+3}-6u_{n+2}+11u_{n+1}-6u_n=0$.
+\item  $\forall n\in\Nn,\;u_{n+4}-2u_{n+3}+2u_{n+2}-2u_{n+1}+u_n=n^5$.
+\end{enumerate}
+
+\finenonce{005239}
+
+
+\finexercice
+\exercice{5240, rouget, 2010/06/30}
+\enonce{005240}{****}
+On pose $u_1=1$ et, $\forall n\in\Nn^*,\;u_{n+1}=1+\frac{n}{u_n}$. Montrer que $\lim_{n\rightarrow +\infty}(u_n-\sqrt{n})=\frac{1}{2}$.
+\finenonce{005240}
+
+
+\finexercice
+\exercice{5241, rouget, 2010/06/30}
+\enonce{005241}{***}
+Montrer que, pour $n\geq2$, 
+
+\begin{center}
+$\cos\left(\frac{\pi}{2^{n}}\right)=\frac{1}{2}\sqrt{2+\sqrt{2+...+\sqrt{2}}}$ ($n-1$ radicaux) et $\sin\left(\frac{\pi}{2^{n}}\right)=\frac{1}{2}\sqrt{2-\sqrt{2+...+\sqrt{2}}}$ ($n-1$ radicaux).
+\end{center}
+En déduire $\lim_{n\rightarrow +\infty}2^n\sqrt{2-\sqrt{2+...+\sqrt{2}}}$ ($n$ radicaux).
+\finenonce{005241}
+
+
+\finexercice
+\exercice{5242, rouget, 2010/06/30}
+\enonce{005242}{***}
+\begin{enumerate}
+\item  Montrer que pour $x$ réel strictement positif, on a~:~$\ln(1+x)<x<(1+x)\ln(1+x)$.
+\item  Montrer que $\prod_{k=1}^{n}\left(1+\frac{1}{k}\right)^k<e^n<\prod_{k=1}^{n}\left(1+\frac{1}{k}\right)^{k+1}$ et en déduire la limite quand $n$ tend vers $+\infty$ de $\frac{\sqrt[n]{n!}}{n}$.
+\end{enumerate}
+\finenonce{005242}
+
+
+\finexercice
+\exercice{5243, rouget, 2010/06/30}
+\enonce{005243}{****}
+Soit $(u_n)=\left(\frac{p_n}{q_n}\right)$ avec $p_n\in\Zz$ et $q_n\in\Nn^*$, une suite de rationnels convergeant vers un irrationnel $x$. Montrer que les suites $(|p_n|)$ et $(q_n)$ tendent vers $+\infty$ quand $n$ tend vers $+\infty$.
+\finenonce{005243}
+
+
+\finexercice
+\exercice{5244, rouget, 2010/06/30}
+\enonce{005244}{**}
+Donner un exemple de suite $(u_n)$ divergente, telle que $\forall k\in\Nn^*\setminus\{1\}$, la suite $(u_{kn})$ converge.
+\finenonce{005244}
+
+
+\finexercice
+\exercice{5245, rouget, 2010/06/30}
+\enonce{005245}{***I}
+Soit $f$ une application injective de $\Nn$ dans $\Nn$. Montrer que $\lim_{n\rightarrow +\infty}f(n)=+\infty$.
+\finenonce{005245}
+
+
+\finexercice
+\exercice{5246, rouget, 2010/06/30}
+\enonce{005246}{***I}
+Soit $u_n$ l'unique racine positive de l'équation $x^n+x-1=0$. Etudier la suite $(u_n)$.
+\finenonce{005246}
+
+
+\finexercice
+\exercice{5247, rouget, 2010/07/04}
+\enonce{005247}{****I}
+Etude des suites $(u_n)=(\cos na)$ et $(v_n)=(\sin na)$ où $a$ est un réel donné.
+
+\begin{enumerate}
+\item  Montrer que si $\frac{a}{2\pi}$ est rationnel, les suites $u$ et $v$ sont périodiques et montrer dans ce cas que $(u_n)$ et $(v_n)$ convergent si et seulement si $a\in2\pi\Zz$.
+\item  On suppose dans cette question que $\frac{a}{2\pi}$ est irrationnel .
+\begin{enumerate}
+\item Montrer que $(u_n)$ converge si et seulement si $(v_n)$ converge .
+\item En utilisant différentes formules de trigonométrie fournissant des relations entre $u_n$ et $v_n$, montrer par l'absurde que $(u_n)$ et $(v_n)$ divergent.
+\end{enumerate}
+\item  On suppose toujours que $\frac{a}{2\pi}$ est irrationnel. On veut montrer que l'ensemble des valeurs de la suite $(u_n)$ (ou $(v_n)$) est dense dans $[-1,1]$, c'est-à-dire que $\forall x\in[-1,1],\;\forall\varepsilon>0,\;\exists n\in\Nn/\;|u_n-x|<\varepsilon$ (et de même pour $v$).
+\begin{enumerate}
+\item Montrer que le problème se ramène à démontrer que $\{na+2k\pi,\;n\in\Nn\;\mbox{et}\;k\in\Zz\}$ est dense dans $\Rr$.
+\item Montrer que $E=\{na+2k\pi,\;n\in\Nn\;\mbox{et}\;k\in\Zz\}$ est dense dans $\Rr$ (par l'absurde en supposant que $\mbox{inf}(E\cap\Rr_+^*)>0$ pour en déduire que $\frac{a}{2\pi}\in\Qq$).
+\item Conclure.
+\end{enumerate}
+\end{enumerate}
+\finenonce{005247}
+
+
+\finexercice
+\exercice{5248, rouget, 2010/07/04}
+\enonce{005248}{****}
+Montrer que l'ensemble $E$ des réels de la forme $u_n=\sin(\ln(n))$, $n$ entier naturel non nul, est dense dans 
+$[-1,1]$.
+\finenonce{005248}
+
+
+\finexercice
+\exercice{5249, rouget, 2010/07/04}
+\enonce{005249}{***}
+Calculer $\mbox{inf}_{\alpha\in]0,\pi[}(\mbox{sup}_{n\in\Nn}(|\sin(n\alpha)|))$.
+\finenonce{005249}
+
+
+\finexercice
+\exercice{5250, rouget, 2010/07/04}
+\enonce{005250}{**I}
+Soit $(u_n)$ une suite réelle non majorée. Montrer qu'il existe une suite extraite de $(u_n)$ tendant vers $+\infty$.
+
+\finenonce{005250}
+
+
+\finexercice
+\exercice{5251, rouget, 2010/07/04}
+\enonce{005251}{***}
+Soit $(u_n)$ une suite de réels éléments de $]0,1[$ telle que $\forall n\in\Nn,\;(1-u_n)u_{n+1}>\frac{1}{4}$. Montrer que $(u_n)$ converge vers $\frac{1}{2}$.
+\finenonce{005251}
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005220}
+\begin{enumerate}
+ \item  Soit $\varepsilon>0$. Il existe un rang $n_0$ tel que, si $n\geq n_0$ alors $|u_n-\ell|<\frac{\varepsilon}{2}$. Soit $n$ un entier naturel strictement supérieur à $n_0$.
+
+\begin{align*}
+|v_n-\ell|&=\left|\frac{1}{n+1}\sum_{k=0}^{n}u_k-\ell\right|=\left|\frac{1}{n+1}\sum_{k=0}^{n}(u_k-\ell)\right|\\
+ &\leq\frac{1}{n+1}\sum_{k=0}^{n}|u_k-\ell|=\frac{1}{n+1}\sum_{k=0}^{n_0}|u_k-\ell|+\frac{1}{n+1}\sum_{k=n_0+1}^{n}|u_k-\ell|\\
+ &\leq\frac{1}{n+1}\sum_{k=0}^{n_0}|u_k-\ell|+\frac{1}{n+1}\sum_{k=n_0+1}^{n}\frac{\varepsilon}{2}\leq\frac{1}{n+1}\sum_{k=0}^{n_0}|u_k-\ell|+\frac{1}{n+1}\sum_{k=0}^{n}\frac{\varepsilon}{2}\\
+ &=\frac{1}{n+1}\sum_{k=0}^{n_0}|u_k-\ell|+\frac{\varepsilon}{2}
+\end{align*}
+Maintenant, $\sum_{k=0}^{n_0}|u_k-\ell|$ est une expression constante quand $n$ varie et donc, $\lim_{n\rightarrow +\infty}\frac{1}{n+1}\sum_{k=0}^{n_0}|u_k-\ell|=0$. Par suite, il existe un entier $n_1\geq n_0$ tel que pour $n\geq n_1$, $\frac{1}{n+1}\sum_{k=0}^{n_0}|u_k-\ell|<\frac{\varepsilon}{2}$.
+Pour $n\geq n_1$, on a alors $|v_n-\ell|<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon$.
+On a montré que $\forall\varepsilon>0,\;\exists n_1\in\Nn/\;(\forall n\in\Nn)(n\geq n_1\Rightarrow|v_n-\ell|<\varepsilon)$. La suite $(v_n)$ est donc convergente et $\lim_{n\rightarrow +\infty}v_n=\ell$.
+
+\begin{center}
+\shadowbox{
+Si la suite $u$ converge vers $\ell$ alors la suite $v$ converge vers $\ell$.
+}
+\end{center}
+La réciproque est fausse. Pour $n$ dans $\Nn$, posons $u_n=(-1)^n$. La suite $(u_n)$ est divergente. D'autre part, pour $n$ dans $\Nn$, $\sum_{k=0}^{n}(-1)^k$ vaut $0$ ou $1$ suivant la parité de $n$ et donc, dans tous les cas, $|v_n|\leq\frac{1}{n+1}$. Par suite, la suite $(v_n)$ converge et $\lim_{n\rightarrow +\infty}v_n=0$.
+ \item  Si $u$ est bornée, il existe un réel $M$ tel que, pour tout naturel $n$, $|u_n|\leq M$.
+Pour $n$ entier naturel donné, on a alors
+
+$$|v_n|\leq\frac{1}{n+1}\sum_{k=0}^{n}|u_k|\leq\frac{1}{n+1}\sum_{k=0}^{n}M=\frac{1}{n+1}(n+1)M=M.$$
+La suite $v$ est donc bornée.
+
+\begin{center}
+\shadowbox{
+Si la suite $u$ est bornée alors la suite $v$ est bornée.
+}
+\end{center}
+La réciproque est fausse. Soit $u$ la suite définie par~:~$\forall n\in\Nn,\;u_n=(-1)^nE\left(\frac{n}{2}\right)=
+\left\{
+\begin{array}{l}
+p\;\mbox{si}\;n=2p,\;p\in\Nn\\
+-p\;\mbox{si}\;n=2p+1,\;p\in\Nn
+\end{array}
+\right.$.
+$u$ n'est pas bornée car la suite extraite $(u_{2p})$ tend vers $+\infty$ quand $p$ tend vers $+\infty$. 
+Mais, si $n$ est impair, $v_n=0$, et si $n$ est pair, $v_n=\frac{1}{n+1}\times u_n=\frac{n}{2(n+1)}$, et dans tous les cas $|v_n|\leq\frac{1}{n+1}\frac{n}{2}\leq\frac{1}{n+1}\frac{n+1}{2}=\frac{1}{2}$ et la suite $v$ est bornée.
+ \item  Si $u$ est croissante, pour $n$ entier naturel donné on a~:
+
+\begin{align*}
+v_{n+1}-v_n&=\frac{1}{n+2}\sum_{k=0}^{n+1}u_k-\frac{1}{n+1}\sum_{k=0}^{n}u_k=\frac{1}{(n+1)(n+2)}\left((n+1)\sum_{k=0}^{n+1}u_k-(n+2)\sum_{k=0}^{n}u_k\right)\\
+ &=\frac{1}{(n+1)(n+2)}\left((n+1)u_{n+1}-\sum_{k=0}^{n}u_k\right)=\frac{1}{(n+1)(n+2)}\sum_{k=0}^{n}(u_{n+1}-u_k)\geq0.
+\end{align*}
+La suite $v$ est donc croissante.
+
+\begin{center}
+\shadowbox{
+Si la suite $u$ est croissante alors la suite $v$ est croissante.
+}
+\end{center}
+\end{enumerate}
+\fincorrection
+\correction{005221}
+Supposons sans perte de généralité $u$ croissante (quite à remplacer $u$ par $-u$).
+Dans ce cas, ou bien $u$ converge, ou bien $u$ tend vers $+\infty$.
+Supposons que $u$ tende vers $+\infty$, et montrons qu'il en est de même pour la suite $v$.
+Soit $A\in\Rr$. Il existe un rang $n_0$ tel que pour n naturel supérieur ou égal à $n_0$, $u_n\geq2A$.
+Pour $n\geq n_0+1$, on a alors,
+
+\begin{align*}
+v_n&=\frac{1}{n+1}\left(\sum_{k=0}^{n_0}u_k+\sum_{k=n_0+1}^{n}u_k\right)\geq \frac{1}{n+1}\sum_{k=0}^{n_0}u_k+\frac{(n-n_0)2A}{n+1}
+\end{align*}
+Maintenant, quand $n$ tend vers $+\infty$, $\frac{1}{n+1}\sum_{k=0}^{n_0}u_k+\frac{(n-n_0)2A}{n+1}$ tend vers $2A$ et donc, il existe un rang $n_1$ à partir duquel $v_n\geq\frac{1}{n+1}\sum_{k=0}^{n_0}u_k+\frac{(n-n_0)2A}{n+1}>A$.
+On a montré que~:~$\forall n\in\Nn,\;\exists n_1\in\Nn/\;(\forall n\in\Nn),\;(n\geq n_1\Rightarrow v_n>A)$. Par suite, $\lim_{n\rightarrow +\infty}v_n=+\infty$. Par contraposition, si $v$ ne tend pas vers $+\infty$, la suite $u$ ne tend pas vers $+\infty$ et donc converge, d'après la remarque initiale.
+\fincorrection
+\correction{005222}
+\begin{enumerate}
+ \item  La fonction $x\mapsto\frac{1}{x}$ est continue et décroissante sur $]0,+\infty[$ et donc, pour $k\in\Nn^*$, on a~:
+ 
+$$\frac{1}{k+1}=(k+1-k)\frac{1}{k+1}\leq\int_{k}^{k+1}\frac{1}{x}\;dx\leq(k+1-k)\frac{1}{k}=\frac{1}{k}.$$
+Donc, pour $k\geq1$,  $\frac{1}{k}\geq\int_{k}^{k+1}\frac{1}{x}\;dx$ et, pour $k\geq2$, $\frac{1}{k}\leq\int_{k-1}^{k}\frac{1}{x}\;dx$.
+En sommant ces inégalités, on obtient pour $n\geq1$,
+
+$$H_n=\sum_{k=1}^{n}\frac{1}{k}\geq\sum_{k=1}^{n}\int_{k}^{k+1}\frac{1}{x}\;dx=\int_{1}^{n+1}\frac{1}{x}\;dx=\ln(n+1),$$ 
+et pour $n\geq2$,
+
+$$H_n=1+\sum_{k=2}^{n}\frac{1}{k}\leq1+\sum_{k=2}^{n}\int_{k-1}^{k}\frac{1}{x}\;dx=1+\int_{1}^{n}\frac{1}{x}\;dx=1+\ln n,$$
+cette dernière inégalité restant vraie quand $n=1$. Donc,
+
+\begin{center}
+\shadowbox{
+$\forall n\in\Nn^*,\;\ln(n+1)\leq H_n\leq1+\ln n.$
+}
+\end{center}
+ \item  Soit $n$ un entier naturel non nul.
+$$u_{n+1}-u_n=\frac{1}{n+1}-\ln(n+1)+\ln n=\frac{1}{n+1}-\int_{n}^{n+1}\frac{1}{x}\;dx=\int_{n}^{n+1}\left(\frac{1}{n+1}-\frac{1}{x}\right)\;dx\leq0$$
+car la fonction $x\mapsto\frac{1}{x}$ décroit sur $[n,n+1]$. De même,
+
+$$v_{n+1}-v_n=\frac{1}{n+1}-\ln(n+2)+\ln(n+1)=\frac{1}{n+1}-\int_{n+1}^{n+2}\frac{1}{x}\;dx=\int_{n+1}^{n+2}\left(\frac{1}{n+1}-\frac{1}{x}\right)\;dx\geq0$$
+car la fonction $x\mapsto\frac{1}{x}$ décroit sur $[n+1,n+2]$. Enfin,
+
+$$u_n-v_n=\ln(n+1)-\ln n=\ln\left(1+\frac{1}{n}\right)$$ 
+et donc la suite $u-v$ tend vers 0 quand $n$ tend vers $+\infty$.
+Finalement, la suite $u$ décroit, la suite $v$ croit et la suite $u-v$ tend vers $0$. On en déduit que les suites $u$ et $v$ sont adjacentes, et en particulier convergentes et de même limite. Notons $\gamma$ cette limite.
+Pour tout entier naturel non nul $n$, on a $v_n\leq\gamma\leq u_n$, et en particulier, $v_3\leq\gamma\leq u_1$ avec $v_3=0,5...$ et $u_1=1$. Donc, $\gamma\in\left[\frac{1}{2},1\right]$.
+Plus précisément, pour $n$ entier naturel non nul donné, on a
+
+$$0\leq u_n-v_n\leq\frac{10^{-2}}{2}\Leftrightarrow\ln\left(1+\frac{1}{n}\right)\leq0,005\Leftrightarrow\frac{1}{n}\leq e^{0,005}-1\Leftrightarrow n\geq\frac{1}{e^{0,005}-1}=199,5...\Leftrightarrow n\geq200.$$
+Donc $0\leq\gamma-v_{100}\leq\frac{10^{-2}}{2}$ et une valeur approchée de $v_{200}$ à $\frac{10^{-2}}{2}$ près (c'est-à-dire arrondie à la 3 ème décimale la plus proche) est une valeur approchée de $\gamma$ à $10^{-2}$ près. On trouve $\gamma=0,57$ à $10^{-2}$ près par défaut. Plus précisémént,
+
+\begin{center}
+\shadowbox{
+$\gamma=0,5772156649...$ ($\gamma$ est la constante d'\textsc{Euler}).
+}
+\end{center}
+\end{enumerate}
+\fincorrection
+\correction{005223}
+Soit $r$ la raison de la suite $u$.
+Pour tout entier naturel $k$, on a 
+
+\begin{center}
+$\frac{r}{u_ku_{k+1}}=\frac{u_{k+1}-u_k}{u_ku_{k+1}}=\frac{1}{u_k}-\frac{1}{u_{k+1}}$.
+\end{center}
+En sommant ces égalités, on obtient~:
+
+$$r\sum_{k=0}^{n}\frac{1}{u_ku_{k+1}}=\sum_{k=0}^{n}\left(\frac{1}{u_k}-\frac{1}{u_{k+1}}\right)=\frac{1}{u_0}-\frac{1}{u_{n+1}}=\frac{u_{n+1}-u_0}{u_0u_{n+1}}=\frac{(n+1)r}{u_0u_{n+1}}.$$
+Si $r\neq0$, on obtient $\sum_{k=0}^{n}\frac{1}{u_ku_{k+1}}=\frac{(n+1)}{u_0u_{n+1}}$, et si $r=0$ (et $u_0\neq0$), $u$ est constante et le résultat est immédiat.
+\fincorrection
+\correction{005224}
+Soit $k$ un entier naturel non nul. On sait que $\sum_{i=1}^{k}i^2=\frac{k(k+1)(2k+1)}{6}$. Déterminons alors trois réels $a$, $b$ et $c$ tels que, pour entier naturel non nul $k$, 
+
+$$\frac{6}{k(k+1)(2k+1)}=\frac{a}{k}+\frac{b}{k+1}+\frac{c}{2k+1}\;(*).$$
+Pour $k$ entier naturel non nul donné,
+
+$$\frac{a}{k}+\frac{b}{k+1}+\frac{c}{2k+1}=\frac{a(k+1)(2k+1)+bk(2k+1)+ck(k+1)}{k(k+1)(2k+1)}=
+\frac{(2a+2b+c)k^2+(3a+b+c)k+a}{k(k+1)(2k+1)}.$$
+Par suite,
+
+$$(*)\Leftarrow\left\{
+\begin{array}{l}
+2a+2b+c=0\\
+3a+b+c=0\\
+a=6
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+a=6\\
+b=6\\
+c=-24
+\end{array}
+\right.,$$
+et donc,
+
+$$\forall n\in\Nn^*,\;\sum_{k=1}^{n}\frac{6}{k(k+1)(2k+1)}=6\left(\sum_{k=1}^{n}\frac{1}{k}+\sum_{k=1}^{n}\frac{1}{k+1}-4\sum_{k=1}^{n}\frac{1}{2k+1}\right).$$
+Ensuite, d'après l'exercice \ref{exo:suprou3bis}, quand $n$ tend vers $+\infty$, $\sum_{k=1}^{n}\frac{1}{k}=\ln n+\gamma+o(1)$ puis 
+
+$$\sum_{k=1}^{n}\frac{1}{k+1}=\sum_{k=2}^{n+1}\frac{1}{k}=H_{n+1}-1=-1+\ln(n+1)+\gamma+o(1)=\ln n+\ln\left(1+\frac{1}{n}\right)+\gamma-1+o(1)=\ln n+\gamma-1+o(1).$$
+Enfin,
+  
+\begin{align*}
+\sum_{k=1}^{n}\frac{1}{2k+1}&=-1+\sum_{k=1}^{2n+1}\frac{1}{k}-\sum_{k=1}^{n}\frac{1}{2k}=-1+H_{2n+1}-\frac{1}{2}H_n\\
+ &=\ln(2n+1)+\gamma-\frac{1}{2}(\ln n+\gamma)-1+o(1)=\ln2+\ln n+\ln\left(1+\frac{1}{2n}\right)+\gamma-\frac{1}{2}\ln n-\frac{1}{2}\gamma-1+o(1)\\
+ &=\frac{1}{2}\ln n+\ln2+\frac{1}{2}\gamma-1+o(1)
+\end{align*}
+Finalement, quand $n$ tend vers $+\infty$, on a
+
+$$\sum_{k=1}^{n}\frac{1}{1^2+2^2+...+k^2}=6\left(\ln n+\gamma+\ln n+\gamma-1-4\left(\frac{1}{2}\ln n+\ln2+\frac{1}{2}\gamma-1\right)\right)=6(3-4\ln2)+o(1).$$
+Donc,
+
+\begin{center}
+\shadowbox{
+$\lim_{n\rightarrow +\infty}\sum_{k=1}^{n}\frac{1}{1^2+2^2+...+k^2}=6(3-4\ln2)$.
+}
+\end{center}
+\fincorrection
+\correction{005225}
+Posons $\alpha=\Arccos\frac{a}{b}$. $\alpha$ existe car $0<\frac{a}{b}<1$ et est élément de $\left]0,\frac{\pi}{2}\right[$. De plus, $a=b\cos\alpha$. Enfin, pour tout entier naturel $n$, $\frac{\alpha}{2^n}\in\left]0,\frac{\pi}{2}\right[$ et donc, $\cos\frac{\alpha}{2^n}>0$.
+On a $u_0=b\cos\alpha$ et $v_0=b$ puis $u_1=\frac{1}{2}(u_0+v_0)=\frac{b}{2}(1+\cos\alpha)=b\cos^2\frac{\alpha}{2}$ et $v_1=\sqrt{u_1v_0}=\sqrt{b\cos^2\frac{\alpha}{2}\times b}=b\cos\frac{\alpha}{2}$ puis $u_2=\frac{b}{2}\cos\frac{\alpha}{2}(1+\cos\frac{\alpha}{2})=b\cos\frac{\alpha}{2}\cos^2\frac{\alpha}{2^2}$ et 
+$v_2=\sqrt{b\cos\frac{\alpha}{2}\cos^2\frac{\alpha}{2^2}\times b\cos\frac{\alpha}{2}}=b\cos\frac{\alpha}{2}\cos\frac{\alpha}{2^2}$...
+Montrons par récurrence que pour tout entier naturel non nul $n$, $v_n=b\prod_{k=1}^{n}\cos\frac{\alpha}{2^k}$ et $u_n=v_n\cos\frac{\alpha}{2^n}$.
+C'est vrai pour $n=1$ et si pour $n\geq1$ donné, on a $v_n=b\prod_{k=1}^{n}\cos\frac{\alpha}{2^k}$ et $u_n=v_n\cos\frac{\alpha}{2^n}$ alors, 
+
+$$u_{n+1}=\frac{1}{2}(v_n\cos\frac{\alpha}{2^n}+v_n)=v_n\cos^2\frac{\alpha}{2^{n+1}}$$ puis 
+
+$$v_{n+1}=\sqrt{u_{n+1}v_n}=v_n\cos\frac{\alpha}{2^{n+1}}\;(\mbox{car}\;\cos\frac{\alpha}{2^{n+1}}>0),$$
+et donc, $v_{n+1}=b\prod_{k=1}^{n+1}\cos\frac{\alpha}{2^k}$ puis $u_{n+1}=v_{n+1}\cos\frac{\alpha}{2^{n+1}}$.
+On a montré par récurrence que
+
+\begin{center}
+\shadowbox{
+$\forall n\in\Nn^*,\;v_n=b\prod_{k=1}^{n}\cos\frac{\alpha}{2^k}\;\mbox{et}\;u_n=v_n\cos\frac{\alpha}{2^n}.$
+}
+\end{center}
+Pour tout entier naturel non nul $n$, on a $v_n>0$ et $\frac{v_{n+1}}{v_n}=\cos\frac{\alpha}{2^{n+1}}<1$. La suite $v$ est donc strictement décroissante. Ensuite, pour tout entier naturel non nul $n$, on a $u_n>0$ et
+ 
+$$\frac{u_{n+1}}{u_n}=\frac{v_{n+1}}{v_n}\frac{\cos\frac{\alpha}{2^{n+1}}}{\cos\frac{\alpha}{2^n}}
+=\frac{\cos^2\frac{\alpha}{2^{n+1}}}{\cos\frac{\alpha}{2^n}}
+=\frac{1}{2}\left(1+\frac{1}{\cos\frac{\alpha}{2^n}}\right)>\frac{1}{2}(1+1)=1.
+$$
+La suite $u$ est strictement croissante. Maintenant, pour $n\in\Nn^*$,
+
+\begin{align*}
+v_n&=b\prod_{k=1}^{n}\cos\frac{\alpha}{2^k}=b\prod_{k=1}^{n}\frac{\sin\frac{\alpha}{2^{k-1}}}
+{2\sin\frac{\alpha}{2^k}}\\
+ &=\frac{\sin\alpha}{2^n\sin\frac{\alpha}{2^n}}
+\end{align*}
+Donc, quand $n$ tend vers $+\infty$, $v_n\sim\frac{\sin\alpha}{2^n\frac{\alpha}{2^n}}=\frac{\sin\alpha}{\alpha}$, puis $u_n=v_n\cos\frac{\alpha}{2^n}\sim v_n\sim\frac{\sin\alpha}{\alpha}$.
+Ainsi, les suites $u$ et $v$ sont adjacentes de limite commune $b\frac{\sin\alpha}{\alpha}=\frac{\sqrt{b^2-a^2}}{\Arccos\left(\frac{a}{b}\right)}$.
+\fincorrection
+\correction{005226}
+\begin{enumerate}
+ \item  Pour $n\in\Nn^*$, $\left|\frac{\sin n}{n}\right|\leq\frac{1}{n}$. Comme $\frac{1}{n}\underset{n\rightarrow+\infty}{\longrightarrow}0$, $\frac{\sin n}{n}\underset{n\rightarrow+\infty}{\longrightarrow}0$.
+
+\begin{center}
+\shadowbox{
+$\lim_{n\rightarrow +\infty}\frac{\sin n}{n}=0$.
+}
+\end{center}
+ \item  Quand $n$ tend vers $+\infty$, $\ln\left(\left(1+\frac{1}{n}\right)^n\right)=n\ln\left(1+\frac{1}{n}\right)\sim n\times \frac{1}{n}=1$. Donc, $\ln\left(\left(1+\frac{1}{n}\right)^n\right)$ tend vers $1$ puis, $\left(1+\frac{1}{n}\right)^n=e^{n\ln(1+1/n)}$ tend vers $e^1=e$.
+
+\begin{center}
+\shadowbox{
+$\lim_{n\rightarrow +\infty}\left(1+\frac{1}{n}\right)^n=e$.
+}
+\end{center}
+ \item  Pour $n\in\Nn^*$, posons $u_n=\frac{n!}{n^n}$. Pour $n$ entier naturel non nul, on a
+
+$$\frac{u_{n+1}}{u_n}=\frac{(n+1)!}{n!}\times\frac{n^n}{(n+1)^{n+1}}=\left(\frac{n}{n+1}\right)^n=\left(1+\frac{1}{n}\right)^{-n}.$$
+Donc, quand $n$ tend vers $+\infty$, $\frac{u_{n+1}}{u_n}=e^{-n\ln(1+1/n)}=e^{-n(1/n+o(1/n))}=e^{-1+o(1)}$. Ainsi, $\frac{u_{n+1}}{u_n}$ tend vers $\frac{1}{e}=0.36...<1$. On sait alors que $\lim_{n\rightarrow +\infty}u_n=0$.
+
+\begin{center}
+\shadowbox{
+$\lim_{n\rightarrow +\infty}\frac{n!}{n^n}=0$.
+}
+\end{center}
+
+ \item  Pour $n\geq1$, $\frac{(n+\frac{1}{2})^2-1}{(n-\frac{1}{2})^2}\leq u_n\leq\frac{(n+\frac{1}{2})^2}{(n-\frac{1}{2})^2-1}$. Or, $\frac{(n+\frac{1}{2})^2-1}{(n-\frac{1}{2})^2}$ et $\frac{(n+\frac{1}{2})^2}{(n-\frac{1}{2})^2-1}$ tendent vers $1$ quand $n$ tend vers $+\infty$ et donc, d'après le théorème de la limite par encadrement, la suite $u$ converge et a pour limite $1$.
+
+\begin{center}
+\shadowbox{
+$\lim_{n\rightarrow +\infty}\frac{E\left(\left(n+\frac{1}{2}\right)^2\right)}{E\left(\left(n-\frac{1}{2}\right)^2\right)}=1$.
+}
+\end{center}
+
+ \item  Quand $n$ tend vers $+\infty$, $\sqrt[n]{n^2}=e^{\frac{1}{n}\ln(n^2)}=e^{2\ln n/n}=e^{o(1)}$, et donc $\sqrt[n]{n^2}$ tend vers $1$.
+
+\begin{center}
+\shadowbox{
+$\lim_{n\rightarrow +\infty}\sqrt[n]{n^2}=1$.
+}
+\end{center}
+ \item  $\sqrt{n+1}-\sqrt{n}=\frac{1}{\sqrt{n+1}+\sqrt{n}}\rightarrow0$.
+ \item  $\frac{1}{n^3}\sum_{k=1}^{n}k^2=\frac{n(n+1)(2n+1)}{6n^3}\sim\frac{2n^3}{6n^3}=\frac{1}{6}$.
+ \item  $\prod_{k=1}^{n}2^{k/2^k}=2^{\frac{1}{2}\sum_{k=1}^{n}\frac{k}{2^{k-1}}}$. Pour $x$ réel, posons $f(x)=\sum_{k=1}^{n}kx^{k-1}$. $f$ est dérivable sur $\Rr$ en tant que polynôme et pour tout réel $x$, 
+
+$$f(x)=\left(\sum_{k=1}^{n}x^k\right)'(x)=\left(\sum_{k=0}^{n}x^k\right)'(x).$$
+Pour $x\neq1$, on a donc 
+
+$$f(x)=\left(\frac{x^{n+1}-1}{x-1}\right)'(x)=\frac{(n+1)x^n(x-1)-(x^{n+1}-1)}{(x-1)^2}=\frac{nx^{n+1}-(n+1)x^n+1}{(x-1)^2}.$$
+En particulier, $\sum_{k=1}^{n}\frac{k}{2^{k-1}}=f\left(\frac{1}{2}\right)=\frac{\frac{n}{2^{n+1}}-\frac{n+1}{2^n}+1}{(\frac{1}{2}-1)^2}
+\rightarrow4$ (d'après un théorème de croissances comparées). Finalement,
+
+$$\prod_{k=1}^{n}2^{k/2^k}\rightarrow2^{4/2}=4.$$
+\end{enumerate}
+\fincorrection
+\correction{005227}
+Soit $n\in\Nn$.
+
+\begin{align*}
+\frac{1}{2\sqrt{n+u_n}}=\sqrt{n+1}-\sqrt{n}&\Leftrightarrow 2\sqrt{n+u_n}=\frac{1}{\sqrt{n+1}-\sqrt{n}}\Leftrightarrow2\sqrt{n+u_n}=\sqrt{n+1}+\sqrt{n}\\
+ &4(n+u_n)=(\sqrt{n+1}+\sqrt{n})^2\Leftrightarrow u_n=-n+\frac{1}{4}(2n+1+2\sqrt{n(n+1)})\\
+ &\Leftrightarrow u_n=\frac{1}{4}(-2n+1+2\sqrt{n(n+1)})
+\end{align*}
+Par suite, quand $n$ tend vers $+\infty$,
+
+\begin{align*}
+u_n&=-\frac{n}{2}+\frac{1}{4}+\frac{1}{2}\sqrt{n^2+n}=
+\frac{1}{4}+\frac{n}{2}\left(\sqrt{1+\frac{1}{n}}-1\right)=\frac{1}{4}+\frac{n}{2}\frac{1/n}{\sqrt{1+\frac{1}{n}}+1}\\
+ &=
+\frac{1}{4}+\frac{1}{2}\frac{1}{\sqrt{1+\frac{1}{n}}+1}=\frac{1}{4}+\frac{1}{4}+o(1)=\frac{1}{2}+o(1).
+\end{align*}
+La suite $(u_n)$ converge et a pour limite $\frac{1}{2}$.
+
+\fincorrection
+\correction{005228}
+\begin{enumerate}
+ \item  Calcul formel de $u_n$.
+Soit $x\in\Rr$. $\frac{x}{3-2x}=x\Leftrightarrow2x^2-2x=0\Leftrightarrow x=0\;\mbox{ou}\;x=1$. Pour $n$ entier naturel donné, on a alors
+
+$$\frac{u_{n+1}-1}{u_{n+1}}=\frac{\frac{u_n}{3-2u_n}-1}{\frac{u_n}{3-2u_n}}=\frac{3u_n-3}{u_n}
+=3\frac{u_n-1}{u_n}.$$
+Par suite, $\frac{u_n-1}{u_n}=3^n\frac{u_0-1}{u_0}$, puis $u_n=\frac{u_0}{u_0-3^n(u_0-1)}$.
+ \item   Calcul formel de $u_n$.
+Soit $x\in\Rr$. $\frac{4(x-1)}{x}=x\Leftrightarrow x^2-4x+4=0\Leftrightarrow x=2$. Pour $n$ entier naturel donné, on a alors
+
+$$\frac{1}{u_{n+1}-2}=\frac{1}{\frac{4(u_n-1)}{u_n}-2}=\frac{u_n}{2(u_n-2)}=\frac{u_n-2+2}{2(u_n-2)}=\frac{1}{2}+\frac{1}{u_n-2}.$$
+Par suite, $\frac{1}{u_n-2}=\frac{n}{2}+\frac{1}{u_0-2}$, puis $u_n=2+\frac{2(u_0-2)}{(u_0-2)n+2}$.
+\end{enumerate}
+\fincorrection
+\correction{005229}
+
+Pour tout entier naturel $n$, on a $\left\{
+\begin{array}{l}
+u_{n+1}-u_n=\frac{1}{3}(v_n-u_n)\\
+v_{n+1}-v_n=-\frac{1}{3}(v_n-u_n)\\
+v_{n+1}-u_{n+1}=\frac{1}{3}(v_n-u_n)
+\end{array}
+\right.$.
+La dernière relation montre que la suite $v-u$ garde un signe constant puis les deux premières relations montrent que pour tout entier naturel $n$, $\mbox{sgn}(u_{n+1}-u_n)=\mbox{sgn}(v_n-u_n)$ et 
+$\mbox{sgn}(v_{n+1}-v_n)=-\mbox{sgn}(v_n-u_n)$. Les suites $u$ et $v$ sont donc monotones de sens de variation opposés.
+Si par exemple $u_0\leq v_0$, alors, pour tout naturel $n$, on a~:
+
+$$u_0\leq u_n\leq u_{n+1}\leq v_{n+1}\leq v_n\leq v_0.$$
+Dans ce cas, la suite $u$ est croissante et majorée par $v_0$ et donc converge vers un certain réel $\ell$. De même, la suite $v$ est décroissante et minorée par $u_0$ et donc converge vers un certain réel $\ell'$. Enfin, puisque pour tout entier naturel $n$, on a $u_{n+1}=\frac{2u_n+v_n}{3}$, on obtient par passage à la limite quand $n$ tend vers l'infini,  $\ell=\frac{2\ell+\ell'}{3}$ et donc $\ell=\ell'$. Les suites $u$ et $v$ sont donc adjacentes. Si $u_0>v_0$, il suffit d'échanger les rôles de $u$ et $v$.
+\textbf{Calcul des suites $u$ et $v$.}
+Pour $n$ entier naturel donné, on a $v_{n+1}-u_{n+1}=\frac{1}{3}(v_n-u_n)$. La suite $v-u$ est géométrique de raison $\frac{1}{3}$. Pour tout naturel $n$, on a donc $v_n-u_n=\frac{1}{3^n}(v_0-u_0)$.
+D'autre part, pour $n$ entier naturel donné, $v_{n+1}+u_{n+1}=v_n+u_n$. La suite $v+u$ est constante et donc, pour tout entier naturel $n$, on a $v_n+u_n=v_0+u_0$.
+En additionnant et en retranchant les deux égalités précédentes, on obtient pour tout entier naturel $n$~:
+
+$$u_n=\frac{1}{2}\left(v_0+u_0+\frac{1}{3^n}(v_0-u_0)\right)\;\mbox{et}\;v_n=\frac{1}{2}\left(v_0+u_0-\frac{1}{3^n}(v_0-u_0)\right).$$
+En particulier, $\ell=\ell'=\frac{u_0+v_0}{2}$.
+\fincorrection
+\correction{005230}
+Pour tout entier naturel $n$, on a $u_{n+1}-v_{n+1}=-\frac{1}{2}(u_n-v_n)$  et donc, $u_n-v_n=\left(-\frac{1}{2}\right)^n(u_0-v_0)$.
+De même, en échangeant les rôles de $u$, $v$ et $w$, $v_n-w_n=\left(-\frac{1}{2}\right)^n(v_0-w_0)$ et $w_n-u_n=\left(-\frac{1}{2}\right)^n(w_0-v_0)$ (attention, cette dernière égalité n'est autre que la somme des deux premières et il manque encore une équation).
+On a aussi, $u_{n+1}+v_{n+1}+w_{n+1}=u_n+v_n+w_n$ et donc, pour tout naturel $n$, $u_n+v_n+w_n=u_0+v_0+w_0$.
+Ainsi, $u_n$, $v_n$ et $w_n$ sont solutions du système
+
+$$\left\{
+\begin{array}{l}
+v_n-u_n=\left(-\frac{1}{2}\right)^n(v_0-u_0)\\
+\rule{0mm}{7mm}w_n-u_n=\left(-\frac{1}{2}\right)^n(w_0-u_0)\\
+\rule{0mm}{4mm}u_n+v_n+w_n=u_0+v_0+w_0
+\end{array}
+\right..$$
+Par suite, pour tout entier naturel $n$, on a
+
+$$\left\{
+\begin{array}{l}
+u_n=\frac{1}{3}\left((u_0+v_0+w_0)+\left(-\frac{1}{2}\right)^n(2u_0-v_0-w_0)\right)\\
+v_n=\frac{1}{3}\left((u_0+v_0+w_0)+\left(-\frac{1}{2}\right)^n(-u_0+2v_0-w_0)\right)\\
+w_n=\frac{1}{3}\left((u_0+v_0+w_0)+\left(-\frac{1}{2}\right)^n(-u_0-v_0+2w_0)\right)
+\end{array}
+\right..$$
+Les suites $u$, $v$ et $w$ convergent vers $\frac{u_0+v_0+w_0}{3}$.
+\fincorrection
+\correction{005231}
+Montrons tout d'abord que~:
+
+$$\forall(x,y,z)\in]0,+\infty[^3,\;(x\leq y\leq z\Rightarrow\frac{3}{\frac{1}{x}+\frac{1}{y}+\frac{1}{z}}\leq\sqrt[3]{xyz}\leq\frac{x+y+z}{3}).$$
+Posons $m=\frac{x+y+z}{3}$, $g=\sqrt[3]{xyz}$ et $h=\frac{3}{\frac{1}{x}+\frac{1}{y}+\frac{1}{z}}$.
+Soient $y$ et $z$ deux réels strictement positifs tels que $y\leq z$. Pour $x\in]0,y]$, posons
+
+\begin{center}
+$u(x)=\ln m-\ln g=\ln\left(\frac{x+y+z}{3}\right)-\frac{1}{3}\left(\ln x+\ln y+\ln z\right)$.
+\end{center}
+$u$ est dérivable sur $]0,y]$ et pour $x\in]0,y]$, 
+
+$$u'(x)=\frac{1}{x+y+z}-\frac{1}{3x}\leq\frac{1}{x+x+x}-\frac{1}{3x}=0.$$
+$u$ est donc décroissante sur $]0,y]$ et pour $x$ dans $]0,y]$, $u(x)\geq u(y)=\ln\left(\frac{2y+z}{3}\right)-\frac{1}{3}(2\ln y+\ln z)$.
+Soit $z$ un réel strictement positif fixé. Pour $y\in]0,z]$, posons $v(y)=\ln\left(\frac{2y+z}{3}\right)-\frac{1}{3}(2\ln y+\ln z)$. $v$ est dérivable sur $]0,z]$ et pour $y\in]0,z]$, 
+
+$$v'(y)=\frac{2}{2y+z}-\frac{2}{3z}\leq\frac{2}{3z}-\frac{2}{3z}=0.$$
+$v$ est donc décroissante sur $]0,z]$ et pour $y$ dans $]0,z]$, on a $v(y)\geq v(z)=0$. On vient de montrer que $g\leq m$.
+En appliquant ce résultat à $\frac{1}{x}$, $\frac{1}{y}$ et $\frac{1}{z}$, on obtient $\frac{1}{g}\leq\frac{1}{h}$ et donc $h\leq g$.
+Enfin, $m\leq\frac{z+z+z}{3}=z$ et $h\geq\frac{3}{\frac{1}{x}+\frac{1}{x}+\frac{1}{x}}=x$. Finalement,
+
+\begin{center}
+\shadowbox{
+$x\leq h\leq g\leq m\leq z.$
+}
+\end{center}
+Ce résultat préliminaire étant établi, puisque $0<u_0<v_0<w_0$, par récurrence, les suites $u$, $v$ et $w$ sont définies puis, pour tout naturel $n$, on a $u_n\leq v_n\leq w_n$, et de plus $u_0\leq u_n\leq u_{n+1}\leq w_{n+1}\leq w_n\leq w_0$.
+La suite $u$ est croissante et majorée par $w_0$ et donc converge. La suite $w$ est décroissante et minorée par $u_0$ et donc converge. Enfin, puisque pour tout entier naturel $n$, $v_n=3w_{n+1}-u_n-w_n$, la suite $v$ converge.
+Soient alors $a$, $b$ et $c$ les limites respectives des suites $u$, $v$ et $w$.
+Puisque pour tout entier naturel $n$, on a $0<u_0\leq u_n\leq v_n\leq w_n$, on a déjà par passage à la limite $0<u_0\leq a\leq b\leq c$.
+Toujours par passage à la limite quand $n$ tend vers $+\infty$~:
+
+$$
+\left\{
+\begin{array}{l}
+\frac{3}{a}=\frac{1}{a}+\frac{1}{b}+\frac{1}{c}\\
+\rule{0mm}{5mm}b=\sqrt[3]{abc}\\
+c=\frac{a+b+c}{3}
+\end{array}
+\right.
+\Leftrightarrow
+\left\{
+\begin{array}{l}
+2bc=ab+ac\\
+b^2=ac\\
+a+b=2c
+\end{array}
+\right.
+\Leftrightarrow
+\left\{
+\begin{array}{l}
+b=2c-a\\
+a^2-5ac+4c^2=0\\
+\end{array}
+\right.
+\Leftrightarrow(a=c\;\mbox{et}\;b=c)\;\mbox{ou}\;(a=4c\;\mbox{et}\;b=-2c).$$
+$b=-2c$ est impossible car $b$ et $c$ sont strictement positifs et donc, $a=b=c$.
+Les suites $u$, $v$ et $w$ convergent vers une limite commune.
+\fincorrection
+\correction{005232}
+Supposons que la suite $(\sqrt[n]{v_n})$ tende vers le réel positif $\ell$.
+
+\begin{itemize}
+\item[\textbullet] Supposons que $0\leq\ell<1$. Soit $\varepsilon=\frac{1-\ell}{2}$.
+
+$\varepsilon$ est un réel strictement positif et donc, $\exists n_0\in\Nn/\;\forall n\in\Nn,(n\geq n_0\Rightarrow\sqrt[n]{v_n}<\ell+\frac{1-\ell}{2}=\frac{1+\ell}{2})$.
+
+Pour $n\geq n_0$, par croissance de la fonction $t\mapsto t^n$ sur $\Rr^+$, on obtient $|u_n|<\left(\frac{1+\ell}{2}\right)^n$. Or, $0<\frac{1+\ell}{2}<\frac{1+1}{2}=1$ et donc 
+$\left(\frac{1+\ell}{2}\right)^n$ tend vers $0$ quand $n$ tend vers $+\infty$. Il en résulte que $u_n$ tend vers  $0$ quand $n$ tend vers $+\infty$.
+
+\item[\textbullet] Supposons que $\ell>1$. $\exists n_0\in\Nn/\;\forall n\in\Nn,\;(n\geq n_0\Rightarrow\sqrt[n]{v_n}>\ell-\frac{\ell-1}{2}=\frac{1+\ell}{2})$. Mais alors, pour $n\geq n_0$, $|u_n|>\left(\frac{1+\ell}{2}\right)^n$. Or, $\frac{1+\ell}{2}>\frac{1+1}{2}=1$, et donc $\left(\frac{1+\ell}{2}\right)^n$ tend vers $+\infty$ quand $n$ tend vers $+\infty$. Il en résulte que $|u_n|$ tend vers $+\infty$ quand $n$ tend vers $+\infty$.
+\end{itemize}
+Soit, pour $\alpha$ réel et $n$ entier naturel non nul, $u_n=n^\alpha$. $\sqrt[n]{u_n}=e^{\alpha\frac{\ln n}{n}}$ tend vers $1$ quand $n$ tend vers $+\infty$, et ceci pour toute valeur de $\alpha$. Mais, si $\alpha<0$, $u_n$ tend vers $0$, si $\alpha=0$, $u_n$ tend vers $1$ et si $\alpha>0$, $u_n$ tend vers $+\infty$. Donc, si $\ell=1$, on ne peut rien conclure.
+\fincorrection
+\correction{005233}
+\begin{enumerate}
+ \item  Supposons $\ell>0$. Soit $\varepsilon$ un réel strictement positif, élément de $]0,\ell[$.
+$\exists n_0\in\Nn/\;\forall n\in\Nn,\;(n\geq n_0\Rightarrow0< \ell-\frac{\varepsilon}{2}<\frac{u_{n+1}}{u_n}<\ell+\frac{\varepsilon}{2})$.
+Pour $n>n_0$, puisque $u_n=\frac{u_n}{u_{n-1}}\frac{u_{n-1}}{u_{n-2}}\frac{u_{n-2}}{u_{n-3}}...\frac{u_{n_0+1}}{u_{n_0}}u_{n_0}$, on a 
+$u_{n_0}\left(\ell-\frac{\varepsilon}{2}\right)^{n-n_0}\leq  u_n\leq u_{n_0}\left(\ell+\frac{\varepsilon}{2}\right)^{n-n_0}$, et donc 
+
+$$(u_{n_0})^{1/n}\left(\ell-\frac{\varepsilon}{2}\right)^{-n_0/n}\left(\ell-\frac{\varepsilon}{2}\right)\leq \sqrt[n]{u_n}\leq(u_{n_0})^{1/n}\left(\ell+\frac{\varepsilon}{2}\right)^{-n_0/n}\left(\ell+\frac{\varepsilon}{2}\right).$$
+Maintenant, le membre de gauche de cet encadrement tend vers $\ell-\frac{\varepsilon}{2}$, et le membre de droite rend vers $\ell+\frac{\varepsilon}{2}$. Par suite, on peut trouver un entier naturel $n_1\geq n_0$ tel que, pour $n\geq n_1$, $(u_{n_0})^{1/n}\left(\ell-\frac{\varepsilon}{2}\right)^{-n_0/n}\left(\ell-\frac{\varepsilon}{2}\right)>\ell-\varepsilon$, et $(u_{n_0})^{1/n}\left(\ell+\frac{\varepsilon}{2}\right)^{-n_0/n}\left(\ell+\frac{\varepsilon}{2}\right)<\ell+\varepsilon$. Pour $n\geq n_1$, on a alors $\ell-\varepsilon<\sqrt[n]{u_n}<\ell+\varepsilon$.
+On a montré que $\forall\varepsilon>0,\;\exists n_1\in\Nn/\;(\forall n\in\Nn),\;(n\geq n_1\Rightarrow\ell-\varepsilon<\sqrt[n]{u_n}<\ell+\varepsilon)$. Donc, $\sqrt[n]{u_n}$ tend vers $\ell$.
+On traite de façon analogue le cas $\ell=0$.
+ \item  Soient $a$ et $b$ deux réels tels que $0<a<b$. Soit $u$ la suite définie par 
+
+$$\forall p\in\Nn,\;u_{2p}=a^pb^p\;\mbox{et}\;u_{2p+1}=a^{p+1}b^p.$$
+(on part de $1$ puis on multiplie alternativement par $a$ ou $b$).
+Alors, $\sqrt[2p]{u_{2p}}=\sqrt{ab}$ et $\sqrt[2p+1]{u_{2p+1}}=a^{\frac{p+1}{2p+1}}b^{\frac{p}{2p+1}}\rightarrow\sqrt{ab}$. Donc, $\sqrt[n]{u_n}$ tend vers $\sqrt{ab}$ (et en particulier converge).
+On a bien sûr $\frac{u_{2p+1}}{u_{2p}}=a$ et $\frac{u_{2p+2}}{u_{2p+1}}=b$. La suite $\left(\frac{u_{n+1}}{u_n}\right)$ admet donc deux suites extraites convergentes de limites distinctes et est ainsi divergente. La réciproque du 1) est donc fausse.
+ \item  
+  \begin{enumerate}
+  \item  Pour $n$ entier naturel donné, posons $u_n=\dbinom{2n}{n}$.
+ 
+$$\frac{u_{n+1}}{u_n}=\frac{(2n+2)!}{(2n)!}\frac{n!^2}{(n+1)!^2}=\frac{(2n+2)(2n+1)}{(n+1)^2}=\frac{4n+2}{n+1}.$$
+Ainsi, $\frac{u_{n+1}}{u_n}$ tend vers $4$ quand $n$ tend vers $+\infty$, et donc $\sqrt[n]{\dbinom{2n}{n}}$ tend vers $4$ quand $n$ tend vers $+\infty$.
+  \item Pour $n$ entier naturel donné, posons $u_n=\frac{n^n}{n!}$.
+ 
+$$\frac{u_{n+1}}{u_n}=\frac{(n+1)^{n+1}}{n^n}\frac{n!}{(n+1)!}=\left(1+\frac{1}{n}\right)^n.$$
+Ainsi, $\frac{u_{n+1}}{u_n}$ tend vers $e$ quand $n$ tend vers $+\infty$, et donc $\sqrt[n]{u_n}=\frac{n}{\sqrt[n]{n!}}$ tend vers $e$ quand $n$ tend vers $+\infty$.
+  \item Pour $n$ entier naturel donné, posons $u_n=\frac{(3n)!}{n^{2n}n!}$.
+
+\begin{align*}
+\frac{u_{n+1}}{u_n}&=\frac{(3n+3)!}{(3n)!}\frac{n^{2n}}{(n+1)^{2n+2}}\frac{n!}{(n+1)!}
+=\frac{(3n+3)(3n+2)(3n+1)}{(n+1)^2(n+1)}\left(\frac{n}{n+1}\right)^{2n}\\
+ &=
+\frac{3(3n+2)(3n+1)}{(n+1)^2}\left(1+\frac{1}{n}\right)^{-2n}.
+\end{align*}
+Maintenant, $\left(1+\frac{1}{n}\right)^{-2n}=e^{-2n\ln(1+1/n)}=e^{-2n(\frac{1}{n}+o(\frac{1}{n}))}=e^{-2+o(1)}$, et donc $\frac{u_{n+1}}{u_n}$ tend vers $27e^{-2}$. Par suite, $\frac{1}{n^2}\sqrt[n]{\frac{(3n)!}{n!}}$ tend vers $\frac{27}{e^2}$.
+  \end{enumerate}
+\end{enumerate}
+\fincorrection
+\correction{005234}
+D'après le théorème de la limite par encadrement~:
+
+$$0\leq u_nv_n\leq u_n\leq1\Rightarrow u\;\mbox{converge et tend vers}\;1.$$
+Il en est de même pour $v$ en échangeant les rôles de $u$ et $v$.
+\fincorrection
+\correction{005235}
+Si $u_n^2\rightarrow0$, alors $|u_n|=\sqrt{|u_n^2|}\rightarrow0$ et donc $u_n\rightarrow0$.
+Si $u_n^2\rightarrow\ell\neq0$, alors $(u_n)=(\frac{u_n^3}{u_n^2})$ converge.
+(L'exercice n'a d'intérêt que si la suite $u$ est une suite complexe, car si $u$ est une suite réelle, on écrit immédiatement $u_n=\sqrt[3]{u_n^3}$ 
+(et non pas $u_n=\sqrt{u_n^2}$)).
+\fincorrection
+\correction{005236}
+Les suites $u$ et $v$ sont définies à partir du rang $1$ et strictement positives.
+Pour tout naturel non nul $n$, on a~:
+
+$$\frac{u_{n+1}}{u_n}=\left(\frac{n+2}{n+1}\right)^{n+1}\left(\frac{n}{n+1}\right)^n=e^{(n+1)\ln(n+2)+n\ln n-(2n+1)\ln(n+1)}.$$
+Pour $x$ réel strictement positif, posons alors $f(x)=(x+1)\ln(x+2)+x\ln x-(2x+1)\ln(x+1)$.
+$f$ est dérivable sur $]0,+\infty[$ et pour $x>0$,
+
+\begin{align*}
+f'(x)&=\frac{x+1}{x+2}+\ln(x+2)+1+\ln x-\frac{2x+1}{x+1}-2\ln(x+1)\\
+ &=\frac{x+2-1}{x+2}+\ln(x+2)+1+\ln x-\frac{2x+2-1}{x+1}-2\ln(x+1)\\
+ &=-\frac{1}{x+2}+\frac{1}{x+1}+\ln x+\ln(x+2)-2\ln(x+1).
+\end{align*}
+De même, $f'$ est dérivable sur $]0,+\infty[$ et pour $x>0$,
+
+\begin{align*}
+f''(x)&=\frac{1}{(x+2)^2}-\frac{1}{(x+1)^2}+\frac{1}{x}+\frac{1}{x+2}-\frac{2}{x+1}\\ 
+ &=\frac{x(x+1)^2-x(x+2)^2+(x+1)^2(x+2)^2+x(x+1)^2(x+2)-2x(x+1)(x+2)^2}{x(x+1)^2(x+2)^2}\\
+ &=\frac{-2x^2-3x+(x^2+2x+1)(x^2+4x+4)+(x^2+2x)(x^2+2x+1)-2(x^2+x)(x^2+4x+4)}{x(x+1)^2(x+2)^2}\\
+ &=\frac{3x+4}{x(x+1)^2(x+2)^2}>0.
+\end{align*}
+$f'$ est strictement croissante sur $]0,+\infty[$ et donc, pour $x>0$, 
+
+$$f'(x)<\lim_{t\rightarrow +\infty}f'(t)=\lim_{t\rightarrow +\infty}\left(-\frac{1}{t+2}+\frac{1}{t+1}+\ln\frac{t(t+2)}{(t+1)^2}\right)=0.$$
+Donc, $f$ est strictement décroissante sur $]0,+\infty[$. Or, pour $x>0$,
+
+\begin{align*}
+f(x)&=(x+1)\ln(x+2)+x\ln x-(2x+1)\ln(x+1)\\
+ &=(x+(x+1)-(2x+1))\ln x+(x+1)\ln\left(1+\frac{2}{x}\right)-(2x+1)\ln\left(1+\frac{1}{x}\right)\\
+ &=\ln\left(1+\frac{2}{x}\right)-\ln\left(1+\frac{1}{x}\right)+2\frac{\ln\left(1+\frac{2}{x}\right)}{\frac{2}{x}}-2\frac{\ln\left(1+\frac{1}{x}\right)}{\frac{1}{x}}.
+\end{align*}
+On sait que $\lim_{u\rightarrow 0}\frac{\ln(1+u)}{u}=1$, et donc, quand $x$ tend vers $+\infty$, $f(x)$ tend vers $0+0+2-2=0$. Comme $f$ est strictement décroissante sur $]0,+\infty[$, pour tout réel $x>0$, on a $f(x)>\lim_{t\rightarrow +\infty}f(t)=0$.
+f est donc strictement positive sur $]0,+\infty[$. Ainsi, $\forall n\in\Nn^*,\;f(n)>0$ et donc $\frac{u_{n+1}}{u_n}=e^{f(n)}>1$. La suite $u$ est strictement croissante.
+(Remarque. On pouvait aussi étudier directement la fonction $x\mapsto\left(1+\frac{1}{x}\right)^x$ sur $]0,+\infty[$.)
+On montre de manière analogue que la suite $v$ est strictement décroissante. Enfin, puisque $u_n$ tend vers $e$, et que $v_n=\left(1+\frac{1}{n}\right)u_n$ tend vers $e$, les suites $u$ et $v$ sont adjacentes.
+(Remarque. En conséquence, pour tout entier naturel non nul $n$, $\left(1+\frac{1}{n}\right)^n<e<\left(1+\frac{1}{n}\right)^{n+1}$. Par exemple, pour $n=10$, on obtient $\left(\frac{11}{10}\right)^{10}<e<\left(\frac{11}{10}\right)^{11}$ et donc, $2,59...<e<2,85...$ et pour $n=100$, on obtient $1,01^{100}<e<1,01^{101}$ et donc $2,70...<e<2,73...$ Ces deux suites convergent vers $e$ lentement).
+\fincorrection
+\correction{005237}
+Il est immédiat que $u$ croit strictement et que $v-u$ est strictement positive et tend vers $0$.
+De plus, pour $n$ entier naturel donné, 
+
+$$v_{n+1}-v_n=\frac{1}{(n+1)!}+\frac{1}{(n+1)\times(n+1)!}-\frac{1}{n\times n!}=\frac{n(n+1)+n-(n+1)^2}{n(n+1)\times(n+1)!}=\frac{-1}{n(n+1)\times(n+1)!}< 0,$$
+et la suite $v$ est strictement décroissante. Les suites $u$ et $v$ sont donc adjacentes et convergent vers une limite commune (à savoir $e$).
+ 
+
+(Remarque. Dans ce cas, la convergence est très rapide. On a pour tout entier naturel non nul $n$,  $\sum_{k=0}^{n}\frac{1}{k!}<e<\sum_{k=0}^{n}\frac{1}{k!}+\frac{1}{n\times n!}$ et $n=5$ fournit par exemple $2,716...<e<2,718...$).
+\fincorrection
+\correction{005238}
+Pour $n$ entier naturel non nul donné, on a
+$$u_{n+1}-u_n=\frac{1}{\sqrt{n+1}}-2\sqrt{n+2}+2\sqrt{n+1}=\frac{1}{\sqrt{n+1}}-\frac{2}{\sqrt{n+1}+\sqrt{n+2}}>\frac{1}{\sqrt{n+1}}-\frac{2}{\sqrt{n+1}+\sqrt{n+1}}=0.$$
+De même,
+
+$$v_{n+1}-v_n=\frac{1}{\sqrt{n+1}}-2\sqrt{n+1}+2\sqrt{n}=\frac{1}{\sqrt{n+1}}-\frac{2}{\sqrt{n+1}+\sqrt{n}}<\frac{1}{\sqrt{n+1}}-\frac{2}{\sqrt{n+1}+\sqrt{n+1}}=0.$$
+La suite $u$ est strictement croissante et la suite $v$ est strictement décroissante. Enfin, 
+
+$$v_n-u_n=2\sqrt{n+1}-2\sqrt{n}=\frac{2}{\sqrt{n}+\sqrt{n+1}},$$
+et la suite $v-u$ converge vers $0$. Les suites $u$ et $v$ sont ainsi adjacentes et donc convergentes, de même limite.
+\fincorrection
+\correction{005239}
+\begin{enumerate}
+ \item  L'équation caractéristique est $4z^2-4z-3=0$. Ses solutions sont $-\frac{1}{2}$ et $\frac{3}{2}$. Les suites cherchées sont les suites de la forme $(u_n)=\left(\lambda\left(-\frac{1}{2}\right)^n+\mu\left(\frac{3}{2}\right)^n\right)$ où $\lambda$ et $\mu$ sont deux réels (ou deux complexes si on cherche toutes les suites complexes). Si $u_0$ et $u_1$ sont les deux premiers termes de la suite $u$, $\lambda$ et $\mu$ sont les solutions du système $\left\{
+\begin{array}{l}
+\lambda+\mu=u_0\\
+-\frac{\lambda}{2}+\frac{3\mu}{2}=u_1
+\end{array}
+\right.$ et donc $\lambda=\frac{1}{4}(3u_0-2u_1)$ et $\mu=\frac{1}{4}(u_0+2u_1)$.
+
+\begin{center}
+\shadowbox{
+$\forall n\in\Nn,\;u_n=\frac{1}{4}(3u_0-2u_1)\left(-\frac{1}{2}\right)^n+\frac{1}{4}(u_0+2u_1)\left(\frac{3}{2}\right)^n.$
+}
+\end{center}
+ \item  Clairement $u_{2n}=\frac{1}{4^n}u_0$ et $u_{2n+1}=\frac{1}{4^n}u_1$ et donc $u_n=\frac{1}{2}\left(\frac{1}{2^n}(1+(-1)^n)u_0+2\times\frac{1}{2^n}(1-(-1)^n)u_1\right)$.
+
+\begin{center}
+\shadowbox{
+$\forall n\in\Nn$, $u_n=\frac{1}{2^{n+1}}\left((1+(-1)^n)u_0+2(1-(-1)^n)u_1\right)$.
+}
+\end{center}
+ \item  Les solutions de l'équation homogène associée sont les suites de la forme $\lambda\left(-\frac{1}{2}\right)^n+\mu\left(\frac{3}{2}\right)^n$.
+Une solution particulière de l'équation proposée est une constante $a$ telle que $4a=4a+3a+12$ et donc $a=-4$.
+Les solutions de l'équation proposée sont donc les suites de la forme $\left(-4+\lambda\left(-\frac{1}{2}\right)^n+\mu\left(\frac{3}{2}\right)^n\right)$ où $\lambda$ et $\mu$ sont les solutions du système $\left\{
+\begin{array}{l}
+\lambda+\mu=4+u_0\\
+-\frac{\lambda}{2}+\frac{3\mu}{2}=4+u_1
+\end{array}
+\right.$ et donc $\lambda=\frac{1}{4}(4+3u_0-2u_1)$ et $\mu=\frac{1}{4}(12+u_0+2u_1)$.
+
+\begin{center}
+\shadowbox{
+$\forall n\in\Nn,\;u_n=-4+\frac{1}{4}(4+3u_0-2u_1)\left(-\frac{1}{2}\right)^n+\frac{1}{4}(12+u_0+2u_1)\left(\frac{3}{2}\right)^n.$
+}
+\end{center}
+
+ \item  La suite $v=\frac{1}{u}$ est solution de la récurrence $2v_{n+2}=v_{n+1}-v_n$ et donc,
+$(v_n)$ est de la forme $\left(\lambda\left(\frac{1+i\sqrt{7}}{4}\right)^n+\mu\left(\frac{1-i\sqrt{7}}{4}\right)^n\right)$ et donc $u_n=\frac{1}{\lambda\left(\frac{1+i\sqrt{7}}{4}\right)^n+\mu\left(\frac{1-i\sqrt{7}}{4}\right)^n}$.
+ \item  Les solutions de l'équation homogène associée sont les suites de la forme $(\lambda+\mu2^n)$.
+$1$ est racine simple de l'équation caractéristique et donc il existe une solution particulière de l'équation proposée de la forme $u_n=an^4+bn^3+cn^2+dn$. Pour $n\geq2$, on a
+
+\begin{align*}
+u_n-3u_{n-1}+2u_{n-2}&=(an^4+bn^3+cn^2+dn)-3(a(n-1)^4+b(n-1)^3+c(n-1)^2+d(n-1))\\
+ &\;+2(a(n-2)^4+b(n-2)^3+c(n-2)^2+d(n-2))\\
+ &= a(n^4-3(n-1)^4+2(n-2)^4)+b(n^3-3(n-1)^3+2(n-2)^3)\\
+ &\;+c(n^2-3(n-1)^2+2(n-2)^2)+d(n-3(n-1)+2(n-2))\\
+  &= a(-4n^3+30n^2-52n+29)+b(-3n^2+15n-13)+c(-2n+5)+d(-1)\\
+ &=n^3(-4a)+n^2(30a-3b)+n(-52a+15b-2c)+29a-13b+5c-d.
+\end{align*}
+
+\begin{align*}
+u\;\mbox{est solution}&\Leftrightarrow-4a=1\;\mbox{et}\;30a-3b=0\;\mbox{et}\;-52a+15b-2c=0\;\mbox{et}\;29a-13b+5c-d=0\\
+ &\Leftrightarrow a=-\frac{1}{4},\;b=-\frac{5}{2},\;c=-\frac{49}{4},\;d=-36.
+\end{align*}
+Les suites cherchées sont les suites de la forme $\left(-\frac{1}{4}(n^3+10n^2+49n+144)+\lambda+\mu2^n\right)$.
+ \item  Pour tout complexe $z$, $z^3-6z^2+11z-6=(z-1)(z-2)(z-3)$ et les suites solutions sont les suites de la forme 
+$(\alpha+\beta2^n+\gamma3^n)$.
+ \item  Pour tout complexe $z$, $z^4-2z^3+2z^2-2z+1=(z^2+1)^2-2z(z^2+1)=(z-1)^2(z^2+1)$.
+Les solutions de l'équation homogène associée sont les suites de la forme $\alpha+\beta n+\gamma i^n+\delta(-i)^n$.
+$1$ est racine double de l'équation caractéristique et donc l'équation proposée admet une solution particulière de la forme $u_n=an^7+bn^6+cn^5+dn^4+en^3+fn^2$. Pour tout entier naturel $n$, on a
+
+\begin{align*}
+u_{n+4}-2u_{n+3}&+2u_{n+2}-2u_{n+1}+u_n=a((n+4)^7-2(n+3)^7+2(n+2)^7-2(n+1)^7+n^7)\\
+ &+b((n+4)^6-2(n+3)^6+2(n+2)^6-2(n+1)^6+n^6)\\
+ &+c((n+4)^5-2(n+3)^5+2(n+2)^5-2(n+1)^5+n^5)\\
+ &+d((n+4)^4-2(n+3)^4+2(n+2)^4-2(n+1)^4+n^4)\\
+ &+e((n+4)^3-2(n+3)^3+2(n+2)^3-2(n+1)^3+n^3)\\
+ &+f((n+4)^2-2(n+3)^2+2(n+2)^2-2(n+1)^2+n^2)\\
+ &=a(84n^5+840n^4+4340n^3+12600n^2+19348n+12264)\\
+ &+b(60n^4+480n^3+1860n^2+3600n+2764)\\
+ &+c(40n^3+240n^2+620n+600)+d(24n^2+96n+124)+e(12n+24)+4f\\
+ &=n^5(84a)+n^4(840a+60b)+n^3(4340a+480b+40c)+n^2(12600a+1860b+240c+24d)\\
+ &+n(19348a+3600b+620c+96d+12e)+(12264a+2764b+600c+124d+24e+4f)
+\end{align*}
+$u$ est solution si et seulement si $84a=1$ et donc $a=\frac{1}{84}$, puis $840a+60b=0$ et donc $b=-\frac{1}{6}$,
+puis $4340a+480b+40c=0$ et donc $c=\frac{17}{24}$, puis $12600a+1860b+240c+24d=0$ et donc $d=-\frac{5}{12}$
+puis $19348a+3600b+620c+96d+12e=0$ et donc $e=-\frac{59}{24}$ puis $12264a+2764b+600c+124d+24e+4f=0$ et donc $f=\frac{1}{12}$.
+La solution générale de l'équation avec second membre est donc~:
+
+$$\forall n\in\Nn,\;u_n=\frac{1}{168}(2n^7-28n^6+119n^5-70n^4-413n^3+14n^2)+\alpha+\beta n+\gamma i^n+\delta(-i)^n,\; (\alpha,\beta,\gamma,\delta)\in\Cc^4.$$
+\end{enumerate}
+\fincorrection
+\correction{005240}
+Tout d'abord , on montre facilement par récurrence que, pour tout entier naturel non nul $n$, $u_n$ existe et $u_n\geq1$.
+Mais alors, pour tout entier naturel non nul $n$, $1\leq u_{n+1}=1+\frac{n}{u_n}\leq1+n$. Par suite, pour $n\geq2$, $1\leq u_n\leq n$, ce qui reste vrai pour $n=1$.
+
+$$\forall n\in\Nn^*,\;1\leq u_n\leq n.$$
+Supposons momentanément que la suite $(u_n-\sqrt{n})_{n\geq1}$ converge vers un réel $\ell$. Dans ce cas :
+
+$$1+\frac{n}{u_n}=1+\frac{n}{\sqrt{n}+\ell+o(1)}=1+\sqrt{n}\frac{1}{1+\frac{\ell}{\sqrt{n}}+o\left(\frac{1}{\sqrt{n}}\right)}= 1+\sqrt{n}\left(1-\frac{\ell}{\sqrt{n}}+o\left(\frac{1}{\sqrt{n}}\right)\right)=\sqrt{n}+1-\ell+o(1).$$
+D'autre part,
+
+$$u_{n+1}=\sqrt{n+1}+\ell+o(1)=\sqrt{n}\left(1+\frac{1}{n}\right)^{1/2}+\ell+o(1)=\sqrt{n}+\ell+o(1),$$
+et donc $\ell-(1-\ell)=o(1)$ ou encore $2\ell-1=0$. Donc, si la suite $(u_n-\sqrt{n})_{n\geq1}$ converge vers un réel $\ell$, alors $\ell=\frac{1}{2}$.
+Il reste à démontrer que la suite $(u_n-\sqrt{n})_{n\geq1}$ converge.
+On note que pour tout entier naturel non nul,
+
+$$u_{n+1}-u_n=\frac{1}{u_n}(-u_n^2+u_n+n)=\frac{1}{u_n}\left(\frac{1}{2}(1+\sqrt{4n+1})-u_n\right)\left(u_n-\frac{1}{2}
+(1-\sqrt{4n+1})\right).$$
+Montrons par récurrence que pour $n\geq1$, $\frac{1}{2}(1+\sqrt{4n-3})\leq u_n\leq\frac{1}{2}(1+\sqrt{4n+1})$. Posons $v_n=\frac{1}{2}(1+\sqrt{4n-3})$ et $w_n=\frac{1}{2}(1+\sqrt{4n+1})$.
+
+Si $n=1$, $v_1=1\leq u_1=1\leq\frac{1}{2}(1+\sqrt{5})=w_1$.
+
+Soit $n\geq1$. Supposons que $v_n\leq u_n\leq w_n$. Alors, 
+
+$$1+\frac{2n}{\sqrt{4n+1}+1}\leq u_{n+1}=1+\frac{n}{u_n}\leq1+\frac{2n}{\sqrt{4n-3}+1}.$$
+
+Mais, pour $n\geq1$,
+
+\begin{align*}
+\mbox{sgn}(\frac{1}{2}(1+\sqrt{4n+5})-&(1+\frac{2n}{\sqrt{4n-3}+1}))=\mbox{sgn}((1+\sqrt{4n+5})(1+\sqrt{4n-3})-2(2n+1+\sqrt{4n-3}))\\
+ &=\mbox{sgn}(\sqrt{4n+5}(1+\sqrt{4n-3})-(4n+1+\sqrt{4n-3}))\\
+ &=\mbox{sgn}((4n+5)(1+\sqrt{4n-3})^2-(4n+1+\sqrt{4n-3})^2)\;(\mbox{par croissance de}\;x\mapsto x^2\;\mbox{sur}\;[0,+\infty[)\\
+ &=\mbox{sgn}((4n+5)(4n-2+2\sqrt{4n-3})-((4n+1)^2+2(4n+1)\sqrt{4n-3}+4n-3))\\
+ &=\mbox{sgn}(-8+8\sqrt{4n-3}) =\mbox{sgn}(\sqrt{4n-3}-1) =\mbox{sgn}((4n-3)-1)=\mbox{sgn}(n-1)=+
+\end{align*}
+
+Donc, $u_{n+1}\leq 1+1+\frac{2n}{\sqrt{4n-3}+1}\leq w_{n+1}$.
+
+D'autre part,
+
+$$1+\frac{2n}{\sqrt{4n+1}+1}=\frac{2n+1+\sqrt{4n+1}}{\sqrt{4n+1}+1}=\frac{(\sqrt{4n+1}+1)^2}{2(\sqrt{4n+1}+1)}
+=\frac{1}{2}(1+\sqrt{4n+1})=v_{n+1},$$ 
+
+et donc $v_{n+1}\leq u_{n+1}\leq w_{n+1}$.
+
+On a montré par récurrence que 
+
+$$\forall n\in\Nn^*,\;\frac{1}{2}(1+\sqrt{4n-3})\leq u_n\leq\frac{1}{2}(1+\sqrt{4n+1}),$$
+
+(ce qui montre au passage que $u$ est croissante).
+
+Donc, pour $n\geq1$,
+
+$$\frac{1}{2}+\sqrt{n-\frac{3}{4}}-\sqrt{n}\leq u_n-\sqrt{n}\leq\frac{1}{2}+\sqrt{n+\frac{1}{4}}-\sqrt{n},$$
+
+ou encore, pour tout $n\geq1$,
+ 
+$$\frac{1}{2}-\frac{3}{4}\frac{1}{\sqrt{n-\frac{3}{4}}+\sqrt{n}}\leq u_n-\sqrt{n}\leq\frac{1}{2}+\frac{1}{4}\frac{1}{\sqrt{n+\frac{1}{4}}+\sqrt{n}}.$$
+
+Maintenant, comme les deux suites 
+$(\frac{1}{2}-\frac{3}{4}\frac{1}{\sqrt{n-\frac{3}{4}}+\sqrt{n}})$ et $(\frac{1}{2}+\frac{1}{4}\frac{1}{\sqrt{n+\frac{1}{4}}+\sqrt{n}})$ convergent toutes deux vers $\frac{1}{2}$, d'après le théorème de la limite par encadrements, la suite $(u_n-\sqrt{n})_{n\geq1}$ converge vers $\frac{1}{2}$.
+\fincorrection
+\correction{005241}
+L'égalité proposée est vraie pour $n=2$ car $\cos\frac{\pi}{2^2}=\cos\frac{\pi}{4}=\frac{\sqrt{2}}{2}$.
+
+Soit $n\geq2$. Supposons que $\cos(\frac{\pi}{2^{n}})=\frac{1}{2}\sqrt{2+\sqrt{2+...\sqrt{2}}}$ ($n-1$ radicaux).
+
+Alors, puisque $\cos(\frac{\pi}{2^{n+1}})>0$ (car $\frac{\pi}{2^{n+1}}$ est dans $]0,\frac{\pi}{2}[$), 
+
+$$\cos(\frac{\pi}{2^{n+1}})=\sqrt{\frac{1+\cos(\frac{\pi}{2^{n}})}{2}}=\sqrt{\frac{1}{2}(1+\frac{1}{2}\sqrt{2+\sqrt{2+...\sqrt{2}}})}=\frac{1}{2}\sqrt{2+\sqrt{2+...\sqrt{2}}},\;(n\;\mbox{radicaux}).$$
+
+On a montré par récurrence que, pour $n\geq2$, $\cos(\frac{\pi}{2^{n}})=\frac{1}{2}\sqrt{2+\sqrt{2+...\sqrt{2}}}$ ($n-1$ radicaux).
+ 
+Ensuite, pour $n\geq2$, 
+
+$$\sin(\frac{\pi}{2^{n}})=\sqrt{\frac{1}{2}(1-\cos(\frac{\pi}{2^{n-1}})}=\frac{1}{2}\sqrt{2-\sqrt{2+...\sqrt{2}}}\;(n-1\;\mbox{radicaux})$$
+
+Enfin, 
+
+$$2^n\sqrt{2-\sqrt{2+...\sqrt{2}}}=2^n.2\sin\frac{\pi}{2^{n+1}}\sim2^{n+1}\frac{\pi}{2^{n+1}}=\pi.$$
+
+Donc, $\lim_{n\rightarrow +\infty}2^n\sqrt{2-\sqrt{2+...\sqrt{2}}}=\pi$.
+\fincorrection
+\correction{005242}
+\begin{enumerate}
+\item  Pour $x$ réel positif, posons $f(x)=x-\ln(1+x)$ et $g(x)=(x+1)\ln(x+1)-x$.
+$f$ et $g$ sont dérivables sur $[0,+\infty[$ et pour $x>0$, on a
+
+$$f'(x)=1-\frac{1}{x+1}=\frac{x}{x+1}>0,$$
+
+et
+
+$$g'(x)=\ln(x+1)+1-1=\ln(x+1)>0.$$
+
+$f$ et $g$ sont donc strictement croissantes sur $[0,+\infty[$ et en particulier, pour $x>0$, $f(x)>f(0)=0$ et de même, $g(x)>g(0)=0$. Finalement, $f$ et $g$ sont strictement positives sur $]0,+\infty[$ ou encore,
+
+$$\forall x>0,\;\ln(1+x)<x<(1+x)\ln(1+x).$$
+
+\item  Soit $k$ un entier naturel non nul.
+
+D'après 1), $\ln(1+\frac{1}{k})<\frac{1}{k}<(1+\frac{1}{k})\ln(1+\frac{1}{k})$, ce qui fournit $k\ln(1+\frac{1}{k})<1<(k+1)Ln(1+\frac{1}{k})$, puis, par stricte croissance de la fonction exponentielle sur $\Rr$, 
+
+$$\forall k\in\Nn^*,\;0<(1+\frac{1}{k})^k<e<(1+\frac{1}{k})^{k+1}.$$
+
+En multipliant membre à membre ces encadrements, on obtient pour tout naturel non nul $n$~:
+
+$$\prod_{k=1}^{n}(1+\frac{1}{k})^k<e^n<\prod_{k=1}^{n}(1+\frac{1}{k})^{k+1}.$$
+
+Maintenant, 
+
+$$\prod_{k=1}^{n}(1+\frac{1}{k})^k=\prod_{k=1}^{n}\left(\frac{k+1}{k}\right)^k=\frac{\prod_{k=2}^{n+1}k^{k-1}}{\prod_{k=1}^{n}k^k}=\frac{(n+1)^n}{n!}.$$
+
+De même,
+$$\prod_{k=1}^{n}(1+\frac{1}{k})^{k+1}=\frac{\prod_{k=2}^{n+1}k^{k}}{\prod_{k=1}^{n}k^{k+1}}=\frac{(n+1)^{n+1}}{n!}.$$
+
+On a montré que $\forall n\in\Nn^*,\;\frac{(n+1)^n}{n!}<e^n<\frac{(n+1)^{n+1}}{n!}$ et donc 
+ 
+$$\forall n\in\Nn^*,\;\frac{1}{e}\frac{n+1}{n}<\frac{\sqrt[n]{n!}}{n}<\frac{1}{e}\frac{n+1}{n}(n+1)^{1/n}.$$  
+
+D'après le théorème de la limite par encadrements, comme $\frac{n+1}{n}$ tend vers 1 quand $n$ tend vers l'infini de même que $(n+1)^{1/n}=e^{\ln(n+1)/n}$, on a montré que $\frac{\sqrt[n]{n!}}{n}$ tend vers $\frac{1}{e}$ quand $n$ tend vers $+\infty$. 
+\end{enumerate}
+\fincorrection
+\correction{005243}
+Soit $x$ un irrationnel et $(\frac{p_n}{q_n})_{n\in\Nn}$ une suite de rationnels tendant vers $x$ ($p_n$ entier relatif et $q_n$ entier naturel non nul, la fraction $\frac{p_n}{q_n}$ n'étant pas nécessairement irréductible). Supposons que la suite $(q_n)_{n\in\Nn}$ ne tende pas vers $+\infty$. Donc~:
+
+$$\exists A>0/\;(\forall n_0\in\Nn)(\exists n\geq n_0/\;q_n\geq A)$$ 
+
+ou encore, il existe une suite extraite $(q_{\varphi}(n))_{n\in\Nn}$ de la suite $(q_n)_{n\in\Nn}$ qui est bornée.
+
+La suite $(q_{\varphi}(n))_{n\in\Nn}$ est une suite d'entiers naturels qui est bornée, et donc cette suite ne prend qu'un nombre fini de valeurs. Mais alors, on peut extraire de la suite $(q_{\varphi}(n))_{n\in\Nn}$ et donc de la suite $(q_n)_{n\in\Nn}$ une suite $(q_{\psi(n)})_{n\in\Nn}$ qui est constante et en particulier convergente.
+
+La suite $(p_{\psi(n)})_{n\in\Nn}=(\frac{p_{\psi(n)}}{q_{\psi(n)}})_{n\in\Nn}(q_{\psi(n)})_{n\in\Nn}$ est aussi une suite d'entiers relatifs convergente et est donc constante à partir d'un certain rang.
+
+Ainsi, on peut extraire de la suite $(p_{\psi(n)})_{n\in\Nn}$ et donc de la suite $(p_n)_{n\in\Nn}$ une suite $(p_{\sigma(n)})_{n\in\Nn}$ constante.
+La suite $((q_{\sigma(n)})_{n\in\Nn}$ est également constante car extraite de la suite constante $(q_{\psi(n)})_{n\in\Nn}$ et finalement, on a extrait de la suite $(\frac{p_n}{q_n})_{n\in\Nn}$  une sous suite $(\frac{p_{\sigma(n)}}{q_{\sigma(n)}})_{n\in\Nn}$ constante.
+
+Mais la suite $(\frac{p_n}{q_n})_{n\in\Nn}$ tend vers $x$ et donc la suite extraite $(\frac{p_{\sigma(n)}}{q_{\sigma(n)}})_{n\in\Nn}$ tend vers $x$. Puisque $(\frac{p_{\sigma(n)}}{q_{\sigma(n)}})_{n\in\Nn}$ est constante, on a $\forall n\in\Nn,\;\frac{p_{\sigma(n)}}{q_{\sigma(n)}}=x$ et donc $x$ est rationnel. Contradiction .
+
+Donc la suite $(q_n)_{n\in\Nn}$ tend vers $+\infty$. Enfin si $(|p_n|)_{n\in\Nn}$ ne tend pas vers $+\infty$, on peut extraire de $(p_n)_{n\in\Nn}$ une sous-suite bornée $(p_{\varphi}(n))_{n\in\Nn}$. Mais alors, la suite $(\frac{p_{\varphi(n)}}{q_{\varphi(n)}})_{n\in\Nn}$ tend vers $x=0$ contredisant l'irrationnalité de $x$. Donc, la suite $(|p_n|)_{n\in\Nn}$ tend vers $+_infty$.
+\fincorrection
+\correction{005244}
+On pose $u_0=0$, $u_1=0$, $u_2=1$, $u_3=1$, $u_4=0$, $u_5=1$,... c'est-à-dire 
+
+$$\forall n\in\Nn,\;u_n=\left\{
+\begin{array}{l}
+0\;\mbox{si}\;n\;\mbox{n'est pas premier}\\
+1\;\mbox{si}\;n\;\mbox{est premier}
+\end{array}
+\right..$$
+ 
+Soit $k$ un entier naturel supérieur ou égal à $2$. Pour $n\geq2$, l'entier $kn$ est composé et donc, pour $n\geq 2$, $u_{kn}=0$. En particulier, la suite $(u_{kn})_{n\in\Nn}$ converge et a pour limite $0$. Maintenant, l'ensemble des nombres premiers est infini et si $p_n$ est le $n$-ième nombre premier, la suite $(p_n)_{n\in\Nn}$ est strictement croissante. La suite $(u_{p_n})_{n\in\Nn}$ est extraite de $(u_n)_{n\in\Nn}$ et est constante égale à $1$. En particulier, la suite $(u_{p_n})_{n\in\Nn}$ tend vers $1$. Ainsi la suite $(u_n)_{n\in\Nn}$ admet au moins deux suites extraites convergentes de limites distinctes et donc la suite $(u_n)_{n\in\Nn}$ diverge bien que toutes les suites $(u_{kn})_{n\in\Nn}$ convergent vers $0$ pour $k\geq2$.
+\fincorrection
+\correction{005245}
+Soit $f$ une application de $\Nn$ dans lui-même, injective. Montrons que $\lim_{n\rightarrow +\infty}f(n)=+\infty$.
+
+Soient $A$ un réel puis $m=\mbox{Max}(0,1+E(A))$.
+
+Puisque $f$ est injective, on a $\mbox{card}(f^{-1}(\{0,1,...,m\})\geq m+1$. En particulier, $f^{-1}(\{0,1,...,m\})$ est fini (éventuellement vide).
+
+Posons $n_0=1+\left\{
+\begin{array}{l}
+0\;\mbox{si}\;f^{-1}(\{0,1,...,m\})=\emptyset\\
+\mbox{Max}f^{-1}(\{0,1,...,m\})\;\mbox{sinon}
+\end{array}
+\right.$.
+
+Par définition de $n_0$, si $n\geq n_0$, $n$ n'est pas élément de $f^{-1}(\{0,1,...,m\})$ et donc $f(n)>m>A$.
+
+On a montré que $\forall A\in\Rr,\;\exists n_0\in\Nn/\;(\forall n\in\Nn),\;(n\geq n_0\Rightarrow f(n)>A)$ ou encore 
+$\lim_{n\rightarrow +\infty}f(n)=+\infty$.
+
+\fincorrection
+\correction{005246}
+Pour $n$ naturel non nul et $x$ réel positif, posons $f_n(x)=x^n+x-1$.
+
+Pour $x\geq0$, $f_1(x)=0\Leftrightarrow x=\frac{1}{2}$ et donc $u_1=\frac{1}{2}$.
+
+Pour $n\geq2$, $f_n$ est dérivable sur $\Rr^+$ et pour $x\geq 0$, $f_n'(x)=nx^{n-1}+1>0$.
+
+$f_n$ est ainsi continue et strictemnt croissante sur $\Rr^+$ et donc bijective de $\Rr^+$ sur $f_n(\Rr^+)=[f(0),\lim_{x\rightarrow +\infty}f_n(x)[=[-1,+\infty[$, et en particulier,
+
+$$\exists!x\in[0,+\infty[/\;f_n(x)=0.$$
+
+Soit $u_n$ ce nombre. Puisque $f_n(0)=-1<0$ et que $f_n(1)=1>0$, par stricte croissance de $f_n$ sur $[0,+\infty[$, on a~:
+
+$$\forall n\in\Nn,\;0<u_n<1.$$
+ 
+La suite $u$ est donc bornée.
+
+Ensuite, pour $n$ entier naturel donné et puisque $0<u_n<1$~:
+
+$$f_{n+1}(u_n)=u_n^{n+1}+u_n-1<u_n^n+u_n-1=f_n(u_n)=0=f_{n+1}(u_{n+1}),$$
+
+et donc $f_{n+1}(u_n)<f_{n+1}(u_{n+1})$ puis, par stricte croissance de $f_{n+1}$ sur $\Rr^+$, on obtient~:
+
+$$\forall n\in\Nn,\;u_n<u_{n+1}.$$
+
+La suite $u$ est bornée et strictement croissante. Donc, la suite $u$ converge vers un réel $\ell$, élément de $[0,1]$.
+
+Si $0\leq\ell<1$, il existe un rang $n_0$ tel que pour $n\geq n_0$, on a~:~$u_n\leq\ell+\frac{1-\ell}{2}=\frac{1+\ell}{2}$. Mais alors, pour $n\geq n_0$, on a $1-u_n=u_n^n\leq(\frac{1+\ell}{2})^n$ et quand $n$ tend vers vers $+\infty$, on obtient $1-\ell\leq0$ ce qui est en contradiction avec $0\leq\ell<1$. Donc, $\ell=1$.
+
+\fincorrection
+\correction{005247}
+\begin{enumerate}
+\item  Posons $a=\frac{2p\pi}{q}$ où $p\in\Zz$, $q\in\Nn^*$ et $\mbox{PGCD}(p,q)=1$. Pour tout entier naturel $n$, on a
+
+$$u_{n+q}=\cos\left((n+q)\frac{2p\pi}{q}\right)=\cos\left(n\frac{2p\pi}{q}+2p\pi\right)=\cos(na)=u_n.$$
+
+La suite $u$ est donc $q$-périodique et de même la suite $v$ est $q$-périodique. Maintenant, une suite périodique converge si et seulement si elle est constante (en effet, soient $T$ une période strictement positive de $u$ et $\ell$ la limite de $u$. Soit $k\in\{0,...,T-1\}$. $|u_k-u_0|=|u_{k+nT}-u_{nT}|\rightarrow|\ell-\ell|=0$ quand $n$ tend vers l'infini).
+
+Or, si $a=\frac{2p\pi}{q}$ où $p\in\Zz$, $q\in\Nn^*$, $\mbox{PGCD}(p,q)=1$ et $\frac{p}{q}\in\Zz$, alors $u_1\neq u_0$ et la suite $u$ n'est pas constante et donc diverge, et si $a\in2\pi\Zz$, la suite $u$ est constante et donc converge.
+
+\item  (a) et b)) Pour tout entier naturel $n$, 
+
+$$v_{n+1}=\sin((n+1)a)=\sin(na)\cos a+\cos(na)\sin a=u_n\sin a+v_n\cos a.$$
+
+Puisque $\frac{a}{2\pi}\notin\Zz$, $\sin a\neq0$ et donc $u_n=\frac{v_{n+1}-v_n\cos a}{\sin a}$. Par suite, si $v$ converge alors $u$ converge. De même, à partir de $\cos((n+1)a)=\cos(na)\cos a-\sin(na)\sin a$, on voit que si $u$ converge alors $v$ converge. Les suites $u$ et $v$ sont donc simultanément convergentes ou divergentes.
+
+Supposons que la suite $u$ converge, alors la suite $v$ converge. Soient $\ell$ et $\ell'$ les limites respectives de $u$ et $v$. D'après ce qui précède, $\ell$ et $\ell'$ sont solutions du système~:
+ 
+$$\left\{
+\begin{array}{l}
+\ell\sin a+\ell'\cos a=\ell'\\
+\ell\cos a-\ell'\sin a=\ell.
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+\ell\sin a+\ell'(\cos a-1)=0\\
+\ell(\cos a-1)-\ell'\sin a=0.
+\end{array}
+\right..$$
+
+Le déterminant de ce système vaut $-\sin^2a-(\cos a-1)^2<0$ car $a\notin2\pi\Zz$. Ce système admet donc l'unique solution $\ell=\ell'=0$ ce qui contredit l'égalité $\ell^2+{\ell'}^2=1$. Donc, les suites $u$ et $v$ divergent.
+
+\item 
+\begin{enumerate}
+\item Soit $E'=\{na+2k\pi,\;n\in\Nn,\;k\in\Zz\}$. Supposons que $E'$ est dense dans $\Rr$ et montrons que $\{u_n,\;n\in\Nn\}$ et $\{v_n,\;n\in\Nn\}$ sont dense dans $[-1,1]$.
+
+Soient $x$ un réel de $[-1,1]$ et $b=\Arccos x$, de sorte que $b\in[0,\pi]$ et que $x=\cos b$.
+
+Soit $\varepsilon>0$. Pour $n$ entier naturel et $k$ entier relatif donnés, on a~:
+
+\begin{align*}\ensuremath
+|u_n-x|&=|\cos(na)-\cos b|=|\cos(na+2k\pi)-\cos b|=2|\sin(\frac{na+2k\pi-b}{2})\sin(\frac{na+2k\pi+b}{2})|\\
+ &\leq2\left|\frac{na+2k\pi-b}{2}\right|\;(\mbox{l'inégalité}\;|\sin x|\leq|x|\;\mbox{valable pour tout réel}\;x\;\mbox{est classique})\\
+ &=|na+2k\pi-b|
+\end{align*}
+
+En résumé, $\forall k\in\Zz,\;\forall n\in\Nn,\;|u_n-x|\leq|na+2k\pi-b|$. Maintenant, si $E'$ est dense dans $\Rr$, on peut trouver $n\in\Nn$ et $k\in\Zz|$ tels que $|na+2k\pi-b|<\varepsilon$ et donc $|u_n-x|<\varepsilon$.
+
+Finalement, $\{u_n,\;n\in\Nn\}$ est dense dans $[-1,1]$. De même, on montre que $\{v_n,\;n\in\Nn\}$ est dense dans $[-1,1]$.
+
+Il reste donc à démontrer que $E'$ est dense dans $\Rr$.
+
+\item Soit $E=\{na+2k\pi,\;n\in\Zz,\;k\in\Zz\}$. $E$ est un sous groupe non nul de $(\Rr,+)$ et donc est soit de la forme $\alpha\Zz$ avec $\alpha=\mbox{inf}(E\cap]0,+\infty[)>0$, soit dense dans $\Rr$ si $\mbox{inf}(E\cap]0,+\infty[)=0$.
+
+Supposons par l'absurde que $\mbox{inf}(E\cap]0,+\infty[)>0$. Puisque $E=\alpha\Zz$ et que $2\pi$ est dans $E$, il existe un entier naturel non nul $q$ tel que $2\pi=q\alpha$, et donc tel que $\alpha=\frac{2\pi}{q}$.
+
+Mais alors, $a$ étant aussi dans $E$, il existe un entier relatif $p$ tel que $a=p\alpha=\frac{2p\pi}{q}\in2\pi\Qq$. Ceci est exclu et donc, $E$ est dense dans $\Rr$.
+
+\item Soit $x$ dans $[-1,1]$. D'après ce qui précède, pour $\varepsilon>0$ donné, il existe $n\in\Zz$ tel que $|\cos(na)-x|<\varepsilon$ et donc $|u_{|n|}-x|<\varepsilon$, ce qui montre que $\{u_n,\;n\in\Nn\}$ est dense dans $[-1,1]$. De même, $\{v_n,\;n\in\Nn\}$ est dense dans $[-1,1]$.
+\end{enumerate}
+\end{enumerate}
+\fincorrection
+\correction{005248}
+Soit $x$ dans $[-1,1]$ et $\varepsilon>0$.
+
+Soit $\theta=\Arcsin x$ (donc $\theta$ est élément de $[-\frac{\pi}{2},\frac{\pi}{2}]$ et $x=\sin\theta$). Pour $k$ entier naturel non nul donné, il existe un entier $n_k$ tel que $\ln(n_k)\leq \theta+2k\pi<\ln(n_k+1)$ à savoir $n_k=E(e^{\theta+2k\pi})$.
+
+Mais,
+
+$$0<\ln(n_k+1)-\ln(n_k)=\ln(1+\frac{1}{n_k})<\frac{1}{n_k}$$
+
+(d'après l'inégalité classique $\ln(1+x)<x$ pour $x>0$, obtenue par exemple par l'étude de la fonction $f~:~x\mapsto\ln(1+x)-x$).
+Donc,
+
+$$0\leq\theta+2k\pi-\ln(n_k)<\ln(n_k+1)-\ln(n_k)<\frac{1}{n_k},$$
+
+puis 
+
+\begin{align*}\ensuremath
+|\sin(\theta)-\sin(\ln(n_k))|&=2|\sin(\frac{\theta+2k\pi-\ln(n_k)}{2})\cos(\frac{\theta+2k\pi+\ln(n_k)}{2})|\\
+ &\leq2\left|\frac{\theta+2k\pi-\ln(n_k)}{2}\right|=|\theta+2k\pi-\ln(n_k)|<\frac{1}{n_k}.
+\end{align*}
+
+Soit alors $\varepsilon$ un réel strictement positif.
+
+Puisque $n_k=E(e^{\theta+2k\pi})$ tend vers $+\infty$ quand $k$ tend vers $+\infty$, on peut trouver un entier $k$ tel que  $\frac{1}{n_k}<\varepsilon$ et pour cet entier $k$, on a $|\sin\theta-\sin(\ln(n_k))|<\varepsilon$.
+
+On a montré que $\forall x\in[-1,1],\;\forall\varepsilon>0,\;\exists n\in\Nn^*/\;|x-\sin(\ln n)|<\varepsilon$, et donc $\{\sin(\ln n),\;n\in\Nn^*\}$ est dense dans $[-1,1]$.
+\fincorrection
+\correction{005249}
+Pour $\alpha\in]0,\pi[$, posons $f(\alpha)=\mbox{sup}_{n\in\Nn}(|\sin(n\alpha)|)$. $\{(\sin(n\alpha),\;n\in\Nn\}$ est une partie non vide et majorée (par $1$) de $\Rr$. Donc, pour tout réel $\alpha$ de $]0,\pi[$, $f(\alpha)$ existe dans $\Rr$.
+
+Si $\alpha$ est dans $[\frac{\pi}{3},\frac{2\pi}{3}]$,
+
+$$f(\alpha)=\mbox{sup}_{n\in\Nn}(|\sin(n\alpha)|)\geq\sin\alpha\geq\frac{\sqrt{3}}{2}=f(\frac{\pi}{3}).$$
+
+Si $\alpha$ est dans $]0,\frac{\pi}{3}]$. Soit $n_0$ l'entier naturel tel que $(n_0-1)\alpha<\frac{\pi}{3}\leq n_0\alpha$ ($n_0$ existe car la suite $(n\alpha)_{n\in\Nn}$ est strictement croissante). Alors, 
+ 
+$$\frac{\pi}{3}\leq n_0\alpha=(n_0-1)\alpha+\alpha<\frac{\pi}{3}+\alpha\leq\frac{\pi}{3}+\frac{\pi}{3}=\frac{2\pi}{3}.$$
+
+Mais alors,
+
+$$f(\alpha)=\mbox{sup}_{n\in\Nn}(|\sin(n\alpha)|)\geq|\sin(n_0\alpha)|\geq\frac{\sqrt{3}}{2}=f(\frac{\pi}{3}).$$
+
+Si $\alpha$ est dans $[\frac{2\pi}{3},\pi[$, on note que 
+$$f(\alpha)=\mbox{sup}_{n\in\Nn}(|\sin(n\alpha)|)=\mbox{sup}_{n\in\Nn}(|\sin(n(\pi-\alpha)|)=f(\pi-\alpha)\geq f(\frac{\pi}{3}),$$
+
+car $\pi-\alpha$ est dans $]0,\frac{\pi}{3}]$.
+
+On a montré que $\forall\alpha\in]0,\pi[,\;f(\alpha)\geq f(\frac{\pi}{3})=\frac{\sqrt{3}}{2}$. Donc, $\mbox{inf}_{\alpha\in]0,\pi[}(\mbox{sup}_{n\in\Nn}(|\sin(n\alpha)|))$ existe dans $\Rr$ et 
+
+$$\mbox{inf}_{\alpha\in]0,\pi[}(\mbox{sup}_{n\in\Nn}(|\sin(n\alpha)|))= \mbox{Min}_{\alpha\in]0,\pi[}(\mbox{sup}_{n\in\Nn}(|\sin(n\alpha)|))=f(\frac{\pi}{3})=\frac{\sqrt{3}}{2}.$$
+\fincorrection
+\correction{005250}
+La suite $u$ n'est pas majorée. Donc, $\forall M\in\Rr,\;\exists n\in\Nn/\;u_n> M$. En particulier, $\exists n_0\in\Nn/\;u_{n_0}\geq0$.
+
+Soit $k=0$. Supposons avoir construit des entiers $n_0$, $n_1$,..., $n_k$ tels que $n_0<n_1<...<n_k$ et $\forall i\in\{0,...,k\},\;u_{n_i}\geq i$.
+
+On ne peut avoir~:~$\forall n>n_k,\;u_n<k+1$ car sinon la suite $u$ est majorée par le nombre 
+$\mbox{Max}\{u_0,u_1,...,u_{n_k},k+1\})$. Par suite, $\exists n_{k+1}>n_k/\;u_{n_{k+1}}\geq k+1$.
+
+On vient de construire par récurrence une suite $(u_{n_k})_{k\in\Nn}$ extraite de la suite $u$ telle que $\forall k\in\Nn,\;u_{n_k}\geq k$ et en particulier telle que $\lim_{k\rightarrow +\infty}u_{n_k}=+\infty$.
+
+\fincorrection
+\correction{005251}
+Si $u$ converge vers un réel $\ell$, alors $\ell\in[0,1]$ puis, par passage à la limite quand $n$ tend vers $+\infty$,  $\ell(1-\ell)\geq\frac{1}{4}$, et donc $(\ell-\frac{1}{2})^2\leq0$ et finalement $\ell=\frac{1}{2}$. Par suite, si $u$ converge, $\lim_{n\rightarrow +\infty}u_n=\frac{1}{2}$.
+
+De plus, puisque la suite $u$ est à valeurs dans $]0,1[$, pour $n$ naturel donné, on a~:
+
+$$u_n(1-u_n)=\frac{1}{4}-(\frac{1}{2}-u_n)^2\leq\frac{1}{4}<u_{n+1}(1-u_n),$$
+
+et puisque $1-u_n>0$, on a donc $\forall n\in\Nn,\;u_n<u_{n+1}$.
+
+$u$ est croissante et majorée. Donc $u$ converge et $\lim_{n\rightarrow +\infty}u_n=\frac{1}{2}$ (amusant).
+\fincorrection
+
+
+\end{document}
+

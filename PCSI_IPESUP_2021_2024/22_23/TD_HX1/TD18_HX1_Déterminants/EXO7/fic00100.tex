@@ -1,0 +1,960 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00100, rouget, 2010/07/11}
+
+\titre{Déterminants} 
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable\quad T~:~pour travailler et mémoriser le cours
+\end{center}
+
+
+\exercice{5362, rouget, 2010/07/06}
+\enonce{005362}{**}
+Montrer que $\left|
+\begin{array}{ccc}
+-2a&a+b&a+c\\
+b+a&-2b&b+c\\
+c+a&c+b&-2c
+\end{array}\right|=4(b+c)(c+a)(a+b)$.
+\finenonce{005362}
+
+
+\finexercice
+\exercice{5363, rouget, 2010/07/06}
+\enonce{005363}{**}
+Pour $a$, $b$ et $c$ deux à deux distincts donnés, factoriser $\left|
+\begin{array}{cccc}
+X&a&b&c\\
+a&X&c&b\\
+b&c&X&a\\
+c&b&a&X
+\end{array}\right|$.
+\finenonce{005363}
+
+
+\finexercice
+\exercice{5364, rouget, 2010/07/06}
+\enonce{005364}{***}
+Calculer :
+
+\begin{enumerate}
+ \item  $\mbox{det}(|i-j|)_{1\leq i,j\leq n}$  
+ \item  $\mbox{det}(\sin(a_i+a_j))_{1\leq i,j\leq n}$ ($a_1$,...,$a_n$ étant $n$ réels donnés) 
+ \item  $\left|
+\begin{array}{cccccc}
+a&0&\ldots& &\ldots&b\\
+0&a&\ddots& &b&0\\
+\vdots&0&\ddots& &0&\vdots\\
+\vdots&0& &\ddots&0&\vdots\\
+0&b& & &a&0\\
+b&0&\ldots& &\ldots&a
+\end{array}
+\right|$
+
+ \item  $\left|\begin{array}{ccccc}
+1&1&\ldots& &1\\
+1&1&0&\ldots&0\\
+\vdots&0&\ddots&\ddots&\vdots\\
+\vdots&\vdots&\ddots&1&0\\
+1&0&\ldots&0&1
+\end{array}
+\right|$   
+  \item  $\mbox{det}(C_{n+i-1}^{j-1})_{1\leq i,j\leq p+1}$   
+  \item  $\left|\begin{array}{cccccc}
+-X&1&0&\ldots&\ldots&0\\
+0&-X&1&\ddots& &\vdots\\
+\vdots&\ddots&\ddots&\ddots&\ddots&\vdots\\
+\vdots& &\ddots&\ddots&\ddots&0\\
+0&\ldots&\ldots&0&-X&1\\
+a_0&\ldots& &\ldots&a_{n-2}&a_{n-1}-X
+\end{array}
+\right|$
+\end{enumerate}
+\finenonce{005364}
+
+
+\finexercice
+\exercice{5365, rouget, 2010/07/06}
+\enonce{005365}{**** Déterminant de \textsc{Cauchy} et déterminant de \textsc{Hilbert}}
+Soit $A=\left(\frac{1}{a_i+b_j}\right)_{1\leq i,j\leq n}$ où $a_1$,..., $a_n$, $b_1$,...,$b_n$ sont $2n$ réels tels que toutes les sommes $a_i+b_j$ soient non nulles. Calculer $\mbox{det}A$ (en généralisant l'idée du calcul d'un déterminant de \textsc{Vandermonde} par l'utilisation d'une fraction rationnelle) et en donner une écriture condensée dans le cas $a_i=b_i=i$.
+\finenonce{005365}
+
+
+\finexercice
+\exercice{5366, rouget, 2010/07/06}
+\enonce{005366}{****}
+Soit $A=(a_{i,j})_{1\leq i,j\leq n}$ où, pour tout $i$ et tout $j$, $a_{i,j}\in\{-1,1\}$. Montrer que $\mbox{det}\;A$ est un entier divisible par $2^{n-1}$.
+\finenonce{005366}
+
+
+\finexercice
+\exercice{5367, rouget, 2010/07/06}
+\enonce{005367}{***}
+Résoudre le système $MX=U$ où $M=\left(
+\begin{array}{ccccc}
+1&1&\ldots&\ldots&1\\
+1&2&\ldots&\ldots&n\\
+1&2^2&\ldots&\ldots&n^2\\
+\vdots&\vdots& & &\vdots\\
+1&2^{n-1}&\ldots&\ldots&n^{n-1}
+\end{array}
+\right)$.
+\finenonce{005367}
+
+
+\finexercice
+\exercice{5368, rouget, 2010/07/06}
+\enonce{005368}{***I}
+Soit $(A,B)\in(M_n(\Rr))^2$ et $C=\left(
+\begin{array}{cc}
+A&B\\
+-B&A
+\end{array}
+\right)\in M_{2n}(\Rr)$. Montrer que $\mbox{det}C\geq0$.
+
+\finenonce{005368}
+
+
+\finexercice
+\exercice{5369, rouget, 2010/07/06}
+\enonce{005369}{**I}
+Soit $A=(a_{i,j})_{1\leq i,j\leq n}$ et $B=(b_{i,j})_{1\leq i,j\leq n}$ avec $b_{i,j}=(-1)^{i+j}a_{i,j}$. Montrer que $\mbox{det}B=\mbox{det}A$.
+
+\finenonce{005369}
+
+
+\finexercice
+\exercice{5370, rouget, 2010/07/06}
+\enonce{005370}{***I}
+Déterminer les matrices $A$, carrées d'ordre $n$, telles que pour toute matrice carrée $B$ d'ordre $n$ on a $\mbox{det}(A+B)=\mbox{det}A+\mbox{det}B$.
+
+\finenonce{005370}
+
+
+\finexercice
+\exercice{5371, rouget, 2010/07/06}
+\enonce{005371}{**** Déterminant circulant}
+Soit $A=
+\left(
+\begin{array}{cccccc}
+a_1&a_2&\ldots& &\ldots&a_n\\
+a_n&a_1&a_2& & &a_{n-1}\\
+a_{n-1}&a_n&a_1& & &a_{n-2}\\
+\vdots& &\ddots&\ddots& &\vdots\\
+ & & &\ddots&\ddots&\vdots\\
+a_2&a_3&\ldots& &a_n&a_1
+\end{array}
+\right)
+$ et $P=(\omega^{(k-1)(l-1)})_{1\leq k,l\leq n}$ où $\omega=e^{2i\pi/n}$. Calculer $P^2$ et $PA$. En déduire $\mbox{det}A$.
+\finenonce{005371}
+
+
+\finexercice
+\exercice{5372, rouget, 2010/07/06}
+\enonce{005372}{***I}
+Calculer $\mbox{det}(\mbox{com}A)$ en fonction de $\mbox{det}A$ puis étudier le rang de $\mbox{com}A$ en fonction du rang de $A$.
+
+\finenonce{005372}
+
+
+\finexercice
+\exercice{5373, rouget, 2010/07/06}
+\enonce{005373}{***I Dérivée d'un déterminant}
+Soient $a_{i,j}$ ($(i,j)$ élément de $\{1,...,n\}^2$) $n^2$ fonctions de $\Rr$ dans $\Rr$, dérivables sur $\Rr$ et $A=(ai,j)_{1\leq i,j\leq n}$. Calculer la dérivée de la fonction $x\mapsto\mbox{det}(A(x))$.
+
+Applications. Calculer \begin{enumerate}
+ \item  $\left|\begin{array}{ccccc}
+x+1&1&\ldots& &1\\
+1&x+1&\ddots& &\vdots\\
+\vdots&\ddots&\ddots&\ddots&\vdots\\
+\vdots& &\ddots&\ddots&1\\
+1&\ldots&\ldots&1&x+1
+\end{array}
+\right|$   \item  $\left|\begin{array}{ccccc}
+x+a_1&x&\ldots& &x\\
+x&x+a_2&\ddots& &\vdots\\
+\vdots&\ddots&\ddots&\ddots&\vdots\\
+\vdots& &\ddots&\ddots&x\\
+x&\ldots&\ldots&x&x+a_n
+\end{array}
+\right|$
+\end{enumerate}
+\finenonce{005373}
+
+
+\finexercice
+\exercice{5374, rouget, 2010/07/06}
+\enonce{005374}{***I}
+Calculer
+
+\begin{enumerate}
+ \item  $\left|\begin{array}{ccccc}
+0&1&\ldots& &1\\
+1&0&\ddots& &\vdots\\
+\vdots&\ddots&\ddots&\ddots&\vdots\\
+\vdots& &\ddots&0&1\\
+1&\ldots&\ldots&1&0
+\end{array}
+\right|$ et $\left|\begin{array}{ccccc}
+1&1&\ldots& &1\\
+1&0&\ddots& &\vdots\\
+\vdots&\ddots&\ddots&\ddots&\vdots\\
+\vdots& &\ddots&0&1\\
+1&\ldots&\ldots&1&0
+\end{array}
+\right|$   \item  $\mbox{det}((i+j-1)^2)$  \item  $\left|\begin{array}{ccccc}
+a&b&\ldots& &b\\
+b&a&\ddots& &\vdots\\
+\vdots&\ddots&\ddots&\ddots&\vdots\\
+\vdots& &\ddots&a&b\\
+b&\ldots&\ldots&b&a
+\end{array}
+\right|$
+
+ \item  $\left|\begin{array}{ccccc}
+a_1+x&c+x&\ldots&\ldots&c+x\\
+b+x&a_2+x&\ddots& &\vdots\\
+\vdots&\ddots&\ddots&\ddots&\vdots\\
+\vdots& &\ddots&a_{n-1}+x&c+x\\
+b+x&\ldots&\ldots&b+x&a_n+x
+\end{array}
+\right|$$b$, $c$ complexes distincts   \item  $\left|\begin{array}{ccccc}
+2&1&0&\ldots&0\\
+1&2&\ddots&\ddots&\vdots\\
+0&\ddots&\ddots&\ddots&0\\
+\vdots&\ddots&\ddots&2&1\\
+1&\ldots&0&1&2
+\end{array}
+\right|$.
+\end{enumerate}
+\finenonce{005374}
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005362}
+Soit $(a,b,c)\in\Rr^3$. Notons $\Delta$ le déterminant de l'énoncé. Pour $x$ réel, on pose $D(x)=\left|
+\begin{array}{ccc}
+-2x&x+b&x+c\\
+b+x&-2b&b+c\\
+c+x&c+b&-2c
+\end{array}\right|$ (de sorte que $\Delta=D(a)$)). $D$ est un polynôme de degré inférieur ou égal à $2$. Le coefficient de $x^2$ vaut
+ 
+$$-(-2c)+(b+c)+(b+c)-(-2b)=4(b+c).$$
+Puis,
+
+$$D(-b)=\left|
+\begin{array}{ccc}
+2b&0&-b+c\\
+0&-2b&b+c\\
+c-b&c+b&-2c
+\end{array}\right|=2b(4bc-(b+c)^2)+2b(c-b)^2=0,$$
+et par symétrie des rôles de $b$ et $c$, $D(-c)=0$. De ce qui précède, on déduit que si $b\neq c$, $D(x)=4(b+c)(x+b)(x+c)$ (même si $b+c=0$ car alors $D$ est un polynôme de degré infèrieur ou égal à $1$ admettant au moins deux racines distinctes et est donc le polynôme nul).
+Ainsi, si $b\neq c$ (ou par symétrie des roles, si $a\neq b$ ou $a\neq c$), on a~:~$\Delta=4(b+c)(a+b)(a+c)$. Un seul cas n'est pas encore étudié à savoir le cas où $a=b=c$. Dans ce cas, 
+
+$$D(a)=\left|
+\begin{array}{ccc}
+-2a&2a&2a\\
+2a&-2a&2a\\
+2a&2a&-2a
+\end{array}\right|=8a^3\left|
+\begin{array}{ccc}
+-1&1&1\\
+1&-1&1\\
+1&1&-1
+\end{array}\right|=32a^3=4(a+a)(a+a)(a+a),$$
+ce qui démontre l'identité proposée dans tous les cas (on pouvait aussi conclure en constatant que, pour $a$ et $b$ fixés, la fonction $\Delta$ est une fonction continue de $c$ et on obtient la valeur de $\Delta$ pour $c=b$ en faisant tendre $c$ vers $b$ dans l'expression de $\Delta$ déjà connue pour $c\neq b$).
+
+\begin{center}
+\shadowbox{
+$\Delta=4(a+b)(a+c)(b+c)$.
+}
+\end{center}
+\fincorrection
+\correction{005363}
+Soit $P=\left|
+\begin{array}{cccc}
+X&a&b&c\\
+a&X&c&b\\
+b&c&X&a\\
+c&b&a&X
+\end{array}\right|$. $P$ est un polynôme unitaire de degré $4$.
+En remplaçant $C_1$ par $C_1+C_2+C_3+C_4$ et par linéarité par rapport à la première colonne, on voit que $P$ est divisible par $(X+a+b+c)$. Mais aussi, en remplaçant $C_1$ par $C_1-C_2-C_3+C_4$ ou $C_1-C_2+C_3-C_4$ ou $C_1+C_2-C_3-C_4$, on voit que $P$ est divisible par $(X-a-b+c)$ ou $(X-a+b-c)$ ou $(X+a-b-c)$.
+\textbf{1er cas.} Si les quatre nombres $-a-b-c$, $-a+b+c$, $a-b+c$ et $a+b-c$ sont deux à deux distincts, $P$ est unitaire de degré $4$ et divisible par les quatre facteurs de degré $1$ précédents, ceux-ci étant deux à deux premiers entre eux. Dans ce cas, $P=(X+a+b+c)(X+a+b-c)(X+a-b+c)(X-a+b+c)$.
+\textbf{2ème cas.} Deux au moins des quatre nombres $-a-b-c$, $-a+b+c$, $a-b+c$ et $a+b-c$ sont égaux. Notons alors que $-a-b-c=a+b-c\Leftrightarrow b=-a$ et que $-a+b+c=a-b+c\Leftrightarrow a=b$. Par symétrie des roles, deux des quatre nombres $-a-b-c$, $-a+b+c$, $a-b+c$ et $a+b-c$ sont égaux si et seulement si deux des trois nombres $|a|$, $|b|$ ou $|c|$ sont égaux. On conclut dans ce cas que l'expression de $P$ précédemment trouvée reste valable par continuité par rapport à $a$, $b$ ou $c$.
+
+\begin{center}
+\shadowbox{
+$P=(X+a+b+c)(X+a+b-c)(X+a-b+c)(X-a+b+c)$.
+}
+\end{center}
+\fincorrection
+\correction{005364}
+
+\begin{enumerate}
+ \item  Pour $n\geq2$, posons $\Delta_n=\left|
+\begin{array}{ccccc}
+0&1&2&\ldots&n-1\\
+1&0&1& &n-2\\
+2&1&0&\ddots&\vdots\\
+\vdots& &\ddots&\ddots&1\\
+n-1&n-2&\ldots&1&0
+\end{array}
+\right|$. Tout d'abord, on fait apparaître beaucoup de $1$.
+Pour cela, on effectue les transformations $C_1\leftarrow C_1-C_2$ puis $C_2\leftarrow C_2-C_3$ puis \ldots puis $C_{n-1}=C_{n-1}-C_n$. On obtient
+
+$$\Delta_n=\mbox{det}(C_1-C_2,C_2-C_3,...,C_{n-1}-C_n,C_n)=\left|
+\begin{array}{ccccc}
+-1&-1&\ldots&-1&n-1\\
+1&-1& &\vdots&n-2\\
+1&1&-1&\vdots&\vdots\\
+\vdots& &\ddots&-1&1\\
+1&1&\ldots&1&0
+\end{array}
+\right|.$$
+On fait alors apparaître un déterminant triangulaire en constatant que $\mbox{det}(L_1,L_2,...,L_n)=\mbox{det}(L_1,L_2+L_1,...,L_{n-1}+L_1,L_n+L_1)$. On obtient
+
+$$\Delta_n=\left|
+\begin{array}{ccccc}
+-1&\times&\ldots&\ldots&\times\\
+0&-2&\ddots& &\vdots\\
+0&0&\ddots&\ddots&\vdots\\
+\vdots& &\ddots&-2&\times\\
+0&\ldots&\ldots&0&n-1
+\end{array}
+\right|=(1-n)(-2)^{n-2}.$$.
+
+\begin{center}
+\shadowbox{
+$\forall n\geq2,\;\Delta_n=(1-n)(-2)^{n-2}$.
+}
+\end{center}
+ \item  $\forall(i,j)\in\llbracket1,n\rrbracket^2,\;\sin(a_i+a_j)=\sin a_i\cos a_j+\cos a_i\sin a_j$ et donc si on pose $C=\left(
+\begin{array}{c}
+\cos a_1\\
+\cos a_2\\
+\vdots\\
+\cos a_n
+\end{array}
+\right)$ et $S=\left(
+\begin{array}{c}
+\sin a_1\\
+\sin a_2\\
+\vdots\\
+\sin a_n
+\end{array}
+\right)$,
+on a $\forall j\in\llbracket1,n\rrbracket,\;C_j=\cos a_jS+\sin a_jC$. En particulier, $\mbox{Vect}(C_1,...,C_n)\subset\mbox{Vect}(C,S)$ et le rang de la matrice proposée est inférieur ou égal à $2$. Donc,
+
+\begin{center}
+\shadowbox{
+$\forall n\geq3,\;\mbox{det}(\sin(a_i+a_j))_{1\leq i,j\leq n}=0.$
+}
+\end{center}
+Si $n=2$, $\mbox{det}(\sin(a_i+a_j))_{1\leq i,j\leq 2}=\sin(2a_1)\sin(2a_2)-\sin^2(a_1+a_2)$.
+ \item  L'exercice n'a de sens que si le format $n$ est pair. Posons $n=2p$ où $p$ est un entier naturel non nul.
+
+\begin{align*}\ensuremath
+\Delta_n&=\left|\begin{array}{cccccc}
+a&0&\ldots&\ldots&0&b\\
+0&\ddots&0&0& &0\\
+\vdots&0&a&b&0&\vdots\\
+\vdots&0&b&a&0&\vdots\\
+0& &0&0&\ddots&0\\
+b&0&\ldots&\ldots&0&a
+\end{array}
+\right|
+=\left|\begin{array}{cccccc}
+a+b&0&\ldots&\ldots&0&b\\
+0&\ddots&0&0& &0\\
+\vdots&0&a+b&b&0&\vdots\\
+\vdots&0&b+a&a&0&\vdots\\
+0& &0&0&\ddots&0\\
+b+a&0&\ldots&\ldots&0&a
+\end{array}
+\right|\;(\mbox{pour}\;1\leq j\leq p,\;C_j\leftarrow C_j+C_{2p+1-j})\\
+ &=(a+b)^p\left|\begin{array}{cccccc}
+1&0&\ldots&\ldots&0&b\\
+0&\ddots&0&0& &0\\
+\vdots&0&1&b&0&\vdots\\
+\vdots&0&1&a&0&\vdots\\
+0& &0&0&\ddots&0\\
+1&0&\ldots&\ldots&0&a
+\end{array}
+\right|\;(\mbox{par linéarité par rapport aux colonnes}\;C_1,\;C_2,...,\;C_p)
+\end{align*}
+
+$$
+=(a+b)^p\left|\begin{array}{cccccc}
+1&0&\ldots&\ldots&0&b\\
+0&\ddots&0&0& &0\\
+\vdots&0&1&b&0&\vdots\\
+ & &\ddots&a-b&0&\vdots\\
+\vdots& & &\ddots&\ddots&0\\
+0&0&\ldots&\ldots&0&a-b
+\end{array}
+\right| (\mbox{pour}\;p+1\leq i\leq2p,\;L_i\leftarrow L_i-L_{2p+1-i}).
+$$
+et $\Delta_n=(a+b)^p(a-b)^p=(a^2-b^2)^p$.
+
+\begin{center}
+\shadowbox{
+$\forall p\in\Nn^*,\;\Delta_{2p}=(a^2-b^2)^p$.
+}
+\end{center}
+ \item  On retranche à la première colonne la somme de toutes les autres et on obtient
+
+$$D_n=\left|\begin{array}{ccccc}
+1&1&\ldots& &1\\
+1&1&0&\ldots&0\\
+\vdots&0&\ddots&\ddots&\vdots\\
+\vdots&\vdots&\ddots&1&0\\
+1&0&\ldots&0&1
+\end{array}
+\right|=\left|\begin{array}{ccccc}
+-(n-2)&1&\ldots& &1\\
+0&1&0&\ldots&0\\
+\vdots&\ddots&\ddots&\ddots&\vdots\\
+\vdots& &\ddots&1&0\\
+0&\ldots&\ldots&0&1
+\end{array}
+\right|=-(n-2).$$
+ \item  Pour $1\leq i\leq p$,
+
+$$L_{i+1}-L_i=(C_{n+i}^0-C_{n+i-1}^0,C_{n+i}^1-C_{n+i-1}^1,...,C_{n+i}^p-C_{n+i-1}^p)=(0,C_{n+i-1}^0,C_{n+i-1}^1,...,C_{n+i-1}^{p-1}).$$
+On remplace alors dans cet ordre $L_p$ par $L_p-L_{p-1}$ puis $L_{p-1}$ par $L_{p-1}-L_{p-2}$ puis ... puis $L_2$ par $L_2-L_1$ pour obtenir, avec des notations évidentes
+
+$$\mbox{det}(A_p)=\left|
+\begin{array}{cc}
+1& \\
+0&A_{p-1}
+\end{array}\right|=\mbox{det}(A_{p-1}).$$
+Par suite, $\mbox{det}(A_p)=\mbox{det}(A_{p-1})=...=\mbox{det}(A_1)=1$.
+ \item  En développant suivant la dernière ligne, on obtient~:
+
+$$D_n=(a_{n-1}-X)(-X)^{n-1}+\sum_{k=0}^{n-2}(-1)^{n+k+1}a_k\Delta_k,$$
+où $\Delta_k=\left|
+\begin{array}{ccc|ccc}
+-X&1&0& & & \\
+0&\ddots&1& & & \\
+0&0&-X& & & \\
+\hline
+0& &0&1&0&0\\
+ & & &-X&\ddots&0\\
+0& &0&0&-X&1\\
+\end{array}
+\right|=(-1)^{k}X^k$ et donc 
+
+\begin{center}
+\shadowbox{
+$\forall n\geq2,\;D_n=(-1)^n\left(X^n-\sum_{k=0}^{n-1}a_kX^k\right).$
+}
+\end{center} 
+\end{enumerate}
+\fincorrection
+\correction{005365}
+Si deux des $b_j$ sont égaux, $\mbox{det}(A)$ est nul car deux de ses colonnes sont égales. On suppose dorénavant que les $b_j$ sont deux à deux distincts.
+Soient $\lambda_1$,..., $\lambda_n$, $n$ nombres complexes tels que $\lambda_n\neq0$. On a
+
+$$\mbox{det}A=\frac{1}{\lambda_n}\mbox{det}(C_1,...,C_{n-1},\sum_{j=1}^{n}\lambda_jC_j)=\mbox{det}B,$$
+où la dernière colonne de $B$ est de la forme $(R(a_i))_{1\leq i\leq n}$ avec $R=\sum_{j=1}^{n}\frac{\lambda_j}{X+b_j}$.
+On prend $R=\frac{(X-a_1)...(X-a_{n-1})}{(X+b_1)...(X+b_n)}$. $R$ ainsi définie est irréductible (car $\forall(i,j)\in\llbracket1,n\rrbracket^2,\;a_i\neq-b_j$). Les pôles de $R$ sont simples et la partie entière de $R$ est nulle. La décomposition en éléments simples de $R$ a bien la forme espérée.
+Pour ce choix de $R$, puisque $R(a_1)=...=R(a_{n-1})=0$, on obtient en développant suivant la dernière colonne 
+
+$$\Delta_n=\frac{1}{\lambda_n}R(a_n)\Delta_{n-1},$$
+avec 
+
+$$\lambda_n=\lim_{z\rightarrow -b_n}(z+bn)R(z)=\frac{(-b_n-a_1)...(-b_n-a_{n-1})}{(-b_n+b_1)...(-b_n+b_{n-1})}
+=\frac{(a_1+b_n)...(a_{n-1}+b_n)}{(b_n-b_1)...(b_n-b_{n-1})}.$$
+Donc 
+
+$$\forall n\geq2,\;\Delta_n=\frac{(a_n-a_1)...(a_{n}-a_{n-1})(b_n-b_1)...(b_n-b_{n-1})}
+{(a_n+b_1)(a_n+b_2)...(a_n+b_n)..(a_2+b_n)(a_1+b_n)}\Delta_{n-1}.$$
+En réitérant et compte tenu de $\Delta_1=1$, on obtient
+
+\begin{center}
+\shadowbox{
+$\Delta_n=\frac{\prod_{1\leq i<j\leq n}^{}(a_j-a_i)\prod_{1\leq i<j\leq n}^{}(b_j-b_i)}{\prod_{1\leq i,j\leq n}^{}(a_i+b_j)}=\frac{\mbox{Van}(a_1,...,a_n)\mbox{Van}(b_1,...,b_n)}{\prod_{1\leq i,j\leq n}^{}(a_i+b_j)}.$
+}
+\end{center}
+Dans le cas particulier où $\forall i\in\llbracket1,n\rrbracket,\;a_i=b_i=i$, en notant $H_n$ le déterminant (de \textsc{Hilbert}) à calculer~: $H_n=\frac{\mbox{Van}(1,2,...,n)^2}{\prod_{1\leq i,j\leq n}^{}(i+j)}$. Mais, 
+
+$$\prod_{1\leq i,j\leq n}^{}(i+j)=\prod_{i=1}^{n}\left(\prod_{j=1}^{n}(i+j)\right)=\prod_{i=1}^{n}\frac{(n+i)!}{i!}
+=\frac{\prod_{k=1}^{2n}k!}{\left(\prod_{k=1}^{n}k!\right)^2},$$  
+et d'autre part,
+
+$$\mbox{Van}(1,2,...,n)=\prod_{1\leq i<j\leq n}^{}(j-i)=\prod_{i=1}^{n-1}\left(\prod_{j=i+1}^{n}(j-i)\right)=\prod_{i=1}^{n-1}(n-i)!=\frac{1}{n!}\prod_{k=1}^{n}k!.$$
+Donc,
+
+\begin{center}
+\shadowbox{
+$\forall n\geq 1,\;H_n=\frac{\left(\prod_{k=1}^{n}k!\right)^3}{n!^2\times\prod_{k=1}^{2n}k!}$.
+}
+\end{center}
+
+\fincorrection
+\correction{005366}
+On procède par récurrence sur $n\geq1$.
+\textbullet~Pour $n=1$, c'est clair.
+\textbullet~Soit $n\geq1$. Supposons que tout déterminant $\Delta_n$ de format $n$ et du type de l'énoncé soit divisible par $2^{n-1}$. Soit $\Delta_{n+1}$ un déterminant de format $n+1$, du type de l'énoncé.
+Si tous les coefficients $a_{i,j}$ de $\Delta_{n+1}$ sont égaux à $1$, puisque $n+1\geq2$, $\Delta_{n+1}$ a deux colonnes égales et est donc nul. Dans ce cas, $\Delta_{n+1}$ est bien divisible par $2^n$.
+Sinon, on va changer petit à petit tous les $-1$ en $1$.
+Soit $(i,j)$ un couple d'indices tel que $a_{i,j}=-1$ et $\Delta_{n+1}'$ le déterminant dont tous les coefficients sont égaux à ceux de $\Delta_{n+1}$ sauf le coefficient ligne $i$ et colonne $j$ qui est égal à $1$.
+
+$$\Delta_{n+1}-\Delta_{n+1}'=\mbox{det}(C_1,...,C_j,...,C_n)-\mbox{det}(C_1,...,C_j',...,C_n)=\mbox{det}(C_1,...,C_j-C_j',...,C_n),$$ 
+
+où  $C_j-C_j'=\left(
+\begin{array}{c}
+0\\
+\vdots\\
+0\\
+-2\\
+0\\
+\vdots\\
+0
+\end{array}
+\right)$ ($-2$ en ligne $i$). En développant ce dernier déterminant suivant sa $j$-ème colonne, on obtient~:
+
+$$\Delta_{n+1}-\Delta_{n+1}'=-2\Delta_n,$$ 
+où $\Delta_n$ est un déterminant de format $n$ et du type de l'énoncé. Par hypothèse de récurrence, $\Delta_n$ est divisible par $2^{n-1}$ et donc $\Delta_{n+1}-\Delta_{n+1}'$ est divisible par $2^n$. Ainsi, en changeant les $-1$ en $1$ les uns après les autres, on obtient
+
+\begin{center}
+$\Delta_{n+1}\equiv\left|
+\begin{array}{ccc}
+1&\ldots&1\\
+\vdots& &\vdots\\
+1&\ldots&1
+\end{array}\right|\;(\text{mod}\;2^n)$.
+\end{center}
+Ce dernier déterminant étant nul, le résultat est démontré par récurrence.
+\fincorrection
+\correction{005367}
+$\Delta=\mbox{det}M=\mbox{Van}(1,2,...,n)\neq0$ et le système est de \textsc{Cramer}. Les formules de \textsc{Cramer} fournissent alors pour $k\in\llbracket1,n\rrbracket$, $x_k=\frac{\Delta_k}{\Delta}$ où 
+
+$$\Delta_k=\mbox{Van}(1,...,k-1,0,k+1,...,n)=(-1)^{k+1}\left|
+\begin{array}{cccccc}
+1&\ldots&k-1&k+1&\ldots&n\\
+1& &(k-1)^2&(k+1)^2& &n^2\\
+\vdots& &\vdots&\vdots& &\vdots\\
+ & & & & & \\
+\vdots& &\vdots&\vdots& &\vdots\\
+1& &(k-1)^{n-1}&(k+1)^{n-1}& &n^{n-1}
+\end{array}
+\right|.$$
+(en développant par rapport à la $k$-ème colonne). Par linéarité par rapport à chaque colonne, on a alors
+
+\begin{align*}\ensuremath
+\Delta_k&=(-1)^{k+1}1\times2...\times(k-1)\times(k+1)\times...\times n\times\mbox{Van}(1,2,...,k-1,k+1,...,n)\\
+ &=(-1)^{k+1}\frac{n!}{k}\frac{\mbox{Van}(1,2,...,n)}{(k-(k-1))...(k-1)((k+1)-k)....(n-k)}=(-1)^{k+1}\frac{n!}{k!(n-k)!}\Delta,
+\end{align*}
+et donc,
+
+\begin{center}
+\shadowbox{
+$\forall k\in\llbracket1,n\rrbracket,\;x_k=(-1)^{k+1}C_n^k$.
+}
+\end{center}
+
+\fincorrection
+\correction{005368}
+En remplaçant les colonnes $C_1$,..., $C_n$ par respectivement $C_1+iC_{n+1}$,..., $C_n+iC_{2n}$, on obtient~:
+
+$$\mbox{det}C=\mbox{det}
+\left(
+\begin{array}{cc}
+A+iB&B\\
+-B+iA&A
+\end{array}
+\right),$$ 
+puis en remplaçant les lignes $L_{n+1}$,..., $L_{2n}$ de la nouvelle matrice par respectivement $L_{n+1}-iL_1$,..., $L_{2n}-iL_n$, on obtient~:
+
+$$\mbox{det}C=\mbox{det}
+\left(
+\begin{array}{cc}
+A+iB&B\\
+0&A-iB
+\end{array}
+\right)=\mbox{det}(A+iB)\mbox{det}(A-iB)=|\mbox{det}(A+iB)|^2\in\Rr^+.$$
+\fincorrection
+\correction{005369}
+
+\textbf{1ère solution.}
+
+\begin{align*}\ensuremath
+\mbox{det}B&=\sum_{\sigma\in S_n}\varepsilon(\sigma)(-1)^{1+\sigma(1)+2+\sigma(2)+...+n+\sigma(n)}a_{\sigma(1),1}a_{\sigma(2),2}...a_{\sigma(n),n}\\
+ &=\sum_{\sigma\in S_n}\varepsilon(\sigma)a_{\sigma(1),1}a_{\sigma(2),2}...a_{\sigma(n),n}\;(\mbox{car}\;1+\sigma(1)+2+\sigma(2)+...+n+\sigma(n)=2(1+2+...+n)\in2\Nn)\\
+ &=\mbox{det}A
+\end{align*}
+\textbf{2ème solution.} On multiplie par $-1$ les lignes $2$, $4$, $6$... puis les colonnes $2$, $4$, $6$...On obtient 
+$\mbox{det}B=(-1)^{2p}\mbox{det}A=\mbox{det}A$ (où $p$ est le nombre de lignes ou de colonnes portant un numéro pair).
+\fincorrection
+\correction{005370}
+On suppose $n\geq2$. La matrice nulle est solution du problème.
+Soit $A$ un élément de $M_n(\Cc)$ tel que $\forall B\in M_n(\Cc),\;\mbox{det}(A+B)=\mbox{det}A+\mbox{det}B$. En particulier, $2\mbox{det}A=\mbox{det}(2A)=2^n\mbox{det}A$ et donc $\mbox{det}A=0$ car $n\geq2$. Ainsi, $A\notin GL_n(\Cc)$.
+Si $A\neq 0$, il existe une certaine colonne $C_j$ qui n'est pas nulle. Puisque la colonne $-Cj$ n'est pas nulle, on peut compléter la famille libre $(-C_j)$ en une base $(C_1',...,-C_j,...,C_n')$ de $M_{n,1}(\Cc)$. La matrice $B$ dont les colonnes sont justement $C_1$',...,$-C_j$,...,$C_n'$ est alors inversible de sorte que $\mbox{det}A+\mbox{det}B=\mbox{det}B\neq 0$. Mais, $A+B$ a une colonne nulle et donc $\mbox{det}(A+B)=0\neq\mbox{det}A+\mbox{det}B$.
+Ainsi, seule la matrice nulle peut donc être solution du problème .
+
+\begin{center}
+\shadowbox{
+$\forall A\in M_n(\Cc),\;(\forall M\in M_n(\Cc),\;\text{det}(A+M)=\text{det}(A)+\text{det}(M))\Leftrightarrow A=0$.
+}
+\end{center}
+\fincorrection
+\correction{005371}
+\textbullet~Soit $(k,l)\in\llbracket1,n\rrbracket^2$. Le coefficient ligne $k$, colonne $l$ de $P^2$ est
+
+$$\alpha_{k,l}=\sum_{u=1}^{n}\omega^{(k-1)(u-1)}\omega^{(u-1)(l-1)}=\sum_{u=1}^{n}\omega^{(k+l-2)(u-1)}=\sum_{u=0}^{n-1}(\omega^{k+l-2})^u.$$
+ 
+
+Or, $\omega^{k+l-2}=1\Leftrightarrow k+l-2\in n\Zz$. Mais, $0\leq k+l-2\leq 2n-2<2n$ et donc, $k+l-2\in n\Zz\Leftrightarrow k+l-2\in\{0,n\}\Leftrightarrow k+l=2\;\mbox{ou}\;k+l=n+2$. Dans ce cas, $\alpha_{k,l}=n$. Sinon, 
+
+$$\alpha_{k,l}=\frac{1-(\omega^{k+l-2})^n}{1-\omega^{k+l-2}}=\frac{1-1}{1-\omega^{k+l-2}}=0.$$
+Ainsi, $P^2=n\left(
+\begin{array}{ccccc}
+1&0&\ldots&\ldots&0\\
+0& & &0&1\\
+\vdots& &0&1&0\\
+ & & & & \\
+0&1&0&\ldots&0
+\end{array}
+\right)$.
+\textbullet~Soit $(k,l)\in\llbracket1,n\rrbracket^2$. Le coefficient ligne $k$, colonne $l$ de $P\overline{P}$ est
+
+$$\beta_{k,l}=\sum_{u=1}^{n}\omega^{(k-1)(u-1)}\omega^{-(u-1)(l-1)}=\sum_{u=1}^{n}(\omega^{k-l})^{u-1}.$$
+Or, $\omega^{k-l}=1\Leftrightarrow k-l\in n\Zz$. Mais, $-n<-(n-1)\leq k-l\leq n-1<n$ et donc $k-l\in n\Zz\Leftrightarrow k=l$. Dans ce cas, $\beta_{k,l}=n$. Sinon, $\beta_{k,l}=0$. Ainsi, $P\overline{P}=nI_n$ (ce qui montre que $P\in GL_n(\Cc)$ et $P^{-1}=\frac{1}{n}\overline{P}$).
+Calculons enfin $PA$. Il faut d'abord écrire proprement les coefficients de $A$. Le coefficient ligne $k$, colonne $l$ de $A$ peut s'écrire $a_{l-k+1}$ si l'on adopte la convention commode $a_{n+1}=a_1$, $a_{n+2}=a_2$ et plus généralement pour tout entier relatif $k$, $a_{n+k}=a_k$.
+Avec cette convention d'écriture, le coefficient ligne $k$, colonne $l$ de $PA$ vaut
+
+$$\sum_{u=1}^{n}\omega^{(k-1)(u-1)}a_{l-u+1}=\sum_{v=l-n+1}^{l}\omega^{(k-1)(l-v)}a_v.$$
+Puis on réordonne cette somme pour qu'elle commence par $a_1$.
+
+\begin{align*}\ensuremath
+\sum_{v=l-n+1}^{l}\omega^{(k-1)(l-v)}a_v&=\sum_{v=1}^{l}\omega^{(k-1)(l-v)}a_v
++\sum_{v=l-n+1}^{0}\omega^{(k-1)(l-v)}a_v\\
+ &=\sum_{v=1}^{l}\omega^{(k-1)(l-v)}a_v+\sum_{w=l+1}^{n}\omega^{(k-1)(l-w+n)}a_{w+n}\;(\mbox{en posant}\;w=v+n)\\
+ &=\sum_{v=1}^{l}\omega^{(k-1)(l-v)}a_v+\sum_{w=l+1}^{n}\omega^{(k-1)(l-w)}a_{w}\\
+ &=\sum_{v=1}^{n}\omega^{(k-1)(l-v)}a_v=\omega^{(k-1)(l-1)}\sum_{v=1}^{n}\omega^{(k-1)(1-v)}a_v
+\end{align*}
+(le point clé du calcul précédent est que les suites $(a_k)$ et $(\omega^k)$ ont la même période $n$ ce qui s'est traduit par
+$\omega^{(k-1)(l-w+n)}a_{w+n}=\omega^{(k-1)(l-v)}a_v$).
+Pour $k$ élément de $\llbracket1,n\rrbracket$, posons alors $S_k=\sum_{v=1}^{n}\omega^{(k-1)(1-v)}a_v$. On a montré que $PA=(\omega^{(k-1)(l-1)}S_k)_{1\leq k,l\leq n}$.
+
+Par linéarité par rapport à chaque colonne, on a alors
+
+\begin{center}
+$\mbox{det}(PA)=\mbox{det}(\omega^{(k-1)(l-1)}S_k)_{1\leq k,l\leq n}=\left(\prod_{k=1}^{n}S_k\right)\times\mbox{det}(\omega^{(k-1)(l-1)})_{1\leq k,l\leq n}=\left(\prod_{k=1}^{n}S_k\right)\times\mbox{det}P$.
+\end{center}
+Donc $(\mbox{det}P)(\mbox{det}A)=\left(\prod_{k=1}^{n}S_k\right)\mbox{det}P$ et finalement, puisque $\mbox{det}P\neq0$,
+
+\begin{center}
+\shadowbox{
+$\mbox{det}A=\prod_{k=1}^{n}\left(\sum_{v=1}^{n}\omega^{(k-1)(1-v)}a_v\right).$
+}
+\end{center}
+Par exemple, pour $n=3$, $\mbox{det}A=(a_1+a_2+a_3)(a_1+ja_2+j^2a_3)(a_1+j^2a_2+ja_3)$.
+\fincorrection
+\correction{005372}
+On a toujours $A\times{^t}\mbox{com}A=(\mbox{det}A)I_n$ et donc 
+
+$$(\mbox{det}A)(\mbox{det}(\mbox{com}A))=(\mbox{det}A)(\mbox{det}(^t\mbox{com}A))=\mbox{det}(\mbox{det}A\;I_n)=(\mbox{det}A)^n.$$
+\textbullet~Si $\mbox{det}A\neq0$, on obtient $\mbox{det}(\mbox{com}A)=(\mbox{det}A)^{n-1}$.
+\textbullet~Si $\mbox{det}A=0$, alors $A{^t\mbox{com}A}=0$ et $\mbox{com}A$ n'est pas inversible car sinon, $A=0$ puis $\mbox{com}A=0$ ce qui est absurde. Donc, $\mbox{det}(\mbox{com}A)=0$. Ainsi, dans tous les cas,
+
+\begin{center}
+\shadowbox{
+$\forall A\in M_n(\Cc),\;\mbox{det}(\mbox{com}A)=(\mbox{det}A)^{n-1}$.
+}
+\end{center}
+\textbullet~Si $\mbox{rg}A=n$, alors  $\mbox{com}A\in GL_n(\Kk)$ (car $\mbox{det}(\mbox{com}A)\neq0$) et $\mbox{rg}(\mbox{com}A)=n$.
+\textbullet~Si $\mbox{rg}A\leq n-2$, alors tous les mineurs de format $n-1$ sont nuls et $\mbox{com}A=0$. Dans ce cas, $\mbox{rg}(\mbox{com}A)=0$.
+\textbullet~Si $\mbox{rg}A=n-1$, il existe un mineur de format $n-1$ non nul et $\mbox{com}A\neq0$. Dans ce cas, $1\leq\mbox{rg}(\mbox{com}A)\leq n-1$.
+Plus précisément, 
+$$A{^t\mbox{com}A}=0\Rightarrow\mbox{com}A{^tA}=0\Rightarrow\mbox{Im}({^tA})\subset\mbox{Ker}(\mbox{com}A)
+\Rightarrow\mbox{dim}(\mbox{Ker}(\mbox{com}A))\geq\mbox{rg}({^tA})=\mbox{rg}A=n-1\Rightarrow\mbox{rg}(\mbox{com}A)\leq1,$$
+et finalement si $\mbox{rg}A=n-1$, $\mbox{rg}(\mbox{com}A)=1$.
+
+\fincorrection
+\correction{005373}
+\begin{align*}\ensuremath
+(\mbox{det}A)'&=\left(\sum_{\sigma\in S_n}^{}\varepsilon(\sigma)a_{\sigma(1),1}a_{\sigma(2),2}...a_{\sigma(n),n}\right)'=\sum_{\sigma\in S_n}^{}\varepsilon(\sigma)\left(\sum_{k=1}^{n}a_{\sigma(1),1}...a_{\sigma(k),k}'...a_{\sigma(n),n}\right)\\
+ &=\sum_{k=1}^{n}\sum_{\sigma\in S_n}^{}\varepsilon(\sigma)a_{\sigma(1),1}...a_{\sigma(k),k}'...a_{\sigma(n),n}
+=\sum_{k=1}^{n}\mbox{det}(C_1,...,C_k',...,C_n)
+\end{align*}
+\textbf{Applications.}
+\begin{enumerate}
+ \item  Soit $\Delta_n(x)=\left|\begin{array}{ccccc}
+x+1&1&\ldots& &1\\
+1&x+1&\ddots& &\vdots\\
+\vdots&\ddots&\ddots&\ddots&\vdots\\
+\vdots& &\ddots&\ddots&1\\
+1&\ldots&\ldots&1&x+1
+\end{array}
+\right|$. $\Delta_n$ est un polynôme dont la dérivée est d'après ce qui précède, $\Delta_{n}'=\sum_{k=1}^{n}\delta_k$ où $\delta_k$ est le déterminant déduit de $\Delta_n$ en remplaçant sa $k$-ème colonne par le $k$-ème vecteur de la base canonique de $M_{n,1}(\Kk)$. En développant $\delta_k$ par rapport à sa $k$-ème colonne, on obtient $\delta_k=\Delta_{n-1}$ et donc $\Delta_{n}'=n\Delta_{n-1}$.
+Ensuite, on a déjà $\Delta_1=X+1$ puis $\Delta_2=(X+1)^2-1=X^2+2X$ ...
+Montrons par récurrence que pour $n\geq1$, $\Delta_n=X^n+nX^{n-1}$.
+C'est vrai pour $n=1$ puis, si pour $n\geq1$, $\Delta_n=X^n+nX^{n-1}$ alors $\Delta_{n+1}'=(n+1)X^n+(n+1)nX^{n-1}$ et, par intégration,  $\Delta_{n+1}=X^{n+1}+(n+1)X^n+\Delta_{n+1}(0)$. Mais, puisque $n\geq1$, on a $n+1\geq2$ et $\Delta_{n+1}(0)$ est un déterminant ayant au moins deux colonnes identiques. Par suite, $\Delta_{n+1}(0)=0$ ce qui montre que $\Delta_{n+1}=X^{n+1}+(n+1)X^n$. Le résultat est démontré par récurrence.
+
+\begin{center}
+\shadowbox{
+$\forall n\in\Nn^*,\;\Delta_n=x^n+nx^{n-1}$.
+}
+\end{center}
+ \item  Soit $\Delta_n(x)=\left|\begin{array}{ccccc}
+x+a_1&x&\ldots& &x\\
+x&x+a_2&\ddots& &\vdots\\
+\vdots&\ddots&\ddots&\ddots&\vdots\\
+\vdots& &\ddots&\ddots&x\\
+x&\ldots&\ldots&x&x+a_n
+\end{array}
+\right|$. $\Delta_n=\mbox{det}(a_1e_1+xC,...,a_ne_n+xC)$ où $e_k$ est le $k$-ème vecteur de la base canonique de $M_{n,1}(\Kk)$ et $C$ est la colonne dont toutes les composantes sont égales à $1$. Par linéarité par rapport à chaque colonne, $\Delta_n$ est somme de $2^n$ déterminants mais dès que $C$ apparait deux fois, le déterminant correspondant est nul. Donc, $\Delta_n=\mbox{det}(a_1e_1,...,a_ne_n)+\sum_{}^{}\mbox{det}(a_1e_1,...,xC,...,a_ne_n)$. Ceci montre que $\Delta_n$ est un polynôme de degré inférieur ou égal à $1$.
+La formule de \textsc{Taylor} fournit alors : $\Delta_n=\Delta_n(0)+X\Delta_{n}'(0)$. Immédiatement, $\Delta_n(0)=\prod_{k=1}^{n}a_k=\sigma_n$ puis $\Delta_{n}'(0)=\sum_{k=1}^{n}\mbox{det}(a_1e_1,...,C,...,a_ne_n)=\sum_{k=1}^{n}\prod_{i\neq k}^{}a_i=\sigma_{n-1}$. Donc, $\Delta_n=\sigma_n+X\sigma_{n-1}$.
+\end{enumerate}
+\fincorrection
+\correction{005374}
+\begin{enumerate}
+ \item  Pour le premier déterminant, on retranche la première colonne à chacune des autres et on obtient un déterminant triangulaire inférieur dont la valeur est $(-1)^{n-1}$. Pour le deuxième, on ajoute à la première colonne la somme de toutes les autres, puis on met $(n-1)$ en facteurs de la première colonne et on tombe sur le premier déterminant. Le deuxième déterminant vaut donc $(-1)^{n-1}(n-1)$.
+ \item  Pour $(i,j)$ élément de $\llbracket1,n\rrbracket^2$, $(i+j-1)^2=j^2+2(i-1)j+(i-1)^2$. Donc, 
+
+$$\forall j\in\{1,...,n\},\;C_j=j^2(1)_{1\leq i\leq n}+2j(i-1)_{1\leq i\leq n}+((i-1)^2)_{1\leq i\leq n}.$$
+Les colonnes de la matrice sont donc éléments de $\mbox{Vect}((1)_{1\leq i\leq n},(i-1)_{1\leq i\leq n},((i-1)2)_{1\leq i\leq n})$ qui est de dimension inférieure ou égale à $3$ et la matrice proposée est de rang infèrieur ou égal à $3$. Donc, si $n\geq4$, $\Delta_n=0$. Il reste ensuite à calculer $\Delta_1=1$ puis $\Delta_2=\left|
+\begin{array}{cc}
+1&4\\
+4&9
+\end{array}
+\right|=-7$ puis $\Delta_3=\left|
+\begin{array}{ccc}
+1&4&9\\
+4&9&16\\
+9&16&25
+\end{array}
+\right|=(225-256)-4(100-144)+9(64-81)=-31+176-153=-8$.
+ \item 
+
+$$\Delta_n=\mbox{det}(C_1,...,C_n)=\mbox{det}(C_1+...+C_n,C_2,...,C_n)=(a+(n-1)b)
+\left|
+\begin{array}{ccccc}
+1&b&\ldots&\ldots&b\\
+1&a&\ddots& &\vdots\\
+\vdots&b&\ddots&\ddots&\vdots\\
+\vdots&\vdots&\ddots&\ddots&b\\
+1&b&\ldots&b&a
+\end{array}
+\right|,$$
+par linéarité par rapport à la première colonne. Puis, aux lignes numéros $2$,..., $n$, on retranche la première ligne pour obtenir~:
+
+$$\Delta_n=(a+(n-1)b)\left|
+\begin{array}{ccccc}
+1&b&\ldots&\ldots&b\\
+0&a-b&0&\ldots&0\\
+\vdots&0&\ddots&\ddots&\vdots\\
+\vdots&\vdots&\ddots&\ddots&0\\
+0&0&\ldots&0&a-b
+\end{array}
+\right|=(a+(n-1)b)(a-b)^{n-1}.$$
+ \item  Par $n$ linéarité, $D_n$ est somme de $2^n$ déterminants. Mais dans cette somme, un déterminant est nul dès qu'il contient au moins deux colonnes de $x$. Ainsi, en posant $\Delta_n=\mbox{det}(C_1+xC,...,C_n+xC)$ où $C_k=\left(
+\begin{array}{c}
+a_1\\
+\vdots\\
+a_{k-1}\\
+b\\
+a_{k+1}\\
+\vdots\\
+a_n
+\end{array}
+\right)$ et $C=(1)_{1\leq i\leq n}$,
+on obtient~:
+
+$$\Delta_n=\mbox{det}(C_1,...,C_n)+\sum_{k=1}^{n}\mbox{det}(C_1,...,C_{k-1},xC,C_{k+1},...,C_n),$$
+ce qui montre que $\Delta_n$ est un polynôme de degré infèrieur ou égal à $1$. Posons $\Delta_n=AX+B$ et $P=\prod_{k=1}^{n}(a_k-X)$. Quand $x=-b$ ou $x=-c$, le déterminant proposé est triangulaire et se calcule donc immédiatement. Donc~:
+\textbf{1er cas.} Si $b\neq c$. $\Delta_n(-b)=P(b)$ et $\Delta_n(-c)=P(c)$ fournit le système $\left\{
+\begin{array}{l}
+-bA+B=P(b)\\
+-cA+B=P(c)
+\end{array}
+\right.$ et donc $A=-\frac{P(c)-P(b)}{c-b}$ et $B=\frac{cP(b)-bP(c)}{c-b}$. Ainsi,
+
+\begin{center}
+\shadowbox{
+si $b\neq c$, $\Delta_n=-\frac{P(c)-P(b)}{c-b}x+\frac{cP(b)-bP(c)}{c-b}\;\mbox{où}\;P=\prod_{k=1}^{n}(a_k-X).$
+}
+\end{center}
+\textbf{2ème cas.} Si $b=c$, l'expression obtenue en fixant $x$ et $b$ est clairement une fonction continue de $c$ car polynômiale en $c$. On obtient donc la valeur de $\Delta_n$ quand $b=c$ en faisant tendre $c$ vers $b$ dans l'expression déjà connue de $\Delta_n$ pour $b\neq c$. Maintenant, quand $b$ tend vers $c$, $-\frac{P(c)-P(b)}{c-b}$ tend vers $-P'(b)$ et 
+$$\frac{cP(b)-bP(c)}{c-b}=\frac{c(P(b)-P(c))+(c-b)P(c)}{c-b},$$
+
+tend vers $-bP'(b)+P(b)$.
+
+\begin{center}
+\shadowbox{
+si $b=c$, $\Delta_n=-xP'(b)+P(b)-bP'(b)\;\mbox{où}\;P=\prod_{k=1}^{n}(a_k-X).$
+}
+\end{center}
+ \item  $\Delta_2=3$ et $\Delta_3=\left|
+\begin{array}{ccc}
+2&1&0\\
+1&2&1\\
+0&1&2
+\end{array}
+\right|=2\times3-2=4$. Puis, pour $n\geq4$, on obtient en développant suivant la première colonne~:
+
+$$\Delta_n=2\Delta_{n-1}-\Delta_{n-2}.$$
+D'où, pour $n\geq4$, $\Delta_n-\Delta_{n-1}=\Delta_{n-1}-\Delta_{n-2}$ et la suite $(\Delta_n-\Delta_{n-1})_{n\geq3}$ est constante. Par suite, pour $n\geq3$, $\Delta_n-\Delta_{n-1}=\Delta_3-\Delta_2=1$ et donc la suite $(\Delta_n)_{n\geq2}$ est arithmétique de raison $1$. On en déduit que, pour $n\geq2$, $\Delta_n=\Delta_2+(n-2)\times1=n+1$ (on pouvait aussi résoudre l'équation caractéristique de la récurrence double).
+
+\begin{center}
+\shadowbox{
+$\forall n\geq2,\;\Delta_n=n+1.$
+}
+\end{center}
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

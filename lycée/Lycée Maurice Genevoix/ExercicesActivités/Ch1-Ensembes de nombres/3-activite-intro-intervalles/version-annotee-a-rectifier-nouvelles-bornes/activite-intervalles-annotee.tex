@@ -1,0 +1,288 @@
+\documentclass[a4paper,10pt]{article}
+
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\textwidth}{6in}
+\setlength{\topmargin}{-0.25in}
+\setlength{\textheight}{8in}
+
+\usepackage[latin1]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage[top=1cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+\newtheorem{defi}{D\'{e}finition}
+\newtheorem{thm}{Th\'{e}or\`{e}me}
+\newtheorem{rmq}{Remarque}
+\newtheorem{defprop}{Définition-propriété}
+\newtheorem{prop}{Propri\'{e}t\'{e}}
+\newtheorem{cor}{Corollaire}
+\newtheorem{ex}{Exemple}
+\newtheorem{thm-def}{Théorème-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{appl}{Application}
+\newtheorem{dem}{D\'{e}monstration}
+\def\di{\displaystyle}
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+%\newcommand{\rectvert}{\fcolorbox{green}{green}{\begin{minipage}{1\linewidth}\end{minipage}}}
+%\newenvironment{rectvert}{\fcolorbox{green}{green}\begin{minipage}{1\linewidth}}{\end{minipage}}
+
+\newcommand{\V}{\overrightarrow}
+\definecolor{vertclair}{RGB}{120,255,120}
+\definecolor{rougeclair}{RGB}{255,120,120}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+
+
+
+\begin{document}
+	
+	\title{}
+	\date{}       
+	\maketitle
+	\indent\vspace{-3.5cm}
+	
+	
+	%$$\fbox{\text{\Large{ Chapitre 1 : Nombres réels}}}$$
+	
+	$$\fbox{\text{\Large{ \begin{minipage}{0.6\linewidth } Activité chapitre 1 : à la découverte des intervalles \end{minipage} }}}$$
+	
+	\hfill\\[0.1cm]
+
+
+\hfill\\
+\noindent Dans chacune des questions suivantes, on considère une droite $(d)$ graduée (c'est-à-dire munie d'un repère).\\
+
+\begin{enumerate}
+	\item Repasser en couleur sur cette droite l'ensemble des points $M$ dont l'abscisse vérifie $-2 \leqslant x \leqslant 3$.\\
+	
+	$$\begin{tikzpicture}[scale=0.75]
+	\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+	\draw (0,0) node[below=3pt]{$0$};
+	\draw (1,0) node[below=3pt]{$1$};
+	\foreach \x in {-7,...,7}
+	{
+	%	\draw (\x,0) node[below=3pt]{$\x$};
+		\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+	}
+	\draw (-8,0) node[left=3pt]{$-\infty$};
+	\draw (8,0) node[right=3pt]{$+\infty$};
+	\draw [blue, line width=2pt] (-2,0)--(3,0);
+	\draw [blue, line width=2pt] (-1.7,-0.3)--(-2,-0.3)--(-2,0.3)--(-1.7,0.3);
+	\draw [blue, line width=2pt] (2.7,-0.3)--(3,-0.3)--(3,0.3)--(2.7,0.3);
+	\draw[blue] (-2,0) node[below=6pt]{$-2$};
+	\draw[blue] (3,0) node[below=6pt]{$3$};
+	\end{tikzpicture}$$
+	
+	Le nombre $-2$ doit-il être colorié ? Pourquoi ? \\
+	\\
+	\textcolor{blue}{Oui car l'inégalité $-2 \leqslant x$ est large (elle englobe le cas où $x=-2$)} \\
+	\\
+	Le nombre $3$ doit-il être colorié ? Pourquoi ? \\
+	\\
+	\textcolor{blue}{Oui car l'inégalité $x \leqslant 3$ est large (elle englobe le cas où $x=3$)} \\
+	\\
+	Cette \og zone coloriée \fg est appelée un \textbf{intervalle}. On le note \textcolor{blue}{$[-2;3]$} \\[0.2cm]
+	
+	\begin{rmq}
+		Pour écrire un intervalle, on utilise toujours des \textcolor{blue}{crochets}.\\[0.3cm]
+		Ici, ils sont tous les deux \textcolor{blue}{fermés} (ils \og \textcolor{blue}{attrapent} \fg la zone coloriée), ce qui indique que $-2$ et $3$ \textcolor{blue}{appartiennent} à \\[0.3cm] l'intervalle.
+	\end{rmq}
+	\hfill\\
+	
+	\item Repasser en couleur sur cette droite l'ensemble des points $M$ dont l'abscisse vérifie $-2 < x \leqslant 3$.\\
+	
+	$$\begin{tikzpicture}[scale=0.75]
+	\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+	\draw (0,0) node[below=3pt]{$0$};
+	\draw (1,0) node[below=3pt]{$1$};
+	\foreach \x in {-7,...,7}
+	{
+		%	\draw (\x,0) node[below=3pt]{$\x$};
+		\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+	}
+	\draw (-8,0) node[left=3pt]{$-\infty$};
+	\draw (8,0) node[right=3pt]{$+\infty$};
+	\draw [blue, line width=2pt] (-2,0)--(3,0);
+	\draw [blue, line width=2pt] (-2.3,-0.3)--(-2,-0.3)--(-2,0.3)--(-2.3,0.3);
+	\draw [blue, line width=2pt] (2.7,-0.3)--(3,-0.3)--(3,0.3)--(2.7,0.3);
+	\draw[blue] (-2,0) node[below=6pt]{$-2$};
+	\draw[blue] (3,0) node[below=6pt]{$3$};
+	\end{tikzpicture}$$
+	
+	Le nombre $-2$ doit-il être colorié ? Pourquoi ? \\
+	\\
+	\textcolor{blue}{Non car l'inégalité $-2 < x$ est stricte (elle n'englobe pas le cas où $x=-2$)} \\
+	\\
+	Le nombre $3$ doit-il être colorié ? Pourquoi ? \\
+	\\
+	\textcolor{blue}{Oui car l'inégalité $x \leqslant 3$ est large (elle englobe le cas où $x=3$)} \\
+	\\
+	On note cet intervalle \textcolor{blue}{$]-2;3]$} \\ \\[0.2cm]
+	Ici, le \textcolor{blue}{crochet} de droite est \textcolor{blue}{fermé} tandis que celui de gauche est \textcolor{blue}{ouvert} (il \og \textcolor{blue}{tourne le dos à} la zone coloriée). \\
+	\\
+	
+	
+	\item Repasser en couleur sur cette droite l'ensemble des points $M$ dont l'abscisse vérifie $x \geqslant 1$.\\
+	
+	$$\begin{tikzpicture}[scale=0.75]
+	\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+	\draw (0,0) node[below=6pt]{$0$};
+	\draw (1,0) node[below=6pt]{$1$};
+	\foreach \x in {-7,...,7}
+	{
+		%	\draw (\x,0) node[below=3pt]{$\x$};
+		\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+	}
+	\draw (-8,0) node[left=3pt]{$-\infty$};
+	\draw (8,0) node[right=3pt]{$+\infty$};
+	\draw [blue, line width=2pt] (1,0)--(8,0);
+	\draw [blue, line width=2pt] (1.3,-0.3)--(1,-0.3)--(1,0.3)--(1.3,0.3);
+	\end{tikzpicture}$$
+	
+	On note cet intervalle \textcolor{blue}{$[1;+\infty[$.} \\[0.2cm]
+	
+	\begin{rmq}
+		Attention, le \textcolor{blue}{crochet} en \textcolor{blue}{$+\infty$} est toujours \textcolor{blue}{ouvert} car \textcolor{blue}{$+\infty$ n'est pas un nombre et ne peut donc\\[0.2cm]
+	 pas être atteint.}
+	\end{rmq}
+	
+	\newpage
+	
+	
+	\item Repasser en couleur sur cette droite l'ensemble des points $M$ dont l'abscisse vérifie $-4 < x < 2$.\\
+	
+	$$\begin{tikzpicture}[scale=0.75]
+	\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+	\draw (0,0) node[below=3pt]{$0$};
+	\draw (1,0) node[below=3pt]{$1$};
+	\foreach \x in {-7,...,7}
+	{
+		%	\draw (\x,0) node[below=3pt]{$\x$};
+		\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+	}
+	\draw (-8,0) node[left=3pt]{$-\infty$};
+	\draw (8,0) node[right=3pt]{$+\infty$};
+	\draw [blue, line width=2pt] (-4,0)--(2,0);
+	\draw [blue, line width=2pt] (-4.3,-0.3)--(-4,-0.3)--(-4,0.3)--(-4.3,0.3);
+	\draw [blue, line width=2pt] (2.3,-0.3)--(2,-0.3)--(2,0.3)--(2.3,0.3);
+	\draw[blue] (-4,0) node[below=6pt]{$-4$};
+	\draw[blue] (2,0) node[below=6pt]{$2$};
+	\end{tikzpicture}$$
+	
+	On note cet intervalle \textcolor{blue}{$]-4;2[$.} \\
+	
+	\item Parmi les encadrements suivants, entourer celui qui permet de \textbf{caractériser} l'intervalle représenté :\\
+	
+	$$\begin{tikzpicture}[scale=0.75]
+	\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+	\draw [ red, [-[ , line width = 2pt] (4,0) -- (-3.15,0) ; 
+	%\draw [ red, line width = 2pt](-3,0) node{$]$};
+	%\draw [ red, text width = 2pt](4,0) node{$]$};
+	\foreach \x in {-7,...,7}
+	{
+		\draw (\x,0) node[below=3pt]{$\x$};
+		\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+	}
+	\draw (-8,0) node[left=3pt]{$-\infty$};
+	\draw (8,0) node[right=3pt]{$+\infty$};
+	\end{tikzpicture}$$
+
+	\noindent Encadrements proposés : 
+	$$-3 < x < 4 \ \ \ \text{ou} \ \ \ -3 \leqslant x < 4 \ \ \ \text{ou} \ \ \ \fbox{\textcolor{blue}{$-3 < x \leqslant 4$}} \ \ \ \text{ou} \ \ \ -3 \leqslant x \leqslant 4$$
+	
+
+
+	\item Parmi les inégalités/encadrements suivants, entourer celle/celui qui permet de \textbf{caractériser} l'ensemble des points mis en évidence sur ce dessin :\\
+
+$$\begin{tikzpicture}[scale=0.75]
+\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+\draw [ red, -[ , line width = 2pt] (8,0) -- (-1.15,0) ; 
+%\draw [ red, line width = 2pt](-3,0) node{$]$};
+%\draw [ red, text width = 2pt](4,0) node{$]$};
+\foreach \x in {-7,...,7}
+{
+	\draw (\x,0) node[below=3pt]{$\x$};
+	\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+}
+\draw (-8,0) node[left=3pt]{$-\infty$};
+\draw (8,0) node[right=3pt]{$+\infty$};
+\end{tikzpicture}$$
+
+\noindent Encadrements proposés : 
+$$x < -1 \ \ \ \text{ou} \ \ \ x \leqslant -1 \ \ \ \text{ou} \ \ \ \fbox{\textcolor{blue}{$x>-1$}} \ \ \ \text{ou} \ \ \ x \geqslant -1$$
+
+\end{enumerate}
+\hfill\\
+\\
+
+
+\noindent{\underline{\textbf{Un exemple d'application des intervalles : la résolution d'inéquations de degré $1$}}}
+
+\hfill\\
+\begin{exer}
+Résoudre l'inéquation $3x+4 \geqslant x-6$ puis représenter ces solutions sur la droite graduée ci-dessous :\\[0.4cm]
+$$\begin{tikzpicture}[scale=0.75]
+\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+\foreach \x in {-7,...,7}
+{
+	\draw (\x,0) node[below=3pt]{$\x$};
+	\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+}
+\draw (-8,0) node[left=3pt]{$-\infty$};
+\draw (8,0) node[right=3pt]{$+\infty$};
+\draw [blue, line width=2pt] (-5,0)--(8,0);
+\draw [blue, line width=2pt] (-4.7,-0.3)--(-5,-0.3)--(-5,0.3)--(-4.7,0.3);
+\end{tikzpicture}$$
+\textcolor{blue}{On a les équivalences suivantes : 
+$$3x+4 \geqslant x-6 \Leftrightarrow 3x-x \geqslant -6-4 \Leftrightarrow 2x \geqslant -10 \Leftrightarrow x \geqslant -5$$}
+L'ensemble $\mathcal{S}$ des solutions de cette inéquation est donc \textcolor{blue}{$\mathcal{S} = [-5;+\infty[$}.
+\end{exer}
+\hfill\\
+
+\begin{exer}
+Résoudre l'inéquation $-5x+7 > 22$ puis représenter ces solutions sur la droite graduée ci-dessous :\\[0.4cm]
+$$\begin{tikzpicture}[scale=0.75]
+\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+\foreach \x in {-7,...,7}
+{
+	\draw (\x,0) node[below=3pt]{$\x$};
+	\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+}
+\draw (-8,0) node[left=3pt]{$-\infty$};
+\draw (8,0) node[right=3pt]{$+\infty$};
+\draw [blue, line width=2pt] (-8,0)--(-3,0);
+\draw [blue, line width=2pt] (-2.7,-0.3)--(-3,-0.3)--(-3,0.3)--(-2.7,0.3);
+\end{tikzpicture}$$
+\textcolor{blue}{On a les équivalences suivantes : 
+	$$-5x+7 >t 22 \Leftrightarrow -5x > 22-7 \Leftrightarrow -5x > 15 \Leftrightarrow x < -3$$}
+L'ensemble $\mathcal{S}$ des solutions de cette inéquation est donc \textcolor{blue}{$\mathcal{S} = ]-\infty;-3[$}.
+\\
+\end{exer}
+\hfill\\
+
+\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.eps}$ \ Faire :
+		\begin{enumerate}[$\diamond$]
+			\item l'exercice résolu 1 p.27 en cachant la correction 
+			\item les exercices 41, 42, 43, 44, 46 p.40
+			\item l'exercice 84 p.44. Indication : l'amplitude d'un intervalle est sa longueur. Par exemple, l'intervalle $[1;3]$ a pour amplitude $2$.
+			\item l'exercice 12 p.63 (inéquations)
+		\end{enumerate}
+	}}
+
+
+% Set the ending of a LaTeX document
+\end{document}

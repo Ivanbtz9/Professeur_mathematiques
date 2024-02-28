@@ -1,0 +1,1454 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+
+\fiche{f00138, rouget, 2010/10/16}
+
+\titre{Fonctions de plusieurs variables}
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable
+\end{center}
+
+
+\exercice{5887, rouget, 2010/10/16}
+\enonce{005887}{** I}
+Etudier l'existence et la valeur éventuelle des limites suivantes :
+
+\begin{enumerate}
+ \item  $ \frac{xy}{x^2+y^2}$ en $(0,0)$
+ \item  $ \frac{x^2y^2}{x^2+y^2}$ en $(0,0)$
+ \item  $ \frac{x^3+y^3}{x^2+y^4}$  en $(0,0)$
+ \item  $ \frac{\sqrt{x^2+y^2}}{|x|\sqrt{|y|}+|y|\sqrt{|x|}}$  en $(0,0)$
+ \item  $ \frac{(x^2-y)(y^2-x)}{x+y}$ en $(0,0)$
+ \item  $ \frac{1-\cos\sqrt{|xy|}}{|y|}$ en $(0,0)$
+ \item  $ \frac{x+y}{x^2-y^2+z^2}$ en $(0,0,0)$
+ \item  $ \frac{x+y}{x^2-y^2+z^2}$ en $(2,-2,0)$
+\end{enumerate}
+\finenonce{005887}
+
+
+\finexercice
+\exercice{5888, rouget, 2010/10/16}
+\enonce{005888}{*** I}
+Pour  $(x,y)\in\Rr^2$, on pose $f(x,y) =\left\{
+\begin{array}{l}
+ \frac{xy(x^2-y^2)}{x^2+y^2}\;\text{si}\;(x,y)\neq(0,0)\\
+\rule{0mm}{5mm}0\;\text{si}\;(x,y)=(0,0)
+\end{array}
+\right.$. Montrer que $f$ est de classe $C^1$ (au moins) sur $\Rr^2$.
+\finenonce{005888}
+
+
+\finexercice
+\exercice{5889, rouget, 2010/10/16}
+\enonce{005889}{*** I}
+Soit $f(x,y) =\left\{
+\begin{array}{l}
+y^2\sin\left( \frac{x}{y}\right)\;\text{si}\;y\neq0\\
+\rule{0mm}{5mm}0\;\text{si}\;y=0
+\end{array}
+\right.$.
+
+Déterminer le plus grand sous-ensemble de $\Rr^2$ sur lequel $f$ est de classe $C^1$. Vérifier que $ \frac{\partial^2f}{\partial x\partial y}(0,0)$ et $ \frac{\partial^2f}{\partial y\partial x}(0,0)$ existent et sont différents.
+\finenonce{005889}
+
+
+\finexercice
+\exercice{5890, rouget, 2010/10/16}
+\enonce{005890}{**}
+Montrer que $\begin{array}[t]{cccc}
+\varphi~:&\Rr^2&\rightarrow&\Rr^2\\
+ &(x,y)&\mapsto&(e^x-e^y , x+y)
+ \end{array}$ est un $C^1$-difféomorphisme de $\Rr^2$ sur lui-même.
+\finenonce{005890}
+
+
+\finexercice
+\exercice{5891, rouget, 2010/10/16}
+\enonce{005891}{***}
+Soit $n\in\Nn$. Montrer que l'équation $y^{2n+1}+ y - x = 0$ définit implicitement une fonction $\varphi$ sur $\Rr$ telle que : $(\forall(x,y)\in\Rr^2),\;[y^{2n+1}+ y - x = 0\Leftrightarrow y =\varphi(x)]$.
+
+Montrer que $\varphi$ est de classe $C^\infty$ sur $\Rr$ et calculer $\int_{0}^{2}\varphi(t)\;dt$.
+\finenonce{005891}
+
+
+\finexercice
+\exercice{5892, rouget, 2010/10/16}
+\enonce{005892}{***}
+Donner un développement limité à l'ordre $3$ en $0$ de la fonction implicitement définie sur un voisinage de $0$ par l'égalité $e^{x+y}+y-1 = 0$.
+\finenonce{005892}
+
+
+\finexercice
+\exercice{5893, rouget, 2010/10/16}
+\enonce{005893}{*}
+Soit $f$ une application de $\Rr^n$ dans $\Rr$ de classe $C^1$. On dit que $f$ est positivement homogène de degré $r$ ($r$ réel donné) si et seulement si $\forall\lambda\in]0,+\infty[$, $\forall x\in\Rr^n$, $f(\lambda x) =\lambda^rf(x)$.
+
+Montrer pour une telle fonction l'identité d'\textsc{Euler} :
+
+\begin{center}
+$\forall x = (x_1,...,x_n)\in \Rr^n$ $\sum_{i=1}^{n}x_i \frac{\partial f}{\partial x_i}(x) = rf(x)$.
+\end{center}
+\finenonce{005893}
+
+
+\finexercice
+\exercice{5894, rouget, 2010/10/16}
+\enonce{005894}{** I}
+Extremums des fonctions suivantes :
+
+\begin{enumerate}
+ \item  $f(x,y) = x^3+3x^2y -15x-12y$
+
+ \item  $f(x,y) = -2(x-y)^2+x^4+y^4$.
+\end{enumerate}
+\finenonce{005894}
+
+
+\finexercice
+\exercice{5895, rouget, 2010/10/16}
+\enonce{005895}{*** I}
+Soit $\begin{array}[t]{cccc}
+f~:&GL_n(\Rr)&\rightarrow&M_n(\Rr)\\
+ &A&\mapsto&A^{-1}
+\end{array}$. Montrer que $f$ est différentiable en tout point de $M_n(\Rr)\setminus\{0\}$ et déterminer sa différentielle.
+\finenonce{005895}
+
+
+\finexercice
+\exercice{5896, rouget, 2010/10/16}
+\enonce{005896}{*}
+Déterminer $\text{Max}\{|\sin z|,\;z\in\Cc,\;|z|\leqslant1\}$.
+\finenonce{005896}
+
+
+\finexercice
+\exercice{5897, rouget, 2010/10/16}
+\enonce{005897}{**}
+Les formes différentielles suivantes sont elles exactes ? Si oui, intégrer et si non chercher un facteur intégrant.
+
+\begin{enumerate}
+ \item  $\omega= (2x+2y+e^{x+y})(dx+dy)$ sur $\Rr^2$.
+
+\item  $\omega= \frac{xdy-ydx}{(x-y)^2}$ sur $\Omega=\{(x,y)\in\Rr^2/\;y > x\}$
+
+\item  $\omega= \frac{xdx+ydy}{x^2+y^2}- ydy$
+
+\item  $\omega= \frac{1}{x^2y}dx - \frac{1}{xy^2}dy$ sur $(]0,+\infty[)^2$ (trouver un facteur intégrant non nul ne dépendant que de $x^2+y^2$).
+\end{enumerate}
+\finenonce{005897}
+
+
+\finexercice
+\exercice{5898, rouget, 2010/10/16}
+\enonce{005898}{*** I}
+Résoudre les équations aux dérivées partielles suivantes :
+
+\begin{enumerate}
+ \item  $2 \frac{\partial f}{\partial x}- \frac{\partial f}{\partial y}= 0$ en posant $u = x+y$ et $v = x+2y$.
+
+\item  $x \frac{\partial f}{\partial y}-y \frac{\partial f}{\partial x}=0$ sur $\Rr^2\setminus\{(0,0)\}$ en passant en polaires.
+
+\item  $x^2 \frac{\partial^2f}{\partial x^2}+2xy \frac{\partial^2f}{\partial x\partial y}+y^2 \frac{\partial^2f}{\partial y^2}= 0$ sur $]0, +\infty[\times\Rr$ en posant $x = u$ et $y = uv$.
+\end{enumerate}
+\finenonce{005898}
+
+
+\finexercice
+\exercice{5899, rouget, 2010/10/16}
+\enonce{005899}{**}
+Déterminer la différentielle en tout point de $\begin{array}[t]{cccc}
+f~:&\Rr^3\times\Rr^3&\rightarrow&\Rr\\
+ &(x,y)&\mapsto&x.y
+\end{array}$ et $\begin{array}[t]{cccc}
+g~:&\Rr^3\times\Rr^3&\rightarrow&\Rr\\
+ &(x,y)&\mapsto&x\wedge y
+\end{array}$.
+\finenonce{005899}
+
+
+\finexercice
+\exercice{5900, rouget, 2010/10/16}
+\enonce{005900}{**}
+Soit $(E,\|\;\|)$ un espace vectoriel normé et $B=\{x\in E/\;\|x\| < 1\}$. Montrer que $\begin{array}[t]{cccc}
+f~:&E&\rightarrow&B\\
+ &x&\mapsto& \frac{x}{1+\|x\|}
+\end{array}$ est un homéomorphisme.
+\finenonce{005900}
+
+
+\finexercice
+\exercice{5901, rouget, 2010/10/16}
+\enonce{005901}{**}
+$E =\Rr^n$ est muni de sa structure euclidienne usuelle.
+Montrer que $\begin{array}[t]{cccc}
+f~:&E&\rightarrow&\Rr\\
+ &x&\mapsto&\|x\|_2
+\end{array}$ est différentiable sur $E\setminus\{0\}$ et préciser $df$. Montrer que $f$ n'est pas différentiable en $0$.
+\finenonce{005901}
+
+
+\finexercice
+\exercice{5902, rouget, 2010/10/16}
+\enonce{005902}{***}
+Maximum du produit des distances d'un point $M$ intérieur à un triangle $ABC$ aux cotés de ce triangle.
+\finenonce{005902}
+
+
+\finexercice
+\exercice{5903, rouget, 2010/10/16}
+\enonce{005903}{*}
+Minimum de $f(x,y) =\sqrt{x^2+(y-a)^2}+\sqrt{(x-a)^2+y^2}$, $a$ réel donné.
+\finenonce{005903}
+
+
+\finexercice
+\exercice{5904, rouget, 2010/10/16}
+\enonce{005904}{***}
+Trouver une application non constante $f~:~]-1,1[\rightarrow\Rr$ de classe $C^2$ telle que l'application $g$ définie sur $\Rr^2$ par
+$g(x,y) = f\left( \frac{\cos(2x)}{\ch(2y)}\right)$ ait un laplacien nul sur un ensemble à préciser. (On rappelle que le laplacien de $g$ est $\Delta g = \frac{\partial^2g}{\partial x^2}+ \frac{\partial^2g}{\partial y^2}$. Une fonction de laplacien nul est dite harmonique.)
+\finenonce{005904}
+
+
+\finexercice
+\exercice{5905, rouget, 2010/10/16}
+\enonce{005905}{*** I}
+Soit $f~:~\Rr^2\rightarrow\Rr^2$ de classe $C^2$ dont la différentielle en tout point est une rotation. Montrer que $f$ est une rotation affine.
+\finenonce{005905}
+
+
+\finexercice
+
+\finfiche
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005887}
+\begin{enumerate}
+ \item  $f$ est définie sur $\Rr^2\setminus\{(0,0)\}$.
+
+Pour $x\neq0$, $f(x,0)=0$. Quand $x$ tend vers $0$, le couple $(x,0)$ tend vers le couple $(0,0)$ et $f(x,0)$ tend vers $0$. Donc, si $f$ a une limite réelle en $0$, cette limite est nécessairement $0$.
+
+Pour $x\neq0$, $f(x,x)= \frac{1}{2}$. Quand $x$ tend vers $0$, le couple $(x,x)$ tend vers $(0,0)$ et $f(x,x)$ tend vers $ \frac{1}{2}\neq0$. Donc $f$ n'a pas de limite réelle en $(0,0)$.
+
+\item  $f$ est définie sur $\Rr^2\setminus\{(0,0)\}$.
+
+Pour $(x,y)\neq(0,0)$, $|f(x,y)|= \frac{x^2y^2}{x^2+y^2}= \frac{|xy|}{x^2+y^2}\times |xy|\leqslant \frac{1}{2}|xy|$. Comme $ \frac{1}{2}|xy|$ tend vers $0$ quand le couple $(x,y)$ tend vers le couple  $(0,0)$, il en est de même de $f$. $f(x,y)$ tend vers $0$ quand $(x,y)$ tend vers $(0,0)$.
+
+\item  $f$ est définie sur $\Rr^2\setminus\{(0,0)\}$.
+
+Pour $y\neq0$, $f(0,y)= \frac{y^3}{y^4}= \frac{1}{y}$. Quand $y$ tend vers $0$ par valeurs supérieures, le couple $(0,y)$ tend vers le couple $(0,0)$ et $f(0,y)$ tend vers $+\infty$. Donc $f$ n'a pas de limite réelle en $(0,0)$.
+
+\item  $f$ est définie sur $\Rr^2\setminus\{(0,0)\}$.
+
+Pour $x\neq0$, $f(x,x)= \frac{\sqrt{2x^2}}{2|x|\sqrt{|x|}}= \frac{1}{\sqrt{2|x|}}$.Quand $x$ tend vers $0$, le couple $(x,x)$ tend vers le couple $(0,0)$ et $f(x,x)$ tend vers $+\infty$. Donc $f$ n'a pas de limite réelle en $(0,0)$.
+
+\item  $f$ est définie sur $\Rr^2\setminus\{(x,-x),\;x\in\Rr\}$.
+
+Pour $x\neq0$, $f(x,-x+x^3)= \frac{(x+x^2-x^3)(-x+(-x+x^2)^2)}{x^3}\underset{x\rightarrow0}{\sim}- \frac{1}{x}$. Quand $x$ tend vers $0$ par valeurs supérieures, le couple $(x,-x+x^3)$ tend vers $(0,0$ et $f(x,-x+x^3)$ tend vers $-\infty$. Donc $f$ n'a pas de limite réelle en $(0,0)$.
+
+\item  $f$ est définie sur $\Rr^2\setminus\{(x,0),\;x\in\Rr\}$.
+
+$ \frac{1-\cos\sqrt{|xy|}}{|y|}\underset{(x,y)\rightarrow(0,0)}{\sim} \frac{(\sqrt{|xy|})^2}{2|y|}= \frac{|x|}{2}$ et donc $f$ tend vers $0$ quand $(x,y)$ tend vers $(0,0)$.
+
+\item  $f$ est définie sur $\Rr^3$ privé du cône de révolution d'équation $x^2-y^2+z^2=0$.
+
+$f(x,0,0)= \frac{1}{x}$ qui tend vers $+\infty$ quand $x$ tend vers $0$ par valeurs supérieures. Donc $f$ n'a pas de limite réelle en $(0,0,0)$.
+
+\item  $f(2+h,-2+k,l)= \frac{h+k}{h^2-k^2+l^2+4h+4k}=g(h,k,l)$. $g(h,0,0)$ tend vers $ \frac{1}{4}$ quand $h$ tend vers $0$ et $g(0,0,l)$ tend vers $0\neq \frac{1}{4}$ quand $l$ tend vers $0$. Donc, $f$ n'a pas de limite réelle quand $(x,y,z)$ tend vers $(2,-2,0)$.
+\end{enumerate}
+\fincorrection
+\correction{005888}
+\textbullet~$f$ est définie sur $\Rr^2$.
+
+\textbullet~$f$ est de classe $C^\infty$ sur $\Rr^2\setminus\{(0,0)\}$ en tant que fraction rationnelle dont le dénominateur ne s'annule pas sur $\Rr^2\setminus\{(0,0)\}$.
+
+\textbullet~\textbf{Continuité en $(0,0)$.} Pour $(x,y)\neq(0,0)$,
+
+\begin{center}
+$|f(x,y)-f(0,0)|= \frac{|xy||x^2-y^2|}{x^2+y^2}\leqslant|xy|\times \frac{x^2+y^2}{x^2+y^2}=|xy|$.
+\end{center}
+
+Comme $|xy|$ tend vers $0$ quand le couple $(x,y)$ tend vers le couple $(0,0)$, on a donc $\displaystyle\lim_{\substack{(x,y)\rightarrow(0,0)\\(x,y)\neq(0,0)}}f(x,y)=f(0,0)$. On en déduit que $f$ est continue en $(0,0)$ et finalement $f$ est continue sur $\Rr^2$.
+
+\begin{center}
+$f$ est de classe $C^0$ au moins sur $\Rr^2$.
+\end{center}
+
+\textbullet~\textbf{Dérivées partielles d'ordre $1$ sur $\Rr^2\setminus\{(0,0)\}$.} $f$ est de classe $C^1$ au moins sur $\Rr^2\setminus\{(0,0)\}$ et pour $(x,y)\neq(0,0)$,
+
+\begin{center}
+$ \frac{\partial f}{\partial x}(x,y)=y \frac{(3x^2-y^2)(x^2+y^2)-(x^3-xy^2)(2x)}{(x^2+y^2)^2}= \frac{y(x^4+4x^2y^2-y^4)}{(x^2+y^2)^2}$,
+\end{center}
+
+D'autre part, pour $(x,y)\neq(0,0)$ $f(x,y)=-f(y,x)$. Donc pour $(x,y)\neq(0,0)$,
+
+\begin{center}
+$ \frac{\partial f}{\partial y}(x,y)=- \frac{\partial f}{\partial x}(y,x)= \frac{x(x^4-4x^2y^2-y^4)}{(x^2+y^2)^2}$.
+\end{center}
+
+\textbullet~\textbf{Existence de $ \frac{\partial f}{\partial x}(0,0)$ et $ \frac{\partial f}{\partial y}(0,0)$.} Pour $x\neq0$,
+
+\begin{center}
+$ \frac{f(x,0)-f(0,0)}{x-0}= \frac{0-0}{x}=0$,
+\end{center}
+
+et donc $\lim_{x \rightarrow 0} \frac{f(x,0)-f(0,0)}{x-0}=0$. Ainsi, $ \frac{\partial f}{\partial x}(0,0)$ existe et $ \frac{\partial f}{\partial x}(0,0)=0$. De même, $ \frac{\partial f}{\partial y}(0,0)=0$. Ainsi, $f$ admet des dérivées partielles premières sur $\Rr^2$ définies par
+
+\begin{center}
+$\forall(x,y)\in\Rr^2$, $ \frac{\partial f}{\partial x}(x,y)=\left\{
+\begin{array}{l}
+ \frac{y(x^4+4x^2y^2-y^4)}{(x^2+y^2)^2}\;\text{si}\;(x,y)\neq(0,0)\\
+0\;\text{si}\;(x,y)=(0,0)
+\end{array}
+\right.$ et $ \frac{\partial f}{\partial y}(x,y)=\left\{
+\begin{array}{l}
+ \frac{x(x^4-4x^2y^2-y^4)}{(x^2+y^2)^2}\;\text{si}\;(x,y)\neq(0,0)\\
+0\;\text{si}\;(x,y)=(0,0)
+\end{array}
+\right.$.
+\end{center}
+
+\textbullet~\textbf{Continuité de $ \frac{\partial f}{\partial x}$ et $ \frac{\partial f}{\partial y}$ en $(0,0)$.} Pour $(x,y)\neq(0,0)$,
+
+\begin{center}
+$\left| \frac{\partial f}{\partial x}(x,y)- \frac{\partial f}{\partial x}(0,0)\right|= \frac{|y||x^4+4x^2y^2-y^4|}{(x^2+y^2)^2}\leqslant|y| \frac{x^4+4x^2y^2+y^4}{(x^2+y^2)^2}\leqslant|y| \frac{2x^4+4x^2y^2+2y^4}{(x^2+y^2)^2}=2|y|$.
+\end{center}
+
+Comme $2|y|$ tend vers $0$ quand $(x,y)$ tend vers $(0,0)$, on en déduit que $\left| \frac{\partial f}{\partial x}(x,y)- \frac{\partial f}{\partial x}(0,0)\right|$ tend vers $0$ quand $(x,y)$ tend vers $(0,0)$. Donc la fonction $ \frac{\partial f}{\partial x}$ est continue en $(0,0)$ et finalement sur $\Rr^2$. Il en est de même de la fonction $ \frac{\partial f}{\partial y}$ et on a montré que
+
+\begin{center}
+\shadowbox{
+$f$ est au moins de classe $C^1$ sur $\Rr^2$.
+}
+\end{center}
+\fincorrection
+\correction{005889}
+On pose $D=\{(x,0),\;x\in\Rr\}$ puis $\Omega=\Rr^2\setminus D$.
+
+\textbullet~$f$ est définie sur $\Rr^2$.
+
+\textbullet~$f$ est de classe $C^1$ sur $\Omega$ en vertu de théorèmes généraux et pour $(x,y)\in\Omega$,
+
+\begin{center}
+$ \frac{\partial f}{\partial x}(x,y)=y\cos\left( \frac{x}{y}\right)$ et $ \frac{\partial f}{\partial y}(x,y)=2y\sin\left( \frac{x}{y}\right)-x\cos\left( \frac{x}{y}\right)$.
+\end{center}
+
+\textbullet~Etudions la continuité de $f$ en $(0,0)$. Pour $(x,y)\neq(0,0)$,
+
+\begin{center}
+$|f(x,y)-f(0,0)|=\left\{
+\begin{array}{l}
+y^2\left|\sin\left( \frac{x}{y}\right)\right|\;\text{si}\;y\neq0\\
+\rule{0mm}{5mm}0\;\text{si}\;y=0
+\end{array}
+\right.\leqslant\left\{
+\begin{array}{l}
+y^2\;\text{si}\;y\neq0\\
+\rule{0mm}{5mm}0\;\text{si}\;y=0
+\end{array}
+\right.\leqslant y^2$.
+\end{center}
+
+Comme $y^2$ tend vers $0$ quand $(x,y)$ tend vers $0$, $\displaystyle\lim_{\substack{(x,y)\rightarrow(0,0)\\(x,y)\neq(0,0)}}f(x,y)=f(0,0)$ et donc $f$ est continue en $(0,0)$ puis
+
+\begin{center}
+$f$ est continue sur $\Rr^2$.
+\end{center}
+
+\textbullet~Etudions l'existence et la valeur éventuelle de $ \frac{\partial f}{\partial x}(x_0,0)$, $x_0$ réel donné. Pour $x\neq x_0$,
+
+\begin{center}
+$ \frac{f(x,0)-f(x_0,0)}{x-x_0}= \frac{0-0}{x-x_0}=0$.
+\end{center}
+
+Donc $ \frac{f(x,x_0)-f(x_0,0)}{x-x_0}$ tend vers $0$ quand $x$ tend vers $x_0$. On en déduit que $ \frac{\partial f}{\partial x}(x_0,0)$ existe et $ \frac{\partial f}{\partial x}(x_0,0)=0$. Finalement, la fonction $ \frac{\partial f}{\partial x}$ est définie sur $\Rr^2$ par
+
+\begin{center}
+$\forall (x,y)\in\Rr^2$, $ \frac{\partial f}{\partial x}(x,y)=\left\{
+\begin{array}{l}
+y\cos\left( \frac{x}{y}\right)\;\text{si}\;y\neq0\\
+\rule{0mm}{5mm}0\;\text{si}\;y=0
+\end{array}
+\right.$.
+\end{center}
+
+\textbullet~Etudions l'existence et la valeur éventuelle de $ \frac{\partial f}{\partial y}(x_0,0)$, $x_0$ réel donné. Pour $y\neq 0$,
+
+\begin{center}
+$ \frac{f(x_0,y)-f(x_0,0)}{y-0}= \frac{y^2\sin\left( \frac{x_0}{y}\right)}{y}=y\sin\left( \frac{x_0}{y}\right)$.
+\end{center}
+
+On en déduit que $\left| \frac{f(x_0,y)-f(x_0,0)}{y-0}\right|\leqslant|y|$ puis que $ \frac{f(x_0,y)-f(x_0,0)}{y-0}$ tend vers $0$ quand $y$ tend vers $0$. Par suite, $ \frac{\partial f}{\partial y}(x_0,0)$ existe et $ \frac{\partial f}{\partial y}(x_0,0)=0$. Finalement, la fonction $ \frac{\partial f}{\partial y}$ est définie sur $\Rr^2$ par
+
+\begin{center}
+$\forall (x,y)\in\Rr^2$, $ \frac{\partial f}{\partial y}(x,y)=\left\{
+\begin{array}{l}
+2y\sin\left( \frac{x}{y}\right)-x\cos\left( \frac{x}{y}\right)\;\text{si}\;y\neq0\\
+\rule{0mm}{5mm}0\;\text{si}\;y=0
+\end{array}
+\right.$.
+\end{center}
+
+\textbullet~Etudions la continuité de $ \frac{\partial f}{\partial x}$ en $(x_0,0)$, $x_0$ réel donné. Pour $(x,y)\in\Rr^2$,
+
+\begin{center}
+$\left| \frac{\partial f}{\partial x}(x,y)- \frac{\partial f}{\partial x}(x_0,0)\right|=\left\{
+\begin{array}{l}
+|y|\left|\cos\left( \frac{x}{y}\right)\right|\;\text{si}\;y\neq0\\
+\rule{0mm}{5mm}0\;\text{si}\;y=0
+\end{array}
+\right.\leqslant|y|$.
+\end{center}
+
+Quand $(x,y)$ tend vers $(0,0)$, $|y|$ tend vers $0$ et donc $ \frac{\partial f}{\partial x}(x,y)$ tend vers $ \frac{\partial f}{\partial x}(x_0,0)$ quand $(x,y)$ tend vers $(x_0,0)$. La fonction $ \frac{\partial f}{\partial x}$ est donc continue en $(x_0,0)$ et finalement
+
+\begin{center}
+la fonction $ \frac{\partial f}{\partial x}$ est continue sur $\Rr^2$.
+\end{center}
+
+\textbullet~Etudions la continuité de $ \frac{\partial f}{\partial y}$ en $(x_0,0)$, $x_0$ réel donné. Supposons tout d'abord $x_0=0$. Pour $(x,y)\in\Rr^2$,
+
+\begin{center}
+$\left| \frac{\partial f}{\partial y}(x,y)- \frac{\partial f}{\partial y}(0,0)\right|=\left\{
+\begin{array}{l}
+\left|2y\sin\left( \frac{x}{y}\right)-x\cos\left( \frac{x}{y}\right)\right|\;\text{si}\;y\neq0\\
+\rule{0mm}{5mm}0\;\text{si}\;y=0
+\end{array}
+\right.\leqslant2|y|+|x|$.
+\end{center}
+
+Quand $(x,y)$ tend vers $(0,0)$, $|x|+2|y|$ tend vers $0$ et donc $ \frac{\partial f}{\partial y}(x,y)$ tend vers $ \frac{\partial f}{\partial y}(0,0)$ quand $(x,y)$ tend vers $(0,0)$. 
+
+Supposons maintenant $x_0\neq0$. Pour $y\neq0$, $ \frac{\partial f}{\partial y}(x_0,y)=2y\sin\left( \frac{x_0}{y}\right)-x_0\cos\left( \frac{x_0}{y}\right)$. Quand $y$ tend vers $0$, $2y\sin\left( \frac{x_0}{y}\right)$ tend vers $0$ car $\left|2y\sin\left( \frac{x_0}{y}\right)\right|$ et $x_0\cos\left( \frac{x_0}{y}\right)$ n'a pas de limite réelle car $x_0\neq0$. Donc $ \frac{\partial f}{\partial y}(x_0,y)$ n'a pas de limite quand $y$ tend vers $0$ et la fonction $ \frac{\partial f}{\partial y}$ n'est pas continue en $(x_0,0)$ si $x_0\neq0$. On a montré que
+
+\begin{center}
+$f$ est de classe $C^1$ sur $\Omega\cup\{(0,0)\}$.
+\end{center}
+
+\textbullet~Etudions l'existence et la valeur éventuelle de $ \frac{\partial^2f}{\partial x\partial y}(0,0)$. Pour $x\neq0$,
+
+\begin{center} 
+$ \frac{ \frac{\partial f}{\partial y}(x,0)- \frac{\partial f}{\partial y}(0,0)}{x-0}= \frac{0-0}{x}=0$.
+\end{center}
+
+Donc $ \frac{ \frac{\partial f}{\partial y}(x,0)- \frac{\partial f}{\partial y}(0,0)}{x-0}$ tend vers $0$ quand $x$ tend vers $0$. On en déduit que $ \frac{\partial^2}{\partial x\partial y}(0,0)$ existe et $ \frac{\partial^2}{\partial x\partial y}(0,0)=0$. 
+
+\textbullet~Etudions l'existence et la valeur éventuelle de $ \frac{\partial^2f}{\partial y\partial x}(0,0)$. Pour $y\neq0$,
+
+\begin{center} 
+$ \frac{ \frac{\partial f}{\partial x}(0,y)- \frac{\partial f}{\partial x}(0,0)}{y-0}= \frac{y\cos\left( \frac{0}{y}\right)}{y}=1$.
+\end{center}
+
+Donc $ \frac{ \frac{\partial f}{\partial x}(0,y)- \frac{\partial f}{\partial x}(0,0)}{y-0}$ tend vers $1$ quand $y$ tend vers $0$. On en déduit que $ \frac{\partial^2}{\partial y\partial x}(0,0)$ existe et $ \frac{\partial^2}{\partial y\partial x}(0,0)=1$. On a montré que $ \frac{\partial^2}{\partial x\partial y}(0,0)$ et $ \frac{\partial^2}{\partial y\partial x}(0,0)$ existent et sont différents. D'après le théorème de \textsc{Schwarz}, $f$ n'est pas de classe $C^2$ sur $\Omega\cup\{(0,0)\}$.
+\fincorrection
+\correction{005890}
+Soit $(x,y,z,t)\in\Rr^4$.
+
+\begin{align*}\ensuremath
+\varphi(x,y)=(z,t)&\Leftrightarrow\left\{
+\begin{array}{l}
+e^x-e^y=z\\
+x+y=t
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=t-x\\
+e^x-e^{t-x}=z
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=t-x\\
+(e^x)^2-ze^x-e^t=0
+\end{array}
+\right.\\
+ &\Leftrightarrow\left\{
+\begin{array}{l}
+y=t-x\\
+e^x=z-\sqrt{z^2+4e^t}\;\text{ou}\;e^x=z+\sqrt{z^2+4e^t}
+\end{array}
+\right.\\
+&\Leftrightarrow\left\{
+\begin{array}{l}
+e^x=z+\sqrt{z^2+4e^t}\\
+y=t-x
+\end{array}
+\right.\;(\text{car}\;z-\sqrt{z^2+4e^t}<z-\sqrt{z^2}=z-|z|\leqslant0)\\
+&\Leftrightarrow\left\{
+\begin{array}{l}
+x=\ln(z+\sqrt{z^2+4e^t})\\
+y=t-\ln(z+\sqrt{z^2+4e^t})
+\end{array}
+\right.\;(\text{car}\;z+\sqrt{z^2+4e^t}>z+\sqrt{z^2}=z+|z|\geqslant0).
+\end{align*}
+
+Ainsi, tout élément $(z,t)\in\Rr^2$ a un antécédent et un seul dans $\Rr^2$ par $\varphi$ et donc $\varphi$ est une bijection de $\Rr^2$ sur lui-même.
+
+La fonction $\varphi$ est de classe $C^1$ sur $\Rr^2$ de jacobien $J_\varphi(x,y)=\left|
+\begin{array}{cc}
+e^x&-e^y\\
+1&1
+\end{array}
+\right|=e^x+e^y$. Le jacobien de $\varphi$ ne s'annule pas sur $\Rr^2$. En résumé, $\varphi$ est une bijection de $\Rr^2$ sur lui-même, de classe $C^1$ sur $\Rr^2$ et le jacobien de $\varphi$ ne s'annule pas sur $\Rr^2$. On sait alors que
+
+\begin{center}
+\shadowbox{
+$\varphi$ est un $C^1$-difféomorphisme de $\Rr^2$ sur lui-même.
+}
+\end{center}
+\fincorrection
+\correction{005891}
+Soit $n\in\Nn$. Soit $x\in\Rr$. La fonction $f_x:y\mapsto y^{2n+1}+y-x$ est continue et strictement croissante sur $\Rr$ en tant que somme de fonctions continues et strictement croissantes sur $\Rr$. Donc la fonction $f_x$ réalise une bijection de $\Rr$ sur $]\lim_{y \rightarrow -\infty}f_x(y),\lim_{y \rightarrow +\infty}f_x(y)[=\Rr$. En particulier, l'équation $f_x(y)=0$ a une et une seule solution dans $\Rr$ que l'on note $\varphi(x)$.
+
+La fonction $f:(x,y)\mapsto y^{2n+1}+y-x$ est de classe $C^1$ sur $\Rr^2$ qui est un ouvert de $\Rr^2$ et de plus, $\forall(x,y)\in\Rr^2$, $ \frac{\partial f}{\partial y}(x,y)=(2n+1)y^{2n}+1\neq0$. D'après le théorème des fonctions implicites, la fonction $\varphi$ implicitement définie par l'égalité $f(x,y)=0$ est dérivable en tout réel $x$ et de plus, en dérivant l'égalité $\forall x\in\Rr$, $(\varphi(x))^{2n+1}+\varphi(x)-x=0$, on obtient $\forall x\in\Rr$, $(2n+1)\varphi'(x)(\varphi(x))^{2n}+\varphi'(x)-1=0$ et donc
+
+\begin{center}
+$\forall x\in\Rr$, $\varphi'(x)= \frac{1}{(2n+1)(\varphi(x))^{2n}+1}$.
+\end{center}
+
+Montrons par récurrence que $\forall p\in\Nn^*$, la fonction $\varphi$ est $p$ fois dérivable sur $\Rr$.
+
+- C'est vrai pour $p=1$.
+
+- Soit $p\geqslant1$. Supposons que la fonction $\varphi$ soit $p$ fois dérivable sur $\Rr$. Alors la fonction $\varphi'= \frac{1}{(2n+1)\varphi^{2n}+1}$ est 
+
+$p$ fois dérivable sur $\Rr$ en tant qu'inverse d'une fonction $p$ fois dérivable sur $\Rr$ ne s'annulant pas sur $\Rr$. On en déduit
+
+que la fonction $\varphi$ est $p+1$ fois dérivable sur $\Rr$.
+
+On a montré par récurrence que $\forall p\in\Nn^*$, la fonction $\varphi$ est $p$ fois dérivable sur $\Rr$ et donc que
+
+\begin{center}
+\shadowbox{
+la fonction $\varphi$ est de classe $C^\infty$ sur $\Rr$.
+}
+\end{center}
+
+Calculons maintenant $I=\int_{0}^{2}\varphi(t)\;dt$. On note tout d'abord que, puisque $0^{2n+1}+0-0=0$, on a $\varphi(0)=0$ et puisque $1^{2n+1}+1-2=0$, on a $\varphi(2)=1$. 
+
+Maintenant, pour tout réel $x$ de $[0,2]$, on a $\varphi'(x)(\varphi(x))^{2n+1}+\varphi'(x)\varphi(x)-x\varphi'(x)=0$ (en multipliant par $\varphi'(x)$ les deux membres de l'égalité définissant $\varphi(x)$) et en intégrant sur le segment $[0,2]$, on obtient
+
+\begin{center}
+$\int_{0}^{2}\varphi'(x)(\varphi(x))^{2n+1}\;dx+\int_{0}^{2}\varphi'(x)\varphi(x)\;dx-\int_{0}^{2}x\varphi'(x)\;dx=0$ $(*)$.
+\end{center}
+
+Or, $\int_{0}^{2}\varphi'(x)(\varphi(x))^{2n+1}\;dx=\left[ \frac{(\varphi(x))^{2n+2}}{2n+2}\right]_0^2= \frac{1}{2n+2}$. De même, $\int_{0}^{2}\varphi'(x)\varphi(x)\;dx=\left[ \frac{(\varphi(x))^{2}}{2}\right]_0^2= \frac{1}{2}$ et donc $\int_{0}^{2}\varphi'(x)(\varphi(x))^{2n+1}\;dx+\int_{0}^{2}\varphi'(x)\varphi(x)\;dx= \frac{1}{2n+2}+ \frac{1}{2}= \frac{n+2}{2n+2}$. D'autre part, puisque les deux fonctions $x\mapsto x$ et $x\mapsto\varphi(x)$ sont de classe $C^1$ sur le segment $[0,2]$, on peut effectuer une intégration par parties qui fournit
+
+\begin{center}
+$-\int_{0}^{2}x\varphi'(x)\;dx=\left[-x\varphi(x)\right]_0^2+\int_{0}^{2}\varphi(x)\;dx=-2+I$.
+\end{center}
+
+L'égalité $(*)$ s'écrit donc $ \frac{n+2}{2n+2}-2+I=0$ et on obtient $I= \frac{3n+2}{2n+2}$.
+
+\begin{center}
+\shadowbox{
+$\int_{0}^{2}\varphi(x)\;dx= \frac{3n+2}{2n+2}$.
+}
+\end{center}
+\fincorrection
+\correction{005892}
+Soit $x\in\Rr$. La fonction $f_x:y\mapsto e^{x+y}+y-1$ est continue et strictement croissante sur $\Rr$ en tant que somme de fonctions continues et strictement croissantes sur $\Rr$. Donc la fonction $f_x$ réalise une bijection de $\Rr$ sur $]\lim_{y \rightarrow -\infty}f_x(y),\lim_{y \rightarrow +\infty}f_x(y)[=\Rr$. En particulier, l'équation $f_x(y)=0$ a une et une seule solution dans $\Rr$ que l'on note $\varphi(x)$.
+
+La fonction $f:(x,y)\mapsto e^{x+y}+y-1$ est de classe $C^1$ sur $\Rr^2$ qui est un ouvert de $\Rr^2$ et de plus, $\forall(x,y)\in\Rr^2$, $ \frac{\partial f}{\partial y}(x,y)=e^{x+y}+1\neq0$. D'après le théorème des fonctions implicites, la fonction $\varphi$ implicitement définie par l'égalité $f(x,y)=0$ est dérivable en tout réel $x$ et de plus, en dérivant l'égalité $\forall x\in\Rr$, $e^{x+\varphi(x)}+\varphi(x)-1=0$, on obtient $\forall x\in\Rr$, $(1+\varphi'(x))e^{x+\varphi(x)}+\varphi'(x)=0$ ou encore
+
+\begin{center}
+$\forall x\in\Rr$, $\varphi'(x)=- \frac{e^{x+\varphi(x)}}{e^{x+\varphi(x)}+1}$ $(*)$.
+\end{center}
+
+On en déduit par récurrence que $\varphi$ est de classe $C^\infty$ sur $\Rr$ et en particulier admet en $0$ un développement limité d'ordre $3$. Déterminons ce développement limité.
+
+\textbf{1ère solution.} Puisque $e^{0+0}+0-1=0$, on a $\varphi(0)=0$. L'égalité $(*)$ fournit alors $\varphi'(0)=- \frac{1}{2}$ et on peut poser $\varphi(x)\underset{x\rightarrow0}{=}- \frac{1}{2}x+ax^2+bx^3+o(x^3)$. On obtient
+
+\begin{align*}\ensuremath
+e^{x+\varphi(x)}&\underset{x\rightarrow0}{=}e^{\frac{x}{2}+ax^2+bx^3+o(x^3)}\\
+ &\underset{x\rightarrow0}{=}1+\left( \frac{x}{2}+ax^2+bx^3\right)+ \frac{1}{2}\left( \frac{x}{2}+ax^2\right)^2+ \frac{1}{6}\left( \frac{x}{2}\right)^3+o(x^3)\\
+  &\underset{x\rightarrow0}{=}1+ \frac{x}{2}+\left(a+ \frac{1}{8}\right)x^2+\left(b+ \frac{a}{2}+ \frac{1}{48}\right)x^3+o(x^3).
+\end{align*}
+
+L'égalité $e^{x+\varphi(x)}+\varphi(x)-1=0$ fournit alors $a+ \frac{1}{8}+a=0$ et $b+ \frac{a}{2}+ \frac{1}{48}+b=0$ ou encore $a=- \frac{1}{16}$ et $b= \frac{1}{192}$.
+
+\textbf{2ème solution.} On a déjà $\varphi(0)=0$ et $\varphi'(0)=0$. En dérivant l'égalité $(*)$, on obtient
+
+\begin{center}
+$\varphi''(x)=- \frac{(1+\varphi'(x))e^{x+\varphi(x)}(e^{x+\varphi(x)}+1)-(1+\varphi'(x))e^{x+\varphi(x)}(e^{x+\varphi(x)})}{\left(e^{x+\varphi(x)}+1\right)^2}=- \frac{(1+\varphi'(x))e^{x+\varphi(x)}}{\left(e^{x+\varphi(x)}+1\right)^2}$,
+\end{center}
+
+et donc $ \frac{\varphi''(0)}{2}=- \frac{ \frac{1}{2}}{2\times2^2}=- \frac{1}{16}$. De même,
+
+\begin{center}
+$\varphi^{(3)}(x)=-\varphi''(x) \frac{e^{x+\varphi(x)}}{\left(e^{x+\varphi(x)}+1\right)^2}-(1+\varphi'(x))e^{x+\varphi(x)} \frac{(1+\varphi'(x))}{\left(e^{x+\varphi(x)}+1\right)^2}+(1+\varphi'(x))e^{x+\varphi(x)} \frac{2(1+\varphi'(x))e^{x+\varphi(x)}}{\left(e^{x+\varphi(x)}+1\right)^3}$,
+\end{center}
+
+et donc $ \frac{\varphi^{(3)}(0)}{6}= \frac{1}{6}\left( \frac{1}{8}\times \frac{1}{4}- \frac{1}{2}\times \frac{1/2}{4}+ \frac{1}{2}\times \frac{1}{8}\right)= \frac{1}{192}$. La formule de \textsc{Taylor}-\textsc{Young} refournit alors
+
+\begin{center}
+\shadowbox{
+$\varphi(x)\underset{x\rightarrow0}{=}- \frac{x}{2}- \frac{x^2}{16}+ \frac{x^3}{384}+o(x^3)$.
+}
+\end{center}
+\fincorrection
+\correction{005893}
+On dérive par rapport à $\lambda$ les deux membres de l'égalité $f(\lambda x) =\lambda^rf(x)$ et on obtient
+
+\begin{center}
+$\forall x=(x_1,...,x_n)\in\Rr^n$, $\forall\lambda>0$, $\sum_{i=1}^{n}x_i \frac{\partial f}{\partial x_i}(\lambda x)=r\lambda^{r-1}f(x)$,
+\end{center}
+
+et pour $\lambda=1$, on obtient
+
+\begin{center}
+$\forall x = (x_1,...,x_n)\in \Rr^n$ $\sum_{i=1}^{n}x_i \frac{\partial f}{\partial x_i}(x) = rf(x)$.
+\end{center}
+\fincorrection
+\correction{005894}
+\begin{enumerate}
+ \item  $f$ est de classe $C^1$ sur $\Rr^2$ qui est un ouvert de $\Rr^2$. Donc si $f$ admet un extremum local en un point $(x_0,y_0)$ de $\Rr^2$, $(x_0,y_0)$ est un point critique de $f$.
+
+\begin{center}
+$df_{(x,y)}=0\Leftrightarrow\left\{
+\begin{array}{l}
+3x^2+6xy-15=0\\
+3x^2-12=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x=2\\
+y= \frac{1}{4}
+\end{array}
+\right.\;\text{ou}\;\left\{
+\begin{array}{l}
+x=-2\\
+y=- \frac{1}{4}
+\end{array}
+\right.$.
+\end{center}
+
+Réciproquement, $r=6x+6y$, $t=0$ et $s=6x$ puis $rt-s^2=-36x^2$. Ainsi, $(rt-s^2)\left(2, \frac{1}{4}\right)=(rt-s^2)\left(-2,- \frac{1}{4}\right)=-144<0$ et $f$ n'admet pas d'extremum local en $\left(2, \frac{1}{4}\right)$ ou $\left(-2,- \frac{1}{4}\right)$.
+
+\begin{center}
+\shadowbox{
+$f$ n'admet pas d'extremum local sur $\Rr^2$.
+}
+\end{center}
+
+\item  La fonction $f$ est de classe $C^1$ sur $\Rr^2$ en tant que polynôme à plusieurs variables. Donc, si $f$ admet un extremum local en $(x_0,y_0)\in\Rr^2$, $(x_0,y_0)$ est un point critique de $f$. Soit $(x,y)\in\Rr^2$.
+
+\begin{align*}\ensuremath
+\left\{
+\begin{array}{l}
+ \frac{\partial f}{\partial x}(x,y)=0\\
+\rule{0mm}{7mm} \frac{\partial f}{\partial y}(x,y)=0
+\end{array}
+\right.&\Leftrightarrow\left\{
+\begin{array}{l}
+-4(x-y)+4x^3=0\\
+4(x-y)+4y^3=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x^3+y^3=0\\
+-4(x-y)+4x^3=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=-x\\
+x^3-2x=0
+\end{array}
+\right.\\
+ &\Leftrightarrow(x,y)\in\left\{(0,0),\left(\sqrt{2},\sqrt{2}\right),\left(-\sqrt{2},-\sqrt{2}\right)\right\}.
+\end{align*}
+
+Réciproquement, $f$ est plus précisément de classe $C^2$ sur $\Rr^2$ et
+
+\begin{center}
+$r(x,y)t(x,y)-s^2(x,y)=(-4+12x^2)(-4+12y^2)-(4)^2=-48x^2-48y^2+144x^2y^2=48(3x^2y^2-x^2-y^2)$
+\end{center}
+
+\textbullet~$(rt-s^2)\left(\sqrt{2},\sqrt{2}\right)=48(12-2-2)>0$. Donc $f$ admet un extremum local en $\left(\sqrt{2},\sqrt{2}\right)$. Plus précisément, puisque $r\left(\sqrt{2},\sqrt{2}\right)=2\times12-4=20>0$, $f$ admet un minimum local en $\left(\sqrt{2},\sqrt{2}\right)$. De plus, pour $(x,y)\in\Rr^2$,
+
+\begin{align*}\ensuremath
+f(x,y)-f\left(\sqrt{2},\sqrt{2}\right)&=-2(x-y)^2+x^4+y^4-8=x^4+y^4-2x^2-2y^2+4xy+8\\
+ &\geqslant x^4+y^4-2x^2-2y^2-2(x^2+y^2)+8=(x^4-4x^2+4)+(y^4-4y^2+4)=(x^2-2)^2+(y^2-2)^2\\
+ &\geqslant0.
+\end{align*}
+
+et $f\left(\sqrt{2},\sqrt{2}\right)$ est un minimum global.
+
+\textbullet~Pour tout $(x,y)\in\Rr^2$, $f(-x,-y)=f(x,y)$ et donc $f$ admet aussi un minimum global en $\left(-\sqrt{2},-\sqrt{2}\right)$ égal à $8$.
+
+\textbullet~$f(0,0)=0$. Pour $x\neq0$, $f(x,x)=2x^4>0$ et donc $f$ prend des valeurs strictement supérieures à $f(0,0)$ dans tout voisinage de $(0,0)$. Pour $x\in\left]-\sqrt{2},\sqrt{2}\right[\setminus\{0\}$, $f(x,0)=x^4-2x^2=x^2(x^2-2)<0$ et $f$ prend des valeurs strictement inférieures à $f(0,0)$ dans tout voisinage de $(0,0)$. Finalement, $f$ n'admet pas d'extremum local en $(0,0)$.
+
+\begin{center}
+\shadowbox{
+$f$ admet un minimum global égal à $8$, atteint en $\left(\sqrt{2},\sqrt{2}\right)$ et $\left(-\sqrt{2},-\sqrt{2}\right)$.
+}
+\end{center}
+\end{enumerate}
+\fincorrection
+\correction{005895}
+On munit $\mathcal{M}_n(\Rr)$ d'une norme sous-multiplicative $\|\;\|$. Soit $A\in GL_n(\Rr)$. On sait que $GL_n(\Rr)$ est un ouvert de $\mathcal{M}_n(\Rr)$ et donc pour $H\in\mathcal{M}_n(\Rr)$ de norme suffisamment petite, $A+H\in GL_n(\Rr)$. Pour un tel $H$
+
+\begin{center}
+$(A+H)^{-1}-A^{-1}=(A+H)^{-1}(I_n-(A+H)A^{-1})=-(A+H)^{-1}HA^{-1}$
+\end{center}
+
+puis
+
+\begin{align*}\ensuremath
+(A+H)^{-1}-A^{-1}+A^{-1}HA^{-1}&=-(A+H)^{-1}HA^{-1}+A^{-1}HA^{-1}=(A+H)^{-1}(-HA^{-1}+(A+H)A^{-1}HA^{-1})\\
+ &=(A+H)^{-1}HA^{-1}HA^{-1}.
+\end{align*}
+
+Par suite, $\left\|f(A+H)-f(A)+A^{-1}HA^{-1}\right\|=\left\|(A+H)^{-1}-A^{-1}+A^{-1}HA^{-1}\right\|\leqslant\left\|(A+H)^{-1}\right\|\left\|A^{-1}\right\|^2\left\|H\right\|^2$. 
+
+Maintenant, la formule $M^{-1}= \frac{1}{\text{det}(M)}{^t}(\text{com}(M))$, valable pour tout $M\in GL_n(\Rr)$, et la continuité du déterminant montre que l'application $M\mapsto M^{-1}$ est continue sur l'ouvert $GL_n(\Rr)$. On en déduit que $\left\|(A+H)^{-1}\right\|$ tend vers $\left\|A^{-1}\right\|$ quand $H$ tend vers $0$. Par suite,
+
+\begin{center}
+$\lim_{H \rightarrow 0}\left\|(A+H)^{-1}\right\|\left\|A^{-1}\right\|^2\left\|H\right\|=0$ et donc $\lim_{H \rightarrow 0} \frac{1}{\|H\|}\left\|(A+H)^{-1}-A^{-1}+A^{-1}HA^{-1}\right\|=0$.
+\end{center}
+
+Comme l'application $H\mapsto -A^{-1}HA^{-1}$ est linéaire, c'est la différentielle de $f$ en $A$.
+
+\begin{center}
+\shadowbox{
+$\forall A\in GL_n(\Rr)$, $\forall H\in\mathcal{M}_n(\Rr)$, $df_A(H)=-A^{-1}HA^{-1}$.
+}
+\end{center}
+\fincorrection
+\correction{005896}
+Pour tout complexe $z$ tel que $|z|\leqslant1$,
+
+\begin{center}
+$|\sin(z)|=\left|\sum_{n=0}^{+\infty}(-1)^n \frac{z^{2n+1}}{(2n+1)!}\right|\leqslant\sum_{n=0}^{+\infty} \frac{|z|^{2n+1}}{(2n+1)!}=\sh(|z|)\leqslant\sh1$,
+\end{center}
+
+l'égalité étant obtenue effectivement pour $z=i$ car $|\sin(i)|=\left| \frac{e^{i^2}-e^{-i^2}}{2i}\right|= \frac{e-e^{-1}}{2}=\sh(1)$.
+
+\begin{center}
+\shadowbox{
+$\text{Max}\{|\sin z|,\;z\in\Cc,\;|z|\leqslant1\}=\sh(1)$.
+}
+\end{center}
+\fincorrection
+\correction{005897}
+\begin{enumerate}
+ \item  Pour $(x,y)\in\Rr^2$, on pose $P(x,y)=2x+2y+e^{x+y}=Q(x,y)$. Les fonctions $P$ et $Q$ sont de classe $C^1$ sur $\Rr^2$ qui est un ouvert étoilé de $\Rr^2$. Donc, d'après le théorème de \textsc{Schwarz}, $\omega$ est exacte sur $\Rr^2$ si et seulement si $ \frac{\partial P}{\partial y}= \frac{\partial Q}{\partial x}$ et comme $ \frac{\partial P}{\partial y}=2+e^{x+y}= \frac{\partial Q}{\partial x}$, la forme différentielle $\omega$ est une forme différentielle exacte sur $\Rr^2$.
+
+Soit $f$ une fonction $f$ de classe $C^1$ sur $\Rr^2$.
+
+\begin{align*}\ensuremath
+df=\omega&\Leftrightarrow\forall(x,y)\in\Rr^2,\;\left\{
+\begin{array}{l}
+ \frac{\partial f}{\partial x}(x,y)=2x+2y+e^{x+y}\\
+\rule{0mm}{7mm} \frac{\partial f}{\partial y}(x,y)=2x+2y+e^{x+y}
+\end{array}
+\right.\\
+ &\Leftrightarrow\exists g\in C^1(\Rr,\Rr)/\;\forall(x,y)\in\Rr^2,\;
+\left\{
+\begin{array}{l}
+f(x,y)=x^2+2xy+e^{x+y}+g(y)\\
+2x+e^{x+y}+g'(y)=2x+2y+e^{x+y}
+\end{array}
+\right.\\
+ &\Leftrightarrow\exists\lambda\in\Rr/\;\forall(x,y)\in\Rr^2,\;
+\left\{
+\begin{array}{l}
+f(x,y)=x^2+2xy+e^{x+y}+g(y)\\
+g(y)=y^2+\lambda
+\end{array}
+\right.\\
+ &\Leftrightarrow\exists\lambda\in\Rr/\;\forall(x,y)\in\Rr^2/\;f(x,y)=(x+y)^2+e^{x+y}+\lambda.
+\end{align*}
+
+Les primitives de $\omega$ sur $\Rr^2$ sont les fonctions de la forme $(x,y)\mapsto(x+y)^2+e^{x+y}+\lambda$, $\lambda\in\Rr$.
+
+\textbf{Remarque.} On pouvait aussi remarquer immédiatement que si $f(x,y)=(x+y)^2+e^{x+y}$ alors $df=\omega$.
+
+\item  La forme différentielle $\omega$ est de classe $C^1$ sur $\Omega=\{(x,y)\in\Rr^2/\;y > x\}$ qui est un ouvert étoilé de $\Rr^2$ car convexe. Donc, d'après le théorème de \textsc{Schwarz}, $\omega$ est exacte sur $\Omega$ si et seulement si $\omega$ est fermée sur $\Omega$.
+
+$ \frac{\partial}{\partial x}\left( \frac{x}{(x-y)^2}\right)= \frac{\partial}{\partial x}\left( \frac{1}{x-y}+y \frac{1}{(x-y)^2}\right)=- \frac{1}{(x-y)^2}- \frac{2y}{(x-y)^3}=- \frac{x+y}{(x-y)^3}= \frac{x+y}{(y-x)^3}$.
+
+$ \frac{\partial}{\partial y}\left(- \frac{y}{(x-y)^2}\right)= \frac{\partial}{\partial y}\left(- \frac{1}{y-x}-x \frac{1}{(y-x)^2}\right)= \frac{1}{(y-x)^2}+ \frac{2x}{(y-x)^3}= \frac{x+y}{(y-x)^3}= \frac{\partial}{\partial x}\left( \frac{x}{(x-y)^2}\right)$.
+
+Donc $\omega$ est exacte sur l'ouvert $\Omega$. Soit $f$ une fonction $f$ de classe $C^1$ sur $\Rr^2$.
+
+\begin{align*}\ensuremath
+df=\omega&\Leftrightarrow\forall(x,y)\in\Omega,\;\left\{
+\begin{array}{l}
+ \frac{\partial f}{\partial x}(x,y)=- \frac{y}{(x-y)^2}\\
+\rule{0mm}{6mm} \frac{\partial f}{\partial y}(x,y)= \frac{x}{(x-y)^2}
+\end{array}
+\right.\\
+ &\Leftrightarrow\exists g\in C^1(\Rr,\Rr)/\;\forall(x,y)\in\Omega,\;
+\left\{
+\begin{array}{l}
+f(x,y)= \frac{y}{x-y}+g(y)\\
+ \frac{x}{(x-y)^2}+g'(y)= \frac{x}{(x-y)^2}
+\end{array}
+\right.\\
+ &\Leftrightarrow\exists\lambda\in\Rr/\;\forall(x,y)\in\Omega,\;f(x,y)= \frac{y}{x-y}+\lambda.
+\end{align*}
+
+Les primitives de $\omega$ sur $\Omega$ sont les fonctions de la forme $(x,y)\mapsto \frac{y}{x-y}+\lambda$, $\lambda\in\Rr$.
+
+ 
+
+\item  $\omega$ est de classe $C^1$ sur $\Rr^2\setminus\{(0,0)\}$ qui est un ouvert de $\Rr^2$ mais n'est pas étoilé. On se place dorénavant sur $\Omega=\Rr^2\setminus\{(x,0),\;x\in]-\infty,0]\}$ qui est un ouvert étoilé de $\Rr^2$. Sur $\Omega$, $\omega$ est exacte si et seulement si $\omega$ est fermée d'après le théorème de \textsc{Schwarz}.
+
+$ \frac{\partial}{\partial x}\left( \frac{y}{x^2+y^2}-y\right)=- \frac{2xy}{(x^2+y^2)^2}= \frac{\partial}{\partial y}\left( \frac{x}{x^2+y^2}\right)$. Donc $\omega$ est exacte sur $\Omega$. Soit $f$ une application de classe $C^1$ sur $\Omega$.
+
+\begin{align*}\ensuremath
+df=\omega&\Leftrightarrow\forall(x,y)\in\Omega,\;\left\{
+\begin{array}{l}
+ \frac{\partial f}{\partial x}(x,y)= \frac{x}{x^2+y^2}\\
+\rule{0mm}{6mm} \frac{\partial f}{\partial y}(x,y)= \frac{y}{x^2+y^2}-y
+\end{array}
+\right.\\
+ &\Leftrightarrow\exists g\in C^1(\Rr,\Rr)/\;\forall(x,y)\in\Omega,\;\left\{
+\begin{array}{l}
+ \frac{\partial f}{\partial x}(x,y)= \frac{1}{2}\ln(x^2+y^2)+g(y)\\
+ \frac{y}{x^2+y^2}+g'(y)= \frac{y}{x^2+y^2}-y
+\end{array}
+\right.\\
+ &\Leftrightarrow\exists\lambda\in\Rr/\;\forall(x,y)\in\Omega,\;f(x,y)= \frac{1}{2}(\ln(x^2+y^2)-y^2)+\lambda.
+\end{align*}
+
+Les primitives de $\omega$ sur $\Omega$ sont les fonctions de la forme $(x,y)\mapsto \frac{1}{2}(\ln(x^2+y^2)-y^2)+\lambda$, $\lambda\in\Rr$.
+
+Les fonctions précédentes sont encore des primitives de $\omega$ sur $\Rr^2\setminus\{(0,0)\}$ et donc $\omega$ est exacte sur $\Rr^2\setminus\{(0,0)\}$.
+
+\item   $\omega$ est de classe $C^1$ sur $]0,+\infty[^2$ qui est un ouvert étoilé de $\Rr^2$. Donc $\omega$ est exacte sur $]0,+\infty[^2$ si et seulement si $\omega$ est fermée sur $]0,+\infty[^2$ d'après le théorème de \textsc{Schwarz}.
+
+$ \frac{\partial}{\partial x}\left(
+- \frac{1}{xy^2}\right)= \frac{1}{x^2y^2}$ et $ \frac{\partial}{\partial y}\left(
+ \frac{1}{x^2y}\right)=- \frac{1}{x^2y^2}$. Donc $ \frac{\partial}{\partial x}\left(
+- \frac{1}{xy^2}\right)\neq \frac{\partial}{\partial y}\left(
+ \frac{1}{x^2y}\right)$ et $\omega$ n'est pas exacte sur $]0,+\infty[^2$.
+
+On cherche un facteur intégrant de la forme $h~:~(x,y)\mapsto g(x^2+y^2)$ où $g$ est une fonction non nulle de classe $C^1$ sur $]0,+\infty[$.
+
+$ \frac{\partial}{\partial x}\left(
+- \frac{1}{xy^2}g(x^2+y^2)\right)= \frac{1}{x^2y^2}g(x^2+y^2)- \frac{2}{y^2}g'(x^2+y^2)$ et $ \frac{\partial}{\partial y}\left(
+ \frac{1}{x^2y}g(x^2+y^2)\right)=- \frac{1}{x^2y^2}g(x^2+y^2)+ \frac{2}{x^2}g'(x^2+y^2)$.
+
+\begin{align*}\ensuremath
+h\omega\;\text{est exacte sur}\;]0,+\infty[^2&\Leftrightarrow\forall(x,y)\in]0,+\infty[^2,\; \frac{1}{x^2y^2}g(x^2+y^2)- \frac{2}{y^2}g'(x^2+y^2)=- \frac{1}{x^2y^2}g(x^2+y^2)+ \frac{2}{x^2}g'(x^2+y^2)\\
+ &\Leftrightarrow\forall(x,y)\in]0,+\infty[^2,\; \frac{1}{x^2y^2}g(x^2+y^2)- \frac{x^2+y^2}{x^2y^2}g'(x^2+y^2)=0\\
+ &\Leftrightarrow\forall t>0,\;-tg'(t)+g(t)=0\Leftrightarrow\exists \lambda\in\Rr/\;\forall t>0,\;g(t)=\lambda t.
+\end{align*}
+
+La forme différentielle $(x^2+y^2)\omega$ est exacte sur $]0,+\infty[^2$. De plus, 
+
+\begin{center}
+$d\left( \frac{x}{y}- \frac{y}{x}\right)=\left( \frac{1}{y}+ \frac{y}{x^2}\right)dx-\left( \frac{x}{y^2}+ \frac{1}{x}\right)dy=(x^2+y^2)\omega$.
+\end{center}
+\end{enumerate}
+\fincorrection
+\correction{005898}
+\begin{enumerate}
+ \item  Soit $f$ une application de classe $C^1$ sur $\Rr^2$. Posons $f(x,y)=g(u,v)$ où $u = x+y$ et $v = x+2y$. L'application $(x,y)\mapsto(x+y,x+2y)=(u,v)$ est un automorphisme de $\Rr^2$ et en particulier un $C^1$-difféormorphisme de $\Rr^2$ sur lui-même.
+
+\begin{center}
+$ \frac{\partial f}{\partial x}= \frac{\partial}{\partial x}(g(u,v))= \frac{\partial u}{\partial x}
+\times \frac{\partial g}{\partial u}+ \frac{\partial v}{\partial x}
+\times \frac{\partial g}{\partial v}= \frac{\partial g}{\partial u}+ \frac{\partial g}{\partial v}$
+\end{center}
+
+De même, $ \frac{\partial f}{\partial y}= \frac{\partial g}{\partial u}+2 \frac{\partial g}{\partial v}$ et donc
+
+\begin{center}
+$2 \frac{\partial f}{\partial x}- \frac{\partial f}{\partial y}=2 \frac{\partial g}{\partial u}+2 \frac{\partial g}{\partial v}- \frac{\partial g}{\partial u}-2 \frac{\partial g}{\partial v}= \frac{\partial g}{\partial u}$.
+\end{center}
+
+Par suite, $2 \frac{\partial f}{\partial x}- \frac{\partial f}{\partial y}=0\Leftrightarrow \frac{\partial g}{\partial u}=0\Leftrightarrow\exists h\in C^1(\Rr,\Rr)/\;\forall(u,v)\in\Rr^2,\;g(u,v)=h(v)\Leftrightarrow\exists h\in C^1(\Rr,\Rr)/\;\forall(x,y)\in\Rr^2,\;f(x,y)=h(x+2y)$.
+
+\begin{center}
+\shadowbox{
+Les solutions sont les $(x,y)\mapsto h(x+2y)$ où $h\in C^1(\Rr,\Rr)$.
+}
+\end{center}
+
+Par exemple, la fonction $(x,y)\mapsto\cos\sqrt{(x+2y)^2+1}$ est solution.
+
+\item  Soit $f$ une application de classe $C^1$ sur $\Rr^2\setminus\{(0,0)\}$. Posons $f(x,y)=g(r,\theta)$ où $x=r\cos\theta$ et $y=r\sin\theta$. L'application $(r,\theta)\mapsto(r\cos\theta,r\sin\theta)=(x,y)$ est un $C^1$-difféormorphisme de $]0,+\infty[\times[0,2\pi[$ sur $\Rr^2\setminus\{(0,0)\}$. De plus,
+
+\begin{center}
+$ \frac{\partial g}{\partial r}= \frac{\partial}{\partial r}(f(x,y))= \frac{\partial x}{\partial r} \frac{\partial f}{\partial x}+ \frac{\partial y}{\partial r} \frac{\partial f}{\partial y}=\cos\theta \frac{\partial f}{\partial x}+\sin\theta \frac{\partial f}{\partial y}$,
+\end{center}
+
+et
+
+\begin{center}
+$ \frac{\partial g}{\partial \theta}= \frac{\partial}{\partial \theta}(f(x,y))= \frac{\partial x}{\partial \theta} \frac{\partial f}{\partial x}+ \frac{\partial y}{\partial \theta} \frac{\partial f}{\partial y}=-r\sin\theta \frac{\partial f}{\partial x}+r\cos\theta \frac{\partial f}{\partial y}=x \frac{\partial f}{\partial y}-y \frac{\partial f}{\partial x}$.
+\end{center}
+
+Donc
+
+\begin{align*}\ensuremath
+ \frac{\partial f}{\partial y}-y \frac{\partial f}{\partial x}=0&\Leftrightarrow \frac{\partial g}{\partial \theta}=0\Leftrightarrow\exists h_1\in C^1(]0,+\infty[,\Rr)/\;\forall(r,\theta)\in]0,+\infty[\times[0,2\pi[,\;g(r,\theta)=h_1(r)\\
+ &\Leftrightarrow\exists h_1\in C^1(]0,+\infty[,\Rr)/\;\forall(x,y)\in\Rr^2\setminus\{(0,0)\},\;f(x,y)=h_1\left(\sqrt{x^2+y^2}\right)\\
+ &\Leftrightarrow\exists h\in C^1(]0,+\infty[,\Rr)/\;\forall(x,y)\in\Rr^2\setminus\{(0,0)\},\;f(x,y)=h(x^2+y^2).
+\end{align*}
+
+\begin{center}
+\shadowbox{
+Les solutions sont les $(x,y)\mapsto h(x^2+y^2)$ où $h\in C^1(]0,+\infty[,\Rr)$.
+}
+\end{center}
+
+\item  Soit $f$ une fonction de classe $C^2$ sur $]0,+\infty[\times\Rr$. D'après le théorème de \textsc{Schwarz}, $ \frac{\partial^2f}{\partial x\partial y}= \frac{\partial^2f}{\partial y\partial x}$.
+
+Soit $\begin{array}[t]{cccc}
+\varphi~:&]0,+\infty[\times\Rr&\rightarrow&]0,+\infty[\times\Rr\\
+ &(u,v)&\mapsto&(u,uv)=(x,y)
+\end{array}
+$. Donc si on pose $f(x,y)=g(u,v)$, on a $g=f\circ\varphi$.
+
+Soit $(x,y,u,v)\in]0,+\infty[\times\Rr\times]0,+\infty[\times\Rr$.
+
+\begin{center}
+$\varphi(u,v)=(x,y)\Leftrightarrow\left\{
+\begin{array}{l}
+u=x\\
+uv=y
+\end{array}
+\right.\left\{
+\begin{array}{l}
+u=x\\
+v= \frac{y}{x}
+\end{array}
+\right.$.
+\end{center}
+
+Ainsi, $\varphi$ est une bijection de $]0,+\infty[$ sur lui-même et sa réciproque est l'application 
+
+\begin{center}
+$\begin{array}[t]{cccc}
+\varphi^{-1}~:&]0,+\infty[\times\Rr&\rightarrow&]0,+\infty[\times\Rr\\
+ &(x,y)&\mapsto&\left(x, \frac{y}{x}\right)=(u,v)
+\end{array}
+$.
+\end{center}
+
+De plus, $\varphi$ est de classe $C^2$ sur $]0,+\infty[\times\Rr$ et son jacobien
+
+\begin{center}
+$J_\varphi(u,v)=\left|
+\begin{array}{cc}
+1&0\\
+v&u
+\end{array}
+\right|=u$
+\end{center}
+
+ne s'annule pas sur $]0,+\infty[\times\Rr$. On sait alors que $\varphi$ est un $C^2$-difféomorphisme de $]0,+\infty[\times\Rr$ sur lui-même.
+
+Puisque $g=f\circ\varphi$ et que $\varphi$ est un $C^2$-difféomorphisme de $]0,+\infty[\times\Rr$ sur lui-même, $f$ est de classe $C^2$ sur $]0,+\infty[\times\Rr$ si et seulement si $g$ est de classe $C^2$ sur $]0,+\infty[\times\Rr$.
+
+\textbullet~$ \frac{\partial f}{\partial x}= \frac{\partial u}{\partial x} \frac{\partial g}{\partial u}+ \frac{\partial v}{\partial x} \frac{\partial g}{\partial v}= \frac{\partial g}{\partial u}- \frac{y}{x^2} \frac{\partial g}{\partial v}$.
+
+\textbullet~$ \frac{\partial f}{\partial y}= \frac{\partial u}{\partial y} \frac{\partial g}{\partial u}+ \frac{\partial v}{\partial y} \frac{\partial g}{\partial v}= \frac{1}{x} \frac{\partial g}{\partial v}$.
+
+\textbullet~$ \frac{\partial^2f}{\partial x^2}= \frac{\partial}{\partial x}\left( \frac{\partial g}{\partial u}- \frac{y}{x^2} \frac{\partial g}{\partial v}\right)=\left( \frac{\partial^2g}{\partial u^2}- \frac{y}{x^2} \frac{\partial^2g}{\partial u\partial v}\right)+\left( \frac{2y}{x^3} \frac{\partial g}{\partial v}- \frac{y}{x^2} \frac{\partial^2g}{\partial u\partial v}+ \frac{y^2}{x^4} \frac{\partial^2g}{\partial v^2}\right)= \frac{\partial^2g}{\partial u^2}- \frac{2y}{x^2} \frac{\partial^2g}{\partial u\partial v}+ \frac{y^2}{x^4} \frac{\partial^2g}{\partial v^2}+ \frac{2y}{x^3} \frac{\partial g}{\partial v}$.
+
+\textbullet~$ \frac{\partial^2f}{\partial x\partial y}= \frac{\partial}{\partial y}\left( \frac{\partial g}{\partial u}- \frac{y}{x^2} \frac{\partial g}{\partial v}\right)= \frac{1}{x} \frac{\partial^2g}{\partial v\partial  v}- \frac{1}{x^2} \frac{\partial g}{\partial v}- \frac{y}{x^3} \frac{\partial^2g}{\partial v^2}$.
+
+\textbullet~$ \frac{\partial^2f}{\partial y^2}= \frac{\partial}{\partial y}\left( \frac{1}{x} \frac{\partial g}{\partial v}\right)= \frac{1}{x^2} \frac{\partial^2g}{\partial v^2}$.
+
+Ensuite,
+
+\begin{align*}\ensuremath
+x^2 \frac{\partial^2f}{\partial x^2}+2xy \frac{\partial^2f}{\partial x\partial y}+y^2 \frac{\partial^2f}{\partial y^2}&=x^2 \frac{\partial^2g}{\partial u^2}-2y \frac{\partial^2g}{\partial u\partial v}+ \frac{y^2}{x^2} \frac{\partial^2g}{\partial v^2}+ \frac{2y}{x} \frac{\partial g}{\partial v}+2y \frac{\partial^2g}{\partial v\partial  v}- \frac{2y}{x} \frac{\partial g}{\partial v}- \frac{2y^2}{x^2} \frac{\partial^2g}{\partial v^2}+ \frac{y^2}{x^2} \frac{\partial^2g}{\partial v^2}\\
+ &=x^2 \frac{\partial^2g}{\partial u^2}.
+\end{align*}
+
+Ainsi,
+
+\begin{align*}\ensuremath
+\forall(x,y)\in]0,+\infty[\times\Rr,&\;x^2 \frac{\partial^2f}{\partial x^2}(x,y)+2xy \frac{\partial^2f}{\partial x\partial y}(x,y)+y^2 \frac{\partial^2f}{\partial y^2}(x,y)=0\Leftrightarrow\forall(u,v)\in]0,+\infty[\times\Rr,\; \frac{\partial^2g}{\partial u^2}(u,v)=0\\
+ &\Leftrightarrow\exists h\in C^2(\Rr,\Rr)/\;\forall(u,v)\in]0,+\infty[\times\Rr,\; \frac{\partial g}{\partial u}(u,v)=h(v)\\
+  &\exists(h,k)\in(C^2(\Rr,\Rr))^2/\;\forall(u,v)\in]0,+\infty[\times\Rr,\;g(u,v)=uh(v)+k(v)\\
+  &\exists(h,k)\in(C^2(\Rr,\Rr))^2/\;\forall(x,y)\in]0,+\infty[\times\Rr,\;f(x,y)=xh(xy)+k(xy).
+\end{align*}
+
+Les fonctions solutions sont les $(x,y)\mapsto xh(xy)+k(xy)$ où $h$ et $k$ sont deux fonctions de classe $C^2$ sur $\Rr$.
+\end{enumerate}
+\fincorrection
+\correction{005899}
+On munit $(\Rr^3)^2$ de la norme définie par $\forall(x,y)\in(\Rr^3)^2$, $\|(x,y)\|=\text{Max}\{\|h\|_2,\|k\|_2\}$.
+
+\textbullet~Soit $(a,b)\in(\Rr^3)^2$. Pour $(h,k)\in(\Rr^3)^2$,
+
+\begin{center}
+$f((a,b)+(h,h))=(a+h).(b+k)=a.b+a.h+b.k+h.k$,
+\end{center}
+
+et donc $f((a,b)+(h,h))-f((a,b))=(a.h+b.k)+h.k$. Maintenant l'application $L~:~(h,k)\mapsto a.h+b.k$ est linéaire et de plus, pour $(h,k)\neq(0,0)$,
+
+\begin{center}
+$|f((a,b)+(h,h))-f((a,b))-L((h,k))|=|h.k|\leqslant\|h\|_2\|k\|_2\leqslant\|(h,k)\|^2$,
+\end{center}
+
+et donc $ \frac{1}{\|(h,k)\|}|f((a,b)+(h,h))-f((a,b))-L((h,k))|\leqslant\|(h,k)\|$ puis
+
+\begin{center}
+$\lim_{(h,k) \rightarrow (0,0)} \frac{1}{\|(h,k)\|}|f((a,b)+(h,h))-f((a,b))-L((h,k))|=0$.
+\end{center}
+
+Puisque l'application $(h,k)\mapsto a.h+b.k$ est linéaire, on en déduit que $f$ est différentiable en $(a,b)$ et que $\forall(h,k)\in(\Rr^3)^2$, $df_{(a,b)}(h,k)=a.h+b.k$.
+
+La démarche est analogue pour le produit vectoriel :
+
+\begin{center}
+$ \frac{1}{\|(h,k)\|}\|(a+h)\wedge(b+k)-a\wedge b-a\wedge h-b\wedge k\|_2= \frac{\|h\wedge k\|_2}{\|(h,k)\|}\leqslant \frac{\|h\|_2\|k\|_2}{\|(h,k)\|}\leqslant\|(h,k)\|$.
+\end{center}
+
+Puisque l'application $(h,k)\mapsto a\wedge h+b\wedge k$ est linéaire, on en déduit que $g$ est différentiable en $(a,b)$ et que $\forall(h,k)\in(\Rr^3)^2$, $dg_{(a,b)}(h,k)=a\wedge h+b\wedge k$.
+\fincorrection
+\correction{005900}
+\textbullet~Pour tout $x\in E$, $\|f(x)\|= \frac{\|x\|}{1+\|x\|}< \frac{\|x\|+1}{\|x\|+1}=1$. Donc $f$ est bien une application de $E$ dans $B$.
+
+\textbullet~Si $y=0$, pour $x\in E$, $f(x)=y\Leftrightarrow \frac{1}{1+\|x\|}x=0\Leftrightarrow x=0$.
+
+Soit alors $y\in B\setminus\{0\}$. Pour $x\in E$,
+
+\begin{center}
+$f(x)=y\Rightarrow x=(1+\|x\|)y\Rightarrow\exists\lambda\in\Kk/\;x=\lambda y$.
+\end{center}
+
+Donc un éventuel antécédent de $y$ est nécessairement de la forme $\lambda y$, $\lambda\in\Rr$. Réciproquement, pour $\lambda\in\Rr$, $f(\lambda y)= \frac{\lambda}{1+|\lambda|\|y\|}y$ et donc
+
+\begin{align*}\ensuremath
+f(\lambda y)=y&\Leftrightarrow \frac{\lambda}{1+|\lambda|\|y\|}=1\Leftrightarrow\lambda=1+|\lambda|\|y\|\\
+ &\Leftrightarrow(\lambda\geqslant0\;\text{et}\;(1-\|y\|)\lambda=1)\;\text{ou}\;(\lambda<0\;\text{et}\;(1+\|y\|)\lambda=1)\\
+ &\Leftrightarrow\lambda= \frac{1}{1-\|y\|}\;(\text{car}\;\|y\|<1).
+\end{align*}
+
+Dans tous les cas, $y$ admet un antécédent par $f$ et un seul à savoir $x= \frac{1}{1-\|y\|}y$. Ainsi,
+
+\begin{center}
+$f$ est bijective et $\forall x\in B$, $f^{-1}(x)= \frac{1}{1-\|x\|}x$.
+\end{center}
+
+\textbullet~On sait que l'application $x\mapsto\|x\|$ est continue sur $\Rr^2$. Donc l'application $x\mapsto \frac{1}{1+\|x\|}$ est continue sur $\Rr^2$ en tant qu'inverse d'une fonction continue sur $\Rr^2$ à valeurs dans $\Rr$, ne s'annulant pas sur $\Rr^2$. L'application $x\mapsto \frac{1}{1-\|x\|}$ est continue sur $B$ pour les mêmes raisons. Donc les applications $f$ et $f^{-1}$ sont continues sur $\Rr^2$ et $B$ respectivement et on a montré que
+
+\begin{center}
+\shadowbox{
+l'application $\begin{array}[t]{cccc}
+f~:&E&\rightarrow&B\\
+ &x&\mapsto& \frac{x}{1+\|x\|}
+\end{array}$ est un homéomorphisme.
+}
+\end{center}
+\fincorrection
+\correction{005901}
+\textbf{1ère solution.} Pour $x=(x_1,\ldots,x_n)\in\Rr^n$, $f(x)=\sqrt{\sum_{i=1}^{n}x_i^2}$. $f$ est de classe $C^1$ sur $\Rr^n\setminus\{0\}$ en vertu de théorèmes généraux et pour tout $x=(x_1,\ldots,x_n)\in\Rr^n\setminus\{0\}$ et tout $i\in\llbracket1,n\rrbracket$
+
+\begin{center}
+$ \frac{\partial f}{\partial x_i}(x)= \frac{x_i}{\sqrt{\sum_{i=1}^{n}x_i^2}}= \frac{x_i}{\|x\|_2}$.
+\end{center}
+
+On en déduit que $f$ est différentiable sur $\Rr^n\setminus\{0\}$ et pour $x\in\Rr^n\setminus\{0\}$ et $h\in\Rr^n$
+
+\begin{center}
+$df_x(h)=\sum_{i=1}^{n} \frac{\partial f}{\partial x_i}(x)h_i= \frac{1}{\|x\|_2}\sum_{i=1}^{n}x_ih_i= \frac{x|h}{\|x\|_2}$.
+\end{center}
+
+\begin{center}
+\shadowbox{
+$\forall x\in\Rr^n\setminus\{0\}$, $\forall h\in\Rr^n$, $df_x(h)= \frac{x|h}{\|x\|_2}$.
+}
+\end{center}
+
+\textbf{2 ème solution.} Soit $x\in\Rr^n\setminus\{0\}$. Pour $h\in\Rr^n$,
+
+\begin{center}
+$\|x+h\|_2-\|x\|_2= \frac{\left(\|x+h\|_2-\|x\|_2\right)\left(\|x+h\|_2+\|x\|_2\right)}{\|x+h\|_2+\|x\|_2}= \frac{2(x|h)+\|h\|_2^2}{\|x+h\|_2+\|x\|_2}$,
+\end{center}
+
+puis
+
+\begin{center}
+$\|x+h\|_2-\|x\|_2- \frac{x|h}{\|x\|_2}= \frac{2(x|h)+\|h\|_2^2}{\|x+h\|_2+\|x\|_2}- \frac{x|h}{\|x\|_2}= \frac{-\left(\|x+h\|_2-\|x\|_2\right)(x|h)+\|x\|_2\|h\|_2^2}{\left(\|x+h\|_2+\|x\|_2\right)\|x\|_2}$.
+\end{center}
+
+Maintenant, on sait que l'application $x\mapsto\|x\|_2$ est continue sur $\Rr^n$. On en déduit que $ \frac{1}{\left(\|x+h\|_2+\|x\|_2\right)\|x\|_2}\underset{h\rightarrow0}{\sim} \frac{1}{2\|x\|_2^2}$ et aussi que $\|x+h\|_2-\|x\|_2$ tend vers $0$ quand $h$ tend vers $0$. Ensuite, puisque $\left|(x|h)\right|\leqslant\|x\|_2\|h\|_2$ (inégalité de \textsc{Cauchy}-\textsc{Schwarz}), on a $x|h\underset{h\rightarrow0}{=}O(\|h\|_2)$ puis $\left(\|x+h\|_2-\|x\|_2\right)\left(x|h\right)\underset{h\rightarrow0}{=}o(\|h\|_2)$.
+
+Finalement, $ \frac{-\left(\|x+h\|_2-\|x\|_2\right)(x|h)+\|x\|_2\|h\|_2^2}{\left(\|x+h\|_2+\|x\|_2\right)\|x\|_2}\underset{h\rightarrow0}{=}o(\|h\|_2)$ et donc
+
+\begin{center}
+$\|x+h\|_2\underset{h\rightarrow0}{=}\|x\|_2+ \frac{x|h}{\|x\|_2}+o(\|h\|_2)$.
+\end{center}
+
+Puisque l'application $h\mapsto \frac{x|h}{\|x\|_2}$ est linéaire, on a redémontré que $f$ est différentiable en tout $x$ de $\Rr^n\setminus\{0\}$ et que $\forall x\in\Rr^n\setminus\{0\}$, $\forall h\in\Rr^n$, $df_x(h)= \frac{x|h}{\|x\|_2}$.
+
+Soit $L$ une application linéaire de $\Rr^n$ dans $\Rr$ c'est-à-dire une forme linéaire.
+
+\begin{center}
+$ \frac{1}{\|h\|_2}\left(\|0+h\|_2-\|0\|_2-L(h)\right)=1-L\left( \frac{h}{\|h\|_2}\right)$.
+\end{center}
+
+Supposons que cette expression tende vers $0$ quand $h$ tend vers $0$. Pour $u$ vecteur non nul donné et $t$ réel non nul, l'expression $1-L\left( \frac{tu}{\|tu\|_2}\right)=1- \frac{t}{|t|}L\left( \frac{u}{\|u\|_2}\right)$ tend donc vers $0$ quand $t$ tend vers $0$. Mais si $t$ tend vers $0$ par valeurs supérieures, on obtient $L(u)=\|u\|_2$ et si $t$ tend vers $0$ par valeurs inférieures, on obtient $L(u)=-\|u\|_2$ ce qui est impossible car $u\neq0$. Donc $f$ n'est pas différentiable en $0$.
+\fincorrection
+\correction{005902}
+On pose $BC=a$, $CA=b$ et $AB=c$ et on note $\mathcal{A}$ l'aire du triangle $ABC$. Soit $M$ un point intérieur au triangle $ABC$. On note $I$, $J$ et $K$ les projetés orthogonaux de $M$ sur les droites $(BC)$, $(CA)$ et $(AB)$ respectivement. On pose $u=\text{aire de}\;MBC$, $v=\text{aire de}\;MCA$ et $w=\text{aire de}\;MAB$. On a
+
+\begin{center}
+$d(M,(BC))\times d(M,(CA))\times d(M,(AB))=MI\times MJ\times MK= \frac{2u}{a}\times \frac{2v}{b}\times \frac{2w}{c}= \frac{8}{abc}uv(\mathcal{A}-u-v)$.
+\end{center}
+
+Il s'agit alors de trouver le maximum de la fonction $f~:~(u,v)\mapsto uv(\mathcal{A}-u-v)$ sur le domaine 
+
+\begin{center}
+$T=\left\{(u,v)\in\Rr^2/\;u\geqslant0,\;v\geqslant0\;\text{et}\;u+v\leqslant\mathcal{A}\right\}$.
+\end{center}
+
+$T$ est un compact de $\Rr^2$. En effet :
+
+- $\forall(u,v)\in T^2$, $\|(u,v)\|_1=u+v\leqslant\mathcal{A}$ et donc $T$ est bornée.
+
+- Les applications $\varphi_1~:~(u,v)\mapsto u$, $\varphi_2~:~(u,v)\mapsto v$ et $\varphi_3~:~(u,v)\mapsto u+v$ sont continues sur $\Rr^2$ en tant que formes 
+
+linéaires sur un espace de dimension finie. Donc les ensembles $P_1=\{(u,v)\in\Rr^2/\;u\geqslant0\}=\varphi_1^{-1}([0,+\infty[)$,
+
+$P_2=\{(u,v)\in\Rr^2/\;v\geqslant0\}=\varphi_2^{-1}([0,+\infty[)$ et $P_3=\{(u,v)\in\Rr^2/\;u+v\leqslant0\}=\varphi_3^{-1}(]-\infty,0])$ sont des fermés de $\Rr^2$
+
+en tant qu'images réciproques de fermés par des applications continues. On en déduit que $T=P_1\cap P_2\cap P_3$ est un
+
+fermé de $\Rr^2$ en tant qu'intersection de fermés de $\Rr^2$.
+
+Puisque $T$ est un fermé borné de $\Rr^2$, $T$ est un compact de $\Rr^2$ puisque $\Rr^2$ est de dimension finie et d'après le théorème de \textsc{Borel}-\textsc{Lebesgue}.
+
+$f$ est continue sur le compact $T$ à valeurs dans $\Rr$ en tant que polynôme à plusieurs variables et donc $f$ admet un maximum sur $T$.
+
+Pour tout $(u,v)$ appartenant à la frontière de $T$, on a $f(u,v)=0$. Comme $f$ est strictement positive sur $\overset{\circ}{T}=\{(u,v)\in\Rr^2/\;u>0,\;v>0\;\text{et}\;u+v<0\}$, $f$ admet son maximum dans $\overset{\circ}{T}$. Puisque $f$ est de classe $C^1$ sur $\overset{\circ}{T}$ qui est un ouvert de $\Rr^2$, si $f$ admet un maximum en $(u_0,v_0)\in\overset{\circ}{T}$, $(u_0,v_0)$ est nécessairement un point critique de $f$. Soit $(u,v)\in\overset{\circ}{T}$.
+
+\begin{center}
+$\left\{
+\begin{array}{l}
+ \frac{\partial f}{\partial u}(u,v)=0\\
+\rule{0mm}{6mm} \frac{\partial f}{\partial v}(u,v)=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+v(\mathcal{A}-2u-v)=0\\
+u(\mathcal{A}-u-2v)=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+2u+v=\mathcal{A}\\
+u+2v=\mathcal{A}
+\end{array}
+\right.\Leftrightarrow u=v= \frac{\mathcal{A}}{3}$.
+\end{center}
+
+Puisque $f$ admet un point critique et un seul à savoir $(u_0,v_0)=\left( \frac{\mathcal{A}}{3}, \frac{\mathcal{A}}{3}\right)$, $f$ admet son maximum en ce point et ce maximum vaut $f(u_0,v_0)= \frac{\mathcal{A}^3}{27}$. Le maximum du produit des distances d'un point $M$ intérieur au triangle $ABC$ aux cotés de ce triangle est donc $ \frac{8\mathcal{A}^3}{27abc}$.
+
+\textbf{Remarque.} On peut démontrer que pour tout point $M$ intérieur au triangle $ABC$, on a $M=\text{bar}\left((A,\text{aire de}\;MBC),(B,\text{aire de}\;MAC),(C,\text{aire de}\;MAB)\right)$. Si maintenant $M$ est le point en lequel on réalise le maximum, les trois aires sont égales et donc le maximum est atteint en $G$ l'isobarycentre du triangle $ABC$.
+
+\fincorrection
+\correction{005903}
+Soient $A$ et $B$ les points du plan de coordonnées respectives $(0,a)$ et $(a,0)$ dans un certain repère $\mathcal{R}$ orthonormé. Soit $M$ un point du plan de coordonnées $(x,y)$ dans $\mathcal{R}$. Pour $(x,y)\in\Rr^2$,
+
+\begin{center}
+$f(x,y)=\left\|\overrightarrow{MA}\right\|_2+\left\|\overrightarrow{MB}\right\|_2=MA+MB\geqslant AB$ avec égalité si et seulement si $M\in[AB]$.
+\end{center}
+
+Donc $f$ admet un minimum global égal à $AB=a\sqrt{2}$ atteint en tout couple $(x,y)$ de la forme $(\lambda a,(1-\lambda)a)$, $\lambda\in[0,1]$.
+\fincorrection
+\correction{005904}
+Puisque la fonction $\ch$ ne s'annule pas sur $\Rr$, $g$ est de classe $C^2$ sur $\Rr^2$ et pour $(x,y)\in\Rr^2$,
+
+\begin{center}
+$ \frac{\partial g}{\partial x}(x,y)=-2 \frac{\sin(2x)}{\ch(2y)}f'\left( \frac{\cos(2x)}{\ch(2y)}\right)$
+\end{center}
+
+puis
+
+\begin{align*}\ensuremath
+ \frac{\partial^2g}{\partial x^2}(x,y)&=-4 \frac{\cos(2x)}{\ch(2y)}f'\left( \frac{\cos(2x)}{\ch(2y)}\right)+4 \frac{\sin^2(2x)}{\ch^2(2y)}f''\left( \frac{\cos(2x)}{\ch(2y)}\right)\\
+ &=-4 \frac{\cos(2x)}{\ch(2y)}f'\left( \frac{\cos(2x)}{\ch(2y)}\right)+4 \frac{1-\cos^2(2x)}{\ch^2(2y)}f''\left( \frac{\cos(2x)}{\ch(2y)}\right).
+\end{align*}
+
+De même,
+
+\begin{center}
+$ \frac{\partial g}{\partial y}(x,y)=-2 \frac{\cos(2x)\sh(2y)}{\ch^2(2y)}f'\left( \frac{\cos(2x)}{\ch(2y)}\right)$
+\end{center}
+
+puis
+
+\begin{align*}\ensuremath
+ \frac{\partial^2g}{\partial y^2}(x,y)&=-2\cos(2x) \frac{2\ch^3(2y)-4\sh^2(2y)\ch(2y)}{\ch^4(2y)}f'\left( \frac{\cos(2x)}{\ch(2y)}\right)+4 \frac{\cos^2(2x)\sh^2(2y)}{\ch^4(2y)}f''\left( \frac{\cos(2x)}{\ch(2y)}\right)\\
+ &=-4 \frac{\cos(2x)}{\ch^3(2y)}(-\ch^2(2y)+2)f'\left( \frac{\cos(2x)}{\ch(2y)}\right)+4 \frac{\cos^2(2x)(\ch^2(2y)-1)}{\ch^4(2y)}f''\left( \frac{\cos(2x)}{\ch(2y)}\right).
+\end{align*}
+
+Donc, pour tout $(x,y)\in\Rr^2$,
+
+\begin{align*}\ensuremath
+ \frac{\ch^2(2y)}{4}\Delta g(x,y)&=-2 \frac{\cos(2x)}{\ch(2y)}f'\left( \frac{\cos(2x)}{\ch(2y)}\right)+\left(1- \frac{\cos^2(2x)}{\ch^2(2y)}\right)f''\left( \frac{\cos(2x)}{\ch(2y)}\right).
+\end{align*}
+
+Maintenant, pour $(x,y)\in\Rr^2$, $-1\leqslant  \frac{\cos(2x)}{\ch(2y)}\leqslant1$ et d'autre part, l'expression  $ \frac{\cos(2x)}{\ch(2\times)}=\cos(2x)$ décrit $[-1,1]$ quand $x$ décrit $\Rr$. Donc $\left\{ \frac{\cos(2x)}{\ch(2\times)},\;(x,y)\in\Rr^2\right\}=[-1,1]$. Par suite,
+
+\begin{center}
+$\forall(x,y)\;\Rr^2,\;\Delta g(x,y)=0\Leftrightarrow\forall t\in[-1,1],\;(1-t^2)f''(t)-2tf'(t)=0$.
+\end{center}
+
+On cherche une application $f$ de classe $C^2$ sur $]-1,1[$. Or $\left| \frac{\cos(2x)}{\ch(2y)}\right|=1\Leftrightarrow|\cos(2x)|=\ch(2y)\Leftrightarrow|\cos(2x)|=\ch(2y)=1\Leftrightarrow y=0\;\text{et}\;x\in \frac{\pi}{2}\Zz$. Donc
+
+\begin{align*}\ensuremath
+\forall(x,y)\;\Rr^2\setminus\left\{\left( \frac{k\pi}{2},0\right),\;k\in\Zz\right\},\;\Delta g(x,y)=0&\Leftrightarrow\forall t\in]-1,1[,\;(1-t^2)f''(t)-2tf'(t)=0\\
+ &\Leftrightarrow\forall t\in]-1,1[,\;((1-t^2)f')'(t)=0\Leftrightarrow\exists\lambda\in\Rr/\;\forall t\in]-1,1[,\;f'(t)= \frac{\lambda}{1-t^2}\\
+ &\Leftrightarrow\exists(\lambda,\mu)\in\Rr^2/\;\forall t\in]-1,1[,\;f(t)=\lambda\Argth t+\mu.
+\end{align*}
+
+De plus, $f$ n'est pas constante si et seulement si $\mu=0$.
+
+\begin{center}
+\shadowbox{
+L'application $t\mapsto\Argth t$ convient.
+}
+\end{center}
+\fincorrection
+\correction{005905}
+Soit $(x,y)\in\Rr^2$. La matrice jacobienne de $f$ en $(x,y)$ s'écrit $\left(
+\begin{array}{cc}
+c(x,y)&-s(x,y)\\
+s(x,y)&c(x,y)
+\end{array}
+\right)$ où $c$ et $s$ sont deux fonctions de classe $C^1$ sur $\Rr^2$ telle que $c^2+s^2=1$ $(*)$. Il s'agit dans un premier temps de vérifier que les fonctions $c$ et $s$ sont constantes sur $\Rr^2$.
+
+Puisque $f$ est de classe $C^2$ sur $\Rr^2$, d'après le théorème de \textsc{Schwarz}, $ \frac{\partial^2f}{\partial x\partial y}= \frac{\partial^2f}{\partial x\partial y}$. Ceci s'écrit encore $ \frac{\partial}{\partial y}\left(
+\begin{array}{c}
+c\\
+s
+\end{array}
+\right)= \frac{\partial}{\partial x}\left(
+\begin{array}{c}
+-s\\
+c
+\end{array}
+\right)$ ou enfin
+
+\begin{center}
+$\forall(x,y)\in\Rr^2$, $\left(
+\begin{array}{c}
+ \frac{\partial c}{\partial y}(x,y)\\
+\rule{0mm}{6mm} \frac{\partial s}{\partial y}(x,y)
+\end{array}
+\right)=\left(
+\begin{array}{c}
+- \frac{\partial s}{\partial x}(x,y)\\
+\rule{0mm}{6mm} \frac{\partial c}{\partial x}(x,y)
+\end{array}
+\right)$ $(**)$.
+\end{center}
+
+En dérivant $(*)$ par rapport à $x$ ou à $y$, on obtient les égalités $c \frac{\partial c}{\partial x}+s \frac{\partial s}{\partial x}=0$ et $c \frac{\partial c}{\partial y}+s \frac{\partial s}{\partial y}=0$. Ceci montre que les deux vecteurs $\left(
+\begin{array}{c}
+ \frac{\partial c}{\partial x}\\
+\rule{0mm}{6mm} \frac{\partial s}{\partial x}
+\end{array}
+\right)$ et $\left(
+\begin{array}{c}
+ \frac{\partial c}{\partial y}\\
+\rule{0mm}{6mm} \frac{\partial s}{\partial y}
+\end{array}
+\right)$ sont orthogonaux au vecteur non nul $\left(
+\begin{array}{c}
+c\\
+s
+\end{array}
+\right)$ et sont donc colinéaires. Mais l'égalité $(**)$ montre que les deux vecteurs $\left(
+\begin{array}{c}
+ \frac{\partial c}{\partial x}\\
+\rule{0mm}{6mm} \frac{\partial s}{\partial x}
+\end{array}
+\right)$ et $\left(
+\begin{array}{c}
+ \frac{\partial c}{\partial y}\\
+\rule{0mm}{6mm} \frac{\partial s}{\partial y}
+\end{array}
+\right)$ sont aussi orthogonaux l'un à l'autre. Finalement, pour tout $(x,y)\in\Rr^2$, les deux vecteurs $\left(
+\begin{array}{c}
+ \frac{\partial c}{\partial x}(x,y)\\
+\rule{0mm}{6mm} \frac{\partial s}{\partial x}(x,y)
+\end{array}
+\right)$ et $\left(
+\begin{array}{c}
+ \frac{\partial c}{\partial y}(x,y)\\
+\rule{0mm}{6mm} \frac{\partial s}{\partial y}(x,y)
+\end{array}
+\right)$ sont nuls. On en déduit que les deux applications $c$ et $s$ sont constantes sur $\Rr^2$ et donc, il existe $\theta$ dans $\Rr$ tel que pour tout $(x,y)\in\Rr^2$, la matrice jacobienne de $f$ en $(x,y)$ est $\left(
+\begin{array}{cc}
+\cos(\theta)&-\sin(\theta)\\
+\sin(\theta)&\cos(\theta)
+\end{array}
+\right)$.
+
+Soit $g$ la rotation d'angle $\theta$ prenant la même valeur que $f$ en $(0,0)$. $f$ et $g$ ont mêmes différentielles en tout point et coïncident en un point. Donc $f=g$ et $f$ est une rotation affine.
+
+\begin{center}
+\shadowbox{
+\begin{tabular}{c}
+Soit $f~:~\Rr^2\rightarrow\Rr^2$ de classe $C^2$ dont la différentielle en tout point est une rotation.\\
+Alors $f$ est une rotation affine.
+\end{tabular}
+}
+\end{center}
+\fincorrection
+
+
+\end{document}
+

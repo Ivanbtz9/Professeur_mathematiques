@@ -1,0 +1,166 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{thm-def}{Théorème/Définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\notni}{\not\owns}
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+
+
+
+\begin{document}
+	
+\lhead{Lycée Le Maurice Genevoix}\chead{}\rhead{Année~2021-2022}\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{\textbf{Tourner la page S.V.P.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\hfill\\[-0.7cm]
+$$	\fbox{\text{\Large{ \sc Activité de d'introduction aux fonctions}}}$$
+
+\hfill\\
+
+
+
+	\par Vous voulez travailler vos cours pendant les vacances et comme vous n'êtes pas très productif à la maison, vous décidez d'aller travailler dans un espace de Coworking (c'est un lieu où l'on peut travailler, boire un café et parfois même manger un fondant au chocolat...). Deux établissements s'offrent à vous. Le premier s'appelle: \textit{"Faisons des maths pendant les vacances car c'est génial"}. Nous le noterons par la lettre "$F$" pour être plus concis.
+	Le deuxième s'appelle: \textit{"Gardons un pied dans les mathématiques pour ne pas perdre la main"}. Nous le noterons par la lettre "$G$" pour être plus concis.\\\\
+	Un génie vous explique que: \textit{"la note de votre prochain contrôle dépendra du temps que vous passerez dans l'un ou l'autre de ces deux cafés "}\\\\
+	Les règles sont les suivantes:
+	\begin{itemize}
+		\item[$F:$] Dans le café $F$ à votre arrivé(e), c'est-à-dire au temps $t=0$, votre note est de $\dfrac{0}{20}$. Toutes les heures de travail, votre note augmente de $2,5$ points. 
+		\item[$G:$] Dans le café $G$ à votre arrivé(e), c'est-à-dire au temps $t=0$, votre note est de $\dfrac{5}{20}$. Toutes les heures de travail, votre note augmente de $1,5$ points.
+		\item [!:] Lorsque votre note passe la barre des $\dfrac{20}{20}$ vous ne pouvez plus augmenter celle-ci mais vous pouvez toujours continuer à travailler.\\
+	\end{itemize}
+	 
+	\noindent\underline{Résumé}: votre prochaine note au contrôle est en fonction du temps de travail passé dans le café $F$ ou bien dans le café $G$.\\
+	
+
+		\textbf{QUESTIONS:}
+
+	
+	\begin{enumerate}
+		\item Si vous choisissez de travailler au café $F$.
+		\begin{enumerate}
+			\item Donner sous la forme d'un tableau les notes associées aux temps de travail suivants: $$0h,~1h,~3h,~5h,~7h,~8h,~10h,~11h$$
+			\item Tracer dans un repère orthonormé \textit{(au crayon à papier)} les points du tableau avec en abscisse le temps de travail et en ordonné la note obtenue. Relier ensuite à la règle les points les uns aux autres pour obtenir un graphique continu. 
+			\item Calculer la note obtenue après $4h$ de travail dans le café $F$. Pour introduire les notations de fonction, on écrira $F(4)$ la note obtenue après $4h$ de travail dans le café $F$. 
+			\item Tracer à la règle la droite parallèle à l'axe des abscisses qui passe par le point de coordonnés $(0;10)$. Compléter ensuite grâce à une lecture graphique les deux phrases suivantes:
+			\begin{itemize}
+				\item Si je travaille entre $0h$ et $4h$ dans le café $F$ ma note sera inférieure ou égale à ..... sur 20
+				\item Si je travaille plus de $4h$ dans le café $F$ ma note sera supérieure ou égale à ..... sur 20
+			\end{itemize}
+			\item Pour tout $t\in[0;8]$ on écrira $F(t)$ est la note sur $20$ qui correspond au temps de travail $t$. On dira que $F$ est la fonction qui donne la note sur $20$ après un certain temps de travail dans le café $F$. Le but est de donner une expression générale pour la fonction $F$ dépendant du paramètre $t$ ($t$ est appelé la variable). L'expression générale de la fonction $F$ est:
+			$$\text{pour tout}~t\in[0;8]\quad F(t)=2,5\times t$$ 
+			
+		\begin{itemize}
+			\item[$\bullet$] Calculer:\quad $F(3),~F(4.5),~F(6.7),~F(7.3)$\\
+		\textit{	(exemple: $F(4)=2,5\times 4=10$)}\\
+		\textit{Pour faire les calculs sans la calculatrice, on rappelle que par exemple: \quad $4,5= \dfrac{45}{10}$}\\
+		\newpage
+		\lhead{Lycée Le Maurice Genevoix}\chead{}\rhead{Année~2021-2022}\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{\textbf{FIN}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+		\textbf{\underline{Point vocabulaire:}}~On dira que $F(3)$ est l'image de $3$ par la fonction $F$
+			
+			\item[$\bullet$] Pour quelle valeur de $t$ avons nous: $ F(t)=13$ 
+			\item[$\bullet$] Pour quelle valeur de $t$ avons nous: $ F(t)=16$ \\
+			\textbf{\underline{Point vocabulaire:}}~On dira que $4$ est un antécédent de $10$ par la fonction $F$. Ceci car $F(4)=10$
+			\item[$\bullet$] Donner un antécédent de $13$ par la fonction $F$ et un antécédent de $16$ par la fonction $F$.
+		\end{itemize} 
+		  	\end{enumerate}
+		\item Si vous choisissez de travailler au café $G$.
+		\begin{enumerate}
+			
+			\item Donner sous la forme d'un tableau les notes associées aux temps de travail suivants: $$0h,~1h,~3h,~5h,~7h,~8h,~10h,~11h$$ 
+			\item Tracer dans un repère orthonormé \textit{(au crayon à papier)} les points du tableau avec en abscisse le temps de travail et en ordonné la note obtenue. Relier ensuite à la règle les points les uns aux autres pour obtenir un graphique continu. 
+			\item Calculer la note obtenue après $\dfrac{10}{3}h$ de travail dans le café $G$. Pour introduire les notations de fonction, on écrira $G(\dfrac{10}{3})$ la note obtenue après $\dfrac{10}{3}h$ de travail dans le café $G$. \\(\textit{$\dfrac{10}{3}$ est un nombre rationnel environ égal à 3,33 arrondi au centième}) 
+			\item Tracer à la règle la droite parallèle à l'axe des abscisses qui passe par le point de coordonnés $(0;10)$. Compléter ensuite grâce à une lecture graphique les deux phrases suivantes:
+			\begin{itemize}
+				\item Si je travaille entre $0h$ et $\dfrac{10}{3}h$ dans le café $G$ ma note sera inférieure ou égale à ..... sur 20
+				\item Si je travaille plus de $\dfrac{10}{3}h$ dans le café $G$ ma note sera supérieure ou égale à ..... sur 20
+			\end{itemize}
+			\item Pour tout $t\in[0;10]$ on écrira $G(t)$ est la note sur $20$ qui correspond au temps de travail $t$. On dira que $G$ est la fonction qui donne la note sur $20$ après un certain temps de travail dans le café $G$. Le but est de donner une expression générale pour la fonction $G$ dépendant du paramètre $t$ ($t$ est appelé la variable). L'expression générale de la fonction $G$ est:
+			$$\text{pour tout}~t\in[0;10]\quad G(t)=1,5\times t +5$$ 
+			
+			\begin{itemize}
+				\item[$\bullet$] Calculer:\quad $G(3),~G(4.5),~G(6.7),~G(7.3),~G(8),~G(9.3)$\\
+				\textit{	(exemple: $G(4)=1,5\times 4+5=6,75+5=11,75$)}\\
+				\textit{Pour faire les calculs sans la calculatrice, on rappelle que par exemple: \quad $6,5= \dfrac{65}{10}$}\\
+				\textbf{\underline{Point vocabulaire:}}~On dira que $G(4)$ est l'image de $4$ par la fonction $G$
+				
+				\item[$\bullet$] Pour quelle valeur de $t$ avons nous: $ G(t)=13$ 
+				\item[$\bullet$] Pour quelle valeur de $t$ avons nous: $ G(t)=16$ \\
+				\textbf{\underline{Point vocabulaire:}}~On dira que $\dfrac{10}{3}$ est un antécédent de $10$ par la fonction $G$.\\ Ceci car:\quad $G(\dfrac{10}{3}) = 1,5\times\dfrac{10}{3} +5=10$
+				\item[$\bullet$] Donner un antécédent de $13$ par la fonction $G$ et un antécédent de $16$ par la fonction $G$.
+			\end{itemize} 
+		\end{enumerate}	  
+
+\item\begin{enumerate}
+	\item Donner pour quelle valeur de $t$ on a:\quad $F(t)=G(t)$.\\
+	Expliquer à l'aide d'une phrase ce que cela signifie dans notre problème.	
+	\item Par le calcul et en vous aidant des graphiques réalisés précédemment, donner pour quelles valeurs de $t$ on a:
+	$$F(t)\leq G(t)$$
+	\item Par le calcul et en vous aidant des graphiques réalisés précédemment, donner pour quelles valeurs de $t$ on a:
+	$$G(t)\leq F(t)$$ 
+	\item Quel café entre le $F$ et le $G$ voulez-vous choisir?	
+\end{enumerate}
+\end{enumerate}
+
+
+\newpage
+
+%\begin{exo}\textit{\textbf{Les fonctions un outil en géométrie:}}\\
+%\par Nous allons étudier une configuration dans le plan qui nous fait utiliser la notion de fonction. On considère le carré $AEDC$ et le carré $BFGC$ comme sur la figure ci-dessous. %nom de la figure
+%Le point C est mobile le long du segment $[A;B]$ (cela signifie qu'il peut se déplacer sur l'axe des abscisses entre le point A et le point $B$). Nous dirons que l'abscisse du point C est variable, nous noterons la distance AC par la lettre $l$ qui prend ses valeurs dans l'intervalle $[0;5]$ (dans ce problème ~$l\ = \ AC$). La variation du point C fait donc varier la configuration des deux carrés $AEDC$ et $BFGC$.
+  
+%\end{exo}
+
+\end{document}

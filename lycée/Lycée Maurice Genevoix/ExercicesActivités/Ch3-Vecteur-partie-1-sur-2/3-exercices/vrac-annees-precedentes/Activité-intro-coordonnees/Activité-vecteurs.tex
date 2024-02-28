@@ -1,0 +1,114 @@
+\documentclass[11pt,a4paper]{article}
+\oddsidemargin 0.1 cm \evensidemargin 0.1cm \textwidth 16cm
+\textheight24cm
+\setlength{\topmargin}{0pt}\setlength{\headsep}{0pt}\pagestyle{empty}
+
+\usepackage{graphicx}
+\usepackage{variations}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage[latin1]{inputenc}  
+\usepackage{fontenc}   
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsthm}
+\usepackage{xypic}
+\usepackage{variations}
+%\usepackage{fancyhdr}
+%\usepackage{xcolor}
+%\usepackage{pstricks-add}
+\usepackage[francais]{babel}
+%\usepackage[french]{babel}
+\newtheorem{defi}{D\'{e}finition}
+\newtheorem{thm}{Th\'{e}or\`{e}me}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propri\'{e}t\'{e}}
+\newtheorem{prop-def}{Propri\'{e}t\'{e}-D\'{e}finition}
+\newtheorem{ex}{Exemple}
+\newtheorem{exs}{Exemples}
+\newtheorem{exer}{Exercice}
+%\newtheorem{proof}{D\'{e}monstration}
+\def\di{\displaystyle}
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\usepackage[top=0.5cm,bottom=0.5cm,right=1.5cm,left=1.5cm]{geometry}
+\usepackage{pstricks,pst-plot} 
+%\usepackage{framed}
+\usepackage{amsmath}
+%\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{multicol}
+%\usepackage{xcolor}
+\usepackage{epsfig}
+\usepackage{pifont}
+%\usepackage[framed]{ntheorem}
+%\usepackage[frenchb]{babel}
+\usepackage{tabularx}
+\def\R{{\mathbb R}}
+\newtheorem{Rem}{Remarque}
+\newcommand{\V}{\overrightarrow}
+\newcommand{\Rep}{(O;\V{\imath};\V{\jmath})}
+\newcommand{\Coor}[2]{\begin{pmatrix} #1\\#2 \end{pmatrix}}
+
+\begin{document}
+\title{Vecteurs - Activité d'introduction}         % Enter your title between curly braces
+\author{}        % Enter your name between curly braces
+\date{}          % Enter your date or \today between curly braces
+\maketitle
+
+
+
+\noindent On considère la figure ci-dessous :
+
+\psset{unit=0.8}
+    $$\begin{pspicture}(6,5.3)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](13,5)
+      \rput(2.6,3.3){$A$}
+      \rput(8.6,1.5){$B$}
+			\rput(4.6,0.7){$O$}
+      \rput(5.6,0.7){$I$}
+      \rput(4.6,2.3){$J$}
+      \psdots(3,3)
+      \psdots(8,2)
+			\psdots(5,1)
+			\psdots(6,1)
+			\psdots(5,2)
+			\psline{->}(0,1)(13,1)
+			\psline{->}(5,0)(5,5)
+   \end{pspicture}$$
+\hfill\\
+
+\begin{enumerate}
+\item Placer le point $A'$ obtenu à partir de $A$ en déplaçant $A$ de $4$ carreaux vers la droite, puis de $2$ carreaux vers le haut.\\
+Faire subir à $B$ les mêmes déplacements. On notera $B'$ le point obtenu.\\[0.2cm]
+\item Quelle est la nature exacte du quadrilatère $AA'B'B$ ? Le démontrer en utilisant le repère orthonormé $(O;I,J)$.\\
+
+\noindent\fcolorbox{green}{white}{
+\begin{minipage}{1\linewidth}	
+\begin{defi}\hfill\\
+On dit que $A'$ et $B'$ sont associés respectivement à $A$ et à $B$ par une même translation.\\
+On dit que $A'$ est l'image de $A$ par cette translation.
+\end{defi}
+\end{minipage}
+}
+
+\hfill\\
+
+\item 
+	\begin{enumerate}[$a.$]
+	\item Placer le point C obtenu en déplaçant $B$ de $4$ carreaux vers la gauche et de $2$ carreaux vers le bas.
+	\item Placer le point $D$ image de $B'$ par la translation qui transforme $A$ en $C$.
+	\item Quelle est la nature du quadrilatère $ACDB'$ ? Que représente $B$ pour ce quadrilatère ?
+	\end{enumerate}
+	\hfill\\[0.2cm]
+\item 
+	\begin{enumerate}[$a.$]
+	\item Quelle est l'image de $B$ par la translation qui transforme $A$ en $B$?\\
+	Que peut-on dire des points $A$, $B$ et $D$ ?
+	\item Existe-t-il une translation qui transforme $B'$ en $B$ et $B$ en $C$? Si oui, la définir à l'aide des carreaux.
+	\end{enumerate}
+	\hfill\\[0.2cm]
+\item La translation qui transforme $A'$ en $A$ est-elle la même que celle qui transforme $A$ en $A'$ ? Donner l'image de $B$ par chacune d'elles.\\[0.2cm]
+\item On effectue successivement sur le point $C$ la translation qui transforme $A$ en $A'$ puis celle qui transforme $A'$ en $B'$. Quel point obtient-on? Par quelle translation unique pourrait-on remplacer ces deux translations successives ?
+\end{enumerate}
+\end{document}

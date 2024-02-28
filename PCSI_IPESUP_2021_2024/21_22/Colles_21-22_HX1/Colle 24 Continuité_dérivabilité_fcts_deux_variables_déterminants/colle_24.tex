@@ -1,0 +1,193 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace,xypic}
+\usepackage{xcolor,multicol,tabularx}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{relsize,exscale}
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\p}{\mathbb{P}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+ 	
+	
+	\begin{center}
+		\Large \sc colle 24 =  Dérivabilité, continuité et déterminants: 
+	\end{center}%, fonctions à deux variables
+
+\section*{Exercices mixtes:}%[-0.25cm]
+
+		\raggedright
+		
+		
+		\begin{exo}\textit{(Extrait d'un Concours Centrale-Supélec, Filière MP 1998)}\quad\\[0.25cm]
+			%Sujet: https://www.concours-centrale-supelec.fr/CentraleSupelec/1998/MP/sujets/math1.pdf
+			%Correction : http://www.booleanopera.fr/DM/MPSI/DM_Absolument_Monotones_Corrige.pdf
+				
+			Soient $-\infty\leq a<b\leq+\infty$  et $f$ une fonction de classe $\mathcal{C}^{\infty}$ sur $]a;b[$ à valeur dans $\R$.\\[0.25cm]
+			\begin{enumerate}[$\square$]
+				\item $f$ est dite absolument monotone (en abrégé AM) si
+				$$\forall n\in\N, \ \forall x\in ]a;b[, \ f^{(n)}(x)\geq0.  $$
+				\item $f$ est dite complètement monotone (en abrégé CM) si
+				$$\forall n\in\N, \ \forall x\in ]a;b[, \ (-1)^nf^{(n)}(x)\geq0.  $$
+			\end{enumerate}
+		\noindent\textbf{\Large{Questions:}}
+			\begin{enumerate}
+				\item Soient $f$ et $g$ deux fonctions \emph{AM} définies sur $]a;b[$. Montrer que $f+g$ et $fg$
+				sont \emph{AM}. Qu’en est-il pour les fonctions \emph{CM} ?
+				\item Si $f$ est une fonction \emph{AM} sur $]a;b[$, montrer par récurrence que $e^f$ l’est
+				aussi.
+				\item Soient $f:]a;b[ \mapsto \R$ et $g:]-b;-a[ \mapsto \R$ définie par : $g(x)=f(-x)$ . Montrer que $f$ est AM sur $]a;b[$ si, et seulement si, $g$ est CM sur $]-b;-a[$ .
+				\item\begin{enumerate}
+					\item Vérifier que la fonction $-\ln$ est CM sur $]0;1[$ .
+					\item Montrer que $f:]0;1[ \mapsto \R$ définie par:
+					$$f(x) = \dfrac{1}{\sqrt{1-x^2}}$$
+					est \emph{AM} sur $]0;1[$. 
+					\item Montrer que la fonction $\arcsin$ est AM sur $]0;1[$.
+					\item Montrer que la fonction $\tan$ est AM sur $]0;\dfrac{\pi}{2}[$.
+				\end{enumerate}
+				\item\begin{enumerate}
+					\item On suppose dans cette question que $a\in\R$ et $f$ est AM sur $] a ; b $[.\\ Montrer qu’il existe $\lambda\in\R$ tel que:
+					$$\lim\limits_{x\rightarrow a^+}f(x) = \lambda$$
+					\item On prolonge $f$ en posant $f ( a ) = \lambda$. Montrer que $f$ est dérivable à droite en $a$ et que $f'$ est continue à droite en $a$.
+					\item Plus généralement, montrer que $f$ est indéfiniment dérivable à droite en $a$ avec des dérivées positives ou nulles. Le même phénomène se produit-il en
+					b?
+				\end{enumerate}
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+
+		\begin{exo}\quad\\[0.25cm]
+			Soient $(z_0, \dots, z_n)$ des nombres complexes deux à deux distincts. Montrer que la famille 
+			$$\left((X-z_0)^n, \dots , (X-z_n)^n\right)$$
+			est une base de $\C_n[X]$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+			\begin{exo}\quad\\[0.25cm]
+		Soit $A,B\in \mathcal{M}_n(\R)$. On suppose que $A$ et $B$ sont semblables sur $\C$, c'est à dire qu'il existe $P\in \mathcal{G}l_n(\C)$ tel que $A=PBP^{-1}$. Montrer que $A$ et $B$ sont semblables sur $\R$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+	\newpage
+	 	
+		\begin{exo}\quad\\[0.25cm]
+			Soient $x\in \R$ et $n\in\N^*$, on définit:
+			
+			
+			$$f_n(x) \ = \ \begin{vmatrix}
+			1+x^2 & -x &0& \cdots & 0 \\
+			-x & 1+x^2 &-x & & \vdots \\
+			0 & \ddots &\ddots &\ddots & 0 \\
+			\vdots &  & -x & 1+x^2 & -x \\
+			0 & \cdots &0 & -x & 1+x^2 \\
+			\end{vmatrix}$$
+			\begin{enumerate}
+				\item Trouver une relation de récurrence double sur $f_n(x)$.
+				\item Expliciter pour tout $x\in \R$ et tout $n\in\N^*$ la valeur de $f_n(x)$
+				\item Montrer que pour $x\in\R\backslash\{0;1\}$:
+				$$f_n(x) =  \dfrac{\dfrac{1}{x^{n+1}}-x^{n+1}}{\dfrac{1}{x}-x}x^n$$ 
+			\end{enumerate}
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}			
+		
+		\begin{exo}\quad\\[0.25cm]
+			Soient n$\geq$1, p$\geq$0. Calculer le déterminant suivant :\\[0.4cm] 
+			$$ A = \begin{vmatrix}
+			\begin{pmatrix}
+			n\\0
+			\end{pmatrix} & \begin{pmatrix}
+			n\\1
+			\end{pmatrix} & \cdots & \begin{pmatrix}
+			n\\p
+			\end{pmatrix} \\\\
+			\begin{pmatrix}
+			n+1\\0
+			\end{pmatrix} & \begin{pmatrix}
+			n+1\\1
+			\end{pmatrix} &\cdots & \begin{pmatrix}
+			n+1\\p
+			\end{pmatrix} \\[0.2cm]
+			\vdots  &\vdots &  & \vdots \\[0.2cm]
+			
+			\begin{pmatrix}
+				n+p\\0
+			\end{pmatrix} & \begin{pmatrix}
+				n+p\\1
+			\end{pmatrix} &\cdots & \begin{pmatrix}
+				n+p\\p
+			\end{pmatrix}
+		\end{vmatrix}$$
+		\\[0.2cm]
+		\centering
+		\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+
+
+
+\end{document}

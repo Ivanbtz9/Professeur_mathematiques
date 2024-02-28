@@ -1,0 +1,8 @@
+# PCTeX Project File, Version 1.1
+	name: vecteurs-niveau-3
+	texformat: LATEX
+vecteurs-niveau-3.tex
+vecteurs-niveau-3.aux
+vecteurs-niveau-3.log
+vecteurs-niveau-3.DVI
+exo2.eps

@@ -1,0 +1,280 @@
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge Calcul matriciel}}\end{center}
+
+%1 Exercice 3029 
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Identité remarquable
+\vskip0.2cm
+Soit $A,\ B\in M_{2}(\mathbb R)$ les matrices définies par
+\begin{equation*}
+	 A=\left(\begin{array}{cc} 3 & -1\\-2&0 \end{array} \right)
+	\quad \textrm{et} \quad B=\left(\begin{array}{cc} 0 & 1\\3&2 \end{array} \right).
+\end{equation*}
+Comparer les deux matrices $(A+B)^2$ et $A^2+2AB+B^2$. Puis comparer les deux matrices $(A+B)^2$ et $A^2+AB+BA+B^2$.
+
+
+%2 Exercice 913
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Produit non commutatif
+\vskip0.2cm
+Déterminer deux éléments $A$ et $B$ de
+$\mathcal M_2({\mathbb R})$ tels que : $AB=0$ et $BA\not = 0$.
+
+
+%3 Exercice 2372
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Matrices stochastiques
+\vskip0.2cm
+Soit $A,B\in\mathcal M_n(\mathbb R)$ deux matrices telles que la somme des coefficients sur chaque colonne de $A$ et sur chaque colonne de $B$ vaut $1$
+(on dit qu'une telle matrice est une matrice stochastique).
+Montrer que la somme des coefficients sur chaque colonne de $AB$ vaut $1$.
+
+
+%4 Exercice 914
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Puissance $n$-ième - avec la formule du binôme
+\vskip0.2cm
+Soit $$A=\left(
+\begin{array}{ccc}
+1&1&0\\
+0&1&1\\
+0&0&1
+\end{array}\right),\quad
+I=\left(
+\begin{array}{ccc}
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{array}\right)\textrm{ et }
+B=A-I.$$
+Calculer $B^n$ pour tout $n\in\mathbb N$. En déduire $A^n$.
+
+
+%5 Exercice 915
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Puissance $n$-ième - avec un polynôme annulateur
+\vskip0.2cm
+\begin{enumerate}
+\item Pour $n\geq 2$, déterminer le reste de la division euclidienne de $X^n$ par $X^2-3X+2$.
+\item Soit  $A=\begin{pmatrix} 
+0&1&-1\\
+-1&2&-1\\
+1&-1&2
+\end{pmatrix}$. Déduire de la question précédente la valeur de $A^n$, pour $n\geq 2$.
+\end{enumerate}
+
+
+%6 Exercice 3117
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - Produit et somme de matrices nilpotentes
+\vskip0.2cm
+On dit qu'une matrice $A\in\mathcal M_n(\mathbb K)$ est nilpotente s'il existe $p\in\mathbb N$ tel que $A^p=0$. Démontrer que si $A,B\in\mathcal M_n(\mathbb K)$ sont deux matrices nilpotentes telles que $AB=BA$, alors $AB$ et $A+B$ sont nilpotentes.
+
+
+%7 Exercice 928
+
+
+\vskip0.3cm\noindent\textsc{Exercice 7} - Matrices symétriques et anti-symétriques
+\vskip0.2cm
+Montrer que l'ensemble des matrices symétriques ($A=\ ^t\!A$) et l'ensemble des matrices anti-symétriques ($A=-\ ^t\!A$) sont deux sous-espaces vectoriels supplémentaires de $\mathcal M_n(\mathbb R)$.
+
+
+
+%8 Exercice 916
+
+
+\vskip0.3cm\noindent\textsc{Exercice 8} - Produit et trace
+\vskip0.2cm
+Soient $A,B\in\mathcal M_n(\mathbb R)$. 
+\begin{enumerate}
+\item On suppose que $\textrm{tr}(AA^T)=0$. Que dire de la matrice $A$?
+\item On suppose que, pour tout $X\in\mathcal M_n(\mathbb R)$, on a $\textrm{tr}(AX)=\textrm{tr}(BX)$. Démontrer que $A=B$.
+\end{enumerate}
+
+
+%9 Exercice 917
+
+
+\vskip0.3cm\noindent\textsc{Exercice 9} - Centre de $\mathcal M_n(\mathbb R)$.
+\vskip0.2cm
+Déterminer le centre de $\mathcal M_n(\mathbb R)$, c'est-à-dire l'ensemble des matrices $A\in\mathcal M_n(\mathbb R)$ telle que, pour tout $M\in\mathcal M_n(\mathbb R)$, on a $AM=MA$.
+
+
+%10 Exercice 922
+
+
+\vskip0.3cm\noindent\textsc{Exercice 10} - Inverse avec calculs!
+\vskip0.2cm
+Dire si les matrices suivantes sont inversibles et, le
+cas échéant, calculer leur inverse :
+$$A=\left(
+\begin{array}{rcl}
+1&1&2\\
+1&2&1\\
+2&1&1
+\end{array}
+\right),\quad
+B=\left(
+\begin{array}{rcl}
+0&1&2\\
+1&1&2\\
+0&2&3
+\end{array}
+\right),\quad 
+C=\left(
+\begin{array}{rcl}
+1&4&7\\
+2&5&8\\
+3&6&9
+\end{array}\right),\quad
+I=\left(
+\begin{array}{rcl}
+i&-1&2i\\
+2&0&2\\
+-1&0&1
+\end{array}\right).$$
+
+
+%11 Exercice 527
+
+
+\vskip0.3cm\noindent\textsc{Exercice 11} - Sans problèmes
+\vskip0.2cm
+Résoudre les systèmes linéaires suivants :
+$$\left\{
+\begin{array}{rcl}
+x+y+2z&=&3\\
+x+2y+z&=&1\\
+2x+y+z&=&0
+\end{array}\right.
+\quad\quad\quad
+\left\{
+\begin{array}{rcl}
+x+2z&=&1\\
+-y+z&=&2\\
+x-2y&=&1
+\end{array}\right.$$
+
+
+%12 Exercice 528
+
+
+\vskip0.3cm\noindent\textsc{Exercice 12} - Trop d'inconnues ou d'équations
+\vskip0.2cm
+Résoudre les systèmes suivants :
+\begin{eqnarray*}
+\left\{
+\begin{array}{rcl}
+x+y+z-3t&=&1\\
+2x+y-z+t&=&-1
+\end{array}\right.
+\quad\quad\quad
+\left\{
+\begin{array}{rcl}
+x+2y-3z&=&4\\
+x+3y-z&=&11\\
+2x+5y-5z&=&13\\
+x+4y+z&=&18
+\end{array}\right.
+\end{eqnarray*}
+
+
+%13 Exercice 529
+
+
+\vskip0.3cm\noindent\textsc{Exercice 13} - Paramètre dans le second membre
+\vskip0.2cm
+Discuter suivant la valeur du paramètre $m\in\mathbb R$ le système :$$\left\{
+\begin{array}{rcl}
+3x+y-z&=&1\\
+x-2y+2z&=&m\\
+x+y-z&=&1
+\end{array}\right.$$
+
+
+
+%14 Exercice 2872
+
+
+\vskip0.3cm\noindent\textsc{Exercice 14} - Discussion suivant deux valeurs
+\vskip0.2cm
+Résoudre le système suivant, en discutant suivant la valeur du paramètre $m$.
+$$\left\{
+\begin{array}{rcl}
+ x+y+mz&=&0\\
+ x+my+z&=&0\\
+ mx+y+z&=&0
+\end{array}\right.$$
+
+
+%15 Exercice 2643
+
+
+\vskip0.3cm\noindent\textsc{Exercice 15} - Polynômes vérifiant certaines propriétés
+\vskip0.2cm
+Déterminer tous les triplets $(a,b,c)\in\mathbb R^3$ tels que le polynôme $P(x)=ax^2+bx+c$ vérifie
+\begin{enumerate}
+ \item $P(-1)=5$, $P(1)=1$ et $P(2)=2$;
+ \item $P(-1)=4$ et $P(2)=1$.
+\end{enumerate}
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{http://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=25821
+\end{document}

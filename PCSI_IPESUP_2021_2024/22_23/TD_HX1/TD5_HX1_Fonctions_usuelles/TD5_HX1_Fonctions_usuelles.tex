@@ -1,0 +1,464 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xy,xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}} \newcommand{\sh}{\text{sh}}\newcommand{\ch}{\text{ch}}%\newcommand{\arccos}{\text{arccos}}\newcommand{\arcsin}{\text{arcsin}} \newcommand{\arctan}{\text{arctan}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/3}\rfoot{PCSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+ 	
+	
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 5 : Fonctions usuelles }}
+	\end{minipage}
+}
+\bigskip
+
+
+\raggedright
+
+\section*{Généralités sur les fonctions:}\hfill\\%[-0.25cm]
+
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+	
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	\begin{enumerate}
+		\item  Soit $f$ une fonction dérivable sur $\R$ à valeurs dans $\R$. Montrer que si $f$ est paire, $f'$ est
+		impaire et si $f$ est impaire, $f'$ est paire.
+		\item  Soient $n\in\N^*$ et $f$ une fonction $n$ fois dérivable sur $\R$ à valeurs dans $\R$. $f^{(n)}$
+		désignant la dérivée $n$-ième de $f$, montrer que si $f$ est paire, $f^{(n)}$ est paire si $n$ est pair et impaire si
+		$n$ est impair.
+		\item  Soit $f$ une fonction continue sur $\R$ à valeurs dans $\R$. A-t-on des résultats analogues concernant les
+		primitives de $f$~?
+		\item  Reprendre les questions précédentes en remplaçant la condition \og~$f$ est paire (ou impaire)~\fg~par la
+		condition \og~$f$ est $T$-périodique~\fg.
+	\end{enumerate}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	\begin{enumerate}
+		\item Montrer que la fonction $x \longmapsto x-\dfrac{1}{x}$ est injective
+		sur $\R^{+*}$. Et sur $\R^*$?
+		\item\begin{enumerate}
+			\item La fonction $x \longmapsto xe^x$ est-elle injective sur $\R$ ?
+			\item Déterminer son image.
+		\end{enumerate}
+		\item \begin{enumerate}
+			\item La fonction $f : x \longmapsto \sqrt{x^2+x+1}$ est-elle injective
+			sur $\R$ ?
+			\item Déterminer $f(] - 2, 4])$ .
+		\end{enumerate}
+	\end{enumerate}
+	
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	
+Soit $a \in \R$. Définissons $f_a : \R \longrightarrow \R$ par
+$$f_a(x):\left\{\begin{array}{l}
+	x + a  \ \text{ si } x\geq 0\\
+	
+	x - a \ \text{ sinon. }
+\end{array}\right.$$
+	\begin{enumerate}
+		\item Déterminer les réels $a$  pour lesquels  $f_a$ est surjective.
+		\item Déterminer les réels $a$  pour lesquels  $f_a$ est injective.
+	\end{enumerate}
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	$$f: x \mapsto \left\{\begin{array}{ll}
+	x + 1  \ & \text{ si } x\in \Q\\
+	
+	x \ &\text{ sinon. }
+\end{array}\right.$$
+
+	La fonction est-elle surjective de $\R$ dans $\R$ ? injective ? bijective ?
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+Pour une fonction $f : \R \rightarrow \R$, on définit les fonctions partie positive et partie négative de $f$ par $f_+ : x \mapsto \max(f(x),0)$ et $f_- : x \mapsto \max(-f(x),0)$
+\begin{enumerate}
+	\item Montrer que si $f : \R \rightarrow \R$ est $k$-lipschitzienne, alors les fonctions $f_+$ et
+	$f_- $ sont aussi $k$-lipschitziennes.
+	\item Soit $f : \R \rightarrow \R$ telle que $f_+$ et $f_-$ sont $k$-lipschitziennes. Montrer que $f$	est $k$-lipschitzienne.
+\end{enumerate} 
+
+	\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\end{minipage}
+\end{minipage}
+\newpage
+%\hfill\\[0.5cm]
+\section*{Exponentielle, logarithmes, puissance et fonction valeur absolue:}\hfill\\[1cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+			\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Résoudre dans $\R$ les équations ou inéquations suivantes~:
+			\begin{enumerate}
+				\item $\; \exp(x) \geq 1 +x$.
+				\item $\;\ln|x+1|-\ln|2x+1|\leq\ln2$.
+				\item $\;x^{\sqrt{x}}=\sqrt{x}^x$.
+				
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			\begin{enumerate}
+				\item  Etudier brièvement la fontion $x\mapsto\frac{\ln x}{x}$ et tracer son graphe.
+				\item  Trouver tous les couples $(a,b)$ d'entiers naturels non nuls et distincts vérifiant $a^b=b^a$.
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+
+		
+	\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+		Tracer le graphe de $x \longmapsto 2|x - 1| - |x + 1|$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+	\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Résoudre dans $\R$ :
+	\begin{enumerate}
+		\item $2|2x-1| = |x+2|+3x$
+		\item $3-|2-3x| \geq |3x+4|x$
+	\end{enumerate}
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+	
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+				\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+		Trouver la plus grande valeur de $\sqrt[n]{n}$, $n\in\N^*$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			\begin{enumerate}
+				\item Montrer que, pour tout entier $n$, $4$ divise $n^2$ ou $n^2 - 1$.
+				\item En déduire que, pour tout $n$, $\lfloor\sqrt{4n + 1}\rfloor=  \lfloor\sqrt{4n + 3}\rfloor$.
+			\end{enumerate}
+	
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Montrer que pour tout $n\geq 2$ :
+			$$\left(1 + \dfrac{1}{n}\right)^n\leq e \leq \left(1 - \dfrac{1}{n}\right)^{-n}$$
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Montrer pour tout $n \in \N$:
+	$$\forall x \in \R^+, \ 	\exp(x) \ \geq  \ \sum\limits^n_{k=0}\dfrac{x^k}{k!}.$$
+	
+	Cette inégalité est-elle vraie sur $\R$?
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+\newpage
+
+\section*{Fonctions hyperboliques:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Simplifier l'expression $\displaystyle\frac{2\ch^2(x)-\sh(2x)}{x-\ln(\ch x)-\ln 2}$ 
+			et donner ses limites en $-\infty$ et $+\infty$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $x$ un réel fixé. Pour $n\in\N^*$, on pose
+			$$C_n=\sum_{k=1}^n\ch(kx)\qquad\text{ et }\qquad S_n=\sum_{k=1}^n\sh(kx).$$
+			Calculer $C_n$ et $S_n$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+			\begin{exo}\textbf{(*)}\quad\\[0.2cm]%Bertelaut
+			Pour tous $n \in \N$ et $x \in \R$
+			
+			factoriser la somme $ \ \sum\limits_{k=0}^{n} \ch(2kx)$
+			
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+	
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $a$ et $b$ deux réels positifs tels que $a^2-b^2=1$. Résoudre le système
+			$$\left\{\begin{array}{l}
+			\ch(x)+\ch(y)=2a\\
+			\sh(x)+\sh(y)=2b
+			\end{array}\right.$$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Montrer que, pour tout $x \neq 0$,
+			
+			$$\dfrac{1}{\sh (x)} = \dfrac{1}{ \text{th}( x)} - \dfrac{1}{ \text{th} \left(\frac{x}{2}\right)}$$
+		
+	 En déduire une expression simple de $\sum\limits_{k=0}^{n}\dfrac{1}{\sh (2^kx)}$
+	 
+	 puis sa limite quand $n$ tend vers $+\infty$.
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+\section*{Fonctions circulaires et réciproques:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+			\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Déterminer les réels $x$ tels que $(\cos x)^4 + (\sin x)^6 = 1$.
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			\'Ecrire sous forme d'expression algébrique
+			\begin{enumerate}
+				\item $ \sin(\arccos x),\ \cos(\arcsin x),\ \cos(2 \arcsin x)$.
+				\item $ \sin(\arctan x),\ \cos(\arctan x),\ \sin(3 \arctan x)$.
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Montrer que pour tout $x>0$, on a
+			$$\arctan\left(\frac{1}{2x^2}\right)=\arctan\left(\frac{x}{x+1}\right)-\arctan\left(\frac{x-1}{x}\right).$$
+			En déduire une expression de $\displaystyle S_n=\sum_{k=1}^n\arctan\left(\frac{1}{2k^2}\right)$ 
+			et calculer $\displaystyle\lim_{n\to +\infty}S_n$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+			\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Résoudre les équations suivantes:
+			\begin{enumerate}
+				\item $\arccos x = 2\arccos \frac{3}{4}$.
+				\item $\arcsin x = \arcsin \frac{2}{5} + \arcsin \frac{3}{5}$.
+				\item $\arctan {2x}+\arctan x=\frac{\pi}{4}$.
+			\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Vérifier lorsque l'on peut définir les expressions ci-dessous que:
+			\begin{enumerate}
+				\item $ \arcsin x + \arccos x = \frac{\pi}{2}$.
+				\item $\arctan x + \arctan\frac{1}{x} = \text{sgn}(x)\frac{\pi}{2}.$.
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+	
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+	Calculer $3 \arctan \dfrac{1}{3} + \arctan \dfrac{1}{7} $.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+
+\end{document}

@@ -1,0 +1,214 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge TD8 fcts continues}}\end{center}
+
+% Exercice 215
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Avec la partie entière
+\vskip0.2cm
+Soit $f:\mathbb R\to\mathbb R$ définie par $f(x)=\lfloor x\rfloor +\sqrt{x-\lfloor x\rfloor }$.
+\'Etudier la continuité de $f$ sur $\mathbb R$.
+
+
+% Exercice 218
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Indicatrice de $\mathbb Q$
+\vskip0.2cm
+Soit $f:\mathbb R\to\mathbb R$ la fonction définie par 
+$$f(x)=\left\{
+\begin{array}{ll}
+1&\textrm{si }x\in\mathbb Q\\
+0&\textrm{si }x\notin \mathbb Q.
+\end{array}\right.$$
+Montrer que $f$ est discontinue en tout point.
+
+
+% Exercice 219
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Une fonction bizarre
+\vskip0.2cm
+Soit $f:\mathbb R\to \mathbb R$ la fonction définie par
+$$f(x)=\left\{
+\begin{array}{ll}
+0&\textrm{si $x$ est irrationnel ou $x=0$.}\\
+\frac{1}{q}&\textrm{si $x=p/q$, avec $p\in \mathbb Z$, $q\geq 1$ et $p\wedge q=1$ }\\
+\end{array}\right.$$
+En quels points $f$ est-elle continue?
+
+
+% Exercice 217
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Prolongement par continuité et fonctions trigonométriques
+\vskip0.2cm
+Dire si les fonctions suivantes sont prolongeables par continuité à $\mathbb R$ tout entier :
+\begin{enumerate}
+\item $f(x)=\sin(1/x)$ si $x\neq 0$;
+\item $g(x)=\sin(x)\sin(1/x)$ si $x\neq 0$;
+\item $h(x)=\cos(x)\cos(1/x)$ si $x\neq 0$.
+\end{enumerate}
+
+
+% Exercice 3206
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Une fonction lipschitzienne est continue
+\vskip0.2cm
+Soit $I$ un intervalle, $k>0$ et $f:I\to\mathbb R$ vérifiant :
+$$\forall (x,y)\in I^2,\ |f(x)-f(y)|\leq k|x-y|.$$
+Démontrer que $f$ est continue sur $I$.
+
+
+% Exercice 213
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - Fonctions monotones
+\vskip0.2cm
+Soit $f:I\to\mathbb R$ une fonction monotone. Montrer que l'ensemble de ses points de discontinuité est fini ou dénombrable.
+
+
+% Exercice 3207
+
+
+\vskip0.3cm\noindent\textsc{Exercice 7} - Une équation fonctionnelle
+\vskip0.2cm
+On cherche à déterminer toutes les fonctions continues $f:\mathbb R\to\mathbb R$  vérifiant, pour tout $x\in\mathbb R$, $f(2x)-f(x)=x.$
+\begin{enumerate}
+\item Soit $f$ une telle fonction. Démontrer que, pour tout $x\in\mathbb R$ et pour tout $n\geq 1$, on a 
+$$f(x)-f(x/2^n)=\sum_{k=1}^n\frac{x}{2^k}.$$
+\item Répondre au problème posé.
+\end{enumerate}
+
+
+% Exercice 2864
+
+
+\vskip0.3cm\noindent\textsc{Exercice 8} - Une infinité de solutions
+\vskip0.2cm
+Démontrer que l'équation $\cos x=\frac 1x$ admet une infinité de solutions dans $\mathbb R_+^*$.
+
+
+% Exercice 225
+
+
+\vskip0.3cm\noindent\textsc{Exercice 9} - Point fixe
+\vskip0.2cm
+Soit $f:[0,1]\to[0,1]$ une fonction continue. Démontrer que $f$ admet toujours au moins un point fixe.
+
+
+% Exercice 226
+
+
+\vskip0.3cm\noindent\textsc{Exercice 10} - Point fixe
+\vskip0.2cm
+Soit $f:\mathbb R_+\to \mathbb R_+$ continue. On suppose que $x\mapsto \frac{f(x)}x$ admet une limite
+finie $l<1$ en $+\infty$. Démontrer que $f$ admet un point fixe.
+
+
+% Exercice 2604
+
+
+\vskip0.3cm\noindent\textsc{Exercice 11} - Infinité d'antécédents
+\vskip0.2cm
+Soit $f:\mathbb R_+\to\mathbb R$ une fonction continue surjective. 
+\begin{enumerate}
+\item Démontrer que $0$ admet un nombre infini d'antécédents.
+\item Plus généralement, démontrer que tout réel admet un nombre infini d'antécédents.
+\end{enumerate}
+
+
+% Exercice 195
+
+
+\vskip0.3cm\noindent\textsc{Exercice 12} - Fonctions continues périodiques
+\vskip0.2cm
+Soit $f$ une fonction continue sur $\mtr$ admettant une période $T$. Prouver que $f$ est uniformément continue.
+
+
+% Exercice 196
+
+
+\vskip0.3cm\noindent\textsc{Exercice 13} - Avec une limite à l'infini
+\vskip0.2cm
+Soit $f:\mathbb R_+\to\mathbb R$ une fonction continue admettant une limite (finie) en $+\infty$. Montrer que $f$ est uniformément continue.
+
+
+% Exercice 237
+
+
+\vskip0.3cm\noindent\textsc{Exercice 14} - Une fonction étonnament lipschitzienne
+\vskip0.2cm
+Soient $f,g:[a,b]\to\mathbb R$ deux fonctions continues. Pour $t\in\mathbb R$, on pose
+$$h(t)=\sup\{f(x)+tg(x);\ x\in[a,b]\}.$$
+Montrer que $h$ est lipschitzienne.
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{http://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=25491
+\end{document}

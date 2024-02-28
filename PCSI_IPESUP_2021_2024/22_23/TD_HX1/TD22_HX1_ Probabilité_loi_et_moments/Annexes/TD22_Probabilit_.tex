@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 2030
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Somme de deux lois de Poisson
+\vskip0.2cm
+Soit $X$ et $Y$ deux variables aléatoires indépendantes suivant des lois de Poisson de paramètre respectif $\lambda$ et $\mu$. Démontrer, à l'aide des fonctions génératrices, que $Z=X+Y$, suit une loi de Poisson de paramètre $\lambda+\mu$.
+
+
+% Exercice 2035
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Sur la variance
+\vskip0.2cm
+Soit $X$ une variable aléatoire admettant un moment d'ordre 2. Démontrer que $E\big((X-a)^2\big)$ est minimal
+pour $a=E(X)$.
+
+
+% Exercice 2033
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Variable aléatoire quasi-certaine
+\vskip0.2cm
+On dit qu'une variable aléatoire réelle $X$ est quasi-certaine lorsqu'il existe un réel $a$ tel que $P(X=a)=1$. Soit $X$ une variable aléatoire réelle telle que $X(\Omega)$ soit fini ou dénombrable. Démontrer que $X$ est quasi-certaine si et seulement si $V(X)=0$.
+
+
+% Exercice 2026
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Lancer de dé
+\vskip0.2cm
+On jette 3600 fois un dé équilibré. Minorer la probabilité que le nombre d'apparitions du numéro 1 soit compris entre 480 et 720.
+
+
+% Exercice 2040
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Pièces défectueuses
+\vskip0.2cm
+Une usine fabrique des pièces dont une proportion inconnue $p$ est défectueuse, et on souhaite trouver une valeur approchée de $p$. On effectue un prélèvement de $n$ pièces. On suppose que le prélèvement se fait sur une population très grande, et donc qu'il peut s'apparenter à une suite de $n$  tirages indépendants avec remise. On note $X_n$ la variable aléatoire égale au nombre de pièces défectueuses et on souhaite quantifier le fait que $X_n/n$ approche $p$.
+\begin{enumerate}
+\item Quelle est la loi de $X_n$? Sa moyenne? Sa variance?
+\item Démontrer que, pour tout $\veps>0$, $P\left(\left|\frac{X_n}n-p\right|\geq\veps\right)\leq\frac 1{4n\veps^2}.$
+\item En déduire une condition sur $n$ pour que $X_n/n$ soit une valeur approchée de $p$ à $10^{-2}$ près avec une probabilité supérieure ou égale à $95\%$.
+\end{enumerate}
+
+
+% Exercice 3145
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - Une variante de l'inégalité de Markov
+\vskip0.2cm
+Soit $X$ une variable aléatoire réelle finie à valeurs dans $\mathbb R_+$, $f:\mathbb R_+\to\mathbb R_+^*$ une fonction croissante. Démontrer que
+$$P(X\geq a)\leq \frac{E(f(X))}{f(a)}.$$
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=29647
+\end{document}

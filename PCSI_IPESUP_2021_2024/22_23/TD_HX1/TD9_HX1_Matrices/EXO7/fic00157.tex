@@ -1,0 +1,594 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+
+\fiche{f00157, bodin, 2012/05/19} 
+
+\titre{Calculs sur les matrices}
+
+Corrections d'Arnaud Bodin.
+
+\section{Opérations sur les matrices}
+
+\exercice{1040, liousse, 2003/10/01}
+\video{XwtvirsK2HU}
+\enonce{001040}{}
+Effectuer le produit des  matrices  :
+$$\left( \begin{array}{cc} 2 & 1  \\ 3& 2 \end{array} \right)\times
+ \left( \begin{array}{cc}1 & -1  \\ 1& 2 \end{array} \right) \ \ \ \  \left( \begin{array}
+ {ccc} 1 & 2 & 0  \\ 3 & 1 & 4 \end{array} \right) 
+\times
+\left( \begin{array}{ccc} -1 &-1& 0 \\ 1 & 4 & -1 \\ 2 & 1 & 2\end{array} \right)
+ \ \ \ \ \left( \begin{array}{ccc} a &b& c \\ c & b & a \\ 1 & 1 & 1\end{array} \right)
+\times
+ \left( \begin{array}{ccc} 1 &a& c \\ 1 & b & b \\ 1 & c & a\end{array} \right)$$
+\finenonce{001040}
+
+
+\finexercice
+
+\exercice{1061, ridde, 1999/11/01}
+\video{O1CDw2RqXUw}
+\enonce{001061}{}
+Soit $A(\theta) = \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta
+& \cos \theta \end{pmatrix}$ pour $\theta \in \Rr$. Calculer $A(\theta) \times A(\theta')$ et $\big(A(\theta)\big)^n$ pour
+$n \ge 1$.
+\finenonce{001061}
+
+
+\finexercice
+\exercice{1063, ridde, 1999/11/01}
+\video{-ew4tp-RHJY}
+\enonce{001063}{}
+Soient $A$ et $B \in \mathcal{M}_n(\Rr)$ telles que $\forall X \in \mathcal{M}_n (\Rr)$,
+$\text{tr} (AX) = \text{tr} (BX)$. Montrer que $A = B$.
+\finenonce{001063}
+
+
+
+\finexercice
+\exercice{1064, ridde, 1999/11/01}
+\video{IfhgaXB6Oh0}
+\enonce{001064}{}
+Que peut-on dire d'une matrice $A \in \mathcal{M}_n (\Rr)$ qui vérifie $\text{tr} (A \ {}^{t}\!{A}) = 0$ ?
+\finenonce{001064}
+
+
+
+\finexercice
+\section{Inverse}
+
+
+\exercice{6872, bodin, 2012/05/29}
+\video{SbWnWREUACY}
+\enonce{006872}{}
+Calculer (s'il existe) l'inverse des matrices :
+$$
+\begin{pmatrix} a & b \\ c & d \\ \end{pmatrix}
+\qquad 
+\begin{pmatrix} 1&2&1 \\ 1&2&-1\\ -2&-2&-1 \end{pmatrix}
+\qquad 
+\begin{pmatrix} 
+1 &\bar\alpha &\bar\alpha^2 \cr
+\alpha   &1          &\bar\alpha   \cr
+\alpha^2 &\alpha     &1            \cr \end{pmatrix} (\alpha \in \Cc)
+\qquad
+\begin{pmatrix} 
+0 & 1 & 1 & 1 \\ 1 & 0 & 1 & 1 \\ 1 & 1 & 0 & 1 \\ 1 & 1 & 1 & 0 \\ 
+\end{pmatrix}
+$$
+
+$$
+\begin{pmatrix}
+1 & 1 & \cdots &\cdots & 1 \\
+0 & 1 & \ddots & & \vdots  \\
+ & \ddots & \ddots & \ddots &  \vdots \\
+& \cdots & 0 & 1 & 1 \\
+0 & & \cdots & 0 & 1
+\end{pmatrix}
+\qquad 
+\begin{pmatrix}
+1 & 2 & 3 & \cdots & n \\
+0 & 1 & 2 & \cdots & \vdots \\
+  & \ddots & \ddots & \ddots &  \vdots \\
+\vdots &  & 0 & 1 & 2 \\
+ 0 & \cdots & & 0 & 1
+\end{pmatrix}
+$$
+\finenonce{006872}
+
+
+\finexercice
+
+\exercice{1052, legall, 1998/09/01}
+\video{7AwRBOj2CYY}
+\enonce{001052}{}
+Soit 
+$A=\begin{pmatrix} 
+1 & 0 & 2 \cr
+0 & -1 & 1 \cr
+1 & -2 & 0 \cr
+\end{pmatrix}$. 
+Calculer $A^3-A$. En déduire que $A$ est inversible puis déterminer $A^{-1}$.
+\finenonce{001052}
+
+
+
+
+\finexercice
+\exercice{3380, quercia, 2010/03/09}
+\video{dad4PGxRe4U}
+\enonce{003380}{$M$ antisymétrique $ \Rightarrow  I+M$ est inversible}
+
+Soit $M \in \mathcal{M}_n(\R)$ antisymétrique.
+
+\begin{enumerate}
+  \item Montrer que $I+M$ est inversible (si $(I+M)X = 0$, calculer ${}^t\!(MX)(MX)$).
+  \item Soit $A = (I-M)(I+M)^{-1}$. Montrer que ${}^t\!A = A^{-1}$.
+\end{enumerate}
+\finenonce{003380}
+
+
+
+\finexercice
+
+\exercice{1069, gourio, 2001/09/01}
+\video{XdgqhVnKjTg}
+\enonce{001069}{}
+$A=\left( a_{i,j}\right) \in \mathcal{M}_{n}(\Rr)$
+telle que :
+$$\forall i =1,\ldots,n \qquad \left| a_{i,i}\right| >\sum_{j\neq i}\left|a_{i,j}\right| . $$
+Montrer que $A$ est inversible.
+\finenonce{001069}
+
+
+\finexercice
+
+\finfiche
+
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\indication{001061}
+Il faut connaître les formules de $\cos(\theta+\theta')$ et $\sin(\theta+\theta')$.
+\finindication
+\indication{001063}
+Essayer avec $X$ la matrice élémentaire $E_{ij}$ (des zéros partout sauf le coefficient $1$ à la
+ $i$-ème ligne et la $j$-ème colonne).
+\finindication
+\indication{001064}
+Appliquer la formule du produit pour calculer les coefficients diagonaux de $A\ {}^{t}\!{A}$
+\finindication
+\noindication
+\indication{001052}
+Une fois que l'on a calculé $A^2$ et $A^3$ on peut en déduire $A^{-1}$ sans calculs.
+\finindication
+\indication{003380}
+$M$ antisymétrique signifie ${}^{t}\!{M}=-M$.
+\begin{enumerate}
+  \item Si $Y$ est un vecteur alors ${}^t\!Y Y = \| Y\|^2$ est un réel positif ou nul.
+  \item $I-M$ et $(I+M)^{-1}$ commutent.
+\end{enumerate}
+\finindication
+\indication{001069}
+Prendre un vecteur $X=\left(
+\begin{array}{c}
+x_1\\
+\vdots\\
+x_n
+\end{array}
+\right)$ tel que $AX=0$, considérer le rang $i_0$ tel $|x_{i_0}|=\max\big\{|x_i| \mid i=1,...,n\big\}$.
+\finindication
+
+
+\newpage
+
+\correction{001040}
+Si $C = A \times B$ alors on obtient le coefficient $c_{ij}$ (situé à la $i$-ème ligne et la $j$-ème colonne
+de $C$) en effectuant le produit scalaire du $i$-ème vecteur-ligne de $A$ avec le $j$-éme vecteur colonne de $B$.
+
+On trouve  
+$$\left( \begin{array}{cc} 2 & 1  \\ 3& 2 \end{array} \right)\times
+ \left( \begin{array}{cc}1 & -1  \\ 1& 2 \end{array} \right)
+= \begin{pmatrix}
+  3 & 0 \\
+  5 & 1 \\  
+  \end{pmatrix}$$
+
+$$\left( \begin{array}
+ {ccc} 1 & 2 & 0  \\ 3 & 1 & 4 \end{array} \right) 
+\times
+\left( \begin{array}{ccc} -1 &-1& 0 \\ 1 & 4 & -1 \\ 2 & 1 & 2\end{array} \right)
+= \begin{pmatrix}
+  1 & 7 & -2 \\
+  6 & 5 & 7 \\ 
+  \end{pmatrix}$$
+
+$$\left( \begin{array}{ccc} a &b& c \\ c & b & a \\ 1 & 1 & 1\end{array} \right)
+\times
+ \left( \begin{array}{ccc} 1 &a& c \\ 1 & b & b \\ 1 & c & a\end{array} \right) 
+ = \begin{pmatrix}
+    a + b + c & a^2+b^2+c^2 & 2ac + b^2 \\
+    a + b + c & 2ac + b^2   & a^2+b^2+c^2 \\
+    3         &  a+b+c      & a+b+c \\
+\end{pmatrix}$$
+\fincorrection
+\correction{001061}
+\begin{align*}
+A(\theta)\times A(\theta')  
+  & =  \begin{pmatrix} \cos \theta & -\sin \theta \\ \sin \theta
+& \cos \theta \end{pmatrix} \times \begin{pmatrix} \cos \theta' & -\sin \theta' \\ \sin \theta'
+& \cos \theta' \end{pmatrix} \\
+  & = \begin{pmatrix} 
+\cos \theta\cos \theta' -\sin \theta \sin\theta' & - \cos \theta \sin \theta' - \sin \theta \cos \theta' \\
+ \sin \theta \cos \theta'+\cos \theta \sin \theta'   & -\sin \theta \sin\theta'+\cos \theta\cos \theta'  \\
+ \end{pmatrix} \\
+  & =
+\begin{pmatrix} \cos (\theta+\theta') & -\sin (\theta+\theta')  \\ \sin  (\theta+\theta')
+& \cos  (\theta+\theta') \end{pmatrix} \\
+  & = A(\theta+\theta') \\
+\end{align*}
+
+Bilan : $A(\theta)\times A(\theta') = A(\theta+\theta')$.
+
+\bigskip
+
+Nous allons montrer par récurrence sur $n\ge 1$ que $\big(A(\theta)\big)^n = A(n\theta)$.
+
+\begin{itemize}
+  \item C'est bien sûr vrai pour $n=1$.
+  \item Fixons $n\ge 1$ et supposons que $\big(A(\theta)\big)^n = A(n\theta)$ alors
+$$\big(A(\theta)\big)^{n+1} = \big(A(\theta)\big)^n \times A(\theta) = A(n\theta) \times A(\theta) = A(n\theta+\theta) = A((n+1)\theta)$$
+  \item C'est donc vrai pour tout $n\ge 1$.
+\end{itemize}
+
+
+Remarques :
+\begin{itemize}
+  \item On aurait aussi la formule $A(\theta')\times A(\theta) = A(\theta+\theta') = A(\theta)\times A(\theta')$.
+Les matrices $A(\theta)$ et $A(\theta')$ commutent.
+
+  \item En fait il n'est pas plus difficile de montrer que $\big(A(\theta)\big)^{-1}=A(-\theta)$.
+On sait aussi que par définition $\big(A(\theta)\big)^{0}=I$. Et on en déduit que pour $n\in \Zz$ on a 
+$\big(A(\theta)\big)^n = A(n\theta)$.
+
+  \item En terme géométrique $A(\theta)$ est la matrice de la rotation d'angle $\theta$ (centrée à l'origine).
+On vient de montrer que si l'on compose un rotation d'angle $\theta$ avec un rotation d'angle $\theta'$
+alors on obtient une rotation d'angle $\theta+\theta'$.
+\end{itemize}
+
+\fincorrection
+\correction{001063}
+Notons $E_{ij}$ la matrice élémentaire (des zéros partout sauf le coefficient $1$ à la
+ $i$-ème ligne et la $j$-ème colonne).
+
+Soit $A = (a_{ij})  \in \mathcal{M}_n(\Rr)$.
+Alors 
+$$A \times E_{ij} = 
+\begin{pmatrix}  
+0 & 0 & \cdots & 0 & a_{1i} & 0 & \cdots \\
+0 & 0 & \cdots & 0 & a_{2i} & 0 & \cdots \\
+\vdots&  & \cdots & & \vdots &  & \cdots \\
+0 & 0 & \cdots & 0 & a_{ji} & 0 & \cdots \\
+\vdots&  & \cdots & & \vdots &  & \cdots \\
+0 & 0 & \cdots & 0 & a_{ni} & 0 & \cdots \\
+\end{pmatrix}$$
+La seule colonne non nulle est la $j$-ème colonne.
+
+La trace est la somme des éléments sur la diagonale. Ici le seul élément non nul de la diagonale est
+$a_{ji}$, on en déduit donc 
+$$\text{tr} (A \times E_{ij})=a_{ji}$$
+(attention à l'inversion des indices).
+
+Maintenant prenons deux matrices $A, B$ telles que $\text{tr} (AX) = \text{tr} (BX)$
+pour toute matrice $X$. Alors pour $X=E_{ij}$ on en déduit $a_{ji}=b_{ji}$.
+On fait ceci pour toutes les matrices élémentaires $E_{ij}$ avec $1 \le i,j \le n$
+ce qui implique $A=B$.
+\fincorrection
+\correction{001064}
+Notons $A=(a_{ij})$, notons $B = {}^{t}\!{A}$ si les coefficients sont $B=(b_{ij})$ 
+alors par définition de la transposée on a $b_{ij}= a_{ji}$.
+
+Ensuite notons $C = A \times B$ alors par définition du produit de matrices 
+le coefficients $c_{ij}$ de $C$ s'obtient par la formule :
+$$c_{ij} = \sum_{k=1}^n a_{ik}b_{kj}.$$
+
+Appliquons ceci avec $B = {}^{t}\!{A}$
+$$c_{ij} = \sum_{k=1}^n a_{ik}b_{kj} = \sum_{k=1}^n a_{ik}a_{jk}.$$
+Et pour un coefficient de la diagonale on a $i=j$ donc 
+$$c_{ii} =  \sum_{k=1}^n a_{ik}^2.$$
+
+La trace étant la somme des coefficients sur la diagonale on a :
+$$\text{tr} (A \ {}^{t}\!{A}) = \text{tr} (C) 
+= \sum_{i=1}^n c_{ii} =  \sum_{i=1}^n \sum_{k=1}^n a_{ik}^2 = \sum_{1\le i,k \le n} a_{ik}^2.$$
+
+Si on change l'indice $k$ en $j$ on obtient 
+$$\text{tr} (A \ {}^{t}\!{A})  = \sum_{1\le i,j \le n} a_{ij}^2.$$
+
+Donc cette trace vaut la somme des carrés de tous les coefficients.
+
+Conséquence : si $\text{tr} (A \ {}^{t}\!{A}) = 0$ alors la somme des carrés 
+$\sum_{1\le i,j \le n} a_{ij}^2$ est nulle 
+donc chaque carré $a_{ij}^2$ est nul. Ainsi $a_{ij}=0$ (pour tout $i,j$) autrement dit $A$ est la matrice nulle.
+\fincorrection
+\correction{006872}
+
+\begin{enumerate}
+  \item  si le déterminant $ad-bc$ est non nul l'inverse est 
+$\frac{1}{ad-bc}\begin{pmatrix} d & -b \\ -c & a \\ \end{pmatrix}$
+  \item $\frac14 \begin{pmatrix} -4 & 0 & -4 \\ 3 & 1 & 2 \\2 & -2 & 0 \\  \end{pmatrix}$
+
+  \item si $|\alpha|\neq 1$ alors l'inverse est $\frac 1{1-\alpha\bar\alpha}
+            \begin{pmatrix} 1       &-\bar\alpha        &0           \cr
+                      -\alpha &1+\alpha\bar\alpha &-\bar\alpha \cr
+                      0       &-\alpha            &1           \cr\end{pmatrix}$
+
+   \item $\frac13 \begin{pmatrix}
+-2 & 1 & 1 & 1 \\ 1 & -2 & 1 & 1 \\ 1 & 1 & -2 & 1 \\ 1 & 1 & 1 & -2 \\
+                                      \end{pmatrix}$
+
+  \item $\begin{pmatrix}
+1 & -1 & 0 & \cdots & 0 \\
+0 & 1 & -1 & 0 & \cdots\\
+ & \ddots & \ddots & \ddots &  \\
+\vdots & & 0 & 1 & -1  \\
+0 & \cdots & \cdots & 0 & 1
+\end{pmatrix}$
+
+
+  \item $\begin{pmatrix}
+1 & -2 & 1 & 0 &\cdots & 0 \\
+ & 1 & -2 & 1 & 0 & \cdots\\
+ &  & 1 & -2 & 1 & 0 \\
+ & &  & \ddots & \ddots & \ddots \\
+ &  & (0) &  & 1 & -2 \\
+ &  &  & &  & 1
+\end{pmatrix}$
+\end{enumerate}
+\fincorrection
+\correction{001052}
+
+On trouve 
+$$A^2 =
+\begin{pmatrix} 
+3 & -4 & 2 \cr
+1 & -1 & -1 \cr
+1 & 2 & 0 \cr
+\end{pmatrix}
+\qquad \text{ et } \qquad 
+A^3=
+\begin{pmatrix} 
+5 & 0 & 2 \cr
+0 & 3 & 1 \cr
+1 & -2 & 4 \cr
+\end{pmatrix}
+.$$
+
+Un calcul donne $A^3-A = 4 I$.
+En factorisant par $A$ on obtient $A\times (A^2-I) = 4I$.
+Donc $A \times \frac 1 4 (A^2-I) = I$, ainsi $A$ est inversible et
+$$A^{-1} = \frac 1 4 (A^2-I) = \frac 1 4
+\begin{pmatrix}
+2&-4&2\\
+1&-2&-1\\
+1&2&-1\\
+\end{pmatrix}.
+$$
+\fincorrection
+\correction{003380}
+
+Avant de commencer la résolution nous allons faire une remarque importante :
+pour $X = \begin{pmatrix}x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix}$ un vecteur 
+(considéré comme une matrice à une seule colonne)
+alors nous allons calculer ${}^t\!X X$ : 
+$${}^t\!X X = (x_1,x_2,\cdots,x_n) \begin{pmatrix}x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = x_1^2+x_2^2+\cdots+x_n^2.$$
+On note $ \| X \|^2 = {}^t\!X X$ : $\| X \|$ est la \emph{norme} ou la \emph{longueur} du vecteur $X$.
+De ce calcul on déduit d'une part que ${}^t\!X X \ge 0$. Et aussi que  ${}^t\!X X \ge 0$ si et seulement si
+$X$ est le vecteur nul.
+
+
+\begin{enumerate}
+  \item Nous allons montrer que $I+M$ est inversible en montrant que si un vecteur $X$ vérifie
+$(I+M)X = 0$ alors $X=0$.
+
+Nous allons estimer ${}^t\!(MX)(MX)$ de deux façons.
+D'une part c'est un produit de la forme ${}^t\!Y Y = \| Y\|^2$ et donc ${}^t\!(MX)(MX) \ge 0$.
+
+D'autre part :
+\begin{align*}
+{}^t\!(MX)(MX) 
+ & = {}^t\!(MX) (-X) \quad \text{ car } (I+M)X = 0 \text{ donc } MX = -X \\
+ & = {}^t\!X {}^t\!M (-X)    \quad \text{ car } {}^t\!(AB)={}^t\! B {}^t\!A \\
+ & = {}^t\!X (-M) (-X)    \quad \text{ car } {}^t\!M=-M \\
+ & = {}^t\!X MX \\
+ & = {}^t\!X (-X) \\
+ & = -{}^t\!XX \\
+ & = - \|X\|^2 \\
+\end{align*}
+Qui est donc négatif.
+
+Seule possibilité $\|X\|^2=0$ donc $X=0$ (= le vecteur nul) et donc $I+M$ inversible.
+
+\item 
+  \begin{enumerate}
+    \item Calculons $A^{-1}$.
+$$A^{-1} =\big( (I-M)\times(I+M)^{-1} \big)^{-1} = \big( (I+M)^{-1} \big)^{-1} \times(I-M)^{-1} = (I+M)\times(I-M)^{-1}$$
+(n'oubliez pas que $(AB)^{-1}=B^{-1}A^{-1}$).
+
+
+     \item Calculons ${}^t\!A$.
+\begin{align*}
+{}^t\!A 
+  & = {}^t\!\big( (I-M) \times (I+M)^{-1} \big) \\
+  & = {}^t\!\big( (I+M)^{-1} \big) \times {}^t\!(I-M) \qquad \text{ car } {}^t\!(AB)={}^t\!B{}^t\!A \\
+  & = \big( {}^t\!(I+M) \big)^{-1}\times{}^t\!(I-M) \qquad \text{ car } {}^t\!(A^{-1})=\big({}^tA\big)^{-1} \\
+  & = \big( I+{}^t\!M) \big)^{-1}\times(I-{}^t\!M) \qquad \text{ car } {}^t\!(A+B)={}^t\!A+{}^t\!B \\
+  & = (I-M) ^{-1}\times (I+M) \qquad \text{ car ici } {}^{t}\!{M} = -M \\  
+\end{align*}
+
+      \item Montrons que $I+M$ et $(I-M) ^{-1}$ commutent.
+
+Tout d'abord $I+M$ et $I-M$ commutent car $(I+M)(I-M) = I-M^2 = (I-M)(I+M)$.
+Maintenant nous avons le petit résultat suivant :
+
+\textbf{Lemme.} Si $AB=BA$ alors $AB^{-1}=B^{-1}A$.
+
+Pour la preuve on écrit :
+$$AB=BA \Rightarrow B^{-1}(AB)B^{-1}=B^{-1}(BA)B^{-1} \Rightarrow B^{-1}A=AB^{-1}.$$
+
+En appliquant ceci à $I+M$ et $I-M$ on trouve $(I+M)\times (I-M) ^{-1}= (I-M) ^{-1}\times(I+M)$
+et donc $A^{-1}={}^t\!A$.
+
+    \end{enumerate}
+\end{enumerate}
+
+\fincorrection
+\correction{001069}
+Soit $X=\left(
+\begin{array}{c}
+x_1\\
+\vdots\\
+x_n
+\end{array}
+\right)$  un vecteur tel que $AX=0$. 
+Nous allons montrer qu'alors $X$ est le vecteur nul ce qui entraîne que $A$ est inversible.
+
+Par l'absurde supposons $X\neq0$. 
+Alors, si $i_0$ est un indice tel que $|x_{i_0}|=\max\big\{|x_i| \mid i=1,\ldots,n\big\}$, on a  $|x_{i_0}|>0$.
+
+Mais alors comme $AX=0$ on a pour tout $i=1,\ldots,n$ :
+$$\sum_{j=1}^{n}a_{i,j}x_j=0$$
+donc 
+$$|a_{i_0,i_0}x_{i_0}|=\left|-\sum_{j\neq i_0}^{}a_{i_0,j}x_j\right|\leq\sum_{j\neq i_0}^{}|a_{i_0,j}|.|x_j|
+ \leq|x_{i_0}|\sum_{j\neq i_0}^{}|a_{i_0,j}|
+$$
+et, puisque $|x_{i_0}|> 0$, on obtient $|a_{i_0,i_0}|\leq\sum_{j\neq i_0}^{}|a_{i_0,j}|$ contredisant les hypothèses de l'énoncé. 
+Ainsi $X=0$. On a donc prouvé <<$AX=0 \Rightarrow X=0$>> ce qui équivaut à $A$ inversible.
+\fincorrection
+
+
+\end{document}
+

@@ -1,0 +1,181 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb,stmaryrd}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace,xypic}
+\usepackage{xcolor,multicol,tabularx}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{relsize,exscale}
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\M}{\mathcal{M}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+ 	
+
+\begin{center}
+\Large \sc colle 27 = Algèbre linéaire, équations différentielles et probabilités
+\end{center}
+
+\section*{Exercices mixtes:}%[-0.25cm]
+
+\raggedright
+
+\begin{exo}\textbf{}\quad\\[0.25cm]
+Soit $P$ le plan d’équation $x + y + z = 0$ et $D$ la droite d’équation $x =\dfrac{y}{2} = \dfrac{z}{3} $.
+\begin{enumerate}
+	\item Vérifier que $\R^3 = P \oplus D$.
+	\item Soit $p$ la projection vectorielle de $\R^3$ sur $P$ parallèlement à $D$.
+	Soit $u = (x, y, z) \in \R^3$ .\\
+	Déterminer $p(u)$ et donner la matrice de $p$ dans la base canonique de $\R^3$.
+	\item Déterminer une base de $\R^3$ dans laquelle la matrice de $p$ est diagonale, expliciter cette matrice.
+\end{enumerate}
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{}\quad\\[0.25cm]
+Une urne contient deux boules blanches et huit boules noires.\\
+\begin{enumerate}
+	\item Un joueur tire successivement, avec remise, cinq boules dans cette urne.
+	Pour chaque boule blanche tirée, il gagne $2$ points et pour chaque boule noire tirée, il perd $3$ points.\\
+	On note $X$ la variable aléatoire représentant le nombre de boules blanches tirées.\\
+	On note $Y$ le nombre de points obtenus par le joueur sur une partie.
+	\begin{enumerate}
+		\item Déterminer la loi de $X$, son espérance et sa variance.
+		\item Déterminer la loi de $Y$ , son espérance et sa variance.
+	\end{enumerate}
+	\item Dans cette question, on suppose que les cinq tirages successifs se font sans remise.
+	\begin{enumerate}
+		\item Déterminer la loi de $X$, son espérance et sa variance.
+		\item Déterminer la loi de $Y$ , son espérance et sa variance.
+	\end{enumerate}
+\end{enumerate}
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\[0.25cm]
+	\begin{enumerate}
+		\item Déterminer une primitive de $x\longmapsto\cos^4(x)$
+		\item Résoudre sur $\R$ l’équation différentielle : $y'' + y = \cos^3(x)$  en utilisant la méthode de variation des
+		constantes.
+	\end{enumerate}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{}\quad\\[0.25cm]
+Une secrétaire effectue, une première fois, un appel téléphonique vers $n$ correspondants distincts.
+On admet que les $n$ appels constituent $n$ expériences indépendantes et que, pour chaque appel, la probabilité
+d’obtenir le correspondant demandé est $p\in \ ]0,1[$.\\
+Soit $X$ la variable aléatoire représentant le nombre de correspondants obtenus.
+\begin{enumerate}
+	\item Donner la loi de $X$. Justifier.
+	\item La secrétaire rappelle une seconde fois, dans les mêmes conditions, chacun des $n - X$ correspondants qu’elle n’a pas pu joindre au cours de la première série d’appels. On note $Y$ la variable aléatoire représentant le nombre de personnes jointes au cours de la seconde série d’appels.
+	\begin{enumerate}
+		\item Soit $i \in\llbracket 0~;~ n \rrbracket $. Déterminer, pour $k\in\N$, $P (Y = k|X = i)$.
+		\item Montrer l’égalité suivante : $$\begin{pmatrix}n-i\\k-i\end{pmatrix} \begin{pmatrix}n\\i\end{pmatrix}  \ = \  \begin{pmatrix}k\\i\end{pmatrix} \begin{pmatrix}n\\k\end{pmatrix}$$
+		\item Prouver que $Z = X + Y$ suit une loi binomiale dont on déterminera les paramètres.
+		\item Déterminer l’espérance et la variance de $Z$.
+	\end{enumerate}
+\end{enumerate}
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\newpage
+\begin{exo}\quad\\[0.25cm]%https://www.bibmath.net/ressources/index.php?action=affiche&quoi=mathsup/feuillesexo/equadiffs&type=fexo
+On cherche à résoudre sur $\mathbb R_+^*$ l’équation différentielle :
+$$x^2y''-3xy'+4y = 0 .\ (E)$$
+\begin{enumerate}
+	\item Cette équation est-elle linéaire ? Qu’est-ce qui change par rapport au cours ?
+	\item  Analyse. Soit $y$ une solution de $(E)$ sur $\mathbb R_+^*$. Pour $t\in\mathbb R$, on pose $z(t)=y(e^t)$. En déduire que $z$ vériﬁe une équation différentielle linéaire d’ordre 2 à coefficients  constants que l’on précisera. En déduire l'expression $y$.
+	\item Synthèse. Vérifier que la fonction $y$ trouvée précédemment est solution de $(E)$.
+\end{enumerate}
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}			
+
+
+\begin{exo}\quad\\[0.25cm]
+	Soient $E$ un espace vectoriel sur $\R$ ou $\C$ et $f \in \mathcal{L}(E)$ tel que $f^2 - f - 2Id = 0$.
+	
+	\begin{enumerate}
+		\item Prouver que $f$ est bijectif et exprimer $f^{-1}$ en fonction de $f$ .
+		\item Prouver que $E = \ker(f + Id) \oplus \ker(f - 2Id)$.
+		\item Dans cette question, on suppose que $E$ est de dimension finie.\\
+		Prouver que $Im(f + Id) = \ker(f - 2Id)$.
+		
+	\end{enumerate}
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+
+
+
+
+\end{document}

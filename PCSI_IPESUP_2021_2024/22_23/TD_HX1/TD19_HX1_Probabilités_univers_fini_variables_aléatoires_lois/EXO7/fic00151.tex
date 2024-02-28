@@ -1,0 +1,600 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00151, quinio, 2011/05/20}
+
+Exercices : Martine Quinio
+
+\titre{Probabilité conditionnelle}
+
+\exercice{5992, quinio, 2011/05/11}
+
+\enonce{005992}{}
+Dans la salle des profs $60$\% sont des femmes ; une femme sur trois
+porte des lunettes et un homme sur deux porte des lunettes : quelle est la
+probabilité pour qu'un porteur de lunettes pris au hasard soit une femme?
+\finenonce{005992}
+
+
+\finexercice\exercice{5993, quinio, 2011/05/20}
+
+\enonce{005993}{}
+Une fête réunit $35$ hommes, $40$ femmes, $25$ enfants ; sur
+une table, il y a $3$ urnes $H$, $F$, $E$ contenant des boules de couleurs dont
+respectivement $10$\%, $40$\%, $80$\% de boules noires. Un présentateur
+aux yeux bandés désigne une personne au hasard et lui demande de
+tirer une boule dans l'urne $H$ si cette personne est un homme, dans l'urne $F$
+si cette personne est une femme, dans l'urne $E$ si cette personne est un
+enfant. La boule tirée est noire : quelle est la probabilité pour que
+la boule ait été tirée par un homme? une femme? un enfant? Le présentateur n'est pas plus magicien que vous et moi et pronostique le
+genre de la personne au hasard : que doit-il dire pour avoir le moins de
+risque d'erreur?
+\finenonce{005993}
+
+
+\finexercice
+\exercice{5994, quinio, 2011/05/20}
+
+\enonce{005994}{}
+Un fumeur, après avoir lu une série de statistiques
+effrayantes sur les risques de cancer, problèmes cardio-vasculaires 
+liés au tabac, décide d'arrêter de fumer; toujours d'après des
+statistiques, on estime les probabilités suivantes : si cette personne
+n'a pas fumé un jour $J_{n}$, alors la probabilité
+pour qu'elle ne fume pas le jour suivant $J_{n+1}$ est $0.3$; 
+mais si elle a fumé un jour $J_{n}$, alors la probabilité 
+pour qu'elle ne fume pas le jour suivant $J_{n+1}$ est $0.9$; 
+quelle est la probabilité $P_{n+1}$ pour qu'elle
+fume le jour $J_{n+1}$ en fonction de la probabilité 
+$P_{n}$ pour qu'elle fume le jour $J_{n}$ ? Quelle est la
+limite de $P_{n}$ ? Va-t-il finir par s'arrêter?
+\finenonce{005994}
+
+
+\finexercice
+\exercice{5995, quinio, 2011/05/20}
+
+\enonce{005995}{}
+Un professeur oublie fréquemment ses clés. Pour tout $n$, on note :
+$E_n$ l'événement <<le jour $n$, le professeur oublie ses clés>>, 
+$P_{n}=P(E_n)$, $Q_n=P(\overline{E_n})$.
+
+On suppose que : $P_{1}=a$ est donné et que si le jour $n$ il oublie ses clés, 
+le jour suivant il les oublie avec la probabilité $\frac{1}{10}$ ; 
+si le jour $n$ il n'oublie pas ses clés, le jour suivant il les oublie
+avec la probabilité $\frac{4}{10}$.
+
+Montrer que $P_{n+1}=\frac{1}{10}P_{n}+\frac{4}{10}Q_{n}$.
+En déduire une relation entre $P_{n+1}$ et $P_{n}$
+
+Quelle est la probabilité de l'événement <<le jour $n$, le professeur oublie ses clés>> ?
+\finenonce{005995}
+
+
+\finexercice
+\exercice{5996, quinio, 2011/05/20}
+
+\enonce{005996}{}
+Dans les barres de chocolat N., on trouve des images équitablement
+réparties des cinq personnages du dernier Walt Disney, une image par
+tablette. Ma fille veut avoir le héros Princecharmant : combien dois-je
+acheter de barres pour que la probabilité d'avoir la figurine attendue dépasse $80$\%? 
+Même question pour être sûr à $90$\%.
+\finenonce{005996}
+
+
+\finexercice
+\exercice{5997, quinio, 2011/05/20}
+
+\enonce{005997}{}
+En cas de migraine trois patients sur cinq prennent de l'aspirine
+(ou équivalent), deux sur cinq prennent un médicament M présentant des effets secondaires :
+
+Avec l'aspirine, 75\% des patients sont soulagés.
+
+Avec le médicament M, 90\% des patients sont soulagés.
+\begin{enumerate}
+\item Quel est le taux global de personnes soulagées?
+
+\item Quel est la probabilité pour un patient d'avoir pris de l'aspirine
+sachant qu'il est soulagé?
+\end{enumerate}
+\finenonce{005997}
+
+
+\finexercice
+\exercice{5998, quinio, 2011/05/20}
+
+\enonce{005998}{}
+Dans une population 40\% des individus ont les yeux bruns, 25\% des
+individus ont les cheveux blonds, 15\% des individus ont les yeux bruns
+et les cheveux blonds.
+
+On choisit un individu au hasard. Calculez :
+\begin{enumerate}
+\item La probabilité de l'événement : si un individu a les yeux
+bruns d'avoir les cheveux blonds.
+
+\item La probabilité de l'événement : si un individu a les cheveux
+blonds d'avoir les yeux bruns.
+
+\item La probabilité de l'événement : si un individu a les cheveux
+blonds, de ne pas avoir les yeux bruns.
+\end{enumerate}
+\finenonce{005998}
+
+
+\finexercice
+\exercice{5999, quinio, 2011/05/20}
+
+\enonce{005999}{}
+Un constructeur aéronautique équipe ses avions trimoteurs d'un
+moteur central de type A et de deux moteurs, un par aile, de type B; chaque
+moteur tombe en panne indépendamment d'un autre, et on estime à $p$ la
+probabilité pour un moteur de type A de tomber en panne et à $q$ la
+probabilité pour un moteur de type B de tomber en panne.
+
+Le trimoteur peut voler si le moteur central \emph{ou} les deux moteurs d'ailes
+fonctionnent : quelle est la probabilité pour l'avion de voler?
+Application numérique : $p = 0.001\%$, $q = 0.02\%$.
+\finenonce{005999}
+
+
+\finexercice
+\exercice{6000, quinio, 2011/05/20}
+
+\enonce{006000}{}
+On sait qu'à une date donnée, 3\% d'une population
+est atteinte d'hépatite
+On dispose de tests de dépistage de la maladie :
+\begin{itemize}
+\item Si la personne est malade, alors le test est positif avec une probabilité de 95\%.
+\item Si la personne est saine, alors le test est positif avec une probabilité de 10\%.
+\end{itemize}
+
+\begin{enumerate}
+\item Quelle est la probabilité pour une personne d'être malade
+si son test est positif ?
+\item Quelle est la probabilité pour une personne d'être saine si
+son test est positif ?
+\item Quelle est la probabilité pour une personne d'être malade
+si son test est négatif ?
+\item Quelle est la probabilité pour une personne d'être saine si
+son test est négatif ?
+\end{enumerate}
+\finenonce{006000}
+
+
+\finexercice
+\exercice{6001, quinio, 2011/05/20}
+
+\enonce{006001}{}
+Dans mon trousseau de clés il y a $8$ clés; elles sont toutes
+semblables. Pour rentrer chez moi je mets une clé au hasard; je
+fais ainsi des essais jusqu'à ce que je trouve la bonne; j'écarte au
+fur et à mesure les mauvaises clés. Quelle est la probabilité
+pour que j'ouvre la porte : 
+\begin{enumerate}
+\item du premier coup ? 
+\item au troisième essai ? 
+\item au cinquième essai ? 
+\item au huitième essai?
+\end{enumerate}
+\finenonce{006001}
+
+
+\finexercice
+\exercice{6002, quinio, 2011/05/20}
+
+\enonce{006002}{}
+Six couples sont réunis dans une soirée de réveillon. Une
+fois les bises de bonne année échangées, on danse, de façon
+conventionnelle: un homme avec une femme, mais pas forcément la sienne.
+
+\begin{enumerate}
+\item Quelle est la probabilité $P(A)$ pour que chacun des 6 hommes danse
+avec son épouse légitime ?
+\item Quelle est la probabilité $P(B)$ pour que André danse avec son 
+épouse ?
+\item Quelle est la probabilité $P(C)$ pour que André et René
+dansent avec leur épouse ?
+\item Quelle est la probabilité $P(D)$ pour que André ou René
+danse(nt) avec leur épouse ?
+\end{enumerate}
+\finenonce{006002}
+
+
+\finexercice
+\exercice{6003, quinio, 2011/05/20}
+
+\enonce{006003}{}
+Dans l'ancienne formule du Loto il fallait choisir 6 numéros parmi 49.
+\begin{enumerate}
+  \item Combien y-a-t-il de grilles possibles ? En déduire la probabilité de
+gagner en jouant une grille.
+
+  \item Quelle est la probabilité que la grille gagnante comporte 2
+nombres consécutifs?
+\end{enumerate}
+\finenonce{006003}
+
+
+\finexercice
+\exercice{6004, quinio, 2011/05/20}
+
+\enonce{006004}{}
+Un débutant à un jeu effectue plusieurs parties successives. Pour la
+première partie, les probabilités de gagner ou perdre sont les mêmes; puis, on suppose que:
+\begin{itemize}
+  \item Si une partie est gagnée, la probabilité de gagner la suivante est $0.6$.
+
+  \item Si une partie est perdue, la probabilité de perdre la suivante est $0.7$.
+\end{itemize}
+Soit $G_n$ l'événement <<Gagner la partie $n$>>, et $u_n=P(G_n)$.
+On note $v_n = P(\overline{G_n})$.
+\begin{enumerate}
+  \item Ecrire 2 relations entre $u_n$, $u_{n+1}$, $v_n$, $v_{n+1}$.
+
+  \item A l'aide de la matrice mise en évidence en déduire $u_n$ et $v_n$.
+Faire un calcul direct à l'aide de $u_n+v_n$.
+\end{enumerate}
+\finenonce{006004}
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005992}
+Notons les différents événements :
+$Fe$ : <<être femme>>, $Lu$ : <<porter des lunettes>>, $H$ : <<être homme>>
+
+Alors on a $P(Fe)=0.6,$ $P(Lu/Fe)=\frac{1}{3};$ il s'agit de la 
+probabilité conditionnelle probabilité de 
+<<porter des lunettes>> sachant que la personne est une femme.
+De même, on a $P(Lu/H)=0.5$. On cherche la probabilité
+conditionnelle $P(Fe/Lu)$.
+D'après la formule des probabilités totales on a :
+$P(Fe/Lu)P(Lu)=P(Lu/Fe)P(Fe)$ avec $P(Lu)=P(Lu/Fe)P(Fe)+P(Lu/H)P(H)$.
+
+Application numérique : $P(Lu)=0.4$, donc  $P(Fe/Lu)=\frac{P(Lu/Fe)P(Fe)}{P(Lu)}=0.5$.
+Remarque : on peut trouver les mêmes réponses par des raisonnements 
+élémentaires.
+\fincorrection
+\correction{005993}
+C'est évidemment le même que le précédent (exercice \ref{exo:quinio11}), seul le contexte
+est différent : il suffit d'adapter les calculs faits.
+En pronostiquant un enfant, le présentateur a une chance sur deux
+environ de ne pas se tromper.
+\fincorrection
+\correction{005994}
+Fumeurs
+
+Définissons les événements: $F_{n}$ <<Fumer le $n$\up{ème} jour>>, et $\overline{F_{n}}$ 
+l'événement complémentaire.
+Alors $\{\overline{F_{n}},F_{n}\}$ constitue un système complet d'événements, 
+$P_{n}=$ $P(F_{n})$; on peut donc écrire :
+$P(\overline{F_{n+1}})=P(\overline{F_{n+1}}/F_{n})P(F_{n})
++P(\overline{F_{n+1}}/\overline{F_{n}})P(\overline{F_{n}})$.
+
+Comme $P(\overline{F_{n+1}}/F_{n})=0.9$ et $P(\overline{F_{n+1}}/\overline{F_{n}})=0.3$
+$1-P_{n+1}=0.9P_{n}+0.3(1-P_{n})$, soit $P_{n+1}=-0.6P_{n}+0.7$. Notons (R)
+cette relation.
+
+Pour connaître le comportement à long terme, il faut étudier cette
+suite récurrente; il y a des techniques mathématiques pour ça,
+c'est le moment de s'en servir.
+
+Cherchons la solution de l'équation <<$\ell=-0.6\ell+0.7$>>, 
+la limite éventuelle satisfait nécessairement cette équation : faire un passage à la limite dans la
+relation (R), ou utiliser le théorème du point fixe.
+
+On trouve $\ell=\frac{7}{16};$ alors, la suite $Q_{n}=(P_{n}- \ell)$ vérifie : 
+$Q_{n+1}= - 0.6Q_{n}$, ce qui permet de 
+conclure : $Q_{n+1}=(-0.6)^{n}Q_{1}$
+et comme $((-0.6)^{n})$ est une suite qui tend vers $0$, on peut dire que la
+suite $(Q_{n})$ tend vers $0$ et donc que la suite $(P_n)$ tend vers $\ell=\frac{7}{16}.$
+
+Conclusion : la probabilité $P_{n}$ pour qu'elle fume le jour $J_{n}$
+tend vers $\frac{7}{16} \simeq 0.4375$.
+\fincorrection
+\correction{005995}
+ $P_{n+1}=P(E_{n+1})=
+P(E_{n+1}/E_n)P(E_n)+P(E_{n+1}/\overline{E_n})P(\overline{E_n})=\frac{1}{10}P_{n}+\frac{4}{10}Q_{n}$.
+Donc
+$P_{n+1}=\frac{1}{10}P_{n}+\frac{4}{10}(1-P_{n})=\frac{4}{10}-\frac{3}{10}P_{n}$.
+
+La suite ($P_{n}-\ell)$ est géométrique, où $\ell$ est solution
+de $\frac{4}{10}-\frac{3}{10}\ell=\ell$ soit $\ell=\frac{4}{13}$.
+Donc $P_{n}=\frac{4}{13}+a(-\frac{3}{10})^{n-1}$.
+\fincorrection
+\correction{005996}
+La probabilité d'avoir Princecharmant dans la barre B est $\frac{1}{5}; $ si j'achète $n$ barres, la probabilité de n'avoir la
+figurine dans aucune des $n$ barres est $(\frac{4}{5})^{n}$, puisqu'il
+s'agit de $n$ événements indépendants de probabilité $\frac{4}{5}$.
+Je cherche donc $n$ tel que : $1-(\frac{4}{5})^{n}\geq 0.8$. On a facilement : $n\geq 8$.
+
+Puis, je cherche $m$ tel que : $1-(\frac{4}{5})^{m}\geq 0.9$ ; il
+faut au moins $11$ barres pour que la probabilité dépasse $90$\%.
+Pour la probabilité $99$\%, $n\geq 21$ .
+\fincorrection
+\correction{005997}
+\begin{enumerate}
+\item Le taux global de personnes soulagées :
+$P(S)=\frac{3}{5}0.75+\frac{2}{5}0.90=0.81$.
+
+\item Probabilité pour un patient d'avoir pris de l'aspirine sachant qu'il
+est soulagé :
+$P(A/S)=P(A\cap S)/P(S)=P(A)P(S/A)/P(S)=\frac{\frac{3}{5}0.75}{0.81}=55.6\%$.
+\end{enumerate}
+\fincorrection
+\correction{005998}
+\begin{enumerate}
+\item Probabilité conditionnelle : si un individu a les yeux bruns d'avoir
+les cheveux blonds. 
+C'est $P(CB/YB)=P(YB/CB)P(CB)/P(YB)$=$P(YB\cap CB)/P(YB)=\frac{0.15}{0.4}=0.375$.
+
+\item La probabilité de l'événement : si un individu a les cheveux
+blonds d'avoir les yeux bruns.
+C'est $P(YB/CB)=P(YB\cap CB)/P(CB)$=$\frac{0.15}{0.25}=0.6$.
+
+\item La probabilité de l'événement : si un individu a les cheveux
+blonds,de ne pas avoir les yeux bruns.
+C'est $P(\text{non}YB/CB)=1-P(YB/CB)=0.4$.
+\end{enumerate}
+\fincorrection
+\correction{005999}
+On obtient par calcul direct ou par événement contraire
+la probabilité de voler : $1-p+p(1-q)^{2}$.
+\fincorrection
+\correction{006000}
+\begin{enumerate}
+\item La probabilité pour une personne d'être malade si son test est
+positif est $P(M/T^{+})=P(T^{+}/M)P(M)/P(T^{+})$
+or $P(T^{+})=P(T^{+}/M)P(M)+P(T^{+}/S)P(S)=0.95\cdot 0.03+0.1\cdot
+0.97=0.125\,5$. 
+D'où : $P(M/T^{+})=22.7\%$.
+
+\item La probabilité pour une personne d'être saine si son test est
+positif est $P(S/T^{+})=1-P(M/T^{+})=77.3\%$.
+
+\item La probabilité pour une personne d'être malade si son test est négatif 
+est $P(M/T^{-})=0.0017$.
+
+\item La probabilité pour une personne d'être saine si son test est négatif
+est $1-P(M/T^{-})=0.998=99.8\%$.
+\end{enumerate}
+\fincorrection
+\correction{006001}
+Une manière de résoudre le problème est la suivante:
+puisqu'il y a $8$ clés et que j'écarte une après l'autre les mauvaises clés, 
+je considère comme ensemble de toutes les possibilités, toutes les permutations de ces huit clés : 
+il y en a $8$!. Alors la solution de chaque question est basée sur le même principe:
+\begin{enumerate}
+\item Les permutations (fictives) qui traduisent le cas (1) sont celles qui
+peuvent être représentées par une suite : 
+$BMMMMMMM$, la lettre $B$ désigne la bonne, $M$ désigne une
+mauvaise. Il y a $7!$ permutations de ce type.
+Donc $P(A)=\frac{7!}{8!}=\frac{1}{8},$ on s'en doutait!
+\item De même, les permutations (fictives) sont
+celles qui peuvent être représentées par une suite:
+$MBMMMMMM$: il y en a encore $7$!, et la probabilité est la même.
+\item Le raisonnement permet en fait de conclure que la probabilité, avant
+de commencer, d'ouvrir la porte est la même pour le premier, deuxième,..., huitième essai.
+\end{enumerate}
+\fincorrection
+\correction{006002}
+\begin{enumerate}
+\item L'univers des possibles est l'ensemble des couples possibles:
+il y en a $6!=720$ (imaginez les dames assises et les hommes choisissant
+leur partenaire). La probabilité $P(A)$ pour que chacun des $6$ hommes
+danse avec son épouse légitime est, si chacun choisit au hasard, $\frac{1}{6!}$.
+
+\item André danse avec son épouse, les autres choisissent au hasard: il y
+a $5!$ permutations pour ces derniers:
+$P(B)=\frac{5!}{6!}=\frac{1}{6}$.
+
+\item André et René dansent avec leur épouse, les $4$ autres
+choisissent au hasard: il y a $4!$ permutations pour ces derniers:
+$P(C)=\frac{4!}{6!}=\frac{1}{30}$.
+
+\item André ou René dansent avec leur épouse, les $4$ autres font ce
+qu'ils veulent. Considérons les événements $D_{1}:$ <<André
+danse avec son épouse>> ; $D_{2}$ : <<René danse avec son épouse>>. 
+Alors $D=D_{1}\cup D_{2}$ et
+ $P(D_{1}\cup D_{2})=P(D_{1})+P(D_{2})-P(D_{1}\cap D_{2})=\frac{3}{10}$.
+\end{enumerate}
+\fincorrection
+\correction{006003}
+\begin{enumerate}
+  \item Combien de grilles ?
+Il y en a $\binom{49}{6}=13\,983\,816$
+
+  \item Combien de grilles avec 2 nombres consécutifs ?
+Ce problème peut être résolu par astuce: considérer les numéros gagnants 
+comme 6 places à <<choisir>> parmi 49.
+En considérant des cloisons matérialisant les numéros gagnants,
+c'est un problème de points et cloisons
+Par exemple:
+$$\mid \bullet \bullet \left\vert {}\right\vert \bullet
+\left\vert \bullet \bullet \bullet \mid \bullet \bullet \right\vert$$
+les gagnants sont: 1; 4; 5; 7; 11; 14.
+Dans notre cas on ne veut pas de cloisons consécutives.
+Les cinq cloisons séparent les numéros en 7 bo\^{\i}tes.
+Les 5 bo\^{\i}tes intérieures étant non vides, on y met 5 points,
+puis $38(=49-5-6)$ dans 7 bo\^{\i}tes.
+Il y a $\frac{(38-1+7)!}{38!6!}=7.\,059\,1\times
+10^{6}$ séquences ne comportant pas 2 nombres consécutifs.
+
+D'où la probabilité d'avoir une grille
+comportant 2 nombres consécutifs: $0.4952$.
+\end{enumerate}
+\fincorrection
+\correction{006004}
+\begin{enumerate}
+\item $u_{n+1}=P(G_{n+1})=P(G_{n+1}/Gn)P(Gn)+P(G_{n+1}/\overline{G_n})P(\overline{G_n})
+=0.6u_{n}+0.3v_{n}$.  
+
+$v_{n+1}=0.4u_{n}+0.7v_{n}$.
+
+Donc $\left( 
+\begin{array}{c}
+u_{n+1} \\ 
+v_{n+1}\end{array}\right) =\left( 
+\begin{array}{cc}
+0.6 & 0.3 \\ 
+0.4 & 0.7\end{array}\right) \left( 
+\begin{array}{c}
+u_{n} \\ 
+v_{n}\end{array}\right)$
+
+Comme $u_{n}+v_{n}=1$, $u_{n+1}=0.6u_{n}+0.3(1-u_{n})=0.3+0.3u_{n}$.
+La suite $(u_{n}-\ell)$ est géométrique, où $\ell$ est solution
+de $0.3+0.3\ell=\ell$, donc $\ell=\frac{3}{7}$.
+Donc $u_{n}=\frac{3}{7}+u_{1}(0.3)^{n-1}=\frac{3}{7}+0.5 (0.3)^{n-1}$.
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

@@ -1,0 +1,48 @@
+\documentclass[t,12pt]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amssymb,amsmath,graphicx,amsthm}
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+
+
+
+\usetheme{Warsaw}
+
+\definecolor{zzt}{rgb}{0.6,0.2,0.}
+\definecolor{cqc}{rgb}{0.7529411764705882,0.7529411764705882,0.7529411764705882}
+
+\begin{document}
+
+\begin{frame}
+\frametitle{Visualiser graphiquement une Identité Remarquable}
+Soient $0< a < b$ deux réels. Reproduire le schéma ci-dessous et expliquer pourquoi $(a+b)^2 = a^2 + 2ab + b^2$ \\
+$$\begin{tikzpicture}[scale=0.5]
+\draw[dotted] (0,-3) grid (10,7);
+
+\draw [-, line width = 0.6pt, >=latex',color=black](4,6)--(4,3)--(1,3)--(1,6)--cycle;
+\fill[line width=2.pt,color=zzt,fill=zzt,fill opacity=0.7](4,6)--(4,3)--(1,3)--(1,6)--cycle;
+
+\draw [-, line width = 0.6pt, >=latex',color=black](4,6)--(9,6)--(9,1)--(4,1)--cycle;
+\fill[line width=2.pt,color=blue,fill=blue,fill opacity=0.4](4,6)--(9,6)--(9,1)--(4,1)--cycle;
+
+\draw [-, line width = 0.6pt, >=latex',color=black](1,3)--(4,3)--(4,-2)--(1,-2)--cycle;
+\fill[line width=2.pt,color=magenta,fill=magenta,fill opacity=0.4](1,3)--(4,3)--(4,-2)--(1,-2)--cycle;
+
+\draw [-, line width = 0.6pt, >=latex',color=black](4,-2)--(4,1)--(9,1)--(9,-2)--cycle;
+\fill[line width=2.pt,color=teal,fill=teal,fill opacity=0.4](4,-2)--(4,1)--(9,1)--(9,-2)--cycle;
+
+\begin{scriptsize}
+\draw[color=black] (2.5,6) node[above] {$a$} (1,4.5) node[left] {$a$};
+\draw[color=black] (6.5,6) node[above] {$b$} (9,3.5) node[right] {$b$};
+\end{scriptsize}
+
+\end{tikzpicture}$$
+
+
+\end{frame}
+
+\end{document}
+

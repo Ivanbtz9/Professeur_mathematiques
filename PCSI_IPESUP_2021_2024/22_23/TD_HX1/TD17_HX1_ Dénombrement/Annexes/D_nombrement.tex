@@ -1,0 +1,193 @@
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 1198
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Dans une entreprise...
+\vskip0.2cm
+Dans une entreprise, il y a 800 employés. 300 sont des hommes, 352 sont membres d'un syndicat, 424 sont mariés, 188 sont des hommes syndiqués, 166 sont des hommes mariés, 208 sont syndiqués et mariés, 144 sont des hommes mariés syndiqués. Combien y-a-t-il de femmes célibataires non syndiquées?
+
+
+% Exercice 2362
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Les boulangeries
+\vskip0.2cm
+Dans une ville, il y a quatre boulangeries qui ferment un jour par semaine.
+\begin{enumerate}
+\item Déterminer le nombre de façons d'attribuer un jour de fermeture hebdomadaire?
+\item Reprendre la même question si plusieurs boulangeries ne peuvent fermer le même jour.
+\item Reprendre la même question si chaque jour, il doit y avoir au moins une boulangerie ouverte.
+\end{enumerate}
+
+
+% Exercice 1200
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Nombres et chiffres
+\vskip0.2cm
+Soit $A$ l'ensemble des nombres à 7 chiffres ne comportant aucun "1". Déterminer le nombre d'éléments des ensembles suivants :
+\begin{enumerate}
+\item $A$.
+\item $A_1$, ensemble des nombres de $A$ ayant 7 chiffres différents.
+\item $A_2$, ensemble des nombres pairs de $A$.
+\item $A_3$, ensemble des nombres de $A$ dont les chiffres forment une suite strictement croissante (dans l'ordre où ils sont écrits).
+\end{enumerate}
+
+
+% Exercice 1204
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Anagrammes
+\vskip0.2cm
+Dénombrer les anagrammes des mots suivants : MATHS, RIRE, ANANAS.
+
+
+% Exercice 2361
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Le poker
+\vskip0.2cm
+Une main au poker est formée de 5 cartes extraites d'un jeu de 52 cartes. Traditionnellement,trèfle, carreau, coeur, pique sont appelées couleurs et les valeurs des cartes sont rangées dans l'ordre : as, roi, dame, valet, 10, 9, 8, 7, 6, 5, 4, 3, 2, de la plus forte à la plus faible. Dénombrer les mains suivantes :
+\begin{enumerate}
+\item quinte flush : main formée de 5 cartes consécutives de la même couleur (la suite as, 2, 3, 4 et 5 est une quinte flush).
+\item carré : main contenant 4 cartes de la même valeur (4 as par exemple).
+\item full : main formée de 3 cartes de la même valeur et de deux autres cartes de même valeur (par exemple, 3 as et 2 rois).
+\item quinte : main formée de 5 cartes consécutives et qui ne sont pas toutes de la même couleur.
+\item brelan : main comprenant 3 cartes de même valeur et qui n'est ni un carré, ni un full (par exemple, 3 as, 1 valet, 1 dix).
+\end{enumerate}
+
+
+% Exercice 3129
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - $n+1$ entiers parmi $2n$
+\vskip0.2cm
+On considère un ensemble $X$ de $n+1$ entiers (distincts) choisis dans $\{1,\dots,2n\}$. Démontrer que parmi les éléments de $X$, on peut toujours trouver $2$ entiers dont la somme fait $2n+1$.
+
+
+% Exercice 1212
+
+
+\vskip0.3cm\noindent\textsc{Exercice 7} - Bizarre, bizarre,...
+\vskip0.2cm
+Démontrer par un dénombrement que, pour $n\geq 1$, on a :
+$$\binom{2n}{n}=\sum_{k=0}^n \binom{n}{k}^2.$$
+
+
+% Exercice 1213
+
+
+\vskip0.3cm\noindent\textsc{Exercice 8} - Une somme
+\vskip0.2cm
+Soit $n,p$ des entiers naturels avec $n\geq p$. Démontrer par dénombrement que
+$$\sum_{k=p}^n \dbinom{k}{p}=\dbinom{n+1}{p+1}.$$
+
+
+% Exercice 1217
+
+
+\vskip0.3cm\noindent\textsc{Exercice 9} - Combinaisons avec répétitions
+\vskip0.2cm
+Pour $n\in\mathbb N^*$ et $p\in\mathbb N$, on note $\Gamma_n^p$ le nombre de $n$-uplets $(x_1,\dots,x_n)\in\mathbb N^n$ tels que $x_1+\dots+x_n=p$. 
+\begin{enumerate}
+\item Déterminer $\Gamma_n^0$, $\Gamma_n^1$, $\Gamma_n^2$, $\Gamma_1^p$ et $\Gamma_2^p$.
+\item Démontrer que, pour tout $n\in\mathbb N^*$, pour tout $p\in\mathbb N$, 
+$$\Gamma_{n+1}^p=\Gamma_n^0+\Gamma_n^1+\dots+\Gamma_n^p.$$
+\item En déduire que, pour tout $n\in\mathbb N^*$ et tout $p\in\mathbb N$, 
+$$\Gamma_n^p=\binom{n+p-1}p.$$
+\end{enumerate}
+
+
+% Exercice 1209
+
+
+\vskip0.3cm\noindent\textsc{Exercice 10} - Parties de cardinal pair
+\vskip0.2cm
+Soit $E$ un ensemble fini de cardinal $n\geq 1$. Démontrer que
+le nombre de parties de $E$ de cardinal pair vaut $2^{n-1}$.
+
+
+% Exercice 2743
+
+
+\vskip0.3cm\noindent\textsc{Exercice 11} - Nombres de Bell
+\vskip0.2cm
+Pour $n\in\mathbb N$, on note $B_n$ le nombre de partitions d'un ensemble $E$ de cardinal $n$. On pose $B_0=1$.
+\begin{enumerate}
+ \item Calculer $B_1$, $B_2$ et $B_3$.
+ \item \'Etablir la formule de récurrence 
+ $$B_{n+1}=\sum_{k=0}^n \binom nk B_k.$$
+\end{enumerate}
+
+
+% Exercice 3131
+
+
+\vskip0.3cm\noindent\textsc{Exercice 12} - Nombre de fonctions (strictement) croissantes
+\vskip0.2cm
+Soit $n,p\geq 1$ deux entiers.
+\begin{enumerate}
+\item Combien y-a-t-il de fonctions strictement croissantes de $\{1,\dots,p\}$ dans $\{1,\dots,n\}$?
+\item \begin{enumerate}
+\item Soit $f:\{1,\dots,p\}\to\{1,\dots,n\}$ une fonction croissante. On pose $\phi(f)$ la fonction définie sur $\{1,\dots,p\}$, à valeurs dans $\{1,\dots,n+p-1\}$, par $\phi(f)(k)=f(k)+k-1$. Démontrer que $\phi(f)$ est strictement croissante.
+\item Soit $g:\{1,\dots,p\}\to\{1,\dots,n+p-1\}$ une fonction strictement croissante. On pose $\psi(g)$ la fonction définie sur $\{1,\dots,p\}$, à valeurs dans $\{1,\dots,n\}$, par $\psi(g)(k)=g(k)-k+1$. Démontrer que $\psi(g)$ est croissante.
+\item Combien y-a-t-il de fonctions croissantes de $\{1,\dots,p\}$ dans $\{1,\dots,n\}$?
+\end{enumerate}
+\end{enumerate}
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=27881
+\end{document}

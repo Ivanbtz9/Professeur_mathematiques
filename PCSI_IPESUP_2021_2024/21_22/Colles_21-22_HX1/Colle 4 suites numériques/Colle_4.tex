@@ -1,0 +1,242 @@
+\documentclass[10pt,a4paper]{article}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{times}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{tablists}
+\usepackage[a4paper,bottom = 50pt]{geometry}
+\usepackage{color}
+\usepackage{amsmath,amssymb,amsthm,mathrsfs,pifont,amsfonts}
+\usepackage{pgf,tikz,pgfplots,tkz-tab}
+\usepackage{hyperref}
+\usepackage{cancel}
+\usepackage{array}
+\usepackage{xcolor} 
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{pstricks}
+\usepackage{geometry}
+
+
+\setcellgapes{1pt}
+\makegapedcells
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
+
+\geometry{top=2cm, bottom=1.5cm, left=1.5cm, right=2cm}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\notni}{\not\owns}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+
+\begin{document}
+	
+	\leftline{\bfseries Optimal Sup Spé, groupe IPESUP \hfill Année~2021-2022}
+	\leftline{\bfseries Niveau: Première année de PCSI  }
+	\leftline{\bfseries M.Botcazou \hfill mail: ibotca52@gmail.com  }
+	\rule[0.5ex]{\textwidth}{0.1mm}	
+	
+	\begin{center}
+		\Large \sc colle 4 = suites numériques
+	\end{center}
+	
+\section*{Questions de cours:}
+\noindent Soient $(U_n)_{n\in\N}$ et $(V_n)_{n\in\N}$ deux suites réelles et $l_1,l_2 \in \R$. 
+\begin{enumerate} %[$\square$]
+\item  \begin{enumerate}
+\item Montrer que si les suites $(U_n)_{n\in\N}$ et $(V_n)_{n\in\N}$ sont bornées alors les suites $(U_n+ V_N)_{n\in\N}$ et $(U_n \times V_N)_{n\in\N}$ sont bornées.
+\item Donner deux suites $(U_n)_{n\in\N}$ et $(V_n)_{n\in\N}$ bornées telle que la suite $\left(\dfrac{U_n}{V_n}\right)_{n\in\N}$ soit définie et non bornée. 
+\end{enumerate}
+%\item Montrer que toute suite convergente est bornée.
+\item Montrer que si une suite est convergente alors sa limite est unique. 
+\item Montrer que toute suite convergente à valeur dans $\Z$ est stationnaire.
+\item On suppose que $\lim\limits_{n\rightarrow+\infty}(U_n) = l_1$ et $\lim\limits_{n\rightarrow+\infty}(V_n) = l_2$
+\begin{enumerate}
+\item Montrer que $\lim\limits_{n\rightarrow+\infty}(U_n + V_n) = l_1 + l_2$
+\item Montrer que $\lim\limits_{n\rightarrow+\infty}(U_n \times V_n) = l_1 \times l_2$
+\end{enumerate}
+\item Démontrer que pour tout $\alpha>0$ on a: $\lim\limits_{\small n\rightarrow+\infty}\left(n^{-\alpha}\right) = 0$
+\item Rappeler le théorème de Cesàro  
+\end{enumerate}
+
+
+
+\section*{Suites numériques :}
+
+\begin{minipage}{1.0\linewidth}
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+\begin{exo}\quad\\
+Pour tout $n\in\N$, on pose : 
+$$a_n = \int_{0}^{\dfrac{\pi}{2}}\cos^n(t)dt$$\hfill(\textit{Intégrale de Wallis})
+\begin{enumerate}
+\item Calculer $a_0$ et $a_1$ puis montrer que pour tout $n\in\N$: $a_n > 0$
+\item Montrer que pour tout $n\in\N$: $a_{n+2} = \dfrac{n+1}{n+2}a_n$
+\item En déduire que pour tout $n\in\N$
+$$a_{2n} = \dfrac{(2n)!}{(2^{n}n!)^2}\dfrac{\pi}{2} $$
+$$a_{2n+1} = \dfrac{(2^{n}n!)^2}{(2n+1)!}$$
+\end{enumerate}
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+Pour tout vecteur du plan fixé $\left(\begin{array}{c}
+x_0\\
+y_0
+\end{array}\right) \ \in\R^2$, on considère la suite définie par récurrence :
+$$\left(\begin{array}{c}
+x_{n+1}\\
+y_{n+1}
+\end{array}\right) \ = \ \left(\begin{array}{cc}
+0 & -1\\
+1 & 0
+\end{array}\right) \left(\begin{array}{c}
+x_n\\
+y_n
+\end{array}\right)$$
+\begin{enumerate}
+\item En partant de $\left(\begin{array}{c}
+x_0\\
+y_0
+\end{array}\right)  =  \left(\begin{array}{c}
+1\\
+0
+\end{array}\right) $, représenter les $8$ premiers termes de la suite.
+\item Cette suite est elle convergente ? 
+\end{enumerate}
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+\begin{exo}\quad\\
+Soit $\left(u_n\right)_{n\geq 1}$ une suite réelle. On pose $ S_n = \dfrac{\sum_{k=1}^{n}u_k}{n}$
+\begin{enumerate}
+\item On suppose que  $\left(u_n\right)_{n\geq 1}$ converge vers $0$. Soient $\epsilon>0$ et $n_0\in\N$  tel que, pour tout $n\geq n_0$, on a $|u_n|\leq\epsilon$.
+\begin{enumerate}
+\item Montrer qu'il existe une constante $M$ telle que, pour $n\geq n_0$ , on a 
+$$|S_n| \leq \dfrac{M(n_0-1)}{n} + \epsilon$$
+\item En déduire que $(S_n)$ converge vers $0$. 
+\end{enumerate}
+\item  On suppose que $u_n=(-1)^n$. Que dire de $(Sn)$? Qu'en déduisez-vous? 
+\item On suppose que $(u_n)$ converge vers $l$. Montrer que $(S_n)$ converge vers $l$.
+\item On suppose que $(u_n)$ tend vers $+\infty$. Montrer que $(S_n)$ tend vers $+\infty$  
+\end{enumerate}
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+Calculer en fonction de $n$ le terme général des la suites $\left(u_n\right)_{n\in\N}$ et $\left(v_n\right)_{n\in\N}$définies par :
+\begin{enumerate}
+\item $u_0 = 1$ et pour tout $n\in\N$:  %\mathcal{U}
+$$u_{n+1} = 3u_n^2$$
+\item $v_0 = 1$, $v_1 = 2$ et pour tout $n\in\N$:
+$$v_{n+2} = \dfrac{v_{n+1}^3}{v_{n}^4}$$
+\end{enumerate}
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+	\end{minipage}
+\end{minipage}
+
+\newpage
+
+
+\begin{minipage}{1.0\linewidth}
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+\begin{exo}\quad\\
+Soit $(u_n)_{n\in\N}$ une suite à termes réels strictement positifs telle que $\left(\dfrac{u_{n+1}}{u_n}\right)_{n\in\N}$ converge vers un réel $l\in\R^+$.
+\begin{enumerate}
+\item On suppose $l<1$ et on fixe $\epsilon>0$ tel que $l+\epsilon<1$. 
+\begin{enumerate}
+\item Démontrer qu'il existe un entier $n_0\in\N$ tel que, pour $n\geq n_0$, on a 
+$$u_n\leq\left(l+\epsilon\right)^{n-n_0}u_{n_0}$$
+\item En déduire que la suite $(u_n)_{n\in\N}$ est convergente et donner sa limite. 
+
+
+\end{enumerate}
+\item  On suppose $l>1$. Démontrer que $(u_n)$ diverge vers $+\infty$.
+\item Étudier le cas $l=1$\\
+(\textit{Indication: étudier les suites } $(n^\alpha)_{n\in\N^*}$)
+\end{enumerate} 
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+
+Soient $(u_n)$ et $(v_n)$ deux suites réelles convergeant respectivement vers $u$ et $v$. Montrer que la suite $w_n=\dfrac{u_0v_n+...+u_nv_0}{n+1}$ converge vers $uv$.\\\hfill\\
+(\textit{Indication: on coupera ici la somme en 3 en isolant les bords})
+
+\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\raggedright
+
+\begin{exo}\quad\\
+Soit $(u_n)$ une suite de réels positifs vérifiant $$u_n\leq \dfrac{1}{k}+\dfrac{k}{n}$$ pour tous $(k,n)\in(\N^*)^2$.\\ Démontrer que $(u_n)$ tend vers $0$.
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+Démontrer que  
+\begin{enumerate}
+\item$ \ln(n+ e^n) \sim_{+\infty} n$
+\item $b^n-a^n   \sim_{+\infty} a^n+b^n$, \ $0<a<b$
+\item $ 4\ln(1+\sqrt{n}) \sim_{+\infty} \ln(1+n^2)$
+\end{enumerate}
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+\begin{exo}\quad\\
+Montrer que  
+
+$$\sum_{k=1}^{n-1}k! \ =_{+\infty} \  o\left(n!\right)$$
+
+En déduire que
+$$\sum_{k=1}^{n}k!  \sim_{+\infty} n!$$
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+\end{minipage}
+\end{minipage}
+
+
+
+
+\end{document}

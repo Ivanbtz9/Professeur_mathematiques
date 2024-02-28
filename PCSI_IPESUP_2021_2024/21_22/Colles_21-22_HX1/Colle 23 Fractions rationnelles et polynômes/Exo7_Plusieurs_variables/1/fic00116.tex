@@ -1,0 +1,722 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00116, rouget, 2010/07/11}
+
+\titre{Fonctions de plusieurs variables} 
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable\quad T~:~pour travailler et mémoriser le cours
+\end{center}
+
+
+\exercice{5553, rouget, 2010/07/15}
+\enonce{005553}{**T}
+Etudier l'existence et la valeur éventuelle d'une limite en $(0,0)$ des fonctions suivantes :
+\begin{enumerate}
+ \item  $\frac{xy}{x+y}$
+ \item  $\frac{xy}{x^2+y^2}$
+ \item  $\frac{x^2y^2}{x^2+y^2}$
+ \item   $\frac{1+x^2+y^2}{y}\sin y$
+ \item  $\frac{x^3+y^3}{x^2+y^2}$
+ \item  $\frac{x^4+y^4}{x^2+y^2}$.
+\end{enumerate}
+
+\finenonce{005553}
+
+
+\finexercice
+\exercice{5554, rouget, 2010/07/15}
+\enonce{005554}{***}
+On pose $\begin{array}[t]{cccc}f_{x,y}~:&[-1,1]&\rightarrow&\Rr\\
+ &t&\mapsto&xt^2+yt
+\end{array}$ puis $F(x,y) =\underset{t\in[-1,1]}{\text{sup}}f_{x,y}(t)$. Etudier la continuité de $F$ sur $\Rr^2$.
+\finenonce{005554}
+
+
+\finexercice
+\exercice{5555, rouget, 2010/07/15}
+\enonce{005555}{***T}
+Déterminer la classe de $f$ sur $\Rr^2$ où $f(x,y)=\left\{\begin{array}{l}
+0\;\text{si}\;(x,y)=(0,0)\\
+\frac{xy(x^2-y^2)}{x^2+y^2}\;\text{si}\;(x,y)\neq(0,0)
+\end{array}
+\right.$.
+\finenonce{005555}
+
+
+\finexercice
+\exercice{5556, rouget, 2010/07/15}
+\enonce{005556}{***T}
+Soit $\begin{array}[t]{cccc}f~:&\Rr^2&\longrightarrow&\Rr\\
+ &(x,y)&\mapsto&\left\{
+\begin{array}{l}
+0\;\text{si}\;y=0\\
+y^2\sin\left(\frac{x}{y}\right)\;\text{si}\;y\neq0
+\end{array}
+\right.
+\end{array}
+$.
+\begin{enumerate}
+ \item  Etudier la continuité de $f$.
+
+ \item  Etudier l'existence et la valeur éventuelle de dérivées partielles d'ordre 1 et 2.
+On montrera en particulier que $\frac{\partial^2f}{\partial x\partial y}$ et $\frac{\partial^2f}{\partial y\partial x}$  sont définies en $(0,0)$ mais n'ont pas la même valeur.
+\end{enumerate}
+\finenonce{005556}
+
+
+\finexercice
+\exercice{5557, rouget, 2010/07/15}
+\enonce{005557}{***}
+ Le laplacien d'une application $g$ de $\Rr^2$ dans $\Rr$, de classe $C^2$ sur $\Rr^2$  est $\Delta g =\frac{\partial^2g}{\partial x^2}+\frac{\partial^2g}{\partial y^2}$.
+
+ 
+Déterminer une fontion de classe $C^2$ sur un intervalle $I$ de $\Rr$ à préciser à valeurs dans $\Rr$ telle que la fonction
+
+\begin{center}
+$g(x,y) =f\left(\frac{\cos2x}{\ch2y}\right)$
+\end{center}
+soit non constante et ait un laplacien nul sur un sous-ensemble de $\Rr^2$ le plus grand possible (une fonction de Laplacien nul est dite harmonique).
+
+\finenonce{005557}
+
+
+\finexercice
+\exercice{5558, rouget, 2010/07/15}
+\enonce{005558}{**T}
+Trouver les extrema locaux de 
+
+\begin{enumerate}
+ \item  $\begin{array}[t]{cccc}
+f~:&\Rr^2&\rightarrow&\Rr\\
+ &(x,y)&\mapsto&x^2+xy+y^2+2x+3y
+\end{array}$ 
+ \item  $\begin{array}[t]{cccc}
+f~:&\Rr^2&\rightarrow&\Rr\\
+ &(x,y)&\mapsto&x^4+y^4-4xy
+\end{array}$ 
+\end{enumerate}
+\finenonce{005558}
+
+
+\finexercice
+\exercice{5559, rouget, 2010/07/15}
+\enonce{005559}{***}
+Maximum du produit des distances aux cotés d'un triangle $ABC$ du plan d'un point $M$ intérieur à ce triangle (on admettra que ce maximum existe).
+\finenonce{005559}
+
+
+\finexercice
+\exercice{5560, rouget, 2010/07/15}
+\enonce{005560}{**}
+Soit $a$ un réel strictement positif donné. Trouver le minimum de $f(x,y)=\sqrt{x^2+(y-a)^2}+\sqrt{y^2+(x-a)^2}$.
+
+\finenonce{005560}
+
+
+\finexercice\exercice{5561, rouget, 2010/07/15}
+\enonce{005561}{**}
+Trouver toutes les applications $\varphi$ de $\Rr$ dans $\Rr$ de classe $C^2$ telle que l'application $f$ de $U=\{(x,y)\in\Rr^2/\;x\neq0\}$ dans $\Rr$ qui à $(x,y)$ associe $\varphi\left(\frac{y}{x}\right)$ vérifie :
+
+\begin{center}
+$\frac{\partial^2f}{\partial x^2}-\frac{\partial^2f}{\partial y^2}=\frac{y}{x^3}$.
+\end{center}
+\finenonce{005561}
+
+
+\finexercice
+\exercice{5562, rouget, 2010/07/15}
+\enonce{005562}{**}
+Trouver toutes les applications $f$ de $\Rr^2$ dans $\Rr$ vérifiant
+
+\begin{enumerate}
+ \item   $2\frac{\partial f}{\partial x}-\frac{\partial f}{\partial y}=0$   (en utilisant le changement de variables $u=x+y$ et $v=x+2y$)
+
+ \item  $x\frac{\partial f}{\partial x}+ y\frac{\partial f}{\partial y}=\sqrt{x^2+y^2}$ sur $D=\{(x,y)\in\Rr^2/\;x>0\}$ (en passant en polaires).
+\end{enumerate}
+\finenonce{005562}
+
+
+\finexercice
+\finfiche
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005553}
+On note $f$ la fonction considérée.
+\begin{enumerate}
+ \item  Pour $x\neq0$, $f(x,-x+x^3)=\frac{x(-x+x^3)}{x-x+x^3}\underset{x\rightarrow0^+}{\sim}-\frac{1}{x}$. Quand $x$ tend vers $0$, $-x+x^3$ tend vers $0$ puis
+$\displaystyle\lim_{\substack{(x,y)\rightarrow(0,0)\\x>0,\;y=-x+x^3}}f(x,y)=-\infty$. $f$ n'a de limite réelle en $(0,0)$.
+ \item  Pour $x\neq0$, $f(x,0)=\frac{x\times0}{x^2+0^2}=0$ puis $\displaystyle\lim_{\substack{(x,y)\rightarrow(0,0)\\y=0}}f(x,y)=0$. Mais aussi, pour $x\neq0$, $f(x,x)=\frac{x\times x}{x^2+x^2}=\frac{1}{2}$ puis $\displaystyle\lim_{\substack{(x,y)\rightarrow(0,0)\\x=y}}f(x,y)=\frac{1}{2}$.
+Donc si $f$ a une limite réelle, cette limite doit être égale à $0$ et à $\frac{1}{2}$ ce qui est impossible. $f$ n'a pas de limite réelle en $(0,0)$.
+ \item  Pour tout $(x,y)\in\Rr^2$, $x^2-2|xy|+y^2=(|x|-|y|)^2\geqslant0$ et donc $|xy|\leqslant\frac{1}{2}(x^2+y^2)$.
+Par suite, pour $(x,y)\neq(0,0)$,
+
+\begin{center}
+$|f(x,y)|=\frac{x^2y^2}{x^2+y^2}\leqslant\frac{(x^2+y^2)^2}{4(x^2+y^2)}=\frac{1}{4}(x^2+y^2)$.
+\end{center}
+Comme $\lim_{(x,y)\rightarrow (0,0)}\frac{1}{4}(x^2+y^2)=0$, on a aussi $\lim_{(x,y)\rightarrow (0,0)}f(x,y)=0$.
+
+ \item   $\lim_{(x,y)\rightarrow (0,0)}\frac{\sin y}{y}=1$ et $\lim_{(x,y)\rightarrow (0,0)}(1+x^2+y^2)=1$. Donc $\lim_{(x,y)\rightarrow (0,0)}f(x,y)=1$.
+ \item  Pour $(x,y)\in\Rr^2$, $|x^3+y^3|=|x+y|(x^2+xy+y^2)\leqslant\frac{3}{2}|x+y|(x^2+y^2)$ et donc pour $(x,y)\neq(0,0)$, 
+
+\begin{center}
+$|f(x,y)|=\frac{|x^3+y^3|}{x^2+y^2}\leqslant\frac{3}{2}|x+y|$.
+\end{center}
+Comme $\lim_{(x,y)\rightarrow (0,0)}\frac{3}{2}|x+y|=0$, on a aussi $\lim_{(x,y)\rightarrow (0,0)}f(x,y)=0$.
+ \item  Pour $(x,y)\in\Rr^2$, $|x^4+y^4|=(x^2+y^2)^2-2x^2y^2\leqslant(x^2+y^2)^2+2\times\left(\frac{1}{2}(x^2+y^2)\right)^2=\frac{3}{2}(x^2+y^2)^2$ et donc pour $(x,y)\neq(0,0)$, 
+
+\begin{center}
+$|f(x,y)|=\frac{|x^4+y^4|}{x^2+y^2}\leqslant\frac{3}{2}(x^2+y^2)$.
+\end{center}
+Comme $\lim_{(x,y)\rightarrow (0,0)}\frac{3}{2}(x^2+y^2)=0$, on a aussi $\lim_{(x,y)\rightarrow (0,0)}f(x,y)=0$.
+\end{enumerate}
+\fincorrection
+\correction{005554}
+Déterminons tout d'abord $F(x,y)$ pour $(x,y)\in\Rr^2$.
+\textbullet~Pour $y\in\Rr$, $F(x,y)=\text{Max}\left\{f_{0,y}(-1),f_{0,y}(1)\right\}=\text{Max}\left\{y,-y\right\}=|y|$.
+\textbullet~Si $x\neq0$, $F(x,y)=\text{Max}\left\{f_{x,y}(-1),f_{x,y}\left(-\frac{y}{2x}\right),f_{x,y}(1)\right\}=\text{Max}\left\{x+y,x-y,-\frac{y^2}{4x}\right\}=\text{Max}\left\{x+|y|,-\frac{y^2}{4x}\right\}$.
+Plus précisément, si $x>0$, on a $x+|y|>0$ et $-\frac{y^2}{4x}\leqslant0$. Donc $F(x,y)=x+|y|$ ce qui reste vrai quand $x=0$.
+Si $x<0$, $x+|y|-\left(-\frac{y^2}{4x}\right)=\frac{4x^2+4x|y|+y^2}{4x}=\frac{(2x+|y|)^2}{4x}<0$ et donc $F(x,y)=-\frac{y^2}{4x}$.
+
+\begin{center}
+\shadowbox{
+$\forall(x,y)\in\Rr^2,\;F(x,y)=\left\{
+\begin{array}{l}
+x+|y|\;\text{si}\;x\geqslant0\\
+-\frac{y^2}{4x}\;\text{si}\;x<0
+\end{array}
+\right.$.
+}
+\end{center}
+En vertu de théorèmes généraux, $F$ est continue sur $\{(x,y)\in\Rr^2,\;x>0\}$ et $\{(x,y)\in\Rr^2,\;x<0\}$.
+Soit $y_0\neq0$. $\displaystyle\lim_{\substack{(x,y)\rightarrow(0,y_0)\\
+x<0,\;y=y_0}}F(x,y)=+\infty\neq|y_0|=F(0,y_0)$ et donc $F$ n'est pas continue en $(0,y_0)$.
+Enfin, $\displaystyle\lim_{\substack{(x,y)\rightarrow(0,0)\\
+x<0,\;y=\sqrt{-x}}}F(x,y)=\frac{1}{4}\neq 0=F(0,0)$ et donc $F$ n'est pas continue en $(0,0)$.
+
+\begin{center}
+\shadowbox{
+$F$ est continue sur $\Rr^2\setminus\{(0,y),\;y\in\Rr\}$ et est discontinue en tout $(0,y)$, $y\in\Rr$.
+}
+\end{center}
+\fincorrection
+\correction{005555}
+\textbullet~Pour $(x,y)\in\Rr^2$, $x^2+y^2=0\Leftrightarrow x=y=0$ et donc $f$ est définie sur $\Rr^2$.
+\textbullet~$f$ est de classe $C^\infty$ sur $\Rr^2\setminus\{(0,0)\}$ en tant que quotient de fonctions de classe $C^\infty$ sur $\Rr^2\setminus\{(0,0)\}$ dont le dénominateur ne s'annule pas sur $\Rr^2\setminus\{(0,0)\}$.
+ 
+
+\textbullet~Pour $(x,y)\neq(0,0)$, $|f(x,y)|\leqslant\frac{|xy|(x^2+y^2)}{x^2+y^2}=|xy|$. Comme $\lim_{(x,y)\rightarrow (0,0)}|xy|=0$, on en déduit que $\displaystyle\lim_{\substack{(x,y)\rightarrow(0,0)\\(x,y)\neq(0,0)}}f(x,y)=0=f(0,0)$. Ainsi, $f$ est continue en $(0,0)$ et donc sur $\Rr^2$.
+\textbullet~\textbf{Existence de $\frac{\partial f}{\partial x}(0,0)$.} Pour $x\neq0$,
+
+\begin{center}
+$\frac{f(x,0)-f(0,0)}{x-0}=\frac{x\times0\times(x^2-0^2)}{x\times(x^2+0^2)}=0$,
+\end{center}
+et donc $\lim_{x\rightarrow 0}\frac{f(x,0)-f(0,0)}{x-0}=0$. Ainsi, $f$ admet une dérivée partielle par rapport à sa première variable en $(0,0)$ et $\frac{\partial f}{\partial x}(0,0)=0$.
+\textbullet~Pour $(x,y)\neq(0,0)$, $\frac{\partial f}{\partial x}(x,y)=y\frac{(3x^2-y^2)(x^2+y^2)-(x^3-y^2x)(2x)}{(x^2+y^2)^2}=\frac{y(x^4+4x^2y^2-y^4)}{(x^2+y^2)^2}$.
+
+Finalement, $f$ admet sur $\Rr^2$ une dérivée partielle par rapport à sa première variable définie par 
+
+\begin{center}
+$\forall(x,y)\in\Rr^2$, $\frac{\partial f}{\partial x}(x,y)=\left\{
+\begin{array}{l}
+\rule[-4mm]{0mm}{0mm}0\;\text{si}\;(x,y)=(0,0)\\
+\frac{y(x^4+4x^2y^2-y^4)}{(x^2+y^2)^2}\;\text{si}\;(x,y)\neq(0,0)
+\end{array}
+\right.$.
+\end{center}
+\textbullet~Pour $(x,y)\in\Rr^2$, $f(y,x)=-f(x,y)$. Par suite, $\forall(x,y)\in\Rr^2$, $\frac{\partial f}{\partial y}(x,y)=-\frac{\partial f}{\partial x}(y,x)$.
+En effet, pour $(x_0,y_0)$ donné dans $\Rr^2$
+
+\begin{center}
+$\frac{f(x_0,y)-f(x_0,y_0)}{y-y_0}=\frac{-f(y,x_0)+f(y_0,x_0)}{y-y_0}=-\frac{f(y,x_0)-f(y_0,x_0)}{y-y_0}\underset{y\rightarrow y_0}{\rightarrow}-\frac{\partial f}{\partial x}(y_0,x_0)$.
+\end{center}
+Donc, $f$ admet sur $\Rr^2$ une dérivée partielle par rapport à sa deuxième variable définie par 
+
+\begin{center}
+$\forall(x,y)\in\Rr^2$, $\frac{\partial f}{\partial y}(x,y)=-\frac{\partial f}{\partial x}(y,x)=\left\{
+\begin{array}{l}
+\rule[-4mm]{0mm}{0mm}0\;\text{si}\;(x,y)=(0,0)\\
+\frac{x(x^4-4x^2y^2-y^4)}{(x^2+y^2)^2}\;\text{si}\;(x,y)\neq(0,0)
+\end{array}
+\right.$.
+\end{center}
+\textbullet~\textbf{Continuité de $\frac{\partial f}{\partial x}$ et $\frac{\partial f}{\partial y}$ en $(0,0)$.} Pour $(x,y)\neq(0,0)$,
+
+\begin{center}
+$\left|\frac{\partial f}{\partial x}(x,y)-\frac{\partial f}{\partial x}(0,0)\right|=\frac{|y(x^4+4x^2y^2-y^4)|}{(x^2+y^2)^2}\leqslant\frac{|y|(x^4+4x^2y^2+y^4)}{(x^2+y^2)^2}\leqslant\frac{|y|(2x^4+4x^2y^2+2y^4)}{(x^2+y^2)^2}=2|y|$.
+\end{center}
+Comme $2|y|$ tend vers $0$ quand $(x,y)$ tend vers $(0,0)$, $\left|\frac{\partial f}{\partial x}(x,y)-\frac{\partial f}{\partial x}(0,0)\right|$ tend vers $0$ quand $(x,y)$ tend vers $(0,0)$. On en déduit que l'application $\frac{\partial f}{\partial x}$ est continue en $(0,0)$ et donc sur $\Rr^2$.
+Enfin, puisque $\forall(x,y)\in\Rr^2$, $\frac{\partial f}{\partial y}(x,y)=-\frac{\partial f}{\partial x}(y,x)$, $\frac{\partial f}{\partial y}$ est continue sur $\Rr^2$. $f$ est donc au moins de classe $C^1$ sur $\Rr^2$.
+\textbullet~Pour $x\neq0$, $\frac{\frac{\partial f}{\partial y}(x,0)-\frac{\partial f}{\partial y}(0,0)}{x-0}=\frac{x^4}{x^4}=1$ et donc $\lim_{x\rightarrow 0}\frac{\frac{\partial f}{\partial y}(x,0)-\frac{\partial f}{\partial y}(0,0)}{x-0}=1$. Donc $\frac{\partial^2f}{\partial y\partial x}(0,0)$ existe et $\frac{\partial^2f}{\partial y\partial x}(0,0)=1$.
+Pour $y\neq0$, $\frac{\frac{\partial f}{\partial x}(y,0)-\frac{\partial f}{\partial x}(0,0)}{y-0}=-\frac{y^4}{y^4}=-1$ et donc $\lim_{y\rightarrow 0}\frac{\frac{\partial f}{\partial x}(y,0)-\frac{\partial f}{\partial x}(0,0)}{y-0}=-1$. Donc $\frac{\partial^2f}{\partial x\partial y}(0,0)$ existe et $\frac{\partial^2f}{\partial x\partial y}(0,0)=-1$.
+$\frac{\partial^2f}{\partial y\partial x}(0,0)\neq\frac{\partial^2f}{\partial x\partial y}(0,0)$ et donc $f$ n'est pas de classe $C^2$ sur $\Rr^2$ d'après le théorème de \textsc{Schwarz}.
+
+\begin{center}
+\shadowbox{
+$f$ est de classe $C^1$ exactement sur $\Rr^2$.
+}
+\end{center}
+\fincorrection
+\correction{005556}
+\begin{enumerate}
+ \item  Posons $\Delta=\{(x,y)/\;y\neq0\}$. $f$ est continue sur $\Rr^2\setminus\Delta$ en vertu de théorèmes généraux. Soit $x_0\in\Rr$.
+
+\begin{center}
+$|f(x,y)-f(x_0,0)|=\left\{
+\begin{array}{l}
+0\;\text{si}\;y=0\\
+y^2\left|\sin\left(\frac{x}{y}\right)\right|\;\text{si}\;y\neq0
+\end{array}
+\right.\leqslant y^2$.
+\end{center}
+Comme $\displaystyle\lim_{(x,y)\rightarrow(x_0,0)}y^2=0$, $\displaystyle\lim_{(x,y)\rightarrow(x_0,0)}|f(x,y)-f(x_0,0)|=0$ et donc $f$ est continue en $(x_0,0)$. Finalement,
+
+\begin{center}
+\shadowbox{
+$f$ est continue sur $\Rr^2$.
+}
+\end{center}
+ \item  \textbullet~$f$ est de classe $C^2$ sur $\Rr^2\setminus\Delta$. En particulier, d'après le théorème de \textsc{Schwarz}, $\frac{\partial^2f}{\partial x\partial y}=\frac{\partial^2f}{\partial y\partial x}$ sur $\Delta$. pour $(x,y)\in\Rr^2\setminus\Delta$,
+
+\begin{center}
+$\frac{\partial f}{\partial x}(x,y)=y\cos\left(\frac{x}{y}\right)$ et $\frac{\partial f}{\partial y}(x,y)=2y\sin\left(\frac{x}{y}\right)-x\cos\left(\frac{x}{y}\right)$,
+\end{center}
+puis
+
+\begin{center}
+$\frac{\partial^2f}{\partial x^2}(x,y)=-\sin\left(\frac{x}{y}\right)$, $\frac{\partial^2f}{\partial x\partial y}(x,y)=\cos\left(\frac{x}{y}\right)-\frac{x}{y}\sin\left(\frac{x}{y}\right)$,
+\end{center}
+et enfin
+
+\begin{center}
+$\frac{\partial^2f}{\partial y^2}(x,y)=2\sin\left(\frac{x}{y}\right)-2\frac{x}{y}\cos\left(\frac{x}{y}\right)-\frac{x^2}{y^2}\sin\left(\frac{x}{y}\right)$.
+\end{center}
+\textbullet~\textbf{Existence de $\frac{\partial f}{\partial x}(x_0,0)$.} Pour $x\neq x_0$,  $\frac{f(x,0)-f(x_0,0)}{x-x_0}=0$ et donc$\frac{f(x,0)-f(x_0,0)}{x-x_0}\underset{x\rightarrow x_0}{\rightarrow}0$. On en déduit que $\frac{\partial f}{\partial x}(x_0,0)$ existe et $\frac{\partial f}{\partial x}(x_0,0)=0$. En résumé, $f$ admet une dérivée partielle par rapport à sa première variable sur $\Rr^2$ définie par
+
+\begin{center}
+\shadowbox{
+$\forall(x,y)\in\Rr^2,\;\frac{\partial f}{\partial x}(x,y)=\left\{
+\begin{array}{l}
+0\;\text{si}\;y=0\\
+y\cos\left(\frac{x}{y}\right)\;\text{si}\;y\neq0
+\end{array}
+\right.$.
+}
+\end{center}
+\textbullet~\textbf{Existence de $\frac{\partial f}{\partial y}(x_0,0)$.} Soit $x_0\in\Rr$. Pour $y\neq0$,  
+
+\begin{center}
+$\left|\frac{f(x_0,y)-f(x_0,0)}{y-0}\right|=\left\{
+\begin{array}{l}
+0\;\text{si}\;y=0\\
+y\left|\sin\left(\frac{x_0}{y}\right)\right|\;\text{si}\;y\neq0
+\end{array}
+\right.\leqslant|y|.
+$
+\end{center} 
+
+et donc$\frac{f(x_0,y)-f(x_0,0)}{y-0}\underset{y\rightarrow0}{\rightarrow}0$. On en déduit que $\frac{\partial f}{\partial y}(x_0,0)$ existe et $\frac{\partial f}{\partial y}(x_0,0)=0$. En résumé, $f$ admet une dérivée partielle par rapport à sa deuxième variable sur $\Rr^2$ définie par
+
+\begin{center}
+\shadowbox{
+$\forall(x,y)\in\Rr^2,\;\frac{\partial f}{\partial y}(x,y)=\left\{
+\begin{array}{l}
+0\;\text{si}\;y=0\\
+2y\sin\left(\frac{x}{y}\right)-x\cos\left(\frac{x}{y}\right)\;\text{si}\;y\neq0
+\end{array}
+\right.$.
+}
+\end{center}
+\textbullet~\textbf{Existence de $\frac{\partial^2f}{\partial x\partial y}(0,0)$.} Pour $x\neq0$,
+
+\begin{center}
+$\frac{\frac{\partial f}{\partial y}(x,0)-\frac{\partial f}{\partial y}(0,0)}{x-0}=0$
+\end{center}
+et donc $\frac{\frac{\partial f}{\partial y}(x,0)-\frac{\partial f}{\partial y}(0,0)}{x-0}$ tend vers $0$ quand $x$ tend vers $0$. On en déduit que $\frac{\partial^2f}{\partial x\partial y}(0,0)$ existe et
+
+\begin{center}
+\shadowbox{
+$\frac{\partial^2f}{\partial x\partial y}(0,0)=0$.
+}
+\end{center}
+\textbullet~\textbf{Existence de $\frac{\partial^2f}{\partial y\partial x}(0,0)$.} Pour $y\neq0$,
+
+\begin{center}
+$\frac{\frac{\partial f}{\partial x}(0,y)-\frac{\partial f}{\partial x}(0,0)}{y-0}=\frac{y\cos\left(\frac{0}{y}\right)}{y}=1$
+\end{center}
+et donc $\frac{\frac{\partial f}{\partial x}(0,y)-\frac{\partial f}{\partial x}(0,0)}{y-0}$ tend vers $1$ quand $y$ tend vers $0$. On en déduit que $\frac{\partial^2f}{\partial y\partial x}(0,0)$ existe et
+
+\begin{center}
+\shadowbox{
+$\frac{\partial^2f}{\partial y\partial x}(0,0)=1$.
+}
+\end{center}
+\end{enumerate}
+\fincorrection
+\correction{005557}
+Pour $(x,y)\in\Rr^2$, $\frac{\cos(2x)}{\ch(2y)}\in[-1,1]$. Plus précisément, quand $x$ décrit $\Rr$, $\frac{\cos(2x)}{\ch(2\times0)}$ décrit $[-1,1]$ et donc quand $(x,y)$ décrit $\Rr^2$, $\frac{\cos(2x)}{\ch(2y)}$ décrit $[-1,1]$. 
+On suppose déjà que $f$ est de classe $C^2$ sur $[-1,1]$. L'application $g$ est alors de classe $C^2$ sur $\Rr^2$ et pour $(x,y)\in\Rr^2$,
+
+\begin{center}
+$\frac{\partial g}{\partial x}(x,y)=-\frac{2\sin(2x)}{\ch(2y)}f'\left(\frac{\cos2x}{\ch2y}\right)$ puis $\frac{\partial^2g}{\partial x^2}(x,y)=-\frac{4\cos(2x)}{\ch(2y)}f'\left(\frac{\cos2x}{\ch2y}\right)+\frac{4\sin^2(2x)}{\ch^2(2y)}f''\left(\frac{\cos2x}{\ch2y}\right)$.
+\end{center}
+Ensuite,
+
+\begin{center}
+$\frac{\partial g}{\partial y}(x,y)=-\frac{2\cos(2x)\sh(2y)}{\ch^2(2y)}f'\left(\frac{\cos2x}{\ch2y}\right)$
+\end{center}
+puis 
+\begin{center}
+$\frac{\partial^2g}{\partial y^2}(x,y)=-\frac{4\cos(2x)}{\ch(2y)}f'\left(\frac{\cos2x}{\ch2y}\right)
+-2\cos(2x)\sh(2y)\frac{-4\sh(2y)}{\ch^3(2y)}f'\left(\frac{\cos2x}{\ch2y}\right)
++\frac{4\cos^2(2x)\sh^2(2y)}{\ch^4(2y)}f''\left(\frac{\cos2x}{\ch2y}\right)$.
+\end{center}
+Mais alors
+
+\begin{align*}\ensuremath
+\Delta g(x,y)&=\frac{-8\cos(2x)\ch^2(2y)+8\cos(2x)\sh^2(2y)}{\ch^3(2y)}f'\left(\frac{\cos2x}{\ch2y}\right)+\frac{4\sin^2(2x)\ch^2(2y)+4\cos^2(2x)\sh^2(2y)}{\ch^4(2y)}f''\left(\frac{\cos2x}{\ch2y}\right)\\
+ &=\frac{-8\cos(2x)}{\ch^3(2y)}f'\left(\frac{\cos2x}{\ch2y}\right)+\frac{4(1-\cos^2(2x))\ch^2(2y)+4\cos^2(2x)(\ch^2(2y)-1)}{\ch^4(2y)}f''\left(\frac{\cos2x}{\ch2y}\right)\\
+ &=\frac{-8\cos(2x)}{\ch^3(2y)}f'\left(\frac{\cos2x}{\ch2y}\right)+\frac{4\ch^2(2y)-4\cos^2(2x)}{\ch^4(2y)}f''\left(\frac{\cos2x}{\ch2y}\right)\\
+ &=\frac{4}{\ch^2(2y)}\left(-2\frac{\cos(2x)}{\ch(2y)}f'\left(\frac{\cos2x}{\ch2y}\right)+\left(1-\frac{\cos^2(2x)}{\ch^2(2y)}\right)f''\left(\frac{\cos2x}{\ch2y}\right)\right).
+\end{align*}
+Par suite,
+
+\begin{align*}\ensuremath
+\Delta g=0&\Leftrightarrow\forall(x,y)\in\Rr^2,\;-2\frac{\cos(2x)}{\ch(2y)}f'\left(\frac{\cos2x}{\ch2y}\right)+\left(1-\frac{\cos^2(2x)}{\ch^2(2y)}\right)f''\left(\frac{\cos2x}{\ch2y}\right)=0\\
+ &\Leftrightarrow\forall t\in[-1,1],\;-2tf'(t)+(1-t^2)f''(t)=0\Leftrightarrow\forall t\in[-1,1],((1-t^2)f')'(t)=0\\
+ &\Leftrightarrow\exists \lambda\in\Rr,\;\forall t\in[-1,1],\;(1-t^2)f'(t)=\lambda.
+\end{align*}
+Le choix $\lambda\neq0$ ne fournit pas de solution sur $[-1,1]$. Donc $\lambda=0$ puis $f'=0$ puis $f$ constante ce qui est exclu. Donc, on ne peut pas poursuivre sur $[-1,1]$.
+On cherche dorénavant $f$ de classe $C^2$ sur $]-1,1[$ de sorte que $g$ est de classe $C^2$ sur $\Rr^2\setminus\left\{\left(\frac{k\pi}{2},0\right),\;k\in\Zz\right\}$.
+
+\begin{align*}\ensuremath
+f\;\text{solution}&\Leftrightarrow\exists \lambda\in\Rr^*,\;\forall t\in]-1,1[,\;(1-t^2)f'(t)=\lambda\Leftrightarrow\exists \lambda\in\Rr^*/\;\forall t\in]-1,1[,\;f'(t)=\frac{\lambda}{1-t^2}\\
+ &\Leftrightarrow\exists(\lambda,\mu)\in\Rr^*\times\Rr/\;\forall t\in]-1,1[,\;f(t)=\lambda\Argth t+\mu.
+\end{align*}
+\fincorrection
+\correction{005558}
+\begin{enumerate}
+ \item  $f$ est de classe $C^1$ sur $\Rr^2$ qui est un ouvert de $\Rr^2$. Donc si $f$ admet un extremum local en un point $(x_0,y_0)$ de $\Rr^2$, $(x_0,y_0)$ est un point critique de $f$. Or, pour $(x,y)\in\Rr^2$,
+
+\begin{center}
+$\left\{
+\begin{array}{l}
+\frac{\partial f}{\partial x}(x,y)=0\\
+\rule{0mm}{7mm}\frac{\partial f}{\partial x}(x,y)=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+2x+y+2=0\\
+x+2y+3=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x=-\frac{1}{3}\\
+\rule{0mm}{7mm}y=-\frac{4}{3}
+\end{array}
+\right.$.
+\end{center}
+Donc si $f$ admet un extremum local, c'est nécessairement en $\left(-\frac{1}{3},\frac{4}{3}\right)$ avec $f\left(-\frac{1}{3},\frac{4}{3}\right)=-\frac{7}{3}$. D'autre part,
+
+\begin{align*}\ensuremath
+f(x,y)&=x^2+xy+y^2+2x+3y=\left(x+\frac{y}{2}+1\right)^2-\left(\frac{y}{2}+1\right)^2+y^2+3y=\left(x+\frac{y}{2}+1\right)^2+\frac{3y^2}{4}+2y-1\\
+ &=\left(x+\frac{y}{2}+1\right)^2+\frac{3}{4}\left(y+\frac{4}{3}\right)^2-\frac{7}{3}\geqslant-\frac{7}{3}=f\left(-\frac{1}{3},\frac{4}{3}\right).
+\end{align*}
+Donc $f$ admet un minimum local en $\left(-\frac{1}{3},\frac{4}{3}\right)$ égal à $-\frac{7}{3}$ et ce minimum local est un minimum global. D'autre part, $f$ n'admet pas de maximum local.
+ \item   $f$ est de classe $C^1$ sur $\Rr^2$ qui est un ouvert de $\Rr^2$. Donc si $f$ admet un extremum local en un point $(x_0,y_0)$ de $\Rr^2$, $(x_0,y_0)$ est un point critique de $f$. Or, pour $(x,y)\in\Rr^2$,
+
+\begin{center}
+$\left\{
+\begin{array}{l}
+\frac{\partial f}{\partial x}(x,y)=0\\
+\rule{0mm}{7mm}\frac{\partial f}{\partial x}(x,y)=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+4x^3-4y=0\\
+4y^3-4x=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=x^3\\
+x^9-x=0
+\end{array}
+\right.\Leftrightarrow(x,y)\in\{(0,0),(1,1),(-1,-1)$.
+\end{center}
+Les points critiques de $f$ sont $(0,0)$, $(1,1)$ et $(-1,-1)$.
+Maintenant, pour $(x,y)\in\Rr^2$, $f(-x,-y)=f(x,y)$. Ceci permet de restreindre l'étude aux deux points $(0,0)$  et $(1,1)$.
+\textbullet~Pour $x\in\Rr$, $f(x,0)=x^4>0$ sur $\Rr^*$ et $f(x,x)=-4x^2+2x^4=2x^2(-2+x^2)<0$ sur $]-\sqrt{2},0[\cup]0,\sqrt{2}[$. Donc $f$ change de signe dans tous voisinage de $(0,0)$ et puisque $f(0,0)=0$, $f$ n'admet pas d'extremum local en $(0,0)$.
+\textbullet~Pour $(h,k)\in\Rr^2$,
+
+\begin{align*}\ensuremath
+f(1+h,1+k)-f(1,1)&=(1+h)^4+(1+k)^4-4(1+h)(1+k)+2=6h^2+6k^2-4hk+4h^3+4k^3+h^4+k^4\\
+ &\geqslant6h^2+6k^2-2(h^2+k^2)+4h^3+4k^3+h^4+k^4=4h^2+4h^3+h^4+4k^2+4k^3+k^4\\
+ &=h^2(2h^2+1)^2+k^2(2k^2+1)^2\geqslant0.
+\end{align*}
+$f$ admet donc un minimum global en $(1,1)$ (et en $(-1,-1)$) égal à $-2$.
+\end{enumerate}
+\fincorrection
+\correction{005559}
+Soit $M$ un point intérieur au triangle $ABC$. On pose $a=BC$, $b=CA$ et $c=AB$. On note $x$, $y$, $z$ et $\mathcal{A}$ les aires respectives des triangles $MBC$, $MCA$, $MAB$ et $ABC$.
+On a
+
+\begin{center}
+$d(M,(BC))d(M,(CA))d(M(AB))=\frac{2\text{aire}(MBC)}{a}\frac{2\text{aire}(MCA)}{b}\frac{2\text{aire}(MAB)}{c}=\frac{8xyz}{abc}=\frac{8}{abc}xy(\mathcal{A}-x-y)$.
+\end{center}
+On doit donc déterminer le maximum de la fonction $f(x,y)=xy(\mathcal{A}-x-y)$ quand $(x,y)$ décrit le triangle ouvert $T=\{(x,y)\in\Rr^2,\;x>0,\;y>0,\;x+y<\mathcal{A}\}$. On admet que $f$ admet un maximum global sur le triangle fermé $T'=\{(x,y)\in\Rr^2,\;x\geqslant0,\;y\geqslant0,\;x+y\leqslant\mathcal{A}\}$ (cela résulte d'un théorème de math Spé : \og une fonction numérique continue sur un compact admet un minimum et un maximum \fg). Ce maximum est atteint dans l'intérieur $T$ de $T'$ car $f$ est nulle au bord de $T'$ et strictement positive à l'intérieur de $T'$.
+
+Puisque $f$ est de classe $C^1$ sur $T$ qui est un ouvert de $\Rr^2$, $f$ atteint son maximum sur $T$ en un point critique de $f$. Or, pour $(x,y)\in T^2$,
+
+\begin{align*}\ensuremath
+\left\{
+\begin{array}{l}
+\frac{\partial f}{\partial x}(x,y)=0\\
+\rule{0mm}{6mm}\frac{\partial f}{\partial y}(x,y)=0
+\end{array}
+\right.&\Leftrightarrow\left\{
+\begin{array}{l}
+y(\mathcal{A}-x-y)-xy=0\\
+y(\mathcal{A}-x-y)-xy=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y(\mathcal{A}-2x-y)=0\\
+x(\mathcal{A}-x-2y)=0
+\end{array}
+\right.\\
+ &\Leftrightarrow\left\{
+\begin{array}{l}
+2x+y=\mathcal{A}\\
+x+2y=\mathcal{A}
+\end{array}
+\right.\Leftrightarrow x=y=\frac{\mathcal{A}}{3}.
+\end{align*}
+Le maximum cherché est donc égal à $\frac{8}{abc}\times\frac{\mathcal{A}}{3}\times\frac{\mathcal{A}}{3}\times\left(\mathcal{A}-\frac{\mathcal{A}}{3}-\frac{\mathcal{A}}{3}\right)=\frac{8\mathcal{A}^3}{27abc}$.
+(On peut montrer que ce maximum est obtenu quand $M$ est le centre de gravité du triangle $ABC$).
+\fincorrection
+\correction{005560}
+Soient $\mathcal{R}$ un repère orthonormé de $\Rr^2$ muni de sa structure euclidienne canonique puis $M$, $A$ et $B$ les points de coordonnées respectives $(x,y)$, $(0,a)$ et $(a,0)$ dans $\mathcal{R}$.
+Pour $(x,y)\in\Rr^2$, $f(x,y)=MA+MB\geqslant AB=a\sqrt{2}$ avec égalité si et seulement si $M\in[AB]$. Donc
+
+\begin{center}
+\shadowbox{
+Le minimum de $f$ sur $\Rr^2$ existe et vaut $a\sqrt{2}$.
+}
+\end{center}
+\fincorrection
+\correction{005561}
+ Soit $\varphi$ une application de classe $C^2$ sur $\Rr$ puis $f$ l'application définie sur $U$ par $\forall(x,y)\in U$, $f(x,y)=\varphi\left(\frac{y}{x}\right)$ vérifie :
+
+\begin{center}
+$\frac{\partial^2f}{\partial x^2}-\frac{\partial^2f}{\partial y^2}=\frac{y}{x^3}$.
+\end{center}
+
+\begin{align*}\ensuremath
+\frac{\partial^2f}{\partial x^2}-\frac{\partial^2f}{\partial y^2}&=\frac{\partial^2}{\partial x^2}\left(\varphi\left(\frac{y}{x}\right)\right)-\frac{\partial^2}{\partial y^2}\left(\varphi\left(\frac{y}{x}\right)\right)\\
+ &=\frac{\partial}{\partial x}\left(-\frac{y}{x^2}\varphi'\left(\frac{y}{x}\right)\right)-\frac{\partial}{\partial y}\left(\frac{1}{x}\varphi'\left(\frac{y}{x}\right)\right)=\frac{2y}{x^3}\varphi'\left(\frac{y}{x}\right)+\frac{y^2}{x^4}\varphi''\left(\frac{y}{x}\right)-\frac{1}{x^2}\varphi''\left(\frac{y}{x}\right)\\
+ &=\frac{1}{x^2}\left(\frac{2y}{x}\varphi'\left(\frac{y}{x}\right)+\left(\frac{y^2}{x^2}-1\right)\varphi''\left(\frac{y}{x}\right)\right).
+\end{align*}
+Puis, quand $(x,y)$ décrit $U$, $\frac{y}{x}$ décrit $\Rr$ (car $\frac{y}{1}$ décrit déjà $\Rr$)
+
+\begin{align*}\ensuremath
+\forall(x,y)\in U,\;\frac{\partial^2f}{\partial x^2}(x,y)-\frac{\partial^2f}{\partial y^2}(x,y)=\frac{y}{x^3}&\Leftrightarrow\forall(x,y)\in U,\;\frac{2y}{x}\varphi'\left(\frac{y}{x}\right)+\left(\frac{y^2}{x^2}-1\right)\varphi''\left(\frac{y}{x}\right)=\frac{y}{x}\\
+ &\Leftrightarrow\forall t\in\Rr,\;2t\varphi'(t)+(t^2-1)\varphi''(t)=t\\
+ &\Leftrightarrow\exists\lambda\in\Rr/\;\forall t\in\Rr,\;(t^2-1)\varphi'(t)=\frac{t^2}{2}+\lambda\quad(*)
+\end{align*}
+Maintenant, $\frac{t^2}{2}+\lambda$ ne s'annule pas en $\pm1$, l'égalité $(*)$ fournit une fonction $\varphi$ telle que $\varphi'$ n'a pas une limite réelle en $\pm1$. Une telle solution n'est pas de classe $C^2$ sur $\Rr$. Donc nécessairement $\lambda=-\frac{1}{2}$ puis
+
+\begin{align*}\ensuremath
+\forall(x,y)\in U,\;\frac{\partial^2f}{\partial x^2}(x,y)-\frac{\partial^2f}{\partial y^2}(x,y)=\frac{y}{x^3}&\Leftrightarrow\forall t\in\Rr,\;(t^2-1)\varphi'(t)=\frac{t^2-1}{2}\Leftrightarrow\forall t\in\Rr\setminus\{-1,1\},\;\varphi'(t)=\frac{1}{2}\\
+ &\Leftrightarrow\forall t\in\Rr,\;\varphi'(t)=\frac{1}{2}\;(\text{par continuité de}\;\varphi'\;\text{en}\;\pm1)\\
+ &\Leftrightarrow\exists\lambda\in\Rr/\;\forall t\in\Rr,\;\varphi(t)=\frac{t}{2}+\lambda.
+\end{align*}
+\fincorrection
+\correction{005562}
+\begin{enumerate}
+ \item  $\left\{
+\begin{array}{l}
+u=x+y\\
+v=x+2y
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x=2u-v\\
+y=-u+v
+\end{array}
+\right.$. L'application $(x,y)\mapsto(u,v)$ est un $C^1$-difféomorphisme de $\Rr^2$ sur lui-même.
+Pour $(u,v)\in\Rr^2$, posons alors $g(u,v)=f(2u-v,u+v)=f(x,y)$ de sorte que $\forall(x,y)\in\Rr^2$, $f(x,y)=g(x+y,x+2y)=g(u,v)$. $f$ est de classe $C^1$ sur $\Rr^2$ si et seulement si $g$ est de classe $C^1$ sur $\Rr^2$ et
+
+\begin{align*}\ensuremath
+ 2\frac{\partial f}{\partial x}(x,y)-\frac{\partial f}{\partial y}(x,y)&=2\frac{\partial}{\partial x}\left(g(x+y,x+2y)\right)-\frac{\partial}{\partial y}\left(g(x+y,x+2y)\right)\\
+  &=2\left(\frac{\partial u}{\partial x}\times\frac{\partial g}{\partial u}(u,v)+\frac{\partial v}{\partial x}\times\frac{\partial g}{\partial v}(u,v)\right)-\left(\frac{\partial u}{\partial y}\times\frac{\partial g}{\partial u}(u,v)+\frac{\partial v}{\partial y}\times\frac{\partial g}{\partial v}(u,v)\right)\\
+  &=2\left(\frac{\partial g}{\partial u}(u,v)+\frac{\partial g}{\partial v}(u,v)\right)-\left(\frac{\partial g}{\partial u}(u,v)+2\frac{\partial g}{\partial v}(u,v)\right)=\frac{\partial g}{\partial u}(u,v).
+ \end{align*}
+ 
+ 
+ Par suite,
+ 
+ \begin{align*}\ensuremath
+ \forall(x,y)\in\Rr^2,\;2\frac{\partial f}{\partial x}(x,y)-\frac{\partial f}{\partial y}(x,y)=0&\Leftrightarrow\forall(u,v)\in\Rr^2,\;\frac{\partial g}{\partial u}(u,v)=0\\
+  &\Leftrightarrow\exists F~:~\Rr\rightarrow\Rr\;\text{de classe}\;C^1\;\text{telle que}\;\forall (u,v)\in\Rr^2,\;g(u,v)=F(v)\\
+  &\Leftrightarrow\exists F~:~\Rr\rightarrow\Rr\;\text{de classe}\;C^1\;\text{telle que}\;\forall (x,y)\in\Rr^2,\;f(x,y)=F(x+2y).
+ \end{align*}
+ \item  On pose $r=\sqrt{x^2+y^2}$ et $\theta=\Arctan\left(\frac{y}{x}\right)$ de sorte que $x=r\cos\theta$ et $y=r\sin\theta$. On pose $f(x,y)=f(r\cos\theta,r\sin\theta)=g(r,\theta)$. On sait que $\frac{\partial r}{\partial x}=\cos\theta$, $\frac{\partial r}{\partial y}=\sin\theta$, $\frac{\partial \theta}{\partial x}=-\frac{\sin\theta}{r}$, $\frac{\partial \theta}{\partial y}=\frac{\cos\theta}{r}$
+\begin{align*}\ensuremath
+x\frac{\partial f}{\partial x}+ y\frac{\partial f}{\partial y}=r\cos\theta\left(\cos\theta\frac{\partial g}{\partial r}-\frac{\sin\theta}{r}\frac{\partial g}{\partial \theta}\right)+r\sin\theta\left(\sin\theta\frac{\partial g}{\partial r}+\frac{\cos\theta}{r}\frac{\partial g}{\partial \theta}\right)=r\frac{\partial g}{\partial r},
+\end{align*}
+puis
+
+\begin{align*}\ensuremath
+\forall(x,y)\in D,\;x\frac{\partial f}{\partial x}(x,y)&+ y\frac{\partial f}{\partial y}(x,y)=\sqrt{x^2+y^2}\Leftrightarrow\forall r>0,\;r\frac{\partial g}{\partial r}(r,\theta)=r\Leftrightarrow\forall r>0,\;\frac{\partial g}{\partial r}(r,\theta)=1\\
+ &\Leftrightarrow\exists \varphi\;\text{de classe}\;C^1\;\text{sur}\;\left]-\frac{\pi}{2},\frac{\pi}{2}\right[/\;\forall(r,\theta)\in]0,+\infty[\times\left]-\frac{\pi}{2},\frac{\pi}{2}\right[,\;g(r,\theta)=r+\varphi(\theta)\\
+ &\Leftrightarrow\exists \varphi\;\text{de classe}\;C^1\;\text{sur}\;\left]-\frac{\pi}{2},\frac{\pi}{2}\right[/\;\forall(x,y)\in D,\;f(x,y)=\sqrt{x^2+y^2}+\varphi\left(\Arctan\frac{y}{x}\right)\\
+  &\Leftrightarrow\exists \psi\;\text{de classe}\;C^1\;\text{sur}\;\Rr/\;\forall(x,y)\in D,\;f(x,y)=\sqrt{x^2+y^2}+\psi\left(\frac{y}{x}\right).
+\end{align*}
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

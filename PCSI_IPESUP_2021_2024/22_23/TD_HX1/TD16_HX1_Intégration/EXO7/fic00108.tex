@@ -1,0 +1,1135 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00108, rouget, 2010/07/11}
+
+\titre{Calculs de primitives et d'intégrales} 
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable\quad T~:~pour travailler et mémoriser le cours
+\end{center}
+
+
+\exercice{5466, rouget, 2010/07/10}
+\enonce{005466}{}
+Calculer les primitives des fonctions suivantes en précisant le ou les intervalles considérés~:
+
+$$
+\begin{array}{lllll}
+1)\;\frac{1}{x^3+1}&2)\;\frac{x^2}{x^3+1}&3)\;\frac{x^5}{x^3-x^2-x+1}&4)\;\frac{1-x}{(x^2+x+1)^5}&5)\;\frac{1}{x(x^2+1)^2}\\
+6)\;\frac{x^2+x}{x^6+1}&7)\;\frac{1}{x^4+1}&8)\;\frac{1}{(x^4+1)^2}&9)\;\frac{1}{x^8+x^4+1}&10)\;\frac{x}{(x^4+1)^3}\\
+11)\;\frac{1}{(x+1)^7-x^7-1}
+\end{array}
+$$ 
+\finenonce{005466}
+
+
+\finexercice
+\exercice{5467, rouget, 2010/07/10}
+\enonce{005467}{}
+Calculer les primitives des fonctions suivantes en précisant le ou les intervalles considérés~:
+$$
+\begin{array}{lllll}
+1)\;\frac{1}{\cos x}\;\mbox{et}\;\frac{1}{\ch x}&2)\;\frac{1}{\sin x}\;\mbox{et}\;\frac{1}{\sh x}&3)\;\frac{1}{\tan x}\;\mbox{et}\;\frac{1}{\tanh x}&4)\;\frac{\sin^2(x/2)}{x-\sin x}&5)\;\frac{1}{2+\sin^2x}\\
+6)\;\frac{\cos x}{\cos x+\sin x}&7)\;\frac{\cos(3x)}{\sin x+\sin(3x)}&8)\;\frac{1}{\cos^4x+\sin^4x}&9)\;\frac{\sin x\sin(2x)}{\sin^4x+\cos^4x+1}&10)\;\frac{\tan x}{1+\sin(3x)}\\
+11)\;\frac{\cos x+2\sin x}{\sin x-\cos x}&12)\;\frac{\sin x}{\cos(3x)}&13)\;\frac{1}{\alpha\cos^2x+\beta\sin^2x}&14)\;\frac{\ch^3 x}{1+\sh x}&15)\;\sqrt{\ch x-1}\\
+16)\;\frac{\tanh x}{1+\ch x}&17)\;\frac{1}{\sh^5x}&18)\frac{1}{1-\ch x}
+\end{array}
+$$  
+\finenonce{005467}
+
+
+\finexercice
+\exercice{5468, rouget, 2010/07/10}
+\enonce{005468}{}
+Calculer les primitives des fonctions suivantes en précisant le ou les intervalles considérés~:
+
+$$
+\begin{array}{lllll}
+1)\frac{1}{\sqrt{x^2+2x+5}}\;\mbox{et}\;\sqrt{x^2+2x+5}&2)\;\frac{1}{\sqrt{2x-x^2}}&3)\;\frac{\sqrt{1+x^6}}{x}&4)\;
+\frac{1}{\sqrt{1+x}+\sqrt{1-x}}&5)\;\sqrt{\frac{x+1}{x-1}}\\
+6)\;\frac{x^2+1}{x\sqrt{x^4-x^2+1}}&7)\;\sqrt{\frac{1-\sqrt{x}}{\sqrt{x}}}&8)\;\frac{1}{1+\sqrt{1+x^2}}&9)\;\frac{\sqrt[3]{x^3+1}}{x^2}\;\mbox{et}\;\frac{1}{\sqrt[3]{x^3+1}}&\;\\
+10)\;\frac{1}{\sqrt{x+1}+\sqrt[3]{x+1}}
+\end{array}
+$$    
+\finenonce{005468}
+
+
+\finexercice
+\exercice{5469, rouget, 2010/07/10}
+\enonce{005469}{}
+Calculer les primitives des fonctions suivantes en précisant le ou les intervalles considérés~:
+$$
+\begin{array}{lllll}
+1)\;\frac{1}{x\ln x}&2)\;\Arcsin x&3)\;\Arctan x&4)\;\Arccos x&5)\;\Argsh x\\
+6)\;\Argch x&7)\;\Argth x&8)\;\ln(1+x^2)&9)\;e^{\Arccos x}&10)\;\cos x\ln(1+\cos x)\\
+11)\;\frac{\Arctan x}{\sqrt{x}}&12)\;\frac{xe^x}{(x+1)^2}&13)\;(\frac{x}{e})^x\ln x&14)\;x^n\ln x\;(n\in\Nn)&15)\;e^{ax}\cos(\alpha x)\;((a,\alpha)\in(\Rr^*)^2)\\
+16)\;\sin(\ln x)\;\mbox{et}\;\cos(\ln x)&17)\;\frac{\sqrt{x^n+1}}{x}&18)\;x^2e^x\sin x
+\end{array}
+$$
+\finenonce{005469}
+
+
+\finexercice
+\exercice{5470, rouget, 2010/07/10}
+\enonce{005470}{}
+Calculer les intégrales suivantes ($a$, $b$ réels donnés, $p$ et $q$ entiers naturels donnés)
+
+$$
+\begin{array}{ll}
+1)\;\int_{1/a}^{a}\frac{\ln x}{x^2+1}\;(0<a)&2)\;\int_{0}^{\pi}{2}\cos(px)\cos(qx)\;dx\;\mbox{et}\;\int_{0}^{\pi}{2}\cos(px)\sin(qx)\;dx\;\mbox{et}\;\int_{0}^{\pi}{2}\sin(px)\sin(qx)\;dx\\
+3)\;\int_{a}^{b}\sqrt{(x-a)(b-x)}\;dx&4)\;\int_{-2}^{2}(|x-1|+|x|+|x+1|+|x+2|)\;dx\\
+5)\;\int_{1/2}^{2}\left(1+\frac{1}{x^2}\right)\Arctan x\;dx&6)\;\int_{-1}^{1}\sqrt{1+|x(1-x)|}\;dx\\  
+7)\int_{0}^{\pi}\;\frac{x\sin x}{1+\cos^2x}&8)\;\int_{1}^{x}(\ln t)^n\;dt\;(n\in\Nn^*) 
+\end{array}
+$$
+\finenonce{005470}
+
+
+\finexercice
+\exercice{5471, rouget, 2010/07/10}
+\enonce{005471}{}
+Condition nécessaire et suffisante sur $a$, $b$, $c$ et $d$ pour que les primitives de $\frac{(x-a)(x-b)}{x-c)^2(x-d)^2}$ soient rationnelles ($a$, $b$, $c$ et $d$ réels donnés).
+\finenonce{005471}
+
+
+\finexercice
+\exercice{5472, rouget, 2010/07/10}
+\enonce{005472}{}
+Etude de $f(x)=\int_{-1}^{1}\frac{\sin x}{1-2t\cos x+t^2}\;dt$.  
+\finenonce{005472}
+
+
+\finexercice
+\exercice{5473, rouget, 2010/07/10}
+\enonce{005473}{}
+Etude de $f(x)=\int_{0}^{1}\mbox{Max}(x,t)\;dt$. 
+\finenonce{005473}
+
+
+\finexercice
+\exercice{5474, rouget, 2010/07/10}
+\enonce{005474}{Intégrales de \textsc{Wallis}}
+Pour $n$ entier naturel, on pose $W_n=\int_{0}^{\pi/2}\sin^nx\;dx$.
+\begin{enumerate} 
+\item  Calculer $W_0$ et $W_1$. Déterminer une relation entre $W_n$ et $W_{n+2}$ et en déduire $W_{2n}$ et $W_{2n+1}$ en fonction de $n$.
+\item  Etudier les variations de la suite $(W_n)$ et en déduire $\lim_{n\rightarrow +\infty}\frac{W_{n+1}}{W_n}$.
+\item  Montrer que la suite $(nW_nW_{n-1})_{n\in\Nn^*}$ est constante. En déduire $\lim_{n\rightarrow +\infty}W_n$, puis un équivalent simple de $W_n$. En écrivant $\int_{0}^{\pi/2}=\int_{0}^{\alpha}+\int_{\alpha}^{\pi}{2}$, retrouver directement $\lim_{n\rightarrow +\infty}W_n$.
+\item  Montrer que $\lim_{n\rightarrow +\infty}n\left(\frac{1.3....(2n-1)}{2.4....(2n)}\right)^2=\frac{1}{\pi}$. (Formule de \textsc{Wallis})
+\end{enumerate}
+\finenonce{005474}
+
+
+
+\finexercice
+\exercice{5475, rouget, 2010/07/10}
+\enonce{005475}{}
+Pour $n$ entier naturel, on pose $In=\int_{0}^{\pi/4}\tan^nx\;dx$.
+\begin{enumerate} 
+\item  Calculer $I_0$ et $I_1$. Trouver une relation entre $I_n$ et $I_{n+2}$. En déduire $I_n$ en fonction de $n$.
+\item  Montrer que $I_n$ tend vers $0$ quand $n$ tend vers $+\infty$, et en déduire les limites des suites $(u_n)$ et $(v_n)$ définies par~:~$u_n=\sum_{k=1}^{n}\frac{(-1)^{k-1}}{k}$ ($n\in\Nn^*$) et $v_n=\sum_{k=1}^{n}\frac{(-1)^{k-1}}{2k-1}$.
+\end{enumerate}  
+\finenonce{005475}
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005466}
+\begin{enumerate}
+\item  $I$ est l'un des deux intervalles $]-\infty,-1[$ ou $]-1,+\infty[$. $f$ est continue sur $I$ et admet donc des primitives sur $I$.
+
+$$\frac{1}{X^3+1}=\frac{1}{(X+1)(X+j)(X+j^2)}=\frac{a}{X+1}+\frac{b}{X+j}+\frac{\overline{b}}{X+j^2},$$
+
+où $a=\frac{1}{3(-1)^2}=\frac{1}{3}$ et $b=\frac{1}{3(-j)^2}=\frac{j}{3}$. Par suite,
+
+\begin{align*}\ensuremath
+\frac{1}{X^3+1}&=\frac{1}{3}(\frac{1}{X+1}+\frac{j}{X+j}+\frac{j^2}{X+j^2})
+=\frac{1}{3}(\frac{1}{X+1}+\frac{-X+2}{X^2-X+1})
+=\frac{1}{3}(\frac{1}{X+1}-\frac{1}{2}\frac{2X-1}{X^2-X+1}+\frac{3}{2}\frac{1}{X^2-X+1})\\
+ &=\frac{1}{3}(\frac{1}{X+1}-\frac{1}{2}\frac{2X-1}{X^2-X+1}
+ +\frac{3}{2}\frac{1}{(X-\frac{1}{2})^2+(\frac{\sqrt{3}}{2})^2}).
+\end{align*}
+
+Mais alors,
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{1}{x^3+1}\;dx&=\frac{1}{3}(\ln|x+1|-\frac{1}{2}\ln(x^2-x+1)+\frac{3}{2}\frac{2}{\sqrt{3}}\Arctan
+\frac{x-\frac{1}{2}}{\frac{\sqrt{3}}{2}})
+=\frac{1}{6}\ln\frac{(x-1)^2}{x^2-x+1}+\frac{1}{\sqrt{3}}\Arctan\frac{2x-1}{\sqrt{3}}+C.
+\end{align*}
+
+\item  $I$ est l'un des deux intervalles $]-\infty,-1[$ ou $]1,+\infty[$. Sur $I$, $\int_{}^{}\frac{x^2}{x^3+1}\;dx=\frac{1}{3}\ln(x^3+1)+C$.
+
+\item  $X^3-X^2-X+1=X^2(X-1)-(X-1)=(X^2-1)(X-1)=(X-1)^2(X+1)$. Donc, la décomposition en éléments simples de $f=\frac{X^5}{X^3-X^2-X+1}$ est de la forme $aX^2+bX+c+\frac{d_1}{X-1}+\frac{d_2}{(X-1)^2}+\frac{e}{X+1}$.
+
+Détermination de $a$, $b$ et $c$. La division euclidienne de $X^5$ par $X^3-X^2-X+1$ s'écrit $X^5=(X^2+X+2)(X^3-X^2-X+1)+2X^2+X-2$. On a donc $a=1$, $b=1$ et $c=2$.
+
+$e=\lim_{x\rightarrow -1}(x+1)f(x)=\frac{(-1)^5}{(-1-1)^2}=-\frac{1}{4}$. Puis, $d_2=\lim_{x\rightarrow 1}(x-1)^2f(x)=\frac{1^5}{1+1}=\frac{1}{2}$. Enfin, $x=0$ fournit $0=c-d_1+d_2+e$ et donc, $d_1=-2-\frac{1}{2}+\frac{1}{4}=-\frac{9}{4}$. Finalement,
+
+$$\frac{X^5}{X^3-X^2-X+1}=X^2+X+2-\frac{9}{4}\frac{1}{X-1}+\frac{1}{2}\frac{1}{(X-1)^2}-\frac{1}{4}\frac{1}{X+1},$$
+
+et donc, $I$ désignant l'un des trois intervalles $]-\infty,-1[$, $]-1,1[$ ou $]1,+\infty[$, on a sur $I$
+
+$$\int_{}^{}\frac{x^5}{x^3-x^2-x+1}\;dx=\frac{x^3}{3}+\frac{x^2}{2}+2x-\frac{1}{2(x-1)}-\frac{1}{4}\ln|x+1|+C.$$
+\item  Sur $\Rr$,
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{1-x}{(x^2+x+1)^5}\;dx&=-\frac{1}{2}\int_{}^{}\frac{2x+1}{(x^2+x+1)^5}\;dx+\frac{3}{2}\int_{}^{}\frac{1}{(x^2+x+1)^5}\;dx
+=\frac{1}{8(x^2+x+1)^4}+\frac{3}{2}\int_{}^{}\frac{1}{((x+\frac{1}{2})^2+\frac{3}{4})^5}\;dx\\
+ &=\frac{1}{8(x^2+x+1)^4}+\frac{3}{2}\int_{}^{}\frac{1}{((\frac{\sqrt{3}}{2}u)^2+\frac{3}{4})^5}\;\frac{\sqrt{3}}{2}\;du\;(\mbox{en posant}\;x+\frac{1}{2}=\frac{u\sqrt{3}}{2})\\
+ &=\frac{1}{8(x^2+x+1)^4}+\frac{2^8\sqrt{3}}{3^4}\int_{}^{}\frac{1}{(u^2+1)^5}\;du.
+\end{align*}
+
+Pour $n\in\Nn^*$, posons alors $I_n=\int_{}^{}\frac{du}{(u^2+1)^n}$. Une intégration par parties fournit
+
+$$I_n=\frac{u}{(u^2+1)^n}+2n\int_{}^{}\frac{u^2+1-1}{(u^2+1)^{n+1}}\;du=\frac{u}{(u^2+1)^n}+2n(I_n-I_{n+1}),$$
+
+et donc, $I_{n+1}=\frac{1}{2n}\left(\frac{u}{(u^2+1)^n}+(2n-1)I_n\right)$. Mais alors,
+
+\begin{align*}\ensuremath
+I_5&=\frac{1}{8}\frac{u}{(u^2+1)^4}+\frac{7}{8}I_4=\frac{1}{8}\frac{u}{(u^2+1)^4}+\frac{7}{8.6}\frac{u}{(u^2+1)^3}+\frac{7.5}{8.6}I_3\\
+ &=\frac{1}{8}\frac{u}{(u^2+1)^4}+\frac{7}{8.6}\frac{u}{(u^2+1)^3}+\frac{7.5}{8.6.4}\frac{u}{(u^2+1)^2}+\frac{7.5.3}{8.6.4}I_2\\
+ &=\frac{1}{8}\frac{u}{(u^2+1)^4}+\frac{7}{8.6}\frac{u}{(u^2+1)^3}+\frac{7.5}{8.6.4}\frac{u}{(u^2+1)^2}+\frac{7.5.3}{8.6.4.2}\frac{u}{u^2+1}+\frac{7.5.3.1}{8.6.4.2}I_1\\
+ &=\frac{1}{8}\frac{u}{(u^2+1)^4}+\frac{7}{8.6}\frac{u}{(u^2+1)^3}+\frac{7.5}{8.6.4}\frac{u}{(u^2+1)^2}+\frac{7.5.3}{8.6.4.2}\frac{u}{u^2+1}+\frac{7.5.3.1}{8.6.4.2}\Arctan u+C.
+\end{align*}
+
+Maintenant,
+
+$$u^2+1=(\frac{2}{\sqrt{3}}(x+\frac{1}{2}))^2+1=\frac{4}{3}x^2+\frac{4}{3}x+\frac{1}{3}+1=\frac{4}{3}(x^2+x+1).$$
+
+Par suite,
+
+\begin{align*}\ensuremath
+\frac{2^8\sqrt{3}}{3^4}\int_{}^{}\frac{1}{(u^2+1)^5}\;du&=\frac{2^8\sqrt{3}}{3^4}
+\left(
+\frac{1}{8}\frac{3^4}{4^4}\frac{\frac{2}{\sqrt{3}}(x+\frac{1}{2})}{(x^2+x+1)^4}
++\frac{7}{8.6}\frac{3^3}{4^3}\frac{\frac{2}{\sqrt{3}}(x+\frac{1}{2})}{(x^2+x+1)^3}
++\frac{7.5}{8.6.4}\frac{3^2}{4^2}\frac{\frac{2}{\sqrt{3}}(x+\frac{1}{2})}{(x^2+x+1)^2}
+\right.
+\\
+ &\;\left.+\frac{7.5.3}{8.6.4.2}\frac{3}{4}\frac{\frac{2}{\sqrt{3}}(x+\frac{1}{2})}{x^2+x+1}
+ +\frac{7.5.3.1}{8.6.4.2}\Arctan\frac{2x+1}{\sqrt{3}}+C
+ \right).\\
+ &=\frac{1}{8}\frac{2x+1}{(x^2+x+1)^4}+\frac{7}{36}\frac{2x+1}{(x^2+x+1)^3}+\frac{35}{108}\frac{2x+1}{(x^2+x+1)^2}+\frac{35}{54}\frac{2x+1}{x^2+x+1}\\
+ &\;+\frac{70\sqrt{3}}{81}\Arctan\frac{2x+1}{\sqrt{3}}+C,
+\end{align*}
+
+(il reste encore à réduire au même dénominateur).
+
+\item  On pose $u=x^2$ et donc $du=2xdx$
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{1}{x(x^2+1)^2}\;dx&=\int_{}^{}\frac{x}{x^2(x^2+1)^2}\;dx=\frac{1}{2}\int_{}^{}\frac{du}{u(u+1)^2}
+=\frac{1}{2}\int_{}^{}(\frac{1}{u}-\frac{1}{u+1}-\frac{1}{(u+1)^2})\;du\\
+ &=\frac{1}{2}(\ln|u|-\ln|u+1|+\frac{1}{u+1})+C\\
+ &=\frac{1}{2}(\ln\frac{x^2}{x^2+1}+\frac{1}{x^2+1})+C.
+\end{align*}
+\item  $\int_{}^{}\frac{x^2+x}{x^6+1}\;dx=\int_{}^{}\frac{x^2}{x^6+1}\;dx+\int_{}^{}\frac{x}{x^6+1}\;dx$.
+
+Ensuite, en posant $u=x^3$ et donc $du=3x^2\;dx$,
+
+$$\int_{}^{}\frac{x^2}{x^6+1}\;dx=\frac{1}{3}\int_{}^{}\frac{1}{u^2+1}\;du=\frac{1}{3}\Arctan u+C=\frac{1}{3}\Arctan(x^3)+C,$$
+
+et en posant $u=x^2$ et donc $du=2x\;dx$,
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{x}{x^6+1}\;dx&=\frac{1}{2}\int_{}^{}\frac{1}{u^3+1}\;du
+=\frac{1}{6}\ln\frac{(u-1)^2}{u^2-u+1}+\frac{1}{\sqrt{3}}\Arctan\frac{2u-1}{\sqrt{3}}+C\;(\mbox{voir}\;1))\\
+ &=\frac{1}{6}\ln\frac{(x^2-1)^2}{x^4-x^2+1}+\frac{1}{\sqrt{3}}\Arctan\frac{2x^2-1}{\sqrt{3}}+C
+\end{align*}
+
+Finalement,
+
+$$\int_{}^{}\frac{x^2+x}{x^6+1}\;dx=\frac{1}{3}\Arctan(x^3)+\frac{1}{6}\ln\frac{(x^2-1)^2}{x^4-x^2+1}+\frac{1}{\sqrt{3}}\Arctan\frac{2x^2-1}{\sqrt{3}}+C.$$
+
+\item  $\frac{1}{X^4+1}=\sum_{k=0}^{3}\frac{\lambda_k}{X-z_k}$ où $z_k=e^{i(\frac{\pi}{4}+k\frac{\pi}{2})}$. De plus,
+$\lambda_k=\frac{1}{4z_k^3}=\frac{z_k}{4z_k^4}=-\frac{z_k}{4}$. Ainsi,
+
+\begin{align*}\ensuremath
+\frac{1}{X^4+1}&=-\frac{1}{4}\left(\frac{e^{i\pi/4}}{X-e^{i\pi/4}}+\frac{e^{-i\pi/4}}{X-e^{-i\pi/4}}
++\frac{-e^{i\pi/4}}{X+e^{i\pi/4}}+\frac{-e^{-i\pi/4}}{X+e^{-i\pi/4}}\right)\\
+ &=-\frac{1}{4}\left(\frac{\sqrt{2}X-2}{X^2-\sqrt{2}X+1}-\frac{\sqrt{2}X+2}{X^2+\sqrt{2}X+1}\right).
+\end{align*}
+
+Mais,
+
+$$\frac{\sqrt{2}X-2}{X^2-\sqrt{2}X+1}=\frac{1}{\sqrt{2}}\frac{2X-\sqrt{2}}{X^2-\sqrt{2}X+1}-\frac{1}{(X-\frac{1}{\sqrt{2}})^2+(\frac{1}{\sqrt{2}})^2},$$
+
+et donc,
+
+$$\int_{}^{}\frac{\sqrt{2}x-2}{x^2-\sqrt{2}x+1}\;dx=\frac{1}{\sqrt{2}}\ln(x^2-\sqrt{2}x+1)-\sqrt{2}\Arctan(\sqrt{2}x-1)+C,$$
+
+et de même,
+
+$$\int_{}^{}\frac{\sqrt{2}x+2}{x^2+\sqrt{2}x+1}\;dx=\frac{1}{\sqrt{2}}\ln(x^2+\sqrt{2}x+1)+\sqrt{2}\Arctan(\sqrt{2}x+1)+C.$$
+
+Finalement,
+
+$$\int_{}^{}\frac{1}{x^4+1}\;dx=\frac{1}{\sqrt{2}}\ln\frac{x^2-\sqrt{2}x+1}{x^2+\sqrt{2}x+1}-\sqrt{2}(\Arctan(\sqrt{2}x-1)+\Arctan(\sqrt{2}x+1))+C.$$
+\item  Une intégration par parties fournit
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{1}{x^4+1}\;dx&=\frac{x}{x^4+1}+\int_{}^{}\frac{4x^4}{(x^4+1)^2}\;dx=\frac{x}{x^4+1}+4\int_{}^{}\frac{x^4+1-1}{(x^4+1)^2}\;dx\\
+ &=\frac{x}{x^4+1}+4\int_{}^{}\frac{1}{x^4+1}\;dx-4\int_{}^{}\frac{1}{(x^4+1)^2}\;dx\\
+\end{align*}
+
+Et donc,
+
+$$\int_{}^{}\frac{1}{(x^4+1)^2}\;dx=\frac{1}{4}(\frac{x}{x^4+1}+3\int_{}^{}\frac{1}{x^4+1}\;dx)=...$$
+\item  Posons $R=\frac{1}{X^8+X^4+1}$.
+
+\begin{align*}\ensuremath
+X^8+X^4+1&=\frac{X^{12}-1}{X^4-1}=\frac{\prod_{k=0}^{11}(X-e^{2ik\pi/12})}{(X-1)(X+1)(X-i)(X+i)}\\
+ &=(X-e^{i\pi/6})(X-e^{-i\pi/6})(X+e^{i\pi/6})(X+e^{-i\pi/6})(X-j)(X-j^2)(X+j)(X+j^2).
+\end{align*}
+
+$R$ est réelle et paire. Donc,
+
+$$R=\frac{a}{X-j}+\frac{\overline{a}}{X-j^2}-\frac{a}{X+j}-\frac{\overline{a}}{X+j^2}+\frac{b}{X-e^{i\pi/6}}
++\frac{\overline{b}}{X-e^{-i\pi/6}}-\frac{b}{X+e^{i\pi/6}}-\frac{\overline{b}}{X+e^{-i\pi/6}}.$$
+
+$a=\frac{1}{8j^7+4j^3}=\frac{1}{4(2j+1)}=\frac{2j^2+1}{4(2j+1)(2j^2+1)}=\frac{-1-2j}{12}$ et donc,
+
+$$\frac{a}{X-j}+\frac{\overline{a}}{X-j^2}=\frac{1}{12}(\frac{-1-2j}{X-j}+\frac{-1-2j^2}{X-j^2})
+=\frac{1}{4}\frac{1}{X^2+X+1}=\frac{1}{4}\frac{1}{(X+\frac{1}{2})^2+(\frac{\sqrt{3}}{2})^2},$$
+
+ et par parité,
+ 
+$$\frac{a}{X-j}+\frac{\overline{a}}{X-j^2}-\frac{a}{X+j}-\frac{\overline{a}}{X+j^2}=
+\frac{1}{4}(\frac{1}{(X+\frac{1}{2})^2+(\frac{\sqrt{3}}{2})^2}+\frac{1}{(X-\frac{1}{2})^2+(\frac{\sqrt{3}}{2})^2}).$$
+
+Ensuite, $b=\frac{1}{8e^{7i\pi/6}+4e^{3i\pi/6}}=\frac{1}{4e^{i\pi/6}(-2-j^2)}=\frac{e^{-i\pi/6}}{4(-1+j)}
+=\frac{e^{-i\pi/6}(-1+j^2)}{12}=\frac{e^{-i\pi/6}(-2-j)}{12}=\frac{-2e^{-i\pi/6}-i}{12}$, et donc,
+
+\begin{align*}\ensuremath
+\frac{b}{X-e^{i\pi/6}}
++\frac{\overline{b}}{X-e^{-i\pi/6}}&=\frac{1}{12}(\frac{-2e^{-i\pi/6}-i}{X-e^{i\pi/6}}+\frac{-2e^{i\pi/6}+i}{X-e^{-i\pi/6}})=\frac{1}{12}\frac{-2\sqrt{3}X+3}{X^2-\sqrt{3}X+1}=-\frac{1}{4\sqrt{3}}\frac{2X-\sqrt{3}}{X^2-\sqrt{3}X+1}.
+\end{align*}
+
+Par parité,
+
+$$\frac{b}{X-e^{i\pi/6}}
++\frac{\overline{b}}{X-e^{-i\pi/6}}-\frac{b}{X+e^{i\pi/6}}-\frac{\overline{b}}{X+e^{-i\pi/6}}=
+-\frac{1}{4\sqrt{3}}\frac{2X-\sqrt{3}}{X^2-\sqrt{3}X+1}+\frac{1}{4\sqrt{3}}\frac{2X+\sqrt{3}}{X^2+\sqrt{3}X+1}.$$
+
+Finalement,
+
+$$\int_{}^{}\frac{1}{x^8+x^4+1}=\frac{1}{2\sqrt{3}}(\Arctan\frac{2x-1}{\sqrt{3}}+\Arctan\frac{2x+1}{\sqrt{3}})+\frac{1}{4\sqrt{3}}\ln\frac{x^2+\sqrt{3}x+1}{x^2-\sqrt{3}x+1}+C.$$
+
+\item  En posant $u=x^2$ et donc $du=2x\;dx$, on obtient $\int_{}^{}\frac{x}{(x^4+1)^3}\;dx=\frac{1}{2}\int_{}^{}\frac{1}{(u^2+1)^3}$.
+
+Pour $n\geq1$, posons $I_n=\int_{}^{}\frac{1}{(u^2+1)^n}\;du$. Une intégration par parties fournit~:
+
+\begin{align*}\ensuremath
+I_n=\frac{u}{(u^2+1)^n}+\int_{}^{}\frac{u.(-n)(2u)}{(u^2+1)^{n+1}}\;du=\frac{u}{(u^2+1)^n}+2n\int_{}^{}\frac{u^2+1-1}{(u^2+1)^{n+1}}\;du\\
+ &=\frac{u}{(u^2+1)^n}+2n(I_n-I_{n+1}),
+\end{align*}
+
+et donc, $\forall n\geq1,\;I_{n+1}=\frac{1}{2n}(\frac{u}{(u^2+1)^n}+(2n-1)I_n)$.
+
+On en déduit que
+
+$$I_3=\frac{1}{4}(\frac{u}{(u^2+1)^2}+3I_2)=\frac{u}{4(u^2+1)^2}+\frac{3}{8(u^2+1)}+\frac{3}{8}\Arctan u+C,$$
+
+et finalement que
+
+$$\int_{}^{}\frac{x}{(x^4+1)^3}\;dx=\frac{1}{16}(\frac{2x^2}{(x^4+1)^2}+\frac{3}{x^4+1}+3\Arctan(x^2))+C.$$
+
+\item  
+\begin{align*}\ensuremath
+(X+1)^7-X^7-1&=7X^6+21X^5+35X^4+35X^3+21X^2+7X=7X(X^5+3X^4+5X^3+5X^2+3X+1)\\
+ &=7X(X+1)(X^4+2X^3+3X^2+2X+1)=7X(X+1)(X^2+X+1)^2.
+\end{align*}
+
+Par suite,
+
+$$\frac{7}{(X+1)^7-X^7-1}=\frac{1}{X(X+1)(X-j)^2(X-j^2)^2}=\frac{a}{X}+\frac{b}{X+1}+\frac{c_1}{X-j}
++\frac{c_2}{(X-j)^2}+\frac{\overline{c_1}}{X-j^2}+\frac{\overline{c_2}}{(X-j^2)^2}.$$
+
+$a=\lim_{x\rightarrow 0}xR(x)=1$, $b=\lim_{x\rightarrow -1}(x+1)R(x)=-1$, et
+
+$c_2=\lim_{x\rightarrow j}(x-j)^2R(x)=\frac{1}{j(j+1)(j-j^2)^2}=-\frac{1}{j^2(1-2j+j^2)}=\frac{1}{3}$. Puis, 
+
+$$\frac{c_2}{(X-j)^2}+\frac{\overline{c_2}}{(X-j^2)^2}=\frac{1}{3}(\frac{(X-j^2)^2+(X-j)^2}{(X^2+X+1)^2}
+=\frac{2X^2+2X-1}{3(X^2+X+1)^2},$$
+
+et
+
+\begin{align*}\ensuremath
+R-(\frac{c_2}{(X-j)^2}+\frac{\overline{c_2}}{(X-j^2)^2})
+&=\frac{1}{X(X+1)(X^2+X+1)^2}-\frac{2X^2+2X-1}{3(X^2+X+1)^2}
+=\frac{3-X(X+1)(2X^2+2X-1)}{3X(X+1)(X^2+X+1)^2}\\
+ &=\frac{-2X(X+1)(X^2+X+1)+3+3X(X+1)}{3X(X+1)(X^2+X+1)^2}
+=\frac{-2X^2-2X+3}{3X(X+1)(X^2+X+1)}.
+\end{align*}
+
+Puis, $c_2=\frac{-2j^2-2j+3}{3j(j+1)(j-j^2)}=-\frac{5}{j-j^2}=\frac{5(j-j^2)}{(j-j^2)(j^2-j)}=\frac{5(j-j^2)}{3}$.
+
+Ainsi,
+
+\begin{align*}\ensuremath
+\frac{1}{(X+1)^7-X^7-1}&=\frac{1}{7}
+(\frac{1}{X}-\frac{1}{X+1}+\frac{1}{3}(\frac{5(j-j^2)}{X-j}+\frac{5(j^2-j)}{X-j^2}+\frac{1}{(X-j)^2}+\frac{1}{(X-j^2)^2}))\\
+ &=\frac{1}{7}
+(\frac{1}{X}-\frac{1}{X+1}-\frac{5}{X^2+X+1}+\frac{1}{3}(\frac{1}{(X-j)^2}+\frac{1}{(X-j^2)^2}))\\
+ &=\frac{1}{7}
+(\frac{1}{X}-\frac{1}{X+1}-\frac{5}{(X+\frac{1}{2})^2+(\frac{\sqrt{3}}{2})^2}+\frac{1}{3}(\frac{1}{(X-j)^2}+\frac{1}{(X-j^2)^2})).
+\end{align*}
+
+Finalement,
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{1}{(x+1)^7-x^7-1}\;dx&=\frac{1}{7}\left(\ln\left|\frac{x}{x+1}\right|-\frac{10}{\sqrt{3}}
+\Arctan\frac{2x+1}{\sqrt{3}}-\frac{1}{3}(\frac{1}{x-j}+\frac{1}{x-j^2})\right)+C\\
+ &=\frac{1}{7}\left(\ln\left|\frac{x}{x+1}\right|-\frac{10}{\sqrt{3}}
+\Arctan\frac{2x+1}{\sqrt{3}}-\frac{2x+1}{3(x^2+x+1)}\right)+C.
+\end{align*}
+
+\end{enumerate}
+\fincorrection
+\correction{005467}
+\begin{enumerate}
+
+\item  On pose $t=\tan\frac{x}{2}$ et donc $dx=\frac{2dt}{1+t^2}$.
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{1}{\cos x}\;dx&=\int_{}^{}\frac{1+t^2}{1-t^2}\;\frac{2dt}{1+t^2}=\int_{}^{}2\frac{1}{1-t^2}\;dt
+=\ln\left|\frac{1+t}{1-t}\right|+C=\ln\left|\frac{\tan\frac{\pi}{4}+\tan\frac{x}{2}}{1-\tan\frac{\pi}{4}\tan\frac{x}{2}}\right|+C\\
+ &=\ln|\tan(\frac{x}{2}+\frac{\pi}{4})|+C.
+\end{align*}
+
+ou bien
+
+$$\int_{}^{}\frac{1}{\cos x}\;dx=\int_{}^{}\frac{\cos x}{1-\sin^2x}\;dx=\ln\left|\frac{1+\sin x}{1-\sin x}\right|+C...$$
+
+ou bien, en posant $u=x+\frac{\pi}{2}$, (voir 2))
+
+$$\int_{}^{}\frac{1}{\cos x}\;dx=\int_{}^{}\frac{1}{\cos(u-\frac{\pi}{2})}\;du=\int_{}^{}\frac{1}{\sin u}\;du=
+\ln|\tan\frac{u}{2}|+C=\ln|\tan(\frac{x}{2}+\frac{\pi}{4})|+C.$$
+
+Ensuite, en posant $t=e^x$ et donc $dx=\frac{dt}{t}$,
+
+$$\int_{}^{}\frac{1}{\ch x}\;dx
+=\int_{}^{}\frac{2}{t+\frac{1}{t}}\frac{dt}{t}=2\int_{}^{}\frac{1}{1+t^2}\;dt=2\Arctan(e^x)+C,$$
+
+ou bien
+
+$$\int_{}^{}\frac{1}{\ch x}\;dx
+=\int_{}^{}\frac{\ch x}{\sh^2x+1}\;dx=\Arctan(\sh x)+C.$$
+\item  En posant $t=\tan\frac{x}{2}$,
+
+$$\int_{}^{}\frac{1}{\sin x}\;dx=\int_{}^{}\frac{1+t^2}{2t}\frac{2dt}{1+t^2}=\int_{}^{}\frac{1}{t}\;dt=\ln|t|+C=\ln|\tan\frac{x}{2}|+C.$$
+
+\item  $\int_{}^{}\frac{dx}{\tan x}=\int_{}^{}\frac{\cos x}{\sin x}\;dx=\ln|\sin x|+C$ et $\int_{}^{}\frac{1}{\tanh x}=\ln|\sh x|+C$.
+
+\item  $\int_{}^{}\frac{\sin^2(x/2)}{x-\sin x}\;dx=\frac{1}{2}\int_{}^{}\frac{1-\cos x}{x-\sin x}\;dx=\frac{1}{2}\ln|x-\sin x|+C$.
+
+\item  $\frac{1}{2+\sin^2x}\;dx=\frac{1}{\frac{2}{\cos^2x}+\tan^2x}\frac{dx}{\cos^2x}=\frac{1}{2+3\tan^2x}d(\tan x)$, et en posant $u=\tan x$,
+
+$$\int_{}^{}\frac{1}{2+\sin^2x}\;dx=\int_{}^{}\frac{1}{2+3u^2}\;du=\frac{1}{3}\sqrt{\frac{3}{2}}\Arctan(\sqrt{\frac{3}{2}}u)+C=\frac{1}{\sqrt{6}}\Arctan(\sqrt{\frac{3}{2}}\tan x)+C.$$
+
+\item  Posons $I=\int_{}^{}\frac{\cos x}{\cos x+\sin x}\;dx$ et $J=\int_{}^{}\frac{\sin x}{\cos x+\sin x}\;dx$. Alors, $I+J=\int_{}^{}dx=x+C$ et $I-J=\int_{}^{}\frac{-\sin x+\cos x}{\cos x+\sin x}\;dx=\ln|\cos x+\sin x|+C$. En additionnant ces deux égalités, on obtient~:
+
+$$I=\int_{}^{}\frac{\cos x}{\cos x+\sin x}\;dx=\frac{1}{2}(x+\ln|\cos x+\sin x|)+C.$$
+
+ou bien, en posant $u=x-\frac{\pi}{4}$,
+
+\begin{align*}\ensuremath
+I&=\int_{}^{}\frac{\cos x}{\cos x+\sin x}\;dx=\int_{}^{}\frac{\cos x}{\sqrt{2}\cos(x-\frac{\pi}{4})}\;dx
+=\int_{}^{}\frac{\cos(u+\frac{\pi}{4})}{\sqrt{2}\cos u}\;du=\frac{1}{2}\int_{}^{}(1-\frac{\sin u}{\cos u})\;du
+=\frac{1}{2}(u+\ln|\cos u|)+C\\
+ &=\frac{1}{2}(x-\frac{\pi}{4}+\ln|\frac{1}{\sqrt{2}}(\cos x+\sin x)|)+C=\frac{1}{2}(x+\ln|\cos x+\sin x|)+C.
+\end{align*}
+
+\item  
+
+$$\frac{\cos(3x)}{\sin x+\sin(3x)}\;dx=\frac{4\cos^3x-3\cos x}{4\sin x-4\sin^3x}=\frac{1}{4}\frac{4\cos^3x-3\cos x}{\sin x(1-\sin^2x)}=\frac{1}{4}(\frac{4\cos x}{\sin x}-\frac{3}{\sin x\cos x})=\frac{\cos x}{\sin x}-\frac{3}{2}\frac{1}{\sin(2x)}.
+$$
+
+Par suite,
+
+$$\int_{}^{}\frac{\cos(3x)}{\sin x+\sin(3x)}\;dx=\ln|\sin x|-\frac{3}{4}\ln|\tan x|+C.$$
+
+\item  $\cos^4x+\sin^4x=(\cos^2x+\sin^2x)^2-2\sin^2x\cos^2x=1-\frac{1}{2}\sin^2(2x)$, et donc
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{1}{\cos^4x+\sin^4x}\;dx&=\int_{}^{}\frac{1}{1-\frac{1}{2}\sin^2(2x)}\;dx
+=\int_{}^{}\frac{1}{2-\sin^2u}\;du\;(\mbox{en posant}\;u=2x)\\
+ &=\int_{}^{}\frac{1}{1+\cos^2u}\;du=\int_{}^{}\frac{1}{1+\frac{1}{1+v^2}}\;\frac{dv}{1+v^2}\;(\mbox{en posant}\;v=\tan u)\\
+ &=\int_{}^{}\frac{dv}{v^2+2}=\frac{1}{\sqrt{2}}\Arctan\frac{v}{\sqrt{2}}+C
+=\frac{1}{\sqrt{2}}\Arctan\frac{\tan(2x)}{\sqrt{2}}+C.
+\end{align*}
+
+\item \begin{align*}\ensuremath
+\frac{\sin x\sin(2x)}{\sin^4x+\cos^4x+1}\;dx&=\frac{2\sin^2x}{1-2\sin^2x\cos^2x+1}\cos x\;dx=\frac{2\sin^2x}{2-2\sin^2x(1-\sin^2x)}\cos x\;dx\\
+ &=\frac{u^2}{u^4-u^2+1}\;du\;(\mbox{en posant}\;u=\sin x).
+\end{align*}
+
+Maintenant, $u^4-u^2+1=\frac{u^6+1}{u^2+1}=(u-e^{i\pi/6})(u-e^{-i\pi/6})(u+e^{i\pi/6})(u+e^{-i\pi/6})$, et donc,
+
+$$\frac{u^2}{u^4-u^2+1}=\frac{a}{u-e^{i\pi/6}}+\frac{\overline{a}}{u-e^{-i\pi/6}}-\frac{a}{u+e^{i\pi/6}}-\frac{\overline{a}}{u+e^{-i\pi/6}},$$
+
+ou $a=\frac{(e^{i\pi/6})^2}{(e^{i\pi/6}-e^{-i\pi/6})(e^{i\pi/6}+e^{i\pi/6})(e^{i\pi/6}+e^{-i\pi/6})}=
+\frac{(e^{i\pi/6})^2}{i.2e^{i\pi/6}.\sqrt{3}}=\frac{-ie^{i\pi/6}}{2\sqrt{3}}$, et donc
+
+\begin{align*}\ensuremath
+\frac{u^2}{u^4-u^2+1}&=\frac{1}{2\sqrt{3}}(\frac{-ie^{i\pi/6}}{u-e^{i\pi/6}}+\frac{ie^{-i\pi/6}}{u-e^{-i\pi/6}}+\frac{ie^{i\pi/6}}{u+e^{i\pi/6}}-\frac{ie^{-i\pi/6}}{u+e^{-i\pi/6}})\\
+ &=\frac{1}{2\sqrt{3}}(\frac{u}{u^2-\sqrt{3}u+1}-\frac{u}{u^2+\sqrt{3}u+1})\\
+ &=\frac{1}{2\sqrt{3}}(\frac{1}{2}\frac{2u-\sqrt{3}}{u^2-\sqrt{3}u+1}+\frac{\sqrt{3}}{2}\frac{1}
+ {u^2-\sqrt{3}u+1}-\frac{1}{2}\frac{2u+\sqrt{3}}{u^2+\sqrt{3}u+1}+\frac{\sqrt{3}}{2}\frac{1}{u^2+\sqrt{3}u+1})\\
+ &=\frac{1}{4\sqrt{3}}(\frac{2u-\sqrt{3}}{u^2-\sqrt{3}u+1}-\frac{2u+\sqrt{3}}{u^2+\sqrt{3}u+1})
+ +\frac{1}{4}(\frac{1}{(u+\frac{\sqrt{3}}{2})^2+(\frac{1}{2})^2}+
+ \frac{1}{(u-\frac{\sqrt{3}}{2})^2+(\frac{1}{2})^2})
+\end{align*}
+
+et donc,
+
+$$\int_{}^{}\frac{\sin x\sin(2x)}{\sin^4x+\cos^4x+1}\;dx=\frac{1}{4\sqrt{3}}\ln\left|
+\frac{\sin^2x-\sqrt{3}\sin x+1}{\sin^2x+\sqrt{3}\sin x+1}\right|+\frac{1}{2}(\Arctan(2\sin x-\sqrt{3})+\Arctan(2\sin x+\sqrt{3})+C.$$
+
+\item  En posant $u=\sin x$, on obtient 
+
+$$\frac{\tan x}{1+\sin(3x)}\;dx=\frac{\sin x}{1+3\sin x-4\sin^3x}\frac{1}{\cos^2x}\cos x\;dx=\frac{u}{(1+3u-4u^3)(1-u^2)}\;du$$
+
+Or, $1+3u-4u^3=(u+1)(-4u^2-4u-1)=-(u-1)(2u+1)^2$ et donc, $(1+3u-4u^3)(1-u^2)=(u+1)(u-1)^2(2u+1)^2$ et donc,
+
+$$\frac{u}{(1+3u-4u^3)(1-u^2)}=\frac{a}{u+1}+\frac{b_1}{u-1}+\frac{b_2}{(u-1)^2}+\frac{c_1}{2u+1}+\frac{c_2}{(2u+1)^2}.$$
+
+$a=\lim_{u\rightarrow -1}(u+1)f(u)=\frac{-1}{(-1-1)^2(-2+1)^2}=-\frac{1}{4}$, $b_2=\frac{1}{(1+1)(2+1)^2}=\frac{1}{18}$
+
+et $c_2=\frac{-1/2}{(-\frac{1}{2}+1)(-\frac{1}{2}-1)^2}=-\frac{4}{9}$.
+
+Ensuite, $u=0$ fournit $0=a-b_1+b_2+c_1+c_2$ ou encore $c_1-b_1=\frac{1}{4}-\frac{1}{18}+\frac{4}{9}=\frac{23}{36}$. D'autre part, en multipliant par $u$, puis en faisant tendre $u$ vers $+\infty$, on obtient $0=a+b_1+c_1$ et donc $b_1+c_1=\frac{1}{4}$ et donc, $c_1=\frac{4}{9}$ et $b_1=-\frac{7}{36}$. Finalement,
+
+$$\frac{u}{(u+1)(u-1)^2(2u+1)^2}=-\frac{1}{4(u+1)}-\frac{7}{36(u-1)}+\frac{1}{18(u-1)^2}+\frac{4}{9(2u+1)}-\frac{4}{9(2u+1)^2}.$$
+
+Finalement,
+
+$$\int_{}^{}\frac{\tan x}{1+\sin(3x)}\;dx=-\frac{1}{4}\ln(\sin x+1)-\frac{7}{36}\ln(1-\sin x)-\frac{1}{18(\sin x-1)}+\frac{2}{9}\ln|2\sin x+1|+\frac{2}{9}\frac{1}{2\sin x+1}+C$$
+
+\item  (voir 6)) 
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{\cos x+2\sin x}{\sin x-\cos x}\;dx&=\int_{}^{}\frac{\frac{1}{2}((\sin x+\cos x)-(\sin x-\cos x))+((\sin x+\cos x)+(\sin x-\cos x)}{\sin x-\cos x}\;dx\\
+ &=\frac{3}{2}\int_{}^{}\frac{\sin x+\cos x}{\sin x-\cos x}\;+\frac{1}{2}\int_{}^{}dx\\
+ &=\frac{3}{2}\ln|\sin x-\cos x|+\frac{x}{2}+C.
+\end{align*}
+
+\item 
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{\sin x}{\cos(3x)}\;dx&=\int_{}^{}\frac{\sin x}{4\cos^3x-3\cos x}\;dx
+=\int_{}^{}\frac{1}{3u-4u^3}\;du\;(\mbox{en posant}\;u=\cos x)\\
+ &=\int_{}^{}(\frac{1}{3u}-\frac{1}{3(2u-\sqrt{3})}-\frac{1}{3(2u+\sqrt{3})})\;du\\
+ &=\frac{1}{3}(\ln|\cos x|-\frac{1}{2}\ln|2\cos x-\sqrt{3}|-\frac{1}{2}\ln|2\cos x+\sqrt{3}|)+C.
+\end{align*}
+\item  Dans tous les cas, on pose $t=\tan x$ et donc $dx=\frac{dt}{1+t^2}$.
+
+$$\int_{}^{}\frac{1}{\alpha\cos^2x+\beta\sin^2 x}\;dx=\int_{}^{}\frac{1}{\alpha+\beta\tan^2x}\frac{dx}{\cos^2x}=\int_{}^{}\frac{dt}{\alpha+\beta t^2}.$$
+
+Si $\beta=0$ et $\alpha\neq0$, $\int_{}^{}\frac{1}{\alpha\cos^2x+\beta\sin^2x}\;dx=\frac{1}{\alpha}\tan x+C$.
+
+Si $\beta\neq0$ et $\alpha\beta>0$, 
+
+$$\int_{}^{}\frac{1}{\alpha\cos^2x+\beta\sin^2 x}\;dx=\frac{1}{\beta}\int_{}^{}\frac{1}{t^2+(\sqrt{\frac{\alpha}{\beta}})^2}\;dt=\frac{1}{\sqrt{\alpha\beta}}\Arctan(\sqrt{\frac{\beta}{\alpha}}\tan x)+C.$$
+
+Si $\beta\neq0$ et $\alpha\beta<0$, 
+
+$$\int_{}^{}\frac{1}{\alpha\cos^2x+\beta\sin^2 x}\;dx=\frac{1}{\beta}\int_{}^{}\frac{1}{t^2-(\sqrt{-\frac{\alpha}{\beta}})^2}\;dt=\frac{\mbox{sgn}(\beta)}
+{2\sqrt{-\alpha\beta}}\ln\left|\frac{\tan x-\sqrt{-\frac{\alpha}{\beta}}}{\tan x+\sqrt{-\frac{\alpha}{\beta}}}\right|+C.$$
+
+\item  \begin{align*}\ensuremath
+\int_{}^{}\frac{\ch^3x}{1+\sh x}\;dx&=\int_{}^{}\frac{1+\sh^2x}{1+\sh x}\ch x\;dx\\
+ &=\int_{}^{}\frac{u^2+1}{u+1}\;du\;(\mbox{en posant}\;u=\sh x)\\
+ &=\int_{}^{}(u-1+\frac{2}{u+1})\;du=\frac{\sh^2x}{2}-\sh x+2\ln|1+\sh x|+C.
+\end{align*}
+\item  On peut poser $u=e^x$ mais il y a mieux.
+
+\begin{align*}\ensuremath
+\int_{}^{}\sqrt{\ch x-1}\;dx&=\int_{}^{}\frac{\sqrt{(\ch x-1)(\ch x+1)}}{\sqrt{\ch x+1}}\;dx=\mbox{sgn}(x)\int_{}^{}\frac{\sh x}{\sqrt{\ch x+1}}\;dx\\
+ &=2\mbox{sgn}(x)\sqrt{\ch x+1}+C.
+\end{align*}
+
+\item
+\begin{align*}\ensuremath
+\int_{}^{}\frac{\tanh x}{\ch x+1}\;dx&=\int_{}^{}\frac{1}{\ch x(\ch x+1)}\sh x\;dx\\
+ &=\int_{}^{}\frac{1}{u(u+1)}\;du\;(\mbox{en posant}\;u=\ch x)\\
+ &=\int_{}^{}(\frac{1}{u}-\frac{1}{u+1})\;du=\ln\frac{\ch x}{\ch x+1}+C.
+\end{align*}
+
+\item $\int_{}^{}\frac{1}{\sh^5x}\;dx=\int_{}^{}\frac{\sh x}{\sh^6x}\;dx
+=\int_{}^{}\frac{\sh x}{\sh^6x}\;dx=\int_{}^{}\frac{\sh x}{(\ch^2x-1)^3}\;dx=\int_{}^{}\frac{1}{(u^2-1)^3}\;du$ (en posant $u=\ch x$).
+
+\item
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{1}{1-\ch x}\;dx&=\int_{}^{}\frac{1+\ch x}{1-\ch^2x}\;dx=-\int_{}^{}\frac{1}{\sh^2x}\;dx-\int_{}^{}\frac{\ch x}{\sh^2x}\;dx\\
+ &=\mbox{coth}x+\frac{1}{\sh x}+C.
+\end{align*}
+\end{enumerate}
+\fincorrection
+\correction{005468}
+\begin{enumerate}
+\item  
+\begin{align*}\ensuremath
+\int_{}^{}\frac{1}{\sqrt{x^2+2x+5}}\;dx&=\int_{}^{}\frac{1}{\sqrt{(x+1)^2+2^2}}\;dx=\Argsh\frac{x+1}{2}+C\\
+ &=\ln(\frac{x+1}{2}+\sqrt{(\frac{x+1}{2})^2+1})+C=\ln(x+1+\sqrt{x^2+2x+5})+C.
+\end{align*}
+
+Puis,
+
+\begin{align*}\ensuremath
+\int_{}^{}\sqrt{x^2+2x+5}\;dx&=(x+1)\sqrt{x^2+2x+5}-\int_{}^{}(x+1)\frac{2x+2}{2\sqrt{x^2+2x+5}}\;dx\\
+ &=(x+1)\sqrt{x^2+2x+5}-\int_{}^{}\frac{x^2+2x+5-4}{\sqrt{x^2+2x+5}}\;dx\\
+ &=(x+1)\sqrt{x^2+2x+5}-\int_{}^{}\sqrt{x^2+2x+5}\;dx+4\int_{}^{}\frac{1}{\sqrt{x^2+2x+5}}\;dx,
+\end{align*}
+
+et donc,
+
+$$\int_{}^{}\sqrt{x^2+2x+5}\;dx=\frac{1}{2}(x+1)\sqrt{x^2+2x+5}+2\ln(x+1+\sqrt{x^2+2x+5})+C.$$
+
+(On peut aussi poser $x+1=2\sh u$).
+
+\item  $\int_{}^{}\frac{1}{\sqrt{2x-x^2}}\;dx=\int_{}^{}\frac{1}{\sqrt{1-(x-1)^2}}\;dx=\Arcsin(x-1)+C$.
+
+\item  On pose $u=x^6$ puis $v=\sqrt{1+u}$ (ou directement $u=\sqrt{1+x^6}$) et on obtient~:
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{\sqrt{1+x^6}}{x}\;dx&=\int_{}^{}\frac{\sqrt{1+x^6}}{x^6}\;x^5dx=\frac{1}{6}\int_{}^{}\frac{\sqrt{1+u}}{u}\;du\\
+ &=\frac{1}{6}\int_{}^{}\frac{v}{v^2-1}2v\;dv=\frac{1}{3}\int_{}^{}\frac{v^2}{v^2-1}\;dv=\frac{1}{3}(v+\int_{}^{}\frac{1}{v^2-1}\;dv)
+=\frac{1}{3}(v+\frac{1}{2}\ln\left|\frac{v-1}{v+1}\right|)+C\\
+ &=\frac{1}{3}(\sqrt{1+x^6}+\frac{1}{2}\ln\left|\frac{\sqrt{1+x^6}-1}{\sqrt{1+x^6}+1}\right|)+C\\
+\end{align*}
+
+\item  
+\begin{align*}\ensuremath
+\int_{}^{}\frac{1}{\sqrt{1+x}+\sqrt{1-x}}\;dx&=\int_{}^{}\frac{\sqrt{1+x}-\sqrt{1-x}}{(1+x)-(1-x)}\;dx
+=\frac{1}{2}(\int_{}^{}\frac{\sqrt{1+x}}{x}\;dx-\int_{}^{}\frac{\sqrt{1-x}}{x}\;dx)\\
+ &=\frac{1}{2}(\int_{}^{}\frac{u}{u^2-1}2u\;du+\int_{}^{}\frac{v}{1-v^2}2v\;dv)\;(\mbox{en posant}\;u=\sqrt{1+x}\;\mbox{et}\;v=\sqrt{1-x})\\
+ &=\int_{}^{}(1+\frac{1}{u^2-1})\;du+\int_{}^{}(-1+\frac{1}{1-v^2}\;dv\\
+ &=u-v+\frac{1}{2}(\ln\left|\frac{1-u}{1+u}\right|+\ln\left|\frac{1+v}{1-v}\right|)+C\\
+ &=\sqrt{1+x}-\sqrt{1-x}+\frac{1}{2}(\ln\left|\frac{1-\sqrt{1+x}}{1+\sqrt{1+x}}\right|+\ln\left|\frac{1+\sqrt{1-x}}{1-\sqrt{1-x}}\right|)+C.
+\end{align*}
+
+\item  On pose $u=\sqrt{\frac{x+1}{x-1}}$ et donc $x=\frac{u^2+1}{u^2-1}$, puis $dx=\frac{2u(-2)}{(u^2-1)^2}\;du$. Sur $]1,+\infty[$, on obtient
+
+\begin{align*}
+\int_{}^{}\sqrt{\frac{x+1}{x-1}}\;dx&=-2\int_{}^{}u\frac{2u}{(u^2-1)^2}\;du\\
+ &=2\frac{u}{u^2-1}-2\int_{}^{}\frac{u^2-1}\;du\\
+ &=\frac{2u}{u^2-1}+2\ln\left||\frac{1+u}{1-u}\right|+C\\
+ &=2\sqrt{x^2-1}+\ln\left|\frac{\sqrt{x+1}+1}{\sqrt{x+1}-1}\right|+C
+\end{align*}
+
+\item  On note $\varepsilon$ le signe de $x$.
+
+$\sqrt{x^4-x^2+1}=\varepsilon x\sqrt{x^2+\frac{1}{x^2}-1}=\varepsilon x\sqrt{(x-\frac{1}{x})^2+1}$ puis, $\frac{x^2+1}{x}.\frac{1}{x}=1+\frac{1}{x^2}=(x-\frac{1}{x})'$. On pose donc $u=x-\frac{1}{x}$ et on obtient
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{x^2+1}{x\sqrt{x^4-x^2+1}}\;dx&=\varepsilon\int_{}^{}\frac{1}{\sqrt{(x-\frac{1}{x})^2+1}}.\frac{x^2+1}{x}\frac{1}{x}\;dx
+=\varepsilon\int_{}^{}\frac{1}{\sqrt{u^2+1}}\;du=\varepsilon\Argsh(x-\frac{1}{x})+C\\
+ &=\varepsilon\ln(\frac{x^2-1+\varepsilon\sqrt{x^4-x^2+1}}{x})+C.
+\end{align*}
+
+\item  Sur $]0,1]$, on pose déjà $u=\sqrt{x}$ et donc, $x=u^2$, $dx=2u\;du$.
+
+$$\int_{}^{}\sqrt{\frac{1-\sqrt{x}}{\sqrt{x}}}\;dx=\int_{}^{}\sqrt{\frac{1-u}{u}}2u\;du=2\int_{}^{}\sqrt{u(1-u)}\;du
+=2\int_{}^{}\sqrt{(\frac{1}{2})^2-(u-\frac{1}{2})^2}\;du.$$
+
+Puis, on pose $u-\frac{1}{2}=\frac{1}{2}\sin v$ et donc $du=\frac{1}{2}\cos v\;dv$. 
+On note que $x\in]0,1]\Rightarrow u\in]0,1]\Rightarrow v=\Arcsin(2u-1)\in]-\frac{\pi}{2},\frac{\pi}{2}]\Rightarrow\cos v\geq0.$
+
+\begin{align*}\ensuremath
+\int_{}^{}\sqrt{\frac{1-\sqrt{x}}{\sqrt{x}}}\;dx&=2\int_{}^{}\sqrt{\frac{1}{4}(1-\sin^2v)}\frac{1}{2}\cos v\;dv
+=\frac{1}{2}\int_{}^{}\cos^2v\;dv=\frac{1}{4}\int_{}^{}(1+\cos(2v))\;dv\\
+ &=\frac{1}{4}(v+\frac{1}{2}\sin(2v))+C=\frac{1}{4}(v+\sin v\cos v)+C\\
+ &=\frac{1}{4}(\Arcsin(2\sqrt{x}-1)+(2\sqrt{x}-1)\sqrt{1-(2\sqrt{x}-1)^2})+C\\
+ &\frac{1}{4}(\Arcsin(2\sqrt{x}-1)+2(2\sqrt{x}-1)\sqrt{\sqrt{x}-x})+C
+\end{align*}
+
+\item  On pose $x=\sh t$ puis $u=e^t$.
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{1}{1+\sqrt{1+x^2}}\;dx&=\int_{}^{}\frac{1}{1+\ch t}\ch t\;dt=\int_{}^{}\frac{\frac{1}{2}(u+\frac{1}{u})}{1+\frac{1}{2}(u+\frac{1}{u})}\frac{du}{u}
+=\int_{}^{}\frac{u^2+1}{u(u^2+2u+1)}\;du=\int_{}^{}(\frac{1}{u}-\frac{2}{(u+1)^2})\;du\\
+ &=\ln|u|+\frac{2}{u+1}+C.
+\end{align*}
+
+Maintenant, $t=\Argsh x=\ln(x+\sqrt{x^2+1})$ et donc, $u=x+\sqrt{x^2+1}$. Finalement,
+
+$$\int_{}^{}\frac{1}{1+\sqrt{1+x^2}}\;dx=\ln(x+\sqrt{x^2+1})-\frac{2}{x+\sqrt{x^2+1}}+C.$$
+
+\item  On pose $u=\frac{1}{x}$ puis $v=\sqrt[3]{u^3+1}=\frac{\sqrt[3]{x^3+1}}{x}$ et donc $v^3=u^3+1$ puis $v^2\;dv=u^2\;du$.
+
+\begin{align*}\ensuremath
+\int_{}^{}\frac{\sqrt[3]{x^3+1}}{x^2}\;dx&=\int_{}^{}\frac{\sqrt[3]{(\frac{1}{u})^3+1}}{\frac{1}{u^2}}\;\frac{-du}{u^2}=-\int_{}^{}\frac{\sqrt[3]{u^3+1}}{u}\;du=-\int_{}^{}\frac{\sqrt[3]{u^3+1}}{u^3}u^2\;du\\
+ &=-\int_{}^{}\frac{v}{v^3-1}v^2\;dv=\int_{}^{}(-1-\frac{1}{(v-1)(v^2+v+1)})\;dv\\
+ &=\int_{}^{}(-1-\frac{1}{3}\frac{1}{v-1}+\frac{1}{3}\frac{v+2}{v^2+v+1})\;dv\\
+ &=-v-\frac{1}{3}\ln|v-1|+\frac{1}{6}\int_{}^{}\frac{2v+1}{v^2+v+1}\;dv+\frac{1}{2}\int_{}^{}\frac{1}{(v+\frac{1}{2})^2+(\frac{\sqrt{3}}{2})^2}\;dv\\
+ &=-v-\frac{1}{3}\ln|v-1|+\frac{1}{6}\ln(v^2+v+1)+\sqrt{3}\Arctan(\frac{2v+1}{\sqrt{3}})+C...
+\end{align*}
+\end{enumerate}
+\fincorrection
+\correction{005469}
+\begin{enumerate}
+\item  $\int_{}^{}\frac{1}{x\ln x}\;dx=\ln|\ln x|+C$.
+\item  $\int_{}^{}\Arcsin x\;dx=x\Arcsin x-\int_{}^{}\frac{x}{\sqrt{1-x^2}}\;dx=x\Arcsin x+\sqrt{1-x^2}+C$.
+\item  $\int_{}^{}\Arctan x\;dx=x\Arctan x-\int_{}^{}\frac{x}{1+x^2}\;dx=x\Arctan x-\frac{1}{2}\ln(1+x^2)+C$.
+\item  $\int_{}^{}\Arccos x\;dx=x\Arccos x+\int_{}^{}\frac{x}{\sqrt{1-x^2}}\;dx=x\Arccos x-\sqrt{1-x^2}+C$.
+\item  $\int_{}^{}\Argsh x\;dx=x\Argsh x-\int_{}^{}\frac{x}{\sqrt{1+x^2}}\;dx=x\Argsh x-\sqrt{1+x^2}+C$.
+\item  $\int_{}^{}\Argch x\;dx=x\Argch x-\int_{}^{}\frac{x}{\sqrt{x^2-1}}\;dx=x\Argch x-\sqrt{x^2-1}+C$.
+\item  $\int_{}^{}\Argth x\;dx=x\Argth x-\int_{}^{}\frac{x}{1-x^2}\;dx=x\Argth x+\frac{1}{2}\ln(1-x^2)+C$ (on est sur $]-1,1[$).
+\item  $\int_{}^{}\ln(1+x^2)\;dx=x\ln(1+x^2)-2\int_{}^{}\frac{x^2+1-1}{x^2+1}\;dx=x\ln(1+x^2)-2x+2\Arctan x+C$.
+\item  
+\begin{align*}\ensuremath
+\int_{}^{}e^{\mbox{\small{Arccos}}\;x}\;dx&=xe^{\mbox{\small{Arccos}}\;x}+\int_{}^{}\frac{x}{\sqrt{1-x^2}}e^{\mbox{\small{Arccos}}\;x}\;dx\\
+ &=xe^{\mbox{\small{Arccos}}\;x}-\sqrt{1-x^2}e^{\mbox{\small{Arccos}}\;x}+\int_{}^{}\sqrt{1-x^2}\frac{-1}{\sqrt{1-x^2}}
+ e^{\mbox{\small{Arccos}}\;x}\;dx
+\end{align*}
+
+et donc, $\int_{}^{}e^{\mbox{\small{Arccos}}\;x}\;dx=\frac{1}{2}(xe^{\mbox{\small{Arccos}}\;x}-\sqrt{1-x^2}e^{\mbox{\small{Arccos}}\;x})+C$.
+
+\item 
+\begin{align*}\ensuremath
+\int_{}^{}\cos x\ln(1+\cos x)\;dx&=\sin x\ln(1+\cos x)-\int_{}^{}\sin x\frac{-\sin x}{1+\cos x}\;dx=\sin x\ln(1+\cos x)-\int_{}^{}\frac{\cos^2x-1}{\cos x+1}\;dx\\
+ &=\sin x\ln(1+\cos x)-\int_{}^{}(\cos x-1)\;dx=\sin x\ln(1+\cos x)-\sin x+x+C.
+\end{align*}
+\item  $\int_{}^{}\frac{\Arctan x}{\sqrt{x}}\;dx=2\sqrt{x}\Arctan x-2\int_{}^{}\frac{\sqrt{x}}{x^2+1}\;dx$.
+
+Dans la dernière intégrale, on pose $u=\sqrt{x}$ et donc $x=u^2$ puis, $dx=2u\;du$. On obtient $\int_{}^{}\frac{\sqrt{x}}{x^2+1}\;dx=\int_{}^{}\frac{2u^2}{u^4+1}\;du$. Mais,
+\begin{align*}\ensuremath
+\frac{2u^2}{u^4+1}&=\frac{1}{\sqrt{2}}(\frac{u}{u^2-\sqrt{2}u+1}-\frac{u}{u^2+\sqrt{2}u+1})\\
+ &=\frac{1}{2\sqrt{2}}(\frac{2u-\sqrt{2}}{u^2-\sqrt{2}u+1}-\frac{2u+\sqrt{2}}{u^2+\sqrt{2}u+1})+\frac{1}{2}(\frac{1}{(u-\frac{1}{\sqrt{2}})^2+(\frac{1}{\sqrt{2}})^2}+\frac{1}{(u+\frac{1}{\sqrt{2}})^2+(\frac{1}{\sqrt{2}})^2}).
+\end{align*}
+
+Par suite,
+
+$$\int_{}^{}\frac{2u^2}{u^4+1}\;du=\frac{1}{2\sqrt{2}}\ln(\frac{u^2-\sqrt{2}u+1}{u^2+\sqrt{2}u+1})+\frac{1}{\sqrt{2}}
+(\Arctan(\sqrt{2}u-1)+\Arctan(\sqrt{2}u+1))+C,$$
+
+et donc,
+
+$$\int_{}^{}\frac{\Arctan x}{\sqrt{x}}\;dx=2\sqrt{x}\Arctan x-\frac{1}{\sqrt{2}}\ln(\frac{x-\sqrt{2x}+1}{x+\sqrt{2x}+1})-\sqrt{2}(\Arctan(\sqrt{2x}-1)+\Arctan(\sqrt{2x}+1))+C.$$
+
+\item  $\frac{x}{(x+1)^2}e^x=\frac{1}{x+1}e^x-\frac{1}{(x+1)^2}e^x=\left(\frac{1}{x+1}e^x\right)'$ et donc 
+$\int_{}^{}\frac{xe^x}{(x+1)^2}\;dx=\frac{e^x}{x+1}+C$.
+
+\item  $\int_{}^{}\left(\frac{x}{e}\right)^x\ln x\;dx=\int_{}^{}e^{x\ln x-x}\;d(x\ln x-x)=e^{x\ln x-x}+C=\left(\frac{x}{e}\right)^x\;dx$.
+
+\item  $\int_{}^{}x^n\ln x\;dx=\frac{x^{n+1}}{n+1}\ln x-\frac{1}{n+1}\int_{}^{}x^n\;dx=\frac{x^{n+1}}{n+1}\ln x-\frac{x^{n+1}}{(n+1)^2}+C$.
+
+\item  
+
+\begin{align*}\ensuremath
+\int_{}^{}e^{ax}\cos(\alpha x)\;dx&=\mbox{Re}\left(\int_{}^{}e^{(a+i\alpha)x}\;dx\right)=\mbox{Re}\left(\frac{e^{(a+i\alpha)x}}{a+i\alpha}\right)+C
+=\frac{e^{ax}}{a^2+\alpha^2}\mbox{Re}((a-i\alpha)(\cos(\alpha x)+i\sin(\alpha x))+C\\
+ &=\frac{e^{ax}(a\cos(\alpha x)+\alpha\sin(\alpha x))}{a^2+\alpha^2}+C
+\end{align*}
+
+\item $\int_{}^{}\sin(\ln x)\;dx=x\sin(\ln x)-\int_{}^{}\cos(\ln x)\;dx=x\sin(\ln x)-x\cos(\ln x)-\int_{}^{}\sin(\ln x)\;dx$ et donc 
+
+$\int_{}^{}\sin(\ln x)\;dx=\frac{x}{2}(\sin(\ln x)-\cos(\ln x))+C$.
+
+\item En posant $u=x^n$ et donc $du=nx^{n-1}dx$, on obtient
+
+$$\int_{}^{}\frac{\sqrt{x^n+1}}{x}\;dx=\int_{}^{}\frac{\sqrt{x^n+1}}{x^n}x^{n-1}\;dx=\frac{1}{n}\int_{}^{}\frac{\sqrt{u+1}}{u}\;du,$$
+
+puis en posant $v=\sqrt{u+1}$ et donc $u=v^2-1$ et $du=2vdv$, on obtient
+
+$$\int_{}^{}\frac{\sqrt{u+1}}{u}\;du=\int_{}^{}\frac{v}{v^2-1}\;2vdv=2\int_{}^{}\frac{v^2-1+1}{v^2-1}\;dv
+=2v+\ln\left|\frac{1-v}{1+v}\right|+C.$$
+
+Finalement,
+
+$$\int_{}^{}\frac{\sqrt{x^n+1}}{x}\;dx=\frac{1}{n}(2\sqrt{x^n+1}+\ln\left|
+\frac{1-\sqrt{x^n+1}}{1+\sqrt{x^n+1}}\right|)+C.$$
+
+\item $\int_{}^{}x^2e^x\sin x\;dx=\mbox{Im}(\int_{}^{}x^2e^{(1+i)x}\;dx)$. Or,
+
+\begin{align*}
+\int_{}^{}x^2e^{(1+i)x}\;dx&=x^2\frac{e^{(1+i)x}}{1+i}-\frac{2}{1+i}\int_{}^{}xe^{(1+i)x}\;dx
+=x^2\frac{e^{(1+i)x}}{1+i}-\frac{2}{1+i}(x\frac{e^{(1+i)x}}{1+i}-\int_{}^{}e^{(1+i)x}\;dx)\\
+ &=x^2\frac{(1-i)e^{(1+i)x}}{2}+ixe^{(1+i)x}-i\frac{e^{(1+i)x}}{1+i}+C\\
+ &=e^x(\frac{1}{2}x^2(1-i)(\cos x+i\sin x)+ix(\cos x+i\sin x)-\frac{1}{2}(1+i)(\cos x+i\sin x)+C.
+\end{align*}
+
+Par suite,
+
+$$\int_{}^{}x^2e^x\sin x\;dx=e^x(\frac{x^2}{2}(\cos x+\sin x)-x\sin x-\frac{1}{2}(\cos x-\sin x))+C.$$
+
+\end{enumerate}
+\fincorrection
+\correction{005470}
+\begin{enumerate}
+\item  On pose $t=\frac{1}{x}$ et donc $x=\frac{1}{t}$ et $dx=-\frac{1}{t^2}\;dt$. On obtient
+
+$$I=\int_{1/a}^{a}\frac{\ln x}{x^2+1}\;dx=-\int_{a}^{1/a}\frac{\ln(1/t)}{\frac{1}{t^2}+1}\frac{1}{t^2}\;dt=-\int_{1/a}^{a}\frac{\ln t}{t^2+1}\;dt=-I,$$
+
+et donc, $I=0$.
+
+\item  ($p$ et $q$ sont des entiers naturels)
+
+$\cos(px)\cos(qx)=\frac{1}{2}(\cos(p+q)x+\cos(p-q)x)$ et donc,
+
+Premier cas. Si $p\neq q$,
+
+$$\int_{0}^{\pi}\cos(px)\cos(qx)\;dx=\frac{1}{2}\left[\frac{\sin(p+q)x}{p+q}+\frac{\sin(p-q)x}{p-q}\right]_{0}^{\pi}=0.$$
+
+Deuxième cas. Si $p=q\neq0$,
+
+$$\int_{0}^{\pi}\cos(px)\cos(qx)\;dx=\frac{1}{2}\int_{0}^{\pi}(1+\cos(2px))\;dx=\frac{1}{2}\int_{0}^{\pi}dx=\frac{\pi}{2}.$$
+
+Troisième cas. Si $p=q=0$. $\int_{0}^{\pi}\cos(px)\cos(qx)\;dx=\int_{0}^{\pi}\;dx=\pi$.
+
+La démarche est identique pour les deux autres et on trouve $\int_{0}^{\pi}\sin(px)\sin(qx)\;dx=0$ si $p\neq q$ et $\frac{\pi}{2}$ si $p=q\neq0$ puis $\int_{0}^{\pi}\sin(px)\cos(qx)\;dx=0$ pour tout choix de $p$ et $q$.
+
+\item  La courbe d'équation $y=\sqrt{(x-a)(b-x)}$ ou encore $\left\{
+\begin{array}{l}
+x^2+y^2-(a+b)x+ab=0\\
+y\geq0
+\end{array}
+\right.$ est le demi-cercle de diamètre $[\left(\begin{array}{c}
+a\\
+0
+\end{array}
+\right),\left(\begin{array}{c}
+b\\
+0
+\end{array}
+\right)]$. Par suite, si $a\leq b$, $I=\frac{\pi R^2}{2}=\frac{\pi(b-a)^2}{8}$ et si $a>b$, $I=-\frac{\pi(b-a)^2}{8}$.
+
+\item  L'intégrale proposée est somme de quatre intégrales. Chacune d'elles est la somme des aires de deux triangles. Ainsi, $I=\frac{1}{2}((1^2+3^2)+(2^2+2^2)+(3^2+1^2)+4^2)=22$.
+\item  On pose $u=\frac{1}{x}$. On obtient
+
+\begin{align*}\ensuremath
+I&=\int_{1/2}^{2}\left(1+\frac{1}{x^2}\right)\Arctan x\;dx=\int_{2}^{1/2}(1+u^2)\Arctan u\frac{-du}{u^2}=\int_{1/2}^{2}(1+\frac{1}{u^2})(\frac{\pi}{2}-\Arctan u)\;du\\
+ &=\frac{\pi}{2}((2-\frac{1}{2})-(\frac{1}{2}-2))-I).
+\end{align*}
+
+Par suite, $I=\frac{3\pi}{2}-I$ et donc $I=\frac{3\pi}{4}$.
+
+\item  $I=\int_{-1}^{1}\sqrt{1+|x(1-x)|}\;dx=\int_{-1}^{0}\sqrt{1+x(x-1)}\;dx+\int_{0}^{1}\sqrt{1+x(1-x)}\;dx=I_1+I_2$.
+
+Pour $I_1$, $1+x(x-1)=x^2-x+1=(x-\frac{1}{2})^2+(\frac{\sqrt{3}}{2})^2$ et on pose $x-\frac{1}{2}=\frac{\sqrt{3}}{2}\sh t$ et donc $dx=\frac{\sqrt{3}}{2}\ch t\;dt$.
+
+\begin{align*}\ensuremath
+I_1&=\int_{\ln(2-\sqrt{3})}^{-\ln(\sqrt{3})}\frac{\sqrt{3}}{2}\sqrt{\sh^2t+1}\;\frac{\sqrt{3}}{2}\ch t\;dt=
+\frac{3}{4}\int_{\ln(2-\sqrt{3})}^{-\ln(\sqrt{3})}\ch^2t\;dt=\frac{3}{16}\int_{\ln(2-\sqrt{3})}^{-\ln(\sqrt{3})}(e^{2t}+e^{-2t}+2)\;dt\\
+ &=\frac{3}{16}(\frac{1}{2}(e^{-2\ln(\sqrt{3})}-e^{2\ln(2-\sqrt{3})})-\frac{1}{2}(e^{2\ln(\sqrt{3})}-e^{-2\ln(2-\sqrt{3})})+2(-\ln(\sqrt{3})-\ln(2-\sqrt{3})))\\
+ &=\frac{3}{16}(\frac{1}{2}(\frac{1}{3}-(2-\sqrt{3})^2)-\frac{1}{2}(3-\frac{1}{(2-\sqrt{3})^2})-2\ln(2\sqrt{3}-3))\\
+ &=\frac{3}{16}(-\frac{4}{3}+\frac{1}{2}(-(2-\sqrt{3})^2+(2+\sqrt{3})^2))-2\ln(2\sqrt{3}-3))\\
+ &=-\frac{1}{4}+\frac{3\sqrt{3}}{4}-\frac{3}{8}\ln(2\sqrt{3}-3).
+\end{align*}
+
+Pour $I_2$, $1+x(1-x)=-x^2+x+1=-(x-\frac{1}{2})^2+(\frac{\sqrt{5}}{2})^2$ et on pose $x-\frac{1}{2}=\frac{\sqrt{3}}{2}\sin t$ et donc $dx=\frac{\sqrt{3}}{2}\cos t\;dt$.
+
+\begin{align*}\ensuremath
+I_2&=\int_{-\Arcsin\frac{1}{\sqrt{5}}}^{\Arcsin\frac{1}{\sqrt{5}}}\frac{\sqrt{3}}{2}\sqrt{1-\sin^2t}\;\frac{\sqrt{3}}{2}\cos t\;dt=
+\frac{3}{4}\int_{-\Arcsin\frac{1}{\sqrt{5}}}^{\Arcsin\frac{1}{\sqrt{5}}}\cos^2t\;dt
+=\frac{3}{8}\int_{-\Arcsin\frac{1}{\sqrt{5}}}^{\Arcsin\frac{1}{\sqrt{5}}}(1+\cos(2t))\;dt\\
+ &=\frac{3}{8}(2\Arcsin\frac{1}{\sqrt{5}}+2\left[\sin t\cos t\right]_{0}^{\Arcsin\frac{1}{\sqrt{5}}}
+ =\frac{3}{4}\Arcsin\frac{1}{\sqrt{5}}+\frac{3}{4}\frac{1}{\sqrt{5}}\sqrt{1-\frac{1}{5}}\\
+ &=\frac{3}{4}\Arcsin\frac{1}{\sqrt{5}}+\frac{3}{10}...
+\end{align*}
+
+\item 
+
+\begin{align*}\ensuremath
+I&=\int_{0}^{\pi}\frac{x\sin x}{1+\cos^2x}\;dx=\int_{\pi}^{0}\frac{(\pi-u)\sin(\pi-u)}{1+\cos^2(\pi-u)}\;-du
+=\pi\int_{0}^{\pi}\frac{\sin u}{1+\cos^2u}\;du-\int_{0}^{\pi}\frac{u\sin u}{1+\cos^2u}\;du\\
+ &=-\pi\left[\Arctan(\cos u)\right]_{0}^{\pi}-I=\frac{\pi^2}{2}-I,
+\end{align*}
+
+et donc, $I=\frac{\pi^2}{4}$.
+
+\item  Pour $n\in\Nn^*$, posons $I_n=\int_{1}^{x}\ln^nt\;dt$.
+
+$$I_{n+1}=\left[t\ln^{n+1}t\right]_{1}^{x}-(n+1)\int_{1}^{x}t\ln^nt\frac{1}{t}\;dt=x\ln^{n+1}x-(n+1)I_n.$$
+
+Donc, $\forall n\in\Nn^*,\;\frac{I_{n+1}}{(n+1)!}+\frac{I_n}{n!}=\frac{x(\ln x)^{n+1}}{(n+1)!}$, et de plus, $I_1=x\ln x-x+1$.
+
+Soit $n\geq2$.
+
+$$\sum_{k=1}^{n-1}(-1)^k(\frac{I_k}{k!}+\frac{I_{k+1}}{(k+1)!})=\sum_{k=1}^{n-1}(-1)^k\frac{I_k}{k!}+\sum_{k=2}^{n}(-1)^{k-1}\frac{I_k}{k!}=-I_1-(-1)^n\frac{I_n}{n!},$$
+
+Par suite,
+
+$$I_n=(-1)^nn!(\sum_{k=1}^{n-1}(-1)^k\frac{x(\ln x)^{k+1}}{(k+1)!}-x\ln x+x-1)=(-1)^nn!(1-\sum_{k=0}^{n}(-1)^{k}\frac{x(\ln x)^{k}}{k!}).$$
+\end{enumerate}
+\fincorrection
+\correction{005471}
+Si $c\neq d$, les primitives considérées sont rationnelles si et seulement si il existe $A$ et $B$ tels que
+
+$$\frac{(x-a)(x-b)}{(x-c)^2(x-d)^2}=\frac{A}{(x-c)^2}+\frac{B}{(x-d)^2}\;(*)$$
+
+\begin{align*}\ensuremath
+(*)&\Leftrightarrow\exists(A,B)\in\Rr^2/\;\left\{
+\begin{array}{l}
+A+B=1\\
+-2(Ad+Bc)=-(a+b)\\
+Ad^2+Bc^2=ab
+\end{array}
+\right.\Leftrightarrow\exists(A,B)\in\Rr^2/\;\left\{
+\begin{array}{l}
+B=1-A\\
+A(d-c)+c=\frac{1}{2}(a+b)\\
+Ad^2+Bc^2=ab
+\end{array}
+\right.
+\\
+ &\Leftrightarrow\exists(A,B)\in\Rr^2/\;\left\{
+\begin{array}{l}
+A=\frac{a+b-2c}{2(d-c)}\\
+B=\frac{2d-a-b}{2(d-c)}\\
+Ad^2+Bc^2=ab
+\end{array}
+\right.
+\Leftrightarrow\frac{a+b-2c}{2(d-c)}d^2+\frac{2d-a-b}{2(d-c)}c^2=ab\\
+ &\Leftrightarrow d^2(a+b-2c)+c^2(2d-a-b)=2ab(d-c)\Leftrightarrow(a+b)(d^2-c^2)-2cd(d-c)=2ab(d-c)\\
+ &\Leftrightarrow2cd+(a+b)(c+d)=2ab\Leftrightarrow(a+b)(c+d)=2(ab-cd).
+\end{align*}
+
+Si $c=d$, il existe trois nombres $A$, $B$ et $C$ tels que $(x-a)(x-b)=A(x-c)^2+B(x-c)+C$ et donc tels que
+
+$$\frac{(x-a)(x-b)}{(x-c)^4}=\frac{A}{(x-c)^2}+\frac{B}{(x-c)^3}+\frac{C}{(x-c)^4}.$$
+
+Dans ce cas, les primitives sont rationnelles. Finalement, les primitives considérées sont rationnelles si et seulement si $c=d$ ou ($c\neq d$ et $(a+b)(c+d)=2(ab-cd)$).
+\fincorrection
+\correction{005472}
+Notons $D$ le domaine de définition de $f$.
+
+Si $x\in D$, $-x\in D$ et $f(-x)=-f(x)$. $f$ est donc impaire.
+
+Si $x\in D$, $x+2\pi\in D$ et $f(x+2\pi)=f(x)$. $f$ est donc $2\pi$-périodique.
+
+On étudiera donc $f$ sur $[0,\pi]$.
+
+Soient $x\in[0,\pi]$ et $t\in[-1,1]$. $t^2-2t\cos x+1=(t-\cos x)^2+\sin^x\geq0$ avec égalité si et seulement si $\sin x=0$ et $t-\cos x=0$.
+
+Ainsi, si $x\in]0,\pi[$, $\forall t\in]-1,1[,\;t^2-2t\cos x+1\neq0$. On en déduit que la fraction rationnelle $t\mapsto
+\frac{\sin t}{1-2t\cos x+t^2}$ est continue sur $[-1,1]$, et donc que $f(x)$ existe.
+
+Si $x=0$, $\forall t\in[-1,1[$, $\frac{\sin x}{t^2-2t\cos x+1}=\frac{0}{(t-1)^2}=0$. On prut prolonger cette fonction par continuité en $1$ et consisérer que $f(0)=\int_{-1}^{1}0\;dt=0$. De même, on peut considérer que $f(\pi)=0$.
+
+Ainsi, $f$ est définie sur $[0,\pi]$ et donc, par parité et $2\pi$-périodicité, sur $\Rr$.
+
+Soit $x\in]0,\pi[$.Calculons $f(x)$.
+
+\begin{align*}\ensuremath
+f(x)&=\int_{-1}^{1}\frac{\sin x}{(t-\cos x)^2+\sin^2x}\;dt=\left[\Arctan\frac{t-\cos x}{\sin x}\right]_{-1}^{1}
+=\Arctan\frac{1-\cos x}{\sin x}+\Arctan\frac{1+\cos x}{\sin x}\\
+ &=\Arctan\frac{2\sin^2(x/2)}{2\sin(x/2)\cos(x/2)}+\Arctan\frac{2\cos^2(x/2)}{2\sin(x/2)\cos(x/2)}
+=\Arctan(\tan(x/2))+\Arctan(\frac{1}{\tan(x/2)})\\
+ &=\frac{\pi}{2}\;(\mbox{car}\;\tan(x/2)>0\;\mbox{pour}\;x\in]0,\pi[).
+\end{align*}
+
+Ce calcul achève l'étude de $f$. En voici le graphe~:
+
+%$$\includegraphics{../images/img005472-1}$$
+
+\fincorrection
+\correction{005473}
+Soit $x\in\Rr$. La fonction $t\mapsto\mbox{Max}(x,t)=\frac{1}{2}(x+t+|x-t|)$ est continue sur $[0,1]$ en vertu de théorèmes généraux. Par suite, $\int_{0}^{1}\mbox{Max}(x,t)\;dt$ existe. 
+
+Si $x\leq0$, alors $\forall t\in[0,1]$, $x\leq t$ et donc $\mbox{Max}(x,t)=t$. Par suite, $f(x)=\int_{0}^{1}t\;dt=\frac{1}{2}$.
+
+Si $x\geq1$, alors $\forall t\in[0,1]$, $t\leq x$ et donc $\mbox{Max}(x,t)=x$. Par suite, $f(x)=\int_{0}^{1}x\;dt=x$.
+
+Si $0<x<1$,
+
+$$f(x)=\int_{0}^{x}x\;dt+\int_{x}^{1}t\;dt=x^2+\frac{1}{2}(1-x^2)=\frac{1}{2}(1+x^2).$$
+
+En résumé, $\forall x\in\Rr,\;f(x)=\left\{
+\begin{array}{l}
+\frac{1}{2}\;\mbox{si}\;x\leq0\\
+\frac{1}{2}(1+x^2)\;\mbox{si}\;0<x<1\\
+x\;\mbox{si}\;x\geq1
+\end{array}
+\right.$.
+
+$f$ est déjà continue sur $]-\infty,0]$, $[1,+\infty[$ et $]0,1[$. De plus, $f(0^+)=\frac{1}{2}=f(0)$ et $f(1^-)=1=f(1)$. $f$ est ainsi continue à droite en $0$ et continue à gauche en $1$ et donc sur $\Rr$.
+
+$f$ est de classe $C^1$ sur $]-\infty,0]$, $[1,+\infty[$ et $]0,1[$. De plus, $\lim_{x\rightarrow 0,\;x>0}f'(x)=\lim_{x\rightarrow 0,\;x>0}x=0$. $f$ est donc continue sur $[0,1[$ de classe $C^1$ sur $]0,1[$ et $f'$ a une limite réelle quand $x$ tend vers $0$. D'après un théorème classique d'analyse, $f$ est de classe $C^1$ sur $[0,1[$ et en particulier, $f$ est dérivable à droite en $0$ et ${f'}_{d}(0)=0$. Comme d'autre part, $f$ est dérivable à gauche en $0$ et que ${f'}_{g}(0)=0={f'}_{d}(0)$, $f$ est dérivable en $0$ et $f'(0)=0$.
+
+L'étude en $1$ montre que $f$ est dérivable en $1$ et que $f'(1)=1$. Le graphe de $f$ est le suivant~:
+
+%$$\includegraphics{../images/img005473-1}$$
+
+\fincorrection
+\nocorrection
+\correction{005475}
+\begin{enumerate} 
+\item  $I_0=\int_{0}^{\pi/4}dx=\frac{\pi}{4}$ et $I_{1}=\int_{0}^{\pi/4}\frac{\sin x}{\cos x}\;dx=\left[-\ln|\cos x|\right]_{0}^{\pi/4}=\frac{\ln2}{2}$.
+
+Soit $n\in\Nn$.
+
+$$I_n+I_{n+2}=\int_{0}^{\pi/4}(\tan^nx+\tan^{n+2}x)\;dx=\int_{0}^{\pi/4}\tan^nx(1+\tan^2x)\;dx=\left[\frac{\tan^{n+1}x}{n+1}\right]_{0}^{\pi/4}=\frac{1}{n+1}.$$
+
+Soit $n\in\Nn^*$.
+
+\begin{align*}\ensuremath
+\sum_{k=1}^{n}\frac{(-1)^{k-1}}{2k-1}&=\sum_{k=1}^{n}(-1)^{k-1}(I_{2k-2}+I_{2k})=\sum_{k=1}^{n}(-1)^{k-1}I_{2k-2}
++\sum_{k=1}^{n}(-1)^{k-1}I_{2k}\\
+ &=\sum_{k=0}^{n-1}(-1)^{k}I_{2k}-\sum_{k=1}^{n}(-1)^{k}I_{2k}=I_0-(-1)^nI_{2n}.
+\end{align*}
+
+Ainsi, $\forall n\in\Nn^*,\;I_{2n}=(-1)^n\left(\frac{\pi}{4}-\sum_{k=1}^{n}\frac{(-1)^{k-1}}{2k-1}\right)$.
+
+De même, $\sum_{k=1}^{n}\frac{(-1)^{k-1}}{2k}=I_1-(-1)^nI_{2n+1}$ et donc, $\forall n\in\Nn^*,\;I_{2n+1}=\frac{(-1)^n}{2}\left(\ln2-\sum_{k=1}^{n}\frac{(-1)^{k-1}}{k}\right)$.
+
+\item  Soient $\varepsilon\in]0,\frac{\pi}{2}[$ et $n\in\Nn^*$.
+
+$$0\leq I_n=\int_{0}^{\pi/4-\varepsilon/2}\tan^nx\;dx+\int_{\pi/4-\varepsilon/2}^{\pi/4}\tan^nx\;dx\leq\frac{\pi}{4}\tan^n(\frac{\pi}{4}-\frac{\varepsilon}{2})+\frac{\varepsilon}{2}.$$
+
+Maintenant, $0<\tan(\frac{\pi}{4}-\frac{\varepsilon}{2})<1$ et donc $\lim_{n\rightarrow +\infty}\tan^n(\frac{\pi}{4}-\frac{\varepsilon}{2})=0$. Par suite, il existe $n_0\in\Nn$ tel que, pour $n\geq n_0$, $0\leq\tan^n(\frac{\pi}{4}-\frac{\varepsilon}{2})<\frac{\varepsilon}{2}$. Pour $n\geq n_0$, on a alors $0\leq I_n<\varepsilon$.
+
+Ainsi, $I_n$ tend vers $0$ quand $n$ tend vers $+\infty$. On en déduit immédiatement que $u_n$ tend vers $\ln2$ et $v_n$ tend vers $\frac{\pi}{4}$.
+
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

@@ -1,0 +1,378 @@
+\documentclass[a4paper,10pt]{article}
+%\usepackage{calc}
+%\usepackage{esvect}
+%\setlength{\parindent}{0mm}
+%\usepackage [alwaysadjust]{paralist}
+%\renewcommand*{\tabularxcolumn}[1]{m{#1}} %centrage vertical des cellules d'un tableau tabularx
+\setlength{\oddsidemargin}{0.25in}
+
+% Set width of the text - What is left will be the right margin.
+% In this case, right margin is 8.5in - 1.25in - 6in = 1.25in.
+\setlength{\textwidth}{6in}
+
+% Set top margin - The default is 1 inch, so the following 
+% command sets a 0.75-inch top margin.
+\setlength{\topmargin}{-0.25in}
+% Set height of the text - What is left will be the bottom margin.
+% In this case, bottom margin is 11in - 0.75in - 9.5in = 0.75in
+\setlength{\textheight}{8in}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\pagestyle{fancy}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+\lstdefinestyle{customc}{
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=none,
+	backgroundcolor=\color{gray!20!},
+	xleftmargin={1em},
+	language=html,
+	showstringspaces=false,
+	basicstyle=\small\ttfamily,
+	keywordstyle=\bfseries\color{red!60!black},
+	commentstyle=\color{blue},
+	identifierstyle=\color{black},
+	stringstyle=\color{black},
+	extendedchars=true,
+	literate={à}{{\`a}}1 {é}{{\'e}}1 {è}{{\`e}}1 {ù}{{\`u}}1 {ê}{{\^e}}1,
+}
+\lstset{escapechar=@,style=customc,numbers=left, stepnumber=1}
+
+\usepackage{xlop} % pour poser les opérations à la main
+\usepackage{pstricks,pst-plot} 
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{geometry}
+\geometry{top=1.5cm, bottom=2cm, left=1cm, right=1cm}
+
+
+\newtheorem{defi}{D\'{e}finition}
+\newtheorem{thm}{Th\'{e}or\`{e}me}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propri\'{e}t\'{e}}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+%\newcommand{\rectvert}{\fcolorbox{green}{green}{\begin{minipage}{1\linewidth}\end{minipage}}}
+%\newenvironment{rectvert}{\fcolorbox{green}{green}\begin{minipage}{1\linewidth}}{\end{minipage}}
+
+\newcommand{\V}{\overrightarrow}
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+\newcommand\opidivzarbi[3][nil]{%
+	\begingroup
+	\opset{#1}%
+	\opidiv*{#2}{#3}{q}{r}%
+	\begin{tabular}{r|l}
+		\opdisplay{operandstyle.1}{#2} &
+		\opdisplay{operandstyle.2}{#3} \\\cline{2-2}
+		\opdisplay{remainderstyle}{r} &
+		\opdisplay{resultstyle}{q}
+	\end{tabular}%
+	\endgroup
+}
+
+% Set the beginning of a LaTeX document
+\begin{document}
+	\pagestyle{fancy}	
+	%\fancyhead{}
+	\fancyfoot[L]{Chapitre 1 - Feuille d'exercices}
+	\fancyfoot[C]{Page \thepage/2}
+	\fancyfoot[R]{M Botcazou}
+	\renewcommand{\footrulewidth}{0.4pt}
+	\renewcommand{\headrulewidth}{0pt}
+	\title{}
+	\date{}       
+	\maketitle
+	\indent\vspace{-3.5cm}
+	
+	
+	%$$\fbox{\text{\Large{ Chapitre 1 : Nombres réels}}}$$
+	
+	$$\fbox{\text{\Large{ \begin{minipage}{0.37\linewidth } Feuille d'exercices - chapitre 1 \end{minipage} }}}$$
+
+	
+	\hfill\\[0.1cm]
+
+%\noindent\underline{\textbf{Exercice 1 :}}\\[0.2cm]
+%Dans chaque cas, représenter l'ensemble des réels $x$ sur une droite graduée puis donner l'intervalle correspondant :\\[-0.1cm]
+%\begin{minipage}{0.25\linewidth}
+%a) $x\geqslant 3$ ;\\
+%b) $x<10$ ;
+%\end{minipage}
+%\begin{minipage}{0.25\linewidth}
+%\hfill\\[0.2cm]
+%c) $x\leqslant 3$ ;\\[0.1cm]
+%d) $x\geqslant -3$ ;\\
+%\end{minipage}
+%\begin{minipage}{0.25\linewidth}
+%\hfill\\[0.2cm]
+%e) $-3<x\leqslant 5$ ;\\[0.1cm]
+%f) $-6\leqslant x\leqslant -5$ ;\\
+%\end{minipage}
+%\begin{minipage}{0.25\linewidth}
+%\hfill\\[0.2cm]
+%g) $-10\leqslant x < -9,9$ ;\\[0.1cm]
+%h) $-0,1 < x < 0,1 $ ;\\
+%\end{minipage}
+%\hfill\\[-0.2cm]
+
+
+\noindent\underline{\textbf{Exercice 1 :}}\\[0.2cm]
+Ecrire les intervalles suivants de façon symbolique (notation avec les crochets) :\\[0.2cm]
+\begin{minipage}{0.5\linewidth}
+a) \og intervalle fermé de $-2$ à $3$ \fg.\\[0.2cm]
+b) \og intervalle semi-ouvert de $-5$ à $1$ , $-5$ exclu.\fg\\[0.2cm]
+c) \og intervalle ouvert de $3$ à $10$.\fg \\[0.2cm]
+d) \og intervalle semi-ouvert de $-4$ à $0$ , $0$ exclu.\fg\\
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+e) \og intervalle fermé de $-\infty$ à $5$.\fg\\[0.2cm]
+f) \og intervalle ouvert de $-4$ à $+\infty$.\fg\\[0.2cm]
+g) \og intervalle fermé de $-10$ à $+\infty$.\fg\\[0.2cm]
+h) \og intervalle ouvert de $-\infty$ à $-1000$.\fg\\
+\end{minipage}
+\hfill\\
+
+
+
+%\noindent\underline{\textbf{Exercice 3 :}}\\[0.2cm]
+%\noindent Résoudre dans $\mathbb{R}$ les inéquations suivantes en donnant l'ensemble des solutions sous la forme d'un intervalle :\\[0.2cm]
+%\begin{minipage}{0.33\linewidth}
+%	a) $x+5\leqslant 0$ ;\\[0.2cm]
+%	b) $-5-x > 0$ ;\\[0.2cm]
+%	c) $5x-3 > 0$ ;\\
+%\end{minipage}
+%\begin{minipage}{0.33\linewidth}
+%	d) $-3x+6\leqslant 0$ ;\\[0.2cm]
+%	e) $6x\geqslant 0$ ;\\[0.2cm]
+%	f) $-6x-30\geqslant 0$ ;\\
+%\end{minipage}
+%\begin{minipage}{0.33\linewidth}
+%	g) $-3x+1\leqslant -5$\\[0.2cm]
+%	h) $1-\di\frac{x}{4}\geqslant 0$\\[0.2cm]
+%	i) $2(5x-3)-(x+4)>x-6$\\
+%\end{minipage}
+%\hfill\\
+
+
+\noindent\underline{\textbf{Exercice 2 :}}\\[-0.2cm]
+\begin{enumerate}
+	\item
+		Compléter le tableau suivant :
+
+		$$\begin{tabular}{|c|c|c|c|}
+		\hline
+		& & & \\
+		Intervalle & Description & Ensemble des réels & Représentation \\
+		&  & $x$ tels que & \\
+		& & & \\
+		\hline
+		&  &  &  \begin{minipage}{0.3\linewidth}
+		$$\begin{tikzpicture}
+		\draw [-> , line width = 1pt] (0,0) -- (4,0) ;
+		\draw (1,0) node[below=3pt]{$-3$};
+		\draw[blue] (1,0) node{$[$};
+		\draw (3,0) node[below=3pt]{$0$};
+		\draw[blue, text width = 1pt] (3,0) node{$[$};
+		\draw[blue, line width = 1.5pt] (1,0)--(3,0) ;
+		\end{tikzpicture}$$ \end{minipage} \\
+		\hline
+		&  & $-\di\frac{5}{3}\leqslant x \leqslant -\di\frac{1}{3} $ & \begin{minipage}{0.3\linewidth}
+		$$\begin{tikzpicture}
+		\draw [white, -> , line width = 1pt] (0,0) -- (4,0) ;
+		\draw [white](1,0) node[below=3pt]{$a$};
+		\draw [white] (1,0) node{$]$};
+		\draw [white] (3,0) node[below=3pt]{$b$};
+		\draw[white, text width = 1pt] (3,0) node{$[$};
+		\draw[white, line width = 1.5pt] (1,0)--(3,0) ;
+		\end{tikzpicture}$$ \end{minipage} \\
+		\hline
+		&  &  & \begin{minipage}{0.3\linewidth}
+		$$\begin{tikzpicture}
+		\draw [-> , line width = 1pt] (0,0) -- (4,0) ;
+		\draw (2,0) node[below=3pt]{$10$};
+		\draw[blue] (2,0) node{$[$};
+		\draw[blue, line width = 1.5pt] (0,0)--(2,0) ;
+		\end{tikzpicture}$$ \end{minipage} \\
+		\hline
+		& les réels supérieurs ou égaux à 1 & & \begin{minipage}{0.3\linewidth}
+		$$\begin{tikzpicture}
+		\draw [white, -> , line width = 1pt] (0,0) -- (4,0) ;
+		\draw [white](1,0) node[below=3pt]{$a$};
+		\draw [white] (1,0) node{$]$};
+		\draw [white] (3,0) node[below=3pt]{$b$};
+		\draw[white, text width = 1pt] (3,0) node{$[$};
+		\draw[white, line width = 1.5pt] (1,0)--(3,0) ;
+		\end{tikzpicture}$$ \end{minipage} \\
+		\hline
+		$\left]\vtab -\infty ; \ 7,3 \right]$ & & & \begin{minipage}{0.3\linewidth}
+		$$\begin{tikzpicture}
+		\draw [white, -> , line width = 1pt] (0,0) -- (4,0) ;
+		\draw [white](1,0) node[below=3pt]{$a$};
+		\draw [white] (1,0) node{$]$};
+		\draw [white] (3,0) node[below=3pt]{$b$};
+		\draw[white, text width = 1pt] (3,0) node{$[$};
+		\draw[white, line width = 1.5pt] (1,0)--(3,0) ;
+		\end{tikzpicture}$$ \end{minipage} \\
+		\hline
+		& les réels strictement compris entre $-10$ et $-2$ &  & \begin{minipage}{0.3\linewidth}
+		$$\begin{tikzpicture}
+		\draw [white, -> , line width = 1pt] (0,0) -- (4,0) ;
+		\draw [white](1,0) node[below=3pt]{$a$};
+		\draw [white] (1,0) node{$]$};
+		\draw [white] (3,0) node[below=3pt]{$b$};
+		\draw[white, text width = 1pt] (3,0) node{$[$};
+		\draw[white, line width = 1.5pt] (1,0)--(3,0) ;
+		\end{tikzpicture}$$ \end{minipage} \\
+		\hline
+		& les réels inférieurs ou égaux à $-\sqrt{2}$ &  & \begin{minipage}{0.3\linewidth}
+		$$\begin{tikzpicture}
+		\draw [white, -> , line width = 1pt] (0,0) -- (4,0) ;
+		\draw [white](1,0) node[below=3pt]{$a$};
+		\draw [white] (1,0) node{$]$};
+		\draw [white] (3,0) node[below=3pt]{$b$};
+		\draw[white, text width = 1pt] (3,0) node{$[$};
+		\draw[white, line width = 1.5pt] (1,0)--(3,0) ;
+		\end{tikzpicture}$$ \end{minipage} \\
+		\hline
+		\end{tabular}$$
+		
+	\item Compléter par le symbole $\in$ ou par le symbole $\notin$ :
+	
+	\parbox{0.5\linewidth}{
+		\begin{enumerate}[$\diamond$]
+			\item $1,4$ \ldots \ldots $[0;\sqrt{2}]$ \\[-0.1cm]
+			\item $-\pi$ \ldots \ldots $]-3;-1[$ \\[-0.1cm]
+	\end{enumerate}}
+	\parbox{0.5\linewidth}{
+		\begin{enumerate}[$\diamond$]
+			\item $6$ \ldots \ldots $\left[\dfrac{7}{3};+\infty\right[$ \\[0.1cm]
+			\item $-3$ \ldots \ldots $]-\infty;-3[$ \\[-0.1cm]
+		\end{enumerate}}
+
+	\item Compléter par l'un des symboles $\in$, $\notin$, $\subset$, $\not\subset$ :
+	
+	\parbox{0.33\linewidth}{
+		\begin{enumerate}[$\diamond$]
+			\item $[5;6]$ \ldots \ldots $[8;9]$ \\[-0.1cm]
+			\item $-]3;4[8$ \ldots \ldots [3;4]1cm]
+	\end{enumerate}}
+	\parbox{0.33\linewidth}{
+		\begin{enumerate}[$\diamond$]
+			\item $[7;9]$ \ldots \ldots $]-\infty;12[$ \\[0.1cm]
+			\item $]3;4[$ \ldots \ldots $[3;4]$ \\[-0.1cm]
+	\end{enumerate}}
+	\parbox{0.33\linewidth}{
+		\begin{enumerate}[$\diamond$]
+			\item $\dfrac{3}{5}$ \ldots \ldots $]0,6 ; 18[$ \\[-0.1cm]
+			\item $\dfrac{7}{2}$ \ldots \ldots $]3;5]$ \\[-0.1cm]
+	\end{enumerate}}
+
+\end{enumerate}
+
+\newpage
+
+\noindent\underline{\textbf{Exercice 3 :}}\\[0.2cm]
+\begin{enumerate}
+	\item Compléter le tableau suivant : 
+		\renewcommand{\arraystretch}{3.5}
+		$$\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\textbf{Intervalle $\mathbf{I}$} & \textbf{Intervalle $\mathbf{J}$} & \ \ \ \textbf{$\mathbf{I\cap J}$} \ \ \ & \ \ \ \textbf{$\mathbf{I\cup J}$} \ \ \  & \ \ \textbf{Représentation sur une droite graduée} \ \ \\
+		\hline
+		$[6;17]$ & $[5;12]$ & & & \\
+		\hline
+		$[-5;3]$ & $[-6;1]$ & & & \\
+		\hline
+		$]-\infty;3[$ & $[0;5[$ & & & \\
+		\hline
+		$[2;+\infty[$ & $]-\infty;4]$ & & & \\
+		\hline
+		$[2;5]$ & $[5;6]$ & & & \\
+		\hline
+		$[2;5[$ & $[5;6]$ & & & \\
+		\hline
+		\end{tabular}$$
+		\hfill\\
+	\item Compléter à l'aide du symbole $\in$ ou du symbole $\notin$ :\\[0.1cm]
+	\parbox{0.33\linewidth}{
+		\begin{enumerate}[$\diamond$]
+			\item $3$ \ldots \ldots $[-1;5]\cup [10;+\infty[$ \\[-0.1cm]
+			\item $7$ \ldots \ldots $]0;7[\cup [2;20[$ \\[-0.1cm]
+		\end{enumerate}}
+	\parbox{0.33\linewidth}{
+		\begin{enumerate}[$\diamond$]
+			\item $-8$ \ldots \ldots $]-\infty;-9] \cup [0;3]$ \\[0.1cm]
+			\item $7$ \ldots \ldots $]0;7[\cap [2;20[$ \\[-0.1cm]
+		\end{enumerate}}
+	\parbox{0.33\linewidth}{
+		\begin{enumerate}[$\diamond$]
+			\item $3$ \ldots \ldots $[-1;5]\cap [4;+\infty[$ \\[-0.1cm]
+			\item $100$ \ldots \ldots $[98;101]\cup [0;1]$ \\[-0.1cm]
+		\end{enumerate}}
+	\end{enumerate}
+%Résoudre et donner l'ensemble des solutions sous forme d'intervalle :\\
+%\\
+%\begin{minipage}{0.33\linewidth}
+%	a) $-3 \leqslant 2x-1 \leqslant 5$\\[0.3cm]
+%	b) $0 \leqslant 1-x \leqslant 3$
+%\end{minipage}
+%\begin{minipage}{0.33\linewidth}
+%	c) $-5 \leqslant x+5 < 5$\\[0.3cm]
+%	d) $-2 < 6-x \leqslant 1$
+%\end{minipage}
+%\begin{minipage}{0.33\linewidth}
+%	e) $-3\leqslant \di\frac{5-x}{2}\leqslant -1$\\[0.3cm]
+%	f) $4-x\leqslant -5$ ou $4-x\geqslant 5$
+%\end{minipage}
+
+%\noindent\underline{\textbf{Exercice 5 :}}\\[0.2cm]
+%Résoudre et donner l'ensemble des solutions sous forme d'intervalle :\\
+%\\
+%\begin{minipage}{0.33\linewidth}
+%	a) $-3 \leqslant 2x-1 \leqslant 5$\\[0.3cm]
+%	b) $0 \leqslant 1-x \leqslant 3$
+%\end{minipage}
+%\begin{minipage}{0.33\linewidth}
+%	c) $-5 \leqslant x+5 < 5$\\[0.3cm]
+%	d) $-2 < 6-x \leqslant 1$
+%\end{minipage}
+%\begin{minipage}{0.33\linewidth}
+%	e) $-3\leqslant \di\frac{5-x}{2}\leqslant -1$\\[0.3cm]
+%	f) $4-x\leqslant -5$ ou $4-x\geqslant 5$
+%\end{minipage}
+
+
+
+
+% Set the ending of a LaTeX document
+\end{document}

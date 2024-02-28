@@ -1,0 +1,190 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+\usepackage{array,multirow,makecell}
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+\renewcommand{\baselinestretch}{1.2}
+\renewcommand{\vec}{\overrightarrow}
+
+\begin{document}
+
+\lhead{}\chead{}\rhead{}\lfoot{Chapitre 5 - Exercice de groupe}\cfoot{\thepage/2}\rfoot{M. Botcazou}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+$$\fbox{\text{\Large{ Fonctions et applications}}}$$
+\hfil\\
+
+\begin{exo}\textit{\textbf{Les fonctions un outil en géométrie:}}\\
+	
+	\par On considère le rectangle $ABCD$ de longueur $AB$ et de largeur $AD$. L'abscisse du point $B$ est variable dans l'intervalle $[0;5]$. Nous noterons la distance $AB$ par la lettre $l$ (dans ce problème ~$AB\ = \ l$) . Dans le rectangle $ABCD$, la longueur $AB$ est deux fois plus grande que la largeur $AD$. Le déplacement du point B fait donc varier la configuration du rectangle $ABCD$  comme nous pouvons le voir sur deux exemples ci-dessous:\\\\
+	
+	\begin{figure}[h!]
+		\begin{minipage}[c]{.47\textwidth}
+			\definecolor{qqqqff}{rgb}{0.,0.,1.}
+			\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+			\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.4cm,y=1.4cm]
+			\draw[->,color=black] (-0.2,0.) -- (5.4,0.);
+			\foreach \x in {,0.5,1.,1.5,2.,2.5,3.,3.5,4.,4.5,5.}
+			\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+			\draw[->,color=black] (0.,-0.2) -- (0.,2.8);
+			\foreach \y in {,0.5,1.,1.5,2.,2.5}
+			\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+			\draw[color=black] (0pt,-10pt) node[left] {\footnotesize $0$};
+			\clip(-0.2,-0.2) rectangle (5.4,2.8);
+			\fill[color=gray!10] (0.,0.) -- (1.75,0.) -- (1.75,0.875) -- (0.,0.875) -- cycle;
+			\draw  (0.,0.)-- (1.75,0.);
+			\draw  (1.75,0.)-- (1.75,0.875);
+			\draw (1.75,0.875)-- (0.,0.875);
+			\draw  (0.,0.875)-- (0.,0.);
+			\begin{scriptsize}
+			\draw [color=uuuuuu] (1.75,0.)-- ++(-2.0pt,-2.0pt) -- ++(4.0pt,4.0pt) ++(-4.0pt,0) -- ++(4.0pt,-4.0pt);
+			\draw[color=uuuuuu] (1.9,0.2) node {$B$};
+			\draw [color=uuuuuu] (0.,0.875)-- ++(-2.0pt,-2.0pt) -- ++(4.0pt,4.0pt) ++(-4.0pt,0) -- ++(4.0pt,-4.0pt);
+			\draw[color=uuuuuu] (0.17,1.05) node {$D$};
+			\draw [color=black] (0.,0.)-- ++(-2.0pt,-2.0pt) -- ++(4.0pt,4.0pt) ++(-4.0pt,0) -- ++(4.0pt,-4.0pt);
+			\draw[color=black] (0.17,0.18) node {$A$};
+			\draw [color=uuuuuu] (1.75,0.875)-- ++(-2.0pt,-2.0pt) -- ++(4.0pt,4.0pt) ++(-4.0pt,0) -- ++(4.0pt,-4.0pt);
+			\draw[color=uuuuuu] (1.9,1.05) node {$C$};
+			\end{scriptsize}
+			\end{tikzpicture}
+			
+		\end{minipage}
+		\hfill
+		\begin{minipage}[c]{.47\textwidth}
+		\definecolor{qqqqff}{rgb}{0.,0.,1.}
+		\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.4cm,y=1.4cm]
+		\draw[->,color=black] (-0.2,0.) -- (5.4,0.);
+		\foreach \x in {,0.5,1.,1.5,2.,2.5,3.,3.5,4.,4.5,5.}
+		\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+		\draw[->,color=black] (0.,-0.2) -- (0.,2.8);
+		\foreach \y in {,0.5,1.,1.5,2.,2.5}
+		\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+		\draw[color=black] (0pt,-10pt) node[left] {\footnotesize $0$};
+		\clip(-0.2,-0.2) rectangle (5.4,2.8);
+		\fill[color=gray!10] (0.,0.) -- (4.7,0.) -- (4.7,2.35) -- (0.,2.35) -- cycle;
+		\draw (0.,0.)-- (4.7,0.);
+		\draw  (4.7,0.)-- (4.7,2.35);
+		\draw  (4.7,2.35)-- (0.,2.35);
+		\draw  (0.,2.35)-- (0.,0.);
+		\begin{scriptsize}
+		\draw [color=uuuuuu] (4.7,0.)-- ++(-2.0pt,-2.0pt) -- ++(4.0pt,4.0pt) ++(-4.0pt,0) -- ++(4.0pt,-4.0pt);
+		\draw[color=uuuuuu] (4.9,0.18) node {$B$};
+		\draw [color=uuuuuu] (0.,2.35)-- ++(-2.0pt,-2.0pt) -- ++(4.0pt,4.0pt) ++(-4.0pt,0) -- ++(4.0pt,-4.0pt);
+		\draw[color=uuuuuu] (0.23,2.5) node {$D$};
+		\draw [color=black] (0.,0.)-- ++(-2.0pt,-2.0pt) -- ++(4.0pt,4.0pt) ++(-4.0pt,0) -- ++(4.0pt,-4.0pt);
+		\draw[color=black] (0.23,0.17993043195995995) node {$A$};
+		\draw [color=uuuuuu] (4.7,2.35)-- ++(-2.0pt,-2.0pt) -- ++(4.0pt,4.0pt) ++(-4.0pt,0) -- ++(4.0pt,-4.0pt);
+		\draw[color=uuuuuu] (4.9,2.5) node {$C$};
+		\end{scriptsize}
+		\end{tikzpicture}
+			
+		\end{minipage}
+	\end{figure}
+	
+	\begin{enumerate}
+		\item Exprimer en fonction de ~~$l$~~ les longueurs $AB$, $AD$, $DC$ et $CB$.\hfill\textbf{/1}\\
+		\item On note $P$ le périmètre du rectangle $ABCD$ et $A$ l'aire du rectangle $ABCD$. Exprimer $P$ et $A$ en fonction de ~~$l$~.\hfill\textbf{/1}\\
+		\item Remplir le tableau en \textbf{\textit{(Annexe 1)}} à l'aide de la calculatrice si besoin.\hfill\textbf{/2}\\
+		\item Tracer dans un même repère orthonormé en \textit{ \textbf{(Annexe 1)}} les représentations graphiques des fonctions $P, A$ définies sur l'intervalle $[0;5]$\hfill\textbf{/2}\\ 
+		\item Calculer et simplifier ~~$P\left(\dfrac{7}{3}\right)$~~ et ~~$A\left(\dfrac{6}{7}\right)$~ puis conclure par une phrase.\hfill\textbf{/1}\\
+		\item Résoudre les inéquations et donner pour quelles valeurs de $l$ nous avons:
+		\begin{enumerate}
+			\item $P(l)\leq  9$\hfill\textbf{/0.75}
+			\item $A(l)\geq 2$\hfill\textbf{/0.75}\\
+		\end{enumerate}  
+		\item  Donner un antécédent de 7 par la fonction $P$ et un antécédent de $4$ par la fonction $A$.\hfill\textbf{/1.5}		
+	\end{enumerate}	
+\subsection*{Bonus:}
+Donner pour quelles valeurs de de $l\in\R$ nous avons $A(l)=P(l)$ 
+\end{exo}
+
+
+
+
+
+\newpage
+\section*{ANNEXE:}
+\subsection*{Annexe 1:}
+\noindent$P(l)\ = \ $\\\\
+$A(l) \ = \ $\hfill\textbf{/2}\\
+\begin{flushleft}
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+		
+		\hline
+		$l$& \quad0 \quad\quad  & \quad0.5 \quad\quad &\quad1 \quad\quad & \quad1.5\quad\quad & \quad2\quad \quad& \quad2.5\quad\quad & \quad3\quad\quad & \quad3.5\quad\quad & \quad4\quad\quad &\quad 4.5\quad\quad & \quad5\quad\quad \\
+		\hline
+		$P(l)$ &\quad &\quad &\quad &\quad &\quad &\quad &\quad &\quad &\quad&\quad&\quad  \\
+		\hline
+		$A(l)$ & & & & & & & & & & &\\
+		
+		\hline
+		
+	\end{tabular}\\\quad\\\quad\\
+\end{flushleft}
+	
+
+
+\definecolor{cqcqcq}{rgb}{0.7529411764705882,0.7529411764705882,0.7529411764705882}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm,yscale=0.5,xscale=2.5]
+\draw [color=cqcqcq,, xstep=0.5cm,ystep=1.0cm] (0.,0.) grid (5.3,17.8);
+\draw[->,color=black] (0.,0.) -- (5.37,0.);
+\foreach \x in {,0.5,1.,1.5,2.,2.5,3.,3.5,4.,4.5,5.}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,0.) -- (0.,17.8);
+\foreach \y in {,1.,2.,3.,4.,5.,6.,7.,8.,9.,10.,11.,12.,13.,14.,15.,16.,17.}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[left] {\footnotesize $0$};
+\clip(-0.34,-0.88) rectangle (5.47,17.8);
+\end{tikzpicture}
+\hfill\textbf{\hfill\textbf{/2}}
+
+
+\end{document}

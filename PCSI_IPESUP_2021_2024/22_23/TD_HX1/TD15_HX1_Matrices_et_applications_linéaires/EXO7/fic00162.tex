@@ -1,0 +1,1086 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+
+\fiche{f00162, bodin, 2012/09/01} 
+
+\newcommand{\Ker}{\mathop{\mathrm{Ker}}\nolimits}
+
+\titre{Matrice d'une application linéaire}
+
+Corrections d'Arnaud Bodin.
+
+\bigskip
+
+\exercice{1087, ridde, 1999/11/01}
+\video{SRrzcCzYHo0}
+\enonce{001087}{}
+Soit $\Rr^2$ muni de la base canonique $\mathcal{B}=(\vec{i}, \vec{j})$.
+Soit $f : \Rr^2 \to \Rr^2$ la projection sur l'axe des abscisses $\Rr \vec{i}$ 
+parall\`element à $\Rr (\vec{i} + \vec{j})$.
+Déterminer $\textrm{Mat}_{\mathcal{B},\mathcal{B}}(f)$, la matrice de $f$ dans la base $(\vec{i}, \vec{j})$.
+
+Même question avec $\textrm{Mat}_{\mathcal{B}',\mathcal{B}}(f)$ où $\mathcal{B'}$ est la base 
+$(\vec{i} - \vec{j}, -2\vec{i}+3\vec{j})$ de $\Rr^2$.
+Même question avec $\textrm{Mat}_{\mathcal{B}',\mathcal{B}'}(f)$.
+\finenonce{001087}
+
+
+
+\finexercice\exercice{1097, cousquer, 2003/10/01}
+\video{jQcF6rnWgyI}
+\enonce{001097}{}
+Soient trois vecteurs $e_1,e_2,e_3$ formant une base de $\Rr^3$.
+On note $\phi$ l'application linéaire définie par
+$\phi(e_1)=e_3$, $\phi(e_2)=-e_1+e_2+e_3$ et $\phi(e_3)=e_3$.
+
+\begin{enumerate}
+\item Écrire la matrice $A$ de $\phi$ dans la base $(e_1,e_2,e_3)$.
+Déterminer le noyau de cette application. 
+
+\item On pose $f_1=e_1-e_3$, $f_2=e_1-e_2$,  $f_3=-e_1+e_2+e_3$.
+Calculer $e_1,e_2,e_3$ en fonction de $f_1,f_2,f_3$.
+Les vecteurs $f_1,f_2,f_3$ forment-ils une base de $\Rr^3$ ?
+
+\item Calculer $\phi(f_1), \phi(f_2), \phi(f_3)$ en fonction de $f_1,f_2,f_3$.
+Écrire la matrice $B$ de $\phi$ dans la base $(f_1,f_2,f_3)$ et trouver la nature
+de l'application $\phi$.
+
+\item On pose $P=\begin{pmatrix}1&1&-1\cr 0&-1&1\cr-1&0&1\cr\end{pmatrix}$. Vérifier que $P$ est
+inversible et calculer $P^{-1}$. Quelle relation lie $A$, $B$, $P$ et $P^{-1}$ ?
+\end{enumerate}
+\finenonce{001097}
+
+
+
+\finexercice\exercice{2433, matexo1, 2002/02/01}
+\video{F1PmEC1haKY}
+\enonce{002433}{}
+Soit $f$ l'endomorphisme de $\R^3$ dont la matrice par
+rapport \`a la base canonique $(e_1, e_2, e_3)$ est
+$$A= \left( 
+       \begin{array}{ccc}
+        15 & -11 & 5 \\
+        20 & -15 & 8 \\
+        8 &  -7 & 6
+       \end{array}
+       \right).$$
+Montrer que les vecteurs
+$$ e'_1 = 2e_1+3e_2+e_3,\quad e'_2 = 3e_1+4e_2+e_3,\quad e'_3 =
+e_1+2e_2+2e_3$$
+forment une base de $\R^3$ et calculer la matrice de $f$ par
+rapport \`a cette base.
+\finenonce{002433}
+
+
+\finexercice
+
+
+\exercice{1101, ridde, 1999/11/01}
+\video{WqbDAp8ZsBE}
+\enonce{001101}{}
+
+% anti diagonal dots
+\def\Ddots{\mathinner{\mkern2mu\raise1pt\hbox{.}\mkern2mu
+\newline \raise4pt\hbox{.}\mkern2mu\raise7pt\hbox{.}\mkern1mu}}
+
+Soit $A = \begin{pmatrix} 
+0&&\dots&0&1 \\ 
+\vdots&&&1&0 \\
+ & & \Ddots && \\
+0&1& & &\vdots \\ 
+1&0&&\dots&0r
+\end{pmatrix}$. 
+En utilisant l'application linéaire associée de 
+$\mathcal{L} (\Rr^n,\Rr^n)$, calculer $A^p$ pour $p \in \Zz$.
+\finenonce{001101}
+
+
+
+\finexercice
+
+\exercice{2444, matexo1, 2002/02/01}
+\video{GsaYq45QDFE}
+\enonce{002444}{}
+Soient $A, B$ deux matrices semblables (i.e. il existe $P$
+inversible telle que $B = P^{-1} A P$). Montrer que si l'une est
+inversible, l'autre aussi\,; que si l'une est idempotente, l'autre
+aussi\,; que si l'une est nilpotente, l'autre aussi\,; que si $A =
+\lambda I$, alors $A = B$.
+\finenonce{002444}
+
+
+
+\finexercice
+
+\exercice{1104, ridde, 1999/11/01}
+\video{VTTwQGImicw}
+\enonce{001104}{}
+Soit $f$ l'endomorphisme de $\Rr^2$ de matrice $A=\begin{pmatrix} 2&\frac 23\\
+-\frac 52&-\frac 23 \end{pmatrix}$ dans la base canonique. Soient 
+$e_1 = \begin{pmatrix} -2 \\ 3\end{pmatrix}$
+et $e_2 = \begin{pmatrix} -2 \\ 5 \end{pmatrix}$.
+\begin{enumerate}
+\item Montrer que $\mathcal{B}'= (e_1, e_2)$ est une base de $\Rr^2$ et déterminer 
+$\text{Mat}_{\mathcal{B}'}(f)$.
+\item Calculer $A^n$ pour $n \in \Nn$.
+\item Déterminer l'ensemble des suites réelles qui vérifient $\forall n \in \Nn$
+$\begin{cases} x_{n + 1} = 2x_n + \dfrac 23 y_n \\ y_{n + 1} = -\dfrac 52 x_n -
+\dfrac 23 y_n \end{cases}$.
+\end{enumerate}
+\finenonce{001104}
+
+
+\finexercice
+\exercice{2774, tumpach, 2009/10/25}
+\video{JhulB3S-Wf4}
+\enonce{002774}{} 
+Soit $a $ et $b$ deux réels et $A$ la matrice
+$$
+A = \left(
+\begin{array}{cccc}
+a & 2 & -1 & b\\
+3 & 0 & 1 & -4\\ 
+5 & 4 & -1 & 2
+\end{array}
+\right)
+$$
+Montrer que $\textrm{rg}(A) \geq 2$. 
+Pour quelles valeurs de $a$ et $b$ a-t-on $\textrm{rg}(A) = 2$~?
+\finenonce{002774}
+
+
+
+\finexercice
+
+\exercice{1099, legall, 1998/09/01}
+\video{96dAjfnOIhI}
+\enonce{001099}{}
+Soient  
+$A=\begin{pmatrix} 
+1 & 2 & 1 \cr
+3 & 4 & 1 \cr
+5 & 6 & 1 \cr
+7 & 8 & 1 \cr
+\end{pmatrix},\ 
+B=\begin{pmatrix} 
+2 & 2 & -1 & 7  \cr
+4 & 3 & -1 & 11 \cr
+0 & -1 & 2 & -4 \cr
+3 & 3 & -2 & 11 \cr 
+\end{pmatrix} $.
+Calculer $\textrm{rg}(A)$ et $\textrm{rg}(B)$. Déterminer une base du
+noyau et une base de l'image pour chacune des applications linéaires associées $f_A$ et $f_B$.
+\finenonce{001099}
+
+
+
+\finexercice
+\exercice{1093, legall, 1998/09/01}
+\video{A2_9r3WOfTM}
+\enonce{001093}{}
+\label{exo1093}
+Soit  $E$  un espace vectoriel et  $f$  une application linéaire de
+$E$  dans  lui-m\^eme telle que  $f^2=f$.
+\begin{enumerate}
+    \item Montrer que  $E= \Ker f \oplus \Im f$.
+
+    \item Supposons que  $E$ soit de dimension finie  $n$. 
+Posons  $r= \dim \Im f$. 
+Montrer qu'il existe une base 
+$\mathcal{B}= ( e_1, \ldots ,e_n)$ de  $E$  telle que : 
+ $f(e_i)=e_i$ si $i\le r$ et $f(e_i)=0$ si $i>r$. 
+Déterminer la matrice de  $f$ dans cette base $\mathcal{B}$.
+\end{enumerate}
+\finenonce{001093}
+
+
+
+\finexercice
+
+\exercice{2475, matexo1, 2002/02/01}
+\video{zf0ETNslBnc}
+\enonce{002475}{}
+\label{exo2475}
+Trouver toutes les matrices de $\mathcal{M}_3(\Rr)$ qui vérifient
+\begin{enumerate}
+\item $M^2 = 0$ ;
+\item $M^2 = M$ ; 
+\item $M^2 = I$. 
+\end{enumerate}
+\finenonce{002475}
+
+
+
+\finexercice\exercice{1094, legall, 1998/09/01}
+\video{10aMCsQRMG4}
+\enonce{001094}{}
+Soit $f$ l'application de $\Rr_n[X]$  dans  $\Rr[X]$
+définie en posant pour tout  $P(X)\in \Rr_n[X]$ : $f(P(X))=P(X+1)+P(X-1)-2P(X).$
+\begin{enumerate}
+    \item Montrer que  $f$  est linéaire et que son image est
+incluse dans  $\Rr_n[X]$.
+    \item Dans le cas o\`u  $n=3$, donner la matrice de  $f$  dans
+la base  $1,X, X^2, X^3$. Déterminer ensuite, pour une valeur de  $n$
+quelconque, la matrice de  $f$  dans la base  $1,X,\ldots,X^n$.
+    \item Déterminer le noyau et l'image de  $f$. Calculer
+leur dimension respective.
+    \item Soit  $Q$  un élément de l'image de  $f$.
+Montrer qu'il existe un unique  $P\in \Rr_n[X]$
+tel que : $f(P)=Q$  et  $P(0)=P'(0)=0$.
+\end{enumerate}
+\finenonce{001094}
+
+
+
+\finexercice
+\exercice{2442, matexo1, 2002/02/01}
+\video{ATfy0zSe_04}
+\enonce{002442}{}
+Pour toute matrice carrée $A$ de dimension $n$, 
+on appelle trace de $A$, et l'on note $\textrm{tr}\, A$, la
+somme des éléments diagonaux de $A$\,:
+$$\textrm{tr}\, A = \sum_{i = 1}^n a_{i,i}$$
+\begin{enumerate}
+\item Montrer que si $A, B$ sont deux matrices carrées
+d'ordre $n$, alors $\textrm{tr}(AB)=\textrm{tr} (BA)$.
+
+\item Montrer que si $f$ est un endomorphisme d'un espace
+vectoriel $E$ de dimension $n$, $M$ sa matrice par rapport à
+une base $e$, $M'$ sa matrice par rapport à une base $e'$,
+alors $\textrm{tr}\, M = \textrm{tr}\, M'$. 
+On note $\textrm{tr}\, f$ la valeur commune de ces quantités.
+
+\item Montrer que si $g$ est un autre endomorphisme de $E$,
+$\textrm{tr}(f\circ g - g\circ f) = 0$.
+\end{enumerate}
+\finenonce{002442}
+
+
+
+
+\finexercice
+
+\finfiche
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\indication{001087}
+$f$ est l'application qui à $\begin{pmatrix}x\\y\end{pmatrix}$ associe
+ $\begin{pmatrix}x-y\\0\end{pmatrix}$.
+\finindication
+\noindication
+\noindication
+\noindication
+\indication{002444}
+$A$ est \emph{idempotente} s'il existe un $n$ tel que $A^n=I$ (la matrice identité).
+
+$A$ est \emph{nilpotente} s'il existe un $n$ tel que $A^n=(0)$ (la matrice nulle).
+\finindication
+\noindication
+\noindication
+\noindication
+\noindication
+\indication{002475}
+Il faut trouver les propriétés de l'application linéaire $f$ associée à chacune de ces matrices.
+Les résultats s'expriment en explicitant une (ou plusieurs) matrice $M'$ qui est la matrice de $f$ dans une base bien choisie
+et ensuite en montrant que toutes les autres matrices sont de la forme
+$M=P^{-1}M'P$.
+
+Plus en détails pour chacun des cas :
+\begin{enumerate}
+  \item $\Im f \subset \Ker f$ et discuter suivant la dimension du noyau.
+  \item Utiliser l'exercice \ref{exo1093} : $\Ker f \oplus \Im f$ et il existe une base telle que 
+$f(e_i)=0$ ou $f(e_i)=e_i$.
+  \item Poser $N= \frac{I+M}{2}$ (et donc $M=\cdots$) chercher à quelle condition $M^2=I$.
+\end{enumerate}
+\finindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{001087}
+L'expression de $f$ dans la base $\mathcal{B}$ est la suivante $f(x,y)=(x-y,0)$.
+Autrement dit à un vecteur $\begin{pmatrix}x\\y\end{pmatrix}$ on associe
+le vecteur  $\begin{pmatrix}x-y\\0\end{pmatrix}$.
+On note que $f$ est bien une application linéaire.
+Cette expression nous permet de calculer les matrices demandées.
+
+
+Remarque : comme $\mathcal{B}$ est la base canonique on note
+$\begin{pmatrix}x\\y\end{pmatrix}$ pour $\begin{pmatrix}x\\y\end{pmatrix}_\mathcal{B}$
+qui est le vecteur $x \vec{i}+y\vec{j}$.
+
+
+
+\begin{enumerate}
+  \item Calcul de $\textrm{Mat}(f,\mathcal{B},\mathcal{B})$.
+Comme $\mathcal{B}=(\vec{i}, \vec{j})$, la matrice s'obtient en calculant $f(\vec{i})$ et $f(\vec{j})$ :
+$$f(\vec{i})=f\begin{pmatrix}1\\0\end{pmatrix} = \begin{pmatrix}1\\0\end{pmatrix} = \vec{i}
+\quad 
+f(\vec{j})=f\begin{pmatrix}0\\1\end{pmatrix} = \begin{pmatrix}-1\\0\end{pmatrix} = -\vec{i}$$
+donc
+$$\textrm{Mat}(f,\mathcal{B},\mathcal{B}) = \begin{pmatrix} 1 & -1 \\ 0 & 0 \end{pmatrix}$$
+
+  \item On garde la même application linéaire mais la base de départ change (la base d'arrivée reste $\mathcal{B}$).
+Si on note $\vec{u} = \vec{i}-\vec{j}$ et $\vec{v} = -2\vec{i}+3\vec{j}$, on a 
+$\mathcal{B'}=(\vec{i} - \vec{j}, -2\vec{i}+3\vec{j}) = (\vec{u},\vec{v})$. On exprime 
+$f(\vec{u})$ et $f(\vec{v})$ dans la base d'arrivée $\mathcal{B}$.
+$$f(\vec{u})=f(\vec{i}- \vec{j})=f\begin{pmatrix}1\\-1\end{pmatrix} = \begin{pmatrix}2\\0\end{pmatrix}
+\quad 
+f(\vec{v})=f(-2\vec{i}+3\vec{j})=f\begin{pmatrix}-2\\3\end{pmatrix} = \begin{pmatrix}-5\\0\end{pmatrix}$$
+donc
+$$\textrm{Mat}(f,\mathcal{B}',\mathcal{B}) = \begin{pmatrix} 2 & -5 \\ 0 & 0 \end{pmatrix}$$
+  
+  \item Toujours avec le même $f$ on prend $\mathcal{B}'$ comme base de départ et d'arrivée,
+il s'agit donc d'exprimer $f(\vec{u})$ et $f(\vec{v})$ dans la base $\mathcal{B}'=(\vec{u},\vec{v})$.
+Nous venons de calculer que 
+$$f(\vec{u})=f(\vec{i}- \vec{j})=f\begin{pmatrix}1\\-1\end{pmatrix} = \begin{pmatrix}2\\0\end{pmatrix}=2\vec{i}
+\quad 
+f(\vec{v})=f(2\vec{i}+3\vec{j})=f\begin{pmatrix}-2\\3\end{pmatrix} = \begin{pmatrix}-5\\0\end{pmatrix}=-5\vec{i}$$
+Mais il  nous faut obtenir une expression en fonction de la base $\mathcal{B}'$.
+Remarquons que 
+$$\left\{\begin{array}{lcr}
+\vec{u} &=& \vec{i}-\vec{j} \\
+\vec{v} &=& -2\vec{i}+3\vec{j} \\           
+         \end{array}\right.
+\implies
+\left\{\begin{array}{lcr}
+\vec{i} &=& 3\vec{u}+\vec{v} \\
+\vec{j} &=& 2\vec{u}+\vec{v} \\           
+         \end{array}\right.$$
+Donc 
+$$f(\vec{u})=f(\vec{i}- \vec{j})=2\vec{i}=6\vec{u}+2\vec{v} = \begin{pmatrix}6\\2\end{pmatrix}_{\mathcal{B}'}
+\quad
+f(\vec{v})=f(-2\vec{i}+3\vec{j})=-5\vec{i}=-15\vec{u}-5\vec{v} = \begin{pmatrix}-15\\-5\end{pmatrix}_{\mathcal{B}'}$$
+Donc
+$$\textrm{Mat}(f,\mathcal{B}',\mathcal{B}') = \begin{pmatrix} 6 & -15 \\ 2 & -5 \end{pmatrix}$$
+
+Remarque :
+$\begin{pmatrix}x\\y\end{pmatrix}_{\mathcal{B}'}$
+désigne le vecteur $x \vec{u}+y\vec{v}$.
+\end{enumerate}
+
+\fincorrection
+\correction{001097}
+\begin{enumerate}
+  \item 
+  On note la base $\mathcal{B}=(e_1,e_2,e_3)$
+  et $X=\begin{pmatrix}x\\y\\z\end{pmatrix}_{\mathcal{B}}= x e_1+y e_2+z e_3$.
+  La matrice $A=\textrm{Mat}_{\mathcal{B}}(f)$ est composée des vecteurs colonnes $\phi(e_i)$,
+on sait 
+$$\phi(e_1)=e_3 = \begin{pmatrix}0\\0\\1\end{pmatrix}_{\mathcal{B}} \quad
+\phi(e_2)=-e_1+e_2+e_3 = \begin{pmatrix}-1\\1\\1\end{pmatrix}_{\mathcal{B}} \quad 
+\phi(e_3)=e_3 = \begin{pmatrix}0\\0\\1\end{pmatrix}_{\mathcal{B}} \quad
+$$
+
+$$\text{donc } \quad A=\begin{pmatrix}
+0 & -1 & 0 \\
+0 & 1  & 0 \\
+1 & 1  & 1 \\    
+\end{pmatrix}$$
+
+Le noyau de $\phi$ (ou celui de $A$) est l'ensemble de $X=\begin{pmatrix}x\\y\\z\end{pmatrix}$
+tel que $AX=0$.
+
+$$AX=0 \iff \begin{pmatrix}
+0 & -1 & 0 \\
+0 & 1  & 0 \\
+1 & 1  & 1 \\  
+\end{pmatrix} \times \begin{pmatrix}x\\y\\z\end{pmatrix}
+=\begin{pmatrix}0\\0\\0\end{pmatrix}
+\iff \left\{
+\begin{array}{rcl}
+-y&=&0\\
+y&=&0\\
+x+y+z&=&0\\
+\end{array}\right.
+$$
+Donc $\Ker \phi = \big\{ \begin{pmatrix}x \\ 0 \\-x\end{pmatrix}_{\mathcal{B}}  \in \Rr^3 \mid x\in \Rr \big\}= 
+\textrm{Vect} \begin{pmatrix}1\\0\\-1\end{pmatrix}_{\mathcal{B}} = \textrm{Vect} (e_1-e_3)$.
+Le noyau est donc de dimension $1$.
+
+
+  \item On applique le pivot de Gauss comme si c'était un système linéaire :
+$$\left\{
+\begin{array}{cccccclr}
+e_1  & &     &-& e_3  &=& f_1 &_{L_1}\\
+e_1  &-& e_2 & &      &=& f_2 &_{L_2}\\
+-e_1 &+& e_2 &+& e_3  &=& f_3 &_{L_3}\\
+\end{array}\right.
+\iff  \left\{
+\begin{array}{cccccclr}
+e_1  & &     &-& e_3  &=& f_1 &\\
+     &-& e_2 &+& e_3  &=& f_2-f_1 &_{L_2-L_1}\\
+     & & e_2 & &      &=& f_3+f_1 &_{L_3+L_1}\\
+\end{array}\right.
+$$
+On en déduit
+$$\left\{
+\begin{array}{rcl}
+ e_1 &=& f_1+f_2+f_3 \\
+ e_2 &=& f_1+f_3\\
+ e_3 &=& f_2+f_3 \\
+\end{array}\right.
+$$
+
+Donc tous les vecteurs de la base $\mathcal{B}=(e_1,e_2,e_3)$ s'expriment en fonction
+de $(f_1,f_2,f_3)$, ainsi la famille $(f_1,f_2,f_3)$ est génératrice.
+Comme elle a exactement $3$ éléments dans l'espace vectoriel $\Rr^3$ de dimension $3$ alors
+$\mathcal{B}'=(f_1,f_2,f_3)$ est une base.
+
+
+  \item
+$$\phi(f_1)=\phi(e_1-e_3)=\phi(e_1)-\phi(e_3)=e_3-e_3=0$$
+
+$$\phi(f_2)=\phi(e_1-e_2)= \phi(e_1)-\phi(e_2)=e_3 - (-e_1+e_2+e_3) = e_1-e_2 = f_2$$
+
+$$\phi(f_3)=\phi(-e_1+e_2+e_3)=-\phi(e_1)+\phi(e_2)+\phi(e_3)=-e_1+e_2+e_3=f_3$$
+
+Donc, dans la base $\mathcal{B}'=(f_1,f_2,f_3)$, nous avons
+$$\phi(f_1)=0=\begin{pmatrix}0\\0\\0\end{pmatrix}_{\mathcal{B}'}\quad
+\phi(f_2)=f_2=\begin{pmatrix}0\\1\\0\end{pmatrix}_{\mathcal{B}'}
+\phi(f_3)=f_3=\begin{pmatrix}0\\0\\1\end{pmatrix}_{\mathcal{B}'}$$
+
+Donc la matrice de $\phi$ dans la base $\mathcal{B}'$ est
+$$B=\begin{pmatrix}
+0 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 \\    
+\end{pmatrix}$$
+
+$\phi$ est la projection sur  $\textrm{Vect} (f_2,f_3)$ parallèlement à $\textrm{Vect} (f_1)$ (autrement dit
+c'est la projection sur le plan d'équation $(x'=0)$, parallèlement à l'axe des $x'$, ceci dans la base $\mathcal{B}'$).
+
+  \item $P$ est la matrice de passage de $\mathcal{B}$ vers $\mathcal{B}'$.
+En effet la matrice de passage contient -en colonnes- les coordonnées des vecteurs
+de la nouvelle base $\mathcal{B}'$ exprimés dans l'ancienne base $\mathcal{B}$.
+
+
+Si un vecteur a pour coordonnées $X$ dans la base $\mathcal{B}$ et $X'$ dans la base $\mathcal{B}'$
+alors $PX'=X$ (attention à l'ordre).
+Et si $A$ est la matrice de $\phi$ dans la base $\mathcal{B}$ et $B$ est la matrice de $\phi$ dans la base
+$\mathcal{B}'$ alors
+$$B=P^{-1}AP$$
+(Une matrice de passage entre deux bases est inversible.)
+
+Ici on calcule l'inverse de $P$ :
+$$P^{-1} = \begin{pmatrix}
+1 & 1 & 0 \\
+1 & 0 & 1 \\
+1 & 1 & 1 \\    
+\end{pmatrix}
+\quad \text{ donc } \quad 
+B=P^{-1}AP=\begin{pmatrix}
+0 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1 \\   
+\end{pmatrix}
+$$
+
+On retrouve donc bien les mêmes résultats que précédemment.
+
+\end{enumerate}
+
+\fincorrection
+\correction{002433}
+Notons l'ancienne base $\mathcal{B}=(e_1,e_2,e_3)$
+et ce qui sera la nouvelle base $\mathcal{B}'=(e'_1,e'_2,e'_3)$.
+Soit $P$ la matrice de passage qui contient -en colonnes- les coordonnées des vecteurs
+de la nouvelle base $\mathcal{B}'$ exprimés dans l'ancienne base $\mathcal{B}$
+$$P=\begin{pmatrix}
+2 & 3 & 1 \\
+3 & 4 & 2 \\
+1 & 1 & 2 \\      
+\end{pmatrix}$$
+
+On vérifie que $P$ est inversible (on va même calculer son inverse) donc
+$\mathcal{B}'$ est bien une base.
+De plus 
+$$P^{-1} = \begin{pmatrix}
+-6 & 5 & -2 \\
+4 & -3 & 1 \\
+1 & -1 & 1 \\             
+           \end{pmatrix}
+\text{ et on calcule  } B=P^{-1} A P = 
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 3 \\  
+\end{pmatrix}$$
+
+$B$ est la matrice de $f$ dans la base $\mathcal{B}'$.
+\fincorrection
+\correction{001101}
+Nous associons à la matrice $A$ son application linéaire naturelle $f$.
+Si $\mathcal{B}=(e_1,e_2,\ldots,e_n)$ est la base canonique de $\Rr^n$
+alors $f(e_1)$ est donné par le premier vecteur colonne, $f(e_2)$ par le deuxième, etc.
+Donc ici 
+$$f(e_1)=\begin{pmatrix}0\\ \vdots \\ 0 \\ 0 \\ 1 \end{pmatrix}=e_n, \
+f(e_2)= \begin{pmatrix}0\\ \vdots \\ 0 \\ 1 \\0 \end{pmatrix}=e_{n-1},...  \quad \text{ et en général }
+f(e_i) = e_{n+1-i}$$ 
+Calculons ce que vaut la composition $f\circ f$.
+Comme une application linéaire est déterminée par
+ les images des éléments d'une base alors
+on calcule $f\circ f(e_i)$, $i=1,\ldots,n$ en appliquant deux fois la formule précédente :
+$$f\circ f(e_i) = f\big( f(e_i) \big) =  f(e_{n+1-i})=e_{n+1-(n+1-i)}=e_i$$
+Comme $f\circ f$ laisse invariant tous les vecteurs de la base alors
+$f\circ f (x)=x$ pour tout $x\in \Rr^n$. Donc $f\circ f=\mathrm{id}$.
+
+On en déduit $f^{-1}=f$ et que la composition itérée vérifie $f^{p}=\mathrm{id}$ si $p$ est pair
+et $f^{p}=f$ si $p$ est impair.
+Conclusion : $A^p=I$ si $p$ est pair et $A^p=A$ si $p$ est impair.
+
+
+\fincorrection
+\correction{002444}
+Soit $A,B$ tel que $B = P^{-1} A P$.
+\begin{enumerate}
+  \item Supposons $A$ inversible, alors il existe $A'$ tel que $A\times A'=I$ et $A'\times A=I$.
+Notons alors $B'= P^{-1} A'P$. On a
+$$B \times B' = \big(P^{-1}A P \big)\times \big(P^{-1} A' P\big)=P^{-1}A \big(P P^{-1}\big)A' P 
+= P^{-1}A A' P=P^{-1} I P=I$$
+De même $B' \times B=I$. Donc $B$ est inversible d'inverse $B'$.
+
+  \item Supposons que $A^n=I$. Alors 
+$$\begin{array}{rcl}
+B^n 
+&=&\big(P^{-1} A P\big)^n= \big(P^{-1} A P \big)\big(P^{-1} A P \big)\cdots \big(P^{-1} A P \big) \\
+&=&P^{-1} A (P P^{-1}) A (P P^{-1}) \cdots  A P \\
+&=& P^{-1} A^n P  \\
+&=& P^{-1} I P = I \\
+\end{array}$$
+Donc $B$ est idempotente.
+
+  \item Si $A^n=(0)$ alors le même calcul qu'au-dessus conduit à $B^n=(0)$.
+
+  \item Si $A = \lambda I$ alors $B=P^{-1} (\lambda I) P = \lambda I \times P^{-1}P= \lambda I$
+(car la matrice $\lambda I$ commute avec toutes les matrices).
+\end{enumerate}
+
+\fincorrection
+\correction{001104}
+\begin{enumerate}
+  \item Notons $P$ la matrice de passage de la base canonique 
+$\mathcal{B}=\big((1,0),(0,1)\big)$ vers (ce qui va être) la base
+$\mathcal{B}' = (e_1, e_2)$. C'est la matrice composée des vecteurs colonnes
+$e_1$ et $e_2$ :
+$$P = \begin{pmatrix} -2 & -2 \\ 3 & 5 \\  \end{pmatrix}$$
+$\det P=-4 \neq 0$ donc $P$ est inversible et ainsi $\mathcal{B}'$ est bien une base.
+
+Alors la matrice de $f$ dans la base $\mathcal{B}'$ est :
+$$B= P^{-1}AP = -\frac14\begin{pmatrix} 5 & 2 \\ -3 & -2 \\  \end{pmatrix} \begin{pmatrix} 2&\frac 23\\
+-\frac 52&-\frac 23 \end{pmatrix}\begin{pmatrix} -2 & -2 \\ 3 & 5 \\  \end{pmatrix}=
+\begin{pmatrix} 1 & 0 \\ 0 & \frac13 \\  \end{pmatrix}$$
+
+  \item Il est très facile de calculer la puissance d'une matrice diagonale :
+$$B^n=\begin{pmatrix} 1 & 0 \\ 0 & \big(\frac13\big)^n \\  \end{pmatrix}$$
+
+Comme $A=PBP^{-1}$ on va en déduire $A^n$ : 
+
+$$A^n = \big( PBP^{-1} \big)^n = P B^n P^{-1} = 
+\frac14\begin{pmatrix} 
+10- \frac{6} {3^n} & 4- \frac{4} {3^n}\\
+-15 + \frac{15} {3^n}& -6 + \frac{10} {3^n}\\                    
+       \end{pmatrix}$$
+
+  \item Si l'on note $X_n = \begin{pmatrix}x_n \\ y_n \end{pmatrix}$
+alors les équations que vérifient les suites s'écrivent en terme matriciel :
+$$X_{n+1}=AX_n.$$
+
+Si l'on note les conditions initiales $X_0 = \begin{pmatrix}x_0 \\ y_0 \end{pmatrix} \in \Rr^2$ alors
+$X_n = A^n X_0$.
+On en déduit 
+$$
+\left\{\begin{array}{rcl}
+x_n &=& \frac14 \Big(( 10- \frac{6} {3^n}) x_0 + (4- \frac{4} {3^n})  y_0 \Big)          \\
+y_n &=& \frac14 \Big( (-15 + \frac{15} {3^n})x_0 + (-6 + \frac{10} {3^n}) y_0 \Big)   
+\end{array}\right.
+$$
+\end{enumerate}
+
+
+\fincorrection
+\correction{002774}
+Avant toute, un coup d'\oe il sur la matrice nous informe de deux choses :
+(a) $A$  n'est pas la matrice nulle donc $\textrm{rg}(A)\ge 1$ ;
+(b) il y a $3$ lignes donc $\textrm{rg}(A)\le 3$ (le rang est plus petit que le nombre 
+de colonnes et que le nombre de lignes).
+
+\begin{enumerate}
+  \item Montrons de différentes façons que $\textrm{rg}(A)\ge 2$.
+  \begin{itemize}
+     \item \textbf{Première méthode : sous-déterminant non nul.}
+On trouve une sous-matrice $2\times 2$ dont le déterminant est non nul.
+Par exemple la sous-matrice extraite du coin en bas à gauche vérifie
+$\begin{vmatrix}3 & 0\\ 5 & 4\end{vmatrix}= 12 \neq 0$ donc $\textrm{rg}(A)\ge 2$.
+
+     \item \textbf{Deuxième méthode : espace vectoriel engendré par les colonnes.}
+On sait que l'image de l'application linéaire associée à la matrice $A$
+est engendrée par les vecteurs colonnes. Et le rang est la dimension de cette image.
+On trouve facilement deux colonnes linéairement indépendantes : 
+la deuxième $\begin{pmatrix}2\\0\\4\end{pmatrix}$
+et la troisième $\begin{pmatrix}-1\\1\\-1\end{pmatrix}$ colonne.
+Donc $\textrm{rg}(A)\ge 2$.
+
+     \item \textbf{Troisième méthode : espaces vectoriel engendré par les lignes.}
+Il se trouve que la dimension de l'espace vectoriel engendré par les lignes
+égal la dimension de l'espace vectoriel engendré par les colonnes (car $\textrm{rg}(A)=\textrm{rg}({}^tA)$).
+Comme les deuxième et troisième lignes sont linéairement indépendantes alors
+$\textrm{rg}(A)\ge 2$. 
+
+Attention : les dimensions des espaces vectoriels engendrés sont égales mais les espaces sont différents !
+  \end{itemize}
+
+  \item En utilisant la dernière méthode : le rang est exactement $2$ si la première ligne est dans le sous-espace engendré
+par les deux autres.
+Donc 
+\begin{align*}
+\textrm{rg}(A) = 2
+ & \iff (a,2,-1,b) \in \textrm{Vect} \big\{ (3,0,1,-4), (5,4,-1,2) \big\} \\
+ & \iff \exists \lambda,\mu \in \Rr \quad (a,2,-1,b) = \lambda (3,0,1,-4) + \mu(5,4,-1,2) \\
+ & \iff \exists \lambda,\mu \in \Rr \quad 
+\left\{
+\begin{array}{rcl}
+3\lambda+5\mu &=& a \\
+4\mu &=& 2 \\
+\lambda-\mu &=& -1 \\
+-4\lambda+2\mu &=& b \\
+\end{array}
+\right. 
+ \iff  \left\{
+\begin{array}{rcl}
+\lambda &=& -\frac12 \\
+\mu &=& \frac12 \\
+a &=& 1 \\
+b &=& 3 \\
+\end{array} 
+\right.\\  
+\end{align*}
+Conclusion la rang de $A$ est $2$ si $(a,b)=(1,3)$. Sinon le rang de $A$ est $3$.
+\end{enumerate}
+
+\fincorrection
+\correction{001099}
+\begin{enumerate}
+  \item 
+  \begin{enumerate}
+     \item Commençons par des remarques élémentaires : la matrice est non nulle donc $\textrm{rg}(A) \ge 1$
+et comme il y a $p=4$ lignes et $n=3$ colonnes alors $\textrm{rg}(A) \le \min(n,p)=3$.
+
+     \item Ensuite on va montrer $\textrm{rg}(A) \ge 2$ en effet le sous-déterminant $2\times 2$ 
+(extrait du coin en haut à gauche) :
+$\begin{vmatrix} 
+1 & 2 \cr
+3 & 4 \cr
+\end{vmatrix}= -2$ est non nul.
+
+     \item Montrons que $\textrm{rg}(A)=2$. Avec les déterminants il faudrait vérifier que pour toutes
+les sous-matrices $3\times 3$ les déterminants sont nuls. Pour éviter de nombreux calculs on remarque ici
+que les colonnes sont liées par la relation $v_2=v_1+v_3$. Donc $\textrm{rg}(A)=2$.
+
+     \item L'application linéaire associée à la matrice $A$ est l'application 
+$f_A : \Rr^3 \to \Rr^4$. Et le théorème du rang 
+$\dim \Ker f_A+ \dim \Im f_A = \dim \Rr^3$ donne ici
+$\dim \Ker f_A = 3 - \textrm{rg}(A)=1$.
+
+Mais la relation $v_2=v_1+v_3$ donne immédiatement un élément du noyau :
+en écrivant $v_1-v_2+v_3=0$ alors $A\begin{pmatrix}1\\-1\\1\end{pmatrix}=\begin{pmatrix}0\\0\\0\end{pmatrix}$
+Donc $\begin{pmatrix}1\\-1\\1\end{pmatrix} \in \Ker f_A$. Et comme le noyau est de dimension $1$ alors
+$$\Ker f_A = \textrm{Vect} \begin{pmatrix}1\\-1\\1\end{pmatrix}$$
+
+     \item Pour un base de l'image, qui est de dimension $2$, 
+     il suffit par exemple de prendre les deux premiers vecteurs colonnes de la matrice $A$ (ils sont clairement non colinéaires) :
+$$\Im f_A = \textrm{Vect} \left\{ v_1, v_2 \right\} = 
+\textrm{Vect} \left\{  \begin{pmatrix}1\\3\\5\\7\end{pmatrix},  \begin{pmatrix}1\\1\\1\\1\end{pmatrix} \right\}
+$$
+
+  \end{enumerate}
+
+
+  \item On fait le même travail avec $B$ et $f_B$.
+  \begin{enumerate}
+     \item Matrice non nulle avec $4$ lignes et $4$ colonnes donc $1 \le \textrm{rg}(B) \le 4$.
+
+     \item Comme le sous-déterminant (du coin supérieur gauche)
+$\begin{vmatrix} 
+2 & 2 \cr
+4 & 3 \cr
+\end{vmatrix}= -2$ est non nul alors $\textrm{rg}(B) \ge 2$.
+
+     \item Et pareil avec le sous-déterminant $3\times 3$ :
+$$\begin{vmatrix} 
+2 & 2 & -1 \cr
+4 & 3 & -1 \cr
+0 & -1 & 2 \cr
+\end{vmatrix} = -2$$
+qui est non nul donc $\textrm{rg}(B) \ge 3$.
+
+     \item Maintenant on calcule le déterminant de la matrice $B$ et 
+on trouve $\det B = 0$, donc $\textrm{rg}(B) < 4$. Conclusion $\textrm{rg}(B) = 3$.
+Par le théorème du rang alors $\dim \Ker f_B=1$.
+
+
+
+     \item Cela signifie que les colonnes (et aussi les lignes) sont liées, comme il n'est pas clair
+de trouver la relation à la main on résout le système $B X = 0$ pour trouver cette relation ; autrement dit :
+$$\begin{pmatrix} 
+2 & 2 & -1 & 7  \cr
+4 & 3 & -1 & 11 \cr
+0 & -1 & 2 & -4 \cr
+3 & 3 & -2 & 11 \cr 
+\end{pmatrix}
+\cdot 
+\begin{pmatrix} x\\y\\z\\t \end{pmatrix} = 
+\begin{pmatrix} 0\\0\\0\\0 \end{pmatrix}
+\text{ ou encore }
+\left\{ 
+\begin{array}{rcl}
+2x + 2y -z + 7t  &=& 0  \cr
+4x + 3y -z + 11t &=& 0 \cr
+     -y +2z -4t  &=& 0  \cr
+3x + 3y -2z+ 11t &=& 0  \cr   
+\end{array}
+\right.$$
+Après résolution de ce système on trouve que 
+les solutions s'écrivent $(x,y,z,t)= (-\lambda,-2\lambda,\lambda,\lambda)$.
+Et ainsi 
+$$\Ker f_B = \textrm{Vect} \begin{pmatrix}-1\\-2\\1\\1\end{pmatrix}$$
+Et pour une base de l'image il suffit, par exemple, de prendre les $3$ premiers vecteurs colonnes $v_1,v_2,v_3$ 
+de la matrice $B$, car ils sont linéairement indépendants :
+$$\Im f_B = \textrm{Vect} \left\{ v_1, v_2, v_3 \right\} = 
+\textrm{Vect} \left\{  
+\begin{pmatrix}2\\4\\0\\3\end{pmatrix},  
+\begin{pmatrix}2\\3\\-1\\3\end{pmatrix},
+\begin{pmatrix}-1\\-1\\2\\-2\end{pmatrix} 
+\right\}
+$$
+
+  \end{enumerate}
+\end{enumerate}
+
+
+\fincorrection
+\correction{001093}
+\begin{enumerate}
+  \item Nous devons montrer $\Ker f \cap \Im f = \{0\}$ et 
+$\Ker f + \Im f = E$.
+  \begin{enumerate}
+     \item Si $x \in \Ker f \cap \Im f$ alors d'une part $f(x)=0$ et d'autre part il existe $x'\in E$ tel que 
+$x=f(x')$. Donc $0=f(x)=f\big(f(x')\big)= f(x')=x$ donc $x=0$ (on a utilisé $f\circ f=f$). 
+Donc $\Ker f \cap \Im f = \{0\}$.
+
+     \item Pour $x\in E$ on le réécrit $x=x-f(x) + f(x)$. Alors $x-f(x) \in \Ker f$ 
+(car $f\big(x-f(x) \big)=f(x)-f\circ f (x)=0$)
+et $f(x)\in \Im f$. Donc $x \in \Ker f + \Im f$. Donc $\Ker f + \Im f = E$.
+
+     \item Conclusion  : $E= \Ker f \oplus \Im f$.
+  \end{enumerate}
+
+  \item Notons $r$ le rang de $f$ : $r=\dim \Im f$.
+Soit $\{e_1,\ldots,e_r\}$ une base de $\Im f$ et 
+soit $\{e_{r+1},\ldots, e_n\}$ une base de $\Ker f$.
+Comme 
+$E= \Ker f \oplus \Im f$ alors
+$(e_1,\ldots ,e_n)$ est une base de $E$.
+Pour $i > r$ alors $e_i \in \Ker f$ donc $f(e_i)=0$.
+
+Comme $f\circ f=f$ alors pour n'importe quel $x\in \Im f$ on a $f(x)=x$ :
+en effet comme $x\in \Im f$, il existe $x'\in E$ tel que $x=f(x')$ 
+ainsi $f(x)=f\big(f(x')\big)=f(x')=x$. En particulier si $i\le r$ alors
+$f(e_i)=e_i$.
+
+  \item La matrice de $f$ dans la base $(e_1,\ldots,e_n)$ est donc :
+$$\begin{pmatrix}
+  I & (0) \\
+  (0) & (0) \\  
+  \end{pmatrix}$$
+où $I$ désigne la matrice identité de taille $r\times r$
+et les $(0)$ désignent des matrices nulles.
+
+\end{enumerate}
+
+\fincorrection
+\correction{002475}
+\begin{enumerate}
+  \item Soit $M$ une matrice telle que $M^2=0$ et soit $f$ l'application linéaire associée à $M$.
+Comme $M^2=0$ alors $f\circ f = 0$. Cela entraîne $\Im f \subset \Ker f$. Discutons suivant la dimension
+du noyau :
+   \begin{enumerate}
+      \item Si $\dim \Ker f=3$ alors $f=0$ donc $M=0$ (la matrice nulle).
+
+      \item Si $\dim \Ker f=2$ alors prenons une base de $\Rr^3$ formée de deux vecteurs du noyau et d'un troisième vecteur.
+Dans cette base la matrice de $f$ est
+$M'=\begin{pmatrix}0&0&a\\0& 0 & b\\0&0&c\end{pmatrix}$ mais comme $f\circ f=0$ alors $M'^2=0$ ;
+un petit calcul implique $c=0$. Donc $M$ et $M'$ sont les matrices de la même application linéaire $f$ mais exprimées dans des bases différentes,
+donc $M$ et $M'$ sont semblables.
+
+      \item Si $\dim \Ker f=1$ alors comme $\Im f \subset \Ker f$ on a $\dim \Im f \le 1$ mais alors cela contredit le théorème
+du rang : $\dim \Ker f + \dim \Im f = \dim \Rr^3$. Ce cas n'est pas possible.
+
+      \item Conclusion : $M$ est une matrice qui vérifie $M^2=0$ si et seulement si 
+il existe une matrice inversible $P$ et des réels $a,b$ tels que 
+$$M=P^{-1} \begin{pmatrix}0&0&a\\0& 0 & b\\0&0&0\end{pmatrix}P$$
+
+   \end{enumerate}
+
+  \item On va s'aider de l'exercice \ref{exo1093}. Si $M^2=M$ et $f$ est l'application linéaire associée 
+alors $f\circ f= f$. On a vu dans l'exercice \ref{exo1093} qu'alors $\Ker f \oplus \Im f$
+et que l'on peut choisir une base $(e_1,e_2,e_3)$ telle que $f(e_i)=e_i$ 
+puis $f(e_i)=0$. Suivant la dimension du noyau cela donne que la matrice $M'$ de $f$ dans cette base est
+$$A_0=\begin{pmatrix}0&0&0\\0&0&0\\0&0&0\end{pmatrix}\quad
+A_1=\begin{pmatrix}1&0&0\\0&0&0\\0&0&0\end{pmatrix} \quad 
+A_2=\begin{pmatrix}1&0&0\\0&1&0\\0&0&0\end{pmatrix} \quad 
+A_3=\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}.$$
+Maintenant $M$ est semblable à l'une de ces matrices : il existe $P$ inversible telle que $M=P^{-1}M'P$
+où $M'$ est l'une des quatre matrices $A_i$ ci-dessus.
+
+Géométriquement notre application est une projection (projection sur une droite pour la seconde matrice 
+et sur un plan pour la troisième).
+
+  \item Posons $N= \frac{I+M}{2}$ et donc $M=2N-I$.
+  Alors $M^2=I \iff (2N-I)^2=I \iff 4N^2-4N-I=I \iff N^2=N$.
+  Donc par la deuxième question $N$ est semblable à l'une des matrice $A_i$ :
+  $N= P^{-1}A_iP$.
+  Donc $M=2P^{-1}A_iP-I = P^{-1}(2A_i-I)P$.
+  Ainsi $M$ est semblable à l'une des matrices $2A_i-I$ suivantes :
+$$\begin{pmatrix}-1&0&0\\0&-1&0\\0&0&-1\end{pmatrix}\quad
+\begin{pmatrix}1&0&0\\0&-1&0\\0&0&-1\end{pmatrix} \quad 
+\begin{pmatrix}1&0&0\\0&1&0\\0&0&-1\end{pmatrix} \quad 
+\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}.$$  
+Ce sont des matrices de symétrie (par rapport à l'origine pour la première matrice, par rapport à une droite pour la seconde matrice 
+et par rapport à un plan pour la troisième).
+
+L'idée de poser $N= \frac{I+M}{2}$ est la suivante : si $M^2=I$ alors géométriquement l'application
+linéaire $s$ associée à $M$ est une \emph{symétrie}, alors que si $N^2=N$ alors l'application
+linéaire $p$ associée est une \emph{projection}. Et projection et symétrie sont liées par $p(x) =\frac{x+s(x)}{2}$ 
+(faites un dessin !) c'est-à-dire $p =\frac{\text{id}+s}{2}$ ou encore $N= \frac{I+M}{2}$.
+
+
+\end{enumerate}
+
+\fincorrection
+\correction{001094}
+\begin{enumerate}
+  \item Il est facile de voir que $f(\lambda P + \mu Q) = \lambda f(P)+\mu f(Q)$ donc $f$ est linéaire,
+de plus, $P$ étant un polynôme de degré $\le n$ alors $f(P)$ aussi.
+
+  \item Pour $n=3$ on calcule l'image de chacun des éléments de la base :
+$$f(1)=1+1-2=0,\quad f(X)=(X+1)+(X-1)-2X=0,$$
+$$f(X^2)=(X+1)^2+(X-1)^2-2X^2=2,
+\quad f(X^3)=(X+1)^3+(X-1)^3-2X^3=6X.$$
+Donc la matrice de $f$ dans la base $(1, X, X^2, X^3)$ est
+$$\begin{pmatrix}
+0 & 0 & 2 & 0 \\
+0 & 0 & 0 & 6 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\     
+  \end{pmatrix}$$
+
+Pour le cas général on calcule 
+\begin{align*}
+f(X^p)
+ &=(X+1)^p+(X-1)^p-2X^p \\
+ &= \sum_{k=1}^p \binom{p}{k}X^k + \sum_{k=1}^p \binom{p}{k}X^k(-1)^{p-k} -2X^p\\
+ &= \sum_{p-k \text{ pair et } k<p} 2\binom{p}{k}X^k  
+\end{align*}
+
+Donc la matrice est 
+$$\begin{pmatrix} 
+0 & 0 & 2\binom{2}{0} & 0             & \cdots & 2\binom{p}{0} & 0               &        \\
+  & 0 & 0             & 2\binom{3}{1} &        & 0             & 2\binom{p+1}{1} &        \\
+  &   & 0             & 0             & \cdots & 2\binom{p}{2} & 0               &        \\
+  &   &               & 0             &        & 0             & 2\binom{p+1}{3} & \vdots \\  
+  &   &               &               & \ddots & \vdots        & 0               &        \\
+  &   &               &               &        & 0             & \vdots          &        \\
+  &   &               &               &        &               & 0               &        \\
+  &   &               &               &        &               &                 & 0      \\
+  \end{pmatrix}$$
+Dans cet exemple de matrice, $p$ est pair.
+Chaque colonne commence en alternant une valeur nulle/une valeur non-nulle 
+jusqu'à l'élément diagonal (qui est nul).
+
+
+  \item Nous savons que $f(1)=0$ et $f(X)=0$ donc $1$ et $X$ sont dans le noyau $\Ker f$.
+Il est aussi clair que les colonnes de la matrices $f(X^2),\cdots, f(X^n)$ sont linéairement indépendantes
+(car la matrice est échelonnée). Donc $\Im f = \textrm{Vect}\{f(X^2),f(X^3),\ldots,f(X^n)\}$ 
+et $\dim \Im f = n-1$.
+
+Par la formule du rang $\dim \Ker f + \dim \Im f = \dim \Rr_n[X]$ donc
+$\dim \Ker f = 2$. Comme nous avons déjà deux vecteurs du noyau alors 
+$\Ker f =  \textrm{Vect}\{1,X\}$.
+
+   \item 
+   \begin{enumerate}
+      \item Soit $Q \in \Im f$. Il existe donc $R\in\Rr_n[X]$ tel que $f(R)=Q$.
+On pose ensuite $P(X)=R(X)-R(0)-R'(0)X$.
+On a tout fait pour que $P(0)=0$ et $P'(0)=0$.
+De plus par la linéarité de $f$ et son noyau alors
+$$f(P)= f\big( R(X)-R(0)-R'(0)X\big) = f\big( R(X)\big)-R(0)f(1) -R'(0)f(X)=f(R)=Q.$$
+Donc notre polynôme $P$ convient.
+
+      \item Montrons l'unicité. Soient $P$ et $\tilde P$ tels que $f(P)=f(\tilde P)=Q$
+avec $P(0)=P'(0)=0 = \tilde P(0)=\tilde P'(0)$.
+Alors  $f(P-\tilde P) = Q-Q=0$ donc $P-\tilde P \in \Ker f = \textrm{Vect}\{1,X\}$.
+Ainsi $P-\tilde P$ s'écrit $P-\tilde P = aX+b$. Mais comme $(P-\tilde P)(0)=0$ alors 
+$b=0$, et comme  $(P-\tilde P)'(0)=0$ alors $a=0$. Ce qui prouve $P = \tilde P$.
+
+    \end{enumerate}
+\end{enumerate}
+\fincorrection
+\correction{002442}
+\begin{enumerate}
+  \item Notons $C=AB$ et $D=BA$.
+Alors par la définition du produit de matrice :
+$$c_{ij}=\sum_{1\le k \le n} a_{ik}b_{kj} \quad \text{ donc } c_{ii}=\sum_{1\le k \le n} a_{ik}b_{ki}$$
+Ainsi 
+$$\textrm{tr}(AB) = \textrm{tr}\, C = \sum_{1\le i \le n} c_{ii} = \sum_{1\le i \le n} \sum_{1\le k \le n} a_{ik}b_{ki}$$
+
+De même $$\textrm{tr}(BA) = \textrm{tr}\, D = \sum_{1\le i \le n} \sum_{1\le k \le n} b_{ik}a_{ki}$$
+Si dans cette dernière formule on renomme l'indice $i$ en $k$ et l'indice $k$ en $i$ (ce sont des variables muettes 
+donc on leur donne le nom qu'on veut) alors on obtient :
+$$\textrm{tr}(BA) =\sum_{1\le k \le n} \sum_{1\le i \le n} b_{ki}a_{ik} =  \sum_{1\le i \le n}\sum_{1\le k \le n} a_{ik}b_{ki} =\textrm{tr}(AB)$$
+
+  \item $M$ et $M'$ sont semblables donc il existe une matrice de passage $P$ telle que $M'=P^{-1}MP$ donc
+$$\textrm{tr}\, M' = \textrm{tr}\big( P^{-1}(MP) \big) = \textrm{tr}\big( (MP)P^{-1} \big) = \textrm{tr} ( M I ) = \textrm{tr}\, M$$
+
+  \item La trace a aussi la propriété évidente que 
+$$\textrm{tr}(A+B)=\textrm{tr}\,A+\textrm{tr}\,B.$$
+
+Fixons une base de $E$. Notons $A$ la matrice de $f$ dans cette base et $B$ la matrice de $g$ dans cette même base.
+Alors $AB$ est la matrice de $f\circ g$ et $BA$ est la matrice de $g\circ f$.
+Ainsi la matrice de $f\circ g - g\circ f$ est $AB-BA$
+Donc
+$$\textrm{tr}(f\circ g - g\circ f)= \textrm{tr}(AB-BA) = \textrm{tr}(AB)-\textrm{tr}(BA)=0.$$
+\end{enumerate}
+
+
+\fincorrection
+
+
+\end{document}
+

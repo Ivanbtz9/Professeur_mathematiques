@@ -1,0 +1,116 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 1047
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Trouver une base orthonormale
+\vskip0.2cm
+Déterminer une base orthonormale de $\mathbb R_2[X]$ muni du produit scalaire 
+$$\langle P,Q\rangle=\int_{-1}^1 P(t)Q(t)dt.$$
+
+
+% Exercice 2615
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Projection dans un espace de matrices
+\vskip0.2cm
+Soit $E=\mathcal M_2(\mathbb R)$ que l'on munit du produit scalaire
+$$\langle M,N\rangle=\textrm{Tr}(M^TN).$$
+On pose $F=\left\{\begin{pmatrix}
+                         a&b\\
+                         -b&a
+                        \end{pmatrix};\ (a,b)\in\mathbb R^2\right\}.$
+\begin{enumerate}
+ \item Déterminer une base orthonormée de $F^\perp$.
+ \item Calculer la projection de $J=\begin{pmatrix}1&1\\
+                                     1&1
+                                    \end{pmatrix}$
+sur $F^\perp$.
+\item Calculer la distance de $J$ à $F.$
+\end{enumerate}
+
+
+% Exercice 1714
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Méthode des moindres carrés
+\vskip0.2cm
+Soit $n$ et $p$ deux entiers naturels avec $p\leq n$. On munit $\mathbb R^n$ du produit scalaire canonique et on identifie $\mathbb R^n$ avec $\mathcal M_{n,1}(\mathbb R)$. On considère une matrice $A\in\mathcal M_{n,p}(\mathbb R)$ de rang $p$ et $B\in\mathcal M_{n,1}(\mathbb R)$. 
+\begin{enumerate}
+\item Démontrer qu'il existe une unique matrice $X_0$ de $\mathcal M_{p,1}(\mathbb R)$ telle que 
+$$\|AX_0-B\|=\inf\{\|AX-B\|;\ X\in\mathcal M_{p,1}(\mathbb R)\}.$$
+\item Montrer que $X_0$ est l'unique solution de 
+$$A^T AX=A^T B.$$
+\item Application : déterminer 
+$$\inf\{(x+y-1)^2+(x-y)^2+(2x+y+2)^2;\ (x,y)\in\mathbb R^2\}.$$
+\end{enumerate}
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=29269
+\end{document}

@@ -1,0 +1,807 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00018, bodin, 2007/09/01} 
+
+\titre{Applications linéaires}
+
+\renewcommand{\ker}{\mathop{\mathrm{Ker}}\nolimits}
+
+\section{Définition}          
+\exercice{929, legall, 1998/09/01}
+\video{4CS7MiS5AQA}
+\enonce{000929}{}
+D\'eterminer si les applications $f_{i}$ suivantes sont lin\'eaires :
+$$\begin{array}{rl}
+f_1 : \Rr^2 \to \Rr^2 & f_1(x,y)=(2x+y,x-y)  \\
+f_2 : \Rr^3 \to \Rr^3 & f_2(x,y,z)=(xy,x,y) \\
+f_3 : \Rr^3 \to \Rr^3 & f_3(x,y,z)=(2x+y+z,y-z,x+y) \\
+f_4 : \Rr^2 \to \Rr^4 & f_4(x,y)=(y,0,x-7y,x+y) \\
+f_5 : \Rr_3[X] \to \Rr^3 & f_5(P) = \big( P(-1), P(0), P(1) \big) \\
+\end{array}
+$$
+\finenonce{000929} 
+
+
+\finexercice
+\exercice{930, legall, 1998/09/01}
+\video{EQJ4bUFDuiQ}
+\enonce{000930}{}
+Soit $E$ un espace vectoriel de dimension $n$ et
+$\phi $  une application lin\'eaire de  $E$  dans lui-m\^eme telle que  $\phi ^n=0$  et
+$\phi ^{n-1}\not = 0$.
+Soit  $x\in E$  tel que  $\phi ^{n-1}(x )\not = 0$. Montrer que la
+famille  $\{ x,\phi(x),\phi^2(x), \ldots ,\phi ^{n-1}(x)\} $  est une base de $E$.
+
+\finenonce{000930} 
+
+
+\finexercice
+
+\section{Image et noyau}
+\exercice{934, cousquer, 2003/10/01}
+\video{pNH1v_tXHvg}
+\enonce{000934}{}
+Soit $E$ un espace vectoriel et soient $E_1$ et $E_2$ deux sous-espaces vectoriels de dimension finie
+de $E$, on d\'efinit l'application $f\colon E_1\times E_2 \to E$ par $f(x_1,x_2)=x_1+x_2$.
+\begin{enumerate}
+\item Montrer que $f$ est lin\'eaire.
+\item D\'eterminer le noyau et l'image de $f$.
+\item Que donne le th\'eor\`eme du rang ?
+\end{enumerate}
+
+\finenonce{000934} 
+
+
+\finexercice
+\exercice{943, legall, 1998/09/01}
+\video{yGZYazY1EhM}
+\enonce{000943}{}
+Soit $E$  un espace vectoriel de dimension  $n$
+et $f$ une application lin\' eaire de  $E$  dans lui-m\^eme.
+Montrer que les deux assertions qui suivent sont \' equivalentes :
+\begin{enumerate}
+\item[(i)] $\ker f = \Im f$
+\item[(ii)] $f^2=0 \ \text{ et } \  n=2\cdot \text{rg}(f)$
+\end{enumerate}
+\finenonce{000943}
+ 
+
+\finexercice
+\exercice{947, ridde, 1999/11/01}
+\video{qUT7yUQxk4w}
+\enonce{000947}{}
+Soient $f$ et $g$ deux endomorphismes de $E$ tels que $f \circ g = g \circ f$.
+Montrer que $\ker f$ et $\Im f$ sont stables par $g$.
+\finenonce{000947} 
+
+
+\finexercice
+\exercice{1027, ridde, 1999/11/01}
+\video{GU9xDUgfz48}
+\enonce{001027}{}
+Soit $E$ et $F$ de dimensions finies et $u, v \in \mathcal{L} (E, F)$.
+\begin{enumerate}
+\item Montrer que $\text{rg} (u + v) \leq \text{rg} (u) + \text{rg} (v)$.
+\item En d\'eduire que $\left|\text{rg} (u) - \text{rg} (v)\right| \leq
+\text{rg} (u + v)$.
+\end{enumerate}
+
+\finenonce{001027} 
+
+
+\finexercice
+
+\section{Injectivité, surjectivité, isomorphie}
+\exercice{956, legall, 1998/09/01}
+\video{DY3GrL-j6C4}
+\enonce{000956}{}
+Pour les applications lin\'eaires suivantes,  d\'eterminer $\ker f_i$ et 
+$\Im f_i$. En d\'eduire si $f_i$ est injective, surjective, bijective.
+$$\begin{array}{rl}
+f_1 : \Rr^2 \to \Rr^2 & f_1(x,y)=(2x+y,x-y)  \\
+f_2 : \Rr^3 \to \Rr^3 & f_2(x,y,z)=(2x+y+z,y-z,x+y) \\
+f_3 : \Rr^2 \to \Rr^4 & f_3(x,y)=(y,0,x-7y,x+y) \\
+f_4 : \Rr_3[X] \to \Rr^3 & f_4(P) = \big( P(-1), P(0), P(1) \big) \\
+\end{array}
+$$
+\finenonce{000956} 
+
+
+\finexercice
+\exercice{954, cousquer, 2003/10/01}
+\video{nAFU6wBhyrE}
+\enonce{000954}{}
+ Soit $E$ un espace vectoriel de dimension $3$, $\{e_1,e_2,e_3\}$ une base
+de $E$, et $t$ un param\`etre r\'eel. \\
+D\'emontrer que la donn\'ee de
+$\left\{
+\begin{array}{rcl}
+    \phi(e_1) & = & e_1+e_2  \\
+    \phi(e_2) & = & e_1-e_2  \\
+    \phi(e_3) & = & e_1+t e_3
+\end{array}\right.$
+d\'efinit une application lin\'eaire
+$\phi$ de $E$ dans $E$. \'Ecrire le transform\'e du vecteur 
+$x=\alpha_1e_1+\alpha_2e_2+\alpha_3e_3$. Comment choisir $t$ pour que 
+$\phi$ soit injective ? surjective ?
+\finenonce{000954} 
+
+
+\finexercice
+\exercice{963, legall, 1998/09/01}
+\video{ZIq3tKZZgfg}
+\enonce{000963}{}
+Soit  $E$  et  $F$  deux espaces vectoriels de dimension finie
+et  $\phi $  une application lin\' eaire  de  $E$  dans  $F$.
+Montrer que  $\phi $  est un isomorphisme si et seulement si l'image par  $\phi $  de
+toute base de  $E$  est une base de  $F$.
+\finenonce{000963} 
+
+
+\finexercice
+
+\section{Morphismes particuliers}
+\exercice{974, gourio, 2001/09/01}
+\video{6N7D6lPLPHc}
+\enonce{000974}{}
+Soit $E$ l'espace vectoriel des fonctions de $\Rr$ dans $\Rr$. Soient $P$ le
+sous-espace des fonctions paires et $I$ le sous-espace des fonctions
+impaires. Montrer que $E=P\bigoplus I$. Donner l'expression du projecteur sur
+$P$ de direction $I$.
+
+\finenonce{000974} 
+
+
+\finexercice
+\exercice{959, legall, 1998/09/01}
+\video{ce0mL82x6Y0}
+\enonce{000959}{}
+Soit $E = \Rr_n[X]$ et soient $A$ et $B$ deux polyn\^omes \`a coefficients réels de
+degr\'e $n+1$. On consid\`ere l'application $f$ qui \`a tout polyn\^ome $P$ de $E$, associe
+le reste de la division euclidienne de $AP$ par $B$.
+\begin{enumerate}
+    \item Montrer que $f$ est un endomorphisme de $E$.
+    \item Montrer l'\'equivalence
+$$
+f \hbox{ est bijective} \Longleftrightarrow \hbox{$A$ et $B$ sont premiers entre eux}.
+$$
+\end{enumerate}
+\finenonce{000959} 
+
+
+\finexercice
+\exercice{976, gourio, 2001/09/01}
+\video{yivtpWQkPFg}
+\enonce{000976}{}
+Soit $E={\Rr}_{n}[X]$ l'espace vectoriel des polyn\^{o}mes de degr\'{e} $%
+\leq n$, et $f:E\rightarrow E$ d\'{e}finie par:
+$$f(P)=P+(1-X)P'. $$
+Montrer que $f$ est une application linéaire et donner une base de $\Im f$ et de $\ker f.$
+\finenonce{000976} 
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\indication{000929}
+Une seule application n'est pas lin\'eaire.
+\finindication
+\indication{000930}
+Prendre une combinaison lin\'eaire nulle et l'\'evaluer par $\phi^{n-1}$.
+\finindication
+\indication{000934}
+Faire un dessin de l'image et du noyau pour $f: \Rr\times \Rr \longrightarrow \Rr$.
+Montrer que le noyau est isomorphe à $E_1 \cap E_2$.
+\finindication
+\indication{000943}
+Pour chacune des implications utiliser la formule du rang.
+\finindication
+\indication{000947}
+Dire qu'un sous-espace $F$ est stable par $g$ signifie que $g(F) \subset F$.
+\finindication
+\noindication
+\noindication
+\indication{000954}
+$t=0$ est un cas à part.
+\finindication
+\indication{000963}
+Pour une base $\mathcal{B} =\{ e_1, \ldots , e_n \}$ de $E$ considérer la famille 
+$\{ \phi (e_1), \ldots, \phi (e_n) \} $.
+\finindication
+\indication{000974}
+Pour une fonction $f$ on peut \'ecrire 
+$$f(x)= \frac{f(x)+f(-x)}{2}+\frac{f(x)-f(-x)}{2}.$$
+
+Le projecteur sur $P$ de direction $I$ est l'application $\pi : E \longrightarrow E$
+qui vérifie $\pi(f)\in P$, $\pi \circ \pi = \pi$ et $\ker \pi = I$.
+\finindication
+\indication{000959}
+Résultats utiles d'arithmétique des polynômes : la division euclidienne, le théorème de Bézout,
+le lemme de Gauss.
+\finindication
+\indication{000976}
+$P'$ désigne la dérivée de $P$.
+Pour trouver le noyau, résoudre une équation différentielle.
+Pour l'image calculer les $f(X^k)$.
+\finindication
+
+
+\newpage
+
+\correction{000929}
+\begin{enumerate}
+  \item $f_1$ est linéaire. Pour $(x,y) \in \Rr^2$ et $(x',y')\in \Rr^2$ :
+\begin{align*}
+f_1\big( (x,y)+(x',y') \big) 
+  & = f_1\big( x+x',y+y' \big) \\
+  & = \big(2(x+x')+ (y+y'), (x+x')-(y+y') \big) \\
+  & = \big(2x+y +2x'+y', x-y+x'-y' \big) \\
+  & = \big(2x+y,x-y \big) + \big(2x'+y',x'-y' \big) \\
+  & = f_1(x,y)+f_1(x',y')
+\end{align*}
+
+Pour $(x,y)\in \Rr^2$ et $\lambda\in \Rr$ :
+$$f_1\big( \lambda \cdot (x,y)\big) = f_1\big(\lambda x,\lambda y\big)
+ = \big( 2\lambda x+\lambda y,\lambda x - \lambda y \big) = \lambda \cdot\big(2x+y,x-y \big) 
+= \lambda \cdot f_1(x,y).$$
+
+  \item $f_2$ n'est pas lin\'eaire, en effet par exemple $f_2(1,1,0)+f_2(1,1,0)$ n'est pas \'egal \`a $f_2(2,2,0)$.
+
+  \item $f_3$ est linéaire : il faut vérifier d'abord que pour tout $(x,y,z)$ et $(x',y',z')$ alors
+$f_3\big( (x,y,z) + (x',y',z') \big) = f_3(x,y,z)+f_3(x',y',z')$. Et ensuite que pour tout $(x,y,z)$ et $\lambda$
+on a $f_3\big(\lambda\cdot(x,y,z) \big) = \lambda \cdot f_3(x,y,z)$.
+
+
+  \item $f_4$ est linéaire : il faut vérifier d'abord que pour tout $(x,y)$ et $(x',y')$ alors
+$f_4\big( (x,y) + (x',y') \big) = f_4(x,y)+f_4(x',y')$. Et ensuite que pour tout $(x,y)$ et $\lambda$
+on a $f_4\big(\lambda\cdot(x,y) \big) = \lambda \cdot f_4(x,y)$.
+
+  \item $f_5$ est lin\'eaire : soient $P,P' \in \Rr_3[X]$ alors 
+
+\begin{align*}
+f_5\big(P+P'\big) 
+  & = \big( (P+P')(-1), (P+P')(0), (P+P')(1) \big) \\
+  & = \big( P(-1)+P'(-1), P(0)+P'(0), P(1)+P'(1) \big) \\
+  & = \big( P(-1), P(0), P(1) \big)  + \big( P'(-1), P'(0), P'(1) \big) \\
+  & = f_5(P)+f_5(P')  \\
+\end{align*}
+
+Et si $P\in \Rr_3[X]$ et $\lambda \in \Rr$ :
+\begin{align*}
+f_5\big( \lambda \cdot P\big) 
+  & =  \big( (\lambda P)(-1), (\lambda P)(0), (\lambda P)(1) \big) \\
+  & = \big( \lambda \times P(-1), \lambda \times P(0), \lambda \times P(1) \big) \\
+  & = \lambda \cdot \big( P(-1), P(0), P(1) \big) \\
+  & = \lambda \cdot f_5(P) \\
+\end{align*}
+\end{enumerate}
+\fincorrection
+\correction{000930}
+Montrons que la famille  $\{ x,\phi(x),\phi^2(x), \ldots , \phi ^{n-1}(x) \}$ est
+libre. Soient  $\lambda _0, \ldots , \lambda _{n-1} \in {\R}$ tels
+que  $\lambda _0 x + \lambda_1\phi(x)+\cdots + \lambda _{n-1} \phi ^{n-1}(x)=0$.
+Alors : $\phi ^{n-1} \big(\lambda _0 x+ \lambda_1\phi(x) + \cdots + \lambda _{n-1}
+\phi ^{n-1}(x)\big)=0$. Mais comme de plus $\phi ^n=0 $, on a
+l'\'egalit\'e $\phi ^{n-1} \big(\lambda _0 x+ \lambda_1\phi(x) + \cdots + \lambda
+_{n-1} \phi ^{n-1}(x)\big)=\phi ^{n-1} (\lambda _0 x ) + \phi
+^n \big(\lambda _1 x+ \cdots + \lambda _{n-1} \phi
+^{n-2}(x)\big)= \phi ^{n-1}(\lambda _0x)=\lambda _0 \phi ^{n-1}(x)$. Comme  $\phi
+^{n-1}(x) \not= 0$  on obtient  $\lambda _0=0$.
+
+\noindent En calculant ensuite  $\phi ^{n-2}\big(\lambda _1 \phi
+(x )+ \cdots + \lambda _{n-1} \phi ^{n-1}(x)\big)$  on obtient
+$\lambda _1=0$  puis, de proche en proche,  $\lambda_2=2$,\ldots, $\lambda _{n-1}=0$. 
+La famille  $\{ x, \phi(x), \ldots , \phi
+^{n-1}(x) \}$  est donc libre. En plus elle compte  $n$  vecteurs, comme
+$\dim E=n$  elle est libre et maximale et forme donc une base
+de $E$.
+\fincorrection
+\correction{000934}
+\begin{enumerate}
+  \item Aucun problème...
+  \item Par d\'efinition de $f$ et de ce qu'est la somme de deux sous-espaces vectoriels, l'image est
+$$\Im f =  \{ f(x_1,x_2) \mid x_1 \in E_1, x_2\in E_2 \} = \{ x_1+x_2 \mid x_1 \in E_1, x_2\in E_2 \} = E_1 + E_2.$$
+
+Pour le noyau :
+$$\ker f = \{ (x_1,x_2) \mid f(x_1,x_2)=0 \} = \{ (x_1,x_2) \mid x_1+x_2=0 \}$$
+
+Mais on peut aller un peu plus loin. En effet un \'el\'ement $(x_1,x_2) \in \ker f$,
+v\'erifie $x_1\in E_1$, $x_2\in E_2$ et $x_1=-x_2$. Donc $x_1 \in E_2$. Donc $x_1\in E_1 \cap E_2$.
+R\'eciproquement si $x\in E_1 \cap E_2$, alors $(x,-x)\in \ker f$.
+Donc 
+$$\ker f = \{ (x,-x) \mid x \in  E_1 \cap E_2 \}. $$
+De plus l'application $x \mapsto (x,-x)$ montre que $\ker f$ est isomorphe \`a $E_1 \cap E_2$.
+
+\item Le th\'eor\`eme du rang s'\'ecrit :
+$$\dim \ker f+ \dim \Im f = \dim (E_1\times E_2).$$
+Compte tenu de  l'isomorphisme entre $\ker f$ et $E_1 \cap E_2$ on obtient :
+$$\dim (E_1 \cap E_2) + \dim (E_1+E_2) = \dim (E_1\times E_2).$$
+Mais $\dim (E_1\times E_2) = \dim E_1 + \dim E_2$, donc on retrouve ce que l'on appelle le th\'eor\`eme des quatre dimensions :
+$$\dim (E_1+E_2) = \dim E_1+\dim E_2-\dim (E_1 \cap E_2).$$
+
+\end{enumerate}
+\fincorrection
+\correction{000943}
+\begin{itemize}
+  \item[(i) $\Rightarrow$ (ii)] Supposons
+$\ker f = \Im f$. Soit $x\in E$, alors $f(x) \in \Im f$ donc $f(x)
+\in \ker f$, cela entraîne $f(f(x)) = 0$ ; donc $f^2=0$. De plus
+d'apr\`es la formule du rang $\dim \ker f + \text{rg}  (f) = n$, mais $\dim
+\ker f = \dim \Im f = \text{rg}  f$, ainsi $2\text{rg}  (f)=n$.
+  \item[(ii) $\Rightarrow$ (i)] Si $f^2 = 0$ alors
+$\Im f \subset \ker f$ car pour $y\in \Im f$ il existe $x$ tel que
+$y=f(x)$ et $f(y)=f^2(x)=0$. De plus si $2 \text{rg}  (f) = n$ alors la
+formule du rang donne $\dim \ker f = \text{rg}  (f)$ c'est-\`a-dire $\dim \ker f =
+\dim \Im f$. Nous savons donc que $\Im f$ est inclus dans $\ker f$
+mais ces espaces sont de m\^eme dimension donc sont \'egaux :
+$\ker f = \Im f$.
+ \end{itemize}
+\fincorrection
+\correction{000947}
+On va montrer $g(\ker f) \subset \ker f$.
+Soit $y \in g(\ker f)$. Il existe $x\in \ker f$ tel que $y=g(x)$.
+Montrons $y\in \ker f$:
+$$f(y)=f(g(x))=f\circ g (x) = g\circ f(x) = g(0)=0.$$
+
+\bigskip
+
+On fait un raisonnement similaire pour montrer $g(\Im f) \subset \Im f$.
+Soit $z\in g(\Im f)$, il existe $y \in \Im f$ tel que $z=g(y)$. Il existe alors $x\in E$ tel que $y=f(x)$.
+Donc 
+$$z=g(y)=g(f(x))=g\circ f(x)= f\circ g (x) = f(g(x)) \in \Im f.$$
+
+\fincorrection
+\correction{001027}
+\begin{enumerate}
+  \item Par la formule $\dim(G+H) = \dim(G)+\dim(H)-
+\dim(G\cap H)$, on sait que $\dim(G+H) \leqslant \dim(G)+\dim(H)$.
+Pour $G=\Im u$ et $H=\Im v$ on obtient :
+$\dim (\Im u+\Im v) \leqslant \dim \Im u +\dim \Im v$.
+Or $\Im (u+v) \subset \Im u+\Im v$.
+Donc $\text{rg} (u + v) \leq \text{rg} (u) + \text{rg} (v)$.
+  \item On applique la formule pr\'ec\'edente \`a $u+v$ et $-v$ :
+$\text{rg}  ((u+v)+(-v)) \leqslant \text{rg}  (u+v)+\text{rg} (-v)$, or $\text{rg} (-v)=\text{rg} (v)$
+donc $\text{rg} (u) \leqslant \text{rg} (u+v)+\text{rg} (v)$.
+Donc $\text{rg} (u)-\text{rg} (v)\leqslant \text{rg} (u+v)$.
+On recommence en \'echangeant $u$ et $v$ pour obtenir :
+$\left|\text{rg} (u) - \text{rg} (v)\right| \leq \text{rg} (u + v)$.
+\end{enumerate}
+\fincorrection
+\correction{000956}
+Calculer le noyau revient à résoudre un système linéaire,
+et calculer l'image aussi. On peut donc tout faire ``à la main''.
+
+Mais on peut aussi appliquer un peu de théorie ! Noyau et image sont liés par la formule du rang : 
+$\dim \ker f + \dim \Im f = \dim E$
+pour $f : E \to F$. Donc si on a trouvé le noyau alors on connaît la dimension de l'image.
+Et il suffit alors de trouver autant de vecteur de l'image.
+
+
+\begin{enumerate}
+  \item $f_1$ est injective, surjective (et donc bijective).
+
+  \begin{enumerate}
+  \item Faisons tout à la main. Calculons le noyau :
+\begin{align*}
+(x,y) \in \ker f_1
+  & \iff f_1(x,y) = (0,0) 
+  \iff (2x+y,x-y) = (0,0) \\
+  &\iff \begin{cases}
+         2x+y=0 \\
+        x-y=0 \\   
+        \end{cases}
+  \iff (x,y)=(0,0) \\
+\end{align*}
+Ainsi $\ker f_1 = \{ (0,0) \}$ et donc $f_1$ est injective.
+
+   \item Calculons l'image. Quels éléments $(X,Y)$ peuvent s'écrire $f_1(x,y)$ ?
+\begin{align*}
+f_1(x,y) = (X,Y) 
+  & \iff (2x+y,x-y) = (X,Y) \\
+  &\iff \begin{cases}
+         2x+y=X \\
+         x-y=Y \\   
+        \end{cases} 
+  \iff \begin{cases}
+         x=\frac{X+Y}{3} \\
+         y=\frac{X-2Y}{3} \\   
+        \end{cases} \\
+  & \iff (x,y)=\left(\frac{X+Y}{3},\frac{X-2Y}{3}\right) \\
+\end{align*}
+Donc pour n'importe quel $(X,Y)\in\Rr^2$ on trouve un antécédent $(x,y)=(\frac{X+Y}{3},\frac{X-2Y}{3})$
+qui vérifie donc $f_1(x,y)=(X,Y)$. Donc $\Im f_1 = \Rr^2$. Ainsi $f_1$ est surjective.
+
+  \item Conclusion : $f_1$ est injective et surjective donc bijective.
+  \end{enumerate}
+
+
+  \item 
+\begin{enumerate}
+  \item Calculons d'abord le noyau :
+\begin{align*}
+(x,y,z) \in \ker f_2
+  & \iff f_2(x,y,z) = (0,0,0) \\
+  & \iff (2x+y+z,y-z,x+y) = (0,0,0) \\
+  &\iff \begin{cases}
+         2x+y+z = 0 \\
+         y-z = 0 \\   
+         x+y = 0 \\ 
+        \end{cases} \\
+  & \iff  \begin{cases}
+         x = -z \\
+         y = z \\   
+        \end{cases} \\
+  & \iff 
+  \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}-z\\z\\z\end{pmatrix}\\ 
+  &\iff 
+  \begin{pmatrix}x\\y\\z\end{pmatrix} \in 
+  \text{Vect} \begin{pmatrix}-1\\1\\1\end{pmatrix} 
+  = \left\lbrace \lambda\begin{pmatrix}-1\\1\\1\end{pmatrix} \mid \lambda \in \Rr \right\rbrace\\ 
+\end{align*}
+Ainsi $\ker f_2 =  \text{Vect}(-1,1,1) $ et donc $f_2$ n'est pas injective.
+
+  \item Maintenant nous allons utiliser que $\ker f_2 = \text{Vect}(-1,1,1)$ , autrement dit
+$\dim  \ker f_2 = 1$.
+La formule du rang, appliquée à $f_2 : \Rr^3 \to \Rr^3$ s'écrit 
+$\dim \ker f_2 + \dim \Im f_2 = \dim \Rr^3$. Donc $\dim \Im f_2 = 2$.
+Nous allons trouver une base de $\Im f_2$. Il suffit donc de trouver deux vecteurs linéairement indépendants.
+Prenons par exemple
+$v_1 = f_2(1,0,0) =  (2,0,1) \in\Im f_2$
+et $v_2 = f_2(0,1,0) = (1,1,1) \in \Im f_2$. Par construction ces vecteurs sont dans l'image de $f_2$ et 
+il est clair qu'ils sont linéairement indépendants. Donc $\{v_1,v_2\}$ est une base de $\Im f_2$.
+
+  \item $f_2$ n'est ni injective, ni surjective (donc pas bijective).
+  \end{enumerate}
+
+
+  \item Sans aucun calcul on sait $f_3: \Rr^2 \to \Rr^4$ ne peut être surjective 
+car l'espace d'arrivée est de dimension strictement
+supérieur à l'espace de départ. 
+  \begin{enumerate}
+  \item Calculons le noyau :
+\begin{align*}
+(x,y) \in \ker f_3
+  & \iff f_3(x,y) = (0,0,0,0) \\
+  & \iff  (y,0,x-7y,x+y) = (0,0,0,0) \\
+  & \iff \begin{cases}
+         y = 0 \\
+         0  = 0 \\   
+         x-7y = 0 \\ 
+         x+y = 0 \\ 
+        \end{cases} \\
+  & \iff \cdots \\ 
+  & \iff (x,y)=(0,0) \\
+\end{align*}
+Ainsi $\ker f_3 = \{ (0,0) \}$ et donc $f_3$ est injective.
+
+  \item La formule du rang, appliquée à $f_3 : \Rr^2 \to \Rr^4$ s'écrit 
+$\dim \ker f_3 + \dim \Im f_3 = \dim \Rr^2$. Donc $\dim \Im f_3 = 2$.
+Ainsi $\Im f_3$ est un espace vectoriel de dimension $2$ inclus dans $\Rr^3$,
+ $f_3$ n'est pas surjective.
+
+Par décrire $\Im f_3$ nous allons trouver deux vecteurs indépendants de $\Im f_3$.
+Il y a un nombre infini de choix : prenons par exemple 
+$v_1 = f(1,0) = (0,0,1,1)$. Pour $v_2$ on cherche (un peu à tâtons) un vecteur linéairement indépendant de $v_1$.
+Essayons $v_2 = f(0,1)=(1,0,-7,1)$. Par construction $v_1,v_2 \in \Im f$ ; ils sont clairement linéairement indépendants
+et comme $\dim \Im f_3=2$ alors $\{v_1,v_2\}$ est une base de $\Im f_3$.
+
+Ainsi $\Im f_3= \text{Vect}\{v_1,v_2\} =\big\{ \lambda(0,0,1,1) + \mu (1,0,-7,1) \mid \lambda,\mu \in \Rr \big\}$.
+  \end{enumerate}
+
+  
+  
+  \item $f_4 : \Rr_3[X] \to \Rr^3$ va d'un espace de dimension $4$ vers un espace de dimension strictement plus petit
+et donc $f_4$ ne peut être injective.
+
+\begin{enumerate}
+  \item Calculons le noyau. \'Ecrivons un polynôme $P$ de degré $\le 3$ sous la forme
+$P(X)= aX^3+bX^2+cX+d$. Alors $P(0) = d$, $P(1)=a+b+c+d$, $P(-1)=-a+b-c+d$.
+\begin{align*}
+P(X) \in \ker f_4 
+  & \iff \big( P(-1), P(0), P(1) \big)= (0,0,0)  \\
+  & \iff (-a+b-c+d,d,a+b+c+d) = (0,0,0) \\
+  &\iff \begin{cases}
+          -a+b-c+d = 0 \\
+          d = 0 \\   
+          a+b+c+d = 0 \\ 
+        \end{cases}\\
+ & \iff \cdots \\
+ & \iff \begin{cases}
+          a = -c \\
+          b = 0 \\  
+          d = 0 \\ 
+        \end{cases} \\
+  & \iff (a,b,c,d)=(t,0,-t,0) \quad t\in\Rr \\
+  \end{align*}
+
+Ainsi le noyau $\ker f_4 = \big\{ tX^3 - tX \mid t\in \Rr\big\} = \text{Vect}\{ X^3-X \}$.
+$f_4$ n'est pas injective son noyau étant de dimension $1$.
+
+  \item La formule du rang pour $f_4 : \Rr_3[X] \to \Rr^3$ s'écrit 
+$\dim \ker f_4 + \dim \Im f_4 = \dim \Rr_3[4]$. Autrement dit
+$1+ \dim \Im f_4 = 4$. Donc $\dim \Im f_4 = 3$. 
+Ainsi $\Im f_4$ est un espace de dimension $3$ dans $\Rr^3$ donc 
+$\Im f_4=\Rr^3$. Conclusion $f_4$ est surjective.
+  \end{enumerate}
+
+\end{enumerate}
+\fincorrection
+\correction{000954}
+\begin{enumerate}
+  \item Comment est d\'efinie $\phi$ \`a partir de la d\'efinition sur les \'el\'ements de la base ?
+Pour  $x\in E$ alors $x$ s'\'ecrit dans la base  $\{e_1,e_2,e_3\}$, $x=\alpha_1e_1+\alpha_2e_2+\alpha_3e_3$. 
+Et $\phi$ est d\'efinie sur $E$ par la formule
+$$\phi(x)=\alpha_1 \phi(e_1) + \alpha_2 \phi(e_2) + \alpha_3 \phi(e_3).$$
+Soit ici :
+$$\phi(x) = (\alpha_1+\alpha_2+\alpha_3) e_1 + (\alpha_1-\alpha_2)e_2 + t\alpha_3e_3.$$
+
+Cette d\'efinition rend automatiquement $\phi$ lin\'eaire (v\'erifiez-le si vous n'\^etes pas convaincu !).
+  \item On cherche \`a savoir si $\phi$ est injective.
+Soit $x\in E$ tel que $\phi(x)=0$ donc
+$(\alpha_1+\alpha_2+\alpha_3) e_1 + (\alpha_1-\alpha_2)e_2 + t\alpha_3e_3=0$. Comme $\{e_1,e_2,e_3\}$ est une base alors tous les coefficients sont nuls :
+$$\alpha_1+\alpha_2+\alpha_3=0, \quad \alpha_1-\alpha_2=0, \quad  t\alpha_3 = 0.$$
+Si $t \neq 0$ alors en résolvant le syst\`eme on obtient $\alpha_1=0$, $\alpha_2=0$,
+$\alpha_3=0$. Donc $x=0$ et $\phi$ est injective.
+
+Si $t =0$, alors $\phi$ n'est pas injective, en résolvant le m\^eme syst\`eme on obtient
+des solutions non triviales, par exemple $\alpha_1=1$, $\alpha_2=1$, $\alpha_3=-2$.
+Donc pour $x= e_1+e_2-2e_3$ on obtient $\phi(x)=0$.
+
+  \item Pour la surjectivité on peut soit faire des calculs, soit appliquer la formule du rang. 
+Examinons cette deuxi\`eme m\'ethode. $\phi$ est surjective si et seulement si 
+la dimension de $\Im \phi$ est \'egale
+\`a la dimension de l'espace d'arriv\'ee (ici $E$ de dimension $3$).
+Or on a une formule pour $\dim \Im \phi$ :
+$$\dim \ker \phi + \dim \Im \phi = \dim E.$$
+Si $t \neq 0$, $\phi$ est injective donc $\ker \phi = \{0\}$ est de dimension $0$.
+Donc $\dim \Im \phi =3$ et $\phi$ est surjective.
+
+Si $t = 0$ alors $\phi$ n'est pas injective donc $\ker \phi$ est de dimension au moins $1$
+(en fait $1$ exactement), donc  $\dim \Im \phi \leqslant 2$. Donc $\phi$ n'est pas surjective.
+
+
+On remarque que $\phi$ est injective si et seulement si elle est surjective.
+Ce qui est un r\'esultat du cours pour les applications ayant l'espace 
+de d\'epart et d'arriv\'ee de m\^eme dimension (finie).
+\end{enumerate}
+\fincorrection
+\correction{000963}
+\begin{enumerate}
+    \item Montrons que si  $\phi $  est un isomorphisme,
+l'image de toute base de  $E$  est une base de  $F$ : soit
+$\mathcal{B} =\{ e_1, \ldots , e_n \} $  une base de  $E$  et
+nommons  $\mathcal{B} ' $  la famille  $\{ \phi (e_1), \ldots ,
+\phi (e_n) \} $.
+    \begin{enumerate}
+        \item $\mathcal{B} '$  est libre. Soient en effet  $\lambda _1 , \ldots , \lambda _n\in {\R}$  tels
+que  $\lambda _1\phi (e_1)+ \cdots + \lambda _n \phi (e_n)
+=0 $. Alors  $ \phi (\lambda _1e_1+ \cdots + \lambda _ne_n) =0
+$  donc, comme  $\phi$  est injective,  $\lambda _1e_1+ \cdots
++ \lambda _ne_n=0$  puis, comme  $\mathcal{B} $  est libre,
+$\lambda _1=\cdots =\lambda _n=0$.
+        \item $\mathcal{B} '$  est g\' en\' eratrice. Soit  $y\in F$. Comme  $\phi $  est surjective, il
+existe  $x\in E$  tel que  $y=\phi (x)$. Comme  $\mathcal{B}$
+est g\' en\' eratrice, on peut choisir   $\lambda _1 , \cdots ,
+\lambda _n\in {\R}$  tels que  $x=\lambda _1 e_1 +\cdots + \lambda
+_n e_n $. Alors  $y=\lambda _1\phi (e_1)+ \cdots + \lambda _n
+\phi (e_n)  $.
+    \end{enumerate}
+    \item Supposons que l'image par  $\phi $  de toute base de  $E$  soit une base  $F$. Soient  $\mathcal{B}
+=\{ e_1,\ldots , e_n\} $  une base de  $E$  et  $\mathcal{B} ' $
+la base  $\{ \phi (e_1), \ldots , \phi (e_n) \} $.
+    \begin{enumerate}
+        \item $\Im \phi$  contient  $\mathcal{B} '$  qui est une partie g\' en\' eratrice de $F$. Donc  $\phi $  est surjective.
+        \item Soit maintenant  $x\in E$  tel que  $\phi (x)=0$.
+Comme  $\mathcal{B} $  est une base, il existe  $\lambda _1 ,
+\ldots , \lambda _n\in {\R}$  tels que  $x= \lambda _1e_1+ \cdots
++ \lambda _ne_n$. Alors  $\phi (x)=0=\lambda _1\phi (e_1)+
+\cdots + \lambda _n \phi (e_n) $ donc puisque  $\mathcal{B} '$
+est libre :  $\lambda _1=\cdots =\lambda _n=0$. En cons\' equence
+si  $\phi (x)=0$  alors  $x=0$ : $\phi$  est injective.
+    \end{enumerate}
+\end{enumerate}
+
+En fait on montrerait de la même façon que ``$\phi $  est un isomorphisme si et seulement si l'image par 
+$\phi $  \textbf{d'une} base de  $E$  est une base de  $F$''.
+\fincorrection
+\correction{000974}
+\begin{enumerate}
+  \item La seule fonction qui est \`a la fois paire et impaire est la fonction nulle : $P\cap I = \{0\}$. Montrons qu'une fonction $f:\Rr \longrightarrow \Rr$ se d\'ecompose en une fonction paire et une fonction impaire. 
+En effet : 
+ $$f(x)= \frac{f(x)+f(-x)}{2}+\frac{f(x)-f(-x)}{2}.$$
+La fonction $x \mapsto \frac{f(x)+f(-x)}{2}$ est paire (le v\'erifier !),
+la fonction $x \mapsto \frac{f(x)-f(-x)}{2}$ est impaire.
+Donc $P+I=E$.
+Bilan : $E=P\oplus I.$
+  \item Le projecteur sur $P$ de direction $I$ est l'application $\pi : E \longrightarrow E$
+    qui \`a $f$ associe la fonction $x \mapsto \frac{f(x)+f(-x)}{2}$, c'est-à-dire à $f$ on associe la partie paire
+ de $f$.
+Nous avons bien 
+\begin{itemize}
+  \item $\pi(f)\in P$. Par définition de $\pi$, $\pi(f)$ est bien une fonction paire.
+  \item $\pi \circ \pi = \pi$. Si $g$ est une fonction paire alors $\pi(g)=g$. 
+Appliquons ceci avec $g=\pi(f)$ (qui est bien est une fonction paire) donc $\pi(\pi(f))=\pi(f)$. 
+  \item $\ker \pi = I$. Si $\pi(f)=0$ alors cela signifie exactement que la fonction $x \mapsto \frac{f(x)+f(-x)}{2}$
+est la fonction nulle. Donc pour tout $x$ : $\frac{f(x)+f(-x)}{2}=0$ donc $f(x)=-f(-x)$ ; 
+cela implique que $f$ est une fonction impaire. Réciproquement si $f\in I$ est une fonction impaire, 
+sa partie paire est nulle donc $f\in \ker f$.
+\end{itemize}
+
+\end{enumerate}
+\fincorrection
+\correction{000959}
+\begin{enumerate}
+  \item Soit $P \in E$ et $\lambda \in \Rr$, alors la division euclidienne de $AP$ par $B$ s'\'ecrit $AP= Q\cdot B + R$, donc en multipliant par $\lambda$ on obtient :
+$A\cdot (\lambda P)= (\lambda Q)B+\lambda R$.
+ce qui est la division euclidienne de $A\cdot (\lambda P)$ par $B$, 
+donc si $f(P)= R$ alors $f(\lambda P)=\lambda R$. Donc $f(\lambda P)=\lambda f(P)$.
+
+Soient $P, P' \in E$. On \'ecrit les divisions euclidiennes :
+$$AP= Q\cdot B + R,\quad  AP'=Q'\cdot B+R'.$$
+En additionnant :
+$$A(P+P')=(Q+Q')B+(R+R')$$
+qui est la division euclidienne de $A(P+P')$ par $B$.
+Donc si $f(P)=R$, $f(P')=R'$ alors $f(P+P')=R+R'=f(P)+f(P')$.
+
+Donc $f$ est lin\'eaire.
+  \item Sens $\Rightarrow$. Supposons $f$ est bijective, donc en particulier $f$ est surjective,
+    en particulier il existe $P\in E$ tel que $f(P)=1$ ($1$ est le polyn\^ome constant \'egale \`a $1$). La division euclidienne est donc $AP=BQ+1$, autrement dit 
+$AP-BQ=1$. Par le th\'eor\`eme de B\'ezout, $A$ et $B$ sont premiers entre eux.
+
+  \item Sens $\Leftarrow$. Supposons $A, B$ premiers entre eux. Montrons que $f$ est injective.
+Soit $P\in E$ tel que $f(P)=0$. Donc la division euclidienne s'\'ecrit : $AP=BQ+0$.
+Donc $B$ divise $AP$. Comme $A$ et $B$ sont premiers entre eux, par le lemme de Gauss,
+alors $B$ divise $P$. Or $B$ est de degr\'e $n+1$ et $P$ de degr\'e moins que $n$, 
+donc la seule solution est $P=0$. Donc $f$ est injective. 
+Comme $f : E\longrightarrow E$ est injective et $E$ est de dimension finie, alors $f$ est bijective.
+\end{enumerate}
+\fincorrection
+\correction{000976}
+\begin{enumerate}
+  \item $f$ est bien lin\'eaire...
+  \item Soit $P$ tel que $f(P)=0$. Alors $P$ v\'erifie l'\'equation diff\'erentielle
+$$P+(1-X)P'=0.$$ Dont la solution est $P = \lambda(X-1)$, $\lambda \in \Rr$.
+Donc $\ker f$ est de dimension $1$ et une base est donn\'ee par un seul vecteur : $X-1$.
+
+\item Par le th\'eor\`eme du rang la dimension de l'image est :
+$$\dim \Im f = \dim \Rr_n[X]-\dim \ker f = (n+1) - 1 = n.$$
+Il faut donc trouver $n$ vecteurs lin\'eairement ind\'ependants dans $\Im f$.
+\'Evaluons $f(X^k)$, alors 
+$$f(X^k) = (1-k)X^k+kX^{k-1}.$$
+Cela donne $f(1)=1, f(X)=1, f(X^2)=-X^2+2X,...$
+on remarque que pour $k= 2,\ldots n$, $f(X^k)$ est de degr\'e $k$ sans terme constant.
+Donc l'ensemble 
+$$\big\{ f(X), f(X^2), \ldots, f(X^n)\big\}$$
+est une famille de $n$ vecteurs, appartenant \`a $\Im f$, et libre (car les degr\'es sont distincts).
+Donc ils forment une base de $\Im f$.
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

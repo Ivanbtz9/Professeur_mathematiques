@@ -1,0 +1,116 @@
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 875
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Application linéaire donnée par l'image d'une base
+\vskip0.2cm
+Soit $E=\mathbb R^3$. On note ${\cal B}=\{e_1,e_2,e_3\}$ la base canonique de $E$ et $u$ l'endomorphisme de $\mathbb R^3$ défini par la donnée des images des vecteurs de la base : 
+$$u(e_1) = -2e_1 +2e_3 \; , u(e_2)=3e_2 \; , u(e_3)=-4e_1 + 4e_3.$$ 
+\begin{enumerate}
+\item Déterminer une base de $\ker~u$. 
+$u$ est-il injectif? peut-il être surjectif? Pourquoi?
+\item Déterminer une base de $\textrm{Im}~u$. Quel est le rang de u ?
+\item Montrer que $E=\ker~u\bigoplus \textrm{Im}~u$.
+\end{enumerate}
+
+
+% Exercice 892
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Noyau prescrit?
+\vskip0.2cm
+Soit $E=\mathbb R^4$ et $F=\mathbb R^2$. On considère
+$H=\{(x,y,z,t)\in\mathbb R^4;\ x=y=z=t\}$. Existe-t-il des applications linéaires de $E$ dans $F$
+dont le noyau est $H$?
+
+
+% Exercice 878
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - A noyau fixé
+\vskip0.2cm
+Soit $E$ le sous-espace vectoriel de $\mathbb R^3$ engendré par les vecteurs
+$u=(1,0,0)$ et $v=(1,1,1)$. Trouver un endomorphisme $f$ de $\mathbb R^3$ dont le noyau est $E$.
+
+
+% Exercice 899
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Du local au global...
+\vskip0.2cm
+Soit $E$ un espace vectoriel de dimension finie et $f\in\mathcal L(E)$.
+On suppose que, pour tout $x\in E$, il existe un entier $n_x\in\mathbb N$ tel
+que $f^{n_x}(x)=0.$ Montrer qu'il existe un entier $n$ tel que $f^n=0$.
+
+
+% Exercice 908
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Suite exacte
+\vskip0.2cm
+Soient $E_0,\dots,E_n$ des espaces vectoriels de dimensions finies respectivement égales à $a_0,\dots,a_n$. 
+On suppose qu'il existe $n$ applications linéaires $f_0,\dots,f_{n-1}$ telles que, pour chaque $k\in\{0,\dots,n-1\}$,
+$f_k$ est une application linéaire de $E_k$ dans $E_{k+1}$ et 
+\begin{enumerate}
+\item $f_0$ est injective;
+\item $\ker(f_k)=\textrm{Im}(f_{k-1})$ pour tout $k=1,\dots,n-1$;
+\item $f_{n-1}$ est surjective.
+\end{enumerate}
+Prouver que $\sum_{k=0}^n (-1)^k a_k=0$.
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=27362
+\end{document}

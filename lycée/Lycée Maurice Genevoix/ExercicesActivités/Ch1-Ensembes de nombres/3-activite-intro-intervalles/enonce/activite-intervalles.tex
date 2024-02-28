@@ -1,0 +1,323 @@
+\documentclass[a4paper,10pt]{article}
+%\usepackage{calc}
+%\usepackage{esvect}
+%\setlength{\parindent}{0mm}
+%\usepackage [alwaysadjust]{paralist}
+%\renewcommand*{\tabularxcolumn}[1]{m{#1}} %centrage vertical des cellules d'un tableau tabularx
+\setlength{\oddsidemargin}{0.25in}
+
+% Set width of the text - What is left will be the right margin.
+% In this case, right margin is 8.5in - 1.25in - 6in = 1.25in.
+\setlength{\textwidth}{6in}
+
+% Set top margin - The default is 1 inch, so the following 
+% command sets a 0.75-inch top margin.
+\setlength{\topmargin}{-0.25in}
+% Set height of the text - What is left will be the bottom margin.
+% In this case, bottom margin is 11in - 0.75in - 9.5in = 0.75in
+\setlength{\textheight}{8in}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\pagestyle{fancy}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+\lstdefinestyle{customc}{
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=none,
+	backgroundcolor=\color{gray!20!},
+	xleftmargin={1em},
+	language=html,
+	showstringspaces=false,
+	basicstyle=\small\ttfamily,
+	keywordstyle=\bfseries\color{red!60!black},
+	commentstyle=\color{blue},
+	identifierstyle=\color{black},
+	stringstyle=\color{black},
+	extendedchars=true,
+	literate={à}{{\`a}}1 {é}{{\'e}}1 {è}{{\`e}}1 {ù}{{\`u}}1 {ê}{{\^e}}1,
+}
+\lstset{escapechar=@,style=customc,numbers=left, stepnumber=1}
+
+\usepackage{xlop} % pour poser les opérations à la main
+\usepackage{pstricks,pst-plot} 
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.25cm,left=1.25cm]{geometry}
+\usepackage[frenchb]{babel}
+\newtheorem{defi}{D\'{e}finition}
+\newtheorem{thm}{Th\'{e}or\`{e}me}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propri\'{e}t\'{e}}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+%\newcommand{\rectvert}{\fcolorbox{green}{green}{\begin{minipage}{1\linewidth}\end{minipage}}}
+%\newenvironment{rectvert}{\fcolorbox{green}{green}\begin{minipage}{1\linewidth}}{\end{minipage}}
+
+\newcommand{\V}{\overrightarrow}
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+\newcommand\opidivzarbi[3][nil]{%
+	\begingroup
+	\opset{#1}%
+	\opidiv*{#2}{#3}{q}{r}%
+	\begin{tabular}{r|l}
+		\opdisplay{operandstyle.1}{#2} &
+		\opdisplay{operandstyle.2}{#3} \\\cline{2-2}
+		\opdisplay{remainderstyle}{r} &
+		\opdisplay{resultstyle}{q}
+	\end{tabular}%
+	\endgroup
+}
+
+% Set the beginning of a LaTeX document
+\begin{document}
+	
+	\fancyhead{}
+	\fancyfoot[L]{Chapitre 1 - Activité 2}
+	\fancyfoot[C]{Page \thepage/2}
+	\fancyfoot[R]{Mme Beudez}
+	\renewcommand{\footrulewidth}{0.4pt}
+	
+	\title{}
+	\date{}       
+	\maketitle
+	\indent\vspace{-3.5cm}
+	
+	
+	%$$\fbox{\text{\Large{ Chapitre 1 : Nombres réels}}}$$
+	
+	$$\fbox{\text{\Large{ \begin{minipage}{0.65\linewidth } Activité $2$ chapitre $1$ : à la découverte des intervalles \end{minipage} }}}$$
+	
+	\hfill\\[0.1cm]
+
+
+\hfill\\
+\noindent Dans chacune des questions suivantes, on considère une droite $(d)$ graduée (c'est-à-dire munie d'un repère).\\
+
+\begin{enumerate}
+	\item Repasser en couleur sur cette droite l'ensemble des points $M$ dont l'abscisse vérifie $-2 \leqslant x \leqslant 3$.\\
+	
+	$$\begin{tikzpicture}[scale=0.75]
+	\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+	\draw (0,0) node[below=3pt]{$0$};
+	\draw (1,0) node[below=3pt]{$1$};
+	\foreach \x in {-7,...,7}
+	{
+	%	\draw (\x,0) node[below=3pt]{$\x$};
+		\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+	}
+	\draw (-8,0) node[left=3pt]{$-\infty$};
+	\draw (8,0) node[right=3pt]{$+\infty$};
+	\end{tikzpicture}$$
+	
+	Le nombre $-2$ doit-il être colorié ? Pourquoi ? \\
+	\\
+	.\dotfill \\
+	\\
+	Le nombre $3$ doit-il être colorié ? Pourquoi ? \\
+	\\
+	.\dotfill \\
+	\\
+	Cette \og zone coloriée \fg est appelée un \textbf{intervalle}. On le note \ldots \ldots \ldots \ldots. \\[0.2cm]
+	
+	\begin{rmq}
+		Pour écrire un intervalle, on utilise toujours des \ldots \ldots \ldots \ldots.\\[0.3cm]
+		Ici, ils sont tous les deux \ldots \ldots \ldots \ldots \ldots (ils \og \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \fg la zone coloriée), ce qui indique \\[0.3cm]
+		que $-2$ et $3$ \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots à l'intervalle.
+	\end{rmq}
+	\hfill\\
+	
+	\item Repasser en couleur sur cette droite l'ensemble des points $M$ dont l'abscisse vérifie $-5 < x \leqslant -3$.\\
+	
+	$$\begin{tikzpicture}[scale=0.75]
+	\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+	\draw (0,0) node[below=3pt]{$0$};
+	\draw (1,0) node[below=3pt]{$1$};
+	\foreach \x in {-7,...,7}
+	{
+		%	\draw (\x,0) node[below=3pt]{$\x$};
+		\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+	}
+	\draw (-8,0) node[left=3pt]{$-\infty$};
+	\draw (8,0) node[right=3pt]{$+\infty$};
+	\end{tikzpicture}$$
+	
+	Le nombre $-5$ doit-il être colorié ? Pourquoi ? \\
+	\\
+	.\dotfill \\
+	\\
+	Le nombre $-3$ doit-il être colorié ? Pourquoi ? \\
+	\\
+	.\dotfill \\
+	\\
+	On note cet intervalle \ldots \ldots \ldots \ldots \\[0.2cm]
+	Ici, le \ldots \ldots \ldots de droite est \ldots \ldots \ldots \ldots \ldots tandis que celui de gauche est \ldots \ldots \ldots \ldots \ldots (il \og \ldots \ldots \ldots \ldots \\[0.3cm]
+	\ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \fg la zone coloriée) \\
+	\\
+	
+	
+	\item Repasser en couleur sur cette droite l'ensemble des points $M$ dont l'abscisse vérifie $x \geqslant 2$.\\
+	
+	$$\begin{tikzpicture}[scale=0.75]
+	\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+	\draw (0,0) node[below=6pt]{$0$};
+	\draw (1,0) node[below=6pt]{$1$};
+	\foreach \x in {-7,...,7}
+	{
+		%	\draw (\x,0) node[below=3pt]{$\x$};
+		\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+	}
+	\draw (-8,0) node[left=3pt]{$-\infty$};
+	\draw (8,0) node[right=3pt]{$+\infty$};
+	\end{tikzpicture}$$
+	
+	On note cet intervalle \ldots \ldots \ldots \ldots \\[0.2cm]
+	
+	\begin{rmq}
+		Attention, le \ldots \ldots \ldots en \ldots \ldots \ldots est toujours \ldots \ldots \ldots \ldots car \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \ldots \\[0.2cm]
+		.\dotfill\\
+	\end{rmq}
+	
+	\newpage
+	
+	
+	\item Repasser en couleur sur cette droite l'ensemble des points $M$ dont l'abscisse vérifie $-4 < x < 2$.\\
+	
+	$$\begin{tikzpicture}[scale=0.75]
+	\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+	\draw (0,0) node[below=3pt]{$0$};
+	\draw (1,0) node[below=3pt]{$1$};
+	\foreach \x in {-7,...,7}
+	{
+		%	\draw (\x,0) node[below=3pt]{$\x$};
+		\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+	}
+	\draw (-8,0) node[left=3pt]{$-\infty$};
+	\draw (8,0) node[right=3pt]{$+\infty$};
+	\end{tikzpicture}$$
+	
+	On note cet intervalle \ldots \ldots \ldots \ldots \\
+	
+	\item Parmi les encadrements suivants, entourer celui qui permet de \textbf{caractériser} l'intervalle représenté :\\
+	
+	$$\begin{tikzpicture}[scale=0.75]
+	\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+	\draw [ red, [-[ , line width = 2pt] (4,0) -- (-3.15,0) ; 
+	%\draw [ red, line width = 2pt](-3,0) node{$]$};
+	%\draw [ red, text width = 2pt](4,0) node{$]$};
+	\foreach \x in {-7,...,7}
+	{
+		\draw (\x,0) node[below=3pt]{$\x$};
+		\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+	}
+	\draw (-8,0) node[left=3pt]{$-\infty$};
+	\draw (8,0) node[right=3pt]{$+\infty$};
+	\end{tikzpicture}$$
+
+	\noindent Encadrements proposés : 
+	$$-3 < x < 4 \ \ \ \text{ou} \ \ \ -3 \leqslant x < 4 \ \ \ \text{ou} \ \ \ -3 < x \leqslant 4 \ \ \ \text{ou} \ \ \ -3 \leqslant x \leqslant 4$$
+	
+
+
+	\item Parmi les inégalités/encadrements suivants, entourer celle/celui qui permet de \textbf{caractériser} l'ensemble des points mis en évidence sur ce dessin :\\
+
+$$\begin{tikzpicture}[scale=0.75]
+\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+\draw [ red, -[ , line width = 2pt] (8,0) -- (-1.15,0) ; 
+%\draw [ red, line width = 2pt](-3,0) node{$]$};
+%\draw [ red, text width = 2pt](4,0) node{$]$};
+\foreach \x in {-7,...,7}
+{
+	\draw (\x,0) node[below=3pt]{$\x$};
+	\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+}
+\draw (-8,0) node[left=3pt]{$-\infty$};
+\draw (8,0) node[right=3pt]{$+\infty$};
+\end{tikzpicture}$$
+
+\noindent Encadrements proposés : 
+$$x < -1 \ \ \ \text{ou} \ \ \ x \leqslant -1 \ \ \ \text{ou} \ \ \ x>-1 \ \ \ \text{ou} \ \ \ x \geqslant -1$$
+
+\end{enumerate}
+\hfill\\
+\\
+
+
+%\noindent{\underline{\textbf{Application des intervalles : la représentation des solutions d'une inéquation de degré $1$}}}
+%
+%\hfill\\
+%\begin{exer}
+%Résoudre l'inéquation $3x+4 \geqslant x-6$ puis représenter ces solutions sur la droite graduée ci-dessous :\\[0.4cm]
+%$$\begin{tikzpicture}[scale=0.75]
+%\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+%\foreach \x in {-7,...,7}
+%{
+%	\draw (\x,0) node[below=3pt]{$\x$};
+%	\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+%}
+%\draw (-8,0) node[left=3pt]{$-\infty$};
+%\draw (8,0) node[right=3pt]{$+\infty$};
+%\end{tikzpicture}$$
+%\hfill\\[0.2cm]
+%L'ensemble $\mathcal{S}$ des solutions de cette inéquation est donc $\mathcal{S} = \ldots \ldots \ldots \ldots$
+%\end{exer}
+%\hfill\\
+%
+%\begin{exer}
+%Résoudre l'inéquation $-5x+7 > 22$ puis représenter ces solutions sur la droite graduée ci-dessous :\\[0.4cm]
+%$$\begin{tikzpicture}[scale=0.75]
+%\draw [-> , line width = 1pt] (-8,0) -- (8,0) ;
+%\foreach \x in {-7,...,7}
+%{
+%	\draw (\x,0) node[below=3pt]{$\x$};
+%	\draw [line width = 1pt] (\x,-0.1) -- (\x,0.1) ;
+%}
+%\draw (-8,0) node[left=3pt]{$-\infty$};
+%\draw (8,0) node[right=3pt]{$+\infty$};
+%\end{tikzpicture}$$
+%\hfill\\[0.2cm]
+%L'ensemble $\mathcal{S}$ des solutions de cette inéquation est donc $\mathcal{S} = \ldots \ldots \ldots \ldots$
+%\\
+%\end{exer}
+%\hfill\\
+
+%\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.eps}$ \ Faire :
+%		\begin{enumerate}[$\diamond$]
+%			\item l'exercice résolu 1 p.27 en cachant la correction 
+%			\item les exercices 41, 42, 43, 44, 46 p.40
+%			\item l'exercice 84 p.44. Indication : l'amplitude d'un intervalle est sa longueur. Par exemple, l'intervalle $[1;3]$ a pour amplitude $2$.
+%			\item l'exercice 12 p.63 (inéquations)
+%		\end{enumerate}
+%	}}
+
+
+% Set the ending of a LaTeX document
+\end{document}

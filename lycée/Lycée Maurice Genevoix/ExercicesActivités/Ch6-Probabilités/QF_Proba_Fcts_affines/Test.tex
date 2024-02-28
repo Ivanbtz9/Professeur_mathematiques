@@ -1,0 +1,78 @@
+\documentclass[11pt,a4paper]{book}
+
+\usepackage{geometry}
+\geometry{a4paper,textheight=26cm,textwidth=19cm,hcentering,top=1cm,footnotesep=.5cm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+
+\usepackage[usenames,dvipsnames,svgnames]{xcolor}
+
+\usepackage{listings}
+\lstset{
+	literate=
+	{�}{{\'a}}1 {�}{{\'e}}1 {�}{{\'i}}1 {�}{{\'o}}1 {�}{{\'u}}1
+	{�}{{\'A}}1 {�}{{\'E}}1{�}{{\'I}}1 {�}{{\'O}}1 {�}{{\'U}}1
+	{�}{{\`a}}1 {�}{{\`e}}1 {�}{{\`i}}1 {�}{{\`o}}1{�}{{\`u}}1
+	{�}{{\`A}}1 {�}{{\'E}}1 {�}{{\`I}}1 {�}{{\`O}}1 {�}{{\`U}}1
+	{�}{{\"a}}1 {�}{{\"e}}1 {�}{{\"i}}1 {�}{{\"o}}1 {�}{{\"u}}1
+	{�}{{\"A}}1 {�}{{\"E}}1 {�}{{\"I}}1 {�}{{\"O}}1 {�}{{\"U}}1
+	{�}{{\^a}}1 {�}{{\^e}}1 {�}{{\^i}}1 {�}{{\^o}}1 {�}{{\^u}}1
+	{�}{{\^A}}1 {�}{{\^E}}1 {�}{{\^I}}1 {�}{{\^O}}1 {�}{{\^U}}1
+	{?}{{\oe}}1 {?}{{\OE}}1 {�}{{\ae}}1 {�}{{\AE}}1 {�}{{\ss}}1
+	{?}{{\H{u}}}1 {?}{{\H{U}}}1 {?}{{\H{o}}}1 {?}{{\H{O}}}1
+	{�}{{\c c}}1 {�}{{\c C}}1 {�}{{\o}}1 {�}{{\r a}}1 {�}{{\r A}}1
+	{?}{{\EUR}}1 {�}{{\pounds}}1 {?}{{?}}1
+}
+\lstdefinestyle{stylepython}{
+	language=Python, 
+	basicstyle=\ttfamily,
+	%       name=iciNOM,title={Un programme Python}, 
+	%       caption={iciTitre},
+	%       label={iciNom},
+	commentstyle=\footnotesize\color{green!50!black}, 
+	keywordstyle=\color{blue},   
+	stringstyle=\color{olive},   
+	numberstyle=\tiny,  
+	%       mathescape,  
+	%       showstringspaces=false,   
+	     tabsize=3,   
+	%framexleftmargin=5mm,  
+	       framexrightmargin=5pt,
+	       framexbottommargin=5pt
+	xleftmargin=0mm,  
+	%keepspaces=false,   
+	classoffset=1,     
+	numbers=left,    
+	%stepnumber=1,    
+	numbersep=8pt,   
+	%showstringspaces=false,  
+	%frame=single,
+	framerule=1pt,
+	%rulecolor=\color{yellow}, 
+	%       breaklines=true,  
+	%       rulesepcolor=\color{blue}, %avec frame=shadowsbox
+	%backgroundcolor=\color{yellow}
+}
+
+\pagestyle{empty}
+
+\begin{document}
+	
+\begin{minipage}{8cm} %--------------------------------------
+		
+\begin{lstlisting}[style=stylepython]
+def tirage_boules():
+	k = rd.............(.....,26)
+	if k <= .......:
+		return(0)
+	elif 6< ...... & k<= .......:
+		return(....)
+	..........:
+		return(....)			
+\end{lstlisting}
+		
+\end{minipage} %----#On peut aussi �crire succes+= 1 
+	
+\end{document}

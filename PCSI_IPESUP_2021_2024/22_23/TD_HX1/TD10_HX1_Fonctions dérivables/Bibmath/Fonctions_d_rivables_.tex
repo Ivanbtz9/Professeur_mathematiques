@@ -1,0 +1,274 @@
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+%\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 328
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Un problème de tangente
+\vskip0.2cm
+Démontrer que les courbes d'équation $y=x^2$ et $y=1/x$ admettent une unique tangente commune.
+
+
+% Exercice 326
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Avant et après
+\vskip0.2cm
+Soit $f$ une fonction dérivable en un point $x_0$. Montrer que
+$$\lim_{h\to 0}\frac{f(x_0+h)-f(x_0-h)}{2h}=f'(x_0).$$
+Réciproquement, si la limite précédente existe, peut-on dire que $f$ est dérivable en $x_0$?
+
+
+% Exercice 329
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Un calcul de limite
+\vskip0.2cm
+Soit $f:\mathbb R\to\mathbb R$ dérivable telle que $f(0)=0$. Montrer que
+$\sum_{k=1}^n f\left(\frac k{n^2}\right)$ admet une limite lorsque $n\to+\infty$ et la déterminer.
+
+
+% Exercice 345
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Un calcul un peu sophistiqué
+\vskip0.2cm
+Soit $n\geq 1$ et $1\leq k\leq n$. 
+\begin{enumerate}
+\item Calculer la dérivée $k$-ème de $x\mapsto x^{n-1}$ et $x\mapsto \ln(1+x)$.
+\item En déduire la dérivée $n$-ième de la fonction suivante :
+$x\mapsto x^{n-1}\ln(1+x).$
+\end{enumerate}
+
+
+
+% Exercice 323
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Rolle itéré
+\vskip0.2cm
+Soit $f:[a,b]\to\mathbb R$ $n$ fois dérivable.
+\begin{enumerate}
+\item On suppose que $f$ s'annule en $(n+1)$ points distincts de $[a,b]$. Démontrer qu'il existe $c\in ]a,b[$ tel que $f^{(n)}(c)=0$.
+\item On suppose que $f(a)=f'(a)=\dots=f^{(n-1)}(a)=f(b)=0$. Démontrer qu'il existe $c\in ]a,b[$ tel que $f^{(n)}(c)=0$.
+\end{enumerate}
+
+
+% Exercice 340
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - Théorème des accroissements finis généralisés et règle de l'Hospital
+\vskip0.2cm
+Soit $f,g:[a,b]\to\mathbb R$ deux fonctions continues sur $[a,b]$ et dérivables sur $]a,b[$. 
+On suppose que $g'(x)\neq 0$ pour tout $x\in ]a,b[$.
+\begin{enumerate}
+\item Démontrer que, pour tout $x\in [a,b[$,  $g(x)\neq g(b)$.
+\item On fixe $t\in[a,b[$, on pose $p=\frac{f(t)-f(b)}{g(t)-g(b)}$ et on considère la fonction $h$ définie sur $[a,b]$ par $h(x)=f(x)-p g(x)$. Vérifier que $h(b)=h(t)$ et en déduire qu'il existe un nombre réel $c(t)\in ]t,b[$ tel que 
+$$\frac{f(t)-f(b)}{g(t)-g(b)}=\frac{f'(c(t))}{g'(c(t))}.$$
+\item On suppose qu'il existe un nombre réel $\ell$ tel que $\lim_{x\to b^-}\frac{f'(x)}{g'(x)}=\ell$. 
+Démontrer que 
+$$\lim_{t\to b^-}\frac{f(t)-f(b)}{g(t)-g(b)}=\ell.$$
+\item Application : déterminer $\lim_{x\to 0^-}\frac{\cos(x)-e^x}{(x+1)e^x-1}$.
+\end{enumerate}
+
+
+% Exercice 342
+
+
+\vskip0.3cm\noindent\textsc{Exercice 7} - Théorème de Darboux
+\vskip0.2cm
+Soit $I$ un intervalle ouvert de $\mtr$, et $f$ une fonction dérivable sur $I$. On veut prouver que $f'$ vérifie le théorème des valeurs intermédiaires.
+\begin{enumerate}
+\item Pourquoi n'est-ce pas trivial?
+\item Soit $(a,b)\in I^2$, tel que $f'(a)<f'(b)$, et soit $z\in]f'(a),f'(b)[$. Montrer qu'il existe $\alpha>0$ tel que, pour tout réel $h\in]0,\alpha]$, on ait :
+$$\frac{1}{h}\left(f(a+h)-f(a)\right)<z<\frac{1}{h}\left(f(b+h)-f(b)\right).$$
+\item En déduire l'existence d'un réel $h>0$ et d'un point $y$ de $I$ tels que :
+$$y+h\in I \textrm{ et }\frac{1}{h}\left(f(y+h)-f(y)\right)=z.$$
+\item Montrer qu'il existe un point $x$ de $I$ tel que $z=f'(x)$.
+\item En déduire que $f'(I)$ est un intervalle.
+\item Soit $f(x)=x^2\sin\left(\frac{1}{x^2}\right)$ sur $[0,1]$, $0$ en $0$. Montrer que $f$ est dérivable sur $[0,1]$. $f'$ est-elle continue sur $[0,1]$? Déterminer $f'([0,1])$. Qu'en concluez-vous?
+\end{enumerate}
+
+
+% Exercice 341
+
+
+\vskip0.3cm\noindent\textsc{Exercice 8} - Somme de $n$ valeurs
+\vskip0.2cm
+Soit $f:[0,1]\to\mathbb R$ une fonction de classe $C^1$ vérifiant $f(0)=0$ et $f(1)=1$.
+Démontrer que, pour tout $n\geq 1$, il existe $0<x_1<\dots<x_n<1$ vérifiant $f'(x_1)+\dots+f'(x_n)=n$.
+
+
+% Exercice 3066
+
+
+\vskip0.3cm\noindent\textsc{Exercice 9} - Accroissements finis et inégalités
+\vskip0.2cm
+Démontrer les inégalités suivantes : 
+\begin{enumerate}
+\item $\forall x,y\in\mathbb R,\ |\arctan(x)-\arctan(y)|\leq |x-y|$.
+\item $\forall x\geq 0$, $x\leq e^x-1\leq xe^x$.
+\end{enumerate}
+
+
+% Exercice 338
+
+
+\vskip0.3cm\noindent\textsc{Exercice 10} - Rolle à l'infini
+\vskip0.2cm
+Soit $f:[0,+\infty[\to\mathbb R$ une fonction continue, dérivable sur $]0,+\infty[$ et telle que $f(0)=\lim_{+\infty}f=0$.
+On souhaite démontrer qu'il existe $d\in]0,+\infty[$ tel que $f'(d)=0$. Le résultat étant trivial si $f$ est identiquement nulle, on suppose que ce n'est pas le cas et qu'il existe $c\in]0,+\infty[$ tel que $f(c)>0$.
+\begin{enumerate}
+\item Démontrer qu'il existe $a\in]0,c[$ et $b\in]c,+\infty[$ tel que $f(a)=f(b)$.
+\item Conclure.
+\end{enumerate}
+
+
+% Exercice 336
+
+
+\vskip0.3cm\noindent\textsc{Exercice 11} - Dérivée de polynôme
+\vskip0.2cm
+Soit $P\in\mathbb R[X]$ scindé (c'est-à-dire que $P$
+a toutes ses racines réelles, ou encore que
+$P(X)=c(X-x_1)^{\alpha_1}\dots(X-x_p)^{\alpha_p}$) et $\lambda\in\mathbb R$. Montrer que $P'+\lambda P$
+est scindé.
+
+
+% Exercice 752
+
+
+\vskip0.3cm\noindent\textsc{Exercice 12} - Une suite récurrente
+\vskip0.2cm
+On considère la suite récurrente définie par $u_0\in \mathbb R^*$ et $u_{n+1}=f(u_n)$ pour tout $n\in\mathbb N$,
+où $f$ la fonction définie par $f(x)=1+\frac 14\sin\frac 1x$.
+\begin{enumerate}
+\item Déterminer $I=f(\mathbb R^*)$, et montrer que $I$ est stable par $f$.
+\item Démontrer qu'il existe $\gamma\in I$ tel que $f(\gamma)=\gamma$.
+\item Démontrer que, pour tout $x\in I$, 
+$$|f'(x)|\leq\frac 49.$$
+\item Démontrer que $(u_n)$ converge vers $\gamma$.
+\end{enumerate}
+
+
+% Exercice 3186
+
+
+\vskip0.3cm\noindent\textsc{Exercice 13} - Suite récurrente convergeant vers $e$
+\vskip0.2cm
+On note $f$ la fonction définie sur $[1,e]$ par $f(x)=\frac{2x}{\ln (x)+1}$ et $g$ la fonction définie sur $[0,1]$ par $g(y)=\frac{2y}{(1+y)^2}$. 
+\begin{enumerate}
+\item Démontrer que, pour tout $y\in [0,1]$, $0\leq g(y)\leq \frac{1}2$. 
+\item \'Etudier $f$ et démontrer que l'intervalle $[1,e]$ est stable par $f$. 
+\item Démontrer que, pour tous $x,y\in [1,e]$, $|f(x)-f(y)|\leq \frac 12|x-y|$ (on pourra utiliser le résultat de la première question).
+\item On définit une suite $(u_n)$ par $u_0=1$ et $u_{n+1}=f(u_n)$. Démontrer que, pour tout 
+$n\geq 0$, $|u_n-e|\leq\frac{e-1}{2^n}$. Que peut-on en déduire sur $(u_n)$?
+\item Déterminer un rang $n$ pour lequel $u_n$ est une approximation de $e$ à $10^{-3}$ près.
+\end{enumerate}
+
+
+% Exercice 3084
+
+
+\vskip0.3cm\noindent\textsc{Exercice 14} - Inégalité de Bernoulli
+\vskip0.2cm
+Soit $n\geq 2$. 
+\begin{enumerate}
+ \item \'Etudier la convexité de la fonction $f$ définie sur $[-1;+\infty[$ par $f(x)=(1+x)^n$. 
+ \item En déduire que, pour tout $x\geq -1$, $(1+x)^n\geq 1+nx$.
+\end{enumerate}
+
+
+% Exercice 3189
+
+
+\vskip0.3cm\noindent\textsc{Exercice 15} - Minimum et maximum
+\vskip0.2cm
+Soit $f,g:I\to\mathbb R$ deux fonctions convexes, avec $I\subset \mathbb R$ un intervalle.
+\begin{enumerate}
+\item Est-ce que $\max(f,g)$ est toujours convexe?
+\item Est-ce que $\min(f,g)$ est toujours convexe?
+\end{enumerate}
+
+
+% Exercice 3190
+
+
+\vskip0.3cm\noindent\textsc{Exercice 16} - Fonction convexe avec une limite en $+\infty$
+\vskip0.2cm
+Soit $f:\mathbb R\to\mathbb R$ une fonction convexe dérivable possédant une limite finie en $+\infty$.
+\begin{enumerate}
+\item Démontrer que $f$ est décroissante sur $\mathbb R$.
+\item Démontrer que $f'$ tend vers $0$ en $+\infty$.
+\item Le résultat de la question précédente reste-t-il vrai si on ne suppose pas que $f$ est convexe?
+\end{enumerate}
+
+
+% Exercice 613
+
+
+\vskip0.3cm\noindent\textsc{Exercice 17} - Fonctions convexes admettant une asymptote
+\vskip0.2cm
+Soit $f:\mathbb R\to\mathbb R$ une fonction convexe. 
+\begin{enumerate}
+\item On suppose que $\lim_{+\infty}f=0$. Montrer que $f\geq 0$.
+\item Montrer que la somme d'une fonction convexe et d'une fonction affine est convexe.
+\item On suppose que la courbe représentative de $f$ admet une asymptote. Montrer que la courbe est (toujours) au-dessus
+de l'asymptote.
+\end{enumerate}
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=26286
+\end{document}
+
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}

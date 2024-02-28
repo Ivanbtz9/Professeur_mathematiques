@@ -1,0 +1,1554 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+
+\fiche{f00118, rouget, 2010/10/16}
+
+\titre{Algèbre linéaire II}
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable
+\end{center}
+
+
+\exercice{5598, rouget, 2010/10/16}
+\enonce{005598}{***}
+Soient $E$ un $\Cc$-espace vectoriel de dimension finie et $f$ un endomorphisme de $E$. Montrer qu'il existe un projecteur $p$ et un automorphisme $g$ de $E$ tel que $f=g\circ p$.
+\finenonce{005598}
+
+
+\finexercice
+\exercice{5599, rouget, 2010/10/16}
+\enonce{005599}{**I}
+Soient $E$ un $\Cc$-espace vectoriel non nul de dimension finie $n$ et $f$ un endomorphisme de $E$ tel que $\forall x\in E$, $\exists p\in\Nn^*$ tel que $f^p(x)=0$. Montrer que $f$ est nilpotent.
+\finenonce{005599}
+
+
+\finexercice
+\exercice{5600, rouget, 2010/10/16}
+\enonce{005600}{***}
+ Soit $E$ un $\Cc$-espace vectoriel de dimension finie non nulle. Soient $f$ et $g$ deux projecteurs distincts et non nuls de $E$ tels qu'il existe deux complexes $a$ et $b$ tels que :
+
+\begin{center}
+$fg - gf = af + bg$.
+\end{center}
+
+\begin{enumerate}
+ \item  Montrer que si $a\neq0$ et $a\neq1$ on a : $\text{Im}(f)\subset\text{Im}(g)$. En déduire que $gf=f$ puis que $a+b =0$ puis que $a=-1$.
+
+\item  Montrer que si $a\neq0$ et $a\neq-1$, on a $\text{Ker}(g)\subset\text{Ker}(f)$. Que peut-on en déduire ?
+
+\item  Montrer que si $f$ et $g$ sont deux projecteurs qui ne commutent pas et vérifient de plus 
+$fg-gf=af+bg$ alors 
+
+$(a,b)$ est élément de $\{(-1,1),(1,-1)\}$. Caractériser alors chacun de ces cas.
+\end{enumerate}
+\finenonce{005600}
+
+
+\finexercice
+\exercice{5601, rouget, 2010/10/16}
+\enonce{005601}{***}
+Soient $E$ et $F$ deux $\Kk$-espaces vectoriels et $f$ une application linéaire de $E$ vers $F$.
+
+\begin{enumerate}
+ \item  Montrer que $\left[\left(\forall g\in\mathcal{L}(F,E),\;f\circ g\circ f=0\Rightarrow g = 0\right)\Rightarrow f\;\text{bijective}\right]$.
+
+\item  On pose $\text{dim}E=p$, $\text{dim}F=n$ et $\text{rg}f=r$. Calculer la dimension de $\{g\in\mathcal{L}(F,E)/\;f\circ g\circ f =0\}$.
+\end{enumerate}
+\finenonce{005601}
+
+
+\finexercice
+\exercice{5602, rouget, 2010/10/16}
+\enonce{005602}{**I}
+Soit $E=\Kk_n[X]$. $u$ est l'endomorphisme de $E$ défini par : $\forall P\in E,\; u(P)=P(X+1)-P$.
+
+\begin{enumerate}
+ \item  Déterminer $\text{Ker}u$  et $\text{Im}u$.
+
+\item  Déterminer explicitement une base dans laquelle la matrice de $u$ est  $\left(
+\begin{array}{ccccc}
+0&1&0&\ldots&0\\
+\vdots&\ddots&\ddots&\ddots&\vdots\\
+ & & &\ddots&0\\
+\vdots& & &\ddots&1\\
+0&\ldots& &\ldots&0
+\end{array}
+\right)$.
+\end{enumerate}
+\finenonce{005602}
+
+
+\finexercice
+\exercice{5603, rouget, 2010/10/16}
+\enonce{005603}{***}
+Rang de la matrice $\left(
+\begin{array}{cccc}
+1&\cos(a)&\cos(2a)&\cos(3a)\\
+\cos(a)&\cos(2a)&\cos(3a)&\cos(4a)\\
+\cos(2a)&\cos(3a)&\cos(4a)&\cos(5a)\\
+\cos(3a)&\cos(4a)&\cos(5a)&\cos(6a)
+\end{array}
+\right)$.
+\finenonce{005603}
+
+
+\finexercice
+\exercice{5604, rouget, 2010/10/16}
+\enonce{005604}{***}
+Soit $A=(a_{i,j})_{1\leqslant i,j\leqslant n}$ définie par $a_{i,j}=1$ si $i=j$, $j$ si $i=j-1$ et $0$ sinon.
+Montrer que $A$ est inversible et calculer $A^{-1}$.
+\finenonce{005604}
+
+
+\finexercice
+\exercice{5605, rouget, 2010/10/16}
+\enonce{005605}{***}
+Soient $n$ un entier naturel non nul puis $A\in\mathcal{M}_n(\Kk)$.
+Soit $f$ l'endomorphisme de $M_n(\Kk)$ qui à une matrice $X$ associe $AX+XA$. Calculer $\text{Tr}(f)$.
+\finenonce{005605}
+
+
+\finexercice
+\exercice{5606, rouget, 2010/10/16}
+\enonce{005606}{**}
+Soient $a$ un réel non nul et $A$ et $B$ deux éléments de $\mathcal{M}_n(\Rr)$.
+
+Résoudre dans $\mathcal{M}_n(\Rr)$ l'équation d'inconnue $M$ : $aM+ \text{Tr}(M)A=B$.
+\finenonce{005606}
+
+
+\finexercice
+\exercice{5607, rouget, 2010/10/16}
+\enonce{005607}{**}
+Rang de la matrice $(i+j+ij)_{1\leqslant i,j\leqslant n}$.
+\finenonce{005607}
+
+
+\finexercice
+\exercice{5608, rouget, 2010/10/16}
+\enonce{005608}{**}
+Soient $I=\left(
+\begin{array}{cc}
+1&0\\
+0&1
+\end{array}
+\right)$ et $J=\left(
+\begin{array}{cc}
+1&1\\
+0&1
+\end{array}
+\right)$. Soit $E=\{M(x,y)=xI+yJ,\;(x,y)\in\Rr^2\}$.
+
+\begin{enumerate}
+ \item  Montrer que $(E,+,.)$ est un $\Rr$-espace vectoriel et préciser sa dimension.
+
+\item  Montrer que $(E,+,\times)$ est un anneau commutatif.
+
+\item  Quels sont les éléments inversibles de l'anneau $(E,+,\times)$ ?
+
+\item  Résoudre dans $E$ les équations : 
+  \begin{enumerate}
+  \item $X^2=I$ 
+  \item $X^2=0$ 
+  \item $X^2=X$.
+  \end{enumerate}
+\item  Calculer $(M(x,y))^n$ pour $n$ entier naturel et $x$ et $y$ réels.
+\end{enumerate}
+\finenonce{005608}
+
+
+\finexercice
+\exercice{5609, rouget, 2010/10/16}
+\enonce{005609}{***}
+On appelle idéal bilatère de l'anneau $(\mathcal{M}_n(\Kk),+,\times)$ tout sous-ensemble I de $\mathcal{M}_n(\Kk)$ tel que
+
+\begin{center}
+a) $(I,+)$ est un groupe et b) $\forall A\in I$,  $\forall M\in\mathcal{M}_n(\Kk)$, $AM\in I$ et $MA\in I$.
+\end{center}
+
+Déterminer tous les idéaux bilatères de l'anneau $(\mathcal{M}_n(\Kk),+,\times)$.
+\finenonce{005609}
+
+
+\finexercice
+\exercice{5610, rouget, 2010/10/16}
+\enonce{005610}{***}
+Soient $a_1$,..., $a_n$ $n$ réels tous non nuls et $A=\left(
+\begin{array}{ccccc}
+1+a_1&1&\ldots&\ldots&1\\
+1&\ddots&\ddots& &\vdots\\
+\vdots&\ddots& &\ddots&\vdots\\
+\vdots& &\ddots&\ddots&1\\
+1&\ldots&\ldots&1&1+a_n
+\end{array}
+\right)$.
+
+Inverse de $A$ en cas d'existence ?
+\finenonce{005610}
+
+
+\finexercice
+\exercice{5611, rouget, 2010/10/16}
+\enonce{005611}{**}
+Soient $A=(a_{i,j})_{1\leqslant i,j\leqslant n}$ et $B=(b_{i,j})_{1\leqslant i,j\leqslant n}$ deux matrices carrées de format $n$ telles que 
+$a_{i,j}=0$ si $j\leqslant i+r -1$ et $b_{i,j}= 0$ si $j\leqslant i+s-1$ où $r$ et $s$ sont deux entiers donnés entre $1$ et $n$.
+Montrer que si $AB=(c_{i,j})_{1\leqslant i,j\leqslant n}$ alors $c_{i,j}=0$ si $j\leqslant i+r+s-1$.
+\finenonce{005611}
+
+
+\finexercice\exercice{5612, rouget, 2010/10/16}
+\enonce{005612}{**I}
+Calculer l'inverse de $\left(
+\begin{array}{cccccc}
+\dbinom{0}{0}&\dbinom{1}{0}&\dbinom{2}{0}&\ldots&\dbinom{n-1}{0}&\dbinom{n}{0}\\
+\rule{0mm}{7mm}0&\dbinom{1}{1}&\dbinom{2}{1}&\ldots&\ldots&\dbinom{n}{1}\\
+\rule{0mm}{7mm}\vdots&\ddots&\dbinom{2}{2}& & &\vdots\\
+ & & &\ddots& & \\
+\vdots& & &\ddots&\dbinom{n-1}{n-1}&\vdots\\
+0&\ldots& &\ldots&0&\dbinom{n}{n}
+\end{array}
+\right)$.
+\finenonce{005612}
+
+
+\finexercice
+\exercice{5613, rouget, 2010/10/16}
+\enonce{005613}{***I}
+Soit $n$ un entier naturel supérieur ou égal à $2$ et $\omega=e^{2i\pi/n}$.
+
+Soit $A =(\omega^{(j-1)(k-1)})_{1\leqslant j,k\leqslant n}$. Montrer que $A$ est inversible et calculer $A^{-1}$.
+\finenonce{005613}
+
+
+\finexercice
+\exercice{5614, rouget, 2010/10/16}
+\enonce{005614}{**I}
+\label{ex:rou17}
+Soit $A$ une matrice carrée de format $n$. Calculer le déterminant de sa comatrice.
+\finenonce{005614}
+
+
+\finexercice
+\exercice{5615, rouget, 2010/10/16}
+\enonce{005615}{***I}
+\label{ex:rou18bis}
+Soit $A$ une matrice carrée de format $n$. Etudier le rang de $\text{com}A$ en fonction du rang de $A$.
+\finenonce{005615}
+
+
+\finexercice
+\exercice{5616, rouget, 2010/10/16}
+\enonce{005616}{***}
+Résoudre dans $\mathcal{M}_n(\Rr)$ l'équation $M=\text{com}M$ ($n\geqslant2$).
+\finenonce{005616}
+
+
+\finexercice
+\exercice{5617, rouget, 2010/10/16}
+\enonce{005617}{***I Théorème de \textsc{Hadamard}}
+Soit $A=(a_{i,j})_{1\leqslant i,j\leqslant n}\in\mathcal{M}_n(\Cc)$ telle que $\forall i\in\llbracket1,n\rrbracket$, $|a_{i,i}| >\sum_{j\neq i}^{}|a_{i,j}|$. Montrer que $A\in\mathcal{GL}_n(\Cc)$. (Une matrice à diagonale strictement dominante est inversible.)
+\finenonce{005617}
+
+
+\finexercice
+\exercice{5618, rouget, 2010/10/16}
+\enonce{005618}{*I}
+Existe-t-il deux matrices carrées $A$ et $B$ telles que $AB-BA=I_n$.
+\finenonce{005618}
+
+
+\finexercice
+\exercice{5619, rouget, 2010/10/16}
+\enonce{005619}{**I}
+Soit $f$ une forme linéaire sur $\mathcal{M}_n(\Cc)$ telle que $\forall (A,B)\in(\mathcal{M}_n(\Cc))^2$, $f(AB) = f(BA)$. Montrer qu'il existe un complexe $a$ tel que $f=a\text{Tr}$.
+\finenonce{005619}
+
+
+\finexercice
+\exercice{5620, rouget, 2010/10/16}
+\enonce{005620}{***}
+Soit $A_n=
+\left(
+\begin{array}{cc}
+1&-\frac{a}{n}\\
+\frac{a}{n}&1
+\end{array}
+\right)$ ($a$ réel donné). Calculer $\lim_{n \rightarrow +\infty}A_n^n$.
+\finenonce{005620}
+
+
+\finexercice
+\exercice{5621, rouget, 2010/10/16}
+\enonce{005621}{**}
+Soient $A$ une matrice carrée de format $n$ et $f$ l'application de $\mathcal{M}_n(\Cc)$ dans lui-même qui à une matrice $M$ associe $MA$. Trouver la matrice de $f$ dans la base canonique de $\mathcal{M}_n(\Cc)$ (ordonnée par l'ordre lexicographique).
+\finenonce{005621}
+
+
+\finexercice
+\exercice{5622, rouget, 2010/10/16}
+\enonce{005622}{***}
+Soient $A\in\mathcal{M}_n(\Cc)$ et $B$ l'élément de $\mathcal{M}_{np}(\Cc)$ défini par blocs par $B=\left(
+\begin{array}{cccc}
+A&0&\ldots&0\\
+0&\ddots&\ddots&\vdots\\
+\vdots&\ddots&\ddots&0\\
+0&\ldots&0&A
+\end{array}
+\right)$. Déterminer le rang de $B$ en fonction du rang de $A$.
+\finenonce{005622}
+
+
+\finexercice
+\exercice{5623, rouget, 2010/10/16}
+\enonce{005623}{***}
+Soit $H$ un élément de $\mathcal{M}_n(\Cc)$ tel que $\forall A\in\mathcal{M}_n(\Cc),\;\exists\lambda_A\in\Cc/\;HAH=\lambda_AH$. Montrer que $\text{rg}H\leqslant 1$.
+\finenonce{005623}
+
+
+\finexercice
+\exercice{5624, rouget, 2010/10/16}
+\enonce{005624}{***}
+Soit $M\in\mathcal{M}_3(\Rr)$. Montrer que les deux propriétés suivantes sont équivalentes :
+
+\begin{center}
+(1) $M^2 = 0$ et (2) $\text{rg}M\leqslant 1$ et $\text{tr}M = 0$.
+\end{center}
+\finenonce{005624}
+
+
+\finexercice
+\exercice{5625, rouget, 2010/10/16}
+\enonce{005625}{***I}
+Soient $A$ et $B$ deux matrices carrées de format $n$ telles que $AB-BA=A$. Calculer la trace de $A^{2010}$.
+\finenonce{005625}
+
+
+\finexercice
+\exercice{5626, rouget, 2010/10/16}
+\enonce{005626}{**}
+Soient $M(a)=\left(
+\begin{array}{ccc}
+4-a&1&-1\\
+-6&-1-a&2\\
+2&1&1-a
+\end{array}
+\right)$  et $N(a)=\left(
+\begin{array}{ccc}
+1-a&1&0\\
+0&1-a&0\\
+0&0&2-a
+\end{array}
+\right)$.
+$M(a)$ et $N(a)$ sont-elles semblables ?
+\finenonce{005626}
+
+
+\finexercice
+\exercice{5627, rouget, 2010/10/16}
+\enonce{005627}{***I}
+Soient $A$ et $B$ deux éléments de $\mathcal{M}_n(\Rr)$. Montrer que si $A$ et $B$ sont semblables dans $\mathcal{M}_n(\Cc)$, elles le sont dans $\mathcal{M}_n(\Rr)$.
+\finenonce{005627}
+
+
+\finexercice
+\exercice{5628, rouget, 2010/10/16}
+\enonce{005628}{**I Exponentielle d'une matrice nilpotente}
+
+Pour $A$ matrice nilpotente donnée, on pose $\text{exp}A=\sum_{k=0}^{+\infty}\frac{A^k}{k!}$.
+
+\begin{enumerate}
+ \item  Montrer que si $A$ et $B$ commutent et sont nilpotentes alors $A+B$ est nilpotente et $\text{exp}(A+B) =\text{exp}A\times\text{exp}B$.
+
+\item  Montrer que $\text{exp}A$ est inversible.
+
+\item  Calculer $\text{exp}A$ où $A=\left(
+\begin{array}{ccccc}
+0&1&0&\ldots&0\\
+\vdots&\ddots&\ddots&\ddots&\vdots\\
+ & & &\ddots&0\\
+\vdots& & &\ddots&1\\
+0&\ldots& &\ldots&0
+\end{array}
+\right)$.
+\end{enumerate}
+\finenonce{005628}
+
+
+\finexercice
+
+\finfiche
+
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005598}
+Deux cas particuliers se traitent immédiatement.
+
+Si $f=0$, on prend $p=0$ et $g=Id_E$ et si $f\in\mathcal{GL}(E)$, on prend $p=Id_E$ et $g=f$. 
+
+On se place dorénavant dans le cas où $\text{Ker}f$ et $\text{Im}f$ ne sont pas réduit à ${0}$.
+
+Soit $F$ un supplémentaire de $\text{Ker}f$ dans $E$ et $G$ un  supplémentaire de $\text{Im}f$ dans $E$.
+
+On sait que la restriction $f'$ de $f$ à $F$ réalise un isomorphisme de $F$ sur $\text{Im}f$. D'autre part $\text{dim}\text{Ker}f=\text{dim}G<+\infty$ et donc $\text{Ker}f$ et $G$ sont isomorphes. Soit $\varphi$ un isomorphisme de $\text{Ker}f$ sur $G$.
+
+On définit une unique application linéaire $g$ en posant $g_{/\text{Ker}f}=\varphi$ et $g_{/F}=f'$.
+
+$g$ est un automorphisme de $E$. En effet,
+
+\begin{center}
+$g(E)=g(\text{Ker}f +F)=g(\text{Ker}f) +g(F)=\varphi(\text{Ker}f) + f'(F)=G +\text{Im}f=E$,
+\end{center}
+
+(puisque $\varphi$ et $f'$ sont des isomorphismes) et donc $g$ est surjective. Par suite $g$ est bijective de $E$ sur lui-même puisque $\text{dim}E<+\infty$.
+
+Soit $p$ la projection sur $F$ parallèlement à $\text{Ker}f$. On a
+
+\begin{center}
+$(g\circ p)_{/\text{Ker}f}= g\circ0_{/\text{Ker}f}= 0_{/\text{Ker}f}=f_{/\text{Ker}f}$ et $(g\circ p)_{/F}=g\circ Id_{/F}=f'=f_{/F}$.
+\end{center}
+
+Ainsi les endomorphismes $g\circ p$ et $f$ coïncident sur deux sous espaces supplémentaires de $E$ et donc $g\circ p=f$. Finalement, si on note $P(E)$ l'ensemble des projecteurs de $E$,
+
+\begin{center}
+\shadowbox{
+$\forall f\in\mathcal{L}(E)$, $\exists g\in\mathcal{GL}(E)$, $\exists p\in P(E)/\;f=g\circ p$.
+}
+\end{center}
+\fincorrection
+\correction{005599}
+(Ne pas confondre : ($\forall x\in E,\; \exists p\in\Nn^*/\;f^p(x)=0$) et ($\exists p\in\Nn^*/\;\forall x\in E,\;f^p(x) = 0)$. Dans le deuxième cas, $p$ est indépendant de $x$ alors que dans le premier cas, $p$ peut varier quand $x$ varie).
+
+Soit $\mathcal{B}=(e_i)_{1\leqslant i\leqslant n}$ une base de $E$. Pour chaque $i\in\llbracket1,n\rrbracket$, il existe un entier non nul $p_i$ tel que $f^{p_i}(e_i)=0$. Soit $p=\text{Max}\{p_1,...,p_n\}$. $p$ est un entier naturel non nul et pour $i$ dans $\llbracket1,n\rrbracket$, on a
+
+\begin{center}
+$f^{p}(e_i)=f^{p-p_i}(f^{p_i}(e_i))=f^{p-p_i}(0)=0$.
+\end{center}
+
+Ainsi l'endomorphisme $f^p$ s'annule sur une base de $E$ et on sait que $f^p=0$.
+
+On a donc trouvé un entier non nul $p$ tel que $f^p=0$ et par suite $f$ est nilpotent.
+\fincorrection
+\correction{005600}
+\begin{enumerate}
+ \item  A partir de $fg-gf=af+bg$ $(1)$, on obtient après composition à droite par $g$, $fg-gfg = afg + bg$ ou encore $fg=g\circ\frac{1}{1-a}(fg + bId)$ (puisque $1 - a\neq0$). On en déduit
+
+\begin{center} 
+$\text{Im}(fg)\subset\text{Im}g$.
+\end{center}
+
+Mais alors en écrivant $(1)$ sous la forme $f=\frac{1}{a}(fg- gf -bg)$ (puisque $a$ n'est pas nul), on obtient
+
+\begin{center}
+$\text{Im}f\subset\text{Im}g$.
+\end{center}
+
+L'égalité $\text{Im}f\subset\text{Im}g$ montre que tout vecteur de $\text{Im}f$ est invariant par $g$ et  fournit donc l'égalité $gf = f$. On compose alors (1) à droite par $f$ et en tenant compte de $gf = f$ et de $f^2 = f$, on obtient $f - f = af + bf$ et donc $(a+b)f = 0$ puis $b=-a$ puisque $f$ n'est pas nul.
+
+(1) s'écrit alors $fg - f = a(f-g)$. En composant à droite par $g$, on obtient : $a(fg - g) = 0$ et donc $fg = f$ puisque $a$ n'est pas nul. (1) s'écrit maintenant $g-f = a(f-g)$ ou encore $(a+1)(g - f) = 0$ et donc, puisque $f$ et $g$ sont distincts, $a = -1$.
+
+\item  (D'après 1), si a est distinct de $0$ et de $1$, nécessairement $a = -1$ et (1) s'écrit $fg - gf =-f +bg$).
+
+Soit $x$ un élément de $\text{Ker}g$. $(1)$ fournit $-g(f(x)) = af(x)$ $(*)$ puis en prenant l'image par $g$, $(a+1)g(f(x)) = 0$. Puisque $a$ est distinct de $-1$, on obtient $g(f(x)) = 0$ et $(*)$ fournit $af(x) = 0$ puis $f(x) = 0$. Donc $x$ est élément de $\text{Ker}f$. On a montré que $\text{Ker}g\subset\text{Ker}f$.
+
+On en déduit $\text{Im}(g-Id)\subset\text{Ker}f$ et donc $f(g-Id) =0$ ou encore $fg = f$. $(1)$ s'écrit $f - gf = af + bg$ et en composant à gauche par $f$, on obtient $f - fgf = af + bfg$. En tenant compte de $fg = f$, on obtient  $(a+b)f = 0$ et donc $b = -a$.
+
+$(1)$ s'écrit alors $f - gf = a(f - g)$ et en composant à gauche par $g$, on obtient $0 = a(gf - g)$ et donc $gf = g$. (1) s'écrit enfin $f-g = a(f-g)$ et donc $a = 1$.
+
+\item  Si $a = 0$, $(1)$ s'écrit $fg - gf = bg$. En composant à gauche ou à droite par $g$, on obtient $gfg - gf = bg$ et $fg - gfg = bg$. En additionnant ces deux égalités, on obtient $fg - gf = 2bg$. D'où, en tenant compte de $(1)$, $bg = 2bg$ et puisque $g$ n'est pas nul, $b = 0$. Par suite $fg - gf = 0$ ce qui est exclu par l'énoncé. Donc, on ne peut avoir $a = 0$. D'après 1) et 2), $(a,b)\in\{(-1,1),(1,-1)\}$.
+
+\textbf{1er cas.} $(a,b) = (-1,1)$. C'est le 1) : $fg - gf = -f +g$. On a vu successivement que $gf = f$  puis que $fg = g$ fournissant $(g-Id)f = 0$ et $(f-Id)g = 0$ ou encore 
+$\text{Im}f \subset\text{Ker}(g-Id) =\text{Im}g$ et $\text{Im}g \subset\text{Im}f$ et donc $\text{Im}f =\text{Im}g$. Réciproquement, si $f$ et $g$ sont deux projecteurs de même image alors $gf = f$, $fg = g$ et donc $fg - gf = -f + g$. Le premier cas est donc le cas de deux projecteurs de même image .
+
+\textbf{2ème cas.} $(a,b) = (1,-1)$. C'est le cas de deux projecteurs de même noyau.
+\end{enumerate}
+\fincorrection
+\correction{005601}
+\begin{enumerate}
+ \item  Si $N=\text{Ker}f\neq\{0\}$, considérons $g$ non nul tel que $\text{Im}g\neq\{0\}$ et $\text{Im}g\subset\text{Ker}f$.
+
+Pour un tel $g$, $f\circ g = 0$ puis $f\circ g\circ f = 0$ et donc $g = 0$ par hypothèse, contredisant $g$ non nulle. Donc $\text{Ker}f =\{0\}$.
+
+Si $\text{Im}f\neq F$, on choisit $g$ nulle sur $\text{Im}f$ et non nulle  sur un supplémentaire de $\text{Im}f$ (dont l'existence est admise en dimension infinie). Alors, $g\circ f = 0$ puis $f\circ g\circ f = 0$ et donc $g = 0$ contredisant $g$ non nulle. Donc $\text{Im}f = F$.
+
+Finalement, $f$ est bien un isomorphisme de $E$ sur $F$.
+
+\item  Soit $A=\{g\in\mathcal{L}(F,E)/\;f\circ g\circ f = 0\}$. Tout d'abord $A$ est bien un sous-espace vectoriel de $\mathcal{L}(F,E)$ car contient l'application nulle et est stable par combinaison linéaire (ou bien $A$ est le noyau de l'application linéaire de $\mathcal{L}(F,E)$ dans $\mathcal{L}(E,F)$ qui à $g$ associe $f\circ g\circ f$).
+
+Soit $J$ un supplémentaire de $I=\text{Im}f$ dans $F$. Un élément $g$ de $\mathcal{L}(F,E)$ est entièrement déterminé par ses restrictions à $I$ et $J$.
+
+\begin{center}
+$f\circ g\circ f = 0\Leftrightarrow(f\circ g)_{/I}= 0\;\text{et}\;g_{/J}\;\text{est quelconque}\Leftrightarrow g(I)\subset N$.
+\end{center}
+
+Pour être le plus méticuleux possible, on peut alors considérer l'application $G$ de $\mathcal{L}(I,N)\times\mathcal{L}(J,E)$ dans $\mathcal{L}(F,E)$ qui à un couple $(g_1,g_2)$ associe l'unique application linéaire $g$ de $F$ dans $E$ telle que $g_{/I}= g_1$ et $g_{/J}=g_2$. $G$ est linéaire et injective d'image $A$. Donc 
+
+\begin{center}
+$\text{dim}A =\text{dim}\mathcal{L}(I,N)\times\text{dim}\mathcal{L}(J,E)=\text{dim}\mathcal{L}(I,N) + \text{dim}\mathcal{L}(J,E) = r(p - r) + (n - r)p = pn - r^2$.
+\end{center}
+\end{enumerate}
+\fincorrection
+\correction{005602}
+\begin{enumerate}
+ \item  $u$ est dans L(E) car $u$ est linéaire et si $P$ est un polynôme de degré au plus $n$ alors $u(P)$ est un polynôme de degré au plus $n$.
+
+\textbullet~Les polynômes constants sont dans $\text{Ker}u$. Réciproquement , soit $P$un élément de $\text{Ker}u$ puis $Q = P - P(0)$.
+
+Par hypothèse, $P(0) = P(1) = P(2) = ...$ et donc $0$, $1$, $2$, ... sont des racines de $Q$. Puisque le polynôme $Q$ admet une infinité de racines, $Q$ est nul et donc $P = P(0)$ et $P\in\Kk_0[X]$. Ainsi, $\text{Ker}u =\Kk_0[X]$. 
+
+\textbullet~Mais alors, d'après le théorème du rang, $\text{rg}u =(n+1)-1 = n$.
+D'autre part, si $P$ est dans $\Kk_n[X]$, $P(X+1)-P$ est dans $\Kk_{n-1}[X]$ (si on pose $P=a_nX^n+\ldots$, le coefficient de $X^n$ dans $u(P)$ est $a_n-a_n=0$).
+
+En résumé, $\text{Im}u\subset\Kk_{n-1}[X]$ et $\text{dim}\text{Im}u=\text{dim}\Kk_{n-1}[X]<+\infty$ et donc $\text{Im}u=\Rr_{n-1}[X]$.
+
+\begin{center}
+\shadowbox{
+$\text{Ker}u=\Kk_0[X]$ et $\text{Im}u=\Kk_{n-1}[X]$.
+}
+\end{center}
+
+\item  On part de $P_0 = 1$ et aussi de $P_1 = X$ qui vérifient bien $u(P_0) = 0$ et $u(P_1) = P_0$.
+
+Trouvons $P_2=aX^2 + bX$ tel que $u(P_2) = P_1$ (il est clair que si $\text{deg}(P)\geqslant1$, $\text{deg}(u(P))=\text{deg}(P)-1$ et d'autre part, les constantes sont inutiles car $\text{Ker}u=\Kk_0[X]$).
+
+\begin{center}
+$u(P_2) =P_1\Leftrightarrow a(X+1)^2 +b(X+1) - aX^2 - bX =X\Leftrightarrow (2a-1)X +a+b =0\Leftrightarrow a =\frac{1}{2}\;\text{et}\;b = -a$.
+\end{center}
+
+On prend $P_2=\frac{1}{2}(X^2-X)=\frac{1}{2}X(X-1)$.
+
+Trouvons $P_3=aX^3 + bX^2+cX$ tel que $u(P_3) = P_2$.
+
+\begin{align*}\ensuremath
+u(P_3) =P_2&\Leftrightarrow a(X+1)^3 +b(X+1)^2+c(X+1) - aX^3 - bX^2-cX =\frac{1}{2}X^2-\frac{1}{2}X\\
+ &\Leftrightarrow \left(3a-\frac{1}{2}\right)X^2+\left(3a+2b-\frac{1}{2}\right)X+a+b+c=0\\
+ &\Leftrightarrow a =\frac{1}{6}\;\text{et}\;b =-\frac{1}{2}\;\text{et}\;c=\frac{1}{3}.
+\end{align*}
+
+On prend $P_3=\frac{1}{6}(X^3-3X^2+2X)=\frac{1}{6}X(X-1)(X-2)$.
+
+Essayons, pour $1\leqslant k\leqslant n$, $P_k=\frac{1}{k!}\prod_{i=0}^{k-1}(X-i)$. Pour $1\leqslant k\leqslant n-1$,
+
+\begin{align*}\ensuremath
+u(P_{k+1})&=\frac{1}{(k+1)!}\prod_{i=0}^{k}(X+1-i)-\frac{1}{(k+1)!}\prod_{i=0}^{k}(X-i)=\frac{1}{(k+1)!}((X+1)-(X-k))\prod_{i=0}^{k-1}(X-i)\\
+ &=\frac{1}{k!}\prod_{i=0}^{k-1}(X-i)=P_k.
+\end{align*}
+
+Enfin, les $P_k$, $0\leqslant k\leqslant n$, constituent une famille de $n+1=\text{dim}\Kk_n[X]$ polynômes de degrés échelonnés de $\Kk_n[X]$ et donc la famille $(P_k)_{0\leqslant k\leqslant n}$ est une base de $\Kk_n[X]$. Dans cette base, la matrice de $u$ a la forme désirée.
+\end{enumerate}
+\fincorrection
+\correction{005603}
+(C'est en fait un exercice sur les polynômes de \textsc{Tchebychev} de 1ère espèce et vous pouvez généraliser cet exercice en passant au format $n$ au lieu du format $4$.)
+
+Si on note $C_j$, $j\in\{1,2,3,4\}$, la $j$-ème colonne de $A$ alors $C_j= (\cos(i+j-2)a)_{1\leqslant i\leqslant4}$ puis pour $j$ élément de $\{1,2\}$, 
+
+\begin{center}
+$C_{j+2}+ C_j =(2\cos(i+j-1)a\cos a)_{1\leqslant i\leqslant4}= 2\cos aC_{j+1}$
+\end{center}
+
+et donc $C_3 =2\cos aC_2 - C_1\in\text{Vect}(C_1,C_2)$ et $C_4= 2\cos a C_3 -C_2\in\text{Vect}(C_2,C_3)\subset\text{Vect}(C_1,C_2)$.
+
+Donc $\text{Vect}(C_1,C_2,C_3,C_4)=\text{Vect}(C_1,C_2)$ et $\text{rg}A=\text{rg}(C_1,C_2)\leqslant 2$.
+
+Enfin $\left|
+\begin{array}{cc}
+1&\cos(a)\\
+\cos(a)&\cos(2a)
+\end{array}
+\right|=\cos(2a) -\cos^2a=\cos^2a - 1= -\sin^2a$.
+
+\textbullet~Si $a$ n'est pas dans $\pi\Zz$, ce déterminant n'est pas nul et donc les deux premières colonnes ne sont pas colinéaires. Dans ce cas, $\text{rg}A = 2$. 
+
+\textbullet~Si $a$ est dans $\pi\Zz$, la première colonne n'est pas nulle et les autres colonnes lui sont colinéaires. Dans ce cas, $\text{rg}A = 1$.
+
+\begin{center}
+\shadowbox{
+$\text{rg}(A)=2$ si $a\notin\pi\Zz$ et $\text{rg}(A)=1$ si $a\in\pi\Zz$.
+}
+\end{center}
+\fincorrection
+\correction{005604}
+$A= \left(
+\begin{array}{cccccc}
+1&2&0&\ldots&\ldots&0\\
+0&1&3&\ddots& &\vdots\\
+\vdots&\ddots&\ddots&\ddots&\ddots&\vdots\\
+ & & & &\ddots&0\\
+\vdots& & &\ddots&\ddots&n-1\\
+0&\ldots& &\ldots&0&1
+\end{array}
+\right)= I + N$ où $N=\left(
+\begin{array}{cccccc}
+0&2&0&\ldots&\ldots&0\\
+0&0&3&\ddots& &\vdots\\
+\vdots&\ddots&\ddots&\ddots&\ddots&\vdots\\
+ & & & &\ddots&0\\
+\vdots& & &\ddots&\ddots&n-1\\
+0&\ldots& &\ldots&0&0
+\end{array}
+\right)$.
+
+$N$ est nilpotente et donc $N^n = 0$. Par suite, 
+
+\begin{center}
+$I=I-(-N)^n=(I+N)(I -N + ... +(-N)^{n-1})$.
+\end{center}
+
+Ainsi $A$ est inversible à gauche et donc inversible, d'inverse $I -N + ... +(-N)^{n-1}$.
+
+Calcul de $N^p$ pour $1\leqslant p\leqslant n$.
+
+\begin{center}
+$N^2 =\left(\sum_{j=2}^{n}jE_{j-1,j}\right)^2=\sum_{2\leqslant j,k\leqslant n}^{}jkE_{j-1,j}E_{k-1,k}=\sum_{j=2}^{n-1}j(j+1)E_{j-1,j}E_{j,j+1}=\sum_{j=3}^{n}j(j-1)jE_{j-2,j}$.
+\end{center}
+
+c'est-à-dire $N^2=\left(
+\begin{array}{cccccc}
+0&0&2\times3&0&\ldots&0\\
+\vdots& &\ddots&3\times4&\ddots&\vdots\\
+ & & &\ddots&\ddots&0\\
+ & & & &\ddots&(n-1)n\\
+\vdots& & & & &0\\
+0&\ldots& &\ldots&0&0
+\end{array}
+\right)$.
+
+Ensuite, $N^3=\left(\sum_{j=3}^{n}(j-1)jE_{j-2,j}\right)\left(\sum_{k=2}^{n}kE_{k-1,k}\right)) =\sum_{j=4}^{n}j(j-1)(j-2)E_{j-3,j}$.
+
+Supposons que pour $p$ donné dans $\llbracket1,n-1\rrbracket$, $N^p=\sum_{j=p+1}^{n}j(j-1)...(j-p+1)E_{j-p,j}$.
+
+Alors $N^{p+1}=\left(\sum_{j=p+1}^{n}j(j-1)...(j-p+1)E_{j-p,j}\right)\left(\sum_{k=2}^{n}kE_{k-1,k}\right)=\sum_{j=p+2}^{n}j(j-1)...(j-p)E_{j-p-1,j}$. Ainsi 
+
+\begin{center}
+\shadowbox{
+$A^{-1}= (a_{i,j})_{1\leqslant i,j\leqslant n}$ où $a_{i,j}= 0$ si $i > j$, $1$ si $i = j$ et $(-1)^{i+j-2}\prod_{k=0}^{j-i-1}(j-k)$ sinon.
+}
+\end{center}
+\fincorrection
+\correction{005605}
+On note $\mathcal{B}=(E_{i,j})_{1\leqslant i,j\leqslant n}$ la base canonique de $\mathcal{M}_n(\Kk)$.
+
+$\text{Tr}f=\sum_{1\leqslant i,j\leqslant n}^{}\alpha_{i,j}$ où $\alpha_{i,j}$ désigne la $(i,j)$-ème coordonnée de $f(E_{i,j})=AE_{i,j}+E_{i,j}A$ dans la base $\mathcal{B}$.
+
+Mais pour $(i,j)\in\llbracket1,n\rrbracket^2$ donné, 
+
+\begin{center}
+$AE_{i,j}=\sum_{1\leqslant k,l\leqslant n}^{}a_{k,l}E_{k,l}E_{i,j}=\sum_{k=1}^{n}a_{k,i}E_{k,j}$
+\end{center}
+
+et de même,
+
+\begin{center}
+$E_{i,j}A=\sum_{1\leqslant k,l\leqslant n}^{}a_{k,l}E_{i,j}E_{k,l}=\sum_{l=1}^{n}a_{j,l}E_{i,l}$.
+\end{center}
+
+Donc $\forall(i,j)\in\llbracket1,n\rrbracket^2$, $\alpha_{i,j}=a_{i,i}+a_{j,j}$ puis
+
+\begin{center}
+$\text{Tr}f=\sum_{1\leqslant i,j\leqslant n}^{}(a_{i,i}+a_{j,j})=2\sum_{1\leqslant i,j\leqslant n}^{}a_{i,i}=2\sum_{j=1}^{n}\left(\sum_{i=1}^{n}a_{i,i}\right)=2\sum_{j=1}^{n}\text{Tr}A=2n\text{Tr}A$.
+\end{center}
+
+\begin{center}
+\shadowbox{
+$\text{Tr}f=2n\text{Tr}A$.
+}
+\end{center}
+\fincorrection
+\correction{005606}
+Si $M$ est solution, nécessairement $a\text{Tr}M +(\text{Tr}M)(\text{Tr}A)=\text{Tr}B$ ou encore $(\text{Tr}M)(a+\text{Tr}A) =\text{Tr}B$.
+
+\textbf{1er cas.} Si $\text{Tr}A\neq-a$ alors nécessairement $\text{Tr}M=\frac{\text{Tr}B}{a+\text{Tr}A}$ puis $M=\frac{1}{a}\left(B-\frac{\text{Tr}B}{a+\text{Tr}A}A\right)$.
+
+Réciproquement, si $M=\frac{1}{a}\left(B-\frac{\text{Tr}B}{a+\text{Tr}A}A\right)$ alors
+
+\begin{center}
+$aM +(TrM)A=B-\frac{\text{Tr}B}{a+\text{Tr}A}A +\frac{1}{a}\left(\text{Tr}B-\frac{\text{Tr}B}{a+\text{Tr}A}\text{Tr}A\right)A = B$.
+\end{center}
+
+\begin{center}
+\shadowbox{
+Si $\text{Tr}A\neq-a$, $\mathcal{S}=\left\{\frac{1}{a}\left(B-\frac{\text{Tr}B}{a+\text{Tr}A}A\right)\right\}$.
+}
+\end{center}
+
+\textbf{2ème cas.} Si $\text{Tr}A=-a$ et $\text{Tr}B\neq 0$, il n'y a pas de solution .
+
+\textbf{3ème cas.} Si $\text{Tr}A=-a$ et $\text{Tr}B=0$, $M$ est nécessairement de la forme $\frac{1}{a}B +\lambda A$ où $\lambda$ est un réel quelconque.
+
+Réciproquement, soient $\lambda\in\Rr$ puis $M=\frac{1}{a}B+\lambda A$. Alors 
+
+\begin{center}
+$aM+(\text{Tr}M)A=B+a\lambda A+\left(\frac{1}{a}\text{Tr}B+\lambda\text{Tr}A\right)A=B+a\lambda A-a\lambda A= B$,
+\end{center}
+
+et toute matrice de la forme $B +\lambda A$, $\lambda\in\Rr$, est solution.
+
+\begin{center}
+\shadowbox{
+Si $\text{Tr}A=-a$, $\mathcal{S}=\varnothing$ si $\text{Tr}B\neq0$ et $\mathcal{S}=\left\{B+\lambda A,\;\lambda\in\Rr\right\}$ si $\text{Tr}B=0$.
+}
+\end{center}
+\fincorrection
+\correction{005607}
+Pour $j\in\llbracket1,n\rrbracket$, notons $C_j$ la $j$-ème colonne de la matrice $A$. Posons encore $U=\left(
+\begin{array}{c}
+1\\
+2\\
+\vdots\\
+n
+\end{array}
+\right)$  et $V=\left(
+\begin{array}{c}
+2\\
+3\\
+\vdots\\
+n+1
+\end{array}
+\right)$. Pour $j\in\llbracket1,n\rrbracket$, on a
+
+\begin{center} 
+$Cj = (i+j(i+1))_{1\leqslant i\leqslant n}= (i)_{1\leqslant i\leqslant n}+j(i+1)_{1\leqslant i\leqslant n}=U+jV$.
+\end{center}
+
+Donc $\text{Vect}(C_1,...,C_n)\subset\text{Vect}(U,V)$ et en particulier, $\text{rg}A\leqslant 2$.
+Maintenant, si $n\geqslant 2$, les deux premières colonnes de $A$ ne sont pas colinéaires car $\left|
+\begin{array}{cc}
+3&5\\
+5&8
+\end{array}
+\right|=-1\neq0$. Donc, si $n\geqslant2$, $\text{rg}A=2$ et si $n=1$, $\text{rg}A =1$.
+
+\begin{center}
+\shadowbox{
+Si $n\geqslant 2$, $\text{rg}(i+j+ij)_{1\leqslant i,j\leqslant n}=2$ et si $n=1$, $\text{rg}(i+j+ij)_{1\leqslant i,j\leqslant n}=1$.
+}
+\end{center}
+\fincorrection
+\correction{005608}
+\begin{enumerate}
+ \item  $E=\text{Vect}(I,J)$ est un sous-espace vectoriel de $\mathcal{M}_2(\Rr)$ de dimension inférieure ou égale à 2. De plus, la famille $(I,J)$ est libre car la matrice $J$ n'est pas une matrice scalaire et donc $\text{dim}E= 2$.
+
+\item  Puisque $(E,+,.)$ est un espace vectoriel, $(E,+)$ est un groupe commutatif.
+
+Ensuite, $I^2=I\in E$, $IJ=JI=J\in E$ et $J^2=(I + E_{1,2})^2=I +2E_{1,2}= I+2(J-I) - I =2J -I\in E$. Par bilinéarité du produit matriciel, la multiplication est interne dans $E$ et commutative. De plus, $I\in E$ et finalement $E$ est un sous-anneau commutatif de $\mathcal{M}_2(\Rr)$.
+
+ 
+\textbf{Remarque.} $M(x,y)M(x',y')= xx'I +(xy'+yx')J +yy'(2J-I)= (xx'-yy')I + (xy'+yx'+2yy')J$.
+
+\item  Soit $(x,y)\in\Rr^2$. 
+
+\begin{align*}\ensuremath
+M(x,y)\;\text{est inversible dans}\;E&\Leftrightarrow\exists(x',y')\in\Rr^2/;(xx'-yy')I + (xy'+yx'+2yy')J=I\\
+ &\Leftrightarrow\exists(x',y')\in\Rr^2/;\left\{
+ \begin{array}{l}
+ xx'-yy'=1\\
+ yx'+(x+2y)y'=0
+ \end{array}
+ \right.\;(\text{car la famille}\;(I,J)\;\text{est libre})\quad(*).
+\end{align*}
+
+Le déterminant de ce système d'inconnue $(x',y')$ est $x(x+2y)+y^2=(x+y)^2$.
+
+ 
+
+\textbullet~Si $x+y\neq0$, le système $(*)$ admet une et une seule solution. Dans ce cas, $M(x,y)$ est inversible dans $E$.
+
+\textbullet~Si $x+y=0$, le système $(*)$ s'écrit $\left\{
+ \begin{array}{l}
+ x(x'+y')=1\\
+ -x(x'+y')=0
+ \end{array}
+ \right.$ et n'a pas de solution. Dans ce cas, $M(x,y)$ n'est pas inversible dans $E$.
+ 
+ \begin{center}
+ \shadowbox{
+ $M(x,y)$ est inversible dans $E\Leftrightarrow x+y\neq0$.
+ }
+ \end{center}
+ 
+
+\textbf{Remarque.} Puisque $I\in E$, $M(x,y)$ est inversible dans $E$ si et seulement si $M(x,y)$ est inversible dans $\mathcal{M}_2(\Rr)$.
+
+\item  Posons $X= xI+yJ$, $(x,y)\in\Rr^2$. 
+
+  \begin{enumerate}
+  \item D'après 1), $X^2=(x^2-y^2)I+(2xy+2y^2)J$. Donc
+
+\begin{align*}\ensuremath
+X^2= I&\Leftrightarrow x^2-y^2 = 1\;\text{et}\;2xy+2y^2= 0\;(\text{car la famille}\;(I,J)\;\text{est libre})\\
+ &\Leftrightarrow (y = 0\;\text{et}\;x^2 = 1)\;\text{ou}\;(y = -x et 0 = 1)\Leftrightarrow(y = 0\;\text{et}\;x = 1)\;\text{ou}\;(y = 0\;\text{et}\;x = -1)\\
+  &\Leftrightarrow X = I\;\text{ou}\;X = -I.
+\end{align*}
+ 
+\begin{center}
+\shadowbox{
+$\mathcal{S}=\{I,-I\}$.
+}
+\end{center}
+
+  \item
+\begin{align*}\ensuremath
+X^2=0&\Leftrightarrow x^2-y^2 =0\;\text{et}\;2xy+2y^2= 0\Leftrightarrow (y = 0\;\text{et}\;x^2 = 0)\;\text{ou}\;(y = -x et 0 = 0)\Leftrightarrow y=-x.
+\end{align*}
+
+\begin{center}
+\shadowbox{
+$\mathcal{S}=\{x(I-J),\;x\in\Rr\}$.
+}
+\end{center}
+
+\textbf{Remarque.} L'équation $X^2=0$, de degré 2, admet une infinité de solutions dans $E$ ce qui montre une nouvelle fois que $(E,+,\times)$ n'est pas un corps.
+
+  \item 
+
+\begin{align*}\ensuremath
+X^2=X&\Leftrightarrow x^2-y^2 =x\;\text{et}\;2xy+2y^2= y\Leftrightarrow y(2x+2y-1)= 0\;\text{et}\;x^2-y^2=x\\
+ &\Leftrightarrow(y = 0\;\text{et}\;x^2= x)\;\text{ou}\;(2(x+y)=1\;\text{et}\;(x+y)(x-y)=x)\Leftrightarrow(X = 0\;\text{ou}\;X = I)\;\text{ou}\;(2(x+y)=1\;\text{et}\;x-y=2x)\\
+  &\Leftrightarrow X = 0\;\text{ou}\;X =I.
+\end{align*}
+
+\begin{center}
+\shadowbox{
+$\mathcal{S}=\{0,I\}$.
+}
+\end{center}
+  \end{enumerate}
+
+\item  Soit $n\in\Nn^*$. On pose $N=J-I=\left(
+\begin{array}{cc}
+0&1\\
+0&0
+\end{array}
+\right)$. Alors $M(x,y)=xI+y(I+N)=(x+y)I + yN$.
+
+Puisque $I$ et $N$ commutent, la formule du binôme de \textsc{Newton} fournit
+
+\begin{align*}\ensuremath
+(M(x,y))^n&=((x+y)I+yN)=(x+y)^nI +ny(x+y)^{n-1}N\;(\text{car}\;N^k=0\;\text{pour}\;k\geqslant 2)\\
+ &=\left(
+\begin{array}{cc}
+(x+y)^n&ny(x+y)^{n-1}\\
+0&(x+y)^n
+\end{array}
+\right).
+\end{align*}
+
+\begin{center}
+\shadowbox{
+$\forall n\in\Nn^*,\;(M(x,y))^n=\left(
+\begin{array}{cc}
+(x+y)^n&ny(x+y)^{n-1}\\
+0&(x+y)^n
+\end{array}
+\right)$.
+}
+\end{center}
+\end{enumerate}
+\fincorrection
+\correction{005609}
+$\{0\}$ est un idéal bilatère de l'anneau $\mathcal{M}_n(\Kk),+,\times)$.
+
+Soit $I$ un idéal non nul de de l'anneau $\mathcal{M}_n(\Kk),+,\times)$. Montrons que $I=\mathcal{M}_n(\Kk)$.
+
+Il existe une matrice $A$ non nulle dans $I$. Pour tout quadruplet d'indices $(i,j,k,l)$, $I$ contient le produit
+
+\begin{center}
+$E_{i,j}AE_{k,l}= \sum_{1\leqslant u,v\leqslant n}^{}a_{u,v}E_{i,j}E_{u,v}E_{k,l}=a_{j,k}E_{i,l}$.
+\end{center}
+
+$A$ est non nulle et on peut choisir $j$ et $k$ tels que $a_{j,k}$ soit non nul. $I$ contient alors $a_{j,k}E_{i,l}\frac{1}{a_{j,k}}I_n= E_{i,l}$. Finalement $I$ contient toutes les matrices élémentaires et donc encore toutes les sommes du type $\sum_{1\leqslant i,j\leqslant n}^{}m_{i,j}I_nE_{i,j}=(m_{i,j})_{1\leqslant i,j\leqslant n}$, c'est-à-dire $\mathcal{M}_n(\Kk)$ tout entier.
+
+\begin{center}
+\shadowbox{
+Les idéaux bilatères de l'anneau $\mathcal{M}_n(\Kk),+,\times)$ sont $\{0\}$ et $\mathcal{M}_n(\Kk)$.
+}
+\end{center}
+\fincorrection
+\correction{005610}
+On inverse $A$ en l'interprétant comme une matrice de passage.
+
+Soit $\mathcal{B}=(e_1,...,e_n)$ la base canonique de $\Rr^n$ et $(e_1',...,e_n)$ la famille de vecteurs de $\Rr^n$ de matrice $A$ dans la base $\mathcal{B}$.
+
+\begin{center}
+$A\;\text{inversible}\Leftrightarrow(e_1',...,e_n')\;\text{base de}\;E\Leftrightarrow\text{Vect}(e_1,...,e_n)\subset\text{Vect}(e_1',...,e_n')\Leftrightarrow\forall i\in\llbracket1,n\rrbracket,\;e_i\in\text{Vect}(e_1',...,e_n')$.
+\end{center}
+
+Dans ce cas, $A^{-1}$ est la matrice de passage de $\mathcal{B}'$ à $\mathcal{B}$.
+
+Soit $u = e_1 + ... + e_n$. Pour tout $i\in\llbracket1,n\rrbracket$, $e_i'=a_ie_i + u$ ce qui fournit $e_i =\frac{1}{a_i}(e_i'-u)$.
+
+En additionnant membre à membre ces $n$ égalités, on obtient $u=\sum_{i=1}^{n}\frac{1}{a_i}e_i'-\left(\sum_{i=1}^{n}\frac{1}{a_i}\right)u$ et donc $\lambda u=\sum_{i=1}^{n}\frac{1}{a_i}e_i'$ où
+$\lambda=1+\sum_{i=1}^{n}\frac{1}{a_i}$.
+
+\textbf{1er cas.} Si $\lambda\neq0$, on peut exprimer $u$ en fonction des $e_i'$, $1\leqslant i\leqslant n$, et donc les $e_i$ fonction des $e_i'$. Dans ce cas $A$ est inversible. Plus précisément, $ u=\frac{1}{\lambda}\sum_{i=1}^{n}\frac{1}{a_i}e_i'$ puis, $\forall i\in\llbracket1,n\rrbracket$, $e_i =\frac{1}{a_i}\left(e_i'-\frac{1}{\lambda}\sum_{j=1}^{n}\frac{1}{a_j}e_j'\right)$ et enfin
+
+\begin{center}
+$A^{-1}=\left(
+\begin{array}{ccccc}
+\frac{1}{a_1}-\frac{1}{\lambda a_1^2}&-\frac{1}{\lambda a_2a_1}&\ldots&\ldots&-\frac{1}{\lambda a_na_1}\\
+-\frac{1}{\lambda a_1a_2}&\frac{1}{a_2}-\frac{1}{\lambda a_2^2}& & &\vdots\\
+\vdots&-\frac{1}{\lambda a_2a_3}&\ddots& &\vdots\\
+\vdots&\vdots& &\frac{1}{a_{n-1}}-\frac{1}{\lambda a_{n-1}^2}&-\frac{1}{\lambda a_na_{n-1}}\\
+-\frac{1}{\lambda a_1a_n}&-\frac{1}{\lambda a_2a_n}&\ldots&-\frac{1}{\lambda a_na_{n-1}}&\frac{1}{a_n}-\frac{1}{\lambda a_n^2}
+\end{array}
+\right)$  où $\lambda=1+\sum_{i=1}^{n}\frac{1}{a_i}$.
+\end{center}
+
+\textbf{2ème cas.} Si $\lambda=0$, on a $\sum_{i=1}^{n}\frac{1}{a_i}e_i'=0$ ce qui montre que la famille $(e_i')_{1\leqslant i\leqslant n}$ est liée et donc que $A$ n'est pas inversible.
+\fincorrection
+\correction{005611}
+Par hypothèse, $a_{i,j}= 0$ pour $j\leqslant i + r - 1$ et $bi,j = 0$ pour $j\leqslant i + s - 1$.
+
+Soient $i$ et $j$ deux indices tels que $j\leqslant i + r + s - 1$. Le coefficient ligne $i$, colonne $j$, de $AB$ vaut $\sum_{k=1}^{n}a_{i,k}b_{k,j}$.
+
+ 
+Dans cette somme, si $k\leqslant i + r -1$, $a_{i,k}= 0$. Sinon $k\geqslant i + r$ et donc $j\leqslant i + r + s - 1\leqslant k + s - 1$ et dans ce cas $b_{k,j}= 0$.
+
+Finalement, le coefficient ligne $i$, colonne $j$, de $AB$ est bien nul si $j\leqslant i + r+s-1$.
+\fincorrection
+\correction{005612}
+Notons $A$ la matrice de l'énoncé. Soit $f$ l'endomorphisme de $\Rr_n[X]$ de matrice $A$ dans la base canonique $\mathcal{B}$ de $\Rr_n[X]$. D'après la formule du binôme de \textsc{Newton}, $\forall k\in\llbracket0,n\rrbracket$, $f(X^k)=(X+1)^k$. $f$ coïncide donc sur la base $\mathcal{B}$ avec l'endomorphisme de $\Rr_n[X]$ qui à un polynôme $P$ associe $P(X+1)$ et $f$ est donc cet endomorphisme.
+
+f est un automorphisme de $\Rr_n[X]$ de réciproque  l'application qui à un polynôme $P$ associe $P(X-1)$. Par suite, $A$ est inversible d'inverse la matrice de $f^{-1}$ dans la base $\mathcal{B}$.
+
+Le coefficient ligne $i$, colonne $j$, de $A^{-1}$ vaut donc $0$ si $i > j$ et $(-1)^{i+j}\dbinom{j}{i}$ si $i\leqslant j$.
+\fincorrection
+\correction{005613}
+Calculons $A\overline{A}$. Soit $(j,k)\in\llbracket1,n\rrbracket^2$. Le coefficient ligne $j$, colonne $k$ de $A\overline{A}$ vaut
+
+\begin{center}
+$\sum_{u=1}^{n}\omega^{(j-1)(u-1)}\omega^{-(u-1)(k-1)}=\sum_{u=1}^{n}\left(\omega^{j-k}\right)^{u-1}$.
+\end{center}
+
+\textbullet~Si $j=k$, ce coefficient vaut $n$.
+
+\textbullet~Si $j\neq k$, puisque $j-k$ est strictement compris entre $-n$ et $n$ et que $j-k$ n'est pas nul, $\omega^{j-k}$ est différent de $1$. Le coefficient ligne $j$, colonne $k$, de $A\overline{A}$ est donc égal à $\frac{1-\left(\omega^{j-k}\right)^{n}}{1-\omega^{j-k}}=\frac{1-1}{1-\omega^{j-k}}= 0$.
+
+Finalement, $A\overline{A}=nI_n$. Ainsi, $A$ est inversible à gauche et donc inversible, d'inverse $A^{-1}=\frac{1}{n}\overline{A}$.
+\fincorrection
+\correction{005614}
+On a toujours $A{^t}(\text{com}A)=(\text{det}A)I_n$. Par passage au déterminant et puisqu'une matrice a même déterminant que sa transposée, on obtient
+
+\begin{center}
+$(\text{det}A)(\text{det}(\text{com}A)) = (\text{det}A)^n$.
+\end{center}
+
+\textbullet~Si $\text{det}A$ n'est pas nul, on en déduit $\text{det}(\text{com}A)=(\text{det}A)^{n-1}$.
+
+\textbullet~Si $\text{det}A$ est nul, on a $A{^t}(\text{com}A) = 0$ et donc ${^t}\text{com}A$ est soit nulle, soit diviseur de zéro, et donc dans tous les cas non inversible. Il en est de même de $\text{com}A$ et donc $\text{det}(\text{com}A) = 0=(\text{det}A)^{n-1}$. Finalement 
+
+\begin{center}
+\shadowbox{
+$\forall A\in\mathcal{M}_(\Rr),\;\text{det}(\text{com}A)=(\text{det}A)^{n-1}$.
+}
+\end{center}
+\fincorrection
+\correction{005615}
+\textbullet~Si $A$ est de rang $n$, c'est-à-dire inversible, l'égalité $(\text{com}A)\times\frac{1}{\text{det}A}{^t}A =I_n$ montre que $\text{com}A$ est inversible et donc de rang $n$.
+
+Dans ce qui suit, le lien entre le rang d'une matrice et la nullité des différents mineurs est hors programme. On suppose maintenant $\text{rg}(A)\leqslant n-1$.
+
+\textbullet~Si $\text{rg}A\leqslant n-2$. Montrons que tous les mineurs de format $n-1$ extraits de $A$ sont nuls.
+
+Soient $j_1$,\ldots, $j_{n-1}$, $n-1$ numéros de colonnes deux à deux distincts puis $A'\in\mathcal{M}_{n,n-1}(\Kk)$ dont les colonnes sont $C_{j_1}$,\ldots, $C_{j_{n-1}}$. Puisque $A$ est de rang au plus $n-2$, la famille des colonnes de $A'$ est liée et donc $A'$ est de rang au plus $n-2$. Il en est de même de la matrice ${^t}A'\in\mathcal{n-1,n}(\Kk)$ et donc toute matrice $A''$ obtenue en supprimant l'une des colonnes de $A'$ est carrée, de format $n-1$, non inversible. Son déterminant est donc nul.
+
+Ainsi, tout déterminant obtenu en supprimant une ligne et une colonne de $\text{det}(A)$ est nul ou encore tous les mineurs de format $n-1$ extraits de $A$ sont nuls. Finalement, si $\text{rg}A\leqslant n-2$, $\text{com}A= 0$.
+
+\textbullet~Il reste à étudier le cas où $\text{rg}A=n-1$ et donc $\text{dim}KerA = 1$.
+
+L'égalité $\text{det}A=0$ impose $A{^t}(\text{com}A) = 0$. Mais alors $\text{Im}({^t}(\text{com}A))\subset\text{Ker}A$ et en particulier $\text{rg}(\text{com}A)=\text{rg}({^t}(\text{com}A))\leqslant\text{dim}(\text{Ker}A)=1$. Ainsi, si $\text{rg}(A)=n-1$ alors $\text{rg}(\text{com}A)\in\{0,1\}$.
+
+Montrons que l'un au moins des mineurs de format $n-1$ extraits de $A$ est non nul ce qui montrera que $\text{rg}(\text{com}A)=1$.
+
+Puisque $\text{rg}A=n-1$, il existe $n-1$ colonnes $C_{j_1}$,\ldots, $C_{j_{n-1}}$ de $A$ constituant une famille libre. La matrice $A'\in\mathcal{M}_{n,n-1}(\Kk)$ constituée par ces colonnes est de rang $n-1$. Il en est de même de sa transposée. Mais alors, il existe $n-1$ colonnes de ${^t}A'$ linéairement indépendantes. La matrice $A''$ constituée de ces $n-1$ colonnes est carrée de format $n-1$ et de rang $n-1$. $A''$ est donc inversible et il en est de même de ${^t}A''$. Le déterminant de ${^t}A''$ est un mineur de format $n-1$ extrait de $A$ et non nul.
+
+En résumé,
+
+\begin{center}
+\shadowbox{
+$\forall A\in\mathcal{M}_n(\Rr)$, $\text{rg}(\text{com}A) =\left\{
+\begin{array}{l}
+n\;\text{si}\;\text{rg}(A) = n\\
+1\;\text{si}\;\text{rg}(A) = n-1\\
+0\;\text{si}\;\text{rg}(A)\leqslant n-2
+\end{array}
+\right.$.
+}
+\end{center}
+\fincorrection
+\correction{005616}
+Si $\text{rg} M\leqslant n-1$, l'égalité $M=\text{com}M$ entraîne $M{^t}M=M{^t}(\text{com}M)=(\text{det}M)I_n=0$ et donc $M = 0$. En effet, 
+
+\begin{align*}\ensuremath
+M{^t}M=0&\Rightarrow\forall X\in\mathcal{M}_{n,1}(\Rr),\;M{^t}MX=0\Rightarrow\forall X\in\mathcal{M}_{n,1}(\Rr),\;{^t}XM{^t}MX = 0\Rightarrow\forall X\in\mathcal{M}_{n,1}(\Rr),\;\left\|{^t}MX\right\|^2=0\\
+ &\Rightarrow\forall X\in\mathcal{M}_{n,1}(\Rr),\;{^t}MX = 0\Rightarrow{^t}M=0\Rightarrow M=0.
+\end{align*}
+
+En résumé, si $M$ est solution, $M=0$ ou $M$ est inversible.
+
+Dans le deuxième cas, d'après l'exercice \ref{ex:rou17}, on doit avoir $\text{det}M=(\text{det}M)^{n-1}$ et donc, puisque $\text{det}M\neq0$, $\text{det}M\in\{-1,1\}$ (et même $\text{det}M=1$ si $n$ est impair) car $\text{det}M$ est réel.
+
+\textbullet~Si $\text{det}M=-1$, on doit avoir $M{^t}M=-I_n$ mais ceci est impossible car le coefficient ligne $1$, colonne $1$, de la matrice $M{^t}M$ vaut $m_{1,1}^2+...+m_{1,n}^2\neq-1$.
+
+\textbullet~Il reste le cas où $\text{det}M=1$, l'égalité $M=\text{com}M$ entraîne $M{^t}M=I_n$ c'est-à-dire $M$ est orthogonale positive.
+
+Réciproquement, si $M$ est orthogonale positive, ${^t}M=M^{-1}=\frac{1}{\text{det}M}{^t}(\text{com}M)={^t}\text{com}M$ et donc $M=\text{com}M$.
+
+Finalement ,
+
+\begin{center}
+\shadowbox{
+$\mathcal{S}=\{0\}\cup O_n^+(\Rr)$.
+}
+\end{center}
+\fincorrection
+\correction{005617}
+Montrons que $\text{Ker}A$ est réduit à $\{0\}$. Dans le cas contraire, on dispose d'un vecteur colonne non nul $X_0$ tel que $AX_0 = 0$. Posons $X_0=(x_i)_{1\leqslant i\leqslant n}$. Pour tout $i\in\llbracket1,n\rrbracket$,
+
+\begin{center}
+$\sum_{j=1}^{n}a_{i,j}x_j= 0\Rightarrow a_{i,i}x_i =-\sum_{j\neq i}^{}a_{i,j}x_j\Rightarrow |a_{i,i}||x_i|\leqslant\sum_{j\neq i}^{}|a_{i,j}||x_j|$.
+\end{center}
+
+On prend alors pour $i$ un indice $i_0$ tel que $|x_{i_0}| =\text{Max}\{|x_1|,...,|x_n|\}$. Puisque $X\neq0$, on a $|x_{i_0}|>0$. De plus,
+
+\begin{center}
+$|a_{i_0,i_0}||x_{i_0}|\leqslant\sum_{j\neq i_0}^{}|a_{i_0,j}||x_j|\leqslant\left(\sum_{j\neq i_0}^{}|a_{i_0,j}|\right)|x_{i_0}|$,
+\end{center}
+
+et puisque $|x_{i_0}|>0$, on obtient après simplification $|a_{i_0,i_0}|\leqslant\sum_{j\neq i_0}^{}|a_{i_0,j}|$ ce qui contredit les hypothèses.
+
+Donc $\text{Ker}A=\{0\}$ et $A$ est inversible.
+
+\fincorrection
+\correction{005618}
+Non, car $\text{Tr}(AB-BA)=\text{Tr}(AB) -\text{Tr}(BA) = 0\neq n =\text{Tr}(I_n)$.
+\fincorrection
+\correction{005619}
+Soit $f$ une forme linéaire sur $\mathcal{M}_n(\Cc)$. Pour $A=(a_{i,j})_{1\leqslant i,j\leqslant n}$, posons $f(A)=\sum_{1\leqslant i,j\leqslant n}^{}\alpha_{i,j}a_{i,j}$ où les $\alpha_{i,j}$ sont indépendants de $A$ (les $\alpha_{i,j}$ sont les $f(E_{i,j})$).
+
+Soient $i$ et $j$ deux entiers distincts pris dans $\llbracket1,n\rrbracket$.
+
+\begin{center}
+$\alpha_{i,i}=f\left(E_{i,i}\right) = f\left(E_{i,j}E_{j,i}\right) = f\left(E_{j,i}E_{i,j}\right) =f\left(E_{j,j}\right)=\alpha_{j,j}$,
+\end{center}
+
+et
+
+\begin{center}
+$\alpha_{i,j}=f(E_{i,j}) = f(E_{i,i}E_{i,j}) = f(E_{i,j}E_{i,i}) =f(0) =0$.
+\end{center}
+
+Finalement en notant $\alpha$ la valeur commune des $\alpha_{i,i}$, $1\leqslant i\leqslant n$, pour toute matrice $A$ on a $f(A)=\alpha\sum_{i=1}^{n}a_{i,i}=\alpha\text{Tr}A$ où $\alpha$ est indépendant de $A$. (Réciproquement, les $f=\alpha\text{Tr}$, $\alpha\in\Cc$, sont des formes linéaires vérifiant $\forall(A,B)\in\mathcal{M}_n(\Rr)^2$, $f(AB)=f(BA)$.)
+\fincorrection
+\correction{005620}
+ Puisque $\left(\frac{1}{\sqrt{1+\frac{a^2}{n^2}}}\right)^2+\left(\frac{\frac{a}{n}}{\sqrt{1+\frac{a^2}{n^2}}}\right)^2=1$, il existe un unique réel $\theta_n\in[-\pi,\pi[$ tel que
+
+\begin{center}
+$\cos\theta_n=\frac{1}{\sqrt{1+\frac{a^2}{n^2}}}$ et $\sin\theta_n=\frac{\frac{a}{n}}{\sqrt{1+\frac{a^2}{n^2}}}$.
+\end{center}
+
+La matrice $A_n$ s'écrit alors $A_n=\sqrt{1+\frac{a^2}{n^2}}\left(
+\begin{array}{cc}
+\cos\theta_n&-\sin\theta_n\\
+\sin\theta_n&\cos\theta_n
+\end{array}
+\right)$ et donc
+
+\begin{center}
+$(A_n)^n=\left(1+\frac{a^2}{n^2}\right)^{n/2}\left(
+\begin{array}{cc}
+\cos(n\theta_n)&-\sin(n\theta_n)\\
+\sin(\theta_n)&\cos(n\theta_n)
+\end{array}
+\right)$.
+\end{center}
+
+Maintenant, 
+
+\begin{center}
+$\left(1+\frac{a^2}{n^2}\right)^{n/2}=\text{exp}\left(\frac{n}{2}\ln\left(1+\frac{a^2}{n^2}\right)\right)\underset{n\rightarrow+\infty}{=}\text{exp}\left(\frac{n}{2}\times o\left(\frac{1}{n}\right)\right)\underset{n\rightarrow+\infty}{=}\text{exp}(o(1))\underset{n\rightarrow+\infty}{\rightarrow}1$.
+\end{center}
+
+Ensuite, en notant $\varepsilon$ le signe de $a$, $\theta_n=\varepsilon\Arccos\left(\frac{1}{\sqrt{1+\frac{a^2}{n^2}}}\right)\underset{n\rightarrow+\infty}{\rightarrow}0$ et on en déduit que
+
+\begin{center}
+$n\theta_n \underset{n\rightarrow+\infty}{\sim}n\sin(\theta_n)=n\frac{\frac{a}{n}}{\sqrt{1+\frac{a^2}{n^2}}}\underset{n\rightarrow+\infty}{\rightarrow}a$.
+\end{center}
+
+Finalement
+
+\begin{center}
+\shadowbox{
+$\lim_{n \rightarrow +\infty}(A_n)^n=\left(
+\begin{array}{cc}
+\cos(a)&-\sin(a)\\
+\sin(a)&\cos(a)
+\end{array}
+\right)$.
+}
+\end{center}
+\fincorrection
+\correction{005621}
+Soient $i$ et $j$ deux indices pris dans $\llbracket1,n\rrbracket$.
+
+\begin{center}
+$f(E_{i,j})=E_{i,j}\sum_{1\leqslant k,l\leqslant n}^{}a_{k,l}E_{k,l}=\sum_{l=1}^{n}a_{j,l}E_{i,l}$,
+\end{center}
+
+et en remplissant coefficient à coefficient, on trouve la matrice 
+définie par blocs $\left(
+\begin{array}{cccc}
+{^t}A&0&\ldots&0\\
+0&\ddots&\ddots&\vdots\\
+\vdots&\ddots&\ddots&0\\
+0&\ldots&0&{^t}A
+\end{array}
+\right)$.
+\fincorrection
+\correction{005622}
+On note $r$ le rang de $A$. Si $r=0$, $A$ est nulle et donc $B$ est nulle.
+
+Sinon, il existe deux matrices carrées inversibles $P$ et $Q$ de format $n$ telles que $A=PJ_rQ$ où $J_r=\left(
+\begin{array}{cc}
+I_r&0\\
+0&0
+\end{array}
+\right)$. Soient $P'=\left(
+\begin{array}{cccc}
+P&0&\ldots&0\\
+0&\ddots&\ddots&\vdots\\
+\vdots&\ddots&\ddots&0\\
+0&\ldots&0&P
+\end{array}
+\right)\in\mathcal{M}_{np}(\Cc)$ et $Q'=\left(
+\begin{array}{cccc}
+P&0&\ldots&0\\
+0&\ddots&\ddots&\vdots\\
+\vdots&\ddots&\ddots&0\\
+0&\ldots&0&Q
+\end{array}
+\right)\in\mathcal{M}_{np}(\Cc)$. Puisque $\text{det}(P')=(\text{det}(P))^p\neq0$ et $\text{det}(Q')=(\text{det}(Q))^p\neq0$, les matrices $P'$ et $Q'$ sont inversibles. De plus, un calcul par blocs montre que
+
+\begin{center}
+$B=\left(
+\begin{array}{cccc}
+PJ_rQ&0&\ldots&0\\
+0&\ddots&\ddots&\vdots\\
+\vdots&\ddots&\ddots&0\\
+0&\ldots&0&PJ_rQ
+\end{array}
+\right)=P'J_r'Q'$ où $J_r'=\left(
+\begin{array}{cccc}
+J_r&0&\ldots&0\\
+0&\ddots&\ddots&\vdots\\
+\vdots&\ddots&\ddots&0\\
+0&\ldots&0&J_r
+\end{array}
+\right)$.
+\end{center}
+
+La matrice $B$ est équivalente a la matrice $J_r'$ et a donc même rang que $J_r'$. Enfin, en supprimant les lignes nulles et les colonnes nulles, on voit que la matrice $J_r'$ a même rang que la matrice $I_{pr}$ à savoir $pr$. Dans tous les cas, on a montré que  
+
+\begin{center}
+\shadowbox{
+$\text{rg}B =p\text{rg}A$.
+}
+\end{center}
+\fincorrection
+\correction{005623}
+Soit $r$ le rang de $H$. Il existe deux matrices carrées inversibles $P$ et $Q$ de format $n$ telles que $H =PJ_rQ$ où $J_r=\left(
+\begin{array}{cc}
+I_r&0\\
+0&0
+\end{array}
+\right)$. L'égalité $HAH =\lambda_AH$ s'écrit après simplifications $J_rQAPJ_r=\lambda_AJ_r$.
+Maintenant , quand $A$ décrit $\mathcal{M}_n(\Kk)$, la matrice $B=QAP$ décrit également $\mathcal{M}_n(\Kk)$ (par exemple, l'application qui à $A$ associe $QAP$ est une permutation de $\mathcal{M}_n(\Kk)$ de réciproque l'application qui à $A$ associe $Q^{-1}AP^{-1}$).
+
+L'énoncé s'écrit maintenant de manière plus simple : montrons que $(\forall B\in\mathcal{M}_n(\Kk),\;\exists\lambda_B\in\Kk/\;J_rBJ_r =\lambda_BJ_r)\Rightarrow r\leqslant 1$.
+
+Un calcul par blocs fournit en posant $B=\left(
+\begin{array}{cc}
+B_1&B_3\\
+B_2&B_4
+\end{array}
+\right)$
+
+\begin{center}
+$J_rBJ_r=\left(
+\begin{array}{cc}
+I_r&0\\
+0&0
+\end{array}
+\right)\left(
+\begin{array}{cc}
+B_1&B_3\\
+B_2&B_4
+\end{array}
+\right)\left(
+\begin{array}{cc}
+I_r&0\\
+0&0
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+B_1&0\\
+B_2&0
+\end{array}
+\right)\left(
+\begin{array}{cc}
+I_r&0\\
+0&0
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+B_1&0\\
+0&0
+\end{array}
+\right)$
+\end{center} 
+
+Mais si $r\geqslant 2$, il existe des matrices carrées $B_1$ de format $r$ qui ne sont pas des matrices scalaires et donc telles que $B_1$ n'est pas colinéaire à $I_r$. Donc $r\leqslant 1$.
+\fincorrection
+\correction{005624}
+(1) $\Rightarrow$ (2).
+
+$M^2 = 0\Rightarrow\text{Im}M\subset\text{Ker}M\Rightarrow\text{rg}M\leqslant\text{dim}(\text{Ker}M)=3 -\text{rg}M$ et donc $\text{rg}M\leqslant1$.
+
+Si $\text{rg}M=0$ alors $\text{Tr}M = 0$. On suppose maintenant que $\text{rg}M=1$ et donc $\text{dim}(\text{Ker}M)= 2$.
+
+Soit $e_1$ un vecteur non nul de $\text{Im}M$ alors il existe un vecteur $e_3$ (non nul) tel que $Me_3 = e_1$.
+
+On complète la famille libre $(e_1)$ de $\text{Im}M\subset\text{Ker}M$ en $(e_1,e_2)$ base de $\text{Ker}M$. La famille $(e_1,e_2,e_3)$ est une base de $\mathcal{M}_{3,1}(\Rr)$ car
+
+\begin{center}
+$ae_1+be_2+ce_3 = 0\Rightarrow M(ae_1+be_2+ce_3) = 0\Rightarrow ce_1 = 0\Rightarrow c = 0$,
+\end{center}
+
+puis $a = b = 0$ car la famille $(e_1,e_2)$ est libre.
+
+$M$ est donc semblable à la matrice $\left(
+\begin{array}{ccc}
+0&0&1\\
+0&0&0\\
+0&0&0
+\end{array}
+\right)$ et en particulier $\text{Tr}M = 0$.
+
+(2) $\Rightarrow$ (1).
+
+ 
+Si $\text{rg}M = 0$, $M^2 = 0$.
+
+Si $\text{rg}M = 1$, on peut se rappeler de l'écriture générale d'une matrice de rang 1 : il existe trois réels $u_1$, $u_2$ et $u_3$ non tous nuls et trois réels $v_1$, $v_2$ et $v_3$ non tous nuls tels que $M=\left(
+\begin{array}{ccc}
+u_1v_1&u_1v_2&u_1v_3\\
+u_2v_1&u_2v_2&u_2v_3\\
+u_3v_1&u_3v_2&u_3v_3
+\end{array}
+\right)$ ou encore il existe deux vecteurs colonnes, tous deux non nuls $U$ et $V$ tels que $M=U{^t}V$. L'égalité $\text{Tr}M =0$ fournit $u_1v_1+u_2v_2+u_3v_3= 0$ ou encore ${^t}UV=0$. Mais alors
+
+\begin{center}
+$M^2=U{^t}VU{^t}V=U{^t}({^t}UV){^t}V=0$
+\end{center}
+
+Cet exercice admet des solutions bien plus brèves avec des connaissances sur la réduction .
+\fincorrection
+\correction{005625}
+Soit $p$ un entier supérieur ou égal à $2$.
+
+\begin{align*}
+A^pB -BA^p&=A^pB-A^{p-1}BA+A^{p-1}BA-A^{p-2}BA^2+A^{p-2}BA^2-...+ABA^{p-1}-BA^p\\
+ &=\sum_{k=0}^{}(A^{p-k}BA^k-A^{p-k-1}BA^{k+1})=\sum_{k=0}^{}A^{p-k-1}(AB-BA)A^k=\sum_{k=0}^{}A^{p-k-1}AA^k\sum_{k=0}^{}A^p\\
+ &=pA^p.
+\end{align*}
+
+Donc $2010\times\text{Tr}(A^{2010})=\text{Tr}(2010\;A^{2010})=\text{Tr}(A^{2010}B)-\text{Tr}(BA^{2010})=0$ et $\text{Tr}(A^{2010})=0$.
+\fincorrection
+\correction{005626}
+Si $M(a)$ et $N(a)$ sont semblables alors nécessairement $\text{Tr}(M(a))=\text{Tr}(N(a))$. Or, pour tout scalaire $a$, $\text{Tr}(M(a))=4-3a =\text{Tr}(N(a))$. La trace ne fournit aucun renseignement.
+
+On doit aussi avoir $\text{det}(M(a))=\text{det}(N(a))$. Or, $\text{det}(N(a))=(1-a)^2(2-a)$ et 
+
+\begin{align*}\ensuremath
+\text{det}(M(a))&= (4-a)(a^2-1-2)+6(1-a+1)+2(2-1-a) = (4-a)(a^2-3)+14-8a=-a^3+4a^2-5a+2\\
+ &= (a-1)^2(2-a)=\text{det}(N(a)).
+\end{align*}
+
+Le déterminant ne fournit aucun renseignement.
+
+Soit $f$ l'endomorphisme de $\Kk^3$ de matrice $M(a)$ dans la base canonique $\mathcal{B}_0=(i,j,k)$ de $\Kk^3$.
+
+Le problème posé équivaut à l'existence d'une base $\mathcal{B}=(e_1,e_2,e_3)$ de $\Kk^3$ telle que 
+$f(e_1)=(1-a)e_1$, $f(e_2) =(1-a)e_2 +e_1$ et $f(e_3)= (2-a)e_3$. Soit $(x,y,z)$ un élément de $\Kk^3$.
+
+\textbullet~$f((x,y,z)) =(1-a)(x,y,z)\Leftrightarrow\left\{
+\begin{array}{l}
+3x+y-z=0\\
+-6x-2y+2z=0\\
+2x+y=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=-2x\\
+z=x
+\end{array}
+\right.$. On peut prendre $e_1=(1,-2,1)$.
+
+\textbullet~$f((x,y,z)) =(1-a)(x,y,z)+(1,-2,1)\Leftrightarrow\left\{
+\begin{array}{l}
+3x+y-z=1\\
+-6x-2y+2z=-2\\
+2x+y=1
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=-2x-1\\
+z=x-2
+\end{array}
+\right.$. On peut prendre $e_2=(0,-1,-2)$.
+
+\textbullet~$f((x,y,z)) =(2-a)(x,y,z)\Leftrightarrow\left\{
+\begin{array}{l}
+2x+y-z=0\\
+-6x-3y+2z=0\\
+2x+y-z=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=-2x\\
+z=0
+\end{array}
+\right.$. On peut prendre $e_3=(1,-2,0)$.
+
+La matrice de la famille $\mathcal{B}=(e_1,e_2,e_3)$ dans la base $\mathcal{B}_0$ est $P=\left(
+\begin{array}{ccc}
+1&0&1\\
+-2&-1&-2\\
+1&-2&0
+\end{array}
+\right)$. $\text{det}P=-4+4+1 =1\neq 0$ et donc la famille $\mathcal{B}=(e_1,e_2,e_3)$ est une base de $\Kk^3$. Puisque $\text{Mat}_{\mathcal{B}_0}f=
+M(a)$ et $\text{Mat}_{\mathcal{B}}f=N(a)$, les matrices $M(a)$ et $N(a)$ sont semblables.
+\fincorrection
+\correction{005627}
+Soient $A$ et $B$ deux matrices carrées réelles de format $n$ semblables dans $\mathcal{M}_n(\Cc)$.
+
+Il existe $P$ élément de $\mathcal{GL}_n(\Cc)$ telle que $PB =AP$ (bien plus manipulable que $B=P^{-1}AP$).
+
+Posons $P=Q+iR$ où $Q$ et $R$ sont des matrices réelles. 
+Par identification des parties réelles et imaginaires, on a $QB=AQ$ et $RB=AR$ mais cet exercice n'en est pas pour autant achevé car $Q$ ou $R$ n'ont aucune raison d'être inversibles.
+
+On a $QB=AQ$ et $RB= AR$ et donc plus généralement pour tout réel $x$, $(Q+xR)B=A(Q+xR)$.
+
+Maintenant, $\text{det}(Q+xR)$ est un polynôme à coefficients réels en $x$ mais n'est pas le polynôme nul car sa valeur en $i$ (tel que $i^2 = -1$) est $\text{det}P$ qui est non nul. Donc il n'existe qu'un nombre fini de réels $x$, éventuellement nul, tels que $\text{det}(Q+xR) = 0$. En particulier, il existe au moins un réel $x_0$ tel que la matrice $P_0=Q+x_0R$ soit inversible. $P_0$ est une matrice réelle inversible telle que $P_0A=BP_0$ et $A$ et $B$ sont bien semblables dans $\mathcal{M}_n(\Rr)$.
+
+\fincorrection
+\correction{005628}
+\begin{enumerate}
+ \item  Soient $p$ l'indice de nilpotence de $A$ et $q$ l'indice de nilpotence de $B$. Puisque $A$ et $B$ commutent, la formule du binôme de \textsc{Newton} fournit
+
+\begin{center}
+$(A+B)^{p+q-1}=\sum_{k=0}^{p+q-1}\dbinom{p+q-1}{k}A^kB^{p+q-1-k}$ 
+\end{center}
+
+Dans cette somme, 
+
+\textbullet~si $k\geqslant p$, $A^k=0$ et donc $A^kB^{p+q-1-k}= 0$
+
+\textbullet~si $k\leqslant p-1$ alors $p+q-1-k\geqslant q$ et encore une fois $B^{p+q-1-k}= 0$.
+
+Finalement, $(A+B)^{p+q-1}=\sum_{k=0}^{p+q-1}\dbinom{p+q-1}{k}A^kB^{p+q-1-k}=0$ et $A+B$ est nilpotente d'indice inférieur ou égal à $p+q-1$. 
+
+Les sommes définissant $\text{exp}A$, $\text{exp}B$ et $\text{exp}(A+B)$ sont finies car $A$, $B$ et $A+B$ sont nilpotentes et
+
+\begin{align*}\ensuremath
+\text{exp}(A+B)&=\sum_{k=0}^{+\infty}\frac{1}{k!}(A+B)^k=\sum_{k=0}^{+\infty}\sum_{i+j=k}^{}\frac{1}{i!j!}A^iB^j\\
+ &\left(\sum_{i=0}^{+\infty}\frac{1}{i!}A^i\right)\left(\sum_{j=0}^{+\infty}\frac{1}{j!}B^j\right)\;(\text{toutes les sommes sont finies})\\
+ &=\text{exp}A\times\text{exp}B.
+\end{align*}
+
+\item  Si $A$ est nilpotente, $-A$ l'est aussi et commute avec $A$. Donc $\text{exp}A\times\text{exp}(-A)=\text{exp}(A-A)=\text{exp}(0)=I_n$.
+
+$\text{exp}A$ est inversible à gauche et donc inversible et $(\text{exp}A)^{-1}=\text{exp}(-A)$.
+
+\item  Les puissances de $A$ sont bien connues et on trouve immédiatement
+
+\begin{center}
+$\text{exp}A=\left(
+\begin{array}{ccccc}
+1&\frac{1}{1!}&\frac{1}{2!}&\ldots&\frac{1}{(n-1)!}\\
+0&\ddots&\ddots&\ddots&\vdots\\
+\vdots&\ddots& & &\frac{1}{2!}\\
+\vdots& &\ddots&\ddots&\rule[-4mm]{0mm}{11mm}\frac{1}{1!}\\
+0&\ldots&\ldots&0&1
+\end{array}
+\right)$.
+\end{center}
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

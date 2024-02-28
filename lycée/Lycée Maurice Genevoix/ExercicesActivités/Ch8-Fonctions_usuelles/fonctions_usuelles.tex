@@ -1,0 +1,334 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+
+
+\pagestyle{fancy}
+
+\begin{document}
+	\lhead{}\chead{}\rhead{}\lfoot{Chapitre 8 - Exercice de groupe}\cfoot{\thepage/5}\rfoot{M. Botcazou}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}
+	$$\fbox{\text{\Large{ La fonction carré}}}$$
+	\hfil\\
+	
+	\noindent La fonction carré est donnée par la relation algébrique suivante \quad
+	$f:~x \longmapsto x^2$\\
+	\begin{enumerate}
+		\item Pour tout nombre réel $x\in\R$ pouvons-nous mettre ce nombre au carré ? En déduire le domaine de définition de la fonction carré. \\
+		\item Grâce à un tableau de valeurs, tracer dans un repère orthogonal la courbe associée à la fonction carré sur l'intervalle $[-3~;~3]$ .\\
+		\textit{(Indication: faites des pas de 0.25 pour choisir vos nombres dans l'intervalle $[-3~;~3]$ )}\\ 
+		
+		\noindent\fcolorbox{vert}{white}{
+			\begin{minipage}{1\linewidth}
+				\begin{defi}
+					Dans un repère orthogonal, la courbe représentative de la fonction carrée est appelée \textbf{parabole}.
+				\end{defi}
+			\end{minipage}}
+		\hfill\\[-0.5cm]
+		
+		\item Par lecture graphique donner le tableau de variations de la fonction carré.\\   
+		\item Par lecture graphique donner le tableau de signes de la fonction carré.\\
+		\item Remarquez-vous une symétrie sur la courbe représentative de la fonction carré ? Si oui laquelle ?\\
+		\item
+		\begin{enumerate}
+			\item En utilisant les données calculées pour tracer la courbe de la fonction carrée, comparer les nombres suivants:\\\\ 
+			$\begin{array}{cccc}
+			
+			\bullet\quad f(-3)~~...~~f(3) 
+			&\bullet\quad f(-2)~~...~~f(2)&
+			\bullet\quad f(-1.25)~~...~~f(1.25) &\bullet\quad f(-0.75)~~...~~f(0.75) \\[3mm]		
+			\end{array}$\\
+			\item Soit $a\geq0$, comparer les deux nombres suivants: \quad $f(-a)~~...~~f(a)$\\
+			\textit{(Si vous trouvez cela trop abstrait repenser au point précédent)}\\\hfill\\  
+		 \noindent\fcolorbox{rouge}{white}{\begin{minipage}{1\linewidth}\begin{prop}
+		 		Soit $f$ une fonction définie sur $\R$. La fonction $f$ est dite \textbf{paire} sur $\R$ si pour tout $x \geq 0$ 
+		 		$$f(-x) \ = \ f(x)$$
+		 		La courbe représentative de la fonction $f$ présentera une symétrie par rapport à l'axe des ordonnées.
+		 		\end{prop}\end{minipage}}\hfill\\
+	 \item Que pouvez-vous dire sur la parité de la fonction carré?\\
+	   
+ \end{enumerate}
+\item Résoudre graphiquement et  algébriquement les inéquations suivantes:\\\\
+$\begin{array}{lclcl}
+a)\quad f(x) \ \leq \ 4
+&\quad\quad\quad&b)\quad f(x) \ \geq \ 3&\quad\quad\quad&  
+c)\quad f(x) \ < \ 7
+
+\end{array}$\\
+	
+
+	
+	\item  L'objectif est de démontrer pourquoi la fonction carré est décroissante sur l'intervalle $]-\infty~;~0]$ \\et croissante sur l'intervalle $[0~;~+\infty[$\\
+	\begin{enumerate}
+	\item  Soit $a$ et $b$ deux réels. À l'aide d'une identité remarquable donner une forme factorisée de $$f(a)-f(b) \ = \ a^2 - b^2$$ 
+
+	\item Si $a \leq b \leq 0$ que pouvez-vous dire du signe de $f(a)-f(b)$. La fonction carré respecte-t-elle l'ordre entre les abscisses et les ordonnées sur $]-\infty~;~0]$ ? Qu'en déduisez-vous?\\
+	\item Si $0\leq a \leq b$ que pouvez-vous dire du signe de $f(a)-f(b)$. La fonction carré respecte-t-elle l'ordre entre les abscisses et les ordonnées sur $[0~;~+\infty[$ ? Qu'en déduisez-vous?\\
+	\end{enumerate} 
+	\end{enumerate}
+	\newpage
+		$$\fbox{\text{\Large{ La fonction cube}}}$$
+	\hfil\\
+
+		\noindent La fonction cube est donnée par la relation algébrique suivante \quad
+	$f:~x \longmapsto x^3$\\
+	\begin{enumerate}
+		\item Pour tout nombre réel $x\in\R$ pouvons-nous mettre ce nombre au cube ? En déduire le domaine de définition de la fonction cube. \\
+		\item Grâce à un tableau de valeurs, tracer dans un repère orthogonal la courbe associée à la fonction cube sur l'intervalle $[-3~;~3]$ .\\
+		\textit{(Indication: faites des pas de 0.5 pour choisir vos nombres dans l'intervalle $[-3~;~3]$ )}\\ 
+		\item Par lecture graphique donner le tableau de variations de la fonction cube.\\   
+		\item Par lecture graphique donner le tableau de signes de la fonction cube.\\
+		\item Remarquez-vous une symétrie sur la courbe représentative de la fonction cube ? Si oui laquelle ?\\
+		\item
+		\begin{enumerate}
+			\item En utilisant les données calculées pour tracer la courbe de la fonction cube, écrire le nombre de gauche en fonction du nombre de droite pour chacun des cas suivants\\\\ 
+			$\begin{array}{cccc}
+			
+			\bullet\quad f(-3)~~et~~f(3) 
+			&\bullet\quad f(-2)~~et~~f(2)&
+			\bullet\quad f(-1.5)~~et~~f(1.5) &\bullet\quad f(-0.5)~~et~~f(0.5) \\[3mm]		
+			\end{array}$\\
+			\item Soit $a\geq0$, écrire le nombre $f(-a)$ en fonction du nombre $f(a)$\\
+			\textit{(Si vous trouvez cela trop abstrait repenser au point précédent)}\\  
+		
+		\noindent\fcolorbox{rouge}{white}{\begin{minipage}{1\linewidth}\begin{prop}
+				Soit $f$ une fonction définie sur $\R$. La fonction $f$ est dite \textbf{impaire} sur $\R$ si pour tout $x \geq 0$ 
+				$$f(-x) \ = \ - f(x)$$
+				La courbe représentative de la fonction $f$ présentera une symétrie par rapport à l'origine $O$ du repère.	
+		\end{prop}\end{minipage}}\hfill\\
+			\item Que pouvez-vous dire sur la parité de la fonction cube?\\
+			
+		\end{enumerate}
+		\item Résoudre graphiquement et  algébriquement les inéquations suivantes:\\\\
+		$\begin{array}{lclcl}
+		a)\quad f(x) \ \leq \ 1
+		&\quad\quad\quad&b)\quad f(x) \ \geq \ -8&\quad\quad\quad&  
+		c)\quad f(x) \ < \ \dfrac{1}{27}
+		
+		\end{array}$\\
+		
+	
+	 
+		\item Soit $a\in\R$, l'objectif est d'étudier la fonction donnée par la relation algébrique suivante \quad
+		$$g_a:~x \longmapsto (x+a)^3$$
+		\begin{enumerate}
+			\item À l'aide d'un logiciel de géométrie dynamique (Geogebra ou une calculatrice graphique), représenter la courbe de la fonction ~$g_a$~ pour différentes valeurs de $a$.\\
+			\textit{(Vous pouvez prendre $a=-1$, $a=-0.5$, $a=0$, $a=0.5$ et $a=1$. Créer un curseur pourra vous aider.)}\\
+			\item Pour chacune des valeurs de $a$, étudier l'image de $-a$ par la fonction ~$g_a$. Que remarquez-vous?\\			
+			\item Donner l'expression développée de $(x+a)^3$. C'est une identité remarquable du troisième degré que je vous invite à apprendre par-cœur. 
+		\end{enumerate}
+	\end{enumerate}	
+	\newpage
+	
+	$$\fbox{\text{\Large{ La fonction inverse}}}$$
+	\hfil\\\hfil\\
+	\noindent La fonction inverse est donnée par la relation algébrique suivante \quad
+	$f:~x \longmapsto \dfrac{1}{x}$\\
+	\begin{enumerate}
+		\item Pour tout nombre réel $x\in\R$ pouvons-nous diviser le nombre $1$ par le nombre $x$ ? En déduire le domaine de définition de la fonction inverse. \\
+		\item Grâce à un tableau de valeurs, tracer dans un repère orthogonal la courbe associée à la fonction inverse sur $[-4~;~0[~\cup~]0~;~4]$ \\
+		\textit{(Indication: choisissez (2cm = 1 unité) pour l'échelle de votre repère et faites des pas de 0.25 pour choisir vos nombres)}\\ \hfill\\
+		\noindent\fcolorbox{vert}{white}{
+			\begin{minipage}{1\linewidth}
+				\begin{defi}
+					Dans un repère orthogonal, la courbe représentative de la fonction inverse est appelée \textbf{hyperbole}.
+				\end{defi}
+		\end{minipage}}\hfill\\
+		\item Par lecture graphique donner le tableau de variations de la fonction inverse. La fonction inverse est-elle décroissante sur $\R^*$?\\
+	  
+		\item Par lecture graphique donner le tableau de signes de la fonction inverse.\\
+		\item Remarquez-vous une symétrie sur la courbe représentative de la fonction inverse ? Si oui laquelle ?\\
+		\item
+		\begin{enumerate}
+			\item En utilisant les données calculées pour tracer la courbe de la fonction inverse, écrire le nombre de gauche en fonction du nombre de droite pour chacun des cas suivants:\\\\ 
+			$\begin{array}{cccc}
+			
+			\bullet\quad f(-3)~~et~~f(3) 
+			&\bullet\quad f(-2)~~et~~f(2)&
+			\bullet\quad f(-1.5)~~et~~f(1.5) &\bullet\quad f(-0.5)~~et~~f(0.5) \\[3mm]		
+			\end{array}$\\
+			\item Soit $a\geq0$, écrire le nombre $f(-a)$ en fonction du nombre $f(a)$\\
+			\textit{(Si vous trouvez cela trop abstrait repenser au point précédent)}\\  
+			%\noindent\fcolorbox{rouge}{white}{\begin{minipage}{1\linewidth}\begin{prop}
+			%Soit $f$ une fonction définie sur $\R^*$. La fonction $f$ est dite \textbf{impaire} sur $\R^*$ si pour tout $ x > 0$ 
+			%$$f(-x) \ = \ - f(x)$$
+			%La courbe représentative de la fonction $f$ présentera une symétrie par rapport à l'origine $O$ du repère. 
+			%\end{prop}\end{minipage}}
+			\item Que pouvez-vous dire sur la parité de la fonction inverse?\\
+			
+		\end{enumerate}
+		\item Résoudre graphiquement et  algébriquement les inéquations suivantes:\\\\
+		$\begin{array}{lclcl}
+		a)\quad f(x) \ \leq \ 0
+		&\quad\quad\quad&b)\quad f(x) \ \geq \ 2&\quad\quad\quad&  
+		c)\quad f(x) \ \geq \ -4
+		
+		\end{array}$\\
+	
+		\item L'objectif est de démontrer pourquoi la fonction inverse est décroissante sur l'intervalle $]0~;~+\infty[$\\
+		\begin{enumerate}
+			\item Soit $a$ et $b$ deux réels strictement positifs. Montrer que $$f(a)-f(b) \ = \ \dfrac{b-a}{ab}$$ 
+			\item Si $0 < a \leq b $ que pouvez-vous dire du signe de $f(a)-f(b)$. La fonction inverse respecte-t-elle l'ordre entre les abscisses et les ordonnées sur $[0~;~+\infty[$ ? Qu'en déduisez-vous?\\
+		\end{enumerate}
+		
+			 
+	\end{enumerate}
+	\newpage
+	 $$\fbox{\text{\Large{ La fonction valeur absolue}}}$$
+	 \hfil\\\hfil\\
+	\noindent La fonction valeur absolue donne la partie positive d'un nombre, elle est définie par la relation algébrique \\suivante \quad
+	$f:~x \longmapsto |x|$\\
+	\begin{rmq}
+		On rappelle que: $ |x| \ = \ \Big\{\normalsize\begin{array}{cl}
+			-x &\ \text{si} \ x \leq 0\\
+			x &\ \text{si} \ x > 0
+		\end{array} $
+	\end{rmq}
+	\begin{enumerate}
+		\item Pour tout nombre réel $x\in\R$ pouvons-nous prendre la partie positive de ce nombre? En déduire le domaine de définition de la fonction valeur absolue. \\
+		\item Grâce à un tableau de valeurs, tracer dans un repère orthonormé la courbe associée à la fonction valeur absolue sur l'intervalle $[-5~;~5]$ .\\ \hfil\\
+		\noindent\fcolorbox{vert}{white}{
+			\begin{minipage}{1\linewidth}
+				\begin{defi}
+					La fonction valeur absolue est une fonction \textbf{ affine par morceaux}.
+				\end{defi}
+		\end{minipage}}\hfil\\
+		\item Par lecture graphique donner le tableau de variations de la fonction valeur absolue.\\   
+		\item Par lecture graphique donner le tableau de signes de la fonction valeur absolue.\\
+		\item Remarquez-vous une symétrie sur la courbe représentative de la fonction valeur absolue ? Si oui laquelle ?\\
+		\item
+		\begin{enumerate}
+			\item En utilisant les données calculées pour tracer la courbe de la fonction valeur absolue, comparer les nombres suivants:\\\\ 
+			$\begin{array}{cccc}
+			
+			\bullet\quad f(-3)~~...~~f(3) 
+			&\bullet\quad f(-2)~~...~~f(2)&
+			\bullet\quad f(-1.25)~~...~~f(1.25) &\bullet\quad f(-0.75)~~...~~f(0.75) \\[3mm]		
+			\end{array}$\\
+			\item Soit $a\geq0$, comparer les deux nombres suivants: \quad $f(-a)~~...~~f(a)$\\
+			\textit{(Si vous trouvez cela trop abstrait repenser au point précédent)}\\  
+			
+			%\noindent\fcolorbox{rouge}{white}{\begin{minipage}{1\linewidth}\begin{prop}Soit $f$ une fonction définie sur $\R$. La fonction $f$ est dite \textbf{paire} sur $\R$ si pour tout $x \geq 0$ $$f(-x) \ = \ f(x)$$ La courbe représentative de la fonction $f$ présentera une symétrie par rapport à l'axe des ordonnées.\end{prop}\end{minipage}}\hfil\\
+			\item Que pouvez-vous dire sur la parité de la fonction valeur absolue?\\
+			
+		\end{enumerate}
+		\item Résoudre graphiquement et  algébriquement les inéquations suivantes:\\\\
+		$\begin{array}{lclcl}
+		a)\quad f(x) \ \leq \ 4
+		&\quad\quad\quad&b)\quad f(x) \ \geq \ 3&\quad\quad\quad&  
+		c)\quad f(x) \ > \ -2
+		
+		\end{array}$\\
+		
+		\item Soit $a\in\R$, l'objectif est d'étudier la fonction donnée par la relation algébrique suivante \quad
+		$$g_a:~x \longmapsto |x-a|$$ 
+		  \begin{enumerate}
+			\item À l'aide d'un logiciel de géométrie dynamique (Geogebra ou une calculatrice graphique), représenter la courbe de la fonction ~$g_a$~ pour différentes valeurs de $a$.\\
+			\textit{(Vous pouvez prendre $a=-2$, $a=-1$, $a=0$, $a=1$ et $a=2$. Créer un curseur pourra vous aider.)}\\
+			\item Pour chacune des valeurs de $a$, étudier l'image de $a$ par la fonction ~$g_a$. Que remarquez-vous?\\			
+		\end{enumerate}
+		
+	\end{enumerate}
+\newpage$$\fbox{\text{\Large{ La fonction racine carrée}}}$$
+\hfill\\\hfil\\
+\noindent La fonction racine carrée est donnée par la relation algébrique suivante \quad
+$f:~x \longmapsto \sqrt{x}$\\
+\begin{enumerate}
+	\item Pour tout nombre réel $x\in\R$ existe-t-il une racine carrée du nombre $x$ ? En déduire le domaine de définition de la fonction racine carrée. \\
+	\item Grâce à un tableau de valeurs, tracer dans un repère orthogonal la courbe associée à la fonction racine carré sur l'intervalle $[0~;~16]$ \\
+	\textit{(Indication: regardez l'image des nombres $\{0;1;4;9;16\}$ et arrondissez les autres images à $10^{-1}$ près. )}\\ 
+	\item Par lecture graphique donner le tableau de variations de la fonction racine carrée.\\   
+	\item Par lecture graphique donner le tableau de signes de la fonction racine carrée.\\
+	\item Résoudre graphiquement et  algébriquement les inéquations suivantes:\\\\
+	$\begin{array}{lclcl}
+	a)\quad f(x) \ \leq \ 2
+	&\quad\quad\quad&b)\quad f(x) \ \geq \ -2&\quad\quad\quad&  
+	c)\quad f(x) \ < \ 8
+	
+\end{array}$\\
+\item Choisissez deux nombres $a$ et $b$ positifs.
+\begin{enumerate}
+\item Calculer les valeurs suivantes:~
+$f(a+b)$, $f(a)$ et $f(b)$\\
+\item Comparer les deux valeurs ci-dessous grâce à l'un des symboles $(\leq~,~= ~,~\geq)$
+$$f(a+b)~~....~~f(a)+f(b)$$
+\end{enumerate}
+
+
+\item  L'objectif est de démontrer pourquoi la fonction racine carrée est croissante sur l'intervalle $[0~;~+\infty[$\\
+\begin{enumerate} 
+	\item Soit $a$ et $b$ deux réels positifs. En utilisant une astuce de calcul pour faire apparaitre une identité remarquable montrer que: $$f(a)-f(b) \ = \ \dfrac{a - b}{\sqrt{a}+\sqrt{b}}$$ 
+	
+	\item Si $ a \leq b  $ que pouvez-vous dire du signe de $f(a)-f(b)$. La fonction racine carrée respecte-t-elle l'ordre entre les abscisses et les ordonnées sur $[0~;~+\infty[$ ~? \\
+	\item Que venez-vous de démontrer sur le sens de variation de la fonction racine carré? \\
+\end{enumerate} 
+\item Dans cette question on considère un point $A$ qui se déplace sur la courbe représentative de la fonction racine carrée dans un repère orthonormé. Nous noterons $x$ l'abscisse du point $A$ et $O$ l'origine du repère orthonormé.\\
+\begin{enumerate}
+	\item À l'aide d'un logiciel de géométrie dynamique (Geogebra), représenter cette situation. \\
+	\item Donner l'ordonnée du point $A$ et rappeler les coordonnées du point $O$.\\ 
+	\item Donner les coordonnées du vecteur $\vec{OA}$\\
+	\item Calculer  $\|\vec{OA}\|$\\ 
+	\item Montrer que: ~ $OA \ = \ f(x)\times f(x+1)$
+\end{enumerate}  	 
+
+\end{enumerate}
+
+
+	
+	
+\end{document}

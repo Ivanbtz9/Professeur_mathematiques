@@ -1,0 +1,415 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{mathdots}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\K}{\mathbb{K}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/3}\rfoot{PCSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+ %%%%BIBMATH%%%%
+ 
+%(1) https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/algebrelineaire/determinant&type=fexo 
+ 
+
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 18 : Déterminants }}
+	\end{minipage}}
+
+\smallskip
+\section*{Connaître son cours:}
+\begin{itemize}[$\bullet$]
+	\item Soit $f$ une application $3$-linéaire entre deux $\K $-espaces vectoriels $E$ et $F $. Montrer que $f$ est alternée si, et
+	seulement si, $f$ est antisymétrique.
+	\item Montrer que l’espace vectoriel des formes $n-$linéaires alternées sur un espace vectoriel de dimension $n$ est de dimension $1$. Faire la preuve pour $n = 2$ et $n=3$ pour comprendre si besoin. Soit $\beta= (e_1 , \dots , e_n )$ une base de $E $, donner la définition déterminant en base $\beta$
+	\item Soit $\beta$ une base d’un $\K $-espace vectoriel $E$ de dimension $n $. Monter  que $n$ vecteurs $x_1 ,\dots , x_n \in E$ forme une base de $E$ si, et seulement si,
+	$\text{det}_\beta \ (x_1 , \dots , x_n ) \neq 0$.
+	\item Soit  $u \in \mathcal L (E ) $  et  $\beta =	(e_1 , \dots , e_n )$ est une base de $E $. Montrer que le scalaire $\text{det}_\beta (u (e_1 ),\dots, u (e_n ))$ ne dépend pas de
+	la base $\beta$
+	\item Montrer que le déterminant d’une matrice triangulaire supérieure $M = (m_{i,j})_{i,j}$ est le produit	des éléments diagonaux.
+	\item Montrer que pour toute matrice $M \in \mathcal M_n (\K)$, $\text{det}(M^T ) = \text{det}(M ) $.
+	\item Soit $A\in \mathcal{G}l_n(\R), b\in \mathcal{M}_{n,1}(\R)$ et $AX = B$ un système linéaire de Cramer. Donner les coordonnées de l’unique solution $X$ à l'aide de la formule de Cramer.  
+
+\end{itemize}
+\raggedright
+
+\section*{Déterminants d’un endomorphisme ou d’une matrice:}\hfill\\%[-0.25cm]
+
+   
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+	
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Calculer les déterminants des matrices suivantes :
+$$
+\begin{pmatrix}
+1 & 0 & 6 \\
+3 & 4 & 15\\
+5 & 6 & 21
+\end{pmatrix}
+\quad
+\begin{pmatrix}
+1 & 0 & 2 \\
+3 & 4 & 5  \\
+5 & 6  & 7
+\end{pmatrix}
+$$
+$$\begin{pmatrix} 0 & 1 & 1 & 0\\ 1 & 0 & 0 & 1\\ 1 & 1 & 0 & 1\\  1 & 1 & 1 &0\end{pmatrix}\quad
+\begin{pmatrix} 1 & 2 & 1 & 2\\ 1 & 3 & 1 & 3\\ 2 & 1 & 0& 6\\ 1 & 1& 1&7\end{pmatrix}
+$$
+	
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Calculer les déterminants suivant~:
+	$$
+	\left\vert
+	\begin{matrix}
+	a_1   &a_2   &\cdots&a_n    \\
+	a_1   &a_1   &\ddots&\vdots \\
+	\vdots&\ddots&\ddots&a_2    \\
+	a_1   &\cdots&a_1   &a_1
+	\end{matrix}
+	\right\vert
+	\qquad
+	\left\vert
+	\begin{matrix}
+	a+b  &    a   & \cdots &  a       \\
+	a   &   a+b  & \ddots & \vdots   \\
+	\vdots & \ddots & \ddots &  a       \\
+	a   & \cdots &    a   & a+b 
+	\end{matrix}
+	\right\vert
+	$$
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Soit $E$ un $\mathbb R$-espace vectoriel et $f\in\mathcal L(E)$ tel que $f^2=-Id_E$. Que dire de la dimension de $E$?
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Soit $u\in\mathcal L(\mathbb R_n[X])$. Calculer $\det(u)$ dans chacun des cas suivants :
+\begin{enumerate}
+	\item $u(P)=P+P'$;
+	\item $u(P)=P(X+1)-P(X)$;
+	\item $u(P)=XP'+P(1)$.
+\end{enumerate}
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Soit $a,b,c \in \R$, montrer que $$4(b+c)(c+a)(a+b) = \left|
+	\begin{array}{ccc}
+	-2a&a+b&a+c\\
+	b+a&-2b&b+c\\
+	c+a&c+b&-2c
+	\end{array}\right|$$
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+\end{minipage}\end{minipage} \newpage
+
+
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+		
+				\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Soient $A=(a_{i,j})_{1\leqslant i,j\leqslant n}$ une matrice carrée et $B= (b_{i,j})_{1\leqslant i,j\leqslant n}$ où $b_{i,j}=(-1)^{i+j}a_{i,j}$. 
+			
+			Calculer $\text{det}(B)$ en fonction de $\text{det}(A)$. 
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+				\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $a$ un réel.
+			On note $\Delta_n$ le déterminant suivant : 
+			$$
+			\Delta_n = 
+			\left\vert
+			\begin{matrix}
+			a   &    0   & \cdots & 0      & n-1 \\
+			0   &    a   & \ddots & \vdots & \vdots \\
+			\vdots & \ddots & \ddots & 0      & 2 \\
+			0   & \cdots &   0    & a      & 1 \\
+			n-1  & \cdots &   2    & 1      & a
+			\end{matrix}
+			\right\vert
+			$$
+			\begin{enumerate}
+				\item Calculer $\Delta_n$ en fonction de $\Delta_{n-1}$.
+				\item Démontrer que : $\displaystyle \forall n\geq2\quad
+				\Delta_n=a^n-a^{n-2}\sum_{i=1}^{n-1}{i^2}$.
+			\end{enumerate}
+			
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $A\in\mathcal A_{2n}(\mathbb R)$ et $J\in\mathcal M_{2n}(\mathbb R)$ dont tous les coefficients sont égaux à $1$. Démontrer que, pour tout $x\in\mathbb R$, $\det(A+xJ)=\det(A)$.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		Soient $n\geq 1$, $p\geq 0$. Calculer le déterminant suivant :
+		$$\left|
+		\begin{array}{cccc}
+		\binom{n}0&\binom n1&\dots&\binom np\\
+		\binom{n+1}0&\binom{n+1}1&\dots&\binom{n+1}p\\
+		\vdots&\vdots&&\vdots\\
+		\binom{n+p}0&\binom{n+p}1&\dots&\binom{n+p}p
+		\end{array}
+		\right|.
+		$$
+		
+		\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+				\begin{exo}\textbf{(***)}\quad \textit{(Matrice compagnon)} \\[0.2cm]
+			Soient $a_0, \dots , a_{n-1}$, $n$ nombres complexes et 
+			$$A=\left(
+			\begin{array}{ccccc}
+			0&\ldots&\ldots&0&-a_0\\
+			1&\ddots& &\vdots&-a_1\\
+			0&\ddots&\ddots&\vdots&\vdots\\
+			\vdots&\ddots&\ddots&0&\vdots\\
+			0&\ldots&0&1&-a_{n-1}
+			\end{array}
+			\right)$$
+			
+			Donner l'expression du polynôme $P =\text{det}(XI_n-A)$.	
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+On définit par blocs une matrice $A$ par $A=\left(
+\begin{array}{cc}
+B&D\\
+0&C
+\end{array}
+\right)$ où $A$, $B$ et $C$ sont des matrices carrées de formats respectifs $n$, $p$ et $q$ avec $p+q=n$. Montrer que $\text{det}(A)=\text{det}(B)\times\text{det}(C)$.
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+Calculer $\text{det}(a_i+b_j)_{1\leqslant i,j\leqslant n}$ 
+
+où $a_1$,$\dots$, $a_n$, $b_1$,$\dots$, $b_n$ sont $2n$ complexes donnés.
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+Soit $A$ une matrice carrée complexe de format $n\geqslant 2$ telle que pour tout élément $M$ de $M_n(\C)$, on ait $$\text{det}(A+M)=\text{det}A+\text{det}M$$
+Montrer que $A = 0$.
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Soit $M\in \mathcal M_n(\mathbb Z)$. Donner une condition nécessaire et suffisante pour
+	que $M$ soit inversible et que $M^{-1}$ soit dans $\mathcal M_n(\mathbb Z)$.
+	
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+	Soit $A,B\in M_n(\mathbb R)$. On suppose que $A$ et $B$ sont semblables sur $\mathbb C$,
+	ie qu'il existe $P\in Gl_n(\mathbb C)$ tel que $A=PBP^{-1}$.
+	
+	Montrer que $A$ et $B$ sont semblables sur $\mathbb R$.
+	
+	
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(***)}\quad \\[0.2cm]
+(\textit{Un déterminant par blocs \textbf{sous conditions} !!})\\[0.2cm]
+Soient $A$, $B$, $C$ et $D$ quatre matrices carrées de format $n$. Montrer que si $C$ et $D$ commutent et si $D$ est inversible alors $\text{det}\left(
+\begin{array}{cc}
+A&B\\
+C&D
+\end{array}
+\right)=\text{det}(AD-BC)$. Montrer que le résultat persiste si $D$ n'est pas inversible.
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+		
+\end{minipage}\end{minipage} \newpage
+
+
+\begin{minipage}{1\linewidth}\begin{minipage}[c]{0.48\linewidth}\raggedright
+
+\begin{exo}\textbf{(**)/(***)}\quad\\[0.2cm]
+	\begin{enumerate}
+		\item Calculer $\mbox{det}(\mbox{com}A)$ en fonction de $\mbox{det}A$ 
+		\item Étudier le rang de $\mbox{com}A$ en fonction du rang de $A$.
+		\item Résoudre, pour $n\geq 3$, l'équation $\mbox{com}A=A$.
+	\end{enumerate}
+	
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+	\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Soit $A$ une matrice carrée d'ordre $n$ à coefficients complexes. Montrer :
+	
+	$\exists \alpha>0,\ \forall\varepsilon\in\R,\ 0<|\varepsilon|<\alpha,\ A+\varepsilon I_n \textrm{ est inversible.}$
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+\begin{exo}\textbf{(***)} (\textit{Matrice de \sc Vandermonde})\quad\\[0.2cm]
+	Soient $x_0, \dots ,x_{n-1}$ $n$ nombres complexes.
+	
+	\begin{enumerate}
+		\item Calculer $\text{Van}(x_0,...,x_{n-1})= \text{det}(x_{j-1}^{i-1})_{1\leqslant i,j\leqslant n}$.
+		\item Résoudre le système $MX = U$ où $M =(j^{i-1})_{1\leqslant i,j\leqslant n}\in M_n(\R)$, $U=(\delta_{i,1})_{1\leqslant i\leqslant n}\in M_{n,1}(\R)$ 
+		
+		et $X$ est un vecteur colonne inconnu.
+		
+	\end{enumerate}
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+	
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[c]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Soient $(z_0,\dots,z_{n})$ des nombres complexes deux à deux distincts. Montrer que la famille
+	$$\big( (X-z_0)^n,(X-z_1)^n,\dots,(X-z_n)^n\big)$$
+	est une base de $\mathbb C_n[X]$.
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+	Soit $E$ un espace vectoriel de dimension $n$ dont une base est $\mathcal{B}$. Soient $(x_{1},\ldots,x_{n})\in E$ et $f\in L(E)$. 
+	
+	Démontrer que $$\displaystyle\sum_{k=1}^{n}\det_{\mathcal{B}}(x_{1},\ldots,f(x_{k}),\ldots,x_{n})=\textrm{Tr}(f)\det_{\mathcal{B}}(x_{1},\dots,x_{n})$$
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\end{minipage}\end{minipage}
+
+
+\newpage
+
+\end{document}

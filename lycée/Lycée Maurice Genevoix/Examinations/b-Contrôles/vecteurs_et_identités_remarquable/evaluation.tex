@@ -1,0 +1,189 @@
+\documentclass[a4paper,10.9pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{thm-def}{Théorème/Définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+
+
+\begin{document}
+%\lhead{}\chead{}\rhead{}\lfoot{}\cfoot{\thepage/2}\rfoot{\textbf{}}\renewcommand{\headrulewidth}{0.0pt}\renewcommand{\footrulewidth}{0.0pt}
+%\quad
+%\newpage
+
+\lhead{Lycée Le Maurice Genevoix}\chead{}\rhead{Année~2021-2022}\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{\textbf{Tourner la page S.V.P.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\hfill\\[-0.7cm]
+$$	\fbox{\text{\Large{ \sc Contrôle sur les vecteurs et les identités remarquables }}}$$
+\centering \Large{ (55 minutes) }\\[0.5cm]
+
+\flushleft\normalsize
+
+
+\textbf{\textit{Note aux lecteurs:}} \textit{ce contrôle devra être rédigé sur une copie avec un stylo de couleur foncée. La présentation et la qualité de rédaction seront un facteur important d'appréciation des copies.  Les calculatrices sont autorisées mais un résultat sans l'expression des calculs qui lui est associé ne rapportera pas la totalité des points.}\\[0.7cm]	
+\begin{exo}\textbf{"Une identité remarquable"}\hfill\textbf{/6pts}\\\hfil\\
+\begin{minipage}[c]{1.0\linewidth}
+\begin{minipage}[c]{0.45\linewidth}
+\noindent Soient $0< a < b$ deux réels.
+\begin{enumerate}
+%\item Reproduire à l'échelle le schéma suivant sur votre copie.\\ 
+\item Donner en fonction de $a$ et de $b$ les aires \\des carrés $KLRS$ et $LMNQ$ et les aires des rectangles $NOPQ$ et $PRST$ que vous noterez respectivement $A_1$, $A_2$ , $A_3$ et $A_4$. \\
+\item On note $A$ l'aire du carré $KMOT$ donner deux manières différentes pour exprimer cette aire. \\
+\item Citer les trois identitées remarquables avec les lettres de votre choix.\\
+\item Développer les expressions littérales suivantes:
+\begin{itemize}[$\square$]
+\item $A = (4x+3)^2$
+\item $B = (7u-3)(3+7u)$
+\item $C = (5x-6y)^2$\\
+\end{itemize}
+\end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.45\linewidth}
+
+\begin{tikzpicture}[scale=0.6]
+\draw[dotted] (0,-3) grid (10,7);
+
+\draw [-, line width = 0.6pt, >=latex',color=black](4,6)--(4,3)--(1,3)--(1,6)--cycle;
+%\fill[line width=2.pt,color=zzt,fill=zzt,fill opacity=0.7](4,6)--(4,3)--(1,3)--(1,6)--cycle;
+
+\draw [-, line width = 0.6pt, >=latex',color=black](4,6)--(9,6)--(9,1)--(4,1)--cycle;
+%\fill[line width=2.pt,color=blue,fill=blue,fill opacity=0.4](4,6)--(9,6)--(9,1)--(4,1)--cycle;
+
+\draw [-, line width = 0.6pt, >=latex',color=black](1,3)--(4,3)--(4,-2)--(1,-2)--cycle;
+%\fill[line width=2.pt,color=magenta,fill=magenta,fill opacity=0.4](1,3)--(4,3)--(4,-2)--(1,-2)--cycle;
+
+\draw [-, line width = 0.6pt, >=latex',color=black](4,-2)--(4,1)--(9,1)--(9,-2)--cycle;
+%\fill[line width=2.pt,color=teal,fill=teal,fill opacity=0.4](4,-2)--(4,1)--(9,1)--(9,-2)--cycle;
+
+\begin{scriptsize}
+\draw[color=black] (2.5,6) node[above] {$a$} (1,4.5) node[left] {$a$};
+\draw[color=black] (6.5,6) node[above] {$b$} (9,3.5) node[right] {$b$};
+
+%(4,6)--(4,3)--(1,3)--(1,6)(4,6)--(9,6)--(9,1)--(4,1)(1,3)--(4,3)--(4,-2)--(1,-2)(4,-2)--(4,1)--(9,1)--(9,-2)
+
+\draw[color=black] (1,6) node[above left] {$K$} (4,6) node[above] {$L$} (9,6) node[above right] {$M$} (9,1) node[right] {$N$} (9,-2) node[below right] {$0$} (4,-2) node[below] {$P$} (4,1) node[left] {$Q$}  (4,3) node[right] {$R$}  (1,3) node[left] {$S$}  (1,-2) node[below left] {$T$};
+\end{scriptsize}
+
+\end{tikzpicture}
+\end{minipage}
+\end{minipage}
+\end{exo}
+
+\begin{exo} \textbf{"Constructions grâce aux vecteurs"}\hfill\textbf{/6pts}\\\hfil\\
+
+\begin{minipage}[t]{1.0\linewidth}
+Soient $(O,\V{i}, \V{j})$ un repère orthonormé du plan et $K(-1;-3)$, $L(-4;5)$,  $M(2;-6)$ trois points du plan.\\ 
+\begin{enumerate}
+\item Donner les coordonnées du vecteur $\V{LM}$ et décomposer ce vecteur dans la base orthonormée  $(\V{i}, \V{j})$.\\
+\item Donner les coordonnées du point $N$ tel que $\V{KN}=\V{LM}$.\\
+\item On note $O$ le symétrique du point $K$ par rapport au point $M$. Donner les coordonnées du point $O$.\\
+
+\end{enumerate}
+\end{minipage}
+
+\end{exo}
+
+\begin{exo} \textbf{"Relation de Chasles et opérations sur les veteurs"}\hfill\textbf{/6.5pts}\\\hfil\\
+\begin{enumerate}
+\item Recopier sur votre copie les expressions vectorielles et donner une simplification de celles-ci:
+\begin{multicols}{2}
+\begin{enumerate}[$\diamond$]
+
+		\item $\V{KL}+\V{NK} + \V{LS}$\\
+		\item $\V{UT}+\V{OP}+\V{PU}+\V{EO}$ \\
+
+\end{enumerate}
+\end{multicols}
+ 
+\item Construire un repère orthonormé $(O,I,J)$ en \textbf{(Annexe 1)} et placer les points suivants:
+$$A(2;2), \ B(-3;-1.5), \   C(-1;2.5), \  D(1;-2) $$
+\item Construire le point $E$ qui soit l'image du point $D$ par la translation de vecteur $\V{AB}+\V{CD}$.\\\hfill\\
+\item Donner les coordonnées des vecteurs suivants:
+\begin{multicols}{3}
+\begin{enumerate}[$\diamond$]
+
+		\item $ \V{BA}+\V{BD}$\\
+		\item $5 ~\V{AD}$ \\
+		\item $\dfrac{1}{7}~ \V{DC}$ \\
+
+\end{enumerate} \end{multicols}
+
+
+\end{enumerate}
+\end{exo}
+
+\newpage
+\lhead{Lycée Le Maurice Genevoix}\chead{}\rhead{Année~2021-2022}\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{\textbf{Fin}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{exo}\textbf{"Exercice de recherche"}\hfill\textbf{/1.5pts}\\\hfil\\
+	En géométrie, le barycentre de plusieurs points affectés à des coefficients est un point réalisant une égalité vectorielle. Pour trois points du plan A, B, C affectés à des coefficients identiques, on note H le barycentre de ces trois et il vérifie l'égalité vectorielle suivante:
+	$$\V{AH} + \V{BH} + \V{CH} = \V{0}$$\hfil\\[0.5cm]
+\begin{enumerate}
+	\item Construire sur le triangle $ABC$ en \textbf{(Annexe 1)} et tracer les trois médianes du triangle $ABC$ et noter $H$ le point d'intersection des trois médianes.\\[0.5cm]
+	\item Trouver par le calcul les coordonnées du barycentre des points $A$, $B$ et $C$ affectés à des coefficients identiques. Que remarquez-vous ? \\[1cm]
+\end{enumerate}	  
+\end{exo}
+
+\section*{Annexe 1}
+$$\begin{tikzpicture}[scale=1]
+	\draw[dotted] (-5,-5) grid (5,5);	
+\end{tikzpicture}$$
+
+\hfil\\[6cm]
+\subsection*{Bonus: \textit{\small(À faire que si tout a déjà été traité)}}
+Rappeler la valeur de la somme des angles dans un Triangle avec une démonstration si possible. En déduire la somme des angles dans un Pentagone. 
+\end{document}

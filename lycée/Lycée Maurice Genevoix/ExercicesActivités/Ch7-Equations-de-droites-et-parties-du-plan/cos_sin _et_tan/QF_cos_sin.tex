@@ -1,0 +1,121 @@
+\documentclass[t,12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{enumerate}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{setspace}
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+
+
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{thm-def}{Théorème/Définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+%\def\di{\displaystyle}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+
+\usetheme{Warsaw}
+
+\title{Cours: sur le cosinus et le sinus}
+\author{}
+\date{}
+\begin{document}
+\maketitle	
+
+\begin{frame}
+	\frametitle{ }
+
+\begin{minipage}[t]{1\linewidth}
+	\begin{minipage}[c]{0.45\linewidth}
+	$$\begin{tikzpicture}[scale=1.6]
+		\draw[->, line width = 1pt, >=latex'] (-1.5,0) -- (1.5,0);
+		\draw[->, line width = 1pt, >=latex'] (0,-1.5) -- (0,1.5);
+		\draw (0,0) node[below left]{\footnotesize$O$};
+		\draw (1.5,0) node[below]{\footnotesize$x$};
+		\draw (0,1.5) node[left]{\footnotesize$y$};
+		\draw (0.8,-0.8) node[right]{\footnotesize$\mathcal{C}$};
+		\draw (0,1) node{$+$} node[above left]{\footnotesize$1$};
+		\draw (1,0) node{$+$} node[above right]{\footnotesize$1$};
+		\draw (-1,0) node{$+$} node[above left]{\footnotesize$-1$};
+		\draw (0,-1) node{$+$} node[below left]{\footnotesize$-1$};
+		\draw(0,0) circle (1cm);
+		\end{tikzpicture}$$
+	\end{minipage}\hfill
+	\begin{minipage}[c]{0.5\linewidth}
+		Reproduire ce schéma sur votre cahier d'exercice et placer dans le quart en haut à droite du plan un point $A$ sur le cercle $\mathcal{C}$. On notera $\theta$ l'angle à droite formé entre la droite $(OI)$ et la droite $(OA)$. 
+	\end{minipage}
+\end{minipage}
+		
+
+
+
+	
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{}
+
+	$$\begin{tikzpicture}[scale=2.5]
+\draw[->, line width = 1pt, >=latex'] (-1.5,0) -- (1.5,0);
+\draw[->, line width = 1pt, >=latex'] (0,-1.5) -- (0,1.5);
+\draw (0,0) node[below left]{\footnotesize$O$};
+\draw (1.5,0) node[below]{\footnotesize$x$};
+\draw (0,1.5) node[left]{\footnotesize$y$};
+\draw (0.8,-0.8) node[right]{\footnotesize$\mathcal{C}$};
+\draw (0,1) node{$+$} node[above left]{\footnotesize$1$};
+\draw (1,0) node{$+$} node[above right]{\footnotesize$1$};
+\draw (-1,0) node{$+$} node[above left]{\footnotesize$-1$};
+\draw (0,-1) node{$+$} node[below left]{\footnotesize$-1$};
+\draw(0,0) circle (1cm);
+\end{tikzpicture}$$
+	
+\end{frame}
+
+
+
+
+
+\end{document}

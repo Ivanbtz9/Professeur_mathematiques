@@ -1,0 +1,531 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\K}{\mathbb{K}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/3}\rfoot{PCSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+
+%BIBIMATH 
+
+%POLYNÔMES 
+
+% (1)   https://www.bibmath.net/ressources/index.php?action=affiche&quoi=agreginterne/feuillesexo/polynomes&type=fexo
+
+
+%(2) https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/algebre/polynome&type=fexo  
+
+
+%(3) https://www.bibmath.net/ressources/index.php?action=affiche&quoi=mathsup/feuillesexo/polynome&type=fexo	
+
+
+%FRACTION RATIONNELLES
+
+% [4] https://www.bibmath.net/ressources/index.php?action=affiche&quoi=mathsup/feuillesexo/fracrat&type=fexo	  
+
+% [5]  https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/algebre/fracrat&type=fexo
+
+%Ressources: https://myismail.net/docs/prepas/mpsi/probs/17-18/DM12-Poly.pdf
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 11 : Polynômes et fractions rationnelles }}
+	\end{minipage}
+}
+\smallskip
+\section*{Connaître son cours:}
+\begin{itemize}[$\bullet$]
+	\item Soit $P, Q \in \K[X]$, rappeler la définition du produit de $P$ et $Q$ le polynôme noté $P.Q$.
+	
+	Montrer que \  deg$(P.Q)=$ deg$(P) $ $+$ deg$(Q)$. 
+	\item Montrer qu'un complexe $a$ est une racine de $P \in \K[X]$ si, et seulement si, $X - a$ divise $P $. (2 démonstrations) 
+	\item  Soit $a_1 , ... , a_n$ des complexes deux à deux distincts et $b_1 ,.., b n$ des complexes. Montrer qu'il existe un unique
+	polynôme $P \in \C[X]$ de degré au plus $n-1$ tel que $P (a_k) = b_k$ pour tout $k \in \llbracket0, n\rrbracket$. Y a-t-il toujours unicité si on ne fixe plus le degré de $P$ plus petit ou égale à $n-1$?
+	\item Soit $P \in \K_n [X ]$ et $ a \in \K$. Alors, $P (X ) =  \mathlarger{\mathlarger{\sum}}\limits_{k=0}^{n}\dfrac{P^{(k)}(a)}{k!}(X-a)^k$. En déduire qu'une racine $a$ de $P$ est de multiplicité $r$ si, et seulement si, $P^{(k)} (a) = 0$ pour tout $k \leq r - 1$ et $P^{(r)}(a) \neq0$.
+	\item Rappeler le Théorème de d'\emph{Alembert-Gauss} et montrer qu'un polynôme $P \in \C[X]$ non constant est surjectif de $\C$ dans $\C$. Est-ce vrai de $\R$ dans $\R$ ? 
+\end{itemize}
+
+
+
+\section*{Arithmétique des polynômes et racines:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+	
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	\`A quelle condition sur $a,b,c\in\R$ le polynôme 
+	$X^4+aX^2+bX+c$ est-il divisible par $X^2+X+1$ ?
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+ Trouver tous les polynômes $P$ vérifiant $$P(2X)=P'(X)P''(X)$$
+ 	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+ Soit $P$ un polynôme différent de $X$.
+ 
+Montrer que $P(X)-X$ divise $P(P(X))-X$.
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Pour quelles valeurs de l'entier naturel $n$ le polynôme $(X+1)^n-X^n-1$ est-il divisible par $X^2+X+1$~?
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	
+	Trouver tous les polynômes $P$ qui vérifient la relation 
+	$$P(X^2)=P(X)P(X+1)$$
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Soient $a_1$,..., $a_n$ et $b_1$,..., $b_n$, $2n$ nombres complexes.	
+	\hfill$(\mbox{Inégalité de \textsc{Cauchy}-\textsc{Schwarz}}).$ \quad\\%[-0.8cm]
+	
+	$$\left|\sum_{k=1}^{n}a_kb_k\right|\leq\sum_{k=1}^{n}|a_kb_k|\leq\sqrt{\sum_{k=1}^{n}|a_k|^2}\sqrt{\sum_{k=1}^{n}|b_k|^2}$$
+	\quad\\[0.5cm]
+	
+	Trouver une démonstration à l'aide d'une fonction polynomiale du second degré. 
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	
+Quels sont les polynômes $P\in\C[X]$ tels que $P'$ divise $P$?
+
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\end{minipage}
+\end{minipage}
+\newpage
+
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			Soit $n\in\N$. Montrer qu'il existe un unique $P\in\C[X]$ tel que 
+			$$\forall z\in\C^* \qquad  P\left(z+\frac{1}{z}\right) = z^n+\frac{1}{z^n}$$
+			
+			Montrer alors que toutes les racines de $P$ sont réelles, simples, 
+			et appartiennent à l'intervalle $[-2,2]$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+				\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $P\in\mathbb C[X]$. On note, pour $p<n$, $u_p$ la somme des racines de $P^{(p)}$. Démontrer que
+			$u_0,\dots,u_{n-1}$ forme une progression arithmétique.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		Soit $P$ un polynôme à coefficients réels tel que $\forall x\in\R,\;P(x)\geq0$. Montrer qu'il existe deux polynômes $R$ et $S$ à coefficients réels tels que $P=R^2+S^2$.
+				
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $P(X)=a_nX^n+\dots+a_0$ un polynôme à coefficients dans $\mathbb Z$, avec
+			$a_n\neq 0$ et $a_0\neq 0$.
+			
+			\begin{enumerate}
+				\item On suppose que $P$ admet une racine rationnelle $p/q$
+				avec $p\wedge q=1$. Démontrer que $p|a_0$ et que $q|a_n$.
+				\item Le polynôme $P(X)=X^5-X^2+1$
+				admet-il des racines dans $\mathbb Q$?
+			\end{enumerate} 
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		Soit $P\in\Z[X]$ de degré supérieur ou égal à $1$. Soit $n$ un entier relatif 
+		et $m=P(n)$.
+		\begin{enumerate}
+			\item  Montrer que $\forall k\in\Z,\;P(n+km)$ est un entier divisible par $m$.
+			\item  Montrer qu'il n'existe pas de polynômes non constants à coefficients entiers tels que $P(n)$ soit premier pour tout entier $n$.
+		\end{enumerate}
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+
+
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			
+			Soient $a_1,\ldots,a_n$ des réels deux à deux distincts.
+			Pour tout $i=1,\ldots,n$, on pose
+			
+			\hfil $L_i(X)=\prod_{\substack{1\le j\le n \\ j\not= i}}\frac{X-a_j}{a_i-a_j}$
+			\begin{enumerate}
+				\item Calculer $L_i(a_j)$ pour $j=1,\ldots,n$.
+				\item Soient $b_1,\ldots,b_n$ des réels fixés. 
+				Montrer que $P(X)=\sum_{i=0}^nb_iL_i(X)$ est l'unique polynôme de degré inférieur ou égal à $n-1$ qui vérifie:
+				
+				$P(a_j)=b_j  \ \text{ pour tout }j=1,\ldots,n.$
+				\item Trouver le polynôme $P$ de degré inférieur ou égal à $3$ tel que 
+				$P(0)=1\ , \ P(1)=0\ , \ P(-1)=-2\ \text{et}\  P(2)=4.$
+			\end{enumerate}
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+
+			\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			On pose $\omega_k=e^{2ik\pi/n}$ et $Q=1+2X+...+nX^{n-1}$. Calculer $\prod_{k=0}^{n-1}Q(\omega_k)$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+	
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			Soient $x_0 = 0 < x_1 < \dots < x_n$ et des réels donnés $y_i , 0 \leq i \leq n$. On considère le	polynôme d'interpolation satisfaisant:\\[0.2cm]
+			
+			$P (x_0 ) = y_0 , P (-x_i ) = P (x_i ) = y_i , \text{ pour tout } 1 \leq i \leq n.$
+			\begin{enumerate}
+				\item Montrer que le polynôme P est pair.
+				\item En déduire en un minimum de calculs le polynôme d’interpolation vérifiant
+				
+				$P (-1) = 2, \ P (0) = 4, \ P (1) = 2.$
+			\end{enumerate}
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+			
+	\begin{exo}\textbf{(***)}\textit{"Polynômes de \textsc{Tchébychev}"}\\[0.2cm]
+		\begin{enumerate}%https://progresser-en-maths.com/exercice-corrige-polynomes-de-tchebychev/
+			\item Soit $n\in\N$. Montrer qu'il existe un unique polynôme $T_n$ de $\R[X]$ tel que : 
+			
+			\hfil$\forall x\in \R, \ T_n(\cos x) = \cos(nx).$ 
+			\item Montrer, pour tout $n\in\N$, que $T_n +T_{n+2} = 2XT_{n+1}.$ Déterminer le terme de plus haut degré de $T_n$.
+			\item Déterminer les racines de $T_n$ et montrer qu'elles sont réelles et simples.
+			\item Déterminer les $x\in[-1,1]$ en lesquels $|T_n(x)|=1$.
+			
+
+		\end{enumerate}
+				\centering
+	\rule{1\linewidth}{0.6pt}
+
+	\end{exo}
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+\newpage 
+
+
+\section*{Fractions rationnelles, décomposition en éléments simples sur $\R$ ou $\C$:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+
+				
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			\begin{enumerate}
+				\item Décomposer en éléments simples la fraction rationnelle $\displaystyle\frac{1}{X(X+1)(X+2)}$.
+				\item En déduire la limite de la suite $(S_n)$ suivante : $\displaystyle S_n=\sum_{k=1}^n \frac{1}{k(k+1)(k+2)}$.
+			\end{enumerate}
+		
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $P\in\mathbb R[X]$ un polynôme de degré $n\geq 1$ possédant $n$ racines distinctes $x_1,\dots,x_n$ non-nulles.
+			\begin{enumerate}
+				\item Décomposer en éléments simples la fraction rationnelle $\displaystyle \frac1{XP(X)}$.
+				\item En déduire que $\displaystyle\sum_{k=1}^n \frac{1}{x_k P'(x_k)}=\frac{-1}{P(0)}$.
+			\end{enumerate}
+		
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			
+		Décomposer en éléments simples les fractions rationnelles suivantes : 
+		$$\begin{array}{lll}
+		\displaystyle\mathbf{1.}\quad\frac{1}{X^3-X}&\quad\quad\mathbf{2.}\quad  \displaystyle \frac{X^3}{(X-1)(X-2)(X-3)}
+		\end{array}$$
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+			\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Décomposer sur $\mathbb R$ les fractions rationnelles suivantes :
+			$$\begin{array}{ll}
+			\displaystyle\mathbf{1.}\quad\frac{X^2+2X +5}{X^2-3X+2}&\quad\quad\mathbf{2.}\quad \displaystyle\frac{X^2+3X+1}{(X-1)^2(X-2)}\\[0.8cm]
+			\mathbf{3.}\quad \displaystyle \frac 1{X^4-1}&\quad\quad \mathbf{4.}\quad \displaystyle\frac{X^4+1}{(X+1)^2(X^2+1)}
+			\end{array}$$
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+			%\begin{exo}\textbf{(***)}\quad\\[0.2cm] \centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Décomposer en éléments simples les fractions rationnelles suivantes : 
+			$$\begin{array}{lll}
+			\displaystyle\mathbf{1.}\quad\frac{2X^2+1}{(X^2-1)^2}&
+			\quad\quad\mathbf{2.}\quad\displaystyle\frac{X^3+1}{(X-1)^3}
+			\end{array}$$
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+
+		
+		\begin{exo}\textbf{(***)}\quad \textit{"Théorème de \textsc{Lucas}"}\\[0.2cm]
+			Soit $P\in\mathbb C_n[X]$ admettant $n$ racines simples $\alpha_1,\dots,\alpha_n$.
+			Soient $A_1,\dots,A_n$ les points du plan complexe d'affixe respectives $\alpha_1,\dots,\alpha_n$.
+			\begin{enumerate}
+				\item Décomposer la fraction rationnelle $P'/P$ en éléments simples.
+				\item Soit $\beta$ une racine de $P'$, et soit $B$ son image dans le plan complexe. Déduire de la question précédente que 
+				$$\sum_{j=1}^n \frac{1}{\beta-\alpha_j}=0.$$
+				\item En déduire que $B$ est un barycentre de la famille de points $(A_1,\dots,A_n)$, avec des coefficients positifs.
+				Interpréter géométriquement cette propriété.
+			\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+				Décomposer en éléments simples la fraction rationnelle suivante:
+				
+				$$\dfrac{1}{T_n}$$
+				où $T_n$ est le n-ième polynôme de Tchebychev.
+			 \centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+	\end{minipage}
+\end{minipage}
+
+	
+
+
+\end{document}
+
+
+
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			
+			\begin{enumerate}
+				\item 
+				\item
+			\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			
+			\begin{enumerate}
+				\item 
+				\item
+			\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+	\end{minipage}
+\end{minipage}

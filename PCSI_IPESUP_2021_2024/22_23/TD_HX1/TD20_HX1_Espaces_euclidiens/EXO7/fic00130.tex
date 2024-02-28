@@ -1,0 +1,1069 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+
+\fiche{f00130, rouget, 2010/10/16}
+
+\titre{Espaces euclidiens}
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable
+\end{center}
+
+
+\exercice{5786, rouget, 2010/10/16}
+\enonce{005786}{*** I}
+Montrer que la matrice de \textsc{Hilbert} $H_n =\left(\frac{1}{i+j-1}\right)_{1\leqslant i,j\leqslant n}$ est définie positive.
+\finenonce{005786}
+
+
+\finexercice
+\exercice{5787, rouget, 2010/10/16}
+\enonce{005787}{*** I}
+\label{ex:rou2}
+\begin{enumerate}
+ \item  Soit $A$ une matrice carrée réelle de format $n$ et $S ={^t}AA$. Montrer que $S\in\mathcal{S}_n^+(\Rr)$.
+
+\item  Réciproquement, montrer que pour toute matrice $S$ symétrique positive, il existe une matrice $A$ carrée réelle de format $n$ telle que $S ={^t}AA$. A-t-on l'unicité de $A$ ?
+
+\item  Montrer que $S$ est définie positive si et seulement si $A$ est inversible.
+
+\item  Montrer que $\text{rg}(A) =\text{rg}(S)$.
+
+\item  (Racine carrée d'une matrice symétrique positive) Soit $S$ une matrice symétrique positive.
+
+Montrer qu'il existe une et une seule matrice $R$ symétrique positive telle que $R^2 = S$. 
+\end{enumerate}
+\finenonce{005787}
+
+
+\finexercice
+\exercice{5788, rouget, 2010/10/16}
+\enonce{005788}{**** I}
+Soit $E$ un espace euclidien de dimension $n$ non nulle. Soit $(x_1,...,x_p)$ une famille de $p$ vecteurs de $E$ ($p\geqslant 2$) . On dit que la famille $(x_1,...,x_p)$ est une famille obtusangle si et seulement si $\forall(i,j)\in\llbracket1,p\rrbracket^2$ $(i<j\Rightarrow x_i|x_j < 0)$. Montrer que si la famille $(x_1,...,x_p)$ est une famille obtusangle alors $p\leqslant n+1$.
+\finenonce{005788}
+
+
+\finexercice
+\exercice{5789, rouget, 2010/10/16}
+\enonce{005789}{**I Inégalité de \textsc{Hadamard}}
+\label{exo:sperou4}
+Soit $E$ un espace euclidien de dimension $n\geqslant1$ et $\mathcal{B}$ une base orthonormée de $E$.
+
+Montrer que pour tout $n$-uplet de vecteurs $(x_1,...x_n)$, on a : $\left|\text{det}_{\mathcal{B}}(x_1,...,x_n)\right|\leqslant\|x_1\|...\|x_n\|$. Cas d'égalité ?
+\finenonce{005789}
+
+
+\finexercice
+\exercice{5790, rouget, 2010/10/16}
+\enonce{005790}{**}
+Montrer que pour toute matrice carrée $A$ réelle de format $n$, on a $|\text{det} A|\leqslant\sqrt{\prod_{j=1}^{n}\left(\sum_{i=1}^{n}a_{i,j}^2\right)}$.
+\finenonce{005790}
+
+
+\finexercice
+\exercice{5791, rouget, 2010/10/16}
+\enonce{005791}{***}
+Soit $A$ une matrice orthogonale. Montrer que la valeur absolue de la somme des coefficients de $A$ est inférieure ou égale à $n$. Cas d'égalité si de plus tous les coefficients de $A$ sont positifs ?
+\finenonce{005791}
+
+
+\finexercice
+\exercice{5792, rouget, 2010/10/16}
+\enonce{005792}{**}
+On munit $E =\mathcal{M}_3(\Rr)$ muni du produit scalaire usuel.
+
+\begin{enumerate}
+ \item  Déterminer l'orthogonal de $\mathcal{A}_3(\Rr)$.
+
+\item  Calculer la distance de la matrice $M =\left(
+\begin{array}{ccc}
+0&1&0\\
+0&0&1\\
+0&0&0
+\end{array}
+\right)$  au sous-espace vectoriel des matrices antisymétriques.
+\end{enumerate}
+\finenonce{005792}
+
+
+\finexercice
+\exercice{5793, rouget, 2010/10/16}
+\enonce{005793}{**}
+Soit $(e_1,e_2,e_3)$ une base orthonormée directe d'un espace euclidien orienté $E$ de dimension $3$. Matrice de la rotation d'angle $\frac{\pi}{3}$ autour de $e_1+e_2$.
+\finenonce{005793}
+
+
+\finexercice
+\exercice{5794, rouget, 2010/10/16}
+\enonce{005794}{***}
+Soit $A$ une matrice carrée réelle symétrique positive de format $n$.
+Montrer que $1 +\sqrt[n]{\text{det}(A)}\leqslant\sqrt[n]{\text{det}(I_n+A)}$.
+\finenonce{005794}
+
+
+\finexercice
+\exercice{5795, rouget, 2010/10/16}
+\enonce{005795}{**}
+Déterminer $\text{card}(O_n(\Rr)\cap\mathcal{M}_n(\Zz))$.
+\finenonce{005795}
+
+
+\finexercice
+\exercice{5796, rouget, 2010/10/16}
+\enonce{005796}{}
+Soit $f$ une application de $\Cc$ dans $\Cc$, $\Rr$-linéaire.
+
+\begin{enumerate}
+ \item  Montrer qu'il existe deux complexes $a$ et $b$ tels que pour tout $z\in\Cc$, $f(z) =az + b\overline{z}$.
+
+\item  Calculer $\text{Tr}(f)$ et $\text{det}(f)$ en fonction de $a$ et $b$.
+
+\item  C.N.S. pour que $f$ soit autoadjoint dans $\Cc$ muni de sa structure euclidienne canonique.
+\end{enumerate}
+\finenonce{005796}
+
+
+\finexercice
+\exercice{5797, rouget, 2010/10/16}
+\enonce{005797}{***}
+Trouver tous les endomorphismes de $\Rr^3$ vérifiant $\forall(x,y)\in(\Rr^3)^2$, $f(x\wedge y) = f(x)\wedge f(y)$.
+\finenonce{005797}
+
+
+\finexercice
+\exercice{5798, rouget, 2010/10/16}
+\enonce{005798}{**}
+Soit $A$ une matrice carrée réelle. Montrer que les matrices ${^t}AA$ et $A{^t}A$ sont orthogonalement semblables.
+\finenonce{005798}
+
+
+\finexercice
+\exercice{5799, rouget, 2010/10/16}
+\enonce{005799}{*** I}
+Montrer que le produit de deux matrices symétriques réelles positives est à valeurs propres réelles positives.
+\finenonce{005799}
+
+
+\finexercice
+\exercice{5800, rouget, 2010/10/16}
+\enonce{005800}{*** I}
+Soient $A$ et $B$ deux matrices carrées réelles symétriques positives. 
+Montrer que $\text{det}A +\text{det}B\leqslant\text{det}(A+B)$.
+\finenonce{005800}
+
+
+\finexercice
+\exercice{5801, rouget, 2010/10/16}
+\enonce{005801}{**}
+Valeurs et vecteurs propres de l'endomorphisme de $\Rr^3$ euclidien orienté défini par
+
+\begin{center}
+$\forall x\in\Rr^3$, $f(x) = a\wedge(a\wedge x)$ où $a$ est un vecteur donné.
+\end{center}
+\finenonce{005801}
+
+
+\finexercice
+\exercice{5802, rouget, 2010/10/16}
+\enonce{005802}{*** I}
+Soit $f$ un endomorphisme d'un espace euclidien de dimension $n$ qui conserve l'orthogonalité. Montrer qu'il existe un réel positif $k$ tel que $\forall x\in E$, $\|f(x)\| = k\|x\|$.
+\finenonce{005802}
+
+
+\finexercice
+\exercice{5803, rouget, 2010/10/16}
+\enonce{005803}{** I}
+Soit $P$ le plan de $\Rr^4$ d'équations $\left\{
+\begin{array}{l}
+x+y+z+t=0\\
+x+y-2z-t=0
+\end{array}
+\right.$ dans une base orthonormée $\mathcal{B}$ de $\Rr^4$ muni de sa structure euclidienne canonique.
+
+\begin{enumerate}
+ \item Déterminer les matrices dans $\mathcal{B}$ de la projection orthogonale sur $P$ et de la symétrie orthogonale par rapport à $P$.
+
+\item  Calculer la distance d'un vecteur quelconque de $\Rr^4$ à $P$.
+\end{enumerate}
+\finenonce{005803}
+
+
+\finexercice
+\exercice{5804, rouget, 2010/10/16}
+\enonce{005804}{**}
+La matrice $\left(
+\begin{array}{cccc}
+n-1&-1&\ldots&-1\\
+-1&\ddots&\ddots&\vdots\\
+\vdots&\ddots&\ddots&-1\\
+-1&\ldots&-1&n-1
+\end{array}
+\right)$ est-elle positive ? définie ?
+\finenonce{005804}
+
+
+\finexercice
+\exercice{5805, rouget, 2010/10/16}
+\enonce{005805}{***}
+$O_n(\Rr)$ est-il convexe ?
+$O_n(\Rr)$ contient-il trois points alignés?
+\finenonce{005805}
+
+
+\finexercice
+
+\finfiche
+
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005786}
+La matrice $H_n$ est symétrique réelle. Soit $X=(x_i)_{1\leqslant i\leqslant n}\in\mathcal{M}_{n,1}(\Rr)$.
+
+\begin{align*}\ensuremath
+{^t}X H_n X&=\sum_{1\leqslant i,j\leqslant n}^{}\frac{x_ix_j}{i+j-1}=\sum_{1\leqslant i,j\leqslant n}^{}x_ix_j\int_{0}^{1}t^{i+j-2}\;dt =\int_{0}^{1}\left(\sum_{1\leqslant i,j\leqslant n}^{}x_ix_j t^{i+j-2}\right)dt\\
+ &=\int_{0}^{1}\left(\sum_{i=1}^{n}x_it^{i-1}\right)^2dt\geqslant0 .
+\end{align*}
+
+De plus, si $X\neq0$, le polynôme $\sum_{i=1}^{n}x_iY^{i-1}$ n'est pas le polynôme nul et donc, puisqu'un polynôme non nul admet un nombre fini de racines, la fonction $t\mapsto\left(\sum_{i=1}^{n}x_it^{i-1}\right)^2$. Ainsi, la fonction $t\mapsto\left(\sum_{i=1}^{n}x_it^{i-1}\right)^2$ est continue positive et non nulle sur $[0,1]$ et on en déduit que $\int_{0}^{1}\left(\sum_{i=1}^{n}x_it^{i-1}\right)^2\;dt>0$. On a montré que $\forall X\in\mathcal{M}_{n,1}(\Rr)\setminus\{0\}$, ${^t}X H_n X > 0$ et donc que
+
+\begin{center}
+\shadowbox{
+la matrice $H_n$ est symétrique définie positive.
+}
+\end{center}
+\fincorrection
+\correction{005787}
+\begin{enumerate}
+ \item  ${^t}S={^t}({^t}AA)={^t}A{^t}({^t}A) ={^t}AA = S$. Donc $S\in\mathcal{S}_n(\Rr)$.
+
+Soit $X\in\mathcal{M}_{n,1}(\Rr)$, ${^t}XSX ={^t}X{^t}AAX ={^t}(AX)AX =\|AX\|_2^2\geqslant0$. Donc $S\in\mathcal{S}_n^+(\Rr)$.
+
+\begin{center}
+\shadowbox{
+$\forall A\in\mathcal{M}_n(\Rr)$, ${^t}AA\in\mathcal{S}_n^+(\Rr)$.
+}
+\end{center}
+
+\item  Soit $S\in\mathcal{S}_n^+(\Rr)$. D'après le théorème spectral, il existe $P$ dans $O_n(\Rr)$ et $D$ dans $\mathcal{D}_n(\Rr)$ telles que $S = PD{^t}P$.
+
+Posons $D =\text{diag}(\lambda_1,...,\lambda_n)$. Puisque $S$ est dans $\mathcal{S}_n^+(\Rr)$, $D$ est dans $\mathcal{D}_n^+(\Rr)$ et on peut poser $D'=\text{diag}(\sqrt{\lambda_1},...,\sqrt{\lambda_n})$ de sorte que $D'^2 = D$.
+On peut alors écrire
+
+\begin{center}
+$S = PD{^t}P =PD'D'{^t}P ={^t}(D{^t}P) D'{^t}P$,
+\end{center}
+
+et la matrice $A = D'{t}P$ convient.
+
+\begin{center}
+\shadowbox{
+$\forall S\in\mathcal{S}_n^+(\Rr)$, $\exists A\in\mathcal{M}_n(\Rr)/$ $S={^t}AA$.
+}
+\end{center}
+
+On a aussi ${^t}(-A)(-A) = S$ et comme en général  $-A\neq A$, on n'a pas l'unicité de la matrice $A$.
+
+\item  
+
+\begin{align*}\ensuremath
+S\;\text{définie positive}&\Leftrightarrow \forall X\in\mathcal{M}_{n,1}(\Rr)\setminus\{0\},\;{^t}XSX> 0\Leftrightarrow \forall X\in\mathcal{M}_{n,1}(\Rr)\setminus\{0\},\;\|AX\|_2^2 > 0\\
+ &\Leftrightarrow \forall X\in\mathcal{M}_{n,1}(\Rr)\setminus\{0\},\;AX\neq0
+\Leftrightarrow\text{Ker} A =\{0\}\Leftrightarrow A\in\mathcal{GL}_n(\Rr).
+\end{align*}
+
+\item  Montrons que les matrices $A$ et $S$ ont même noyau. Soit $X\in\mathcal{M}_{n,1}(\Rr)$. 
+
+\begin{center}
+$X\in\text{Ker}A\Rightarrow AX = 0\Rightarrow{^t}AAX = 0\Rightarrow SX = 0\Rightarrow X\in\text{Ker}S$,
+\end{center}
+
+et
+
+\begin{center}
+$X\in\text{Ker}S\Rightarrow{^t}AAX = 0\Rightarrow{^t}X{^t}AAX = 0\Rightarrow{^t}(AX)AX = 0\Rightarrow\|AX\|_2^2 = 0\Rightarrow AX = 0\Rightarrow X\in\text{Ker}A$.
+\end{center}
+
+Ainsi, $\text{Ker}({^t}AA)=\text{Ker}(A)$ et en particulier, grâce au théorème du rang, on a montré que
+
+\begin{center}
+\shadowbox{
+$\forall A\in\mathcal{M}_n(\Rr)$, $\text{rg}({^t}AA)=\text{rg}(A)$.
+}
+\end{center}
+
+\item  Soit $S\in\mathcal{S}_n^+(\Rr)$.
+
+\textbf{Existence.} D'après le théorème spectral, il existe $P_0\in O_n(\Rr)$ et $D_0\in\mathcal{D}_n^+(\Rr)$ telles que $S = P_0D_0{^t}P_0$.
+
+Posons $D_0 =\text{diag}(\lambda_1,...,\lambda_n)$ où les $\lambda_i$, $1\leqslant i\leqslant n$, sont des réels positifs puis $\Delta_0 =\text{diag}(\sqrt{\lambda_1},...,\sqrt{\lambda_n})$ et enfin 
+$R =P_0\Delta_0{^t}P_0$. La matrice $R$ est orthogonalement semblable à une matrice de $\mathcal{D}_n^+(\Rr)$ et est donc un élément de $\mathcal{S}_n^+(\Rr)$. Puis
+
+\begin{center}
+$R^2 = P_0\Delta_0^2{^t}P_0 = P_0D_0{^t}P_0 = S$.
+\end{center}
+
+\textbf{Unicité.} Soit $M$ un élément de $\mathcal{S}_n^+(\Rr)$ telle que $M^2 = S$.
+
+$M$ est diagonalisable d'après le théorème spectral et donc $\mathcal{M}_{n,1}(\Rr)=\underset{\lambda\in\text{Sp}(M)}{\oplus}E_M(\lambda)$. Mais si $\lambda$ est une valeur propre de $M$, $\text{Ker}(M-\lambda I_n)\subset\text{Ker}(M^2-\lambda^2I_n)=\text{Ker}(S-\lambda^2I_n)$. De plus, les valeurs propres de $M$ étant positive, les $\lambda^2$, $\lambda\in\text{Sp}(M)$, sont deux à deux distincts ou encore les $\text{Ker}(S-\lambda^2I_n)$, $\lambda\in\text{Sp}(M)$, sont deux à deux distincts.
+
+Ceci montre que pour chaque $\lambda\in\text{Sp}(M)$, $\text{Ker}(M-\lambda I_n)=\text{Ker}(S-\lambda^2I_n)$ et que les $\lambda^2$, $\lambda\in\text{Sp}(M)$, sont toutes les valeurs propres de $S$.
+
+Ainsi, nécessairement la matrice ${^t}P_0MP_0$ est une matrice diagonale $D$. L'égalité $M^2=S$ fournit $D^2=D_0$ puis $D=\Delta_0$ (car $D\in\mathcal{D}_n^+(\Rr)$) et finalement $M = R$.
+
+\begin{center}
+\shadowbox{
+$\forall S\in\mathcal{S}_n^+(\Rr)$, $\exists!R\in\mathcal{S}_n^+(\Rr)/\;R^2=S$.
+}
+\end{center}
+\end{enumerate}
+\fincorrection
+\correction{005788}
+\textbf{1 ère solution.} Soit $p\geqslant2$. Montrons que si la famille $(x_1,...,x_{p})$ est obtusangle alors la famille $(x_1,...,x_{p-1})$ est libre. 
+
+Soit $(x_1,...,x_{p})$ une famille obtusangle. Supposons que la famille $(x_1,...,x_{p-1})$ soit liée.
+
+Il existe donc $(\lambda_1,...,\lambda_{p-1})\in\Rr^{p-1}\setminus\{(0,\ldots,0)\}$ tel que $\sum_{k=1}^{p-1}\lambda_kx_k = 0$.
+
+Quite à multiplier les deux membres de l'égalité par $-1$, on peut supposer que l'un des $\lambda_i$ au moins est strictement positif. On pose $I =\{k\in\llbracket1,p-1\rrbracket/\;\lambda_k > 0\}$ et $J =\{k\in\llbracket1,p-1\rrbracket/\;\lambda_k\leqslant 0\}$ (éventuellement $J$ est vide).
+
+Si $J$ est vide, il reste $\sum_{i\in I}^{}\lambda_ix_i = 0$ et si $J$ est non vide,
+
+\begin{center}
+$\left\|\sum_{i\in I}^{}\lambda_ix_i\right\|^2= -\left(\sum_{i\in I}^{}\lambda_ix_i\right)\left(\sum_{j\in J}^{}\lambda_jx_j\right)= -\sum_{(i,j)\in I\times J}^{}\lambda_i\lambda_j\left(x_i|x_j\right)\leqslant0$ (car  $\forall(i,j)\in I\times J$, $\left(x_i|x_j\right)< 0$ et $\lambda_i\lambda_j\leqslant0$).
+\end{center}
+
+Ainsi, dans tous les cas, $\sum_{i\in I}^{}\lambda_ix_i = 0$. Mais ceci est impossible car  $\left(\sum_{i\in I}^{}\lambda_ix_i\right)|x_{p}=\sum_{i\in I}^{}\lambda_i\left(x_i|x_{p}\right)< 0$.
+
+On a montré que la famille $(x_1,\ldots,x_{p-1})$ est libre et on en déduit que $p-1\leqslant n$ ou encore $p\leqslant n+1$.
+
+\textbf{2ème solution.} Montrons par récurrence sur $n =\text{dim}E_n\geqslant1$ que tout famille obtusangle de $E_n$ a un cardinal inférieur ou égal à $n+1$.
+
+\textbullet~Pour $n = 1$. Soient $x_1$, $x_2$ et $x_3$ trois vecteurs de $E_1$. On peut identifier ces vecteurs à des réels. Deux des trois réels $x_1$, $x_2$ ou $x_3$ ont même signe et on ne peut donc avoir $x_1x_2 < 0$ et $x_1x_3 < 0$ et $x_2x_3 < 0$.
+
+Une famille obtusangle de $E_1$ a donc un cardinal inférieur ou égal à $2$.
+
+\textbullet~Soit $n\geqslant1$. Supposons que toute famille obtusangle d'un espace euclidien de dimension $n$ a un cardinal inférieur ou égal à $n+1$. Soit $(x_1,...,x_p)$ une famille obtusangle de $E_{n+1}$.
+
+Si $p = 1$ alors $p\leqslant n+2$. Supposons dorénavant $p\geqslant2$.
+
+On va construire à partir de cette famille une famille obtusangle de cardinal $p-1$ d'un espace euclidien de dimension $n$.
+
+Soit $F=x_p^\bot$. Puisque la famille $(x_1,...,x_p)$ est obtusangle, le vecteur $x_p$ n'est pas nul et $F$ est un espace euclidien de dimension $n$.
+
+On note $y_1$, $y_2$,..., $y_{p-1}$ les projetés orthogonaux des vecteurs $x_1$, ... , $x_{p-1}$ sur $F$. On sait que
+
+\begin{center}
+$\forall i\in\llbracket1,p-1\rrbracket$, $y_i =x_i -\frac{\left(x_i|x_p\right)}{\|x_p\|^2}x_p$.
+\end{center}
+
+Soit $(i,j)\in\llbracket1,p-1\rrbracket$ tel que $i\neq j$.
+
+\begin{center}
+$\left(y_i|y_j\right)=\left(x_i|x_j\right)-2\frac{\left(x_i|x_p\right)\left(x_j|x_p\right)}{\|x_p\|^2}+\frac{\left(x_i|x_p\right)\left(x_j|x_p\right)\|x_p\|^2}{\|x_p\|^4}= \left(x_i|x_j\right)-\frac{\left(x_i|x_p\right)\left(x_j|x_p\right)}{\|x_p\|^2}< 0$.
+\end{center}
+
+Ainsi, la famille $(y_i)_{1\leqslant i\leqslant p-1}$ est une famille obtusangle d'un espace euclidien de dimension $n$ et par hypothèse de récurrence $p-1\leqslant n+1$ et donc $p\leqslant n+2$. Le résultat est démontré par récurrence.
+\fincorrection
+\correction{005789}
+Si la famille $(x_1,...,x_n)$ est liée, l'inégalité est vraie.
+
+Si la famille $(x_1,...,x_n)$ est libre, on peut considérer $B_0 =(e_1,...,e_n)$ l'orthonormalisée de \textsc{Schmidt} de la famille $(x_1,...,x_n)$. Les bases $B_0$ et $B$ sont des bases orthonormées de $E$ et donc
+
+\begin{align*}\ensuremath
+\left|\text{det}_B(x_1,...,x_n)\right|&=\left|\text{det}_{B_0}(x_1,...,x_n)\right|
+=\text{abs}\left(\left|\begin{array}{cccc}(x_1|e_1)&\times&\ldots&\times\\
+ 0&\ddots&\ddots&\vdots\\
+ \vdots&\ddots&\ddots&\times\\
+ 0&\ldots&0&(x_n|e_n)\end{array}\right|\right)\\
+ &=\prod_{k=1}^{n}|(x_k|e_k)|\leqslant\prod_{k=1}^{n}\|x_k\|\|e_k\|\;(\text{d'après l'inégalité de \textsc{Cauchy}-\textsc{Schwarz}})\\
+ &=\prod_{k=1}^{n}\|x_k\|.
+\end{align*}
+
+\begin{center}
+\shadowbox{
+$\forall(x_1,\ldots,x_n)\in E^n$, $\left|\text{det}_B(x_1,...,x_n)\right|\leqslant\prod_{k=1}^{n}\|x_k\|$ (inégalité de \textsc{Hadamard}).
+}
+\end{center}
+
+Ensuite, 
+
+- si la famille $(x_1,...,x_n)$ est liée, on a l'égalité si et seulement si l'un des vecteurs $x_k$ est nul 
+
+- si la famille $(x_1,...,x_n)$ est libre, on a l'égalité si et seulement si $\forall k\in\llbracket1,n\rrbracket$, $|(x_k|e_k)|=\|x_k\|\|e_k\|$. Les cas d'égalité
+
+de l'inégalité de \textsc{Cauchy}-\textsc{Schwarz} étant connus, on a l'égalité si et seulement si $\forall k\in\llbracket1,n\rrbracket$, $x_k$ est colinéaire à $e_k$ 
+
+ou encore si et seulement si la famille $(x_1,...,x_n)$ est orthogonale.
+
+En résumé, l'inégalité de \textsc{Hadamard} est une égalité si et seulement si la famille $(x_1,...,x_n)$ est orthogonale libre ou si l'un des vecteurs est nul.
+\fincorrection
+\correction{005790}
+C'est l'exercice \ref{exo:sperou4}.
+\fincorrection
+\correction{005791}
+Soit $A =(a_{i,j})_{1\leqslant i,j\leqslant n}$ une matrice orthogonale. On pose $X =\left(
+\begin{array}{c}
+1\\
+\vdots\\
+1
+\end{array}
+\right)\in\mathcal{M}_{n,1}(\Rr)$.
+
+D'après l'inégalité de \textsc{Cauchy}-\textsc{Schwarz}
+
+\begin{align*}\ensuremath
+\left|\sum_{1\leqslant i,j\leqslant n}^{}a_{i,j}\right|&=\left|\sum_{1\leqslant i,j\leqslant n}^{}1\times a_{i,j}\times1\right|=\left|{^t}XAX\right| =\left|\left(AX|X\right)\right|\\
+ &\leqslant\|AX\|\|X\|\;(\text{d'après l'inégalité de \textsc{Cauchy}-\textsc{Schwarz}})\\
+ &=\|X\|^2\;(\text{puisque la matrice}\;A\;\text{est orthogonale})\\
+ &=n.
+\end{align*}
+	        
+
+On a l'égalité si et seulement si la famille $(X,AX)$ est liée ce qui équivaut à $X$ vecteur propre de $A$.
+
+On sait que les valeurs propres (réelles) de $A$ ne peuvent être que $1$ ou $-1$. Donc, 
+
+\begin{center}
+égalité $\Leftrightarrow AX = X\;\text{ou}\;AX = -X\Leftrightarrow \forall i\in\llbracket1,n\rrbracket,\;\left|\sum_{j=1}^{n}a_{i,j}\right|= 1$
+\end{center}
+
+Il paraît difficile d'améliorer ce résultat dans le cas général. Supposons de plus que $\forall(i,j)\in\llbracket1,n\rrbracket^2$, $a_{i,j}\geqslant 0$. Soit $i\in\llbracket1,n\rrbracket$. Puisque tous les $a_{i,j}$ sont éléments de $[0,1]$,
+
+\begin{center}
+$1=\sum_{j=1}^{n}a_{i,j}\geqslant\sum_{j=1}^{n}a_{i,j}^2=1$.
+\end{center}
+
+L'inégalité écrite est donc une égalité et on en déduit que chaque inégalité $a_{i,j}\geqslant a_{i,j}^2$, $1\leqslant j\leqslant n$, est une égalité. Par suite, $\forall(i,j)\in\llbracket1,n\rrbracket^2$, $a_{i,j}\in\{0,1\}$. Ceci montre que la matrice $A$ est une matrice de permutation qui réciproquement convient.
+
+\fincorrection
+\correction{005792}
+Le produit scalaire usuel de $\mathcal{M}_3(\Rr)$ est défini par
+
+\begin{center}
+$\forall(A,B)\in(\mathcal{M}_3(\Rr))^2$, $\left(A|B\right)=\text{Tr}({^t}AB) =\sum_{1\leqslant i,j\leqslant n}^{}a_{i,j}b_{i,j}$.
+\end{center}
+
+\begin{enumerate}
+ \item  Déterminons l'orthogonal de $\mathcal{A}_3(\Rr)$ dans $\mathcal{M}_3(\Rr)$. Soit $(A,B)\in\mathcal{S}_(\Rr)\times\mathcal{A}_3(\Rr)$.
+
+\begin{center}
+$\left(A|B\right)=\text{Tr}({^t}AB) =\text{Tr}(AB) =\text{Tr}(BA) = -\text{Tr}({^t}BA) = -\left(B|A\right)$.
+\end{center}
+
+et donc $\left(A|B\right)= 0$. Donc $\mathcal{S}_3(\Rr)\subset\left(\mathcal{A}_3(\Rr)\right)^\bot$ et comme de plus, $\text{dim}\left(\mathcal{S}_3(\Rr)\right)=\text{dim}\left((\left(\mathcal{A}_3(\Rr)\right)^\bot\right)$, on a montré que
+
+\begin{center}
+\shadowbox{
+$\left(\mathcal{A}_3(\Rr)\right)^\bot=\mathcal{S}_3(\Rr)$.
+}
+\end{center}
+
+\item  Ainsi, la projection orthogonale de $M$ sur $\mathcal{A}_3(\Rr)$ est exactement la partie antisymétrique $p_a(M)$ de $M$ et la distance cherchée est la norme de $M-p_a(M)=p_s(M)$ avec 
+
+\begin{center}
+$p_s(M)=\frac{1}{2}\left(\left(
+\begin{array}{ccc}
+0&1&0\\
+0&0&1\\
+0&0&0
+\end{array}
+\right)+
+\left(
+\begin{array}{ccc}
+0&0&0\\
+1&0&0\\
+0&1&0
+\end{array}
+\right)\right)=\frac{1}{2}\left(
+\begin{array}{ccc}
+0&1&0\\
+1&0&1\\
+0&1&0
+\end{array}
+\right)$.
+\end{center}
+
+Par suite,
+
+\begin{center}
+$d\left(M,\mathcal{A}_3(R)\right)=\|p_s(M)\|=\frac{1}{2}\sqrt{1^2+1^2+1^2+1^2}=1$.
+\end{center}
+\end{enumerate}
+\fincorrection
+\correction{005793}
+Posons $k =\frac{1}{\sqrt{2}}(e_1+e_2)$. Soit $u=xe_1+ye_2+ze_3\in E$. On sait que
+
+\begin{align*}\ensuremath
+r(u)&=(\cos\theta)u+(1-\cos\theta)\left(u|k\right)k+(\sin\theta)k\wedge u=\frac{1}{2}u +\frac{1}{4}(u|(e_1+e_2))(e_1+e_2)+\frac{\sqrt{6}}{4}(e_1+e_2)\wedge u\\
+ &\text{\og}=\text{\fg}\;\frac{1}{2}\left(
+ \begin{array}{c}
+ x\\
+ y\\
+ z
+ \end{array}
+ \right)+\frac{1}{4}(x+y)\left(
+ \begin{array}{c}
+ 1\\
+ 1\\
+ 0
+ \end{array}
+ \right)+\frac{\sqrt{6}}{4}\left(
+ \begin{array}{c}
+ 1\\
+ 1\\
+ 0
+ \end{array}
+ \right)\wedge\left(
+ \begin{array}{c}
+ x\\
+ y\\
+ z
+ \end{array}
+ \right)\\
+  &=\frac{1}{2}\left(
+ \begin{array}{c}
+ x\\
+ y\\
+ z
+ \end{array}
+ \right)+\frac{1}{4}(x+y)\left(
+ \begin{array}{c}
+ 1\\
+ 1\\
+ 0
+ \end{array}
+ \right)+\frac{\sqrt{6}}{4}\left(
+ \begin{array}{c}
+ z\\
+ -z\\
+ -x+y
+ \end{array}
+ \right)\\
+ &=\left(
+ \begin{array}{c}
+ \frac{3}{4}x+\frac{1}{4}y+\frac{\sqrt{6}}{4}z\\
+\rule[-4mm]{0mm}{11mm}\frac{1}{4}x+\frac{3}{4}y-\frac{\sqrt{6}}{4}z\\
+-\frac{\sqrt{6}}{4}x+\frac{\sqrt{6}}{4}y+\frac{1}{2}z
+ \end{array}
+ \right)=\left(
+ \begin{array}{cccc}
+ \frac{3}{4}&\frac{1}{4}&\frac{\sqrt{6}}{4}\\
+\rule[-4mm]{0mm}{11mm}\frac{1}{4}&\frac{3}{4}&-\frac{\sqrt{6}}{4}\\
+-\frac{\sqrt{6}}{4}&\frac{\sqrt{6}}{4}&\frac{1}{2}
+ \end{array}
+ \right)\left(
+ \begin{array}{c}
+x\\
+y\\
+z
+ \end{array}
+ \right)
+\end{align*}
+
+et la matrice cherchée est
+
+\begin{center}
+\shadowbox{
+$M=\left(
+ \begin{array}{cccc}
+ \frac{3}{4}&\frac{1}{4}&\frac{\sqrt{6}}{4}\\
+\rule[-4mm]{0mm}{11mm}\frac{1}{4}&\frac{3}{4}&-\frac{\sqrt{6}}{4}\\
+-\frac{\sqrt{6}}{4}&\frac{\sqrt{6}}{4}&\frac{1}{2}
+ \end{array}
+ \right)
+ $.
+ }
+ \end{center}
+\fincorrection
+\correction{005794}
+La matrice $A$ est symétrique réelle positive. Donc ses valeurs propres $\lambda_1$,..., $\lambda_n$ sont des réels positifs. De plus,
+
+\begin{center}
+$\text{det}A =\lambda_1...\lambda_n$ et $\text{det}(I_n+A) =\chi_A(-1) =(1+\lambda_1)...(1+\lambda_n)$.
+\end{center}
+
+L'inégalité à démontrer équivaut donc à :
+
+\begin{center}
+$\forall(\lambda_1,...,\lambda_n)\in(\Rr^+)^n$, $1+\sqrt[n]{\prod_{k=1}^{n}\lambda_k}\leqslant\sqrt[n]{\prod_{k=1}^{n}(1+\lambda_k)}$.
+\end{center}
+
+Soit donc $(\lambda_1,...,\lambda_n)\in(\Rr^+)^n$. Si l'un des $\lambda_k$ est nul, l'inégalité est immédiate.
+
+Supposons dorénavant tous les $\lambda_k$ strictement positifs. L'inégalité à démontrer s'écrit
+
+\begin{center}
+$\ln\left(1+\text{exp}\left(\frac{1}{n}\left(\ln(\lambda_1)+...+\ln(\lambda_n)\right)\right)\right)\leqslant\frac{1}{n}\left(\ln(1+\text{exp}(\ln(\lambda_1)))+ ... +\ln(1+\text{exp}(\ln(\lambda_n)))\right)$\quad$(*)$
+\end{center}
+
+ou encore $f\left(\frac{1}{n}(x_1+...+x_n)\right)\leqslant\frac{1}{n}(f(x_1)+...+f(x_n))$ où $\forall x\in\Rr$, $f(x) =\ln(1+e^x)$ et $\forall k\in\llbracket1,n\rrbracket$, $x_k =\ln(\lambda_k)$.
+
+L'inégalité à démontrer est une inégalité de convexité. La fonction $f$ est deux fois dérivable sur $\Rr$ et pour tout réel $x$,
+
+\begin{center}
+$f'(x)=\frac{e^x}{e^x+1}=1-\frac{1}{e^x+1}$ puis $f''(x) =\frac{e^x}{(e^x+1)^2}\geqslant0$.
+\end{center}
+
+La fonction $f$ est donc convexe sur $\Rr$ ce qui démontre l'inégalité $(*)$.
+
+\begin{center}
+\shadowbox{
+$\forall A\in\mathcal{S}_n^+(\Rr)$, $1 +\sqrt[n]{\text{det}(A)}\leqslant\sqrt[n]{\text{det}(I_n+A)}$.
+}
+\end{center}
+\fincorrection
+\correction{005795}
+Soit $A$ une matrice orthogonale à coefficients entiers. Puisque les colonnes ou les lignes de $A$ sont unitaires, on trouve par ligne ou par colonne un et un seul coefficient de valeur absolue égale à $1$, les autres coefficients étant nuls. $A$ est donc obtenue en multipliant chaque coefficient d'une matrice de permutation par $1$ ou $-1$. Réciproquement, une telle matrice est orthogonale à coefficients entiers.
+
+Il y a $n!$ matrices de permutation et pour chaque matrice de permutation $2^n$ façons d'attribuer un signe $+$ ou $-$ à chaque coefficient égal à $1$. Donc
+
+\begin{center}
+\shadowbox{
+$\text{card}(O_n(\Rr)\cap\mathcal{M}_n(\Zz)) = 2^nn!$.
+}
+\end{center}
+\fincorrection
+\correction{005796}
+\begin{enumerate}
+ \item  Soit $f$ un endomorphisme du $\Rr$-espace vectoriel $\Cc$. Pour tout nombre complexe $z$
+
+\begin{align*}\ensuremath
+f(z)&= f((\text{Re}(z)).1 +(\text{Im}(z)).i) =(\text{Re}(z))f(1) +(\text{Im}(z))f(i) =\frac{1}{2}(z+\overline{z})f(1)+\frac{1}{2i}(z-\overline{z})f(i)\\
+ &= \frac{f(1)-if(i)}{2}z +\frac{f(1)+if(i)}{2}\overline{z},
+\end{align*}
+
+et on peut prendre $a =\frac{f(1)-if(i)}{2}$ et $b =\frac{f(1)+if(i)}{2}$. (Réciproquement pour $a$ et $b$ complexes donnés, l'application $f$ ainsi définie est $\Rr$-linéaire et on a donc l'écriture générale complexe d'un endomorphisme du plan).
+
+\item  
+
+\begin{center}
+$\text{Tr}(f) =\text{Re}(f(1)) +\text{Im}(f(i)) =\text{Re}(a+b)+\text{Im}(i(a-b)) =\text{Re}(a+b)+\text{Re}(a-b) = 2\text{Re}(a)$
+\end{center}
+
+et
+
+\begin{align*}\ensuremath
+\text{det}(f)&=\text{Re}(a+b)\text{Im}(i(a-b))-\text{Im}(a+b)\text{Re}(i(a-b))=\text{Re}(a+b)\text{Re}(a-b)+\text{Im}(a+b)\text{Im}(a-b)\\
+ &=(\text{Re}(a))^2 -(\text{Re}(b))^2+(\text{Im}(a))^2-(\text{Im}(b))^2=|a|^2 - |b|^2.
+\end{align*}
+
+\begin{center}
+\shadowbox{
+$\text{Tr}(f)=2\text{Re}(a)$ et $\text{det}(f)=|a|^2 - |b|^2$.
+}
+\end{center}
+
+\item  Soient $z$ et $z'$ deux nombres complexes. On rappelle que
+
+\begin{center}
+$z|z'= (\text{Re}z)(\text{Re}z')+(\text{Im}z)(\text{Im}z') =\frac{1}{4}(z+\overline{z})(z'+\overline{z'})-\frac{1}{4}(z-\overline{z})(z'-\overline{z'})=\frac{1}{2}(\overline{z}z'+z\overline{z'}) =\text{Re}(\overline{z}z')$.
+\end{center}
+
+et au passage si on oriente le plan de sorte que la base orthonormée $(1,i)$ soit directe,
+
+\begin{center}
+$[z,z']= (\text{Re}z)(\text{Im}z')+(\text{Im}z)(\text{Re}z') =\frac{1}{4i}(z+\overline{z})(z'-\overline{z'})-\frac{1}{4i}(z-\overline{z})(z'+\overline{z'})=\frac{1}{2i}(\overline{z}z'-z\overline{z'}) =\text{Im}(\overline{z}z')$.
+\end{center}
+
+Notons $M$ la matrice de $f$ dans la base $(1,i)$. Puisque la base $(1,i)$ est orthonormée,
+
+\begin{center}
+$f = f^*\Leftrightarrow M ={^t}M\Leftrightarrow\text{Im}(a+b) =\text{Re}(i(a-b))\Leftrightarrow\text{Im}(a+b) =-\text{Im}(a-b)\Leftrightarrow2\text{Im}a = 0\Leftrightarrow a\in\Rr$.
+\end{center}
+
+\begin{center}
+\shadowbox{
+$f=f^*\Leftrightarrow a\in\Rr$.
+}
+\end{center}
+\end{enumerate}
+\fincorrection
+\correction{005797}
+Soit $(i,j,k)$ une base orthonormée directe de $\Rr^3$ euclidien orienté. Posons $u = f(i)$, $v = f(j)$ et $w = f(k)$. Nécessairement, $u\wedge v =f(i)\wedge f(j) = f(i\wedge j) = f(k) = w$ et de même $v\wedge w = u$ et $w\wedge u = v$.
+
+\textbf{1er cas.} Si l'un des vecteurs $u$ ou $v$ ou $w$ est nul alors $u = v = w = 0$ et donc $f = 0$. Réciproquement, l'application nulle convient.
+
+\textbf{2ème cas.} \textbullet~Si les trois vecteurs $u$, $v$ et $w$ sont non nuls alors $u\wedge v\neq 0$ et donc la famille $(u,v)$ est libre. Mais alors la famille $(u,v,w)$ est une base directe de $\Rr^3$.
+
+Ensuite $w = u\wedge v$ est orthogonal à $u$ et $v$ et $v = w\wedge u$ est orthogonal à $u$. On en déduit que la famille $(u,v,w)$ est une base orthogonale directe de $\Rr^3$.
+
+Enfin, puisque $u$ et $v$ sont orthogonaux, $\|w\|=\|u\wedge v\| =\|u\|\|v\|$ et de même $\|u\|=\|v\|\|w\|$ et $\|v\|=\|u\|\|w\|$. Puis $\|u\|\|v\|\|w\|= (\|u\|\|v\|\|w\|)^2$ et donc, puisque les vecteurs $u$, $v$ et $w$ sont non nuls, $\|u\|\|v\|\|w\| = 1$. Les égalités $\|u\|\|v\|\|w\| = 1$ et $\|u\|=\|v\|\|w\|$ fournissent $\|u\|^2 = 1$ et de même $\|v\|^2 =\|w\|^2 = 1$.
+
+Finalement, la famille $(u,v,w)$ est une base orthonormée directe.
+
+En résumé, l'image par $f$ d'une certaine base orthonormée directe de $\Rr^3$ est une base orthonormée directe de $\Rr^3$ et on sait que $f$ est un automorphisme orthogonal positif de $\Rr^3$ c'est-à-dire une rotation de $\Rr^3$.
+
+\textbullet~Réciproquement, si $f$ est la rotation d'angle $\theta$ autour du vecteur unitaire $e_3$. On considère $e_1$ et $e_2$ deux vecteurs de $\Rr^3$ tels que la famille $(e_1,e_2,e_3)$ soit une base orthonormée directe.
+
+Pour vérifier que $f$ est solution, par linéarité, il suffit de vérifier les $9$ égalités : $\forall(i,j)\in\{1,2,3\}^2$, $f(e_i\wedge e_j)=f(e_i)\wedge f(e_j)$. Pour vérifier ces $9$ égalités, il suffit se réduisent en fin de compte d'en vérifier $2$ :
+
+\begin{center}
+$f(e_1)\wedge f(e_2)= e_3 = f(e_3) = f(e_1\wedge e_2)$ et $f(e3)\wedge f(e1) = e_3\wedge f(e_1) = f(e_2) = f(e_3\wedge e_1)$.
+\end{center}
+
+Les endomorphismes cherchés sont donc l'application nulle et les rotations de $\Rr^3$.
+\fincorrection
+\correction{005798}
+Puisque les matrices $S_1 ={^t}AA$ et $S_2 = A{^t}A$ sont symétriques réelles, ces deux matrices sont à valeurs propres réelles. On sait d'autre part que si $M$ et $N$ sont deux matrices quelconques alors les matrices $MN$ et $NM$ ont même polynôme caractéristique.
+
+Notons alors $(\lambda_i)_{1\leqslant i\leqslant n}$ la famille des valeurs propres des matrices $S_1$ et $S_2$ et posons $D =\text{Diag}(\lambda_1,...\lambda_n)$. D'après le théorème spectral, il existe deux matrices orthogonales $P_1$ et $P_2$ telles que $S_1 =P_1D{^t}P_1$ et $S_2 = P_2D{^t}P_2$. Mais alors 
+
+\begin{center}
+$S_2=P_2({^t}P_1S_1P_1){^t}P_2= (P_2{^t}P_1)S_1{^t}(P_2{^t}P_1)$.
+\end{center}
+
+Comme la matrice $P_2{^t}P_1$ est orthogonale, on a montré que les matrices $S_1$ et $S_2$ sont orthogonalement semblables.
+
+\begin{center}
+\shadowbox{
+$\forall A\in\mathcal{M}_n(\Rr)$, les matrices ${^t}AA$ et $A{^t}A$ sont orthogonalement semblables.
+}
+\end{center}
+\fincorrection
+\correction{005799}
+\textbf{Remarque.} Il faut prendre garde au fait que le produit de deux matrices symétriques n'est pas nécessairement symétrique. Plus précisément, si $A$ et $B$ sont deux matrices symétriques alors 
+
+\begin{center}
+$AB\in\mathcal{S}_n(\Rr)\Leftrightarrow{^t}(AB) = AB\Leftrightarrow{^t}B{^t}A = AB\Leftrightarrow BA = AB$
+\end{center}
+
+et le produit de deux matrices symétriques est symétrique si et seulement si ces deux matrices commutent. Donc au départ, rien n'impose que les valeurs propres de $AB$ soient toutes réelles .
+
+Soient $A$ et $B$ deux matrices symétriques réelles positives. D'après l'exercice \ref{ex:rou2}, il existe deux matrices carrées $M$ et $N$ telles que $A ={^t}MM$ et $B={^t}NN$. On a alors $AB ={^t}MM{^t}NN$. La  matrice $AB$ a même polynôme caractéristique que la matrice $N({^t}MM{^t}N={^t}(M{^t}N)M{^t}N$. D'après l'exercice \ref{ex:rou2}, cette dernière matrice est symétrique positive et a donc des valeurs propres réelles positives. On a montré que les valeurs propres de la matrice $AB$ sont réelles et positives.
+
+\begin{center}
+\shadowbox{
+$\forall(A,B)\in(\mathcal{S}_n^+(\Rr)$, $\text{Sp}(AB)\subset\Rr^+$.
+}
+\end{center}
+\fincorrection
+\correction{005800}
+Soient $A$ et $B$ deux matrices symétriques réelles positives.
+
+\textbf{1er cas.} Supposons qu'aucune des deux matrices $A$ ou $B$ n'est inversible, alors $\text{det}A +\text{det}B = 0$.
+
+D'autre part, la matrice $A+B$ est symétrique car $(\mathcal{S}_n(R),+,.)$ est un espace vectoriel et ses valeurs propres sont donc réelles. De plus, pour $X$ vecteur colonne donné, ${^t}X(A+B)X= {^t}XAX+{^t}XBX\geqslant 0$.
+
+La matrice $A+B$ est donc symétrique réelle positive. Par suite, les valeurs propres de la matrice $A+B$ sont des réels positifs et puisque $\text{det}(A+B)$ est le produit de ces valeurs propres, on a $\text{det}(A+B)\geqslant 0 =\text{det}A +\text{det}B$.
+
+\textbf{2ème cas.}
+Sinon, une des deux matrices $A$ ou $B$ est inversible (et donc automatiquement définie positive).
+Supposons par exemple $A$ définie positive.
+
+D'après l'exercice \ref{ex:rou2}, il existe une matrice inversible $M$ telle que $A ={^t}MM$. On peut alors écrire $A + B ={^t}MM + B ={^t}M(I_n+{^t}(M^{-1}BM^{-1})M$ et donc
+
+\begin{center}
+$\text{det}(A+B) =(\text{det}M)^2\text{det}(I_n+{^t}(M^{-1})BM^{-1}= (\text{det}M)^2\text{det}(I_n+C)$
+\end{center}
+
+ où $C ={^t}M^{-1}BM^{-1}$. La matrice $C$ est symétrique, positive car pour tout vecteur colonne $X$,
+ 
+ \begin{center}
+ ${^t}XCX={^t}X{^t}(M^{-1})BM^{-1} X ={^t}(M^{-1}X)B(M^{-1}X)\geqslant 0$
+ \end{center}
+ 
+ 
+et ses valeurs propres $\lambda_1$,..., $\lambda_n$ sont des réels positifs. Les valeurs propres de la matrice $I_n + C$ sont les réels $1 +\lambda_i$, $1\leqslant i\leqslant n$  et donc 
+
+\begin{center}
+$\text{det}(I_n+C) = (1+\lambda_1)...(1+\lambda_n)\geqslant 1 +\lambda_1...\lambda_n = 1 +\text{det}C$.
+\end{center}
+
+Maintenant, $\text{det}A = (\text{det}M)^2$ puis $\text{det}B=(\text{det}M)^2\text{det}C$ et donc
+
+\begin{center}
+$\text{det}A +\text{det}B =(\text{det}M)^2(1+\text{det}C)\leqslant (\text{det}M)^2\text{det}(I_n+C) = \text{det}(A+B)$.
+\end{center}
+
+On a montré que
+
+\begin{center}
+\shadowbox{
+$\forall(A,B)\in(\mathcal{S}_n^+(\Rr)$, $\text{det}A+\text{det}B\leqslant\text{det}(A+B)$.
+}
+\end{center}
+\fincorrection
+\correction{005801}
+Si $a = 0$, $f = 0$ et il n'y a plus rien à dire.
+
+Si $a\neq0$, puisque $f(a) = 0$, $0$ est valeur propre de $f$ et $\text{Vect}(a)\subset E_0(f)$.
+D'autre part, si $x$ est orthogonal à $a$, d'après la formule du double produit vectoriel
+
+\begin{center}
+$f(x) = (a.x)a -\|a\|^2x = -\|a\|^2x$.
+\end{center}
+
+Donc le réel non nul $-\|a\|^2$ est valeur propre de $f$ et $a^\bot\subset E_{-\|a\|^2}$. Maintenant,  $\text{dim}\text{Vect}(a) +\text{dim}a^\bot= 3$ et donc $\text{Sp}(f)=(0,-\|a\|^2,-\|a\|^2)$ puis $E_0(f) = \text{Vect}(a)$ et  $E_{-\|a\|^2}= a^\bot$. On en déduit aussi que $f$ est diagonalisable. On peut noter que, puisque $f$ est diagonalisable et que les sous-espaces propres sont orthogonaux, $f$ est un endomorphisme symétrique.
+\fincorrection
+\correction{005802}
+Il s'agit de montrer qu'un endomorphisme d'un espace euclidien $E$ qui conserve l'orthogonalité est une similitude.
+
+On peut raisonner sur une base orthonormée de $E$ que l'on note  $\mathcal{B}=(e_i)_{1\leqslant i\leqslant n}$. Par hypothèse, la famille $(f(e_i))_{1\leqslant i\leqslant n}$ est orthogonale. De plus, pour $i\neq j$, $(e_i+e_j)|(e_i-e_j)=\|e_i\|^2-\|e_j\|^2= 0$ et donc $f(e_i+e_j)|f(e_i-e_j) = 0$ ce qui fournit $\|f(e_i)\| =\|f(e_j)\|$. Soit $k$ la valeur commune des normes des $f(e_i)$, $1\leqslant i\leqslant n$.
+
+Si $k = 0$, tous les $f(e_i)$ sont nuls et donc $f$ est nulle.
+
+Si $k\neq0$, l'image par l'endomorphisme $\frac{1}{k}f$ de la base othonormée $\mathcal{B}$ est une base orthonormée. Donc l'endomorphisme $\frac{1}{k}f$ est un automorphisme orthogonal de $E$ et donc l'endomorphisme $\frac{1}{k}f$ conserve la norme.
+
+Dans tous les cas, on a trouvé un réel positif $k$ tel que $\forall x\in E$, $\|f(x)\| = k\|x\|$.
+\fincorrection
+\correction{005803}
+Les deux formes linéaires considérées sont indépendantes et donc $P$ est un plan. Une base de $P$ est par exemple $(i,j) = ((1,-1,0,0)(1,0,2,-3))$. On orthonormalise la base $(i,j)$.
+
+On prend $e_1= \frac{1}{\sqrt{2}}(1,-1,0,0)$ puis $e_2'= j - (j|e_1)e_1 = (1,0,2,-3) -\frac{1}{2}(1,-1,0,0) = \frac{1}{2}(1,1,4,-6)$
+puis $e_2=\frac{1}{3\sqrt{6}}(1,1,4,-6)$.
+
+\begin{center}
+Une base orthonormée de $P$ est $(e_1,e_2)$ où $e_1= \frac{1}{\sqrt{2}}(1,-1,0,0)$ et $e_2=\frac{1}{3\sqrt{6}}(1,1,4,-6)$.
+\end{center}
+
+\begin{enumerate}
+ \item  Le projeté orthogonal de $u = (x,y,z,t)$ sur $P$ est
+
+\begin{align*}\ensuremath 
+p_P(u)&=(u|e_1)e_1 + (u|e_2)e_2  =\frac{1}{2}(x-y) (1,-1,0,0) +\frac{1}{54}(x+y+4z-6t) (1,1,4,-6)\\
+ &= \frac{1}{27}(14x-13y+2z-3t,-13x+14y+2z-3t,2x+2y+8z-12t,-3x-3y-12z+18t).
+\end{align*}
+
+La matrice dans la base canonique de la projection orthogonale sur $P$ est
+
+\begin{center}
+\shadowbox{
+$M=\frac{1}{27}\left(
+\begin{array}{cccc}
+14&-13&2&-3\\
+-13&14&2&-3\\
+2&2&8&-12\\
+-3&-3&-12&18
+\end{array}\right)$.
+}
+\end{center}
+
+La matrice dans la base canonique de la symétrie orthogonale par rapport à $P$ est
+
+\begin{center}
+\shadowbox{
+$S = 2M - I_4= \frac{1}{27}\left(
+\begin{array}{cccc}
+1&-26&4&-6\\
+-26&1&4&-6\\
+4&4&-11&-24\\
+-6&-6&-24&9
+\end{array}\right)$.
+}
+\end{center}
+
+\item  La distance de u = (x,y,z,t) à P est
+
+\begin{align*}\ensuremath
+\|u -p_P(u)\|&=\frac{1}{27}\|(14x+13y-2z+3t,13x+14y-2z+3t,-2x-2y+19z+12t,3x+3y+12z+9t)\|\\
+ &=\frac{1}{27}\sqrt{(14x+13y-2z+3t)^2+(13x+14y-2z+3t)^2+(-2x-2y+19z+12t)^2+(3x+3y+12z+9t)^2}.
+\end{align*}  
+\end{enumerate}
+\fincorrection
+\correction{005804}
+\textbf{1ère solution.} (n'utilisant pas les valeurs propres)
+Soient $A$ la matrice de l'énoncé puis $X =(x_i)_{1\leqslant i\leqslant n}$ un élément de $\mathcal{M}_{n,1}(\Rr)$.
+
+\begin{align*}\ensuremath
+{^t}XAX&= (n-1)\sum_{i=1}^{n}x_i^2 -\sum_{i\neq j}^{}x_ix_j=\sum_{i\neq j}^{}(x_i^2- x_ix_j)=\frac{1}{2}\left(\sum_{i\neq j}^{}x_i^2-2 x_ix_j+x_j^2\right)\\
+ &=\sum_{i\neq j}(x_i-x_j)^2\geqslant 0
+\end{align*}
+
+et donc la matrice $A$ est positive. De plus, si $X=\left(1\right)_{1\leqslant i\leqslant n}\neq0$, ${^t}XAX= 0$ et donc la matrice $A$ n'est pas définie.
+
+\textbf{2ème solution.} La matrice $A$ est symétrique réelle. Donc ses valeurs propres sont réelles et $A$ est diagonalisable. Par suite, la dimension de chacun de des sous-espaces propres de $A$ est égale à l'ordre de multiplicité de la valeur propre correspondante.
+
+On note alors que $\text{rg}(A - nI_n) = 1$ et donc $n$ est valeur propre de $A$ d'ordre $n-1$. Soit $\lambda$ la valeur propre manquante.
+\begin{center}
+$(n-1)n+\lambda=\text{Tr}A = n(n-1)$.
+\end{center}
+
+Donc $\lambda= 0$. Ainsi, $\text{Sp}(A)\subset\Rr^+$ et donc la matrice $A$ est positive mais $0$ est valeur propre de $A$ et donc la matrice $A$ n'est pas définie.
+
+\begin{center}
+\shadowbox{
+La matrice $A$ est positive et non définie.
+}
+\end{center}
+\fincorrection
+\correction{005805}
+Pour la première question, une simple observation suffit :
+les matrices $I$ et $-I$ sont dans $O_n(\Rr)$,
+mais pas la matrice nulle qui est leur milieu.
+
+
+
+Soient $A$ et $B$ deux matrices orthogonales distinctes. Montrons que pour tout réel $\lambda\in]0,1[$, la matrice $(1-\lambda)A +\lambda B$ n'est pas orthogonale.
+
+Supposons par l'absurde qu'il existe $\lambda\in]0,1[$ tel que la matrice $(1-\lambda)A +\lambda B$ soit orthogonale.
+
+Pour $j\in\llbracket1,n\rrbracket$, on note respectivement $A_j$, $B_j$ et $C_j$ la $j$-ème colonne de matrice $A$, de la matrice $B$ et de la matrice $(1-\lambda)A +\lambda B$. Ces trois matrices étant orthogonales, pour tout $j\in\llbracket1,n\rrbracket$,
+
+\begin{center}
+$1 =\|C_j\|\leqslant(1-\lambda)\|A_j\|+\lambda\|B_j\|=(1 -\lambda)+\lambda= 1$,
+\end{center}
+
+et donc $\|C_j\| =(1-\lambda)\|A_j\|+\lambda\|B_j\|$. On est dans un cas d'égalité de l'inégalité de \textsc{Minkowski}. Puisque $\lambda\in]0,1[$, les colonnes $(-\lambda)A_j$ et $\lambda B_j$ ne sont pas nulles et donc sont colinéaires et de même sens. Puisque les réels $1-\lambda$ et $\lambda$ sont strictement positifs, il en est de même des colonnes $A_j$ et $B_j$ et puisque ces colonnes sont des vecteurs unitaires, ces colonnes sont en fin de compte égales. En résumé, si il existe $\lambda\in]0,1[$ tel que la matrice $(1-\lambda)A +\lambda B$ soit orthogonale, alors $A = B$. Ceci est une contradiction et on a montré que
+
+\begin{center}
+\shadowbox{
+$O_n(\Rr)$ n'est pas convexe.
+}
+\end{center}
+\fincorrection
+
+
+\end{document}
+

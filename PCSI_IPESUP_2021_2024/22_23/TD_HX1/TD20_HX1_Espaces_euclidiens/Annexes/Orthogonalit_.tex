@@ -1,0 +1,156 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 2196
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Une condition nécessaire et suffisante d'orthogonalité
+\vskip0.2cm
+Soit $E$ un espace vectoriel euclidien et $x,y$ deux éléments de $E$. Montrer que $x$ et $y$ sont orthogonaux si et seulement si $\|x+\lambda y\|\geq \|x\|$ pour tout $\lambda\in\mathbb R$.
+
+
+% Exercice 1042
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Relations usuelles sur les orthogonaux
+\vskip0.2cm
+Soit $E$ un espace préhilbertien, et $A$ et $B$ deux parties de $E$. Démontrer les relations suivantes :
+\begin{enumerate}
+\item $A\subset B\implies B^\perp\subset A^\perp$.
+\item $(A\cup B)^\perp=A^\perp\cap B^\perp$.
+\item $A^\perp=\textrm{vect}(A)^\perp$;
+\item $\textrm{vect}(A)\subset A^{\perp\perp}$.
+\item On suppose de plus que $E$ est de dimension finie. Démontrer que 
+$\textrm{vect}(A)= A^{\perp\perp}$.
+\end{enumerate}
+
+
+% Exercice 1044
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Pas de supplémentaire orthogonal!
+\vskip0.2cm
+On considère $E=C([0,1],\mtr)$ muni du produit scalaire $(f,g)=\int_0^1 f(t)g(t)dt.$
+Soit $F=\{f\in E,\ f(0)=0\}$. Montrer que $F^\perp=\{0\}$. En déduire que $F$ n'admet pas
+de supplémentaire orthogonal.
+
+
+% Exercice 3252
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Un produit scalaire sur $\mathbb R_n[X]$ et une base orthonormale associée
+\vskip0.2cm
+Soit $n\in\mathbb N$ et $a\in\mathbb R$. Démontrer que l'application $\langle \cdot,\cdot\rangle$ définie sur $\mathbb R_n[X]^2$ par 
+$$(P,Q)\mapsto \sum_{k=0}^n \frac{P^{(k)}(a)Q^{(k)}(a)}{(k!)^2}$$
+définit un produit scalaire sur $\mathbb R_n[X]$. Sans calculs, déterminer une base orthonormée pour ce produit scalaire.
+
+
+% Exercice 1053
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Projecteurs orthogonaux
+\vskip0.2cm
+Soit $E$ un espace vectoriel euclidien, et $p$ un projecteur de $E$. Montrer que $p$ est un projecteur orthogonal
+si et seulement si pour tout $x$ de $E$, on a $\|p(x)\|\leq \|x\|$.
+
+
+% Exercice 3261
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - Distance à un sous-espace?
+\vskip0.2cm
+Calculer $\displaystyle \inf_{a,b\in\mathbb R}\int_0^{2\pi} \big(t-a\cos(t)-b\sin(t)\big)^2 dt.$
+
+
+% Exercice 1710
+
+
+\vskip0.3cm\noindent\textsc{Exercice 7} - Polynômes de Laguerre
+\vskip0.2cm
+On pose, pour tout entier naturel $n$ et pour tout réel $x$, 
+$$h_n(x)=x^ne^{-x}\textrm{ et }L_n(x)=\frac{e^x}{n!}h_n^{(n)}(x).$$
+\begin{enumerate}
+\item Calculer explicitement $L_0,L_1,L_2$.
+\item Montrer que, pour tout entier $n$, $L_n$ est une fonction polynômiale. Préciser son degré et son coefficient dominant.
+\item Pour tous $P,Q\in\mathbb R[X]$, on pose 
+$$\varphi(P,Q)=\int_0^{+\infty}P(x)Q(x)e^{-x}dx.$$
+Démontrer que $\varphi$ est bien définie.
+\item Démontrer que $\varphi$ est un produit scalaire sur $\mathbb R[X]$.
+\item Calculer, pour tout $n\in\mathbb N$, $\varphi(L_0,X^n)$.
+\item \begin{enumerate}
+\item Montrer que, pour tout $k\in\{0,\dots,n\}$, il existe $Q_k\in\mathbb R[X]$ tel que, pour tout $x\in\mathbb R$, on a
+$$h_n^{(k)}(x)=x^{n-k}e^{-x}Q_k(x).$$
+\item \'Etablir que :
+$$\forall n\in\mathbb N,\ \forall P\in\mathbb R[X],\ \forall p\in\{0,\dots,n\},\ \varphi(L_n,P)=\frac{(-1)^p}{n!}\int_0^{+\infty}h_n^{(n-p)}(x)P^{(p)}(x)dx.$$
+\end{enumerate}
+\item En déduire que $(L_n)_{n\in\mathbb N}$ est une famille orthonormée de $(\mathbb R[X],\varphi)$.
+\end{enumerate}
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=28706
+\end{document}

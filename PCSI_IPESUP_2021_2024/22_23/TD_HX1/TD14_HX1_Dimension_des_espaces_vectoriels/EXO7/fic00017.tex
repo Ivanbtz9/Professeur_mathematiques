@@ -1,0 +1,979 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00017, bodin, 2007/09/01} 
+
+\titre{Espaces vectoriels}
+
+Fiche amendée par David Chataur et Arnaud Bodin.
+
+\section{Définition, sous-espaces}
+\exercice{6868, chataur, 2012/05/13}
+\video{QSafAt0zfGk}
+\enonce{006868}{}
+Montrer que les ensembles ci-dessous sont des espaces vectoriels (sur $\Rr$) :
+\begin{itemize}
+  \item  $E_1 = \big\{ f : [0,1] \to \Rr \big\}$ : l'ensemble
+des fonctions à valeurs r\'eelles d\'efinies sur l'intervalle $[0,1]$, 
+muni de l'addition $f+g$ des fonctions et de la multiplication par un nombre r\'eel $\lambda \cdot f$.
+
+  \item $E_2 = \big\{ (u_n) : \Nn \to \Rr \big\}$ : l'ensemble
+des suites r\'eelles muni de l'addition des suites définie par $(u_n)+(v_n)=(u_n+v_n)$
+et de la multiplication par un nombre r\'eel $\lambda \cdot (u_n) = (\lambda \times u_n)$.
+
+  \item $E_3 = \big\{ P \in \Rr[x] \mid \deg P \le n \big\}$ : l'ensemble des polynômes
+à coefficients réels de degré inférieur ou égal à $n$
+muni de l'addition $P+Q$ des polynômes et de la multiplication par un nombre r\'eel $\lambda \cdot P$. 
+\end{itemize}
+\finenonce{006868}
+
+
+
+\finexercice
+\exercice{886, legall, 1998/09/01}
+\video{1rxZQKF8yc0}
+\enonce{000886}{}
+D\' eterminer lesquels des
+ensembles $E_1$, $E_2$, $E_3$ et $E_4$ sont des sous-espaces
+vectoriels de ${\Rr}^3$. 
+
+ $E_1 =\{ (x,y,z)\in {\Rr}^3\ \mid \ 3x-7y = z \} $ 
+
+ $E_2 =\{(x,y,z)\in {\Rr}^3\ \mid \ x^2-z^2=0 \} $  
+
+ $E_3=\{ (x,y,z)\in {\Rr}^3\ \mid \ x+y-z=x+y+z=0 \} $ 
+
+ $E_4 =\{ (x,y,z)\in {\Rr}^3\ \mid \ z(x^2+y^2)=0 \} $
+\finenonce{000886} 
+
+
+
+
+\finexercice
+\exercice{6869, chataur, 2012/05/13}
+\video{grzoTdCre2E}
+\enonce{006869}{}
+\begin{enumerate}
+  \item D\'ecrire les sous-espaces vectoriels de $\Rr$ ;  puis de $\Rr^2$ et $\Rr^3$.
+  \item Dans $\mathbb{R}^3$ donner un exemple de deux sous-espaces dont l'union 
+n'est pas un sous-espace vectoriel.
+\end{enumerate}
+
+
+\finenonce{006869}
+
+
+
+\finexercice
+\exercice{888, legall, 1998/09/01}
+\video{-rEusJplGVE}
+\enonce{000888}{}
+Parmi les ensembles suivants reconna\^\i tre ceux qui sont des
+sous-espaces vectoriels.
+
+$ E_1 =\left\{ (x,y,z)\in \R^3 \mid x+y+a=0 \hbox{ et }  x +3az =0\right\}$
+
+$ E_2 =\left\{f \in {\mathcal F}(\R,\R) \mid f(1)=0\right\}$
+
+$ E_3 =\left\{f \in {\mathcal F}(\R,\R) \mid  f(0)=1\right\}$
+
+$E_4 =\left\{(x,y)\in \R^2 \mid x + \alpha y +1 \geqslant 0\right\}$
+\finenonce{000888} 
+
+
+\finexercice
+\exercice{893, legall, 1998/09/01}
+\video{GNQ77W5XwGs}
+\enonce{000893}{}
+Soit $E$ un espace vectoriel.
+\begin{enumerate}
+\item Soient $F$ et $G$ deux sous-espaces de $E$. Montrer que
+  $$F\cup G \hbox{ est un sous-espace vectoriel de } E
+ \quad \Longleftrightarrow \quad F\subset G \hbox{ ou } G \subset F.$$
+\item Soit $H$ un troisi\`eme sous-espace vectoriel de $E$. Prouver
+  que
+  $$G \subset F \Longrightarrow F\cap(G+H) = G + (F\cap H) .$$
+ \end{enumerate}
+\finenonce{000893} 
+
+
+\finexercice
+
+\section{Systèmes de vecteurs}
+\exercice{6870, chataur, 2012/05/13}
+\video{5yA5SIqdVAQ}
+\enonce{006870}{}
+\begin{enumerate}
+  \item Soient $v_1=(2,1,4)$, $v_2=(1,-1,2)$ et $v_3=(3,3,6)$ des vecteurs de $\Rr^3$, 
+trouver trois r\'eels non tous nuls $\alpha,\beta,\gamma$ tels que $\alpha v_1+ \beta v_2 + \gamma v_3=0$.
+
+  \item On considère deux plans vectoriels
+$$P_1=\{(x,y,z) \in \Rr^3 \mid x-y+z=0\}$$
+$$P_2=\{(x,y,z) \in \Rr^3 \mid x-y=0\}$$
+trouver un vecteur directeur de la droite $D=P_1\cap P_2$ ainsi qu'une \'equation param\'etr\'ee.
+\end{enumerate}
+\finenonce{006870}
+
+
+
+
+
+\finexercice
+\exercice{900, liousse, 2003/10/01}
+\video{aMookydUKT4}
+\enonce{000900}{}
+Soient dans $\Rr^4$ les
+vecteurs $v_1=(1,2,3,4)$ et $v_2=(1,-2,3,-4)$. Peut-on
+d\'eterminer $x$ et $y$ pour que $(x,1,y,1) \in \text{Vect}\{ v_1, v_2 \}$ ? 
+Et pour que $(x,1,1,y) \in \text{Vect}\{v_1,v_2 \}$ ?
+\finenonce{000900} 
+
+
+
+\finexercice
+\exercice{908, legall, 1998/09/01}
+\video{SmI00EAW31k}
+\enonce{000908}{}
+Soit $E$ le 
+sous-espace vectoriel de ${\Rr}^3$ engendr\'e par
+les vecteurs $v_1=(2, 3, -1)$ et $v_2=(1, -1, -2)$  et $F$ celui engendré par
+ $w_1=(3, 7, 0)$ et $w_2=(5, 0, -7)$. Montrer que  $E$  et  $F$  sont
+ \'egaux.
+\finenonce{000908} 
+
+
+\finexercice
+\exercice{917, ridde, 1999/11/01}
+\video{x8fXA1UP7LU}
+\enonce{000917}{}
+Soit $\alpha \in \Rr$ et $f_\alpha : \Rr \to \Rr$, $x\mapsto e^{\alpha x}$.
+Montrer que la famille $(f_\alpha)_{\alpha \in \Rr}$  est libre.
+\finenonce{000917}
+
+
+
+
+
+\finexercice
+
+\section{Somme directe}
+\exercice{6871, chataur, 2012/05/13}
+\video{u7JkO7A-9ZA}
+\enonce{006871}{}
+Par des considérations géométriques répondez aux questions suivantes :
+\begin{enumerate}
+  \item Deux droites vectorielles de $\mathbb{R}^3$ sont-elles suppl\'ementaires ?
+  \item Deux plans vectoriels de $\mathbb{R}^3$ sont-ils suppl\'ementaires ?
+  \item A quelle condition un plan vectoriel et une droite vectorielle de $\mathbb{R}^3$ sont-ils supplémentaires ?
+\end{enumerate}
+\finenonce{006871}
+
+
+
+
+\finexercice
+\exercice{920, cousquer, 2003/10/01}
+\video{ByyFihncOvA}
+\enonce{000920}{}
+ On consid\`ere les vecteurs
+$v_1=(1,0,0,1)$, $v_2=(0,0,1,0)$, $v_3=(0,1,0,0)$, $v_4=(0,0,0,1)$,
+$v_5=(0,1,0,1)$ dans $\mathbb{R}^4$.
+\begin{enumerate}
+\item $\mbox{Vect}\{v_1,v_2\}$ et $\mbox{Vect}\{v_3\}$ sont-ils
+  suppl\'ementaires dans $\mathbb{R}^4$ ?
+\item $\mbox{Vect}\{v_1,v_2\}$ et $\mbox{Vect}\{v_4, v_5\}$ sont-ils
+  suppl\'ementaires dans $\mathbb{R}^4$ ?
+\item $\mbox{Vect}\{v_1,v_3,v_4\}$ et  $\mbox{Vect}\{v_2,v_5\}$ sont-ils
+  suppl\'ementaires dans $\mathbb{R}^4$ ?
+\item $\mbox{Vect}\{v_1,v_4\}$ et $\mbox{Vect}\{v_3, v_5\}$ sont-ils
+  suppl\'ementaires dans $\mathbb{R}^4$ ?
+\end{enumerate}
+\finenonce{000920} 
+
+
+\finexercice
+\exercice{919, liousse, 2003/10/01}
+\video{lE3VGElRQrs}
+\enonce{000919}{}
+Soient $v_1=(0,1,-2,1),
+v_2=(1,0,2,-1), v_3=(3,2,2,-1), v_4 = (0,0,1,0)$ et
+$v_5=(0,0,0,1)$ des vecteurs de $\Rr^4$.  Les propositions
+suivantes sont-elles vraies ou fausses ?  Justifier votre r\'eponse.
+ \begin{enumerate}
+ \item $\text{Vect}\{ v_1, v_2, v_3 \} =  \text{Vect}\{(1,1,0,0),(-1,1,-4,2)\}$.
+ \item $(1,1,0,0) \in \text{Vect}\{ v_1, v_2 \} \cap \text{Vect}\{ v_2, v_3, v_4 \}$.
+ \item $\dim(\text{Vect}\{ v_1, v_2 \} \cap \text{Vect}\{ v_2, v_3, v_4 \})=1$ (c'est-à-dire c'est une droite vectorielle).
+ \item $\text{Vect}\{ v_1, v_2 \} + \text{Vect}\{ v_2, v_3, v_4 \}= \Rr^4$.
+ \item $\text{Vect}\{ v_4, v_5 \}$ est un sous-espace vectoriel 
+   suppl\'ementaire de $\text{Vect}\{ v_1, v_2, v_3 \}$ dans $\Rr^4$.
+ \end{enumerate}
+
+\finenonce{000919} 
+
+
+\finexercice
+\exercice{923, ridde, 1999/11/01}
+\video{40VUaSvJ4DY}
+\enonce{000923}{}
+Soit $E = \Delta^1 (\Rr, \Rr)$ l'espace des fonctions dérivables
+et $F = \left\{ f \in E \mid f (0) = f' (0) = 0\right\}$. Montrer que $F$
+est un sous-espace vectoriel de $E$ et d\'eterminer un
+suppl\'ementaire de $F$ dans $E$.
+\finenonce{000923} 
+
+
+\finexercice
+\exercice{926, gourio, 2001/09/01}
+\video{uLIAnT8Tc2w}
+\enonce{000926}{}
+Soit $$E=\big\{(u_{n})_{n\in
+  \Nn}\in \Rr^{\Nn}\ |\ (u_{n})_{n} \text{ converge }\big\}.$$
+Montrer que
+l'ensemble des suites constantes et l'ensemble des suites convergeant
+vers $0$ sont des sous-espaces suppl\'{e}mentaires dans $E.$
+\finenonce{000926} 
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\indication{006868}
+On v\'erifiera sur ces exemples la d\'efinition donn\'ee en cours.
+\finindication
+\indication{000886}
+\begin{enumerate}
+\item $E_1$ est un sous-espace vectoriel.
+\item $E_2$ n'est pas un sous-espace vectoriel.
+\item $E_3$ est un sous-espace vectoriel.
+\item $E_4$ n'est pas un sous-espace vectoriel.
+\end{enumerate}
+\finindication
+\indication{006869}
+\begin{enumerate}
+  \item Discuter suivant la dimension des sous-espaces.
+  \item Penser aux droites vectorielles.
+\end{enumerate}
+
+\finindication
+\indication{000888}
+\begin{enumerate}
+\item $E_1$ est un sous-espace vectoriel de $\Rr^3$ si et seulement si
+  $a=0$.
+\item $E_2$ est un sous-espace vectoriel.
+\item $E_3$ n'est pas un espace vectoriel.
+\item $E_4$ n'est pas un espace vectoriel.
+\end{enumerate}
+\finindication
+\indication{000893}
+\begin{enumerate}
+\item Pour le sens $\Rightarrow$ : raisonner par l'absurde et prendre
+  un vecteur de $F\setminus G$ et un de $G\setminus F$. Regarder la
+  somme de ces deux vecteurs.
+\item Raisonner par double inclusion, revenir aux vecteurs.
+\end{enumerate}
+\finindication
+\indication{006870}
+\begin{enumerate}
+  \item On pensera \`a poser un syst\`eme.
+  \item Trouver un vecteur non-nul commun aux deux plans.
+\end{enumerate}
+\finindication
+\indication{000900}
+On ne peut pas pour le premier, mais on peut pour le second.
+\finindication
+\indication{000908}
+Montrer la double inclusion. 
+Utiliser le fait que de mani\`ere g\'en\'erale pour  $E=\mathrm{Vect}(v_1,\ldots,v_n)$
+alors : 
+$$E\subset F \iff \forall i=1,\ldots,n \quad v_i\in F.$$
+\finindication
+\indication{000917}
+Supposer qu'il existe des r\'eels $\lambda_1,\ldots, \lambda_n$
+et des indices  $\alpha_1 > \alpha_2 > \cdots > \alpha_n$ (tout cela en nombre fini !)
+tels que 
+$$\lambda_1f_{\alpha_1}+\cdots+\lambda_nf_{\alpha_n} = 0.$$
+Ici le $0$ est la fonction constante \'egale \`a $0$. 
+Regarder quel terme est dominant et factoriser.
+\finindication
+\indication{006871}
+\begin{enumerate}
+  \item Jamais.
+  \item Jamais.
+  \item Considérer un vecteur directeur de la droite.
+\end{enumerate}
+\finindication
+\indication{000920}
+\begin{enumerate}
+\item Non.
+\item Oui.
+\item Non.
+\item Non. 
+\end{enumerate}
+\finindication
+\indication{000919}
+\begin{enumerate}
+\item Vrai.
+\item Vrai.
+\item Faux.
+\item Faux.
+\item Vrai.
+\end{enumerate}
+\finindication
+\indication{000923}
+  Soit
+  $$G= \left\lbrace x \mapsto ax+b \mid (a,b) \in \Rr^2 \right\rbrace.$$
+  Montrer que $G$ est un suppl\'ementaire de $F$ dans $E$.
+\finindication
+\indication{000926}
+Pour une suite $(u_n)$ qui converge vers $\ell$ regarder la suite $(u_n-\ell)$.
+\finindication
+
+
+\newpage
+
+\correction{006868}
+Pour qu'un ensemble $E$, muni d'une addition $x+y \in E$ (pour tout $x,y \in E$)
+et d'une multiplication par un scalaire $\lambda \cdot x \in E$ (pour tout $\lambda \in K$, $x\in E$),
+soit un $K$-espace vectoriel il faut qu'il vérifie les huit points suivants.
+
+\begin{enumerate}
+  \item $x+(y+z)=(x+y)+z$ (pour tout $x,y,z \in E$)
+  \item il existe un vecteur nul $0 \in E$ tel que $x+0=x$ (pour tout $x\in E$)
+  \item il existe un opposé $-x$ tel que $x+(-x)=0$ (pour tout $x\in E$)
+  \item $x+y=y+x$ (pour tout $x,y \in E$) \\
+Ces quatre premières propriétés font de $(E,+)$ un groupe abélien.
+
+  \item $1\cdot x = x$ (pour tout $x\in E$)
+  \item $\lambda \cdot (x+y) = \lambda\cdot x + \lambda \cdot y$ (pour tout $\lambda \in K=$, pour tout $x,y \in E$)
+  \item $(\lambda+\mu) \cdot x = \lambda\cdot x+ \mu \cdot x$ (pour tout $\lambda, \mu \in K$, pour tout $x \in E$)
+  \item $(\lambda\times\mu) \cdot x = \lambda\cdot (\mu\cdot x)$ (pour tout $\lambda, \mu \in K$, pour tout $x \in E$)
+\end{enumerate}
+
+
+Il faut donc vérifier ces huit points pour chacun des ensembles (ici $K=\Rr$).
+
+Commençons par $E_1$.
+\begin{enumerate}
+  \item $f+(g+h)=(f+g)+h$ ; en effet on bien pour tout $t\in[0,1]$ : $f(t)+\big(g(t)+h(t)\big)=\big(f(t)+g(t)\big)+h(t)$
+d'où l'égalité des fonctions $f+(g+h)$ et $(f+g)+h$. Ceci est vrai pour tout $f,g,h \in E_1$.
+  \item le vecteur nul est ici la fonction constante égale à $0$, que l'on note encore $0$, on a bien $f+0=f$ 
+(c'est-à-dire pour tout $x\in[0,1]$, $(f+0)(t)=f(t)$, ceci pour toute fonction $f$).
+  \item il existe un opposé $-f$ définie par $-f(t) = - \big(f(t)\big)$ tel que $f+(-f)=0$ 
+  \item $f+g=g+f$ (car $f(t)+g(t)=g(t)+f(t)$ pour tout $t\in[0,1]$).
+  \item $1\cdot f = f$ ; en effet pour tout $t\in[0,1]$, $(1\cdot f)(t) = 1\times f(t) = f(t)$.
+Et une fois que l'on compris que $\lambda\cdot f$ vérifie par définition 
+$(\lambda\cdot f)(t) = \lambda\times f(t)$ les autres points se vérifient sans peine.
+  \item $\lambda \cdot (f+g) = \lambda\cdot f + \lambda \cdot g$
+  \item $(\lambda+\mu) \cdot f = \lambda\cdot f+ \mu \cdot f$
+  \item $(\lambda\times\mu) \cdot f = \lambda\cdot (\mu\cdot f)$ ; en effet pour tout $t\in [0,1]$,
+ $(\lambda\times\mu)  f (t) = \lambda (\mu f(t))$
+\end{enumerate}
+
+\bigskip
+
+Voici les huit points à vérifier pour $E_2$ en notant $u$ la suite $(u_n)_{n\in\Nn}$
+
+\begin{enumerate}
+  \item $u+(v+w)=(u+v)+w$ 
+  \item le vecteur nul est la suite dont tous les termes sont nuls.
+  \item La suite $-u$ est définie par $(-u_n)_{n\in\Nn}$
+  \item $u+v=v+u$
+
+  \item $1\cdot u = u$
+  \item $\lambda \cdot (u+v) = \lambda\cdot u + \lambda \cdot v$ : montrons celui-ci en détails
+par définition $u+v$ est la suite $(u_n+v_n)_{n\in\Nn}$ et par définition de la multiplication par un scalaire
+$\lambda \cdot (u+v)$ est la suite $\big(\lambda\times (u_n+v_n)\big)_{n\in\Nn}$ qui est bien la suite
+$\big(\lambda u_n+ \lambda v_n)\big)_{n\in\Nn}$ qui est exactement la suite $\lambda\cdot u + \lambda\cdot v$.
+  \item $(\lambda+\mu) \cdot u = \lambda\cdot u+ \mu \cdot v$ 
+  \item $(\lambda\times\mu) \cdot u = \lambda\cdot (\mu\cdot u)$ 
+\end{enumerate}
+
+\bigskip
+
+Voici ce qu'il faut vérifier pour $E_3$, après avoir remarqué que la somme de deux polynômes de degré 
+$\le n$ est encore un polynôme de degré $\le n$
+(même chose pour $\lambda\cdot P$), on vérifie :
+
+\begin{enumerate}
+  \item $P+(Q+R)=(P+Q)+R$ 
+  \item il existe un vecteur nul $0 \in E_3$ : c'est le polynôme nul
+  \item il existe un opposé $-P$ tel que $P+(-P)=0$ 
+  \item $P+Q=Q+P$ 
+  \item $1\cdot P = P$ 
+  \item $\lambda \cdot (P+Q) = \lambda\cdot P + \lambda \cdot Q$ 
+  \item $(\lambda+\mu) \cdot P = \lambda\cdot P+ \mu \cdot P$ 
+  \item $(\lambda\times\mu) \cdot P = \lambda\cdot (\mu\cdot P)$ 
+\end{enumerate}
+
+
+\fincorrection
+\correction{000886}
+\begin{enumerate}
+  \item 
+
+    \begin{enumerate}
+    \item $(0,0,0) \in E_1$.
+    \item Soient $(x,y,z)$ et $(x',y',z')$ deux \' el\' ements
+de $E_1$. On a donc $3x-7y=z$ et $3x'-7y'=z'$. Donc $3(x+x')-7(y+y')=(z+z')$, d'où $(x+x',y+y',z+z')$  
+appartient \`a  $E_1$.
+
+\item Soit $\lambda \in {\R}$ et $(x,y,z)\in E_1$.  Alors la relation $3x-7y=z$ implique
+  que $3 (\lambda x) -7(\lambda y)=\lambda z$
+  donc que $\lambda(x,y,z)=(\lambda x,\lambda  y,\lambda  z)$ appartient \`a  $E_1$.
+    \end{enumerate}
+
+
+  
+  \item $E_2 =\{ (x,y,z)\in {\R}^3 \mid x^2-z^2=0 \} $ c'est-\`a-dire $E_2
+    =\{ (x,y,z)\in {\R}^3 \mid x=z \hbox{ ou } x=-z \} $. Donc
+    $(1, 0,-1)$ et $(1, 0, 1)$ appartiennent \`a $ E_2$ mais
+    $(1, 0,-1)+(1, 0, 1)=(2, 0, 0)$ n'appartient pas \`a $ E_2$ qui n'est en cons\' equence pas un
+sous-espace vectoriel de ${\R}^3$.
+
+
+
+\item $E_3$ est un sous-espace vectoriel de ${\R}^3$. En effet :
+    \begin{enumerate}
+    \item $(0, 0, 0) \in E_3$.
+    \item Soient $(x, y, z)$ et
+      $(x', y', z')$ deux \' el\'ements
+      de $E_3$. On a donc $x+y-z=x+y+z=0$ et $x'+y'-z'=x'+y'+z'=0$.
+      Donc $(x+x')+(y+y')-(z+z')= (x+x')+(y+y')+(z+z')=0$ et
+      $(x, y, z)+(x', y', z')=(x+x',y+y',z+z')$  appartient \`a  $E_3$.
+\item Soit $\lambda \in {\R}$ et $(x,y,z)\in E_3$.  Alors la relation $x+y-z=x+y+z=0$ implique
+  que $\lambda x+\lambda y-\lambda z=\lambda x+\lambda y+\lambda z=0$
+  donc que $\lambda (x, y, z)=(\lambda x,\lambda  y,\lambda  z)$ appartient \`a  $E_3$.
+    \end{enumerate}
+
+
+\item Les vecteurs $(1, 0, 0)$ et
+  $(0, 0, 1)$ appartiennent \`a $ E_4$
+  mais leur somme $(1, 0, 0)+(0, 0, 1)=(1, 0, 1)$  ne lui
+appartient pas donc $E_4$ n'est pas un sous-espace vectoriel de
+${\R}^3$.
+\end{enumerate}
+\fincorrection
+\correction{006869}
+\begin{enumerate}
+  \item L'espace vectoriel $\mathbb{R}$ a deux sous-espaces : celui formé du vecteur nul $\{0\}$  et $\Rr$ lui-m\^eme.
+\\
+L'espace vectoriel $\mathbb{R}^2$ a trois types de sous-espaces: $\{0\}$, 
+une infinit\'e de sous-espaces de dimension $1$ (ce sont les droites vectorielles) et $\Rr^2$ lui-m\^eme.
+\\
+Enfin, l'espace $\mathbb{R}^3$ a quatre types de sous-espaces: le vecteur nul, les droites vectorielles, 
+les plans vectoriels et lui-m\^eme.
+
+  \item On consid\`ere deux droites vectorielles de $\mathbb{R}^3$ dont des vecteurs directeurs 
+$u$ et $v$ ne sont pas colin\'eaires alors le vecteur $u+v$ n'appartient 
+\`a aucune de ces deux droites, l'union de celles-ci n'est pas un espace vectoriel.
+\end{enumerate}
+\fincorrection
+\correction{000888}
+\begin{enumerate}
+\item $E_1$ : non si $a \neq 0$ car alors $0 \notin E_1$ ; oui, si $a
+  = 0$ car alors $E_1$ est l'intersection des sous-espaces vectoriels
+  $\{(x,y,z)\in \Rr^3 \mid x+y=0 \}$ et $\{(x,y,z)\in \Rr^3 \mid x=0 \}$.
+\item $E_2$ est un sous-espace vectoriel de $\mathcal{F}(\Rr,\Rr)$.
+\item $E_3$ : non, car la fonction nulle n'appartient pas \`a $E_3$.
+\item $E_4$ : non, en fait $E_4$ n'est m\^eme pas un sous-groupe de
+  $(\Rr^2,+)$ car $(2,0)\in E_4$ mais $-(2,0)=(-2,0) \notin E_4$.
+\end{enumerate}
+\fincorrection
+\correction{000893}
+\begin{enumerate}
+\item Sens $\Leftarrow$. Si $F\subset G$ alors $F\cup G=G$ donc $F\cup
+  G$ est un sous-espace vectoriel.  De m\^eme si $G\subset F$.
+  
+  Sens $\Rightarrow$. On suppose que $F\cup G$ est un sous-espace
+  vectoriel.  Par l'absurde supposons que $F$ n'est pas inclus dans
+  $G$ et que $G$ n'est pas inclus dans $F$. Alors il existe $x\in
+  F\setminus G$ et $y\in G\setminus F$. Mais alors $x\in F\cup G$,
+  $y\in F\cup G$ donc $x+y\in F\cup G$ (car $F\cup G$ est un
+  sous-espace vectoriel). Comme $x+y\in F\cup G$ alors
+$x+y\in F$ ou $x+y\in G$.
+\begin{itemize}
+ \item Si $x+y\in F$ alors, comme $x\in F$, $(x+y)+(-x) \in F$ donc $y\in F$, ce qui est absurde.
+ \item  Si $x+y\in G$ alors, comme $y\in G$, $(x+y)+(-y) \in G$ donc $x\in G$, ce qui est absurde.
+\end{itemize}  
+Dans les deux cas nous obtenons une contradiction. Donc $F$ est inclus
+dans $G$ ou $G$ est inclus dans $F$.
+
+\item Supposons $G\subset F$.
+\begin{itemize}
+ \item Inclusion $\supset$. Soit $x\in G+(F\cap H)$. Alors il existe $a\in G$, $b\in F\cap H$ tels que $x=a+b$. Comme $G\subset F$ alors $a\in F$, de plus $b\in F$ donc $x=a+b\in F$.
+D'autre part $a\in G$, $b\in H$, donc $x=a+b\in G+H$. Donc $x\in F\cap(G+H)$.
+ \item Inclusion $\subset$. Soit $x\in F\cap(G+H)$. $x\in G+H$ alors il existe $a\in G$,
+$b\in H$ tel que $x=a+b$. Maintenant $b=x-a$ avec $x\in F$ et $a\in G\subset F$, donc $b\in F$,
+donc $b\in F\cap H$. Donc $x=a+b\in G+(F\cap H)$.
+\end{itemize}  
+  
+\end{enumerate}
+\fincorrection
+\correction{006870}
+\begin{enumerate}
+  \item 
+\begin{align*}
+     & \alpha v_1 + \beta v_2 + \gamma v_3 = 0 \\ 
+\iff & \alpha (2,1,4) + \beta (1,-1,2) + \gamma (3,3,6) = (0,0,0) \\
+\iff &  \Big(2\alpha+\beta+3\gamma,\alpha-\beta+3\gamma,4\alpha+2\beta+6\gamma\Big) = (0,0,0) \\
+\iff &
+\begin{cases}
+  2\alpha+\beta+3\gamma &= 0 \\
+  \alpha-\beta+3\gamma  &= 0 \\
+  4\alpha+2\beta+6\gamma &= 0 \\
+ \end{cases} \\
+\iff & \cdots  \qquad  \text{(on résout le système)} \\
+\iff & \alpha=-2t, \beta = t, \gamma = t \quad t \in \Rr \\
+\end{align*}  
+
+Si l'on prend $t=1$ par exemple alors $\alpha=-2$, $\beta = 1$, $\gamma = 1$
+donne bien $-2v_1+v_2+v_3=0$.
+
+Cette solution n'est pas unique, les autres coefficients qui conviennent sont les 
+$(\alpha=-2t, \beta = t, \gamma = t)$ pour tout $t \in \Rr$.
+
+  \item 
+
+Il s'agit donc de trouver un vecteur $v=(x,y,z)$ dans $P_1$ et $P_2$ et donc qui doit vérifier 
+$x-y+z=0$ et $x-y=0$ :
+
+\begin{align*}
+     & v=(x,y,z) \in P_1 \cap P_2 \\ 
+\iff & x-y+z=0 \text{ et } x-y=0 \\
+\iff &
+\begin{cases}
+  x-y-z = 0 \\
+  x-y = 0 \\
+ \end{cases} \\
+\iff & \cdots \qquad  \text{(on résout le système)} \\
+\iff & (x=t, y = t, z = 0) \quad t \in \Rr \\
+\end{align*}  
+
+Donc, si l'on fixe par exemple $t=1$, alors $v=(1,1,0)$ 
+est un vecteur directeur de la droite vectorielle $D$,
+une équation paramétrique étant $D=\{(t,t,0) \mid t\in \Rr \}$.
+\end{enumerate}
+\fincorrection
+\correction{000900}
+\begin{enumerate}
+\item 
+\begin{align*}
+& (x,1,y,1) \in \text{Vect}\{v_1,v_2\} \\ 
+\iff& \exists \lambda,\mu\in \Rr \qquad (x,1,y,1) = \lambda(1,2,3,4)+\mu(1,-2,3,-4) \\
+\iff& \exists \lambda,\mu\in \Rr \qquad (x,1,y,1) = (\lambda,2\lambda,3\lambda,4\lambda)+(\mu,-2\mu,3\mu,-4\mu) \\
+\iff& \exists \lambda,\mu\in \Rr \qquad (x,1,y,1) = (\lambda+\mu,2\lambda-2\mu,3\lambda+3\mu,4\lambda-4\mu) \\
+\implies& \exists \lambda,\mu\in \Rr \qquad 1 = 2(\lambda-\mu) \text{ et } 1=4(\lambda-\mu) \\
+\implies& \exists \lambda,\mu\in \Rr \qquad \lambda-\mu= \frac 12 \text{ et } \lambda-\mu=\frac14 \\
+\end{align*}
+Ce qui est impossible (quelque soient $x,y$). Donc on ne peut pas trouver de tels $x,y$.
+
+\item On fait le m\^eme raisonnement : 
+\begin{align*}
+& (x,1,1,y) \in \text{Vect}\{v_1,v_2\} \\ 
+iff&\ \exists \lambda,\mu\in \Rr \qquad (x,1,1,y) = (\lambda+\mu,2\lambda-2\mu,3\lambda+3\mu,4\lambda-4\mu) \\
+\iff& \exists \lambda,\mu\in \Rr \qquad 
+\begin{cases}
+  x &= \lambda + \mu \\
+  1  &= 2\lambda -2\mu \\
+  1 &= 3\lambda +3\mu \\
+  y &= 4\lambda -4 \mu \\
+ \end{cases} \\
+\iff& \exists \lambda,\mu\in \Rr \qquad 
+\begin{cases}
+  \lambda &= \frac 5{12} \\
+  \mu &=  -\frac1{12} \\
+  x &= \frac 13 \\
+  y &=  2 \\  
+\end{cases}.\\
+\end{align*}  
+Donc le seul vecteur $(x,1,1,y)$ qui convienne est $(\frac13,1,1,2)$.
+\end{enumerate}
+\fincorrection
+\correction{000908}
+
+Montrons d'abord que $E \subset F$.
+On va d'abord montrer que $v_1 \in F$ et $v_2 \in F$.
+
+Tout d'abord 
+$v_1\in F \iff v_1 \in \text{Vect}\{w_1,w_2\} \iff \exists \lambda, \mu \quad v_1 = \lambda w_1+\mu w_2 $.
+
+Il s'agit donc de trouver ces $\lambda,\mu$. Cela se fait en résolvant un système
+(ici on peut même le faire de tête) on trouve la relation 
+$7 (2, 3, -1) = 3(3, 7, 0)-(5, 0, -7)$
+ce qui donne la relation $v_1 = \frac37 w_1 -\frac 17 w_2$ et donc $v_1\in F$.
+
+De même $7v_2=-w_1+2w_2$ donc $v_2\in F$.
+
+Maintenant $v_1$ et $v_2$ sont dans l'espace vectoriel $F$, donc toute combinaison linéaire
+de $v_1$ et $v_2$ aussi, c'est-à-dire : pour tout $\lambda,\mu$, on a $\lambda v_1+\mu v_2 \in F$.
+Ce qui implique $E \subset F$.
+
+
+\bigskip
+
+Il reste à montrer $F\subset E$. Il s'agit donc d'écrire $w_1$ (puis $w_2$) en fonction de $v_1$ et $v_2$.
+On trouve $w_1= 2v_1-v_2$ et $w_2=v_1+3v_2$. Encore une fois cela entraîne $w_1 \in E$ et $w_2 \in E$ donc
+$\text{Vect}\{w_1,w_2\} \subset E$ d'où $F\subset E$.
+
+Par double inclusion on a montré $E=F$. 
+
+\fincorrection
+\correction{000917}
+  \`A partir de la famille $(f_\alpha)_{\alpha\in \Rr}$ nous
+  consid\'erons une combinaison lin\'eaire (qui ne correspond qu'\`a un
+  nombre \emph{fini} de termes).
+
+  
+  Soient $\alpha_1 > \alpha_2 > \ldots > \alpha_n$ des r\'eels distincts que nous avons ordonnés, consid\'erons la
+  famille (finie) : $(f_{\alpha_i})_{i=1,\ldots,n}$. Supposons qu'il
+  existe des r\'eels $\lambda_1,\ldots, \lambda_n$ tels que
+  $\sum_{i=1}^n \lambda_i f_{\alpha_i}=0$. Cela signifie que, quelque
+  soit $x \in \Rr$, alors $\sum_{i=1}^n \lambda_i f_{\alpha_i}(x) = 0$,
+autrement dit pour tout $x\in \Rr$ :
+$$\lambda_1 e^{\alpha_1 x} + \lambda_2 e^{\alpha_2 x} + \cdots + \lambda_n e^{\alpha_n x}=0.$$
+Le terme qui domine est $e^{\alpha_1 x}$ (car $\alpha_1>\alpha_2>\cdots$).
+Factorisons par $e^{\alpha_1 x}$ :
+$$e^{\alpha_1 x} \Big( \lambda_1  + \lambda_2 e^{(\alpha_2-\alpha_1) x} + \cdots 
++ \lambda_n e^{(\alpha_n-\alpha_1) x} \Big) =0.$$
+
+Mais $e^{\alpha_1 x}\neq 0$ donc :
+$$\lambda_1  + \lambda_2 e^{(\alpha_2-\alpha_1) x} + \cdots 
++ \lambda_n e^{(\alpha_n-\alpha_1) x} =0.$$
+Lorsque $x\to +\infty$ alors $e^{(\alpha_i-\alpha_1) x} \to 0$ 
+(pour tout $i\ge 2$, car $\alpha_i-\alpha_1<0$).
+Donc pour $i\ge 2$, $\lambda_i e^{(\alpha_i-\alpha_1) x} \to 0$ et
+en passant à la limite dans l'égalité ci-dessus on trouve :
+$$\lambda_1=0.$$
+
+Le premier coefficients est donc nul. On repart de la combinaison linéaire qui est maintenant
+$\lambda_2 f_2+\cdots + \lambda_n f_n=0$ et en appliquant le raisonnement ci-dessus 
+on prouve par récurrence $\lambda_1=\lambda_2=\cdots=\lambda_n=0$.
+ Donc la famille $(f_\alpha)_{\alpha\in\Rr}$ est une famille libre.
+\fincorrection
+\correction{006871}
+\begin{enumerate}
+  \item Si les deux droites vectorielles sont distinctes alors elles engendrent un plan vectoriel 
+et donc pas $\Rr^3$ tout entier. Si elles sont confondues c'est pire : elles n'engendrent qu'une droite.
+Dans tout les cas elles n'engendrent pas $\Rr^3$ et ne sont donc pas supplémentaires.
+  \item Si $P$ et $P'$ sont deux plans vectoriels alors $P\cap P'$ est une droite vectorielle si $P \neq P'$
+ou le plan $P$ tout entier si $P=P'$. Attention, tous les plans vectoriels ont une équation du type 
+$ax+by+cz=0$ et doivent passer par l'origine, il n'existe donc pas deux plans parallèles par exemple.
+Donc l'intersection $P\cap P'$ n'est jamais réduite au vecteur nul. Ainsi $P$ et $P'$ ne sont pas supplémentaires.
+
+  \item Soit $D$ une droite et $P$ un plan, $u$ un vecteur directeur de $D$. 
+Si le vecteur $u$ appartient au plan $P$ alors $D\subset P$ et les espaces ne sont pas suppl\'ementaires 
+(ils n'engendrent pas tout $\Rr^3$). 
+Si $u \notin P$ alors d'une part $D\cap P$ est juste le vecteur nul
+d'autre part $D$ et $P$ engendrent tout $\Rr^3$ ; $D$ et $P$ sont supplémentaires.
+
+Détaillons un exemple : si $P$ est le plan d'équation $z=0$ alors il est engendré par les deux vecteurs $v=(1,0,0)$ et $w=(0,1,0)$.
+Soit $D$ une droite de vecteur directeur $u=(a,b,c)$.
+
+Alors  $u \notin P \iff u \notin \text{Vect}\{v,w\} \iff c \neq 0$.
+Dans ce cas on bien que d'une part que $D = \text{Vect}\{ u\}$ intersecté avec $P$ est réduit au vecteur nul.
+Ainsi $D\cap P = \{(0,0,0)\}$.
+Et d'autre part tout vecteur $(x,y,z)\in \Rr^3$ appartient à $D+P = \text{Vect}\{u,v,w\}$.
+Il suffit de remarquer que $(x,y,z) - \frac zc (a,b,c) = (x-\frac{za}{c},y-\frac{zb}{c},0) = (x-\frac{za}{c}) (1,0,0) + 
+(y-\frac{zb}{c})(0,1,0)$. Et ainsi $(x,y,z)= \frac zc u + (x-\frac{za}{c}) v + 
+(y-\frac{zb}{c}) w$. Donc $D+P = \Rr^3$.
+
+Bilan on a bien $D\oplus P = \Rr^3$ : $D$ et $P$ sont en somme directe.
+
+\end{enumerate}
+\fincorrection
+\correction{000920}
+\begin{enumerate}
+\item Non. 
+Tout d'abord par définition
+$\text{Vect}\{v_1,v_2\}+\text{Vect}\{v_3\} = \text{Vect}\{v_1,v_2,v_3\}$,
+Nous allons trouver un vecteur de $\Rr^4$ qui n'est pas dans 
+$\text{Vect}\{v_1,v_2\}+\text{Vect}\{v_3\}$.
+Il faut tâtonner un peu pour le choix, par exemple faisons le calcul avec $u=(0,0,0,1)$.
+
+$u \in \text{Vect}\{v_1,v_2,v_3\}$ si et seulement si 
+il existe des réels $\alpha,\beta,\gamma$ tels que $u=\alpha v_1 + \beta v_2 + \gamma v_3$.
+Si l'on écrit les vecteurs verticalement, on cherche donc $\alpha,\beta,\gamma$ tels que :
+$$\begin{pmatrix} 0 \\ 0 \\ 0 \\1\end{pmatrix}= \alpha \begin{pmatrix} 1 \\ 0 \\ 0 \\1\end{pmatrix}
++ \beta \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix}+\gamma\begin{pmatrix} 0 \\ 1 \\ 0 \\0\end{pmatrix}$$
+Ce qui est équivalent à trouver $\alpha,\beta,\gamma$ vérifiant le système linéaire :
+$$\begin{cases}
+0 = \alpha \cdot 1 + \beta \cdot 0 + \gamma \cdot 0   \\
+0 = \alpha \cdot 0 + \beta \cdot 0 + \gamma \cdot 1   \\
+0 = \alpha \cdot 0 + \beta \cdot 1 + \gamma \cdot 0   \\
+1 = \alpha \cdot 1 + \beta \cdot 0 + \gamma \cdot 0   \\
+\end{cases}
+\text{ qui équivaut à } 
+\begin{cases}
+0 = \alpha \\
+0 = \gamma \\
+0 = \beta  \\
+1 = \alpha \\
+\end{cases}
+$$
+Il n'y a clairement aucune solution à ce système (les trois premières lignes impliquent $\alpha=\beta=\gamma=0$
+et cela rentre alors en contradiction avec la quatrième).
+
+\bigskip
+
+
+Un autre type de raisonnement, beaucoup plus rapide, 
+est de dire que ces deux espaces ne peuvent engendr\'es tout $\Rr^4$ 
+car il n'y pas assez de vecteurs en effet $3$ vecteurs ne peuvent engendrer 
+l'espace $\Rr^4$ de dimension $4$.
+
+\item Oui. Notons $F=\mbox{Vect}\{v_1,v_2\}$ et $G=\mbox{Vect}\{v_4, v_5\}$.
+Pour montrer $F \oplus G = \Rr^4$ il faut montrer $F\cap G =\{ (0,0,0,0) \}$ et
+$F+G=\Rr^4$.
+
+  \begin{enumerate}
+     \item Montrons $F\cap G =\{ (0,0,0,0 \}$. Soit $u \in F\cap G$,
+d'une part $u \in F = \mbox{Vect}\{v_1,v_2\}$ donc il existe $\alpha,\beta \in \Rr$ tels que
+$u = \alpha v_1+\beta v_2$. D'autre part $u \in G = \mbox{Vect}\{v_4, v_5\}$ donc il existe
+$\gamma,\delta \in \Rr$ tels que $u=\gamma v_4 + \delta v_5$. On a écrit $u$ de deux façons donc on a l'égalité
+$\alpha v_1+\beta v_2 = \gamma v_4 + \delta v_5$. En écrivant les vecteurs comme des vecteurs colonnes cela donne
+$$\alpha \begin{pmatrix} 1 \\ 0 \\ 0 \\1\end{pmatrix}
++ \beta \begin{pmatrix} 0 \\ 0 \\ 1 \\ 0 \end{pmatrix} 
+= \gamma \begin{pmatrix} 0 \\ 0 \\ 0 \\1\end{pmatrix} + \delta \begin{pmatrix} 0 \\ 1 \\ 0 \\1\end{pmatrix}$$
+Donc $(\alpha,\beta,\gamma,\delta)$ est solution du système linéaire suivant :
+$$\begin{cases}
+\alpha = 0   \\
+0 = \delta \\
+\beta = 0 \\
+\alpha =  \gamma + \delta \\
+\end{cases}
+$$
+Cela implique $\alpha=\beta=\gamma=\delta=0$ et donc $u = (0,0,0,0)$.
+Ainsi le seul vecteur de $F\cap G$ est le vecteur nul.
+
+
+     \item Montrons $F+G=\Rr^4$.
+$F+G = \mbox{Vect}\{v_1,v_2\}+\mbox{Vect}\{v_4, v_5\}= \mbox{Vect}\{v_1,v_2,v_4, v_5\}$.
+Il faut donc montrer que n'importe quel vecteur $u = (x_0,y_0,z_0,t_0)$ de $\Rr^4$ s'écrit comme une combinaison linéaire
+de $v_1,v_2,v_4,v_5$. Fixons $u$ et cherchons $\alpha,\beta,\gamma,\delta \in \Rr$ tels que 
+$\alpha v_1+\beta v_2 + \gamma v_4 + \delta v_5=u$.
+Après avoir considéré les vecteurs comme des vecteurs colonnes cela revient à résoudre le système linéaire :
+$$\begin{cases}
+\alpha = x_0 \\
+\delta = y_0 \\
+\beta = z_0 \\
+\alpha + \gamma + \delta = t_0 \\    
+  \end{cases}$$
+Nous étant donné un vecteur $u = (x_0,y_0,z_0,t_0)$ on a calculé qu'en choisissant 
+$\alpha = x_0$, $\beta=z_0$, $\gamma= t_0 -x_0-y_0$, $\delta=y_0$ on obtient bien
+$\alpha v_1+\beta v_2 + \gamma v_4 + \delta v_5=u$.
+Ainsi tout vecteur est engendré par $F+G$.
+  \end{enumerate}
+Ainsi $F\cap G =\{ (0,0,0,0) \}$ et $F+G=\Rr^4$ donc $F \oplus G = \Rr^4$.
+
+
+\item Non. Ces deux espaces ne sont pas suppl\'ementaires car il y a trop de vecteurs !
+Il engendrent tout, mais l'intersection n'est pas triviale. En effet on remarque assez vite que 
+$v_5=v_3+v_4$ est dans l'intersection. On peut aussi obtenir ce r\'esultat en résolvant un syst\`eme.
+
+\item Non. Il y a bien quatre vecteurs mais il existe des relations entre eux.
+
+On peut montrer $\mbox{Vect}\{v_1,v_4\}$ et $\mbox{Vect}\{v_3, v_5\}$ ne sont pas supplémentaires
+de deux façons. Première méthode : leur intersection est non nulle, par exemple
+$v_4=v_5-v_3$ est dans l'intersection. Deuxième méthode : les deux espaces n'engendrent pas tout,
+en effet il est facile de voir que $(0,0,1,0) \notin \mbox{Vect}\{v_1,v_4\} + \mbox{Vect}\{v_3, v_5\} 
+= \mbox{Vect}\{v_1,v_4,v_3, v_5\}$.
+
+
+\end{enumerate}
+\fincorrection
+\correction{000919}
+Faisons d'abord une remarque qui va simplifier les calculs : 
+$$v_3 = 2v_1+3v_2.$$
+ Donc en fait nous avons 
+$\text{Vect} \{v_1,v_2,v_3\}= \text{Vect}\{v_1,v_2\}$ et c'est un espace de dimension $2$, c'est-à-dire un plan vectoriel.
+Par la m\^eme relation on trouve que $\text{Vect} \{v_1,v_2,v_3\}= \text{Vect}\{v_2,v_3\}$.
+
+\begin{enumerate}
+\item Vrai. $\text{Vect}\{(1,1,0,0),(-1,1,-4,2)\}$ est inclus dans $\text{Vect} \{v_1,v_2,v_3\}$, car
+$(1,1,0,0) = v_1+v_2$ et $(-1,1,-4,2)=v_1-v_2$. Comme ils sont de m\^eme dimension ils sont \'egaux 
+(autrement dit : comme un plan est inclus dans un autre alors ils sont égaux).
+\item Vrai. On a $(1,1,0,0) = v_1+v_2$ donc  $(1,1,0,0)\in \text{Vect}\{v_1,v_2\}$, or 
+$\text{Vect}\{v_1,v_2\}=\text{Vect}\{v_2,v_3\}\subset \text{Vect}\{v_2,v_3,v_4\}$. 
+Donc $(1,1,0,0) \in \text{Vect}\{v_1, v_2\} \cap    \text{Vect}\{v_2, v_3, v_4\}$.
+\item Faux. Toujours la m\^eme relation nous donne que 
+$\text{Vect} \{v_1, v_2\} \cap \text{Vect} \{v_2, v_3, v_4\} = \text{Vect}\{v_1, v_2\}$ donc est de dimension $2$.
+C'est donc un plan vectoriel et pas une droite.
+ \item Faux. Encore une fois la relation donne que 
+$\text{Vect}\{v_1, v_2\}+\text{Vect}\{v_2, v_3, v_4\} = \text{Vect}\{v_1, v_2, v_4\}$, or $3$ vecteurs ne
+   peuvent engendrer $\Rr^4$ qui est de dimension $4$.
+\item Vrai.  Faire le calcul : l'intersection est $\{0\}$ et la somme est $\Rr^4$.
+\end{enumerate}
+\fincorrection
+\correction{000923}
+  Analysons d'abord les fonctions de $E$ qui ne sont pas dans $F$ : ce sont 
+  les fonctions $h$ qui v\'erifient $h(0) \neq 0$ \textbf{ou} $h'(0) \neq 0$. Par exemple
+  les fonctions constantes $x \mapsto b$, ($b \in \Rr^*$) ou les
+  homoth\'eties $x \mapsto a x$, ($a \in \Rr^*$) n'appartiennent pas \`a
+  $F$.
+  
+  Cela nous donne l'idée de poser
+  $$G= \left\lbrace x \mapsto ax+b \mid (a,b) \in \Rr^2 \right\rbrace.$$
+  Montrons que $G$ est un suppl\'ementaire de $F$ dans $E$.
+  
+  Soit $f \in F \cap G$, alors $f(x) = ax+b$ (car $f\in G$) et $f(0) =
+  b$ et $f'(0)=a$ ; mais $f\in F$ donc $f(0) = 0$ donc $b=0$ et
+  $f'(0)=0$ donc $a=0$. Maintenant $f$ est la fonction nulle : $F\cap
+  G = \{ 0 \}$.
+  
+  Soit $h \in E$, alors remarquons que pour $f(x) = h(x) - h(0)
+  -h'(0)x$ la fonction $f$ v\'erifie $f(0) = 0$ et $f'(0)=0$ donc $f \in
+  F$. Si nous \'ecrivons l'\'egalit\'e diff\'eremment nous obtenons
+  $$
+  h(x) = f(x) +h(0)+h'(0)x.$$
+  Posons $g(x) = h(0)+h'(0)x$, alors la
+  fonction $g \in G$ et
+  $$h =f +g,$$
+  ce qui prouve que toute fonction de $E$ s'\'ecrit comme
+  somme d'une fonction de $F$ et d'une fonction de $G$ : $E = F + G$.
+  
+  En conclusion nous avons montré que $E = F \oplus G$.
+\fincorrection
+\correction{000926}
+ On note $F$ l'espace vectoriel des suites constantes et $G$ l'espace
+  vectoriel des suites convergeant vers $0$.
+\begin{enumerate}
+\item $F\cap G = \{0\}$. En effet une suite constante qui converge
+  vers $0$ est la suite nulle.
+  \item $F+G=E$. Soit $(u_n)$ un \'el\'ement de $E$. Notons $\ell$ la
+    limite de $(u_n)$.  Soit $(v_n)$ la suite d\'efinie par
+    $v_n=u_n-\ell$, alors $(v_n)$ converge vers $0$. Donc $(v_n)\in
+    G$.  Notons $(w_n)$ la suite constante \'egale \`a $\ell$. Alors nous
+    avons $u_n=\ell+u_n-\ell$, ou encore $u_n=w_n+v_n$, ceci pour tout
+    $n\in\Nn$. En terme de suite cela donne $(u_n)=(w_n)+(v_n)$. Ce
+    qui donne la d\'ecomposition cherch\'ee.
+\end{enumerate}
+Bilan : $F$ et $G$ sont en somme directe dans $E$ : $E=F\oplus G$.
+\fincorrection
+
+
+\end{document}
+

@@ -1,0 +1,261 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace,xypic}
+\usepackage{xcolor,multicol,tabularx}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\p}{\mathbb{P}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+ 	
+	
+	\begin{center}
+		\Large \sc colle 22 = Variables aléatoires et calculs différentiels
+	\end{center}
+
+
+
+
+\section*{Variables aléatoires:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+			\begin{exo}\quad\\
+			On dispose de $n$ urnes numérotées de $1$ à $n$, l'urne numérotée $k$ comprenant $k$ boules numérotées de $1$ à $k$. On choisit d'abord une urne, puis une boule dans cette urne, et on note $Y$ la variable aléatoire du numéro obtenu. Quelle est la loi de Y? Son espérance?
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	\begin{exo}\quad\\
+		On jette $3600$ fois un dé équilibré. Minorer la probabilité que le nombre d'apparitions du numéro $1$ soit compris entre $480$ et $720$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+	\begin{exo}\quad\\
+		Soit $X$ une variable aléatoire réelle définie sur un espace probabilisé fini. Démontrer que $$E(X)^2\leq E(X^2)$$
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+\begin{exo}\quad\\
+	
+	Soit $X$ une variable aléatoire prenant ses valeurs dans $\{0,1,...,N\}$. Démontrer que 
+	$$E(X) = \sum_{n=0}^{N-1} P(X>n)$$
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+	
+
+
+
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+					
+	
+		\begin{exo}\quad\\[0.2cm]
+		Soit $X,Y$ deux variables aléatoires indépendantes suivant la loi uniforme sur $\{1,...,n\}$.
+		\begin{enumerate}
+			\item Déterminer $P(X=Y)$.
+			\item Déterminer $P(X\geq Y)$.
+			\item Déterminer la loi de $X+Y$.
+		\end{enumerate}
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+	\begin{exo}\quad\\[0.2cm]
+		Une entreprise souhaite recrute un cadre. $n$ personnes se présentent pour le poste. Chacun d'entre eux passe à tour de rôle un test, et le premier qui réussit le test est engagé. La probabilité de réussir le test est $p\in ]0,1[$. On pose également $q=1-p$. On définit la variable aléatoire $X$ par $X=k$ si le k-ième candidat qui réussit le test est engagé, et $X=n+1$ si personne n'est engagé.
+		\begin{enumerate}
+			\item Déterminer la loi de $X$.
+			\item En dérivant la fonction  $x\mapsto \sum_{k=0}^{n}x^k$.\\[0.1cm]
+			En déduire l'espérance de $X$. 
+			\item Quelle est la valeur minimale de $p$ pour avoir plus d'une chance sur deux de recruter l'un des candidats? 
+		\end{enumerate}
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}	
+
+	
+
+
+		
+			
+		
+		
+	\end{minipage}
+\end{minipage}	
+
+
+\section*{Fonctions à plusieurs variables:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\quad\\[0.2cm]
+			Etudier l'existence et la valeur éventuelle des limites suivantes :
+			\begin{multicols}{2}
+				\begin{enumerate}
+					\item  $ \frac{xy}{x^2+y^2}$ en $(0,0)$
+					
+					\item  $ \frac{x^3+y^3}{x^2+y^4}$  en $(0,0)$
+					
+					
+					\item[4.]  $ \frac{x^2y^2}{x^2+y^2}$ en $(0,0)$
+					\item[5.]   $ \frac{1-\cos\sqrt{|xy|}}{|y|}$ en $(0,0)$	
+				\end{enumerate}
+
+			\end{multicols}
+			\begin{enumerate}
+				\item[3.]  $ \frac{\sqrt{x^2+y^2}}{|x|\sqrt{|y|}+|y|\sqrt{|x|}}$  en $(0,0)$
+			\end{enumerate}
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	\begin{exo}\quad\\[0.2cm]
+		Soit $\begin{array}[t]{cccc}f~:&\R^2&\longrightarrow&\R\\
+		&(x,y)&\mapsto&\left\{
+		\begin{array}{l}
+		0\;\text{si}\;y=0\\
+		y^2\sin\left(\frac{x}{y}\right)\;\text{si}\;y\neq0
+		\end{array}
+		\right.
+		\end{array}
+		$.
+		\begin{enumerate}
+			\item  Etudier la continuité de $f$.
+			
+			\item  Etudier l'existence et la valeur éventuelle de dérivées partielles d'ordre 1 sur $\R^2$.
+			\item Étudier $\frac{\partial^2f}{\partial x\partial y}$ et $\frac{\partial^2f}{\partial y\partial x}$ en $(0,0)$.
+		\end{enumerate}
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+			
+		
+		\begin{exo}\quad\\[0.2cm]
+			Pour  $(x,y)\in\R^2$, on pose \\[0.2cm]$f(x,y) =\left\{
+			\begin{array}{l}
+			\frac{xy(x^2-y^2)}{x^2+y^2}\;\text{si}\;(x,y)\neq(0,0)\\
+			\rule{0mm}{5mm}0\;\text{si}\;(x,y)=(0,0)
+			\end{array}
+			\right.$.\hfil\\[0.2cm] Montrer que $f$ est de classe $C^1$ (au moins) sur $\R^2$.
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\quad\\[0.2cm]
+			Soit $a$ un réel strictement positif donné. Trouver le minimum de $f(x,y)=\sqrt{x^2+(y-a)^2}+\sqrt{y^2+(x-a)^2}$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+		\begin{exo}\quad\\[0.2cm]
+			Trouver les extrema locaux de 
+			
+			\begin{enumerate}
+				\item  $\begin{array}[t]{cccc}
+				f~:&\R^2&\rightarrow&\R\\
+				&(x,y)&\mapsto&x^2+xy+y^2+2x+3y
+				\end{array}$ 
+				\item  $\begin{array}[t]{cccc}
+				f~:&\R^2&\rightarrow&\R\\
+				&(x,y)&\mapsto&x^4+y^4-4xy
+				\end{array}$ 
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}	
+		
+	
+
+		
+		
+		
+		
+	\end{minipage}
+\end{minipage}	
+
+
+
+\end{document}

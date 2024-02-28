@@ -1,0 +1,243 @@
+\documentclass[t,12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{enumerate}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{setspace}
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+
+
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{thm-def}{Théorème/Définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+%\def\di{\displaystyle}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+
+\usetheme{Warsaw}
+
+\title{Questions sur les fonctions en généralité}
+\author{ Évaluation de 1 heure \\mercredi 6 avril 2022}
+\date{}
+\begin{document}
+\maketitle	
+
+\begin{frame}
+	\frametitle{Question 1: }
+	
+		Pour tout  $x\in\R$ on définit: $$f(x) = -6x-2$$ $$g(x) = 5x-3$$ $$h(x) = f(x)\times g(x)$$ \hfill\\[0.2cm]
+	\begin{enumerate}
+		\item Donner la nature des fonctions $f$ et $g$.\\ 
+		\item Donner la forme développée de la fonction $h$.\\ 
+		\item En utilisant la forme plus adaptée de la fonction $h$, construire son tableau de signes et résoudre l'inéquation:
+		$$h(x) \leq 0$$
+	\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Question 2: }
+	
+	$$\shorthandoff{:}\begin{tikzpicture}[xscale=1.3, yscale = 0.9]
+	\clip (-2.5,-2.5) rectangle (1.5,3);
+	\draw[step=0.5,dotted] (-3.5,-2.5) grid (1.5,3);
+	\draw [->, line width = 1pt, >=latex'](-3.5,0) -- (1.5,0);
+	\draw (1.4,0) node[below]{\footnotesize$x$};
+	\draw (0,2.2) node[right]{\footnotesize$y$};
+	\foreach \x in {-3,-2,-1,1}
+	\draw[shift={(\x,0)}] (0pt,2pt) -- (0pt,-2pt) node[below] {\tiny $\x$};
+	\draw [->, line width = 1pt, >=latex'](0,-3.5) -- (0,3);
+	\foreach \y in {-2,-1,1,2}
+	\draw[shift={(0,\y)}] (2pt,0pt) -- (-2pt,0pt) node[left] {\tiny $\y$};
+	\draw (0,0) node[below right]{\tiny $0$};
+	\draw[domain=-3.5:3.5,samples=100,color=blue] plot ({\x},{exp(\x)-2});
+	\draw[domain=-3.5:3.5,samples=100,color=red] plot ({\x},{-0.5*\x-1});
+	%\draw[domain=-3.5:3.5,samples=100,color=olive] plot ({\x},{1.5});
+	\draw[color=blue] (1.5,2.3) node[left]{\footnotesize$\mathcal{C}_f$};
+	\draw[color=red] (1.5,-1.4) node[left]{\footnotesize$\mathcal{C}_g$};
+	%\draw (3.3,-1.4) node[left]{\footnotesize$\mathcal{C}_h$};
+	\end{tikzpicture}\shorthandon{:}$$ 
+	\hfill\\[-0.2cm]\begin{enumerate}
+	\item Résoudre graphiquement $f(x) < g(x)$.\\
+	\item Donner le tableau de signes et le tableau de variations de la fonction $f$.\\ 
+	
+\end{enumerate}
+\end{frame}
+	
+\begin{frame}
+	\frametitle{Question 3: }
+$$\shorthandoff{:}\begin{tikzpicture}[xscale=1, yscale = 1]
+\clip (-3.5,-2.5) rectangle (2.5,1.5);
+\draw[step=0.5,dotted] (-3.5,-2.5) grid (3.5,3.5);
+\draw [->, line width = 1pt, >=latex'](-3.5,0) -- (2.5,0);
+\draw (2.4,0) node[below]{\footnotesize$x$};
+\draw (0,1.2) node[right]{\footnotesize$y$};
+\foreach \x in {-3,-2,-1,1,2}
+\draw[shift={(\x,0)}] (0pt,2pt) -- (0pt,-2pt) node[below] {\tiny $\x$};
+\draw [->, line width = 1pt, >=latex'](0,-3.5) -- (0,1.5);
+\foreach \y in {-2,-1,1,}
+\draw[shift={(0,\y)}] (2pt,0pt) -- (-2pt,0pt) node[left] {\tiny $\y$};
+\draw (0,0) node[below right]{\tiny $0$};
+\draw[domain=-3.5:3.5,samples=100,color=red] plot ({\x},{-0.5*\x-1});
+\draw[color=red] (1.5,-1.4) node[left]{\footnotesize$\mathcal{C}_g$};
+\end{tikzpicture}\shorthandon{:}$$
+
+\hfill\\[-0.2cm]\begin{enumerate}
+	   \item La représentation graphique de fonction $g$ est une droite, c'est donc une fonction affine de la forme $g(x) = ax +b$. En vous aidant du schéma, trouvez les valeurs de $a$ et de $b$.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Question 4: }
+	$$\shorthandoff{:}\begin{tikzpicture}[xscale=0.9, yscale = 0.7]
+	\clip (-3.5,-3.5) rectangle (3.5,3.5);
+	\draw[step=0.5,dotted] (-3.5,-3.5) grid (3.5,3.5);
+	\draw [->, line width = 1pt, >=latex'](-3.5,0) -- (3.5,0);
+	\draw (3.4,0) node[below]{\footnotesize$x$};
+	\draw (0,3.2) node[right]{\footnotesize$y$};
+	\foreach \x in {-3,-2,-1,1,2,3}
+	\draw[shift={(\x,0)}] (0pt,2pt) -- (0pt,-2pt) node[below] {\tiny $\x$};
+	\draw [->, line width = 1pt, >=latex'](0,-3.5) -- (0,3.5);
+	\foreach \y in {-3,-2,-1,1,2,3}
+	\draw[shift={(0,\y)}] (2pt,0pt) -- (-2pt,0pt) node[left] {\tiny $\y$};
+	\draw (0,0) node[below right]{\tiny $0$};
+	\draw[domain=-3.5:3.5,samples=100,color=blue] plot ({\x},{-0.2*(\x+2.3)*(\x-3)*(\x+0.5)});
+	\draw[color=blue] (3.4,1.5) node[left]{\footnotesize$\mathcal{C}_V$};
+	\draw[domain=-3.5:3.5,samples=100,color=red] plot ({\x},{-0.4*(\x+2.5)*(\x-3)-1.5});
+	\draw[color=red] (-2.4,-1.5) node[left]{\footnotesize$\mathcal{C}_H$};
+	\end{tikzpicture}\shorthandon{:}$$
+	\hfill\\[-0.2cm]\begin{enumerate}
+		\item Donner le tableau de signes de la fonction $V$. 
+		\item Donner le tableau de variations de la fonction $H$.
+		\item Résoudre graphiquement $V(x) \geq H(x)$.  
+	\end{enumerate}
+	
+
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Question 5: }
+		Soit $a,b \in \R$ \\
+		Pour tout  $x\in\R$ on définit: $$m(x) = ax + b $$ \hfill\\[-0.2cm]
+	\begin{enumerate}
+		\item On sait que la courbe de la fonction $m$ passe par les points de coordonnées $A(0;5)$ et $B(-3;0)$. \\[0.2cm] En déduire les valeurs de $a$ et de $b$.\\ 
+		\item Sans résoudre d'inéquation, en déduire le tableau de signes et le tableau de variation de la fonction $m$. 
+		
+	\end{enumerate}
+	
+ 
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Question 6: }
+	Pour tout  $x\in\R$ on définit: $$f(x)= 10x^2-9x-9 $$ 
+\begin{enumerate}
+	\item Justifier que pour tout $x\in\R$ on a: $$f(x)= \dfrac{1}{3}(5x+3)(6x-9)$$ 
+	\item Donner les antécédents de 0 par la fonction $f$. 
+	\item Donner les antécédents de -9 par la fonction $f$. 
+\end{enumerate}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Question 7:  }
+	
+	$$\shorthandoff{:}\begin{tikzpicture}[xscale=0.9, yscale = 0.7]
+	\clip (-3.5,-3.5) rectangle (3.5,3.5);
+	\draw[step=0.5,dotted] (-3.5,-3.5) grid (3.5,3.5);
+	\draw [->, line width = 1pt, >=latex'](-3.5,0) -- (3.5,0);
+	\draw (3.4,0) node[below]{\footnotesize$x$};
+	\draw (0,3.2) node[right]{\footnotesize$y$};
+	\foreach \x in {-3,-2,-1,1,2,3}
+	\draw[shift={(\x,0)}] (0pt,2pt) -- (0pt,-2pt) node[below] {\tiny $\x$};
+	\draw [->, line width = 1pt, >=latex'](0,-3.5) -- (0,3.5);
+	\foreach \y in {-3,-2,-1,1,2,3}
+	\draw[shift={(0,\y)}] (2pt,0pt) -- (-2pt,0pt) node[left] {\tiny $\y$};
+	\draw (0,0) node[below right]{\tiny $0$};
+	\draw[domain=-3.5:3.5,samples=100,color=blue] plot ({\x},{-3*cos(pi*\x/3 r)});
+	\draw[domain=-3.5:3.5,samples=100,color=red] plot ({\x},{-0.2*(\x+1.5)*(\x-1.5)});
+	\draw[color = blue] (2.6,3) node[left]{\footnotesize$\mathcal{C}_g$};
+	\draw[color = red] (-2.6,-1) node[below right]{\footnotesize$\mathcal{C}_f$};
+	\end{tikzpicture}\shorthandon{:}$$
+	\hfill\\[-0.2cm]\begin{enumerate}
+		\item Résoudre graphiquement $f(x) < g(x)$.
+		\item Faire un tableau de signes double pour les fonctions $f$ et $g$ et en déduire le signe de $f(x)\times g(x)$ en fonction de $x$.
+	\end{enumerate}
+	
+\end{frame}
+
+
+
+
+\begin{frame}
+	\frametitle{Question 8}
+	Pour tout  $x\in\R$ on définit:$$m(x) = (8x-7)(7x+1) \quad \text{et} \quad n(x) = (7x+1)(3x-8)$$
+	\begin{enumerate}
+		\item Résoudre dans $\R$ l'équation suivante: 
+		$$m(x) = n(x) $$
+		\item Donner le tableau de signes de $m(x) \times n(x)$ \\ en fonction de $x$.  
+	\end{enumerate}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Question 8}
+	Pour tout  $x\in\R$ on définit: $$k(x) = (-\dfrac{5}{3}x - 5)(-\dfrac{7}{5}x - 14)$$ \hfill\\[-0.2cm]
+	\begin{enumerate}
+		\item Donner le signe de $k(x)$ en fonction de $x$.\\ 
+		\item En déduire pour quelles valeurs de $x\in\R$ on a:
+		$$k(x) \leq 0$$
+	\end{enumerate}
+	
+	
+\end{frame}
+
+
+
+
+
+\end{document}

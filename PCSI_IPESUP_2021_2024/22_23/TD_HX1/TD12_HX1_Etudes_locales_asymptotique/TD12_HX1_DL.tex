@@ -1,0 +1,538 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\K}{\mathbb{K}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/3}\rfoot{PCSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+ %%%%BIBMATH%%%%
+ 
+ %(1)	https://www.bibmath.net/ressources/index.php?action=affiche&quoi=capes/methodes/analyseasymptotique.html
+ 
+ %(2)	https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/analyse/unevariable/compafonctions&type=fexo	
+ 
+ %(3)	https://www.bibmath.net/ressources/justeunexo.php?id=1153
+ 
+ %(4) 	https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/analyse/unevariable/dl&type=fexo
+ 
+ 
+ %(5)	https://www.bibmath.net/ressources/index.php?action=affiche&quoi=capes/feuillesexo/analyseasymptotique&type=fexo
+	
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 12 : Études locales et asymptotiques }}
+	\end{minipage}}
+
+\smallskip
+\section*{Connaître son cours:}
+\begin{itemize}[$\bullet$]
+	\item Soit $f$ une fonction de classe $\Cs^n$ sur un intervalle réel $I$ et $a \in I$. Donner l'expression de la formule de \emph{Taylor-Young} et proposer une démonstration par récurrence sur le degré $n$ de régularité de la fonction $f$.
+	\item Montrer qu'en cas d’existence, la liste des coefficients d’un
+	développement limité est unique. %Poly bertault
+	\item Donner un développement limité de la fonction $\tan$ en 0 puis en $\frac{\pi}{4}$ à l'ordre 5.
+	\item Donner un développement limité de la fonction $\left( x \mapsto \sqrt{1 + x}\right)$ en 0 à l'ordre 5.
+	\item Calculer le développement limité à l’ordre $5$ en $0$ de la fonction composée $\left(x \mapsto e^{\sin(x)}\right)$.
+	\item Calculer successivement les développements en $0$ à l’ordre 5 de $\left( x \mapsto\frac{1}{\cos(x)}\right)$ et de la fonction $\sin$. Retrouver le développements en $0$ à l’ordre $5$ de la fonction $\tan$. 
+	\item Soit $f$ une fonction admettant un développement limité à l’ordre $n$ en $a$ de partie régulière $P_n$. Montrer que toute primitive $F$ de $f$ admet un développement limité à l’ordre $n + 1$ en $a$ et donner son expression.
+\end{itemize}
+
+
+\raggedright
+
+\section*{Relations de comparaison et développements limités:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+	
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Soient $f$ et $g$ deux fonctions définies au voisinage d'un réel $a$ ou de $a=\pm\infty$. Montrer que
+	$e^f\sim_a e^g\iff \lim_a(f-g)=0$.
+	
+	A-t-on $f\sim_a g\implies e^f\sim_a e^g$?
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+ Déterminer les développements limités des fonctions suivantes :
+ 
+ 	\begin{enumerate}
+ 		\item $\displaystyle\dfrac{1}{1+x+x^2}\textrm{ à l'ordre 4 en 0}$
+ 		\item $\displaystyle\dfrac{\cos x-1}{\sin x+1}\textrm{ à l'ordre 2 en 0}$
+ 		\item $\displaystyle\dfrac{\ln(1+x)}{\sin x}\textrm{ à l'ordre 3 en 0}$
+ 	\end{enumerate}	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	
+	Calculer les développements limités suivants :
+	
+		\begin{enumerate}
+		\item $\displaystyle\ln\left(\dfrac{\sin x}{x}\right)\textrm{ à l'ordre 4 en 0}$
+		\item $\displaystyle\exp(\sin x)\textrm{ à l'ordre 4 en 0}$
+		\item $\displaystyle(\cos x)^{\sin x}\textrm{ à l'ordre 5 en 0}$
+	\end{enumerate}	
+
+	
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Calculer les développements limités suivants :
+	$$\begin{array}{lcl}
+	 1.\  \dfrac 1x\textrm{ à l'ordre 3 en }2&&\displaystyle 2. \ \ln(x)\textrm{ à l'ordre 3 en }2\\
+	\displaystyle 3. \ e^x\textrm{ à l'ordre 3 en }1&&\displaystyle  4. \  \cos(x)\textrm{ à l'ordre 3 en }\frac{\pi}3\\
+	\displaystyle  5. \ \sqrt x\textrm{ à l'ordre 3 en 2}
+	\end{array}$$
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Calculer les développements limités suivants :
+	
+			\begin{enumerate}
+		\item $\displaystyle   \arccos x\textrm{ à l'ordre 5 en 0}$
+		\item $\displaystyle   \int_0^x e^{t^2}dt\textrm{ à l'ordre 5 en 0}.$
+
+	\end{enumerate}	
+
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Soit $f(x)=\frac{x}{1-x^2}$. Calculer $f^{(n)}(0)$ puis $f^{(n)}(x)$ pour $|x|\neq1$ .
+
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Trouver un équivalent simple de $\arccos x$ en $1$.
+	\textit{Indication: faire un développement limité d'ordre $0$ à gauche et utiliser la fonction sinus}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+\end{minipage}
+\end{minipage}
+
+\newpage
+\raggedright
+
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+
+				
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Calculer les développements limités suivants :
+			$$\begin{array}{l}
+			 1. \ \dfrac{\sqrt{x+2}}{\sqrt x}\textrm{ à l'ordre 3 en }+\infty\\
+			\displaystyle 2. \ \ln\left(x+\sqrt {1+x^2}\right)-\ln x\textrm{ à l'ordre 4 en }+\infty
+			\end{array}$$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Calculer, à l'ordre 100, le développement limité
+			
+			en 0 de la fonction $\displaystyle \left(x\mapsto\ln\left(\sum_{k=0}^{99}\dfrac{x^k}{k!}\right)\right)$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Pour $x\in\mathbb R$, on pose $f(x)=x\exp(x^2)$.
+			\begin{enumerate}
+				\item Montrer que $f$ réalise une bijection de $\mathbb R$ sur $\mathbb R$.
+				\item Justifier que $f^{-1}$ admet un développement limité à l'ordre $4$ en $0$.
+				\item Donner ce développement limité.
+			\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Calculer $\ell = \lim\limits_{x\to+\infty}\left(\dfrac{\ln(x+1)}{\ln x}\right)^x.$ 
+			Donner un équivalent de 
+			$\left(\dfrac{\ln(x+1)}{\ln x}\right)^x - \ell$ lorsque $x \to +\infty$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Donner un développement limité à l'ordre $2$ de $f(x)=
+			\displaystyle{\frac{\sqrt{1+x^2}}{1+x+\sqrt{1+x^2}}}$ en $0$.
+			En déduire un développement à l'ordre $2$ en $+\infty$.
+			Calculer un développement à l'ordre $1$ en $-\infty$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $a$ un nombre réel et $f : ] a , +\infty [ \rightarrow \R$ une application de classe $C^2$. 
+			On suppose $f$ et $f''$ bornées ; on pose $\displaystyle  M_0=\sup _{x>a}\vert f(x)\vert$ et 
+			$\displaystyle  M_2=\sup_{x> a}\vert f''(x)\vert$.
+			\begin{enumerate}
+				\item En appliquant une formule de Taylor reliant $f(x)$ et $f(x+h)$, montrer que, pour tout 
+				$x>a$ et tout $h>0$, on a~: $\displaystyle \vert f'(x)\vert \leq \frac{h}{2}M_2+\frac{2}{h}M_0$.
+				
+				\item En déduire que $f'$ est bornée sur $]a,+\infty[$.
+				
+				
+			\end{enumerate}
+		
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Donner des équivalents simples pour les fonctions suivantes :
+			
+			\begin{enumerate}
+				\item $2e^x - \sqrt{1+4x} - \sqrt{1+6x^2}$,            en $0$      
+				\item $(\cos x)^{\sin x} - (\cos x)^{\tan x}$,         en $0$      
+				\item $\sqrt{x^2+1} -2\sqrt[3]{x^3+x} + \sqrt[4]{x^4+x^2}$,  en $+\infty$
+   
+			\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+
+		
+	
+		
+		
+	\end{minipage}
+\end{minipage}
+
+\section*{Applications et développements asymptotiques:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Calculer les limites suivantes
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item $\lim\limits_{x\rightarrow 0}\dfrac{e^{x^2}-\cos x}{x^2}$
+			\item $\lim\limits_{x\rightarrow 0}\dfrac{\cos x-\sqrt{1-x^2}}{x^4}$
+		\end{enumerate}
+	\end{multicols}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+			\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Étudier au voisinage de $0$ la fonction définie par  $f(x)=\dfrac{1}{x}-\dfrac{1}{\arcsin x}$. Est-elle prolongeable par\\[0.2cm] continuité? Dérivable en $0$? Trouver une tangente à la courbe en 0. 
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+		Donner un développement asymptotique à la précision $\dfrac{1}{n^3}$ (ordre 3) de $u_n=\dfrac{1}{n!}\sum_{k=0}^{n}k!$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		Donner un développement asymptotique:
+		\begin{enumerate}
+			\item    En $0$ de $\frac{1}{x(e^x-1)}-\frac{1}{x^2}$ à la précision $x^2$.
+			\item    En $+\infty$ de $x\ln(x+1)-(x+1)\ln x$ à la précision $\frac{1}{x^3}$.
+		\end{enumerate}
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+
+	
+
+
+
+	
+		
+	\end{minipage}
+\end{minipage}
+\newpage
+
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+			\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Etudier l'existence et la valeur éventuelle des limites suivantes
+			\begin{enumerate}
+				\item $\displaystyle\lim\limits_{x\rightarrow \pi/2}(\sin x)^{1/(2x-\pi)}$
+				\item $\displaystyle\lim\limits_{x\rightarrow \pi/2}|\tan x|^{\cos x}$
+				\item $\displaystyle\lim\limits_{n\rightarrow +\infty}\left(\cos(\dfrac{n\pi}{3n+1})+\sin(\dfrac{n\pi}{6n+1})\right)^n$
+				\item $\displaystyle\lim\limits_{x\rightarrow 0}(\cos x)^{\ln|x|}$
+				\item $\displaystyle\lim\limits_{x\rightarrow \pi/2}\cos x.e^{1/(1-\sin x)}$
+				\item $\displaystyle\lim\limits_{x\rightarrow \pi/3}\dfrac{2\cos^2x+\cos x-1}{2\cos^2x-3\cos x+1}$
+				\item $\displaystyle\lim\limits_{x\rightarrow 0}\left(\dfrac{1+\tan x}{1+\tanh x}\right)^{1/\sin x}$
+				\item $\displaystyle\lim\limits_{x\rightarrow e^-}(\ln x)^{\ln(e-x)}$
+				\item $\displaystyle\lim\limits_{x\rightarrow 1^+}\dfrac{x^x-1}{\ln(1-\sqrt{x^2-1})}$
+				\item $\displaystyle\lim\limits_{x\rightarrow 0^+}\dfrac{(\sin x)^x-x^{\sin x}}{\ln(x-x^2)+x-\ln x}$
+				\item $\displaystyle\lim\limits_{x \rightarrow 1/\sqrt{2}}\dfrac{(\arcsin x)^2-\dfrac{\pi^2}{16}}{2x^2-1}$
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+				
+		
+			
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			
+		\begin{enumerate}
+			\item  Montrer que l'équation $\tan x = x$ possède une unique solution
+			$x_n$ dans
+			$\left]n\pi-\frac \pi2, n\pi+\frac \pi2\right[$ $(n\in \N)$.
+			\item  Quelle relation lie $x_n$ et $\arctan(x_n)$ ? \label{relation}
+			\item  Donner un DL de $x_n$ en fonction de $n$ à l'ordre $0$ pour $n\to\infty$.
+			\item  En reportant dans la relation trouvée en \ref{relation},
+			obtenir un DL de $x_n$ à la précision $\frac{1}{n^2}$.
+		\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+		Soient $(u_n)$ et $(v_n)$ deux suites réelles positives telles que $u_n\sim_{+\infty}v_n$. On pose
+		$$U_n=\sum_{k=1}^n u_k\textrm{ et }V_n=\sum_{k=1}^n v_k,$$
+		et on suppose de plus que $V_n\to+\infty$.
+		
+		Démontrer que $U_n\sim_{+\infty} V_n.$
+		
+	
+		
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			Déterminer:
+			\begin{enumerate}
+				\item $\displaystyle \lim _{x \rightarrow -\infty} \sqrt{x^2+3x+2} +x$
+				
+				\item $\displaystyle \lim _{x \rightarrow 0^+}(\arctan x)^{\frac{1}{x^2}}$
+				
+				\item $\displaystyle \lim _{x \rightarrow 0} \frac{(1+3x)^{\frac{1}{3}}-1-\sin x}{1-\cos x}$
+			\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			Soit $u_0\in]0,\frac{\pi}{2}]$. Pour $n\in\N$, on pose 
+			$$u_{n+1}=\sin(u_n)$$
+			\begin{enumerate}
+				\item  Montrer brièvement que la suite $u$ est strictement positive et converge vers $0$.
+				\item 
+				\begin{enumerate}
+					\item Déterminer un réel $\alpha$ tel que la suite $u_{n+1}^\alpha-u_n^\alpha$ ait une limite finie non nulle.
+					\item En utilisant le lemme de \textsc{Cesaro}, déterminer un équivalent simple de $u_n$.
+					
+				\end{enumerate}
+			\end{enumerate}
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\textbf{(***)}\quad \\[0.2cm]
+			\textit{"Série harmonique et constante d'\textsc{Euler} "}\\[0.2cm]
+			On pose $$\displaystyle H_n=1+\frac12+\dots+\frac1n$$ 
+			\begin{enumerate}
+				\item Prouver que $\displaystyle H_n\sim_{+\infty}\ln n$.
+				\item On pose $\displaystyle u_n=H_n-\ln n$, et $\displaystyle v_n=u_{n+1}-u_n$.
+				\'Etudier la nature de la série $\displaystyle \sum_n v_n$. En déduire que la suite $(u_n)$ est convergente. 
+				
+				On notera $\displaystyle \gamma$ sa limite.
+				\item Soit $\displaystyle R_n=\sum\limits_{k=n}^{+\infty} \dfrac{1}{k^2}$.
+				
+				Donner un équivalent de $R_n$.
+				\item Soit $w_n$ tel que $\displaystyle H_n=\ln n+\gamma+w_n$, et soit 
+				$t_n=w_{n+1}-w_n$. 
+				
+				Donner un équivalent du reste $\displaystyle \sum\limits_{k\geq n}t_k$.
+				
+				En déduire que $$\displaystyle H_n=\ln n+\gamma+\frac{1}{2n}+o\left(\frac1n\right)$$
+			\end{enumerate}
+	
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+
+		
+		
+	\end{minipage}
+\end{minipage}
+	
+
+\end{document}

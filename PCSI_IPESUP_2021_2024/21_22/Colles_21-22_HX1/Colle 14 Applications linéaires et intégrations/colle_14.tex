@@ -1,0 +1,314 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor,multicol}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	
+	
+	\begin{center}
+		\Large \sc colle 14 = Espaces vectoriels, applications linéaires et intégration
+	\end{center}
+
+
+
+
+
+\section*{Espaces vectoriels et applications linéaires:}\hfill\\\hfill\\
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+	\begin{exo}\quad\\
+		Soit $f$ l'endomorphisme de $\R^2$ de matrice\\[0.25cm] $A=\begin{pmatrix} 2&\frac 23\\[0.25cm]
+		-\frac 52&-\frac 23 \end{pmatrix}$ dans la base canonique. Soient\\[0.25cm] 
+		$e_1 = \begin{pmatrix} -2 \\ 3\end{pmatrix}$
+		et $e_2 = \begin{pmatrix} -2 \\ 5 \end{pmatrix}$.
+		\begin{enumerate}
+			\item Montrer que $\mathcal{B}'= (e_1, e_2)$ est une base de $\R^2$ et déterminer 
+			$\text{Mat}_{\mathcal{B}'}(f)$.
+			\item Calculer $A^n$ pour $n \in \N$.
+			\item Déterminer l'ensemble des suites réelles qui \\[0.25cm]vérifient $\forall n \in \N$
+			$\begin{cases} x_{n + 1} = 2x_n + \dfrac 23 y_n \\ y_{n + 1} = -\dfrac 52 x_n -
+			\dfrac 23 y_n \end{cases}$.\\[0.25cm]
+		\end{enumerate}
+		
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+	\begin{exo}\quad\\
+	
+			
+		Soient $A, B$ deux matrices semblables (i.e. il existe $P$
+		inversible telle que $B = P^{-1} A P$). Montrer que si l'une est
+		inversible, l'autre aussi\,; que si l'une est idempotente, l'autre
+		aussi\,; que si l'une est nilpotente, l'autre aussi\,; que si $A =
+		\lambda I$, alors $A = B$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+	\begin{exo}\quad\\
+		Soit $f$ l'endomorphisme de $\R^2$ dont la matrice par
+		rapport \`a la base canonique $(e_1, e_2)$ est
+		$$A= \left( 
+		\begin{array}{cc}
+		11 & -6  \\
+		12 & -6  \\
+		\end{array}
+		\right).$$
+		Montrer que les vecteurs
+		$$ e'_1 = 2e_1+3e_2,\quad e'_2 = 3e_1+4e_2,$$
+		forment une base de $\R^2$ et calculer la matrice de $f$ par
+		rapport \`a cette base.	
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+	
+		\begin{exo}\quad\\[0.25cm]
+		% anti diagonal dots
+		\def\Ddots{\mathinner{\mkern2mu\raise1pt\hbox{.}\mkern2mu
+				\newline \raise4pt\hbox{.}\mkern2mu\raise7pt\hbox{.}\mkern1mu}}
+		Soit $A = \begin{pmatrix} 
+		0&&\dots&0&1 \\ 
+		\vdots&&&1&0 \\
+		& &  \Ddots && \\
+		0&1& & &\vdots \\ 
+		1&0&&\dots&0
+		\end{pmatrix}$. 
+		\hfil\\[0.25cm] En utilisant l'application linéaire associée de 
+		$\mathcal{L} (\R^n,\R^n)$, calculer $A^p$ pour $p \in \Z$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+	
+	
+	\begin{exo}\quad\\
+		Soit $\R^2$ muni de la base canonique $\mathcal{B}=(\vec{i}, \vec{j})$.\\
+		Soit $f : \R^2 \to \R^2$ la projection sur l'axe des abscisses $\R \vec{i}$ 
+		parall\`element à $\R (\vec{i} + \vec{j})$.
+		Déterminer $\textrm{Mat}_{\mathcal{B},\mathcal{B}}(f)$, la matrice de $f$ dans la base $(\vec{i}, \vec{j})$.
+		
+		Même question avec $\textrm{Mat}_{\mathcal{B}',\mathcal{B}}(f)$ où $\mathcal{B'}$ est la base 
+		$(\vec{i} - \vec{j}, -2\vec{i}+3\vec{j})$ de $\R^2$.
+		Même question avec $\textrm{Mat}_{\mathcal{B}',\mathcal{B}'}(f)$.	
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+\begin{exo}\quad\\
+	Soit  $E$  un espace vectoriel et  $f$  une application linéaire de
+	$E$  dans  lui-m\^eme telle que  $f^2=f$.
+	\begin{enumerate}
+		\item Montrer que  $E= \ker f \oplus \Im f$.
+		
+		\item Supposons que  $E$ soit de dimension finie  $n$. 
+		Posons  $r= \dim \Im f$. 
+		Montrer qu'il existe une base 
+		$\mathcal{B}= ( e_1, \ldots ,e_n)$ de  $E$  telle que : 
+		$f(e_i)=e_i$ si $i\le r$ et $f(e_i)=0$ si $i>r$. 
+		Déterminer la matrice de  $f$ dans cette base $\mathcal{B}$.
+	\end{enumerate}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+		\begin{exo}\quad\\
+			Trouver toutes les matrices de $\mathcal{M}_3(\R)$ qui vérifient
+			\begin{enumerate}
+				\item $M^2 = 0$ ;
+				\item $M^2 = M$ ; 
+				\item $M^2 = I$. 
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+\newpage
+
+
+\section*{Intégration :}\hfill\\\hfill\\
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\
+			Soit $f:[a,b]\rightarrow \R$ une fonction continue sur $[a,b]$ ($a<b$).
+			\begin{enumerate}
+				\item On suppose que $f(x) \ge 0$ pour tout $x\in [a,b]$, et que $f(x_0)>0$ en un point $x_0\in [a,b]$. 
+				Montrer que $\int_a^b f(x) d x>0$. En déduire que : <<si $f$ est une fonction continue
+				positive sur $[a,b]$ telle que $\int_a^b f(x) d x=0$ alors $f$ est
+				identiquement nulle>>.
+				\item On suppose que $\int_a^b f(x) d x=0$. Montrer qu'il existe $c\in [a,b]$ tel que $f(c)=0$. 
+				\item Application: on suppose
+				que $f$ est une fonction continue sur $[0,1]$ telle que $\int_0^1 f(x) dx=\frac 12$. 
+				Montrer qu'il existe $d\in [0,1]$ tel que $f(d)=d$.
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\quad\\
+			Soient les fonctions définies sur $\R$,
+			$$f(x)=x \text{ , } g(x)=x^2 \text{ et  } h(x)=e^x,$$
+			Justifier qu'elles sont intégrables sur tout intervalle fermé borné de $\R$. En utilisant les
+			sommes de Riemann, calculer les intégrales $\int_0^1f(x)d x$, $\int_1^2 g(x)
+			d x$ et $\int_0^x h(t) d t$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+				\begin{exo}\quad\\
+			Calculer les intégrales suivantes :
+			$$\int_0^{\frac \pi 2}\frac 1{1+\sin x}d x \quad \mbox{ et } \quad \int_0^{\frac \pi 2}\frac{\sin
+				x}{1+\sin x}d x.$$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\quad\\[0.25cm]
+		Soit $\displaystyle I_{n} = \int_0^1 \frac{x^n}{1 + x}d x$.
+		\begin{enumerate}
+			\item En majorant la fonction int\'egr\'ee, montrer que
+			$\lim_{n\to +\infty} I_{n}=0$.
+			\item  Calculer $I_n + I_{n + 1}$.
+			\item D\'eterminer $\displaystyle \lim_{n \rightarrow  + \infty} \left(\sum_{k = 1}^n \frac{
+				(-1)^{k + 1}}k\right)$.
+		\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+	
+	\begin{exo}\quad\\
+		Calculer la limite des suites suivantes :
+		\begin{enumerate}
+			\item $\displaystyle u_n=n\sum_{k=0}^{n-1}\frac 1{k^2+n^2}$
+			\item $\displaystyle v_n=\prod\limits_{k=1}^n\left(1+\frac{k^2}{n^2}\right) ^{\frac 1n}$
+		\end{enumerate}
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+	\begin{exo}\quad\\
+	Soit $f$ une fonction de classe $C^1$ sur $[0,1]$ telle que $f(0)=0$. Montrer que $2\int_{0}^{1}f^2(t)\;dt\leq\int_{0}^{1}{f'}^2(t)\;dt$.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+	\begin{exo}\quad\\
+		Soit $f$ une fonction de classe $C^2$ sur $[0,1]$. Déterminer le réel $a$ tel que :
+		
+		$$\int_{0}^{1}f(t)\;dt-\frac{1}{n}\sum_{k=1}^{n-1}f(\frac{k}{n})\underset{n\rightarrow+\infty}{=}\frac{a}{n}+o(\frac{1}{n}).$$
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+
+		
+	
+		
+		
+	\end{minipage}
+\end{minipage}
+
+\end{document}

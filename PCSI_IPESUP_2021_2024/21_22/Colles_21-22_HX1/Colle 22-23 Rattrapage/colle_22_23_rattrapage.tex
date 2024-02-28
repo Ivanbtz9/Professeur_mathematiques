@@ -1,0 +1,197 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace,xypic}
+\usepackage{xcolor,multicol,tabularx}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\p}{\mathbb{P}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+ 	
+	
+	\begin{center}
+		\Large \sc colle 22-23 = Rattrapage 
+	\end{center}
+
+
+
+
+\section*{Colle 22:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+	
+\begin{exo}\quad\\
+	
+	Soit $X$ une variable aléatoire prenant ses valeurs dans $\{0,1,...,N\}$. Démontrer que 
+	$$E(X) = \sum_{n=0}^{N-1} P(X>n)$$
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+		\begin{exo}\quad\\[0.2cm]
+	Pour  $(x,y)\in\R^2$, on pose \\[0.2cm]$f(x,y) =\left\{
+	\begin{array}{l}
+	\frac{xy(x^2-y^2)}{x^2+y^2}\;\text{si}\;(x,y)\neq(0,0)\\
+	\rule{0mm}{5mm}0\;\text{si}\;(x,y)=(0,0)
+	\end{array}
+	\right.$.\hfil\\[0.2cm] Montrer que $f$ est de classe $C^1$ (au moins) sur $\R^2$.
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}	
+
+
+
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+	
+	\begin{exo}\quad\\[0.2cm]
+		Une entreprise souhaite recrute un cadre. $n$ personnes se présentent pour le poste. Chacun d'entre eux passe à tour de rôle un test, et le premier qui réussit le test est engagé. La probabilité de réussir le test est $p\in ]0,1[$. On pose également $q=1-p$. On définit la variable aléatoire $X$ par $X=k$ si le k-ième candidat qui réussit le test est engagé, et $X=n+1$ si personne n'est engagé.
+		\begin{enumerate}
+			\item Déterminer la loi de $X$.
+			\item En dérivant la fonction  $x\mapsto \sum_{k=0}^{n}x^k$.\\[0.1cm]
+			En déduire l'espérance de $X$. 
+			\item Quelle est la valeur minimale de $p$ pour avoir plus d'une chance sur deux de recruter l'un des candidats? 
+		\end{enumerate}
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}	
+
+	
+
+
+		
+			
+		
+		
+	\end{minipage}
+\end{minipage}	
+
+
+\section*{Colle 23:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\quad\\
+			
+			On pose $Q_0=(X-1)(X-2)^2$, $Q_1=X(X-2)^2$ et $Q_2=X(X-1)$. 
+			\`A l'aide de la décomposition en éléments simples de $\frac{1}{X(X-1)(X-2)^2}$, 
+			trouver des polynômes $A_0,\ A_1,\ A_2$ tels que $A_0Q_0+A_1Q_1+A_2Q_2=1$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	
+	\begin{exo}\quad\\[0.2cm] %https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/analyse/calculdiff/extrema&type=fexo
+		On désire fabriquer une boite ayant la forme d'un parallélépipède rectangle, sans couvercle sur le dessus. Le volume de cette boite doit être égal à $0,5m^3$ et pour optimiser la quantité de mâtière utilisée, on désire que la somme des aires des faces soit aussi petite que possible. Quelles dimensions doit-on choisir pour fabriquer la boite?
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+
+\begin{exo}\quad\\
+	Soit $T_n(x)=\cos\big(n \arccos(x)\big)$ pour $x\in [-1,1]$.
+	\begin{enumerate}
+		\item 
+		\begin{enumerate}
+			\item Montrer que pour tout $\theta\in[0,\pi]$, $T_n(\cos\theta)=\cos(n\theta)$.
+			\item Calculer $T_0$ et $T_1$.
+			\item Montrer la relation de récurrence $T_{n+2}(x) = 2xT_{n+1}(x)-T_n(x)$, pour tout $n \ge0$.
+			\item En déduire que $T_n$ une fonction polynomiale de degré $n$.
+		\end{enumerate}
+		
+		\item Soit $P(X)=\lambda(X-a_1)\cdots(X-a_n)$ un polynôme, où les $a_k$ sont deux à deux distincts 
+		et $\lambda\not=0$. Montrer que 
+		$$\frac{1}{P(X)}=\sum_{k=1}^n\frac{\frac{1}{P'(a_k)}}{X-a_k}$$
+		
+		\item Décomposer $\frac{1}{T_n}$ en éléments simples.
+	\end{enumerate}
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+	
+
+		
+		
+		
+		
+	\end{minipage}
+\end{minipage}	
+
+
+
+\end{document}

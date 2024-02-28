@@ -1,0 +1,2143 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00094, rouget, 2010/07/11}
+
+\titre{Matrices} 
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable\quad T~:~pour travailler et mémoriser le cours
+\end{center}
+
+
+\exercice{5257, rouget, 2010/07/04}
+\enonce{005257}{**T}
+Soit $u$ l'endomorphisme de $\Rr^3$ dont la matrice dans la base canonique $(i,j,k)$ de $\Rr^3$ est~:
+
+$$M=\left(
+\begin{array}{ccc}
+2&1&0\\
+-3&-1&1\\
+1&0&-1
+\end{array}
+\right)
+.$$
+
+\begin{enumerate}
+\item  Déterminer $u(2i-3j+5k)$.
+\item  Déterminer $\mbox{Ker}u$ et $\mbox{Im}u$.
+\item  Calculer $M^2$ et $M^3$.
+\item  Déterminer $\mbox{Ker}u^2$ et $\mbox{Im}u^2$.
+\item  Calculer $(I-M)(I+M+M^2)$ et en déduire que $I-M$ est inversible. Préciser $(I-M)^{-1}$.
+\end{enumerate}
+\finenonce{005257}
+
+
+\finexercice
+\exercice{5258, rouget, 2010/07/04}
+\enonce{005258}{**}
+Pour $x$ réel, on pose~:
+
+$$A(x)=
+\left(
+\begin{array}{cc}
+\ch x&\sh x\\
+\sh x&\ch x
+\end{array}
+\right)
+.$$
+
+Déterminer $(A(x))^n$ pour $x$ réel et $n$ entier relatif.
+\finenonce{005258}
+
+
+\finexercice
+\exercice{5259, rouget, 2010/07/04}
+\enonce{005259}{***T}
+Soit $u$ l'endomorphisme de $\Rr^3$ dont la matrice dans la base canonique $(i,j,k)$ de $\Rr^3$ est~:
+
+$$M=\left(
+\begin{array}{ccc}
+0&1&0\\
+0&0&1\\
+1&-3&3
+\end{array}
+\right)
+.$$
+
+\begin{enumerate}
+\item  Montrer que $u$ est un automorphisme de $\Rr^3$ et déterminer $u^{-1}$.
+\item  Déterminer une base $(e_1,e_2,e_3)$ de $\Rr^3$ telle que $u(e_1)=e_1$, $u(e_2)=e_1+e_2$ et $u(e_3)=e_2+e_3$.
+\item  Déterminer $P$ la matrice de passage de $(i,j,k)$ à $(e_1,e_2,e_3)$ ainsi que $P^{-1}$.
+\item  En déduire $u^n(i)$, $u^n(j)$ et $u^n(k)$ pour $n$ entier relatif.
+\end{enumerate}
+\finenonce{005259}
+
+
+\finexercice
+\exercice{5260, rouget, 2010/07/04}
+\enonce{005260}{**}
+Soit $\begin{array}[t]{cccc}
+f~:&\Rr_n[X]&\rightarrow&\Rr_{n+1}[X]\\
+ &P&\mapsto&Q=e^{X^2}(Pe^{-X^2})'
+\end{array}$.
+
+\begin{enumerate}
+\item  Vérifier que $f\in(\mathcal{L}(\Rr_n[X],\Rr_{n+1}[X])$.
+\item  Déterminer la matrice de $f$ relativement aux bases canoniques de $\Rr_n[X]$ et $\Rr_{n+1}[X]$.
+\item  Déterminer $\mbox{Ker}f$ et $\mbox{rg}f$.
+\end{enumerate}
+\finenonce{005260}
+
+
+\finexercice
+\exercice{5261, rouget, 2010/07/04}
+\enonce{005261}{***I}
+Soit $f$ un endomorphisme de $\Rr^3$, nilpotent d'indice $2$. Montrer qu'il existe une base de $\Rr^3$ dans 
+laquelle la matrice de $f$ s'écrit $\left(
+\begin{array}{ccc}
+0&0&0\\
+1&0&0\\
+0&0&0
+\end{array}
+\right)$.
+\finenonce{005261}
+
+
+\finexercice
+\exercice{5262, rouget, 2010/07/04}
+\enonce{005262}{**}
+Soit $A=\left(
+\begin{array}{ccccc}
+0&0&\ldots&0&1\\
+0& & &1&0\\
+\vdots& & & &\vdots\\
+0&1&0& &0\\
+1&0&\ldots&\ldots&0 
+\end{array}
+\right)
+\in\mathcal{M}_p(\Rr)$. Calculer $A^n$ pour $n$ entier relatif.
+\finenonce{005262}
+
+
+\finexercice
+\exercice{5263, rouget, 2010/07/04}
+\enonce{005263}{**}
+Montrer que $\{\frac{1}{\sqrt{1-x^2}}\left(
+\begin{array}{cc}
+1&x\\
+x&1
+\end{array}
+\right),\;x\in]-1,1[\}$ est un groupe pour la multiplication des matrices.
+\finenonce{005263}
+
+
+\finexercice
+\exercice{5264, rouget, 2010/07/04}
+\enonce{005264}{***}
+\begin{enumerate}
+\item  Montrer qu'une matrice triangulaire supérieure est inversible si et seulement si ses coefficients diagonaux sont tous non nuls.
+\item  Montrer que toute matrice triangulaire supérieure est semblable à une matirce triangulaire inférieure.
+\end{enumerate}
+\finenonce{005264}
+
+
+\finexercice
+\exercice{5265, rouget, 2010/07/04}
+\enonce{005265}{***}
+Soient $I=\left(
+\begin{array}{cc}
+1&0\\
+0&1
+\end{array}
+\right)$ et $J=\left(
+\begin{array}{cc}
+1&1\\
+0&1
+\end{array}
+\right)$ puis $E=\{M(x,y)=xI+yJ,\;(x,y)\in\Rr^2\}$.
+
+\begin{enumerate}
+\item  Montrer que $(E,+,.)$ est un sous-espace vectoriel de $\mathcal{M}_2(\Rr)$. Déterminer une base de $E$ et sa dimension.
+\item  Montrer que $(E,+,\times)$ est un anneau commutatif.
+\item  Quels sont les inversibles de $E$~?
+\item  Résoudre dans $E$ les équations suivantes~:
+
+$$a)\;X^2=I\quad b)\;X^2=0\quad c)\;X^2 = X.$$
+
+\item  Calculer $(M(x,y))^n$ pour $n$ entier naturel non nul.
+\end{enumerate}
+\finenonce{005265}
+
+
+\finexercice
+\exercice{5266, rouget, 2010/07/04}
+\enonce{005266}{****}
+Soit $A\in\mathcal{M}_{3,2}(\Rr)$ et $B\in\mathcal{M}_{2,3}(\Rr)$ telles que~:
+
+$$AB=
+\left(
+\begin{array}{ccc}
+0&-1&-1\\
+-1&0&-1\\
+1&1&2
+\end{array}
+\right)
+.$$
+
+Montrer l'existence d'au moins un couple $(A,B)$ vérifiant les conditions de l'énoncé puis calculer $BA$. (Indication. Calculer $(AB)^2$ et utiliser le rang.)
+\finenonce{005266}
+
+
+\finexercice
+\exercice{5267, rouget, 2010/07/04}
+\enonce{005267}{***}
+Soit $A=(a_{i,j})_{1\leq i,j\leq n}$ $(n\geq2)$ définie par 
+
+$$\forall i\in\{1,...,n\},\;a_{i,j}=
+\left\{
+\begin{array}{l}
+i\;\mbox{si}\;i=j\\
+1\;\mbox{si}\;i>j\\
+0\;\mbox{si}\;i<j
+\end{array}
+\right..$$
+
+Montrer que $A$ est inversible et calculer son inverse.
+\finenonce{005267}
+
+
+\finexercice
+\exercice{5268, rouget, 2010/07/04}
+\enonce{005268}{***I}
+Déterminer le centre de $\mathcal{M}_n(\Kk)$, c'est à dire l'ensemble des éléments de $\mathcal{M}_n(\Kk)$ qui commutent avec tous les éléments de $\mathcal{M}_n(\Kk)$ (utiliser les matrices élémentaires).
+\finenonce{005268}
+
+
+\finexercice
+\exercice{5269, rouget, 2010/07/04}
+\enonce{005269}{***T}
+Déterminer le rang des matrices suivantes~:
+
+$$\begin{array}{llll}
+1)
+\left(
+\begin{array}{ccc}
+1&1/2&1/3\\
+1/2&1/3&1/4\\
+1/3&1/4&m
+\end{array}
+\right)
+&
+2)\left(
+\begin{array}{ccc}
+1&1&1\\
+b+c&c+a&a+b\\
+bc&ca&ab
+\end{array}
+\right)
+&
+3)\left(
+\begin{array}{cccc}
+1&a&1&b\\
+a&1&b&1\\
+1&b&1&a\\
+b&1&a&1
+\end{array}
+\right)
+&
+4)\;(i+j+ij)_{1\leq i,j\leq n}\\
+5)\;(\sin(i+j))_{1\leq i,j\leq n}
+&
+6)\;
+\left(
+\begin{array}{ccccc}
+a&b&0&\ldots&0\\
+0&a&\ddots&\ddots&\vdots\\
+\vdots&\ddots&\ddots&\ddots&0\\
+0& &\ddots&\ddots&b\\
+b&0&\ldots&0&a
+\end{array}
+\right).
+\end{array}
+$$
+\finenonce{005269}
+
+
+\finexercice
+\exercice{5270, rouget, 2010/07/04}
+\enonce{005270}{****}
+Montrer que tout hyperplan de $\mathcal{M}_n(\Kk)$ $(n\geq 2)$ contient au moins une matrice inversible.
+\finenonce{005270}
+
+
+\finexercice
+\exercice{5271, rouget, 2010/07/04}
+\enonce{005271}{***}
+Soit $f$ qui, à $P\in\Rr_{2n}[X]$ associe $f(P)=X(X+1)P'-2kXP$.
+Trouver $k$ tel que $f\in\mathcal{L}(\Rr_{2n}[X])$ puis, pour cette valeur de $k$, trouver tous les polynômes $P$ non nuls tels que la famille $(P,f(P))$ soit liée.
+\finenonce{005271}
+
+
+
+\finexercice
+\exercice{5272, rouget, 2010/07/04}
+\enonce{005272}{***I Théorème de \textsc{Hadamard}}
+Soit $A\in\mathcal{M}_n(\Cc)$ telle que~:~$\forall i\in\{1,...,n\},\;|a_{i,i}|>\sum_{j\neq i}^{}|a_{i,j}|$. Montrer que $A$ est inversible.
+\finenonce{005272}
+
+
+\finexercice
+\exercice{5273, rouget, 2010/07/04}
+\enonce{005273}{***I}
+Calculs par blocs.
+\begin{enumerate}
+\item  Soit $M=
+\left(
+\begin{array}{cc}
+A&B\\
+C&D
+\end{array}
+\right)
+$ et $N=\left(
+\begin{array}{cc}
+A'&B'\\
+C'&D'
+\end{array}
+\right)$ avec $(A,A')\in(\mathcal{M}_{p,r}(\Kk))^2$, $(B,B')\in(\mathcal{M}_{p,s}(\Kk))^2$, $(C,C')\in(\mathcal{M}_{q,r}(\Kk))^2$ et $(D,D')\in(\mathcal{M}_{q,s}(\Kk))^2$. Calculer $M+N$ en fonction de $A$, $B$, $C$, $D$, $A'$, $B'$, $C'$ et $D'$.
+\item  Question analogue pour $MN$ en analysant précisément les formats de chaque matrice.
+\end{enumerate}
+\finenonce{005273}
+
+
+\finexercice\exercice{5274, rouget, 2010/07/04}
+\enonce{005274}{***I Matrice de \textsc{Vandermonde} des racines $n$-ièmes de l'unité}
+Soit $\omega=e^{2i\pi/n}$, $(n\geq 2)$. Soit $A=(\omega^{(j-1)(k-1)})_{1\leq j,k\leq n}$. Montrer que $A$ est inversible et calculer $A^{-1}$ (calculer d'abord $A\overline{A}$).
+\finenonce{005274}
+
+
+\finexercice
+\exercice{5275, rouget, 2010/07/04}
+\enonce{005275}{***}
+Soit $A=
+\left(
+\begin{array}{cccc}
+7&4&0&0\\
+-12&-7&0&0\\
+20&11&-6&-12\\
+-12&-6&6&11
+\end{array}
+\right)
+$ et $u$ l'endomorphisme de $\Cc^4$ de matrice $A$ dans la base canonique de $\Cc^4$.
+\begin{enumerate}
+\item  Déterminer une base de $\Cc^4$ formée de vecteurs colinéaires à leurs images.
+\item  Ecrire les formules de changement de base correspondantes.
+\item  En déduire le calcul de $A^n$ pour $n$ entier naturel.
+\end{enumerate}
+\finenonce{005275}
+
+
+\finexercice
+\exercice{5276, rouget, 2010/07/04}
+\enonce{005276}{***I}
+Soit $A=(a_{i,j})_{1\leq i,j\leq n+1}$ définie par $a_{i,j}=0$ si $i>j$ et $a_{i,j}=C_{j-1}^{i-1}$ si $i\leq j$.
+
+Montrer que $A$ est inversible et déterminer son inverse. (Indication~:~considérer l'endomorphisme de $\Rr_n[X]$ qui à un polynôme $P$ associe le polynôme $P(X+1)$).
+\finenonce{005276}
+
+
+\finexercice\exercice{5277, rouget, 2010/07/04}
+\enonce{005277}{**I}
+On pose $u_0=1$, $v_0=0$, puis, pour $n\in\Nn$, $u_{n+1}=2u_n+v_n$ et $v_{n+1}=u_n+2v_n$.
+\begin{enumerate}
+\item  Soit $A=\left(
+\begin{array}{cc}
+2&1\\
+1&2
+\end{array}
+\right)$. Pour $n\in\Nn$, calculer $A^n$. En déduire $u_n$ et $v_n$ en fonction de $n$.
+\item  En utilisant deux combinaisons linéaires intéressantes des suites $u$ et $v$, calculer directement $u_n$ et $v_n$ en fonction de $n$.
+\end{enumerate}
+
+\finenonce{005277}
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005257}
+\begin{enumerate}
+\item  Soit $X=\left(
+\begin{array}{c}
+2\\
+-3\\
+5
+\end{array}
+\right)$. $MX=\left(
+\begin{array}{ccc}
+2&1&0\\
+-3&-1&1\\
+1&0&-1
+\end{array}
+\right)\left(
+\begin{array}{c}
+2\\
+-3\\
+5
+\end{array}
+\right)=\left(
+\begin{array}{c}
+1\\
+2\\
+-3
+\end{array}
+\right)$  et $u(2i-3j+5k)=i+2j-3k$.
+\item  Soit $X=\left(
+\begin{array}{c}
+x\\
+y\\
+z
+\end{array}
+\right)\in\mathcal{M}_{3,1}(\Rr)$ . 
+
+$$MX=0\Leftrightarrow\left(
+\begin{array}{ccc}
+2&1&0\\
+-3&-1&1\\
+1&0&-1
+\end{array}
+\right)\left(
+\begin{array}{c}
+x\\
+y\\
+z
+\end{array}
+\right)=\left(
+\begin{array}{c}
+0\\
+0\\
+0
+\end{array}
+\right)\Leftrightarrow
+\left\{
+\begin{array}{l}
+2x+y=0\\
+-3x-y+z=0\\
+x-z=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=-2x\\
+z=x
+\end{array}
+\right..$$
+
+Donc, $\mbox{Ker}u=\mbox{Vect}(i-2j+k)$. En particulier, $\mbox{dim}(\mbox{Ker}u)=1$ et, d'après le théorème du rang, $\mbox{rg}u=2$. Or, $u(j)=i-j$ et $u(k)=j+k$ sont deux vecteurs non colinéaires de $\mbox{Im}u$ qui est un plan vectoriel et donc $\mbox{Im}u=\mbox{Vect}(i-j,j-k)$.
+
+\item  $$M^2=\left(
+\begin{array}{ccc}
+2&1&0\\
+-3&-1&1\\
+1&0&-1
+\end{array}
+\right)\left(
+\begin{array}{ccc}
+2&1&0\\
+-3&-1&1\\
+1&0&-1
+\end{array}
+\right)=\left(
+\begin{array}{ccc}
+1&1&1\\
+-2&-2&-2\\
+1&1&1
+\end{array}
+\right)$$
+
+et 
+
+$$M^3=M^2.M=\left(
+\begin{array}{ccc}
+1&1&1\\
+-2&-2&-2\\
+1&1&1
+\end{array}
+\right)\left(
+\begin{array}{ccc}
+2&1&0\\
+-3&-1&1\\
+1&0&-1
+\end{array}
+\right)=0.$$
+
+\item  $\mbox{Ker}u^2$ est à l'évidence le plan d'équation $x+y+z=0$. Une base de $\mbox{Ker}u^2$ est $(i-j,j-k)$ et donc $\mbox{Ker}u^2=\mbox{Im}u=\mbox{Vect}(i-j,j-k)$.
+
+D'après le théorème du rang, $\mbox{Im}u^2$ est une droite vectorielle. Mais $u^3=0$ s'écrit encore $u\circ u^2=0$, et donc $\mbox{Im}u^2$ est contenue dans $\mbox{Ker}u$ qui est une droite vectorielle. Donc, $\mbox{Im}u^2=\mbox{Ker}u=\mbox{Vect}(i-2j+k)$.
+
+\item  $(I-M)(I+M+M^2)=I-M^3=I$. Par suite, $I-M$ est inversible à droite et donc inversible et 
+
+$$(I-M)^{-1}=I+M+M^2=\left(
+\begin{array}{ccc}
+1&0&0\\
+0&1&0\\
+0&0&1
+\end{array}
+\right)+\left(
+\begin{array}{ccc}
+2&1&0\\
+-3&-1&1\\
+1&0&-1
+\end{array}
+\right)+\left(
+\begin{array}{ccc}
+1&1&1\\
+-2&-2&-2\\
+1&1&1
+\end{array}
+\right)=\left(
+\begin{array}{ccc}
+4&2&1\\
+-5&-2&-1\\
+2&1&1
+\end{array}
+\right).$$
+
+\end{enumerate}
+\fincorrection
+\correction{005258}
+Soient $x$ et $y$ deux réels.
+
+\begin{align*}\ensuremath
+A(x)A(y)&=\left(
+\begin{array}{cc}
+\ch x&\sh x\\
+\sh x&\ch x
+\end{array}
+\right)\left(
+\begin{array}{cc}
+\ch y&\sh y\\
+\sh y&\ch y
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+\ch x\ch y+\sh x\sh y&\sh x\ch y+\ch x\sh y\\
+\sh x\ch y+\ch x\sh y&\ch x\ch y+\sh x\sh y
+\end{array}
+\right)\\
+ &=\left(
+\begin{array}{cc}
+\ch(x+y)&\sh(x+y)\\
+\sh(x+y)&\ch(x+y)
+\end{array}
+\right).
+\end{align*}
+
+En particulier,
+
+$$A(x)A(-x)=A(-x)A(x)=A(0)=\left(
+\begin{array}{cc}
+1&0\\
+0&1
+\end{array}
+\right)=I_2,$$
+
+et $A(x)$ est inversible d'inverse $A(-x)$.
+
+On a aussi, pour $n$ entier naturel non nul donné~:
+
+$$(A(x))^n=A(x)A(x)...A(x)=A(x+x...+x)=A(nx),$$
+
+ce qui reste clair pour $n=0$ car $A(x)^0=I_2=A(0)$. Enfin, $(A(x))^{-n}=(A(x)^{-1})^n=A(-x)^n=A(-nx)$. Finalement, 
+
+$$\forall n\in\Zz,\;(A(x))^n=A(nx)=\left(
+\begin{array}{cc}
+\ch(nx)&\sh(nx)\\
+\sh(nx)&\ch(nx)
+\end{array}
+\right).$$
+\fincorrection
+\correction{005259}
+\begin{enumerate}
+\item  $\mbox{rg}u=\mbox{rg}(u(i),u(j),u(k))=rg(u(j),u(k),u(i))$. La matrice de cette dernière famille dans la base $(i,j,k)$ est $\left(
+\begin{array}{ccc}
+1&0&0\\
+0&1&0\\
+-3&3&1
+\end{array}
+\right)$. Cette dernière famille est de rang $3$. Donc, $\mbox{rg}u=3$ et $u$ est bien un automorphisme de $\Rr^3$. Posons $e_1=u(i)$, $e_2=u(j)$ et $e_3=u(k)$.
+
+$$\left\{
+\begin{array}{l}
+e_1=k\\
+e_2=i-3k\\
+e_3=j+3k
+\end{array}\right.
+\Leftrightarrow\left\{
+\begin{array}{l}
+k=e_1\\
+i=3e_1+e_2\\
+j=-3e_1+e_3
+\end{array}\right.
+\Leftrightarrow
+\left\{
+\begin{array}{l}
+u^{-1}(k)=i\\
+u^{-1}(i)=3i+j\\
+u^{-1}(j)=-3i+k
+\end{array}\right.
+$$
+
+et 
+
+$$A^{-1}=\mbox{Mat}_{\mathcal{B}}(u^{-1})=\left(
+\begin{array}{ccc}
+3&-3&1\\
+1&0&0\\
+0&1&0
+\end{array}
+\right).$$ 
+
+\item (Questions 2) et 3)). Posons $e_1=xi+yj+zk$ ($e_1$, $e_2$ et $e_3$ désignent d'autres vecteurs que ceux du 1)).
+
+$$u(e_1)=e_1\Leftrightarrow(u-Id)(e_1)=0\Leftrightarrow\left(
+\begin{array}{ccc}
+-1&1&0\\
+0&-1&1\\
+1&-3&2
+\end{array}
+\right)\left(
+\begin{array}{c}
+x\\
+y\\
+z
+\end{array}
+\right)=\left(
+\begin{array}{c}
+0\\
+0\\
+0
+\end{array}
+\right)\Leftrightarrow
+\left\{
+\begin{array}{l}
+-x+y=0\\
+-y+z=0\\
+x-3y+2z=0
+\end{array}
+\right.\Leftrightarrow x=y=z.$$
+
+On prend $e_1=i+j+k$.
+
+Posons $e_2=xi+yj+zk$.
+
+$$u(e_2)=e_1+e_2\Leftrightarrow(u-Id)(e_2)=e_1\Leftrightarrow
+\left\{
+\begin{array}{l}
+-x+y=1\\
+-y+z=1\\
+x-3y+2z=1
+\end{array}
+\right.\Leftrightarrow y=x+1\;\mbox{et}\;z=x+2.$$
+
+On prend $e_2=j+2k$.
+
+Posons $e_3=xi+yj+zk$.
+
+$$u(e_3)=e_2+e_3\Leftrightarrow(u-Id)(e_3)=e_2\Leftrightarrow
+\left\{
+\begin{array}{l}
+-x+y=0\\
+-y+z=1\\
+x-3y+2z=2
+\end{array}
+\right.\Leftrightarrow y=x\;\mbox{et}\;z=x+1.$$
+
+On prend $e_3=k$.
+
+La matrice de la famille $(e_1,e_2,e_3)$ dans la base $(i,j,k)$ est $P=
+\left(
+\begin{array}{ccc}
+1&0&0\\
+1&1&0\\
+1&2&1
+\end{array}
+\right)$. Cette matrice est de rang $3$ et est donc inversible. Par suite $(e_1,e_2,e_3)$ est une base de $\Rr^3$. Enfin,
+
+$$\left\{
+\begin{array}{l}
+e_1=i+j+k\\
+e_2=j+2k\\
+e_3=k
+\end{array}
+\right.
+\Leftrightarrow
+\left\{
+\begin{array}{l}
+k=e_3\\
+j=e_2-2e_3\\
+i=e_1-e_2+e_3
+\end{array}
+\right.
+,$$
+
+et 
+
+$$P^{-1}=\left(
+\begin{array}{ccc}
+1&0&0\\
+-1&1&0\\
+1&-2&1
+\end{array}
+\right).$$
+
+\item Voir question précédente.
+
+\item  Soit $T$ est la matrice de $u$ dans la base $(e_1,e_2,e_3)$. $T=
+\left(
+\begin{array}{ccc}
+1&1&0\\
+0&1&1\\
+0&0&1
+\end{array}
+\right)$. Les formules de changement de bases s'écrivent $T=P^{-1}AP$ ou encore $A=PTP^{-1}$. Par suite, pour tout relatif $n$, $A^n=PT^nP^{-1}$.
+
+Posons $N=\left(
+\begin{array}{ccc}
+0&1&0\\
+0&0&1\\
+0&0&0
+\end{array}
+\right)
+$. On a $N^2=\left(
+\begin{array}{ccc}
+0&0&1\\
+0&0&0\\
+0&0&0
+\end{array}
+\right)$  puis $N^3=0$.
+
+Donc, pour $n$  entier naturel supérieur ou égal à $2$ donné, puisque $I$ et $N$ commutent, la formule du binôme de \textsc{Newton} fournit 
+
+$$T^n=(I+N)^n=I+nN+\frac{n(n-1)}{2}N^2=\left(
+\begin{array}{ccc}
+1&n&n(n-1)/2\\
+0&1&n\\
+0&0&1
+\end{array}
+\right).$$
+
+Cette formule reste claire pour $n=0$ et $n=1$.
+Pour $n=-1$, $(I+N)(I-N+N^2)=I+N^3=I$ et donc
+
+$$T^{-1}=(I+N)^{-1}=I-N+N^2=\left(
+\begin{array}{ccc}
+1&-1&1\\
+0&1&-1\\
+0&0&1
+\end{array}
+\right)=\left(
+\begin{array}{ccc}
+1&-1&\frac{(-1)(-1-1)}{2}\\
+0&1&-1\\
+0&0&1
+\end{array}
+\right),$$
+
+et la formule reste vraie pour $n=-1$. Enfin, pour $n$ entier naturel non nul donné, $T^{-n}=(I+nN+\frac{n(n-1)}{2}N^2)^{-1}$ mais $(I+nN+\frac{n(n-1)}{2}N^2)(I-nN+\frac{-n(-n-1)}{2}N^2)=I$ et donc
+$T^{-n}=I-nN+\frac{-n(-n-1)}{2}N^2$. Finalement, 
+
+$$\forall n\in\Zz,\;T^n=I+nN+\frac{n(n-1)}{2}N^2=\left(
+\begin{array}{ccc}
+1&n&n(n-1)/2\\
+0&1&n\\
+0&0&1
+\end{array}
+\right).$$
+
+Puis 
+
+\begin{align*}\ensuremath
+A^n&=PT^nP^{-1}=\left(
+\begin{array}{ccc}
+1&0&0\\
+1&1&0\\
+1&2&1
+\end{array}
+\right)\left(
+\begin{array}{ccc}
+1&n&n(n-1)/2\\
+0&1&n\\
+0&0&1
+\end{array}
+\right)\left(
+\begin{array}{ccc}
+1&0&0\\
+-1&1&0\\
+1&-2&1
+\end{array}
+\right)\\
+ &=\left(
+\begin{array}{ccc}
+1&n&n(n-1)/2\\
+1&n+1&n(n+1)/2\\
+1&n+2&(n+1)(n+2)/2
+\end{array}
+\right)\left(
+\begin{array}{ccc}
+1&0&0\\
+-1&1&0\\
+1&-2&1
+\end{array}
+\right)
+\\
+ &=\left(
+\begin{array}{ccc}
+(n-1)(n-2)/2&-n(n-2)&n(n-1)/2\\
+n(n-1)/2&-(n-1)(n+1)&n(n+1)/2\\
+n(n+1)/2&-n(n+2)&(n+1)(n+2)/2
+\end{array}
+\right)
+\end{align*}
+
+ce qui fournit $u^n(i)$, $u^n(j)$ et $u^n(k)$.
+\end{enumerate}
+\fincorrection
+\correction{005260}
+\begin{enumerate}
+\item  Pour $P$ élément de $\Rr_n[X]$, 
+
+$$f(P)=e^{X^2}(Pe^{-X^2})'=e^{X^2}(P'e^{-X^2}-2XPe^{-X^2})=P'-2XP.$$
+
+Ainsi, si $P$ est un polynôme de degré infèrieur ou égal à $n$, $f(P)=P'-2XP$ est un polynôme de degré inférieur ou égal à $n+1$, et $f$ est bien une application de $\Rr_n[X]$ dans $\Rr_{n+1}[X]$.
+
+De plus, pour $(\lambda,\mu)\in\Rr^2$ et $(P,Q)\in\Rr_n[X]$, on a~:
+
+$$f(\lambda P+\mu Q)=(\lambda P+\mu Q)'-2X(\lambda P+\mu Q)=\lambda(P'-2XP)+\mu(Q'-2XQ)=\lambda f(P)+\mu f(Q).$$
+
+$f$ est élément de $\mathcal{L}(\Rr_n[X],\Rr_{n+1}[X])$.
+
+\item  La matrice $A$ cherchée est élément de $\mathcal{M}_{n+1,n}(\Rr)$.
+
+Pour $k=0$, $f(X^k)=f(1)=-2X$ et pour $1\leq k\leq n$, $f(X^k)=kX^{k-1}-2X^{k+1}$. On a donc~:
+
+$$A=
+\left(
+\begin{array}{cccccc}
+0&1&0&\ldots&\ldots&0\\
+-2&0&2&0& &\vdots\\
+0&-2&0&\ddots&\ddots&\vdots\\
+\vdots&\ddots&\ddots&\ddots&\ddots&0\\
+ & & &\ddots&\ddots&n\\
+\vdots& & &\ddots&-2&0\\
+0&\ldots& &\ldots&0&-2
+\end{array}
+\right).$$
+
+\item  Soit $P\in\Rr_n[X]$ tel que $f(P)=0$.
+
+Si $P$ n'est pas nul, $-2XP$ a un degré strictement plus grand que $P'$ et donc $f(P)$ n'est pas nul. Par suite, $\mbox{Ker}f=\{0\}$ ($f$ est donc injective) et d'après le théorème du rang, $\mbox{rg}f=\mbox{dim}(\Rr_n[X])-0=n+1$, ce qui montre que $\mbox{Im}f$ n'est pas $\Rr_{n+1}[X]$ ($f$ n'est pas surjective).
+\end{enumerate}
+\fincorrection
+\correction{005261}
+$f$ n'est pas nul et donc $\mbox{dim}(\mbox{Ker}f)\leq 2$. Puisque $f^2=0$, $\mbox{Im}f\subset\mbox{Ker}f$. En particulier, $\mbox{dim}(\mbox{Ker}f)\geq\mbox{rg}f=3-\mbox{dim}(\mbox{Ker}f)$ et $\mbox{dim}(\mbox{Ker}f)\geq\frac{3}{2}$.
+
+Finalement, $\mbox{dim}(\mbox{Ker}f)=2$. $\mbox{Ker}f$ est un plan vectoriel et $\mbox{Im}f$ est une droite vectorielle contenue dans $\mbox{Ker}f$.
+
+$f$ n'est pas nul et donc il existe $e_1$ tel que $f(e_1)\neq0$ (et en particulier $e_1\neq0$). Posons $e_2=f(e_1)$. 
+Puisque $f^2=0$, $f(e_2)=f^2(e_1)=0$ et $e_2$ est un vecteur non nul de $\mbox{Ker}f$. D'après le théorème de la base incomplète, il existe un vecteur $e_3$ de $\mbox{Ker}f$ tel que $(e_2,e_3)$ soit une base de $\mbox{Ker}f$.
+
+Montrons que $(e_1,e_2,e_3)$ est une base de $\Rr^3$.
+
+Soit $(\alpha,\beta,\gamma)\in\Rr^3$.
+
+$$\alpha e_1+\beta e_2+\gamma e_3=0\Rightarrow f(\alpha e_1+\beta e_2+\gamma e_3)=0\Rightarrow\alpha e_2=0\Rightarrow\alpha=0\;(\mbox{car}\;e_2\neq0).$$
+
+Puis, comme $\beta e_2+\gamma e_3=0$, on obtient $\beta=\gamma=0$ (car la famille $(e_2,e_3)$ est libre).
+
+Finalement, $\alpha=\beta=\gamma=0$ et on a montré que $(e_1,e_2,e_3)$ est libre. Puisque cette famille est de cardinal $3$, c'est une base de $R^3$. Dans cette base, la matrice $A$ de $f$ s'écrit~:~$A= \left(
+\begin{array}{ccc}
+0&0&0\\
+1&0&0\\
+0&0&0
+\end{array}
+\right)$.
+\fincorrection
+\correction{005262}
+Soit $f$ l'endomorphisme de $\Rr^p$ de matrice $A$ dans la base canonique $\mathcal{B}$ de $\Rr^p$. Pour $1\leq k\leq p$, on a $f(e_k)=e_{p+1-k}$ et donc $f^2(e_k)=e_k$. Ainsi, $A^2=I_p$. Mais alors, il est immédiat que, pour $n$ entier naturel donné, $A^n=I_p$ si $n$ est pair et $A^n=A$ si $n$ est impair.
+\fincorrection
+\correction{005263}
+Pour $x\in]-1,1[$, posons $M(x)=\frac{1}{\sqrt{1-x^2}}\left(
+\begin{array}{cc}
+1&x\\
+x&1
+\end{array}
+\right)$. Posons ensuite $G=\{M(x),\;x\in]-1,1[\}$.
+
+Soit alors $x\in]-1,1[$. Posons $a=\Argth x$ de sorte que $x=\mbox{th}a$. On a 
+
+$$M(x)=\frac{1}{\sqrt{1-x^2}}\left(
+\begin{array}{cc}
+1&x\\
+x&1
+\end{array}
+\right)=\ch a\left(
+\begin{array}{cc}
+1&\tanh a\\
+\tanh a&1
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+\ch a&\sh a\\
+\sh a&\ch a
+\end{array}
+\right).$$
+
+Posons, pour $a\in\Rr$, $N(a)=\left(
+\begin{array}{cc}
+\ch a&\sh a\\
+\sh a&\ch a
+\end{array}
+\right)$. On a ainsi $\forall x\in]-1,1[,\;M(x)=N(\Argth x)$ ou aussi, $\forall a\in\Rr,\;N(a)=M(\mbox{th}a)$. Par suite, $G=\{N(a),\;a\in\Rr\}$.
+
+Soit alors $(a,b)\in\Rr^2$.
+
+\begin{align*}\ensuremath
+N(a)N(b)&=\left(
+\begin{array}{cc}
+\ch a&\sh a\\
+\sh a&\ch a
+\end{array}
+\right)\left(
+\begin{array}{cc}
+\ch b&\sh b\\
+\sh b&\ch b
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+\ch a\ch b+\sh a\sh b&\sh a\ch b+\sh b\ch a\\
+\sh a\ch b+\sh b\ch a&\ch a\ch b+\sh a\sh b
+\end{array}
+\right)
+\\
+ &=\left(
+\begin{array}{cc}
+\ch(a+b)&\sh(a+b)\\
+\sh(a+b)&\ch(a+b)
+\end{array}
+\right)
+=N(a+b).
+\end{align*}
+
+Montrons alors que $G$ est un sous-groupe de $(\mathcal{GL}_2(\Rr),\times)$.
+
+$N(0)=I_2\in G$ et donc $G$ est non vide.
+
+$\forall a\in\Rr,\;\mbox{det}(N(a))=\ch^2a-\sh^2a=1\neq0$ et donc $G\subset\mathcal{GL}_2(\Rr)$.
+
+$\forall(a,b)\in\Rr^2,\;N(a)N(b)=N(a+b)\in G$.
+
+$\forall a\in\Rr,\;(N(a))^{-1}=\left(
+\begin{array}{cc}
+\ch a&-\sh a\\
+-\sh a&\ch a
+\end{array}
+\right)=N(-a)\in G$.
+
+On a montré que $G$ est un sous-groupe de $(\mathcal{GL}_2(\Rr),\times)$.
+\fincorrection
+\correction{005264}
+\begin{enumerate}
+\item  La démonstration la plus simple apparaîtra dans le chapitre suivant~:~le déterminant d'une matrice triangulaire est le produit de ses coefficients diagonaux. Cette matrice est inversible si et seulement si son déterminant est non nul ou encore si et seulement si aucun des coefficients diagonaux n'est nul.
+
+Pour l'instant, le plus simple est d'utiliser le rang d'une matrice. Si aucun des coefficients diagonaux n'est nul, on sait que le rang de la matrice est son format et donc que cette matrice est inversible.
+
+Réciproquement, notons $(e_1,...,e_n)$ la base canonique de $\mathcal{M}_{n,1}(\Kk)$. Supposons que $A$ soit une matrice triangulaire inférieure dont le coefficient ligne $i$, colonne $i$, est nul. Si $i=n$, la dernière colonne de $A$ est nulle et $A$ n'est pas de rang $n$ et donc n'est pas inversible. Si $i<n$, alors les $n-i+1$ dernières colonnes sont dans $\mbox{Vect}(e_{i+1},...,e_n)$ qui est de dimension au plus $n-i(<n-i+1)$, et encore une fois, la famille des colonnes de $A$ est liée.
+
+\item  Soit $A=(a_{i,j})_{1\leq i,j\leq n}$ une matrice triangulaire supérieure et $f$ l'endomorphisme de $\Kk^n$ de matrice $A$ dans la base canonique $\mathcal{B}=(e_1,...,e_n)$ de $\Kk^n$. Soit $\mathcal{B'}=(e_n,...,e_1)$. $\mathcal{B'}$ est encore une base de $\Kk^n$. Soit alors $P$ la matrice de passage de $\mathcal{B}$ à $\mathcal{B}'$ puis $A'$ la matrice de $f$ dans la base $\mathcal{B}'$. Les formules de changement de bases permettent d'affirmer que $A'=P^{-1}AP$ et donc que $A$ et $A'$ sont semblables.
+
+Vérifions alors que $A'$ est une matrice triangulaire inférieure. Pour $i\in\{1,...,n\}$, posons $e_i'=e_{n+1-i}$. $A$ est triangulaire supérieure. Donc, pour tout $i$, $f(e_i)\in\mbox{Vect}(e_1,...,e_i)$. Mais alors, pour tout $i\in\{1,...,n\}$, $f(e_{n+1-i}')\in\mbox{Vect}(e_n',...,e_{n+1-i}')$ ou encore, pour tout $i\in\{1,...,n\}$, $f(e_{i}')\in\mbox{Vect}(e_n',...,e_{i}')$. Ceci montre que $A'$ est une matrice triangulaire inférieure.
+\end{enumerate}
+\fincorrection
+\correction{005265}
+\begin{enumerate}
+\item  $E=\mbox{Vect}(I,J)$. Donc, $E$ est un sous-espace vectoriel de $\mathcal{M}_2(\Rr)$. La famille $(I,J)$ est clairement libre et donc est une base de $E$. Par suite, $\mbox{dim}E=2$.
+\item  $J^2=\left(
+\begin{array}{cc}
+1&1\\
+0&1
+\end{array}
+\right)
+\left(
+\begin{array}{cc}
+1&1\\
+0&1
+\end{array}
+\right)=\left(
+\begin{array}{cc}
+1&2\\
+0&1
+\end{array}
+\right)=2J-I$. Plus généralement, pour $(x,y,x',y')\in\Rr^4$,
+
+$$M(x,y)M(x',y')=(xI+yJ)(x'I+y'J)=xx'I+(xy'+yx')J+yy'J^2=(xx'-yy')I+(xy'+yx'+2yy')J\;(*).$$
+
+Montrons alors que $(E,+,\times)$ est un sous-anneau de $(\mathcal{M}_2(\Rr),+,\times)$.
+
+$E$ contient $I=1.I+0.J$. $(E,+)$ est un sous-groupe de $(\mathcal{M}_2(\Rr),+)$ et, d'après $(*)$, $E$ est stable pour $\times$. Donc, $(E,+,\times)$ est un sous-anneau de $(\mathcal{M}_2(\Rr),+,\times)$.
+
+\item  Soit $((x,y),(x',y'))\in(\Rr^2)^2$.
+
+$$M(x,y)M(x',y')=I\Leftrightarrow(xx'-yy')I+(xy'+yx'+2yy')J=I\Leftrightarrow
+\left\{
+\begin{array}{l}
+xx'-yy'=1\\
+yx'+(x+2y)y'=0
+\end{array}
+\right..$$
+
+Le déterminant de ce dernier système d'inconnues $x'$ et $y'$ vaut $x(x+2y)+y^2=x^2+2xy+y^2=(x+y)^2$. Si $y\neq-x$, ce système admet un et seule couple solution. Par suite, si $y\neq -x$, il existe $(x',y')\in\Rr^2$ tel que $M(x,y)M(x',y')=I$. Dans ce cas, la matrice $M(x,y)$ est inversible dans $E$.
+
+Si $y=-x$, le système s'écrit $\left\{
+\begin{array}{l}
+x(x'+y')=1\\
+-x(x'+y')=0
+\end{array}
+\right.$ et n'a clairement pas de solution.
+\item 
+\begin{enumerate}
+\item Soit $(x,y)\in\Rr^2$.
+
+$$M(x,y)^2=I\Leftrightarrow\left\{
+\begin{array}{l}
+x^2-y^2=1\\
+2y(x+y)=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=0\\
+x^2=1
+\end{array}
+\right.
+\;\mbox{ou}
+\left\{
+\begin{array}{l}
+x^2-y^2=1\\
+x+y=0
+\end{array}
+\right.
+\Leftrightarrow\left\{
+\begin{array}{l}
+y=0\\
+x=1
+\end{array}
+\right.
+\;\mbox{ou}\;\left\{
+\begin{array}{l}
+y=0\\
+x=-1
+\end{array}
+\right..$$
+
+Dans $E$, l'équation $X^2=I$ admet exactement deux solutions à savoir $I$ et $-I$.
+
+\item Soit $(x,y)\in\Rr^2$.
+
+$$M(x,y)^2=0\Leftrightarrow\left\{
+\begin{array}{l}
+x^2-y^2=0\\
+2y(x+y)=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=0\\
+x^2=0
+\end{array}
+\right.
+\;\mbox{ou}
+\left\{
+\begin{array}{l}
+y=-x\\
+0=0
+\end{array}
+\right.
+\Leftrightarrow y=-x.$$
+
+Dans $E$, l'équation $X^2=0$ admet pour solutions les matrices de la forme $\lambda(J-I)=\left(
+\begin{array}{cc}
+0&\lambda\\
+0&0
+\end{array}
+\right)$, $\lambda\in\Rr$.
+
+\item Soit $(x,y)\in\Rr^2$.
+
+\begin{align*}\ensuremath
+M(x,y)^2=M(x,y)&\Leftrightarrow\left\{
+\begin{array}{l}
+x^2-y^2=x\\
+2y(x+y)=y
+\end{array}
+\right.
+\Leftrightarrow\left\{
+\begin{array}{l}
+x^2-y^2=x\\
+y(2x+2y-1)=0
+\end{array}
+\right.
+\\
+ &
+\Leftrightarrow\left\{
+\begin{array}{l}
+y=0\\
+x^2=x
+\end{array}
+\right.
+\;\mbox{ou}\;
+\left\{
+\begin{array}{l}
+y=-x+\frac{1}{2}\\
+x^2-(-x+\frac{1}{2})^2=x
+\end{array}
+\right.
+\\
+ &\Leftrightarrow\left\{
+\begin{array}{l}
+y=0\\
+x=0
+\end{array}
+\right.
+\;\mbox{ou}\;\left\{
+\begin{array}{l}
+y=0\\
+x=1
+\end{array}
+\right.
+\;\mbox{ou}\;\left\{
+\begin{array}{l}
+\frac{1}{4}=0\\
+y=-x+\frac{1}{2}
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=0\\
+x=0
+\end{array}
+\right.
+\;\mbox{ou}\;\left\{
+\begin{array}{l}
+y=0\\
+x=1
+\end{array}
+\right.
+.
+\end{align*}
+
+Dans $E$, l'équation $X^2=X$ admet exactement deux solutions à savoir $0$ et $I$.
+\end{enumerate}
+
+\end{enumerate}
+\fincorrection
+\correction{005266}
+Soit $(i,j)$ la base canonique de $\Rr^2$ et $(e_1,e_2,e_3)$ la base canonique de $\Rr^3$. On cherche $f\in\mathcal{L}(\Rr^2,\Rr^3)$ et $g\in\mathcal{L}(\Rr^3,\Rr^2)$ tels que
+
+$$f\circ g(e_1)=-e_2+e_3,\;f\circ g(e_2)=-e_1+e_3\;\mbox{et}\;f\circ g(e_3)=-e_1-e_2+2e_3(=f\circ g(e_1+e_2)).$$
+
+On pose $g(e_1)=i$, $g(e_2)=j$ et $g(e_3)=i+j$, puis $f(i)=-e_2+e_3$ et $f(j)=-e_1+e_3$. Les applications linéaires $f$ et $g$ conviennent, ou encore si on pose
+
+$$A=\left(
+\begin{array}{cc}
+0&-1\\
+-1&0\\
+1&1
+\end{array}
+\right)\;\mbox{et}\;B=\left(
+\begin{array}{ccc}
+1&0&1\\
+0&1&1
+\end{array}
+\right),$$
+
+alors $AB=\left(
+\begin{array}{cc}
+0&-1\\
+-1&0\\
+1&1
+\end{array}
+\right)\left(
+\begin{array}{ccc}
+1&0&1\\
+0&1&1
+\end{array}
+\right)=\left(
+\begin{array}{ccc}
+0&-1&-1\\
+-1&0&-1\\
+1&1&2
+\end{array}
+\right)$.
+
+$A$ et $B$ désignent maintenant deux matrices quelconques, éléments de $\mathcal{M}_{3,2}(\Rr)$ et $\mathcal{M}_{2,3}(\Rr)$ respectivement, telles que $AB=\left(
+\begin{array}{ccc}
+0&-1&-1\\
+-1&0&-1\\
+1&1&2
+\end{array}
+\right)$. Calculons $(AB)^2$. On obtient
+
+$$(AB)^2=\left(
+\begin{array}{ccc}
+0&-1&-1\\
+-1&0&-1\\
+1&1&2
+\end{array}
+\right)\left(
+\begin{array}{ccc}
+0&-1&-1\\
+-1&0&-1\\
+1&1&2
+\end{array}
+\right)=\left(
+\begin{array}{ccc}
+0&-1&-1\\
+-1&0&-1\\
+1&1&2
+\end{array}
+\right)=AB.$$
+
+Mais alors, en multipliant les deux membres de cette égalité par $B$ à gauche et $A$ à droite, on obtient
+
+$$(BA)^3=(BA)^2\;(*).$$
+
+Notons alors que 
+
+$$\mbox{rg}(BA)\geq\mbox{rg}(ABAB)=\mbox{rg}((AB)^2)=\mbox{rg}(AB)=2,$$
+
+et donc, $BA$ étant une matrice carrée de format $2$, $\mbox{rg}(BA)=2$. $BA$ est donc une matrice inversible. Par suite, on peut simplifier les deux membres de l'égalité $(*)$ par $(BA)^2$ et on obtient $BA=I_2$.
+\fincorrection
+\correction{005267}
+Soit $\mathcal{B}=(e_i)_{1\leq i\leq n}$ la base canonique de $\Cc^n$ et $(e_i')_{1\leq i\leq n}$ la famille d'éléments de $\Cc^n$ de matrice $A$ dans la base $\mathcal{B}$.
+
+Par définition, on a
+
+$$\forall i\in\{1,...,n-1\},\;e_i'=ie_i+\sum_{j=i+1}^{n}e_j\;\mbox{et}\;e_n'=ne_n.$$
+
+En retranchant membre à membre ces égalités, on obtient
+
+$$\forall i\in\{1,...,n-1\},\;e_i'-e_{i+1}'=i(e_i-e_{i+1})\;\mbox{et}\;e_n'=ne_n,$$
+
+ou encore
+
+$$\forall i\in\{1,...,n-1\},\;e_i-e_{i+1}=\frac{1}{i}(e_i'-e_{i+1}')\;\mbox{et}\;e_n=\frac{1}{n}e_n'.$$
+
+Mais alors, pour $i\in\{1,...,n-1\}$, on a
+
+\begin{align*}\ensuremath
+e_i&=\sum_{j=i}^{n-1}(e_j-e_{j+1})+e_n=\sum_{j=i}^{n-1}\frac{1}{j}(e_j'-e_{j+1}')+\frac{1}{n}e_n'
+=\sum_{j=i}^{n-1}\frac{1}{j}e_j'-\sum_{j=i+1}^{n}\frac{1}{j-1}e_j'+\frac{1}{n}e_n'\\
+ &=\frac{1}{i}e_i'+\sum_{j=i+1}^{n}\frac{1}{j}e_j'-\sum_{j=i+1}^{n}\frac{1}{j-1}e_j'\\
+ &=\frac{1}{i}e_i'-\sum_{j=i+1}^{n}\frac{1}{j(j-1)}e_j'
+\end{align*}
+
+Mais alors, $\Cc^n=\mbox{Vect}(e_1,...,e_n)\subset\mbox{Vect}(e_1',...,e_n')$, ce qui montre que la famille $\mathcal{B}'=(e_1',...,e_n')$ est génératrice de $\Cc^n$ et donc une base de $\Cc^n$. Par suite, $A$ est inversible et 
+
+$$A^{-1}=\mbox{Mat}_{\mathcal{B}'}\mathcal{B}=(a_{i,j}')_{1\leq i,j\leq n}\;\mbox{où}\;
+a_{i,j}'=
+\left\{
+\begin{array}{l}
+\frac{1}{i}\;\mbox{si}\;i=j\\
+-\frac{1}{i(i-1)}\;\mbox{si}\;i>j\\
+0\;\mbox{si}\;i<j
+\end{array}
+\right..
+$$
+\fincorrection
+\correction{005268}
+Soit $A=(a_{k,l})_{1\leq k,l\leq n}\in\mathcal{M}_n(\Kk)$.
+
+Si $A$ commute avec toute matrice, en particulier~:~$\forall(i,j)\in\{1,...,n\}^2,\;AE_{i,j}=E_{i,j}A$. Maintenant,
+
+$$AE_{i,j}=\sum_{k,l}^{}a_{k,l}E_{k,l}E_{i,j}=\sum_{k=1}^{n}a_{k,i}E_{k,j}\;\mbox{et}\;E_{i,j}A=\sum_{k,l}^{}a_{k,l}E_{i,j}E_{k,l}=\sum_{l=1}^{n}a_{j,l}E_{i,l}.$$
+
+On note que si $k\neq i$ ou $l\neq j$, $E_{k,j}\neq E_{i,l}$. Puisque la famille $(E_{i,j})$ est libre, on peut identifier les coefficients et on obtient~:~si $k\neq i$, $a_{k,i}=0$.
+D'autre part, le coefficient de $E_{i,j}$ est $a_{i,i}$ dans la première somme et $a_{j,j}$ dans la deuxième. Ces coefficients doivent être égaux.
+
+Finalement, si $A$ commute avec toute matrice, ses coefficients non diagonaux sont nuls et ses coefficients diagonaux sont égaux. Par suite, il existe un scalaire $\lambda\in\Kk$ tel que $A=\lambda I_n$. Réciproquement, si $A$ est une matrice scalaire, $A$ commute avec toute matrice.
+
+\fincorrection
+\correction{005269}
+\begin{enumerate}
+\item 
+ 
+\begin{align*}\ensuremath
+\mbox{rg}\left(
+\begin{array}{ccc}
+1&1/2&1/3\\
+1/2&1/3&1/4\\
+1/3&1/4&m
+\end{array}
+\right)&=\mbox{rg}\left(
+\begin{array}{ccc}
+1&0&0\\
+1/2&1/12&1/12\\
+1/3&1/12&m-\frac{1}{9}
+\end{array}
+\right)\quad(\mbox{rg}(C_1,C_2,C_3)=\mbox{rg}(C_1,C_2-\frac{1}{2}C_1,C_3-\frac{1}{3}C_1))
+\\
+ &=\mbox{rg}\left(
+\begin{array}{ccc}
+1&0&0\\
+1/2&1/12&0\\
+1/3&1/12&m-\frac{7}{36}
+\end{array}
+\right)\quad(\mbox{rg}(C_1,C_2,C_3)=\mbox{rg}(C_1,C_2,C_3-C_2))
+\end{align*}
+
+Si $m=\frac{7}{36}$, $\mbox{rg}A=2$ (on note alors que $C_1=6(C_2-C_3)$) et si $m\neq\frac{7}{36}$, $\mbox{rg}A=3$ et $A$ est inversible.
+
+\item  
+\begin{align*}\ensuremath
+\mbox{rg}\left(
+\begin{array}{ccc}
+1&1&1\\
+b+c&c+a&a+b\\
+bc&ca&ab
+\end{array}
+\right)&=\mbox{rg}\left(
+\begin{array}{ccc}
+1&0&0\\
+b+c&a-b&a-c\\
+bc&c(a-b)&b(a-c)
+\end{array}
+\right)\quad(\mbox{rg}(C_1,C_2,C_3)=\mbox{rg}(C_1,C_2-C_1,C_3-C_1))
+\end{align*}
+
+\begin{itemize}
+\item[1er cas.] si $a$, $b$ et $c$ sont deux à deux distincts. 
+
+$$\mbox{rg}\left(
+\begin{array}{ccc}
+1&0&0\\
+b+c&1&1\\
+bc&c&b
+\end{array}
+\right)=\mbox{rg}\left(
+\begin{array}{ccc}
+1&0&0\\
+b+c&1&0\\
+bc&c&b-c
+\end{array}
+\right)=\mbox{rg}\left(
+\begin{array}{ccc}
+1&0&0\\
+b+c&1&0\\
+bc&c&1
+\end{array}
+\right).$$
+
+Donc, si $a$, $b$ et $c$ sont deux à deux distincts alors $\mbox{rg}A=3$.
+
+\item[2ème cas.] Si $b=c\neq a$ (ou $a=c\neq b$ ou $a=b\neq c$).
+$A$ a même rang que $\left(
+\begin{array}{ccc}
+1&0&0\\
+b+c&1&1\\
+bc&c&b
+\end{array}
+\right)$ puis que $\left(
+\begin{array}{ccc}
+1&0&0\\
+b+c&1&0\\
+bc&c&0
+\end{array}
+\right)$. Donc, si $b=c\neq a$ ou $a=c\neq b$ ou $a=b\neq c$, $\mbox{rg}A=2$.
+
+\item[3ème cas.] Si $a=b=c$, il est clair dès le départ que $A$ est de rang $1$.
+\end{itemize}
+
+\item  Puisque $\mbox{rg}(C_1,C_2,C_3,C_4)=\mbox{rg}(C_1,C_2-aC_1,C_3-C_1,C_4-bC_1)$,
+
+\begin{align*}\ensuremath
+\mbox{rg}\left(
+\begin{array}{cccc}
+1&a&1&b\\
+a&1&b&1\\
+1&b&1&a\\
+b&1&a&1
+\end{array}
+\right)&=\mbox{rg}\left(
+\begin{array}{cccc}
+1&0&0&0\\
+a&1-a^2&b-a&1-ab\\
+1&b-a&0&a-b\\
+b&1-ab&a-b&1-b^2
+\end{array}
+\right)=1+\mbox{rg}\left(
+\begin{array}{ccc}
+1-a^2&b-a&1-ab\\
+b-a&0&a-b\\
+1-ab&a-b&1-b^2
+\end{array}
+\right)
+\end{align*}
+
+\begin{itemize}
+\item[1er cas.] Si $a\neq b$.
+
+\begin{align*}\ensuremath
+\mbox{rg}A&=1+\mbox{rg}\left(
+\begin{array}{ccc}
+1-a^2&b-a&1-ab\\
+b-a&0&a-b\\
+1-ab&a-b&1-b^2
+\end{array}
+\right)=1+\mbox{rg}\left(
+\begin{array}{ccc}
+1-a^2&1&1-ab\\
+1&0&-1\\
+1-ab&-1&1-b^2
+\end{array}
+\right)
+\\
+ &=1+\mbox{rg}\left(
+\begin{array}{ccc}
+1&0&-1\\
+1-a^2&1&1-ab\\
+1-ab&-1&1-b^2
+\end{array}
+\right)\quad(\mbox{rg}(L_1,L_2,L_3)=\mbox{rg}(L_2,L_1,L_3)).
+\\
+ &=1+\mbox{rg}\left(
+\begin{array}{ccc}
+1&0&0\\
+1-a^2&1&2-a^2-ab\\
+1-ab&-1&2-b^2-ab
+\end{array}
+\right)=1+\mbox{rg}\left(
+\begin{array}{ccc}
+1&0&0\\
+1-a^2&1&0\\
+1-ab&-1&(2-b^2-ab)-(2-a^2-ab)
+\end{array}
+\right)
+\\
+ &=1+\mbox{rg}\left(
+\begin{array}{ccc}
+1&0&0\\
+1-a^2&1&0\\
+1-ab&-1&(a-b)(a+b)
+\end{array}
+\right)
+\end{align*}
+Si $|a|\neq|b|$, $\mbox{rg}A=4$ et si $a=-b\neq0$, $\mbox{rg}A=3$.
+
+\item[2ème cas.] Si $a=b$.
+
+\begin{align*}\ensuremath
+\mbox{rg}A&=1+\mbox{rg}\left(
+\begin{array}{ccc}
+1-a^2&0&1-a^2\\
+0&0&0\\
+1-a^2&0&1-a^2
+\end{array}
+\right)=1+\mbox{rg}\left(
+\begin{array}{cc}
+1-a^2&1-a^2\\
+0&0\\
+1-a^2&1-a^2
+\end{array}
+\right)=1+\mbox{rg}\left(
+\begin{array}{cc}
+1-a^2&1-a^2\\
+1-a^2&1-a^2
+\end{array}
+\right)
+\end{align*}
+
+Si $a=b=\pm1$, $\mbox{rg}A=1$ et si $a=b\neq\pm1$, $\mbox{rg}A=2$.
+\end{itemize}
+
+\item  Pour $n\geq2$ et $j\in\{1,...,n\}$, notons $C_j$ la $j$-ème colonne de la matrice proposée.
+
+$$C_j=(i+j+ij)_{1\leq i\leq n}=(i)_{1\leq i\leq n}+j(i+1)_{1\leq i\leq n}=jU+V,$$
+
+avec $U=\left(\begin{array}{c}
+2\\
+3\\
+\vdots\\
+i+1\\
+\vdots\\
+n+1
+\end{array}
+\right)$ 
+et $V=\left(\begin{array}{c}
+1\\
+2\\
+\vdots\\
+i\\
+\vdots\\
+n
+\end{array}
+\right)$.
+
+Ainsi, $\forall j\in\{1,...,n\},\;C_j\in\mbox{Vect}(U,V)$ ce qui montre que $\mbox{rg}A\leq2$.
+De plus, la matrice extraite $\left(
+\begin{array}{cc}
+3&5\\
+5&8
+\end{array}
+\right)$ (lignes et colonnes 1 et 2) est inversible et finalement $\mbox{rg}A=2$.
+
+\item  On suppose $n\geq2$. La $j$-ème colonne de la matrice s'écrit
+
+$$C_j=(\sin i\cos j+\sin j\cos i)_{1\leq i\leq n}=\sin jC+\cos jS\;\mbox{avec}\;C=(\cos i)_{1\leq i\leq n}\;\mbox{et}\;S=(\sin i)_{1\leq i\leq n}.$$
+
+Par suite, $\forall j\in\{1,...,n\}$, $C_j\in\mbox{Vect}(C,S)$ ce qui montre que $\mbox{rg}A\leq2$. De plus, la matrice extraite formée des termes lignes et colonnes 1 et 2 est inversible car son déterminant vaut
+$\sin2\sin4-\sin^23=-0,7...\neq0$ et finalement $\mbox{rg}A=2$.
+
+\item  Déterminons $\mbox{Ker}A$. Soit $(x_i)_{1\leq i\leq n}\in\mathcal{M}_{n,1}(\Cc)$.
+
+$$(x_i)_{1\leq i\leq n}\in\mbox{Ker}A\Leftrightarrow\forall i\in\{1,...,n-1\},\;ax_i+bx_{i+1}=0\;\mbox{et}bx_1+ax_n=0\;(S).$$
+
+\begin{itemize}
+\item[1er cas.] Si $a=b=0$, alors clairement $\mbox{rg}A=0$.
+
+\item[2ème cas.] Si $a=0$ et $b\neq0$, alors $(S)\Leftrightarrow\forall i\in\{1,...,n\}\;x_i=0$. Dans ce cas, $\mbox{Ker}A=\{0\}$ et donc $\mbox{rg}A=n$.
+
+\item[3ème cas.] Si $a\neq0$. Posons $\alpha=-\frac{b}{a}$.
+
+\begin{align*}\ensuremath
+(S)&\Leftrightarrow\forall k\in\{1,...,n-1\},\;x_k=\alpha x_{k+1}\;\mbox{et}\;x_n=\alpha x_1\\
+ &\Leftrightarrow\forall k\in\{1,...,n\},\;x_k=\alpha^{-(k-1)}x_1\;\mbox{et}\;x_n=\alpha x_1\\
+ &\Leftrightarrow\forall k\in\{1,...,n\},\;x_k=\alpha^{k-1}x_1\;\mbox{et}\;\alpha^n x_1=x_1
+\end{align*}
+
+Mais alors, si $\alpha^n\neq1$, le système $(S)$ admet l'unique solution $(0,...,0)$ et $\mbox{rg}A=n$, et si $\alpha^n=1$, $\mbox{Ker}A=\mbox{Vect}((1,\alpha^{n-1},...,\alpha^2,\alpha))$ est de dimension $1$ et $\mbox{rg}A=n-1$.
+\end{itemize}
+
+En résumé, si $a=b=0$, $\mbox{rg}A=0$ et si $a=0$ et $b\neq0$, $\mbox{rg}A=n$. Si $a\neq0$ et $-\frac{b}{a}\in U_n$, $\mbox{rg}A=n-1$ et si $a\neq0$ et $-\frac{b}{a}\notin U_n$, $\mbox{rg}A=n$.
+\end{enumerate}
+
+\fincorrection
+\correction{005270}
+Soit $H$ un hyperplan de $\mathcal{M}_n(\Kk)$ et $f$ une forme linéaire non nulle sur $\mathcal{M}_n(\Kk)$ telle que $H=\mbox{Ker}f$.
+
+Pour $A=(a_{i,j})_{1\leq i,j\leq n}$, posons $f(A)=\sum_{1\leq i,j\leq n}^{}\alpha_{i,j}a_{i,j}$.
+
+\begin{itemize}
+\item[1er cas.] Supposons $\exists(i,j)\in\{1,...,n\}^2/\;i\neq j\;\mbox{et}\;\alpha_{i,j}\neq 0$. On pose alors $S=\sum_{k=1}^{n}\alpha_{k,k}$ et on considère $A=\sum_{k=1}^{n}E_{k,k}-\frac{S}{\alpha_{i,j}}E_{i,j}$. $A$ est triangulaire à coefficients diagonaux tous non nuls et est donc inversible.
+
+De plus, $f(A)=\sum_{k=1}^{n}\alpha_{k,k}-\frac{S}{\alpha_{i,j}}\alpha_{i,j}=S-S=0$ et $A$ est élément de $H$.
+
+\item[2ème cas.] Supposons $\forall(i,j)\in\{1,...,n\}^2,\;(i\neq j\Rightarrow \alpha_{i,j}=0)$. Alors, $\forall A\in\mathcal{M}_n(\Kk),\;f(A)=\sum_{i=1}^{n}\alpha_{i,i}a_{i,i}$. Soit $A=E_{n,1}+E_{2,1}+E_{3,2}+...+E_{n-1,n}$. $A$ est inversible car par exemple égale à la matrice de passage de la base canonique $(e_1,e_2,...,e_n)$ de $\Kk^n$ à la base $(e_n,e_1,...,e_{n-1})$. De plus, $f(A)=0$.
+\end{itemize}
+\fincorrection
+\nocorrection
+\correction{005272}
+Soit $X=\left(
+\begin{array}{c}
+x_1\\
+\vdots\\
+x_n
+\end{array}
+\right)$  un vecteur du noyau de $A$. Supposons $X\neq0$. Alors, si $i_0$ est un indice tel que $|x_{i_0}|=\mbox{Max}\{|x_i|,\;i\in\{1,...,n\}\}$, on a  $|x_{i_0}|>0$.
+
+Mais alors,
+
+\begin{align*}\ensuremath
+AX=0&\Rightarrow\forall i\in\{1,...,n\},\;\sum_{j=1}^{n}a_{i,j}x_j=0
+\\
+ &\Rightarrow|a_{i_0,i_0}x_{i_0}|=|-\sum_{j\neq i_0}^{}a_{i_0,j}x_j|\leq\sum_{j\neq i_0}^{}|a_{i_0,j}|.|x_j|
+ \leq|x_{i_0}|\sum_{j\neq i_0}^{}|a_{i_0,j}|
+\end{align*}
+
+et, puisque $|x_{i_0}|> 0$, on obtient $|a_{i_0,i_0}\leq\sum_{j\neq i_0}^{}|a_{i_0,j}|$ contredisant les hypothèses de l'énoncé. Donc, il est absurde de supposer que $\mbox{Ker}A$ contient un vecteur non nul et $A$ est bien inversible.
+\fincorrection
+\correction{005273}
+\begin{enumerate}
+\item  Soit $(i,j)\in\{1,...,p\}\times\{1,...,r\}$. Le coefficient ligne $i$, colonne $j$, de la matrice $M+N$ est la somme du coefficient ligne $i$, colonne $j$, de la matrice $M$ et du coefficient ligne $i$, colonne $j$, de la matrice $N$ ou encore la somme du coefficient ligne $i$, colonne $j$, de la matrice $A$ et du coefficient ligne $i$, colonne $j$, de la matrice $A'$. On a des résultats analogues pour les autres valeurs du couple $(i,j)$ et donc
+
+$$M+N=\left(
+\begin{array}{cc}
+A+A'&B+B'\\
+C+C'&D+D'
+\end{array}
+\right).$$
+
+\item  Posons $M=\left(
+\begin{array}{cc}
+A&B\\
+C&D
+\end{array}
+\right)$ et $N=\left(
+\begin{array}{cc}
+A'&B'\\
+C'&D'
+\end{array}
+\right)$ où $A\in\mathcal{M}_{p,r}(\Kk)$, $B\in\mathcal{M}_{q,r}(\Kk)$, $C\in\mathcal{M}_{p,s}(\Kk)$, $D\in\mathcal{M}_{q,s}(\Kk)$, puis $A'\in\mathcal{M}_{t,p}(\Kk)$, $B'\in\mathcal{M}_{u,p}(\Kk)$, $C'\in\mathcal{M}_{t,q}(\Kk)$, $D'\in\mathcal{M}_{u,q}(\Kk)$ (le découpage de $M$ en colonne est le même que le découpage de $N$ en lignes).
+
+Soit alors $(i,j)\in\{1,...,r\}\times\{1,...,t\}$. Le coefficient ligne $i$, colonne $j$ de la matrice $MN$ vaut 
+
+$$\sum_{k=1}^{p+q}m_{i,k}n_{k,j}=\sum_{k=1}^{p}m_{i,k}n_{k,j}+\sum_{k=p+1}^{p+q}m_{i,k}n_{k,j}.$$
+
+Mais, $\sum_{k=1}^{p}m_{i,k}n_{k,j}$ est le coefficient ligne $i$, colonne $j$ du produit $AA'$ et $\sum_{k=p+1}^{p+q}m_{i,k}n_{k,j}$ est le coefficient ligne $i$, colonne $j$ du produit $BC'$. Finalement, $\sum_{k=1}^{p+q}m_{i,k}n_{k,j}$ est le coefficient ligne $i$, colonne $j$ du produit $AA'+BC'$. On a des résultats analogues pour les autres valeurs du couple $(i,j)$ et donc
+
+$$MN=\left(
+\begin{array}{cc}
+AA'+BC'&AB'+BD'\\
+CA'+DC'&CB'+DD'
+\end{array}
+\right).$$
+\end{enumerate}
+\fincorrection
+\correction{005274}
+Soient $k$ et $l$ deux entiers tels que $1\leq k\leq n$ et $1\leq l\leq n$. Le coefficient ligne $k$, colonne $l$ de $A\overline{A}$ vaut~:
+
+$$\sum_{j=1}^{n}\omega^{(k-1)(j-1)}\omega^{-(j-1)(l-1)}=\sum_{j=1}^{n}(\omega^{k-l})^{j-1}.$$
+
+\begin{itemize}
+\item[1er cas.]  Si $k=l$, $\omega^{k-l}=1$, et le coefficient vaut $\sum_{j=1}^{n}1=n$.
+
+\item[2ème cas.] Si $k\neq l$. On a $-(n-1)\leq k-l\leq n-1$ avec $k-l\neq0$ et donc, $k-l$ n'est pas multiple de $n$. Par suite, $\omega^{k-l}\neq1$ et 
+
+$$\sum_{j=1}^{n}(\omega^{k-l})^{j-1}=\frac{1-(\omega^{k-l})^n}{1-\omega}=\frac{1-1^{k-l}}{1-\omega}=0.$$
+\end{itemize}
+
+En résumé, $A\overline{A}=nI_n$. Donc $A$ est inversible à gauche et donc inversible et $A^{-1}=\frac{1}{n}\overline{A}$.
+\fincorrection
+\correction{005275}
+\begin{enumerate}
+\item  Un vecteur non nul $x$ est colinéaire à son image si et seulement si il existe $\lambda\in\Cc$ tel que $u(x)=\lambda x$. Les nombres $\lambda$ correspondants sont les complexes tels qu'il existe un vecteur $x\neq0$ dans $\mbox{Ker}(u-\lambda Id)$ ou encore tels que $A-\lambda I_4\notin\mathcal{GL}_4(\Cc)$.
+
+Le déterminant de $A-\lambda I_4$ vaut :
+
+\begin{align*}\ensuremath
+\left|
+\begin{array}{cccc}
+7-\lambda&4&0&0\\
+-12&-7-\lambda&0&0\\
+20&11&-6-\lambda&-12\\
+-12&-6&6&11-\lambda
+\end{array}
+\right|&=(7-\lambda)\left|
+\begin{array}{ccc}
+-7-\lambda&0&0\\
+11&-6-\lambda&-12\\
+-6&6&11-\lambda
+\end{array}
+\right|-4\left|
+\begin{array}{ccc}
+-12&0&0\\
+20&-6-\lambda&-12\\
+-12&6&11-\lambda
+\end{array}
+\right|\\
+ &=(7-\lambda)(-7-\lambda)\left|
+\begin{array}{cc}
+-6-\lambda&-12\\
+6&11-\lambda
+\end{array}
+\right|-4(-12)\left|
+\begin{array}{cc}
+-6-\lambda&-12\\
+6&11-\lambda
+\end{array}
+\right|\\
+ &=(\lambda-7)(\lambda+7)(\lambda^2-5\lambda+6)+48(\lambda^2-5\lambda+6)\\
+ &=(\lambda^2-5\lambda+6)(\lambda^2-49+48)=(\lambda-2)(\lambda-3)(\lambda-1)(\lambda+1)
+\end{align*}
+
+Ainsi, $A-\lambda I_4\notin\mathcal{GL}_4(\Cc)\Leftrightarrow\lambda\in\{-1,1,2,3\}$.
+
+\begin{itemize}
+\item[- Cas $\lambda=-1$.] Soit $(x,y,z,t)\in\Cc^4$.
+
+\begin{align*}\ensuremath
+(x,y,z,t)\in\mbox{Ker}(u+Id)&\Leftrightarrow\left\{
+\begin{array}{l}
+8x+4y=0\\
+-12x-6y=0\\
+20x+11y-5z-12t=0\\
+-12x-6y+6z+12t=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=-2x\\
+-2x-5z-12t=0\\
+z+2t=0\end{array}
+\right.
+\\
+ &\Leftrightarrow\left\{
+\begin{array}{l}
+y=-2x\\
+z=-2t\\
+-2x-2t=0
+\end{array}
+\right.
+\Leftrightarrow
+\left\{
+\begin{array}{l}
+y=-2x\\
+t=-x\\
+z=2x
+\end{array}
+\right..
+\end{align*}
+
+Donc, $\mbox{Ker}(u+Id)=\mbox{Vect}(e_1)$ où $e_1=(1,-2,2,-1)$.
+
+\item[- Cas $\lambda=1$.]
+Soit $(x,y,z,t)\in\Cc^4$.
+
+\begin{align*}\ensuremath
+(x,y,z,t)\in\mbox{Ker}(u-Id)&\Leftrightarrow\left\{
+\begin{array}{l}
+6x+4y=0\\
+-12x-8y=0\\
+20x+11y-7z-12t=0\\
+-12x-6y+6z+10t=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+3x+2y=0\\
+20x+11y-7z-12t=0\\
+-6x-3y+3z+5t=0
+\end{array}
+\right.
+\\
+ &\Leftrightarrow\left\{
+\begin{array}{l}
+y=-\frac{3}{2}x\\
+14z+24t=7x\\
+6z+10t=3x
+\end{array}
+\right.
+\Leftrightarrow
+\left\{
+\begin{array}{l}
+y=-\frac{3}{2}x\\
+z=\frac{1}{2}x\\
+t=0
+\end{array}
+\right..
+\end{align*}
+
+Donc, $\mbox{Ker}(u-Id)=\mbox{Vect}(e_2)$ où $e_2=(2,-3,1,0)$.
+
+\item[- Cas $\lambda=2$.]
+
+Soit $(x,y,z,t)\in\Cc^4$.
+
+\begin{align*}\ensuremath
+(x,y,z,t)\in\mbox{Ker}(u-Id)&\Leftrightarrow\left\{
+\begin{array}{l}
+5x+4y=0\\
+-12x-9y=0\\
+20x+11y-8z-12t=0\\
+-12x-6y+6z+9t=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x=0\\
+y=0
+2z+3t=0
+\end{array}
+\right.
+\\
+ &\Leftrightarrow\left\{
+\begin{array}{l}
+x=y=0\\
+z=-\frac{3}{2}t
+\end{array}
+\right.
+.
+\end{align*}
+
+Donc, $\mbox{Ker}(u-2Id)=\mbox{Vect}(e_3)$ où $e_3=(0,0,3,-2)$.
+
+\item[-Cas $\lambda=3$.]
+
+Soit $(x,y,z,t)\in\Cc^4$.
+
+\begin{align*}\ensuremath
+(x,y,z,t)\in\mbox{Ker}(u-Id)&\Leftrightarrow\left\{
+\begin{array}{l}
+4x+4y=0\\
+-12x-10y=0\\
+20x+11y-9z-12t=0\\
+-12x-6y+6z+8t=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x=0\\
+y=0
+3z+4t=0
+\end{array}
+\right.
+\\
+ &\Leftrightarrow\left\{
+\begin{array}{l}
+x=y=0\\
+z=-\frac{4}{3}t
+\end{array}
+\right.
+.
+\end{align*}
+
+Donc, $\mbox{Ker}(u-3Id)=\mbox{Vect}(e_4)$ où $e_4=(0,0,4,-3)$.
+
+\end{itemize}
+
+Soit $P$ la matrice de la famille $(e_1,e_2,e_3,e_4)$ dans la base canonique $(i,j,k,l)$. On a $P=\left(
+\begin{array}{cccc}
+1&2&0&0\\
+-2&-3&0&0\\
+2&1&3&4\\
+-1&0&-2&-3
+\end{array}
+\right)$.
+
+Montrons que $P$ est inversible et déterminons son inverse.
+
+\begin{align*}\ensuremath
+\left\{
+\begin{array}{l}
+e_1=i-2j+2k-l\\
+e_2=2i-3j+k\\
+e_3=3k-2l\\
+e_4=4k-3l
+\end{array}
+\right.
+&\Leftrightarrow
+\left\{
+\begin{array}{l}
+k=3e_3-2e_4\\
+l=4e_3-3e_4\\
+e_1=i-2j+2(3e_3-2e_4)-(4e_3-3e_4)\\
+e_2=2i-3j+(3e_3-2e_4)
+\end{array}
+\right.
+\\
+ &\Leftrightarrow
+\left\{
+\begin{array}{l}
+k=3e_3-2e_4\\
+l=4e_3-3e_4\\
+i-2j=e_1-2e_3+e_4\\
+2i-3j=e_2-3e_3+2e_4
+\end{array}
+\right.\Leftrightarrow
+\left\{
+\begin{array}{l}
+k=3e_3-2e_4\\
+l=4e_3-3e_4\\
+i=-3e_1+2e_2+e_4\\
+j=-2e_1+e_2+e_3
+\end{array}
+\right.
+\end{align*}
+Ainsi, $\Cc^4=\mbox{Vect}(i,j,k,l)\subset\mbox{Vect}(e_1,e_2,e_3,e_4)$. Donc, la famille $(e_1,e_2,e_3,e_4)$ est génératrice de $\Cc^4$ et donc une base de $\Cc^4$. Ainsi, $P$ est inversible et 
+
+$$P^{-1}=
+\left(
+\begin{array}{cccc}
+-3&-2&0&0\\
+2&1&0&0\\
+0&1&3&4\\
+1&0&-2&-3
+\end{array}
+\right)
+.$$
+
+\item  Les formules de changement de bases s'écrivent $A=PDP^{-1}$ avec $D=\mbox{diag}(-1,1,2,3)$.
+
+\item  Soit $n\in\Nn^*$. Calculons $A^n$.
+
+\begin{align*}\ensuremath
+A^n&=PD^nP^{-1}=\left(
+\begin{array}{cccc}
+1&2&0&0\\
+-2&-3&0&0\\
+2&1&3&4\\
+-1&0&-2&-3
+\end{array}
+\right)\left(
+\begin{array}{cccc}
+(-1)^n&0&0&0\\
+0&1&0&0\\
+0&0&2^n&0\\
+0&0&0&3^n
+\end{array}
+\right)\left(
+\begin{array}{cccc}
+-3&-2&0&0\\
+2&1&0&0\\
+0&1&3&4\\
+1&0&-2&-3
+\end{array}
+\right)
+\\
+ &=\left(
+\begin{array}{cccc}
+1&2&0&0\\
+-2&-3&0&0\\
+2&1&3&4\\
+-1&0&-2&-3
+\end{array}
+\right)\left(
+\begin{array}{cccc}
+-3(-1)^n&-2(-1)^n&0&0\\
+2&1&0&0\\
+0&2^n&3.2^n&4.2^n\\
+3^n&0&-2.3^n&-3.3^n
+\end{array}
+\right)\\
+ &=\left(
+\begin{array}{cccc}
+-3(-1)^n+4&-2(-1)^n+2&0&0\\
+6(-1)^n-6&4(-1)^n-3&0&0\\
+-6(-1)^n+2+4.3^n&-4(-1)^n+1+3.2^n&9.2^n-8.3^n&12(2^n-3^n)\\
+3((-1)^n-3^n)&2((-1)^n-2^n)&6(3^n-2^n)&-8.2^n+9.3^n
+\end{array}
+\right)
+\end{align*}
+\end{enumerate}
+\fincorrection
+\correction{005276}
+Soit $f$ l'endomorphisme de $\Rr_n[X]$ qui, à un polynôme $P$ de degré inférieur ou égal à $n$, associe le polynôme $P(X+1)$.
+
+Par la formule du binôme de \textsc{Newton}, on voit que $A$ est la matrice de $f$ dans la base canonique $(1,X,...,X^n)$ de $\Rr_n[X]$. $f$ est clairement un automorphisme de $\Rr_n[X]$, sa réciproque étant l'application qui, à un polynôme $P$ associe le polynôme $P(X-1)$.
+
+$A$ est donc inversible et $A^{-1}=(b_{i,j})_{0\leq i,j\leq n}$ où $b_{i,j}=0$ si $i>j$ et $b_{i,j}=(-1)^{i+j}C_{j}^{i}$ si $i\leq j$.
+\fincorrection
+\correction{005277}
+\begin{enumerate}
+\item 
+Posons $J=\left(
+\begin{array}{cc}
+1&1\\
+1&1
+\end{array}
+\right)
+$ de sorte que $A=I+J$. On a $J^2=2j$ et donc, plus généralement~:~$\forall k\geq1,\;J^k=2^{k-1}J$. Mais alors, puisque $I$ et $J$ commutent, la formule du binôme de \textsc{Newton} fournit pour $n$ entier naturel non nul donné~:
+
+\begin{align*}\ensuremath
+A^n&=(I+J)^n=I+\sum_{k=1}^{n}C_n^kJ^k=I+(\sum_{k=1}^{n}C_n^k2^{k-1})J=I+\frac{1}{2}(\sum_{k=0}^{n}C_n^k2^k-1)J\\
+ &=I+\frac{1}{2}((1+2)^n-1)J=I+\frac{1}{2}(3^n-1)J=\frac{1}{2}\left(
+\begin{array}{cc}
+3^n+1&3^n-1\\
+3^n-1&3^n+1
+\end{array}
+\right)
+\end{align*}
+
+ce qui reste vrai pour $n=0$. Donc,
+
+$$\forall n\in\Nn,\;A^n=\frac{1}{2}\left(
+\begin{array}{cc}
+3^n+1&3^n-1\\
+3^n-1&3^n+1
+\end{array}
+\right).$$
+
+Poour $n$ entier naturel donné, posons $X_n=\left(
+\begin{array}{c}
+u_n\\
+v_n
+\end{array}
+\right)$. Pour tout entier naturel $n$, on a alors $X_{n+1}=A.X_n$ et donc,
+
+\begin{align*}\ensuremath
+X_n=A^n.X_0=\frac{1}{2}\left(
+\begin{array}{cc}
+3^n+1&3^n-1\\
+3^n-1&3^n+1
+\end{array}
+\right)\left(
+\begin{array}{c}
+1\\
+0
+\end{array}
+\right)=\left(
+\begin{array}{c}
+\frac{3^n+1}{2}\\
+\frac{3^n-1}{2}
+\end{array}
+\right).
+\end{align*}
+
+Donc,
+
+$$\forall n\in\Nn,\;u_n=\frac{3^n+1}{2}\;\mbox{et}\;v_n=\frac{3^n-1}{2}.$$
+
+\item  Soit $n\in\Nn$. $u_{n+1}+v_{n+1}=3(u_n+v_n)$. Donc, la suite $u+v$ est une suite géométrique de raison $3$ et de premier terme $u_0+v_0=1$. On en déduit que 
+
+$$\forall n\in\Nn,\;u_n+v_n=3^n\;(I).$$
+
+De même, pour tout entier naturel $n$ $u_{n+1}-v_{n+1}=u_n-v_n$. Donc, la suite $u+v$ est une suite constante. Puisque $u_0-v_0=1$, on en déduit que
+
+$$\forall n\in\Nn,\;u_n-v_n=1\;(II).$$
+
+En additionnant et en retranchant $(I)$ et $(II)$, on obtient
+
+$$\forall n\in\Nn,\;u_n=\frac{3^n+1}{2}\;\mbox{et}\;v_n=\frac{3^n-1}{2}.$$
+
+\end{enumerate}
+
+\fincorrection
+
+
+\end{document}
+

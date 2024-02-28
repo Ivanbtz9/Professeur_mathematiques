@@ -1,0 +1,330 @@
+\documentclass[a4paper,11pt]{article}
+
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{tgbonum}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{paralist}
+\usepackage{xspace,multicol}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{lipsum}
+
+\usepackage{stmaryrd}
+
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exer}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+\setlist[enumerate]{itemsep=1mm}
+
+
+\pagestyle{fancy}
+
+
+
+\begin{document}
+	\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M.Botcazou \& M.Dupré}\cfoot{\thepage/4}\rfoot{\textbf{Tournez la page S.V.P.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+\raggedright
+	\noindent\shadowbox{
+		\begin{minipage}{1\linewidth}
+		$$\huge{\textbf{ Examen n°5 : Mathématiques}}$$
+		$$\left(\text{Temps : }4\text{ heures}\right) $$
+	
+		\end{minipage}
+	}
+\medskip
+
+\bigskip
+
+
+La présentation, la lisibilité, l'orthographe, la qualité de la rédaction et la précision des raisonnements entreront pour
+une part importante dans l'appréciation des copies. Les étudiants sont invités à encadrer dans la mesure du possible les résultats de leurs calculs. Les réponses doivent toutes être soigneusement justifiées. Les calculatrices sont interdites.
+
+\hfill\\[5cm]
+
+\centering\noindent\fcolorbox{black}{white}{
+	\begin{minipage}{0.95\linewidth}
+		$$\text{Barème indicatif:}$$
+		\hfill\\[0.2cm]
+		\centering
+		\begin{minipage}{0.9\linewidth}
+			\begin{enumerate}
+				\item[$\bullet$] Exercice 1 \dotfill 3 points \hfill\\[0.2cm]
+				\item[$\bullet$] Exercice 2 \dotfill  5 points \hfill\\[0.2cm]
+				\item[$\bullet$] Exercice 3 \dotfill 12 points \hfill\\[0.5cm]
+		\end{enumerate}\end{minipage}
+\end{minipage}}
+
+
+
+
+
+
+
+\newpage
+\begin{exer}\textit{(Sinus itéré)}\quad\\[0.2cm]
+On défini la suite récurrente $(u_n)_{n\geq0}$ associée à la fonction \emph{sinus} par la relation: 
+$$\left\{\begin{array}{l}
+u_{n+1}=\sin(u_n), \quad \forall n\in\N\\
+u_0\in \ ]0,\frac{\pi}{2}]
+\end{array}\right.$$
+\begin{enumerate}
+	\item  Montrer brièvement que la suite $u$ est strictement positive et converge vers $0$.
+	\item Soient $ n$ un entier naturel et $ \alpha$ un réel. Justifier l'existence et donner les développements limités à l'ordre $n$ au voisinage de 0 de la fonction $\big(x\mapsto\sin(x)\big)$ et de la fonction $\big(x\mapsto(1+x)^\alpha\big)$
+	\item 
+	\begin{enumerate}
+		\item Déterminer un réel $\alpha$ tel que la suite $u_{n+1}^\alpha-u_n^\alpha$ ait une limite finie non nulle.
+		\item En utilisant le lemme de \textsc{Cesaro}, déterminer un équivalent simple de $u_n$.
+		
+	\end{enumerate}
+\end{enumerate}
+\end{exer}
+
+
+
+\begin{exer}\textit{(Étude d'une suite de polynômes)}\quad\\[0.2cm]
+On considère la suite de polynômes $\left(P_{n}\right)_{n \in \mathbb{N}}$ définie par $P_{0}=1$ et, pour $n \in \mathbb{N}^{*}$ :
+
+$$
+P_{n}(X)=\frac{1}{n !} X(X+n)^{n-1} .
+$$
+
+\begin{enumerate}
+	\item \begin{enumerate}
+		\item Expliciter les polynômes $P_{1}$ et $P_{2}$.
+		\item  Donner la valeur de $P_{n}(0)$ pour tout $n \in \mathbb{N}$.
+	\end{enumerate}
+	\item Montrer que $$
+	\forall n \in \mathbb{N}^{*}, \forall x \in \mathbb{R}, \quad P_{n}^{\prime}(x)=P_{n-1}(x+1) .
+	$$
+	\item En déduire que
+	
+	$$
+	\forall n \in \mathbb{N}, \quad \forall(x, y) \in \mathbb{R}^{2}, \quad P_{n}(x+y)=\sum_{k=0}^{n} P_{k}(x) P_{n-k}(y)
+	$$
+	\item 
+	\begin{enumerate}
+		\item Montrer que pour $x \in \mathbb{R}, \quad(x+n)^{n-1} \underset{n \rightarrow+\infty}{\sim} e^{x} n^{n-1}$.
+		\item Rappeler la formule de Stirling puis montrer que, pour $a \in \mathbb{R}$ et $x \in \mathbb{R}^{*}$ fixés, la suite $\left(P_{n}(x) a^{n}\right)_{n \geq 0}$ converge si et seulement si $|a| \leq \frac{1}{e}$.
+	\end{enumerate}
+\end{enumerate}
+
+\end{exer}
+\raggedright
+\section*{Problème: Inégalité polynomiale de Bernstein et applications}
+
+\begin{itemize}[label=\textbullet]
+	\item Si $n \in \mathbb{N}$, on note $\mathbb{C}_{n}[X]$ le $\mathbb{C}$-espace vectoriel des polynômes à coefficients complexes de degré inférieur ou égal à $n$;
+	\item Si $n \in \mathbb{N}^{*}$, on note $\mathcal{S}_{n}$ le $\mathbb{C}$-espace vectoriel des fonctions $f: \mathbb{R} \rightarrow \mathbb{C}$ vérifiant\\[-0.5cm]
+	
+	$$
+	\exists\left(a_{0}, \ldots, a_{n}\right) \in \mathbb{C}^{n+1}, \quad \exists\left(b_{1}, \ldots, b_{n}\right) \in \mathbb{C}^{n}, \quad \forall t \in \mathbb{R}, \quad f(t)=a_{0}+\sum_{k=1}^{n}\left(a_{k} \cos (k t)+b_{k} \sin (k t)\right) .
+	$$
+	
+	On remarque que les éléments de $\mathcal{S}_{n}$ sont des fonctions bornées ;
+	\item si $I$ est un intervalle non vide de $\mathbb{R}$ et si $f$ est une fonction bornée de $I$ dans $\mathbb{C}$, on note
+	
+	$$
+	\|f\|_{L^{\infty(I)}}=\sup _{x \in I}|f(x)| .
+	$$
+\end{itemize}
+
+
+L'application $f \mapsto\|f\|_{L^{\infty}(I)}$ définit une norme sur le $\mathbb{C}$-espace vectoriel des fonctions bornées de $I$ dans $\mathbb{C}$ noté $\mathcal B \left(I,\C\right)$. C'est à dire que l'on a: $\forall f,g \in \mathcal B \left(I,\C\right)$, \ $\forall\lambda\in\C$:
+
+\begin{itemize}[label=$\square$]
+	\item À valeurs positives finies : $0\leq \|f\|_{L^{\infty}(I)} < +\infty$
+	\item Séparabilité : $ \|f\|_{L^{\infty}(I)} = 0$ \ si et seulement si \  $f=0_{\mathcal B \left(I,\C\right)}$
+	\item Homogénéité : $ \|\lambda f\|_{L^{\infty}(I)} = |\lambda|\| f\|_{L^{\infty}(I)}$ 
+	\item Inégalité triangulaire : $ \|f + g \|_{L^{\infty}(I)} \ \leq \  \|f \|_{L^{\infty}(I)} +\|g \|_{L^{\infty}(I)} $
+\end{itemize}
+
+
+
+\section{Polynômes de Tchebychev}
+
+On définit la suite de polynômes \ $ \left(T_{n}\right)_{n \in \mathbb{N}}$ \ par \ $T_{0}=1, T_{1}=X$ \ et \ $\forall n \in \mathbb{N}, T_{n+2}=2 X T_{n+1}-T_{n}$.
+
+\begin{enumerate}
+	\item Pour tout $n$ dans $\mathbb{N}$, déterminer le degré de $T_{n}$ et le coefficient dominant associé.
+	\item Montrer que, pour tout $n \in \mathbb{N}$ et $\theta \in \mathbb{R},\ T_{n}(\cos \theta)=\cos (n \theta)$.
+	\item  Justifier que pour tout $n \in \mathbb{N}$, la fonction de $\mathbb{R}$ dans $\mathbb{C}, \theta \mapsto T_n(\cos \theta)$ est dans $\mathcal{S}_{n}$.
+	
+	
+	\item Pour $n \in \mathbb{N}$, calculer $\left\|T_{n}\right\|_{L^{\infty}([-1,1])}$.
+	
+	\item Montrer que pour tout $n \in \mathbb{N}, \ \left\|T_{n}^{\prime}\right\|_{L^{\infty}([-1,1])}=n^{2}$.
+	
+	\noindent On pourra commencer par établir que, pour tout $n \in \mathbb{N}$ et $\theta \in \mathbb{R}, \ |\sin (n \theta)| \leqslant n|\sin \theta|$.
+\end{enumerate}
+
+
+\section{Inégalité de Bernstein}
+
+Soit $n$ un entier naturel non nul.
+
+\begin{enumerate}[start=6]
+	\item Soit $A \in \mathbb{C}_{2 n}[X]$, scindé à racines simples, et $\left(\alpha_{1}, \ldots, \alpha_{2 n}\right)$ ses racines. Montrer que
+	
+
+	\begin{equation}\tag{I.1}
+	\forall B \in \mathbb{C}_{2 n-1}[X], \quad B(X)=\sum_{k=1}^{2 n} B\left(\alpha_{k}\right) \frac{A(X)}{\left(X-\alpha_{k}\right) A^{\prime}\left(\alpha_{k}\right)} .
+\end{equation}
+	
+	Soit $P$ dans $\mathbb{C}_{2 n}[X]$, et, pour tout $\lambda \in \mathbb{C}, P_{\lambda}(X)=P(\lambda X)-P(\lambda)$.
+	\item Si $\lambda \in \mathbb{C}$, vérifier que $X-1$ divise $P_{\lambda}$.
+	
+	Pour tout $\lambda$ dans $\mathbb{C}$, on note $Q_{\lambda}$ le quotient de $P_{\lambda} \operatorname{par} X-1$ :
+	
+	$$
+	Q_{\lambda}(X)=\frac{P(\lambda X)-P(\lambda)}{X-1} \in \mathbb{C}_{2 n-1}[X] .
+	$$
+	\item Montrer que, pour tout $\lambda$ dans $\mathbb{C},\ Q_{\lambda}(1)=\lambda P^{\prime}(\lambda)$.
+	
+	On considère le polynôme $R(X)=X^{2 n}+1$. Pour $k$ dans $\llbracket1,2 n\rrbracket $, on note $\varphi_{k}=\frac{\pi}{2 n}+\frac{k \pi}{n}$ et $\omega_{k}=\mathrm{e}^{\mathrm{i} \varphi_{k}}$.
+	
+	\item Montrer que
+	
+	$$
+	R(X)=\prod_{k=1}^{2 n}\left(X-\omega_{k}\right) .
+	$$
+	\item À l'aide de la formule (I.1), montrer que
+	
+	$$
+	\forall \lambda \in \mathbb{C}, \quad Q_{\lambda}(X)=-\frac{1}{2 n} \sum_{k=1}^{2 n} \frac{P\left(\lambda \omega_{k}\right)-P(\lambda)}{\omega_{k}-1} \frac{X^{2 n}+1}{X-\omega_{k}} \omega_{k}
+	$$
+	
+	puis en déduire que
+	\begin{equation}\tag{I.2}
+	\forall \lambda \in \mathbb{C}, \quad \lambda P^{\prime}(\lambda)=\frac{1}{2 n} \sum_{k=1}^{2 n} P\left(\lambda \omega_{k}\right) \frac{2 \omega_{k}}{\left(1-\omega_{k}\right)^{2}}-\frac{P(\lambda)}{2 n} \sum_{k=1}^{2 n} \frac{2 \omega_{k}}{\left(1-\omega_{k}\right)^{2}} .	
+	\end{equation}
+
+	\item Montrer que
+	
+	$$
+	\forall \lambda \in \mathbb{C}, \quad \lambda P^{\prime}(\lambda)=\frac{1}{2 n} \sum_{k=1}^{2 n} P\left(\lambda \omega_{k}\right) \frac{2 \omega_{k}}{\left(1-\omega_{k}\right)^{2}}+n P(\lambda) .
+	$$
+	
+	\emph{On pourra appliquer l'égalité (I.2) au polynôme $X^{2 n}$.}
+	
+	Soit maintenant $f$ dans $\mathcal{S}_{n}$.
+	\item Montrer qu'il existe $U \in \mathbb{C}_{2 n}[X]$ tel que, pour tout $\theta \in \mathbb{R}, \ f(\theta)=\mathrm{e}^{-\mathrm{i} n \theta} U\left(\mathrm{e}^{\mathrm{i} \theta}\right)$.
+	\item Vérifier que, pour tout $k \in \llbracket 1,2 n\rrbracket, \frac{2 \omega_{k}}{\left(1-\omega_{k}\right)^{2}}=\frac{-1}{2 \sin \left(\varphi_{k} / 2\right)^{2}}$ et déduire des questions 11 et 12 que
+	\begin{equation}\tag{I.3}
+		\forall \theta \in \mathbb{R}, \quad f^{\prime}(\theta)=\frac{1}{2 n} \sum_{k=1}^{2 n} f\left(\theta+\varphi_{k}\right) \frac{(-1)^{k}}{2 \sin \left(\varphi_{k} / 2\right)^{2}} .
+	\end{equation}
+
+	\item En déduire que
+	
+	\begin{equation}\tag{I.4}
+	\forall \theta \in \mathbb{R}, \quad\left|f^{\prime}(\theta)\right| \leqslant n\|f\|_{L^{\infty}(\mathbb{R})} .
+	\end{equation}
+\end{enumerate}
+
+\section{Quelques conséquences de l'inégalité (I.4)}
+
+Soit $n$ un entier naturel non nul.
+
+\begin{enumerate}[start=15]
+	\item On admet que pour tout $n \in \mathbb{N}$ et $P \in \mathbb{C}_{n}[X]$, la fonction de $\mathbb{R}$ dans $\mathbb{C},\ \big(\theta \mapsto P(\cos \theta)\big)$ est dans $\mathcal{S}_{n}$. Déduire de ce qui précède et de la question 14 que
+	
+	$$
+	\forall P \in \mathbb{C}_{n}[X], \quad \forall x \in[-1,1], \quad\left|P^{\prime}(x) \sqrt{1-x^{2}}\right| \leqslant n\|P\|_{L^{\infty}([-1,1])} .
+	$$
+	\item Montrer que
+	
+	$$
+	\forall Q \in \mathbb{C}_{n-1}[X], \quad|Q(1)| \leqslant n \sup _{-1 \leqslant x \leqslant 1}\left|Q(x) \sqrt{1-x^{2}}\right| .
+	$$
+	
+	On pourra considérer $f: \theta \mapsto Q(\cos \theta) \sin \theta$ \  et vérifier que $f \in \mathcal{S}_{n}$.
+	\item Soit $R \in \mathbb{C}_{n-1}[X]$ et $t \in[-1,1]$. Montrer que
+	
+	$$
+	|R(t)| \leqslant n \sup _{-1 \leqslant x \leqslant 1}\left|R(x) \sqrt{1-x^{2}}\right| .
+	$$
+	
+	On pourra considérer le polynôme $S_{t}(X)=R(t X)$. 
+	\item En déduire que, pour tout $P$ dans $\mathbb{C}_{n}[X]$
+	
+	$$
+	\left\|P^{\prime}\right\|_{L^{\infty}([-1,1])} \leqslant n^{2}\|P\|_{L^{\infty}([-1,1])} .
+	$$
+	\item Peut-il y avoir égalité dans l'inégalité précédente?  
+\end{enumerate}
+
+
+
+
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M.Botcazou \& M.Dupré}\cfoot{\thepage/4}\rfoot{\textbf{FIN.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\end{document}

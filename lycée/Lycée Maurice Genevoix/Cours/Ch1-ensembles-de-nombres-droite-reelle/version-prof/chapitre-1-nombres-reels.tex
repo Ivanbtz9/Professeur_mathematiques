@@ -1,0 +1,871 @@
+\documentclass[a4paper,10pt]{article}
+
+
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{}\chead{}\rhead{}\lfoot{Chapitre 1 - Cours}\cfoot{\thepage/9}\rfoot{M. Botcazou}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+
+$$\fbox{\Large{\text{ Chapitre 1 - Nombres réels }}}$$
+
+
+\renewcommand{\arraystretch}{1.5}
+$$\begin{tabular}{|l|l|}
+\hline
+\textbf{Contenus} & \textbf{Capacités attendues} \\
+\hline
+$\bullet$ Ensemble $\mathbb{R}$ des nombres réels, droite numérique & $\bullet$ Associer à chaque point de la droite graduée un unique nombre \\
+$\bullet$ Intervalles de $\mathbb{R}$. Notations $+\infty$ et $-\infty$ & réel et réciproquement.  \\
+$\bullet$ Notation $|a|$. Distance entre deux nombres réels & $\bullet$ Représenter un intervalle de la droite numérique. Déterminer \\
+$\bullet$ Représentation de l'intervalle $[a-r;a+r]$ puis & si un nombre réel appartient à un intervalle donné.\\
+\phantom{$\bullet$} caractérisation par la condition $|x-a|\leqslant r$. & $\bullet$ Donner un encadrement, d'amplitude donnée, d'un nombre réel\\
+$\bullet$ Ensemble $\mathbb{D}$ des nombres décimaux. Encadrement & par des décimaux. \\
+\phantom{$\bullet$} décimal d'un nombre réel à $10^{-n}$ près. &  $\bullet$ Dans le cadre de la résolution de problèmes, arrondir en donnant\\
+$\bullet$ Ensemble $\mathbb{Q}$ des nombres rationnels. Nombres & \phantom{$\bullet$} le nombre de chiffres significatifs adaptés à la situation donnée. \\
+\phantom{$\bullet$} irrationnels ; exemples fournis par la géométrie, &  \\
+\phantom{$\bullet$} par exemple $\sqrt{2}$ et $\pi$. &  \\
+$\bullet$ Notations $\mathbb{N}$ et $\mathbb{Z}$ & \\
+\hline
+\end{tabular}$$
+\hfill\\[-0.2cm]
+
+\noindent\textbf{Démonstrations :}
+\begin{enumerate}[$\bullet$]
+	\item Le nombre $\dfrac{1}{3}$ n'est pas décimal.
+	\item Le nombre $\sqrt{2}$ est irrationnel.\\
+\end{enumerate}
+
+\noindent\textbf{Exemples d'algorithme : }
+\begin{enumerate}[$\bullet$]
+	\item Déterminer par balayage un encadrement de $\sqrt{2}$ d'amplitude inférieure ou égale à $10^{-n}$.\\
+\end{enumerate}
+
+\noindent\textbf{Approfondissements possibles : }
+\begin{enumerate}[$\bullet$]
+	\item Développement décimal illimité d'un nombre réel.
+	\item Observation, sur des exemples, de la périodicité du développement décimal de nombres rationnels, du fait qu'un développement décimal périodique correspond à un rationnel. \\
+\end{enumerate}
+
+\section{Les ensembles de nombres }
+
+\subsection{Les nombres entiers : entiers naturels et entiers relatifs}
+
+\medskip 
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}
+			Un entier naturel est un nombre entier positif ou nul.\\
+			L'ensemble des entiers naturels est noté $\mathbb{N}$ (\og N \fg comme \og naturel \fg).
+		\end{defi}
+	\end{minipage}
+}
+
+\begin{rmq}
+	$$\mathbb{N}=\{0, 1, 2, 3, ...\}$$
+	En particulier, $0 \in\mathbb{N}$. 
+\end{rmq}
+
+\medskip
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}
+			Un entier relatif est un nombre entier positif ou négatif ou nul.\\
+			L'ensemble des entiers relatifs est noté $\mathbb{Z}$ (\og Z \fg comme \og zahlen \fg qui signifie \og compter \fg en allemand).
+		\end{defi}
+	\end{minipage}
+}
+
+\begin{rmq}
+	$$\mathbb{Z}=\{..., -3 , -2 , -1 , 0, 1, 2, 3, ...\}$$
+\end{rmq}
+\hfill\\[-0.2cm]
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Tout entier naturel est un entier relatif. On dit que l'ensemble des entiers naturels \textbf{est inclus} dans l'ensemble des entiers relatifs et on note $\mathbb{N}\subset\mathbb{Z}.$\\
+			$$\begin{tikzpicture}[scale=1.5]
+			\draw[red](0,0) ellipse [x radius=1cm, y radius=0.3cm];
+			\draw[red](0.5,0.05) node{$\mathbb{N}$};
+			\draw[blue](0,0) ellipse [x radius=1.5cm, y radius=0.5cm];
+			\draw[blue](1.2,0.05) node{$\mathbb{Z}$};
+			\end{tikzpicture}$$
+		\end{prop}
+	\end{minipage}
+}
+
+\begin{proof}\hfill\\
+	Par définition, tout entier naturel est un entier positif ou nul. Donc, en particulier, c'est un entier positif ou négatif ou nul.
+\end{proof}
+
+\begin{rmq}
+	L'inclusion réciproque est fausse : $\mathbb{Z} \not\subset \mathbb{N}$. Pour le prouver, il suffit de trouver un élément de $\mathbb{Z}$ qui n'est pas un élément de $\mathbb{N}$. Le nombre $-5$ convient (par exemple).\\
+\end{rmq}
+
+\noindent\textcolor{red}{\textbf{Attention à ne pas confondre les deux symboles $\in$ et $\subset$.}}\\
+
+\begin{exer}
+	Dans chacun des cas suivants, compléter les \ldots à l'aide du symbole $\in$ ou du symbole $\subset$.
+	\begin{enumerate}[$\diamond$]
+		\item $12$ \ldots $\mathbb{N}$
+		\item soit $(d)$ une droite et $M$ un point de cette droite. Alors $M$ \ldots $(d)$.  
+		\item soient $A$ et $B$ deux points distincts du plan. Alors $[AB] \ldots (AB)$.
+		\item soit $E$ l'ensemble de tous les élèves du lycée et $S$ l'ensemble des élèves de votre classe de seconde. Alors $S \ldots E$
+		\item soit $P$ l'ensemble de tous les professeurs du lycée. Alors $\text{Mme Beudez}\ldots P$ 
+	\end{enumerate}
+\end{exer}
+
+
+\begin{rmq}
+	.\\
+	L'inclusion est une relation entre deux ensembles. Il ne faut pas la confondre avec l'appartenance (qui est une relation entre un élément et un ensemble). Par exemple, comme $3$ est un nombre et pas un ensemble de nombres, on dit que \og $3$ appartient à $\mathbb{N}$ \fg, ce qui se note \og $3 \in \mathbb{N}$ \fg.\\
+\end{rmq}
+
+%\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.eps}$ \ Faire l'exercice résolu 1 p.23 (en cachant la correction ;-) ) }} \\
+
+\subsection{Les nombres décimaux}
+
+\medskip 
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}
+			Un nombre \textbf{décimal} est un nombre pouvant s'écrire sous la forme $\di\frac{a}{10^{n}}$ où $a$ est un entier \textbf{relatif} et $n$ est un entier \textbf{naturel}.\\
+			L'ensemble des nombres décimaux est noté $\mathbb{D}$ (\og D \fg comme \og décimal \fg).\\
+			Autrement dit, $\mathbb{D}=\left\{\dfrac{a}{10^{n}} \ ; \ a\in\mathbb{Z} \ \text{et} \ n\in\mathbb{N}\right\}$.
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\
+
+
+\begin{ex} \hfill
+	\begin{enumerate}[$\diamond$]
+		\item $0,2$ est un nombre décimal (donc $0,2\in\mathbb{D}$). En effet, $0,2=\di\frac{2}{10^{1}}$ avec $2$ entier relatif et $1$ entier naturel.
+		\item $-0,04$ est un nombre décimal (donc $-0,04\in\mathbb{D}$). En effet, $-0,04=\di\frac{-4}{10^{2}}$ avec $-4$ entier relatif et $2$ entier naturel.\\
+	\end{enumerate}
+\end{ex}
+\hfill\\
+
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Tout entier relatif est un nombre décimal. On a donc les inclusions suivantes : $\mathbb{N}\subset\mathbb{Z}\subset\mathbb{D}$
+			$$\begin{tikzpicture}[scale=1.5]
+			\draw[red](0,0) ellipse [x radius=1cm, y radius=0.3cm];
+			\draw[red](0.5,0.05) node{$\mathbb{N}$};
+			\draw[blue](0,0) ellipse [x radius=1.5cm, y radius=0.5cm];
+			\draw[blue](1.2,0.05) node{$\mathbb{Z}$};
+			\draw[vert](0,0) ellipse [x radius=2cm, y radius=0.7cm];
+			\draw[vert](1.75,0.05) node{$\mathbb{D}$};
+			\end{tikzpicture}$$
+		\end{prop}
+	\end{minipage}
+}
+
+\begin{proof}
+	Pour tout entier relatif $k$, on a :
+	$$k = \di\frac{k}{1}=\di\frac{k}{10^{0}}$$
+	Ainsi, tout entier relatif $k$ peut s'écrire sous la forme $\di\frac{k}{10^{0}}$ avec $k$ entier relatif et $0$ entier naturel. Tout entier relatif est donc un nombre décimal, ce qui prouve bien que $\mathbb{Z} \subset \mathbb{D}$. L'inclusion $\mathbb{N} \subset \mathbb{Z}$ ayant déjà été vue précédemment, on obtient bien $\mathbb{N}\subset\mathbb{Z}\subset\mathbb{D}$. \\
+\end{proof}
+
+\begin{rmq} 
+	Les nombres décimaux ont une écriture décimale finie (c'est-à-dire qu'ils s'écrivent avec un nombre fini de chiffres après la virgule). Réciproquement, un nombre ayant une écriture décimale finie est un nombre décimal.
+\end{rmq}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+\begin{prop}
+	Le nombre $\di\frac{1}{3}$ n'est pas décimal.
+\end{prop}
+\end{minipage}
+}
+
+\begin{proof}
+	%Admise pour l'instant. La démonstration sera faite plus tard lorsque nous aurons vu la notion de diviseur et de nombre premier.
+	Avant de commencer la démonstration, on rappelle le critère de divisibilité par $3$ : 
+	un nombre est divisible par $3$ si et seulement si la somme de ses chiffres est divisible par $3$.\\
+	On raisonne \textbf{par l'absurde} : supposons que  $\di\frac{1}{3}$ soit décimal. Alors il existe un entier relatif $a$ et un entier naturel $n$ tels que $\di\frac{1}{3}=\dfrac{a}{10^{n}}$. D'où $3 \times a = 10^{n}$. En particulier, $a$ étant un entier, on en déduit que $3$ divise $3 \times a$. Or $3 \times a =10^{n}$ donc \\[0.15cm]
+	$3$ divise $10^{n}$. Or la somme des chiffres de $10^{n}$ vaut $1$, qui n'est pas un multiple de $3$. Cela contredit le critère de divisibilité par $3$. On a donc démontré que $\dfrac{1}{3}$ n'est pas décimal.\\
+\end{proof}
+
+\subsection{L'ensemble des nombres rationnels}
+
+\medskip
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} \hfill
+			\begin{enumerate}[$\diamond$]
+				\item Un nombre \textbf{rationnel} est un nombre qui peut s'écrire sous la forme $\di\frac{p}{q}$ où $p$ est un entier relatif et $q$ un entier naturel non nul.\\
+				L'ensemble des nombres rationnels est noté $\mathbb{Q}$ ( \og Q \fg comme \og quotient \fg).\\
+				Autrement dit, $\mathbb{Q}=\left\{\dfrac{p}{q} \ ; \ p\in\mathbb{Z} \ \text{et} \ q\in\mathbb{N}^{*}\right\}$.
+				\item Un nombre qui n'est pas rationnel est dit \textbf{irrationnel}.
+			\end{enumerate}
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+\begin{prop}
+	On a les inclusions suivantes :
+	$$\mathbb{N}\subset\mathbb{Z}\subset\mathbb{D}\subset\mathbb{Q}.$$
+	$$\begin{tikzpicture}[scale=1.5]
+	\draw[red](0,0) ellipse [x radius=1cm, y radius=0.3cm];
+	\draw[red](0.5,0.05) node{$\mathbb{N}$};
+	\draw[blue](0,0) ellipse [x radius=1.5cm, y radius=0.5cm];
+	\draw[blue](1.2,0.05) node{$\mathbb{Z}$};
+	\draw[vert](0,0) ellipse [x radius=2cm, y radius=0.7cm];
+	\draw[vert](1.75,0.05) node{$\mathbb{D}$};
+	\draw[purple](0,0) ellipse [x radius=2.5cm, y radius=0.9cm];
+	\draw[purple](2.15,0.05) node{$\mathbb{Q}$};	
+	\end{tikzpicture}$$
+\end{prop}
+	\end{minipage}
+}
+\hfill\\[-0.5cm]
+
+\begin{proof}
+	Tout nombre décimal $d$ peut s'écrire sous la forme $\dfrac{a}{10^n}$ où $a$ est un entier relatif et $n$ un entier naturel. On pose alors $p=a$ et $q=10^n$. Ainsi, $p$ est un entier relatif et $q$ est un entier naturel non nul. Donc $d$ est un nombre rationnel.\\
+	Tout nombre décimal est donc un nombre rationnel, ce qui prouve bien que $\mathbb{D} \subset \mathbb{Q}$. Les inclusions $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{D}$ ayant déjà été vues précédemment, on obtient bien $\mathbb{N}\subset\mathbb{Z}\subset\mathbb{D} \subset\mathbb{Q}$. \\
+\end{proof}
+\hfill\\
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Tout nombre rationnel s'écrit de manière unique sous forme irréductible. Autrement dit, pour tout nombre rationnel $r$, il existe un unique entier relatif $a$ et un unique entier naturel non nul $b$ tel que $r=\dfrac{a}{b}$ et tels que le seul diviseur positif commun à $a$ et $b$ soit $1$.
+		\end{prop}
+	\end{minipage}
+}
+
+
+\begin{proof}
+	Soit $r$ un nombre rationnel. Il existe $p\in\mathbb{Z}$ et $q\in\mathbb{N}^{*}$ tel que $r=\dfrac{p}{q}$. On considère $d$ le plus grand diviseur commun à $p$ et à $q$. Alors, par définition, $d$ divise $p$ et $d$ divise $q$ donc il existe un entier relatif $a$ et un entier naturel non nul $b$ tels que :
+	$$r = \dfrac{p}{q}=\dfrac{d \times a}{d \times b} = \dfrac{a}{b}$$
+	La fraction $\dfrac{a}{b}$ est nécessairement irréductible puisque $d$ était le \textbf{plus grand divisieur commun} de $p$ et de $q$. 
+\end{proof}
+\hfill\\
+
+\subsection{L'ensemble des réels, la droite réelle}
+
+\medskip
+
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{1\linewidth}
+\noindent \underline{Point historique :} \\
+La mesure des grandeurs est à l'origine de l'invention des nombres réels. Ils permettent d'associer à toute mesure une valeur. Une unité de longueur étant choisie :
+\begin{enumerate}[$\bullet$]
+	\item toute longueur de segment est mesurée par un réel nombre positif. Par exemple la longueur de la diagonale d'un carré de côté $1$ est mesurée par le réel positif $\sqrt{2}$.
+	\item inversement, tout réel positif est la mesure d'une longueur de segment.
+\end{enumerate} 
+	\end{minipage}
+}
+\hfill\\
+\\
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi} \hfill\\
+			On considère une droite munie d'un repère $(O;I)$.\\
+			L'ensemble des nombres réels est l'ensemble des abscisses des points de cette droite, appelée \textbf{droite des réels}.\\
+			On note cet ensemble $\mathbb{R}$.	
+			$$\begin{tikzpicture}[scale=0.6]
+				\draw[->, >=stealth] (0,0) -- (25,0);
+				\coordinate (O) at (5,0); 
+				\foreach \x in {0,1,...,4} {\draw (\x,0) node{$|$};}
+				\draw (5,0) node{$|$} node[above=5pt]{$O$};
+				\foreach \x in {6,7,...,16} {\draw (\x,0) node{$|$};}
+				\draw (17,0) node{$|$} node[above=5pt]{$I$};
+				\foreach \x in {18,19,...,25} {\draw (\x,0) node{$|$};}
+				\draw(5,0) node{$|$} node[below=5pt]{\textcolor{blue}{$0$}};
+				\draw(9,0) node{$|$} node[below=5pt]{\textcolor{blue}{$\frac{1}{3}$}};
+				\draw(13,0) node{$|$} node[below=5pt]{\textcolor{blue}{$\frac{2}{3}$}};
+				\draw(11,0) node{$|$} node[below=5pt]{\textcolor{blue}{$0,5$}};
+				\draw (17,0) node{$|$} node[below=5pt]{\textcolor{blue}{$1$}};
+				\draw(23,0) node{$|$} node[below=5pt]{\textcolor{blue}{$\frac{3}{2}$}};
+				\draw(3,0) node{$|$} node[below=5pt]{\textcolor{blue}{$\frac{-1}{6}$}};
+				\draw(21.92,0) node{$|$} node[below=5pt]{\textcolor{blue}{$\sqrt{2}$}};
+				\draw(12,0) node{$|$} node[below=5pt]{\textcolor{blue}{$\frac{7}{12}$}};
+			\end{tikzpicture}$$
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			On a les inclusions suivantes :
+			$$\mathbb{N}\subset\mathbb{Z}\subset\mathbb{D}\subset\mathbb{Q}\subset\mathbb{R}.$$
+			$$\begin{tikzpicture}[scale=1.5]
+			\draw[red](0,0) ellipse [x radius=1cm, y radius=0.3cm];
+			\draw[red](0.5,0.05) node{$\mathbb{N}$};
+			\draw[blue](0,0) ellipse [x radius=1.5cm, y radius=0.5cm];
+			\draw[blue](1.2,0.05) node{$\mathbb{Z}$};
+			\draw[vert](0,0) ellipse [x radius=2cm, y radius=0.7cm];
+			\draw[vert](1.75,0.05) node{$\mathbb{D}$};
+			\draw[purple](0,0) ellipse [x radius=2.5cm, y radius=0.9cm];
+			\draw[purple](2.15,0.05) node{$\mathbb{Q}$};	
+			\draw[brown](0,0) ellipse [x radius=3cm, y radius=1.1cm];
+			\draw[brown](2.75,0.05) node{$\mathbb{R}$};	
+			\end{tikzpicture}$$
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{rmq}
+	Il existe des nombres réels qui ne sont pas rationnels comme par exemple $\sqrt{2}$, $\pi$. C'est ce que l'on appelle les nombres \textbf{irrationnels}. \\
+\end{rmq}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Le nombre $\sqrt{2}$ est irrationnel.
+		\end{prop}
+	\end{minipage}
+}
+
+\begin{proof}
+	Admise pour l'instant. La démonstration sera faite plus tard lorsque nous aurons vu la notion de nombre pair et de nombre impair et leurs propriétés.
+\end{proof}
+\hfill\\
+
+\begin{rmq}
+	Les calculatrices et logiciels utilisent des valeurs décimales approchées des nombres réels.\\
+	Par exemple, ne serait-ce qu'en terme d'affichage, si vous tapez à la calculatrice $1 \div 3$, elle affichera seulement $0.3333333333$ (le chiffre $3$ est écrit $10$ fois après la virgule). De même, si vous faites ce calcul dans le shell Python, il affiche $0.3333333333333333$ (le chiffre $3$ est écrit $16$ fois après la virgule). Pourtant, $\di\frac{1}{3}$ n'étant pas un nombre décimal (on le démontrera plus tard), $\frac{1}{3}$ n'est égal à aucun des deux nombres précédents. En fait, $\frac{1}{3}=0.3\underline{3}...$ .\\
+	Limites de la calculatrice : Déclic Maths Seconde Hachette 2000 p.24 et 32.
+	
+\end{rmq}
+%$\includegraphics[scale=0.05]{logo-td.eps$
+\noindent \textbf{\textcolor{purple}{} \ Faire :
+		\begin{enumerate}[$\diamond$]
+			\item l'exercice résolu 1 p.25 (en cachant la correction ;-) ) 
+			\item l'exercice \og Utiliser différents raisonnements \fg p.31
+		\end{enumerate}
+	}
+\hfill\\
+
+
+\subsection{Encadrement décimal d'un nombre réel à $10^{-n}$ près}
+
+\medskip
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop-def}
+			Soit $x$ un nombre réel et $n$ un entier relatif. Il existe un unique nombre entier relatif $a$ tel que :
+			$$\dfrac{a}{10^{n}} \leqslant x < \dfrac{a+1}{10^n}$$
+			Cet encadrement est appelé l'\textbf{encadrement décimal de $x$ à $10^{-n}$ près}.\\[0.1cm]
+			\textbf{L'arrondi de $x$ à $10^{-n}$ près} est celui des deux nombres $\dfrac{a}{10^n}$ ou $\dfrac{a+1}{10^n}$ qui est le plus proche de $x$ (lorsqu'il existe).\\[0.1cm]
+			Dans le cas où $x$ est à égale distance de $\dfrac{a}{10^n}$ et de $\dfrac{a+1}{10^n}$, par convention, l'arrondi est alors $\dfrac{a+1}{10^n}$.
+		\end{prop-def}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{proof}
+	Admis.
+\end{proof}
+\hfill\\[-0.4cm]
+
+\begin{exer}
+	Encadrer $\pi$ par deux nombre décimaux à $10^{-2}$ près, puis à $10^{-4}$ près. 
+\end{exer}
+%$\includegraphics[scale=0.05]{logo-td.eps}$
+\noindent \textbf{\textcolor{purple}{ \ Faire :
+		\begin{enumerate}[$\diamond$]
+			\item l'exercice 10 p.59 
+			\item les exercices 49, 50, 51, 52 et 53 p.66
+			\item les exercices 54 et 55 p.67 
+		\end{enumerate}
+}}
+\hfill\\
+
+%$\includegraphics[scale=0.05]{logo-td.eps}$
+\noindent \textbf{\textcolor{purple}{ \ Faire le TP 1 p.60 du livre \og détermination par balayage de l'encadrement de $\sqrt{2}$ à $10^{-n}$ près \fg.
+}}
+\hfill\\
+
+\subsection{Quelques exemples de constructions géométriques de nombres réels}
+
+\medskip 
+
+\noindent Il est très facile de placer un entier sur la droite des réels : il suffit de reporter l'unité de longueur autant de fois que nécessaire sur la droite, en faisant bien attention à l'orientation de la droite.\\
+En revanche, placer un nombre rationnel ou un nombre irrationnel est moins évident. Nous allons voir quelques constructions dans l'activité indiquée ci-dessous.\\ 
+%$\includegraphics[scale=0.05]{logo-td.eps}$
+\noindent \textbf{\textcolor{purple}{ \ Activité $1$ chapitre $1$ : \og quelques constructions de nombres réels\fg.}}\\
+\\ 
+
+
+%\subsubsection{Construction d'un segment de longueur $\sqrt{2}$}
+%\noindent On commence par se donner une unité de longueur.\\
+%La pr\'{e}sence d'une racine carr\'{e}e nous incite \`{a} utiliser le th\'{e}or\`{e}me de Pythagore, ce que nous allons faire.\\
+%%$$\includegraphics[width=8cm,height=50mm]{schema6.eps}$$
+%Le triangle $ABC$ est rectangle en $B$. D'apr\`{e}s le th\'{e}or\`{e}me de Pythagore, on a :
+%$$AC^{2}=AB^{2}+BC^{2}.$$
+%Or $AB=BC=1$.\\
+%On en d\'{e}duit que $AC^{2}=1+1=2$.\\
+%Donc $AC=\sqrt{2}$.\\
+%On a ainsi construit un segment de longueur $\sqrt{2}$.
+%
+%\subsubsection{Et pour $\sqrt{3}$ ? $\sqrt{5}$ ? $\sqrt{6}$ ?}
+%Nous allons voir une proc\'{e}d\'{e} permettant de construire de proche en proche des segments de longueur respectives $\sqrt{2}$, $\sqrt{3}$, $\sqrt{4}=2$, $\sqrt{5}$, $\sqrt{6}$, etc...
+%%$$\includegraphics[width=10cm,height=70mm]{schema7.eps}$$   %[width=12cm,height=70mm]
+%La figure ci-avant est appel\'{e}e spirale d'Archim\`{e}de.\\
+%\\
+%
+%\subsection{Construction d'un segment de longueur $\frac{1}{3}$}
+%
+%\noindent On choisit une unité de longueur.\\
+%La pr\'{e}sence d'une fraction nous incite \`{a} utiliser le th\'{e}or\`{e}me de Thal\`{e}s, ce que nous allons faire.\\
+%\\
+%\underline{Construction de la figure :}\\
+%On commence par choisir une unit\'{e} de longueur.\\
+%Soient $(d)$ et $(d')$ deux droites s\'{e}cantes en $O$. Soit $A$ un point de $(d)$ qui v\'{e}rifie $OA=1$. Soit $B$ le point de la demi-droite $[OA)$ tel que $OB=3$. Soit $C$ un point de $(d')$ tel que $OC=1$.\\
+%On trace la droite $(BC)$, puis la droite $(d'')$ parall\`{e}le \`{a} $(BC)$ passant par $A$.\\
+%Les droites $(d')$ et $(d'')$ sont s\'{e}cantes en $D$.\\
+%%$$\includegraphics[width=10cm,height=70mm]{schema8.eps}$$
+%\begin{minipage}{0.5\linewidth}
+%	Par construction,
+%	\begin{itemize}
+%		\item les droites $(d)$ et $(d')$ sont s\'{e}cantes en $O$,
+%		\item les points $A$ et $B$ appartiennent \`{a} $(d)$,
+%		\item les points $C$ et $D$ appartiennent \`{a} $(d')$,
+%		\item les droites $(AD)$ et $(BC)$ sont parall\`{e}les.
+%	\end{itemize}
+%	D'apr\`{e}s le th\'{e}or\`{e}me de Thal\`{e}s, on a :
+%	$$\frac{OA}{OB}=\frac{OD}{OC}=\frac{AD}{BC}.$$
+%	Donc $\di\frac{OD}{1}=\di\frac{1}{3}$, d'où \fbox{\text{$OD=\di\frac{1}{3}$}}.
+%\end{minipage}
+%\begin{minipage}{0.5\linewidth}
+%%	$$\includegraphics[scale=0.5]{construction-fraction.eps}$$
+%\end{minipage}
+%\hfill\\
+%On a ainsi construit un segment de longueur $\di\frac{1}{3}$. Et pour $\di\frac{2}{3}$ ? Et pour $\di\frac{1}{4}$ ?
+
+\newpage 
+
+\section{Intervalles de $\mathbb{R}$}
+
+\medskip
+
+\noindent Exemple introductif : On considère l'ensemble des nombres compris au sens large entre $2$ et $5$. Comment écrire cet ensemble plus simplement ?\\
+On ne peut pas écrire la liste de tous les nombres appartenant à cet ensemble (puisqu'il y en a une infinité).\\
+On peut représenter cet ensemble sur la droite graduée ci-dessous en coloriant :
+
+$$\begin{tikzpicture}[scale=2.5]
+\draw [-> , line width = 1pt] (-1.3,0) -- (5.3,0) ;
+\draw (-1,0) node[below=3pt]{$-1$};
+\draw (0,0) node[below=3pt]{$0$};
+\draw (1,0) node[below=3pt]{$1$};
+\draw (2,0) node[below=3pt]{$2$};
+\draw (3,0) node[below=3pt]{$3$};
+\draw (4,0) node[below=3pt]{$4$};
+\draw (5,0) node[below=3pt]{$5$};
+\draw[blue, line width = 1pt] (0,0) node{$+$} ;
+%\draw[blue, line width = 1pt] (1.2,0.6) node{$+$} node[above right=3pt]{$M$};
+%\draw[blue, line width = 1pt] (0.8,0.4) node{$+$} ;
+%\draw[blue, line width = 1pt] (0.4,0.2) node{$+$} ;
+%\draw[red, line width = 1pt] (0.2,0.1) node{$||$} ;
+%\draw[red, line width = 1pt] (0.6,0.3) node{$||$} ;
+%\draw[red, line width = 1pt] (1,0.5) node{$||$} ;
+\foreach \x in {-1,...,5}
+{
+	%	\draw (\x,0) node[below=3pt]{$\x$};
+	\draw [line width = 1pt] (\x,-0.05) -- (\x,0.05) ;
+}
+\end{tikzpicture}$$
+
+\noindent Cet ensemble de nombres se note $\left[\vtab 2 ; 5 \right]$. Les crochets indiquent ici que $2$ et $5$  appartiennent à cet ensemble. On peut se les représenter comme des mains qui tiennent les nombres $2$ et $5$ :
+%$$\includegraphics{mains-crochet.eps}$$
+Un tel ensemble est appelé un \textbf{intervalle} (du latin \og intervallum \fg qui désignait la distance entre deux pieux).\\
+Les nombres $2$ et $5$ sont appelés les \textbf{bornes} de l'intervalle $[2;5]$.\\
+
+\subsection{Les intervalles de $\mathbb{R}$}
+
+\medskip
+%$\includegraphics[scale=0.05]{logo-td.eps}$ 
+\noindent \noindent \textbf{\textcolor{purple}{\ Activité $2$ chapitre $1$ : \og à la découverte des intervalles \fg.}}\\
+\\
+
+\noindent Le tableau suivant donne les différents types d'intervalles que vous pouvez rencontrer ($a$ et $b$ sont deux réels tels que $a<b$).
+
+\renewcommand{\arraystretch}{1.75}
+$$\begin{tabular}{|c|c|c|c|}
+\hline
+Intervalle & Description & Ensemble des réels & Représentation \\
+ &  & $x$ tels que & \\
+\hline
+$[a;b]$ & tous les nombres compris au sens large entre $a$ et $b$ & $a \leqslant x \leqslant b$ &  \begin{minipage}{0.3\linewidth}
+$$\begin{tikzpicture}
+\draw [-> , line width = 1pt] (0,0) -- (4,0) ;
+\draw (1,0) node[below=3pt]{$a$};
+\draw[blue] (1,0) node{$[$};
+\draw (3,0) node[below=3pt]{$b$};
+\draw[blue, text width = 1pt] (3,0) node{$]$};
+\draw[blue, line width = 1.5pt] (1,0)--(3,0) ;
+\end{tikzpicture}$$ \end{minipage} \\
+\hline
+$]a;b[$ & tous les nombres strictement compris entre $a$ et $b$ & $a < x < b$ & \begin{minipage}{0.3\linewidth}
+$$\begin{tikzpicture}
+\draw [-> , line width = 1pt] (0,0) -- (4,0) ;
+\draw (1,0) node[below=3pt]{$a$};
+\draw[blue] (1,0) node{$]$};
+\draw (3,0) node[below=3pt]{$b$};
+\draw[blue, text width = 1pt] (3,0) node{$[$};
+\draw[blue, line width = 1.5pt] (1,0)--(3,0) ;
+\end{tikzpicture}$$ \end{minipage} \\
+\hline
+$[a;b[$ & tous les nombres compris entre $a$ et $b$, $b$ exclus & $a \leqslant x < b$ & \begin{minipage}{0.3\linewidth}
+$$\begin{tikzpicture}
+\draw [-> , line width = 1pt] (0,0) -- (4,0) ;
+\draw (1,0) node[below=3pt]{$a$};
+\draw[blue] (1,0) node{$[$};
+\draw (3,0) node[below=3pt]{$b$};
+\draw[blue, text width = 1pt] (3,0) node{$[$};
+\draw[blue, line width = 1.5pt] (1,0)--(3,0) ;
+\end{tikzpicture}$$ \end{minipage} \\
+\hline
+$]a;b]$ & ouvert en $a$, fermé en $b$ & $a < x \leqslant b$ & \begin{minipage}{0.3\linewidth}
+$$\begin{tikzpicture}
+\draw [-> , line width = 1pt] (0,0) -- (4,0) ;
+\draw (1,0) node[below=3pt]{$a$};
+\draw[blue] (1,0) node{$]$};
+\draw (3,0) node[below=3pt]{$b$};
+\draw[blue, text width = 1pt] (3,0) node{$]$};
+\draw[blue, line width = 1.5pt] (1,0)--(3,0) ;
+\end{tikzpicture}$$ \end{minipage} \\
+\hline
+$[a;+\infty[$ & fermé & $x \geqslant a$ & \begin{minipage}{0.3\linewidth}
+$$\begin{tikzpicture}
+\draw [-> , line width = 1pt] (0,0) -- (4,0) ;
+\draw (2,0) node[below=3pt]{$a$};
+\draw[blue] (2,0) node{$[$};
+\draw[blue, line width = 1.5pt] (2,0)--(4,0) ;
+\end{tikzpicture}$$ \end{minipage} \\
+\hline
+$]a;+\infty[$ & ouvert & $x > a$ & \begin{minipage}{0.3\linewidth}
+$$\begin{tikzpicture}
+\draw [-> , line width = 1pt] (0,0) -- (4,0) ;
+\draw (2,0) node[below=3pt]{$a$};
+\draw[blue] (2,0) node{$]$};
+\draw[blue, line width = 1.5pt] (2,0)--(4,0) ;
+\end{tikzpicture}$$ \end{minipage} \\
+\hline
+$]-\infty;b]$ & fermé & $x \leqslant b$ & \begin{minipage}{0.3\linewidth}
+$$\begin{tikzpicture}
+\draw [-> , line width = 1pt] (0,0) -- (4,0) ;
+\draw (2,0) node[below=3pt]{$b$};
+\draw[blue] (2,0) node{$]$};
+\draw[blue, line width = 1.5pt] (0,0)--(2,0) ;
+\end{tikzpicture}$$ \end{minipage} \\
+\hline
+$]-\infty;b[$ & ouvert & $ x < b$ & \begin{minipage}{0.3\linewidth}
+$$\begin{tikzpicture}
+\draw [-> , line width = 1pt] (0,0) -- (4,0) ;
+\draw (2,0) node[below=3pt]{$b$};
+\draw[blue] (2,0) node{$[$};
+\draw[blue, line width = 1.5pt] (0,0)--(2,0) ;
+\end{tikzpicture}$$ \end{minipage} \\
+\hline
+\end{tabular}$$
+\hfill\\[-0.1cm]
+
+\begin{ex}\hfill\\[0.1cm]
+	\parbox{0.4\linewidth}{
+	$1\in\left[\vtab -3;2\right]$ et $1\in\left]\vtab -3;2\right[$.\\[0.1cm]
+	$-3\in\left[\vtab -3;2\right]$ mais $-3\notin\left]\vtab -3;2\right]$.\\[0.1cm]
+	$2\in\left[\vtab -3;2\right]$ mais $2\notin\left[\vtab -3;2\right[$.}
+%\parbox{0.4\linewidth}{\fbox{ \begin{minipage}{1.2 \linewidth}Le symbole $\in$ se lit \og appartient à %\fg. \\ Le symbole $\notin$ se lit \og n'appartient pas à \fg.  \\ Le symbole $\subset$ se lit \og est inclus dans \fg. \end{minipage}}}
+%\indent\hspace{-1.5cm}\parbox{0.2\linewidth}{$$\includegraphics[scale=0.5]{a-retenir.eps}$$}
+\end{ex}
+\hfill\\[-0.1cm]
+
+%\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.eps}$ \ Faire l'exercice 1 de la feuille d'exercices du chapitre.}}
+%\hfill\\
+
+\newpage
+
+\begin{rmq} \hfill
+	\begin{enumerate}[$\diamond$]
+		\item Quand le crochet \og tient \fg le nombre, on dit qu'il est fermé et le nombre appartient à l'intervalle.
+		\item Quand le crochet \og ne tient pas \fg le nombre, on dit qu'il est ouvert et le nombre n'appartient pas à l'intervalle.
+		\item Du côté de $-\infty$ et de $+\infty$, le crochet est \textbf{toujours ouvert}. En effet, $-\infty$ et $+\infty$ ne désignent pas des nombres réels et ne peuvent pas être atteints.
+		\item L'ensemble $\mathbb{R}$ est lui-aussi un intervalle, c'est l'intervalle $\left]\vtab -\infty;+\infty\right[$.\\
+		%\item Soit $a$ un nombre réel. Alors l'intervalle $[a;a]$ est l'ensemble des réels tels que $x=a$. Il ne contient que le réel $a$. C'est le \textbf{singleton} $\{a\}$( le mot singleton désigne un ensemble qui ne contient qu'un seul élément).
+	\end{enumerate} 
+\end{rmq} 
+
+
+
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}\hfill
+			\begin{enumerate}[$\diamond$]
+				\item L'ensemble des réels positifs (ou nuls) est l'intervalle $\left[\vtab 0;+\infty\right[$. On le note aussi $\mathbb{R}^{+}$. 
+				\item L'ensemble des réels négatifs (ou nuls) est l'intervalle $\left]\vtab -\infty;0\right]$. On le note aussi $\mathbb{R}^{-}$. 
+			\end{enumerate}
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\
+\\
+
+%{$\includegraphics[scale=0.05]{logo-td.eps}$ 
+\noindent \textbf{\textcolor{purple}\ Faire :
+		\begin{enumerate}[$\diamond$]
+			\item l'exercice résolu 1 p.27 (en cachant la correction ;-) ) ;
+			\item les exercices 1 et 2 de la feuille d'exercices du chapitre ;
+			\item les exercices 41, 42, 43, 44 p.40. Indication pour l'exercice 43 : on appelle amplitude d'un intervalle sa longueur. Par exemple, l'intervalle $[1;3]$ a pour amplitude $2$ ;
+			\item l'exercice 46 p.40 (sauf les questions 7 et 8) ; 
+			\item l'exercice 84 p.44. 
+		\end{enumerate}
+	}
+\hfill\\
+
+
+\subsection{Intersection et réunion d'intervalles}
+
+\medskip
+
+
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}Soient $I$ et $J$ deux intervalles de $\mathbb{R}$.
+			\begin{enumerate}[$\diamond$]
+				\item L'\textbf{intersection} de $I$ et de $J$ est l'ensemble des nombres qui appartiennent à la fois à $I$ et à $J$. On la note $I\cap J$, ce qui se lit "$I$ inter $J$".
+				\item La \textbf{réunion} de $I$ et de $J$ est l'ensemble des nombres qui appartiennent à $I$ ou à $J$ (éventuellement aux deux à la fois). On la note $I\cap J$, ce qui se lit "$I$ union $J$".
+			\end{enumerate}
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{rmq}
+	Lorsque les intervalles $I$ et $J$ n'ont aucun nombre en commun, leur intersection est l'ensemble vide, noté $\emptyset$. On dit alors que les intervalles $I$ et $J$ sont \textbf{disjoints}.\\
+\end{rmq}
+
+\begin{rmq}
+	On en déduit immédiatement que $I\cap J\subset I\cup J$.\\
+\end{rmq}
+
+\noindent\fcolorbox{blue}{white}{
+	\begin{minipage}{1\linewidth}
+		\noindent\underline{\textbf{Méthode pour représenter l'intersection et l'union de deux intervalles :}}\\[0.1cm]
+		On commence par représenter ces deux intervalles sur la même droite avec deux couleurs différentes. 
+		\begin{enumerate}[$\diamond$]
+			\item L'intersection des deux intervalles est la partie de la droite qui a été coloriée \textbf{des deux couleurs à la fois}.
+			\item La réunion des deux intervalles est la partie de la droite qui a été coloriée \textbf{d'au moins une des deux couleurs} (soit d'une couleur uniquement, soit des deux couleurs à la fois).
+		\end{enumerate}
+	\end{minipage}
+}
+\hfill\\
+
+
+\begin{exer}\hfill\\[0.1cm]
+	\parbox{0.5\linewidth}{
+		\begin{enumerate}[$\diamond$]
+			\item $I=\left[\vtab3;7\right]$ et $J=\left[\vtab4;9\right[$. Alors $I\cap J=\ldots \ldots$.\\[-0.1cm]
+			\item $I=\left[\vtab -5;2\right[$ et $J=\left]\vtab3;4\right[$. Alors $I\cap J=\ldots \ldots$.\\[-0.1cm]
+			\item $I=\left[\vtab 2;6\right]$ et $J=\left]\vtab3;+\infty\right[$. Alors  $I\cap J=\ldots \ldots$.\\[-0.1cm]
+			\item $I=]-2;3]$ et $J=[3;7]$. Alors  $I\cap J=\ldots \ldots$.\\[-0.1cm]
+		\end{enumerate}}
+	\parbox{0.5\linewidth}{
+		\begin{enumerate}[$\diamond$]
+			\item $I=[3;7]$ et $J=[4;9[$. Alors $I\cup J=\ldots \ldots$\\[-0.1cm]
+			\item $I=[1;3]$ et $J=[-2;10]$. Alors $I\cup J=\ldots \ldots$\\[-0.1cm]
+			\item $I=[-5;2[$ et $J=]3;4[$. Alors $I\cup J=\ldots \ldots$\\[-0.1cm]
+			\item $I=[0;4]$ et $J=]-\infty;1]$. Alors $I\cup J=\ldots \ldots$\\[-0.1cm]
+		\end{enumerate}}
+\end{exer} 
+%$\includegraphics[scale=0.05]{logo-td.eps}$ 
+\noindent \textbf{\textcolor{purple}{\ Faire l'exercice 3 de la feuille d'exercices du chapitre.
+}}
+\hfill\\
+
+\section{Valeur absolue d'un nombre réel. Distance entre deux nombres réels.}
+
+\medskip
+
+%\subsection{Valeur absolue d'un nombre réel}
+
+%\medskip
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}
+			Soit $x$ un nombre réel.\\
+			On appelle \textbf{valeur absolue} de $x$, et on note $|x|$, le nombre réel égal à : $\begin{cases} x \ \ \text{si $x \geqslant 0$} \\ -x \ \ \text{si $x<0$}\end{cases}$.
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\[-0.2cm]
+
+\begin{ex} \hfill\\
+	$|6|=6$ \ \ ; \ \ $|-5|=5$ \ \ ; \ \ $|-3,2|=3,2$ \ \ ; \ \ $|0|=0$
+\end{ex}
+\hfill\\[-0.4cm]
+
+\noindent\fcolorbox{vert}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{defi}
+			Soient $a$ et $b$ deux nombres réels.\\
+			On appelle \textbf{distance entre les réels $a$ et $b$} le nombre $|b-a|$ (aussi égal à $|a-b|$). 
+		\end{defi}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{ex}
+	La distance entre les nombres $1$ et $6$ est $|6-1|=|5|=5$.\\
+	La distance entre les nombres $5$ et $0,3$ est $|0,3-5|=|-4,7|=4,7$.\\
+	La distance entre les nombres $-2$ et $4$ est $|4-(-2)|=|4+2|=|6|=6$.\\
+\end{ex}
+
+\begin{exer}
+	On considère les réels suivants :
+	$$a=-4 \ \ ; \ \ b=-1 \ \ ; \ \ c=2 \ \ ; \ \ d=3,6$$
+	\begin{enumerate}
+		\item Calculer : 
+			\begin{enumerate}[$\diamond$] 
+				\item la distance entre $a$ et $b$ ;
+				\item la distance entre $c$ et $d$ ;
+				\item la distance entre $a$ et $c$.
+			\end{enumerate}
+		\item Sur une droite de repère $(O;I)$, placer les points $A$, $B$, $C$ et $D$ d'abscisses respectives $a$, $b$, $c$ et $d$.\\
+		Que semblent représenter géométriquement les résultats obtenus à la question précédente ?\\
+	\end{enumerate}
+\end{exer}
+
+\noindent\underline{\textbf{Interprétation géométrique de $|b-a|$ avec $a$ et $b$ deux réels :}}\\[0.1cm]
+On considère une droite graduée $(d)$. On note $A$ le point d'abscisse $a$ et $B$ le point d'abscisse $b$. Alors la distance $|b-a|$ entre les nombres $a$ et $b$ s'interprète comme la distance $AB$.\\[0.1cm]
+
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}
+			Soient $a$, $x$ et $r$ trois nombres réels avec $r\geqslant 0$. Alors : 
+			$$x\in[a-r ; a+r] \ \ \text{équivaut à} \ \ |x-a|\leqslant r$$
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\
+
+\begin{proof}
+	$$\begin{tikzpicture}[scale=2.5]
+	\draw [->] (0,0) -- (5,0) ;
+	\draw [red, line width= 1.5 pt] (1,0) -- (4,0) ;
+	\draw[red] (1,0) node{$[$} node[below=3pt]{$a-r$};
+	\draw[red] (4,0) node{$]$} node[below=3pt]{$a+r$};
+	\draw[red] (2.5,0) node{$+$} node[below=3pt]{$a$};
+	\draw (2,0) node{$\times$} node[below=3pt]{$x$};
+	\draw[->] (1,0.2)--(2.5,0.2);
+	\draw[->] (2.5,0.2)--(1,0.2);
+	\draw[->] (2.5,0.2)--(4,0.2);
+	\draw[->] (4,0.2)--(2.5,0.2);
+	\draw (1.75,0.2) node[above=3pt]{$r$};
+	\draw (3.25,0.2) node[above=3pt]{$r$};
+	%\draw [decorate,decoration={brace,amplitude=5pt,mirror,raise=4ex}]
+	%(1,0) -- (2.5,0) node[midway,yshift=-3em]{$r$};
+	%\draw [decorate,decoration={brace,amplitude=5pt,mirror,raise=4ex}]
+	%(2.5,0) -- (4,0) node[midway,yshift=-3em]{$r$};
+	\end{tikzpicture}$$
+\end{proof}
+
+\begin{exer}
+	Sur une droite graduée, $A$ est le point d'abscisse $2$.
+	\begin{enumerate}
+		\item Représenter l'ensemble des points $M$ tels que $AM \leqslant 4$.
+		\item On note $x$ l'abscisse du point $M$. Compléter l'inégalité caractérisant $x$ :
+		$$|x- \ldots \ldots | \leqslant \ldots \ldots $$
+	\end{enumerate}
+\end{exer}
+
+\begin{exer}
+	Dans chacun des cas suivants, représenter sur une droite graduée l'ensemble des réels $x$ vérifiant l'inégalité donnée :
+	\begin{enumerate}[$\diamond$]
+		\item $|x-3|<1$
+		\item $|x+4|<2$
+		\item $|5-x|<3$
+	\end{enumerate}
+\end{exer}
+
+\newpage
+%$\includegraphics[scale=0.05]{logo-td.eps}$ 
+\noindent \textbf{\textcolor{purple}{\includegraphics[scale=0.05]{logo-td.png}\ Faire :
+		\begin{enumerate}[$\diamond$]
+			\item les exercices résolus 2 et 3 p.27 (en cachant la correction ;-) ) 
+			\item l'exercice 8 p.33
+			\item l' exercice 45 p.40
+			\item les questions 7 et 8 de l'exercice 46  puis l'exercice 47 p.40
+			\item l'exercice 72 p.43
+			\item l'exercice 104 p.47
+		\end{enumerate}
+}}
+\hfill\\
+
+
+
+
+%Faire un chapitre sur l'architecture client/serveur utilisant le protocole HTTP ou sa version sécurisée HTTPS.
+
+% Set the ending of a LaTeX document
+\end{document}

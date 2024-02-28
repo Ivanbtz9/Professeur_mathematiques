@@ -1,0 +1,938 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+
+\fiche{f00097, rouget, 2010/07/11}
+
+\titre{Polynômes} 
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable\quad T~:~pour travailler et mémoriser le cours
+\end{center}
+
+
+\exercice{5313, rouget, 2010/07/04}
+\enonce{005313}{***I}
+Calculer $a_n=\prod_{k=1}^{n}\sin\frac{k\pi}{n}$, $b_n=\prod_{k=1}^{n}\cos(a+\frac{k\pi}{n})$ et $c_n=\prod_{k=1}^{n}\tan(a+\frac{k\pi}{n})$ en éliminant tous les cas particuliers concernant $a$.
+\finenonce{005313}
+
+
+\finexercice
+\exercice{5314, rouget, 2010/07/04}
+\enonce{005314}{***}
+On pose $\omega_k=e^{2ik\pi/n}$ et $Q=1+2X+...+nX^{n-1}$. Calculer $\prod_{k=0}^{n-1}Q(\omega_k)$.
+\finenonce{005314}
+
+
+\finexercice\exercice{5315, rouget, 2010/07/04}
+\enonce{005315}{***}
+Montrer que $\sum_{k=0}^{n-1}\cotan^2(\frac{\pi}{2n}+\frac{k\pi}{n})= n(n-1)$. (Indication. Poser $x_k=\cotan^2(\frac{\pi}{2n}+\frac{k\pi}{n})$ puis trouver un polynôme dont les $x_k$ sont les racines.)
+\finenonce{005315}
+
+
+\finexercice
+\exercice{5316, rouget, 2010/07/04}
+\enonce{005316}{****I}
+\begin{enumerate}
+\item  Soient $p$ un entier naturel et $a$ un réel. Donner le développement de $(\cos a+i\sin a)^{2p+1}$ puis en choisissant astucieusement $a$, déterminer $\sum_{k=1}^{p}\cotan^2\frac{k\pi}{2p+1}$. En déduire alors $\sum_{k=1}^{p}\frac{1}{\sin^2\frac{k\pi}{2p+1}}$.
+\item  Pour $n$ entier naturel non nul, on pose $u_n=\sum_{k=1}^{n}\frac{1}{k^2}$. Montrer que la suite $(u_n)_{n\in\Nn^*}$ converge (pour majorer $u_n$, on remarquera que $\frac{1}{k^2}\leq\frac{1}{k(k-1)}$).
+\item  Montrer que pour tout réel $x$ de $]0,\frac{\pi}{2}[$, on a $\cotan x<\frac{1}{x}<\frac{1}{\sin x}$.
+\item  En déduire un encadrement de $u_n$ puis la limite de $(u_n)$.
+\end{enumerate}
+\finenonce{005316}
+
+
+\finexercice
+\exercice{5317, rouget, 2010/07/04}
+\enonce{005317}{**IT}
+Déterminer le PGCD de $X^6-7X^4+8X^3-7X+7$ et $3X^5-7X^3+3X^2-7$.
+\finenonce{005317}
+
+
+\finexercice
+\exercice{5318, rouget, 2010/07/04}
+\enonce{005318}{**T}
+Pour quelles valeurs de l'entier naturel $n$ le polynôme $(X+1)^n-X^n-1$ est-il divisible par $X^2+X+1$~?
+\finenonce{005318}
+
+
+\finexercice
+\exercice{5319, rouget, 2010/07/04}
+\enonce{005319}{***}
+Soit $P$ un polynôme à coefficients réels tel que $\forall x\in\Rr,\;P(x)\geq 0$. Montrer qu'il existe deux polynômes $R$ et $S$ à coefficients réels tels que $P=R^2+S^2$.
+\finenonce{005319}
+
+
+\finexercice
+\exercice{5320, rouget, 2010/07/04}
+\enonce{005320}{**}
+Soit $P$ un polynôme différent de $X$. Montrer que $P(X)-X$ divise $P(P(X))-X$.
+\finenonce{005320}
+
+
+\finexercice
+\exercice{5321, rouget, 2010/07/04}
+\enonce{005321}{***}
+Soit $P$ un polynôme à coefficients entiers relatifs de degré supérieur ou égal à $1$. Soit $n$ un entier relatif 
+et $m=P(n)$.
+\begin{enumerate}
+\item  Montrer que $\forall k\in\Zz,\;P(n+km)$ est un entier divisible par $m$.
+\item  Montrer qu'il n'existe pas de polynômes non constants à coefficients entiers tels que $P(n)$ soit premier pour tout entier $n$.
+\end{enumerate}
+\finenonce{005321}
+
+
+\finexercice
+\exercice{5322, rouget, 2010/07/04}
+\enonce{005322}{*** Polynômes $P$ vérifiant $P(\Zz)\subset\Zz$}
+Soit $E$ la partie de $\Cc[X]$ formée des polynômes $P$ vérifiant $\forall a\in\Zz,\;P(a)\in\Zz$.
+\begin{enumerate}
+\item  On pose $P_0=1$ et pour $n$ entier naturel non nul, $P_n=\frac{1}{n!}\prod_{k=1}^{n}(X+k)$ (on peut définir la notation $P_n=C_{X+n}{n}$). Montrer que $\forall n\in\Nn,\;P_n\in E$.
+\item  Montrer que toute combinaison linéaire à coefficients entiers relatifs des $P_n$ est encore un élément de $E$.
+\item  Montrer que $E$ est l'ensemble des combinaisons linéaires à coefficients entiers relatifs des $P_n$.
+\end{enumerate}
+\finenonce{005322}
+
+
+\finexercice
+\exercice{5323, rouget, 2010/07/04}
+\enonce{005323}{***}
+Division euclidienne de $P=\sin aX^n-\sin(na)X+\sin((n-1)a)$ par $Q=X^2-2X\cos a+1$, $a$ réel donné.
+\finenonce{005323}
+
+
+\finexercice
+\exercice{5324, rouget, 2010/07/04}
+\enonce{005324}{****I Théorème de \textsc{Lucas}}
+Soit $P\in\Cc[X]$ de degré supérieur ou égal à $1$.
+Montrer que les racines de $P'$ sont barycentres à coefficients positifs des racines de $P$ (on dit que les racines de $P'$ sont dans l'enveloppe convexe des racines de $P$). Indication~:~calculer $\frac{P'}{P}$.
+\finenonce{005324}
+
+
+\finexercice
+\exercice{5325, rouget, 2010/07/04}
+\enonce{005325}{***}
+Trouver tous les polynômes divisibles par leur dérivée.
+\finenonce{005325}
+
+
+\finexercice
+\exercice{5326, rouget, 2010/07/04}
+\enonce{005326}{***T}
+Trouver un polynôme de degré $5$ tel que $P(X)+10$ soit divisible par $(X+2)^3$ et $P(X)-10$ soit divisible par 
+$(X-2)^3$.
+\finenonce{005326}
+
+
+\finexercice
+\exercice{5327, rouget, 2010/07/04}
+\enonce{005327}{***I}
+Trouver les polynômes $P$ de $\Rr[X]$ vérifiant $P(X^2)=P(X)P(X+1)$ (penser aux racines de $P$).
+\finenonce{005327}
+
+
+\finexercice
+\exercice{5328, rouget, 2010/07/04}
+\enonce{005328}{**T}
+Déterminer $a\in\Cc$ tel que $P=X^5-209X+a$ admette deux zéros dont le produit vaut $1$.
+\finenonce{005328}
+
+
+\finexercice
+\exercice{5329, rouget, 2010/07/04}
+\enonce{005329}{***T}
+Soit $(a_k)_{1\leq k\leq 5}$ la famille des racines de $P=X^5+2X^4-X-1$. Calculer $\sum_{k=1}^{5}\frac{a_k+2}{a_k-1}$.
+\finenonce{005329}
+
+
+\finexercice
+\exercice{5330, rouget, 2010/07/04}
+\enonce{005330}{**}
+Résoudre dans $\Cc^3$ (resp. $\Cc^4$) le système~:
+
+$$1)\;\left\{
+\begin{array}{l}
+x+y+z=1\\
+\frac{1}{x}+\frac{1}{y}+\frac{1}{z}=1\\
+xyz=-4
+\end{array}
+\right.
+\quad2)\;\left\{
+\begin{array}{l}
+x+y+z+t=0\\
+x^2+y^2+z^2+t^2=10\\
+x^3+y^3+z^3+t^3=0\\
+x^4+y^4+z^4+t^4=26
+\end{array}
+\right.
+.$$ 
+\finenonce{005330}
+
+
+\finexercice
+\exercice{5331, rouget, 2010/07/04}
+\enonce{005331}{**T}
+Trouver tous les polynômes $P$ vérifiant $P(2X)=P'(X)P''(X)$.
+\finenonce{005331}
+
+
+\finexercice
+\exercice{5332, rouget, 2010/07/04}
+\enonce{005332}{**}
+Factoriser dans $\Cc[X]$ le polynôme $12X^4+X^3+15X^2-20X+4$.
+\finenonce{005332}
+
+
+\finexercice
+\exercice{5333, rouget, 2010/07/04}
+\enonce{005333}{***}
+Soit $n\in\Nn^*$. Montrer que $(X-1)^{2n}-X^{2n}+2X-1$ est divisible par $2X^3-3X^2+X$ puis déterminer le quotient.
+\finenonce{005333}
+
+
+\finexercice
+\exercice{5334, rouget, 2010/07/04}
+\enonce{005334}{**I}
+Déterminer deux polynômes $U$ et $V$ vérifiant $UX^n+V(1-X)^m=1$ et $\mbox{deg}(U)<m$ et $\mbox{deg}(V)<n$.
+\finenonce{005334}
+
+
+\finexercice
+
+\finfiche
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005313}
+\begin{enumerate}
+\item  Soit $n\geq2$. On a 
+
+$$a_n=\prod_{k=1}^{n-1}\frac{1}{2i}(e^{ik\pi/n}-e^{-ik\pi/n})=\frac{1}{(2i)^{n-1}}\prod_{k=1}^{n-1}e^{ik\pi/n}\prod_{k=1}^{n-1}(1-e^{-2ik\pi/n}).$$
+
+Maintenant, 
+
+$$\prod_{k=1}^{n-1}e^{ik\pi/n}=e^{\frac{i\pi}{n}(1+2+...+(n-1))}=e^{i\pi(n-1)/2}(e^{i\pi/2})^{n-1}=i^{n-1},$$
+
+et donc $\frac{1}{(2i)^{n-1}}\prod_{k=1}^{n-1}e^{ik\pi/n}=\frac{1}{2^{n-1}}$.
+
+Il reste à calculer $\prod_{k=1}^{n-1}(1-e^{-2ik\pi/n})$.
+
+\begin{itemize}
+\item[\textbf{1ère solution.}]
+Les $e^{-2ik\pi/n}$, $1\leq k\leq n-1$, sont les $n-1$ racines $n$-ièmes de $1$ distinctes de $1$ et puisque 
+$X^n-1=(X-1)(1+X+...+X^{n-1})$, ce sont donc les $n-1$ racines deux deux distinctes du polynôme $1+X+...+X^{n-1}$. Par suite, $1+X+...+X^{n-1}=\prod_{k=1}^{n-1}(X-e^{-2ik\pi/n})$, et en particulier $\prod_{k=1}^{n-1}(1-e^{-2ik\pi/n})=1+1...+1=n$.
+
+\item[\textbf{2ème solution.}]
+Pour $1\leq k\leq n-1$, posons $z_k=1-e^{-2ik\pi/n}$. Les $z_k$ sont deux à deux distincts et racines du polynôme 
+$P=(1-X)^n-1=-X+...+(-1)^nX^n=X(-n+X-...+(-1)^nX^{n-1})$. Maintenant, $z_k=0\Leftrightarrow e^{-2ik\pi/n}=1\leq k\in n\Zz$ (ce qui n'est pas pour $1\leq k\leq n-1$). Donc, les $z_k$, $1\leq k\leq n-1$, sont $n-1$ racines deux à deux distinctes du polynôme de degré $n-1$~:~$-n+X-...+(-1)^nX^{n-1}$. Ce sont ainsi toutes les racines de ce polynôme ou encore
+
+$$-n+X-...+(-1)^nX^{n-1}=(-1)^n\prod_{k=1}^{n-1}(X-z_k).$$
+
+En particulier, en égalant les coefficients constants,
+
+$$(-1)^n.(-1)^{n-1}\prod_{k=1}^{n-1}z_k=-n,$$
+
+et donc encore une fois $\prod_{k=1}^{n-1}(1-e^{-2ik\pi/n})=n$.
+\end{itemize}
+
+Finalement,
+
+$$\forall n\geq2,\;\prod_{k=1}^{n-1}\sin\frac{k\pi}{n}=\frac{n}{2^{n-1}}.$$
+
+\item  Soit $n$ un entier naturel non nul.
+
+$$b_n=\prod_{k=1}^{n}\frac{1}{2}(e^{i(a+\frac{k\pi}{n})}+e^{-i(a+\frac{k\pi}{n})})=\frac{1}{2^n}\prod_{k=1}^{n}e^{-i(a+\frac{k\pi}{n})}\prod_{k=1}^{n}(e^{2i(a+\frac{k\pi}{n})}+1).$$
+
+Ensuite, 
+
+$$\prod_{k=1}^{n}e^{-i(a+\frac{k\pi}{n})}=e^{-ina}e^{-\frac{i\pi}{n}(1+2+...+n)}=e^{-ina}e^{-i(n+1)\pi/2}.$$
+
+D'autre part, soit $P=\prod_{k=1}^{n}(X+e^{2i(a+\frac{k\pi}{n})})=\prod_{k=1}^{n}(X-(-e^{2i(a+\frac{k\pi}{n})}))$.
+Pour tout $k$, on a $(-e^{2i(a+\frac{k\pi}{n}})^n=(-1)^ne^{2ina}$. Par suite, les $n$ nombres deux à deux distincts $-e^{2i(a+\frac{k\pi}{n}}$, $1\leq k\leq n$ sont racines du polynôme $X^n-(-1)^ne^{2ina}$, de degré $n$. On en déduit que, $P=X^n-(-1)^ne^{2ina}$.
+
+Par suite, $\prod_{k=1}^{n}(e^{2i(a+\frac{k\pi}{n})}+1)=P(1)=1-(-1)^ne^{2ina}=1-e^{2ina+n\pi}$, puis 
+
+\begin{align*}\ensuremath
+b_n&=\frac{1}{2^n}e^{-ina}e^{-i(n+1)\pi/2}(1-e^{2ina+n\pi})=\frac{1}{2^n}(e^{-i(na+(n+1)\frac{\pi}{2})}-e^{i(na+(n-1)\frac{\pi}{2})})\\
+ &=\frac{1}{2^n}(e^{-i(na+(n+1)\frac{\pi}{2})}+e^{i(na+(n+1)\frac{\pi}{2})})=\frac{\cos(na+(n+1)\frac{\pi}{2})}{2^{n-1}}.
+\end{align*}
+
+\item  
+\begin{align*}\ensuremath
+c_n\;\mbox{est défini}\Leftrightarrow\forall k\in\{1,...,n\},\;a+\frac{k\pi}{n}\notin\frac{\pi}{2}+\pi\Zz\Leftrightarrow\forall k\in\Nn,\;a-\frac{k\pi}{n}+\frac{\pi}{2}+\pi\Zz\Leftrightarrow a\notin\frac{\pi}{2}+\frac{\pi}{n}\Zz
+\end{align*}
+
+Pour les $a$ tels que $c_n$ est défini, on a $c_n=\prod_{k=1}^{n}\frac{1}{i}\frac{e^{2i(a+k\pi/n)}-1}{e^{2i(a+k\pi/n)}+1}$.
+
+Pour $1\leq k\leq n$, posons $\omega_k=e^{2i(a+k\pi/n)}$ puis $z_k=\frac{\omega_k-1}{\omega_k+1}$. On a donc $c_n=\frac{1}{i^n}\prod_{k=1}^{n}z_k$.
+
+Puisque $z_k=\frac{\omega_k-1}{\omega_k+1}$, on a $\omega_k(1-z_k)=1+z_k$ et donc, pour $1\leq k\leq n$, $\omega_k^n(1-z_k)^n=(1+z_k)^n$ ou encore, les $z_k$ sont racines du polynôme $P=(1+X)^n-e^{2ina}(1-X)^n$. Maintenant, les $a+\frac{k\pi}{n}$ sont dans $[a,a+\pi[$ et donc deux à deux distincts puisque la fonction tangente est injective sur tout intervalle de cette forme.
+
+\begin{itemize}
+\item[1er cas.] Si $e^{2ina}\neq(-1)^n$ alors $P$ est de degré $n$ et $P=(1-(-1)^ne^{2ina})\prod_{k=1}^{n}(X-z_k)$. En évaluant en $0$, on obtient
+
+$$(1-(-1)^ne^{2ina})\prod_{k=1}^{n}(-z_k)=1-e^{2ina}.$$
+
+D'où,
+
+$$\prod_{k=1}^{n}z_k=\frac{1-e^{2ina}}{(-1)^n-e^{2ina}}=\frac{1-e^{2ina}}{e^{in\pi}-e^{2ina}}=\frac{e^{ina}}{e^{in\pi/2}e^{ina}}\frac{-2i\sin(na)}{-2i\sin n(a-\frac{\pi}{2})}=\frac{1}{i^n} \frac{\sin(na)}{\sin n(a-\frac{\pi}{2})}.$$
+
+Finalement, $c_n=(-1)^n\frac{\sin(na)}{\sin(n(a-\frac{\pi}{2}))}$.
+
+Si $n$ est pair, posons $n=2p$, $p\in\Nn^*$. $c_n=c_{2p}=\frac{\sin(2pa)}{\sin (2pa-p\pi)}=(-1)^p$.
+
+Si $n$ est impair, posons $n=2p+1$. $c_n=c_{2p+1}=(-1)^p\tan((2p+1)a)$.
+
+\item[2ème cas.] Si $e^{2ina}=(-1)^n$, alors $2na\in n\pi+2\pi\Zz$ ou encore $a\in\frac{\pi}{2}+\pi\Zz$. Dans ce cas, $c_n$ n'est pas défini.
+\end{itemize}
+\end{enumerate}
+
+\fincorrection
+\correction{005314}
+Tout d'abord
+$$Q=(1+X+...+X^n)'=(\frac{X^{n+1}-1}{X-1})'=\frac{(n+1)X^n(X-1)-X^{n+1}}{(X-1)^2}=\frac{nX^{n+1}-(n+1)X^n+1}{(X-1)^2}.$$
+
+Ensuite, $\omega_0=1$ et donc, $Q(\omega_0)=1+2+...+n=\frac{n(n+1)}{2}$. Puis, pour $1\leq k\leq n-1$, $\omega_k\neq1$ et donc, puisque $\omega_k^n=1$,
+
+$$Q(\omega_k)=\frac{n\omega_k^{n+1}-(n+1)\omega_k^n+1}{(\omega_k-1)^2}=\frac{n\omega_k-(n+1)+1}{(\omega_k-1)^2}
+=\frac{n}{\omega_k-1}.$$
+
+Par suite, 
+
+$$\prod_{k=0}^{n-1}Q(\omega_k)=\frac{n(n+1)}{2}\prod_{k=1}^{n-1}\frac{n}{\omega_k-1}=\frac{n^n(n+1)}{2\prod_{k=1}^{n-1}(\omega_k-1)}.$$
+
+Mais, $X^n-1=(X-1)(1+X+...+X^{n-1})$ et d'autre part $X^n-1=\prod_{k=0}^{n-1}(X-e^{2ik\pi/n})=(X-1)\prod_{k=1}^{n-1}(X-\omega_k)$. Par intégrité de $\Rr[X]$, $\prod_{k=1}^{n-1}(X-e^{2ik\pi/n})=1+X+...+X^{n-1}$ (Une autre rédaction possible est~:~$\forall z\in\Cc,\;(z-1)\prod_{k=1}^{n-1}(z-\omega_k)=(z-1)(1+z+...+z^{n-1})$ et donc $\forall z\in\Cc\setminus\{1\}$, $\prod_{k=1}^{n-1}(z-\omega_k)=1+z+...+z^{n-1}$ et finalement $\forall z\in\Cc,\;\prod_{k=1}^{n-1}(z-\omega_k)=1+z+...+z^{n-1}$ car les deux polynômes ci-contre coincident en une infinité de valeurs de $z$.)
+
+En particulier, $\prod_{k=1}^{n-1}(1-\omega_k)=1+1^2+...+1^{n-1}=n$ ou encore $\prod_{k=1}^{n-1}(\omega_k-1)=(-1)^{n-1}n$.
+Donc,
+
+$$\prod_{k=0}^{n-1}Q(\omega_k)=\frac{n^n(n+1)}{2}\frac{1}{(-1)^{n-1}n}=\frac{(-1)^{n-1}n^{n-1}(n+1)}{2}.$$
+
+\fincorrection
+\correction{005315}
+Il faut prendre garde au fait que les nombres $x_k=\cotan^2(\frac{\pi}{2n}+\frac{k\pi}{n})$ ne sont pas nécessairement deux à deux distincts.
+
+\begin{itemize}
+\item[1er cas.] Si $n$ est pair, posons $n=2p$, $p\in\Nn^*$.
+
+\begin{align*}\ensuremath
+S_n&=\sum_{k=0}^{p-1}\cotan^2(\frac{\pi}{4p}+\frac{k\pi}{2p})+\sum_{k=p}^{2p-1}\cotan^2(\frac{\pi}{4p}+\frac{k\pi}{2p})\\
+ &=\sum_{k=0}^{p-1}\cotan^2(\frac{\pi}{4p}+\frac{k\pi}{2p})+\sum_{k=0}^{p-1}\cotan^2(\frac{\pi}{4p}+\frac{(2p-1-k)\pi}{2p})
+\end{align*}
+ 
+Or, $\cotan^2(\frac{\pi}{4p}+\frac{(2p-1-k)\pi}{2p})=\cotan^2(\pi-\frac{\pi}{4p}-\frac{k\pi}{2p})=\cotan^2(\frac{\pi}{4p}+\frac{k\pi}{2p})$ et donc $S_n=2\sum_{k=0}^{p-1}\cotan^2(\frac{\pi}{4p}+\frac{k\pi}{2p})$.
+
+Mais cette fois ci, 
+
+$$0\leq k\leq p-1\Rightarrow 0<\frac{\pi}{4p}+\frac{k\pi}{2p}\leq\frac{\pi}{4p}+\frac{(p-1)\pi}{2p}=\frac{(2p-1)\pi}{4p}<\frac{2p\pi}{4p}=\frac{\pi}{2}.$$
+
+et comme, la fonction $x\mapsto\cotan^2x$ est strictement décroissante sur $]0,\frac{\pi}{2}[$, les $x_k$, $0\leq k\leq p-1$, sont deux à deux distincts.
+
+Pour $0\leq k\leq p-1$, posons $y_k=\cotan(\frac{\pi}{4p}+\frac{k\pi}{2p})$.
+
+\begin{align*}\ensuremath
+y_k&=i\frac{e^{(2k+1)i\pi/4p}+1}{e^{(2k+1)i\pi/4p}-1}\Rightarrow e^{(2k+1)i\pi/4p}(y-k-i)=y_k+i\\
+ &\Rightarrow(y_k+i)^{2p}=e^{(2k+1)i\pi}(y_k-i)^{2p}=(-1)^{2k+1}(y_k-i)^{2p}=-(y_k-i)^{2p}\\
+ &\Rightarrow(y_k+i)^{2p}+(y_k-i)^{2p}=0\Rightarrow2(y_k^{2p}-C_{2p}^2y_k^{2p-2}+...+(-1)^p)=0\\
+ &\Rightarrow x_k^p-C_{2p}^2x_k^{p-1}+...+(-1)^p=0.
+\end{align*}
+
+Les $p$ nombres deux à deux distincts $x_k$ sont racines de l'équation de degré $p$~:~$z^p-C_{2p}^{2}z^{p-1}+...+(-1)^p=0$ qui est de degré $p$. On en déduit que 
+
+$$S_n=2\sum_{k=0}^{p-1}x_k=2C_{2p}^{2}=n(n-1).$$
+
+\item[2ème cas.] Si $n$ est impair, posons $n=2p+1$, $p\in\Nn$.
+
+\begin{align*}\ensuremath
+S_n&=\sum_{k=0}^{p-1}\cotan^2(\frac{\pi}{2(2p+1)}+\frac{k\pi}{2p+1})+\cotan^2\frac{\pi}{2}+\sum_{k=p+1}^{2p}\cotan^2(\frac{\pi}{2(2p+1)}+\frac{k\pi}{2p+1})\\
+ &=2\sum_{k=0}^{p-1}\cotan^2(\frac{\pi}{2(2p+1)}+\frac{k\pi}{2p+1})
+\end{align*}
+
+La même démarche amène alors à $S_n=2C_{2p+1}^{2}=n(n-1)$.
+\end{itemize}
+
+Dans tous les cas, 
+
+$$\sum_{k=0}^{n-1}\cotan^2(\frac{\pi}{2n}+\frac{k\pi}{n})=n(n-1).$$
+\fincorrection
+\correction{005316}
+\begin{enumerate}
+\item  Pour tout réel $a$,
+
+$$e^{i(2p+1)a}=(\cos a+i\sin a)^{2p+1}=\sum_{j=0}^{2p+1}C_{2p+1}^{j}\cos^{2p+1-j}a(i\sin a)^j$$
+
+puis 
+
+$$\sin((2p+1)a)=\mbox{Im}(e^{i(2p+1)a})=\sum_{j=0}^{p}C_{2p+1}^{2j+1}\cos^{2(p-j)}a(-1)^j\sin^{2j+1}a.$$
+
+Pour $1\leq k\leq p$, en posant $a=\frac{k\pi}{2p+1}$, on obtient~: 
+
+$$\forall k\in\{1,...,p\},\;\sum_{j=0}^{p}C_{2p+1}^{2j+1}\cos^{2(p-j)}\frac{k\pi}{2p+1}(-1)^j\sin^{2j+1}
+\frac{k\pi}{2p+1}=0.$$
+ 
+Ensuite, pour $1\leq k\leq p$, $0<\frac{k\pi}{2p+1}<\frac{\pi}{2}$ et donc $\sin^{2p+1}
+\frac{k\pi}{2p+1}\neq0$. En divisant les deux membres de $(*)$ par $\sin^{2p+1}
+\frac{k\pi}{2p+1}$, on obtient~:
+
+$$\forall k\in\{1,...,p\},\;\sum_{j=0}^{p}(-1)^jC_{2p+1}^{2j+1}\cotan^{2(p-j)}\frac{k\pi}{2p+1}=0.$$
+
+Maintenant, les $p$ nombres $\cotan^2\frac{k\pi}{2p+1}$ sont deux à deux distincts. En effet, pour $1\leq k\leq p$, $0<\frac{k\pi}{2p+1}<\frac{\pi}{2}$. Or, sur $]0,\frac{\pi}{2}[$, la fonction $x\mapsto\cotan x$ est strictement décroissante et strictement positive, de sorte que la fonction $x\mapsto\cotan^2x$ est strictement décroissante et en particulier injective.
+
+Ces $p$ nombres deux à deux distintcs sont racines du polynôme $P=\sum_{j=0}^{p}(-1)^jC_{2p+1}^{2j+1}X^{p-j}$, qui est de degré $p$. Ce sont donc toutes les racines de $P$ (ces racines sont par suite simples et réelles). D'après les relations entre les coefficients et les racines d'un polynôme scindé, on a~:
+
+\begin{align*}\ensuremath
+\sum_{k=1}^{p}\cotan^2\frac{k\pi}{2p+1}=-\frac{-C_{2p+1}^3}{C_{2p+1}^1}=\frac{p(2p-1)}{3}.
+\end{align*}
+
+puis,
+
+$$\sum_{k=1}^{p}\frac{1}{\sin^2\frac{k\pi}{2p+1}}=\sum_{k=1}^{p}(1+\cotan^2\frac{k\pi}{2p+1})=p+\frac{p(2p-1)}{3}=\frac{2p(p+1)}{3}.$$
+
+\item  Pour $n$ entier naturel non nul donné, on a
+
+$$u_{n+1}-u_n=\sum_{k=1}^{n+1}\frac{1}{k^2}-\sum_{k=1}^{n}\frac{1}{k^2}=\frac{1}{(n+1)^2}>0,$$
+
+et la suite $(un)$ est strictement croissante. De plus, pour $n\geq2$,
+ 
+$$u_n=\sum_{k=1}^{n}\frac{1}{k^2}=1+\sum_{k=2}^{n}\frac{1}{k^2}<1+\sum_{k=2}^{n}\frac{1}{k(k-1)}=1+\sum_{k=2}^{n}(\frac{1}{k-1}-\frac{1}{k})=1+1-\frac{1}{n}<2.$$
+
+La suite $(u_n)$ est croissante et est majorée par $2$. Par suite, la suite $(u_n)$ converge vers un réel inférieur ou égal à $2$.
+
+\item  Pour $x$ élément de $[0,\frac{\pi}{2}]$, posons $f(x)=x-\sin x$ et $g(x)=\tan x-x$.
+$f$ et $g$ sont dérivables sur $[0,\frac{\pi}{2}]$ et pour $x$ élément de $[0,\frac{\pi}{2}]$, $f'(x)=1-\cos x$ et $g'(x)=\tan^2x$. $f'$ et $g'$ sont strictement positives sur $]0,\frac{\pi}{2}]$ et donc strictement croissantes sur $[0,\frac{\pi}{2}]$. Comme $f(0)=g(0)=0$, on en déduit que $f$ et $g$ sont strictement positives sur $]0,\frac{\pi}{2}[$.
+
+Donc, $\forall x\in]0,\frac{\pi}{2}[,\;0<\sin x<x<\tan x$ et par passage à l'inverse $\forall x\in]0,\frac{\pi}{2}[,\;0<\cotan x<\frac{1}{x}<\frac{1}{\sin x}$.
+
+\item  Pour $1\leq k\leq p$, $0<\frac{k\pi}{2p+1}<\frac{\pi}{2}$  et donc $0<\cotan\frac{k\pi}{2p+1}<\frac{2p+1}{k\pi}<\frac{1}{\sin\frac{k\pi}{2p+1}}$. Puis, $\cotan^2\frac{k\pi}{2p+1}<(\frac{(2p+1)^2}{\pi^2})\frac{1}{k^2}<\frac{1}{\sin\frac{k\pi}{2p+1}}$. En sommant ces inégalités, on obtient
+
+$$\frac{\pi^2p(2p-1)}{3(2p+1)^2}=\frac{\pi^2}{(2p+1)^2}\sum_{k=1}^{p}\cotan^2\frac{k\pi}{2p+1}<u_p=\sum_{k=1}^{p}
+\frac{1}{k^2}<\frac{\pi^2}{(2p+1)^2}\sum_{k=1}^{p}\frac{1}{\sin^2\frac{k\pi}{2p+1}}=\frac{2p(p+1)\pi^2}{3(2p+1)^2}.$$
+
+Les membres de gauche et de droite tendent vers $\frac{\pi^2}{6}$ quand $p$ tend vers l'infini et donc la suite $(u_p)$ tend vers $\frac{\pi^2}{6}$.
+\end{enumerate}
+\fincorrection
+\correction{005317}
+$X^6-7X^4+8X^3-7X+7=(X^6+8X^3+7)-(7X^4+7X)=(X^3+1)(X^3+7)-7X(X^3+1)=(X^3+1)(X^3-7X+7)$ et $3X^5-7X^3+3X^2-7=3X^2(X^3+1)-7(X^3+1)=(X^3+1)(3X^2-7)$. Donc,
+
+$$(X^6-7X^4+8X^3-7X+7)\wedge(3X^5-7X^3+3X^2-7)=(X^3+1)((X^3-7X+7)\wedge(3X^2-7)).$$
+
+Maintenant, pour $\varepsilon\in\{-1,1\}$, $(\varepsilon\sqrt{\frac{7}{3}})^3-7(\varepsilon\sqrt{\frac{7}{3}})+7=-(\varepsilon\frac{14}{3}\sqrt{\frac{7}{3}})+7\neq0$.
+
+Les polynômes $(X^3-7X+7)$ et $(3X^2-7)$ n'ont pas de racines communes dans $\Cc$ et sont donc premiers entre eux. Donc, $(X^6-7X^4+8X^3-7X+7)\wedge(3X^5-7X^3+3X^2-7)=X^3+1$.
+\fincorrection
+\correction{005318}
+Soit $n\in\Nn$.
+
+\begin{align*}\ensuremath
+(X+1)^n-X^n-1\;\mbox{est divisible par}\;X^2+X+1&\Leftrightarrow j\;\mbox{et}\;j^2\;\mbox{sont racines de}\;(X+1)^n-X^n-1\\
+ &\Leftrightarrow j\;\mbox{est racine de}\;(X+1)^n-X^n-1\\
+ &(\mbox{car}\;(X+1)^n-X^{n-1}\;\mbox{est dans}\;\Rr[X])\\
+ &\Leftrightarrow(j+1)^n-j^n-1=0\Leftrightarrow(-j^2)^n-j^n-1=0.
+\end{align*}
+
+Si $n\in6\Zz$, $(-j^2)^n-j^n-1=-3\neq0$.
+ 
+Si $n\in1+6\Zz$, $(-j^2)^n-j^n-1=-j^2-j-1=0$.
+ 
+Si $n\in2+6\Zz$, $(-j^2)^n-j^n-1=j-j^2-1=2j\neq0$.
+ 
+Si $n\in3+6\Zz$, $(-j^2)^n-j^n-1=-3\neq0$.
+ 
+Si $n\in4+6\Zz$, $(-j^2)^n-j^n-1=j^2-j-1=2j^2\neq0$.
+ 
+Si $n\in5+6\Zz$, $(-j^2)^n-j^n-1=-j-j^2-1=0$.
+
+En résumé, $(X+1)^n-X^n-1$ est divisible par $X^2+X+1$ si et seulement si $n$ est dans $(1+6\Zz)\cup(5+6\Zz)$.
+
+\fincorrection
+\correction{005319}
+Soit $P$ un polynôme non nul à coefficients réels.
+
+Pour tout réel $x$, on peut écrire 
+
+$$P(x)=\lambda\prod_{i=1}^{k}(x-a_i)^{\alpha_i}\prod_{j=1}^{l}((x-z_j)(x-\overline{z_j}))^{\beta_j},$$
+
+où $\lambda$ est un réel non nul, $k$ et $l$ sont des entiers naturels, les $a_i$ sont des réels deux à deux distincts, les $\alpha_i$ et les $\beta_i$ des entiers naturels et les $(x-z_j)(x-\overline{z_j})$ des polynômes deux à deux premiers entre eux à racines non réelles.
+
+Tout d'abord, pour tout réel $x$, $\prod_{j=1}^{l}((x-z_j)(x-\overline{z_j}))^{\beta_j}>0$ (tous les trinomes du second degré considérés étant unitaires sans racines réelles.)
+
+Donc, $(\forall x\in\Rr,\;P(x)\geq0)\Leftrightarrow(\forall x\in\Rr,\;\lambda\prod_{i=1}^{k}(x-a_i)^{\alpha_i}\geq0)$.
+
+Ensuite, si $\forall x\in\Rr,\;P(x)\geq0$, alors $\lim_{x\rightarrow +\infty}P(x)\geq0$ ce qui impose $\lambda>0$. Puis, si un exposant $\alpha_i$ est impair, $P$ change de signe en $a_i$,  ce qui contredit l'hypothèse faite sur $P$. Donc, $\lambda>0$ et tous les $\alpha_i$ sont pairs. Réciproquement, si $\lambda>0$ et si tous les $\alpha_i$ sont pairs, alors bien sûr, $\forall x\in\Rr,\;P(x)\geq0$.
+
+Posons $A=\sqrt{\lambda}\prod_{i=1}^{k}(x-a_i)^{\alpha_i/2}$. $A$ est un élément de $\Rr[X]$ car $\lambda>0$ et car les $\alpha_i$ sont des entiers pairs. Posons ensuite $Q_1=\prod_{j=1}^{l}(x-z_j)^{\beta_j}$ et $Q_2=\prod_{j=1}^{l}(x-\overline{z_j})^{\beta_j}$. $Q_1$ admet après développement une écriture de la forme $Q_1=B+iC$ où $B$ et $C$ sont des polynômes à coefficients réels. Mais alors, $Q_2=B-iC$. Ainsi, $$P=A^2Q_1Q_2=A^2(B+iC)(B-iC)=A^2(B^2+C^2)=(AB)^2+(AC)^2=R^2+S^2,$$
+
+où $R$ et $S$ sont des polynômes à coefficients réels.
+\fincorrection
+\correction{005320}
+Si $P$ est de degré inférieur ou égal à $0$, c'est clair.
+
+Sinon, posons $P=\sum_{k=0}^{n}a_kX^k$ avec $n\in\Nn^*$.
+
+\begin{align*}\ensuremath
+P(P(X))-X&=P(P(X))-P(X)+P(X)-X=\sum_{k=0}^{n}a_k((P(X))^k-X^k)+(P(X)-X)\\
+ &=\sum_{k=1}^{n}a_k((P(X))^k-X^k)+(P(X)-X).
+\end{align*}
+
+Mais, pour $1\leq k\leq n$, $(P(X))^k-X^k)=(P(X)-X)((P(X))^{k-1}+X(P(X))^{k-2}+...+X^{k-1})$ est divisible par $P(X)-X$ et il en est donc de même de $P(P(X))-X$.
+\fincorrection
+\correction{005321}
+\begin{enumerate}
+\item  Posons $P=\sum_{i=0}^{l}a_iX_i$ où $l\geq1$ et où les $a_i$ sont des entiers relatifs avec $a_l\neq0$.
+
+$$P(n+km)=\sum_{i=0}^{l}a_i(n+km)^i=\sum_{i=0}^{l}a_i(n^i+K_im)=\sum_{i=0}^{l}a_in^i+Km=m+Km=m(K+1),$$
+
+où $K$ est un entier relatif. $P(n+km)$ est donc un entier relatif multiple de $m=P(n)$.
+
+\item  Soit $P\in\Zz[X]$ tel que $\forall n\in\Nn,\;P(n)$ est premier.
+
+Soit $n$ un entier naturel donné et $m=P(n)$ (donc, $m\geq2$ et en particulier $m\neq0$). Pour tout entier relatif $k$, $P(n+km)$ est divisible par $m$ mais $P(n+km)$ est un nombre premier ce qui impose $P(n+km)=m$. Par suite, le polynôme $Q=P-m$ admet une infinité de racines deux à deux distinctes (puisque $m\neq0$) et est donc le polynôme nul ou encore $P$ est constant.
+\end{enumerate}
+\fincorrection
+\correction{005322}
+\begin{enumerate}
+\item  Déjà, $P_0$ est dans $E$.
+
+Soit $n$ un naturel non nul. $P_n=\frac{1}{n!}(X+1)...(X+n)$ et donc, si $k$ est élément de $\{-1,...,-n\}$, $P_n(k)=0\in\Zz$.
+
+Si $k$ est un entier positif, $P_n(k)=\frac{1}{n!}(k+1)...(k+n)=C_{n+k}^n\in\Zz$.
+
+Enfin, si $k$ est un entier strictement plus petit que $-n$, 
+
+$$P_n(k)=\frac{1}{n!}(k+1)...(k+n)=(-1)^n\frac{1}{n!}(-k-1)...(-k-n)=(-1)^nC_{-k-1}^n\in\Zz.$$
+
+Ainsi, $\forall k\in\Zz,\;P_(k)\in\Zz$, ou encore $P_(\Zz)\subset\Zz$.
+
+\item  Evident
+
+\item  Soit $P\in\Cc[X]\setminus\{0\}$ tel que $\forall k\in\Zz,\;P(k)\in\Zz$ (si $P$ est nul, $P$ est combinaison linéaire à coefficients entiers des $P_k$).
+
+Puisque $\forall k\in\Nn,\;\mbox{deg}(P_k)=k$, on sait que pour tout entier naturel $n$, $(P_k)_{0\leq k\leq n}$ est une base de $\Cc_n[X]$ et donc, $(P_k)_{k\in\Nn}$ est une base de $\Cc[X]$ (tout polynôme non nul ayant un degré $n$, s'écrit donc de manière unique comme combinaison linéaire des $P_k$).
+
+Soit $n=\mbox{deg}P$.
+
+Il existe $n+1$ nombres complexes $a_0$,..., $a_n$ tels que $P=a_0P_0+...+a_nP_n$. Il reste à montrer que les $a_i$ sont des entiers relatifs.
+
+L'égalité $P(-1)$ est dans $\Zz$, fournit~:~$a_0$ est dans $\Zz$.
+
+L'égalité $P(-2)$ est dans $\Zz$, fournit~:~$a_0-a_1$ est dans $\Zz$ et donc $a_1$ est dans $\Zz$.
+
+L'égalité $P(-3)$ est dans $\Zz$, fournit~:~$a_0-2a_1+a_2$ est dans $\Zz$ et donc $a_2$ est dans $\Zz$...
+
+L'égalité $P(-(k+1))$ est dans $\Zz$, fournit~:~$a_0-a_1+...+(-1)^ka_k$ est dans $\Zz$ et si par hypothèse de récurrence, $a_0$,..., $a_{k-1}$ sont des entiers relatifs alors $a_k$ l'est encore.
+
+Tous les coefficients $a_k$ sont des entiers relatifs et $E$ est donc constitué des combinaisons linéaires à coefficients entiers relatifs des $P_k$.
+\end{enumerate}
+\fincorrection
+\correction{005323}
+On prend $n\geq2$ (sinon tout est clair).
+
+$Q=(X-e^{ia})(X-e^{-ia})$ est à racines simples si et seulement si $e^{ia}\neq e^{-ia}$ ou encore $e^{2ia}\neq 1$ ou enfin, $a\notin\pi\Zz$.
+
+1er cas. Si $a\in\pi\Zz$ alors, $P=0=0.Q$.
+
+2ème cas. Si $a\notin\pi\Zz$, alors 
+
+\begin{align*}\ensuremath
+P(e^{ia})&=\sin a(\cos(na)+i\sin(na))-\sin(na)(\cos a+i\sin a)+\sin((n-1)a)\\
+ &=\sin((n-1)a)-(\sin(na)\cos a-\cos(na)\sin a)=0.
+\end{align*}
+
+Donc, $e^{ia}$ est racine de $P$ et de même, puisque $P$ est dans $\Rr[X]$, $e^{-ia}$ est racine de $P$. $P$ est donc divisible par $Q$.
+
+\begin{align*}\ensuremath
+P&=P-P(e^{ia})=\sin a(X^n-e^{ina})-\sin(na)(X-e^{ia})=(X-e^{ia})(\sin a\sum_{k=0}^{n-1}X^{n-1-k}e^{ika}-\sin(na))\\
+ &=(X-e^{ia})S.
+\end{align*}
+ 
+Puis,
+
+\begin{align*}\ensuremath
+S&=S-S(e^{-ia})=\sin a\sum_{k=0}^{n-1}e^{ika}(X^{n-1-k}-e^{-i(n-1-k)a})=\sin a(X-e^{-ia})\sum_{k=0}^{n-2}e^{ika}(\sum_{j=0}^{n-2-k}X^{n-2-k-j}e^{-ija})\\
+ &=\sin a(X-e^{-ia})\sum_{k=0}^{n-2}(\sum_{j=0}^{n-2-k}X^{n-2-k-j}e^{i(k-j)a})
+=\sin a(X-e^{-ia})\sum_{l=0}^{n-2}(\sum_{k+j=l}^{}e^{i(k-j)a})X^{n-2-l}\\
+ &=\sin a(X-e^{-ia})\sum_{l=0}^{n-2}(\sum_{k=0}^{l}e^{i(2k-l)a})X^{n-2-l}
+\end{align*}
+ 
+Maintenant,
+
+$$\sum_{k=0}^{l}e^{i(2k-l)}a=e^{-ila}\frac{1-e^{2i(l+1)a}}{1-e^{2ia}}=\frac{\sin((l+1)a)}{\sin a}.$$
+
+Donc
+
+$$S=\sin a(X-e^{-ia})\sum_{l=0}^{n-2}\frac{\sin((l+1)a)}{\sin a}X^{n-2-l}=(X-e^{-ia})\sum_{l=0}^{n-2}\sin((l+1)a)X^{n-2-l},$$
+
+et finalement 
+
+$$P=(X-e^{ia})(X-e^{-ia})\sum_{k=0}^{n-2}\sin((k+1)a)X^{n-2-k}=(X^2-2X\cos a+1)\sum_{k=0}^{n-2}\sin((k+1)a).$$
+\fincorrection
+\correction{005324}
+Soit $P$ un polynôme de degré $n$ supèrieur ou égal à $2$.
+
+Posons $P=\lambda(X-z_1)(X-z_2)...(X-z_n)$ où $\lambda$ est un complexe non nuls et les $z_k$ des complexes pas nécessairement deux à deux distincts.
+
+$$P'=\lambda\sum_{i=1}^{n}(\prod_{j\neq i}^{}(X-z_j))=\sum_{i=1}^{n}\frac{P}{X-z_i},$$
+
+et donc 
+ 
+$$\frac{P'}{P}=\sum_{i=1}^{n}\frac{1}{X-z_i}.$$
+
+Soit alors $z$ une racine de $P'$ dans $\Cc$. Si z est racine de $P$ (et donc racine de $P$ d'ordre au moins $2$) le résultat est clair. Sinon,
+
+$$0=\frac{P'(z)}{P(z)}=\sum_{i=1}^{n}\frac{1}{z-z_i}=\sum_{i=1}^{n}\frac{\overline{z-z_i}}{|z-z_i|^2}.$$
+
+En posant $\lambda_i=\frac{1}{|z-z_i|^2}$, ($\lambda_i$ est un réel strictement positif) et en conjugant, on obtient
+$\sum_{i=1}^{n}\lambda_i(z-z_i)=0$ et donc 
+$$z=\frac{\sum_{i=1}^{n}\lambda_iz_i}{\sum_{i=1}^{n}\lambda_i}=\mbox{bar}(z_1(\lambda_1),...,z_n(\lambda_n)).$$
+\fincorrection
+\correction{005325}
+On suppose que $n=\mbox{deg}P\geq1$.
+
+On pose $P=\lambda(X-z_1)(X-z_2)...(X-z_n)$ où $\lambda$ est un complexe non nul et les $z_k$ sont des complexes pas nécessairement deux à deux distincts.
+
+D'après l'exercice précédent, $\frac{P'}{P}=\sum_{k=1}^{n}\frac{1}{X-z_k}$.
+
+Si $P$ est divisible par $P'$, $\exists(a,b)\in\Cc^2\setminus\{(0,0)\}/\;P=(aX+b)P'$ et donc $\exists(a,b)\in\Cc^2\setminus\{(0,0)\}/\;\frac{P'}{P}=\frac{1}{aX+b}$ ce qui montre que la fraction rationelle $\frac{P'}{P}$ a exactement un et un seul pôle complexe et donc que les $z_k$ sont confondus.
+
+En résumé, si $P'$ divise $P$, $\exists(a,\lambda)\in\Cc^2/\;P=\lambda(X-a)^n$ et $\lambda\neq0$.
+
+Réciproquement, si $P=\lambda(X-a)^n$ avec $\lambda\neq0$, alors $P'=n\lambda(X-a)^{n-1}$ divise $P$.
+
+Les polynômes divisibles par leur dérivée sont les polynômes de la forme $\lambda(X-a)^n$, $\lambda\in\Cc\setminus\{0\}$, $n\in\Nn^*$, $a\in\Cc$.
+\fincorrection
+\correction{005326}
+Soit $P$ un tel polynôme. $-2$ est racine de $P+10$ d'ordre au moins trois et donc racine de $(P+10)'= P'$ d'ordre au moins deux.
+
+De même, $2$ est racine de $P'$ d'ordre au moins deux et puisque $P'$ est de degré $4$, il existe un complexe $\lambda$ tel que $P'=\lambda(X-2)^2(X+2)^2=\lambda(X^2-4)^2=\lambda(X^4-8X^2+16)$ et enfin, nécessairement,
+
+$$\exists(\lambda,\mu)\in\Cc^2/\;P=\lambda(\frac{1}{5}X^5-\frac{8}{3}X^3+16X)+\mu\;\mbox{avec}\;\lambda\neq0.$$
+
+Réciproquement, soit $P=\lambda(\frac{1}{5}X^5-\frac{8}{3}X^3+16X)+\mu$ avec $\lambda\neq0$.
+
+\begin{align*}\ensuremath
+P\;\mbox{solution}&\Leftrightarrow P+10\;\mbox{divisible par}\;(X+2)^3\;\mbox{et}\;P-10\;\mbox{est divisible par}\;(X-2)^3\\
+ &\Leftrightarrow P(-2)+10=0=P'(-2)=P''(-2)\;\mbox{et}\;P(2)+10=0=P'(2)=P''(2)\Leftrightarrow P(-2)=-10\;\mbox{et}\;P(2)=10\\
+ &\left\{
+ \begin{array}{l}
+ \lambda(-\frac{32}{5}+\frac{64}{3}-32)+\mu=-10\\
+  \lambda(\frac{32}{5}-\frac{64}{3}+32)+\mu=10
+  \end{array}
+  \right.
+  \Leftrightarrow\mu=0\;\mbox{et}\;\lambda(\frac{32}{5}-\frac{64}{3}+32)+\mu=10\\
+  &\Leftrightarrow\mu=0\;\mbox{et}\;\lambda=\frac{75}{128}
+\end{align*}
+
+On trouve un et un seul polynôme solution à savoir $P=\frac{75}{128}(\frac{1}{5}X^5-\frac{8}{3}X^3+16X)=\frac{15}{128}X^5-\frac{25}{16}X^3+\frac{75}{8}X$.
+\fincorrection
+\correction{005327}
+Les polynômes de degré inférieur ou égal à $0$ solutions sont clairement $0$ et $1$.
+
+Soit $P$ un polynôme de degré supérieur ou égal à $1$ tel que $P(X^2)=P(X)P(X+1)$.
+
+Soit $a$ une racine de $P$ dans $\Cc$. Alors, $a^2$, $a^4$, $a^8$..., sont encore racines de $P$. Mais, $P$ étant non nul, $P$ ne doit admettre qu'un nombre fini de racines. La suite $(a^{2^n})_{n\in\Nn}$ ne doit donc prendre qu'un nombre fini de valeurs ce qui impose $a=0$ ou $|a|=1$ car si $|a|\in]0,1[\cap]1,+\infty[$, la suite $(|a^{2^n}|)$ est strictement monotone et en particulier les $a^{2^n}$ sont deux à deux distincts.
+
+De même, si $a$ est racine de $P$ alors $(a-1)^2$ l'est encore mais aussi $(a-1)^4$, $(a-1)^8$..., ce qui impose $a=1$ ou $|a-1|=1$.
+
+En résumé,
+
+$$(a\;\mbox{racine de}\;P\;\mbox{dans}\;\Cc)\Rightarrow((a=0\;\mbox{ou}\;|a|=1)\;\mbox{et}\;(a=1\;\mbox{ou}\;|a-1|= 1))\Rightarrow(a=0\;\mbox{ou}\;a=1\;\mbox{ou}\;|a|=|a-1|=1).$$
+
+Maintenant, $|a|=|a-1|=1\Leftrightarrow|a|=1\;\mbox{et}\;|a|=|a-1|\Leftrightarrow a\in\mathcal{C}((0,0),1)\cap\mbox{med}[(0,0),(1,0)]=\{-j,-j^2\}$.
+
+Donc, si $P\in\Rr[X]$ est solution, il existe $K$, $\alpha$, $\beta$, $\gamma$, $K$ complexe non nul et $\alpha$, $\beta$ et $\gamma$ entiers naturels tels que $P=KX^\alpha(X-1)^\beta(X+j)^\gamma(X+j^2)^\gamma$ ($-j$ et $-j^2$ devant avoir même ordre de multiplicité).
+
+Réciproquement, si $P=KX^\alpha(X-1)^\beta(X+j)^\gamma(X+j^2)^\gamma=KX^\alpha(X-1)^\beta(X^2-X+1)^\gamma$.
+$$P(X^2)=KX^{2\alpha}(X^2-1)^\beta(X4-X^2+1)^\gamma=KX^{2\alpha}(X-1)^\beta(X+1)^\beta(X^2-\sqrt{3}X+1)^\gamma(X^2+
+\sqrt{3}X+1)^\gamma,$$
+
+et 
+
+\begin{align*}\ensuremath
+P(X)P(X+1)&=KX^\alpha(X-1)^\beta(X^2-X+1)\gamma K(X+1)^\alpha X^\beta(X^2+X+1)^\gamma\\
+ &=K^2X^{\alpha+\beta}(X-1)^\beta(X+1)^\alpha(X^2-X+1)^\gamma(X^2+X+1)^\gamma.
+\end{align*}
+
+Par unicité de la décompôsition en produit de facteurs irréductibles d'un polynôme non nul, $P$ est solution si et seulement si $P=0$ ou $K=1$ et $\alpha=\beta$ et $\gamma=0$.
+
+Les polynômes solutions sont $0$ et les $(X^2-X)^\alpha$ où $\alpha$ est un entier naturel quelconque.
+\fincorrection
+\correction{005328}
+$a$ est solution du problème si et seulement si $X^5-209X+a$ est divisible par un polynôme de la forme $X^2+\alpha X+1$. Mais 
+
+$$X^5-209X+a=(X^2+\alpha X+1)(X^3-\alpha X^2+(\alpha^2-1)X-(\alpha^3-2\alpha))+(\alpha^4-3\alpha^2-208)X+a+(\alpha^3-2\alpha).$$
+
+Donc a est solution $\Leftrightarrow\exists\alpha\in\Cc/\;\left\{
+\begin{array}{l}
+\alpha^4-3\alpha^2-208=0\\
+a=-\alpha^3+2\alpha
+\end{array}
+\right.$. Mais, $\alpha^4-3\alpha^2-208=0\Leftrightarrow\alpha^2\in\{-13,16\}\Leftrightarrow\alpha\in\{-4,4,i\sqrt{13},-i\sqrt{13}\}$ et la deuxième équation fournit $a\in\{56,-56,15i\sqrt{13},-15i\sqrt{13}\}$.
+
+\fincorrection
+\correction{005329}
+On note que $P(1)=1\neq0$ et donc que l'expression proposée a bien un sens.
+
+$$\sum_{k=1}^{5}\frac{a_k+2}{a_k-1}=\sum_{k=1}^{5}(1+\frac{3}{a_k-1})=5-3\sum_{k=1}^{5}\frac{1}{1-a_k}=5-3\frac{P'(1)}{P(1)}=5-3\frac{12}{1}=-31.$$
+
+\fincorrection
+\correction{005330}
+\begin{enumerate}
+\item  
+\begin{align*}\ensuremath
+S&\Leftrightarrow\left\{
+\begin{array}{l}
+x+y+z=1\\
+\frac{xy+xz+yz}{xyz}=1\\
+xyz=-4
+\end{array}\right.\Leftrightarrow\sigma_1=1,\;\sigma_2=\sigma_3=-4\\
+ &\Leftrightarrow x,\;y\;\mbox{et}\;z\;\mbox{sont les trois solutions de l'équation}\;X^3-X^2-4X+4=0\\
+ &\Leftrightarrow x,\;y\;\mbox{et}\;z\;\mbox{sont les trois solutions de l'équation}\;(X-1)(X-2)(X+2)=0\\
+ &\Leftrightarrow(x,y,z)\in\{(1,2,-2),(1,-2,2),(2,1,-2),(2,-2,1),(-2,1,2),(-2,2,1)\}
+\end{align*}
+
+\item  Pour $1\leq k\leq 4$, posons $S_k=x^k+y^k+z^k+t^k$. On a $S_2=\sigma_1^2-2\sigma_2$. Calculons $S_3$ en fonction des $\sigma_k$. On a $\sigma_1^3=S_3+3\sum_{}^{}x^2y+6\sum_{}^{}xyz=S_3+3\sum_{}^{}x^2y+6\sigma_3$ $(*)$. Mais on a aussi $S_1S_2=S_3+\sum_{}^{}x^2y$. Donc, $\sum_{}^{}x^2y=\sigma_1(\sigma_1^2-2\sigma_2)-S_3$. En reportant dans $(*)$, on obtient $\sigma_1^3=S_3+3(\sigma_1^3-2\sigma_1\sigma_2-S_3)+6\sigma_3$ et donc,
+
+$$S_3=\frac{1}{2}(-\sigma_1^3+3(\sigma_1^3-2\sigma_1\sigma_2-S_3)+6\sigma_3)=\sigma_1^3-3\sigma_1\sigma_2+3\sigma_3.$$
+
+Calculons $S_3$ en fonction des $\sigma_k$. Soit $P=(X-x)(X-y)(X-z)(X-t)=X^4-\sigma_1X^3+\sigma_2X^2-\sigma_3X+\sigma_4$.
+
+\begin{align*}\ensuremath
+P(x)+P(y)+P(z)+P(t)=0&\Leftrightarrow S_4-\sigma_1S_3+\sigma_2S_2-\sigma_3S_1+4\sigma_4=0\\
+ &\Leftrightarrow S_4=\sigma_1(\sigma_1^3-3\sigma_1\sigma_2+3\sigma_3)-\sigma_2(\sigma_1^2-2\sigma_2)+\sigma_3\sigma_1-4\sigma_4\\
+ &\Leftrightarrow S_4=\sigma_1^4-4\sigma_1^2\sigma_2+4\sigma_1\sigma_3+2\sigma_2^2-4\sigma_4.
+\end{align*}
+
+Par suite,
+
+\begin{align*}\ensuremath
+S&\Leftrightarrow
+\left\{
+\begin{array}{l}
+\sigma_1=0\\
+-2\sigma_2=10\\
+3\sigma_3=0\\
+2\sigma_2^2-4\sigma_4=26
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+\sigma_1=0\\
+\sigma_2=-5\\
+\sigma_3=0\\
+\sigma_4=6
+\end{array}
+\right.\\
+ &\Leftrightarrow x,\;y,\;z,\;\mbox{et}\;t\;\mbox{sont les 4 solutions de l'équation}\;X^4-5X^2+6=0\\
+ &\Leftrightarrow(x,y,z,t)\;\mbox{est l'une des 24 permutations du quadruplet}\;(\sqrt{2},-\sqrt{2},\sqrt{3},-\sqrt{3})
+\end{align*}
+
+\end{enumerate}
+\fincorrection
+\correction{005331}
+Le polynôme nul est solution. Soit $P$ un polynôme non nul de degré $n$ solution alors $n=n-1+n-2$ et donc $n=3$. Posons donc $P=aX^3+bX^2+cX+d$ avec $a\neq0$.
+
+\begin{align*}\ensuremath
+P(2X)=P'(X)P''(X)&\Leftrightarrow8aX^3+4bX^2+2cX+d=(3aX^2+2bX+c)(6aX+2b)\\
+ &\Leftrightarrow(18a^2-8a)X^3+(18ab-4b)X^2+(4b^2+6ac-2c)X+2bc-d=0\\
+ &\Leftrightarrow18a^2-8a=18ab-4b=4b^2+6ac-2c=2bc-d=0\\
+ &\Leftrightarrow a=\frac{4}{9}\;\mbox{et}\;b=c=d=0.
+\end{align*}
+
+Les polynômes solutions sont $0$ et $\frac{4}{9}X^3$.
+
+\fincorrection
+\correction{005332}
+$0$ n'est pas racine de $P$.
+
+On rappelle que si $r=\frac{p}{q}$, ($p\in\Zz^*$, $q\in\Nn^*$, $p\wedge q=1$) est racine de $P$, alors $p$ divise le coefficient constant de $P$ et $q$ divise son coefficient dominant. Ici, $p$ divise $4$ et $q$ divise $12$ et donc, $p$ est élément de $\{\pm1,\pm2,\pm4\}$ et $q$ est élément 
+de $\{1,2,3,4,6,12\}$ ou encore $r$ est élément de $\{\pm1,\pm2,\pm4,\pm\frac{1}{2},\pm\frac{1}{3},\pm\frac{2}{3},\pm\frac{4}{3},\pm\frac{1}{4},\pm\frac{1}{6},\pm\frac{1}{12}\}$.
+
+Réciproquement, on trouve $P(\frac{2}{3})=P(\frac{1}{4})=0$. $P$ est donc divisible par
+
+$$12(X-\frac{2}{3})(X-\frac{1}{4})=(3X-2)(4X-1)=12X^2-11X+2.$$
+
+Plus précisément, $P=(12X^2-11X+2)(X^2+X+2)=(3X-2)(4X-1)(X-\frac{-1+i\sqrt{7}}{2})(X-\frac{-1-i\sqrt{7}}{2})$.
+\fincorrection
+\correction{005333}
+Pour $n\geq0$, posons $P_n=(X-1)^{2n}-X^{2n}+2X-1$. $P_n(0)=P_n(1)=P_n(\frac{1}{2})=0$. $P_n$ admet $0$, $1$ et $\frac{1}{2}$ pour racines et est donc divisible par $X(X-1)(2X-1)=2X^3-3X^2+X$.
+
+Si $n=0$ ou $n=1$, le quotient est nul. Si $n=2$, le quotient vaut $-2$.
+
+Soit $n\geq 3$. On met succesivement $2X-1$ puis $X-1$ puis $X$ en facteur~:
+\begin{align*}\ensuremath
+P_n&=((X-1)^2)^n-(X^2)^n+(2X-1)=((X-1)2-X2)\sum_{k=0}^{n-1}(X-1)^{2k}X^{2(n-1-k)}+(2X-1)\\
+ &=(2X-1)(-\sum_{k=0}^{n-1}(X-1)^{2k}X^{2(n-1-k)}+1)=(2X-1)(-\sum_{k=1}^{n-1}(X-1)^{2k}X^{2(n-1-k)}+1-X^{2n-2})\\
+ &=(2X-1)(-(X-1)\sum_{k=1}^{n-1}(X-1)^{2k-1}X^{2(n-1-k)}-(X-1)\sum_{k=0}^{2n-1}X^k)\\
+ &=(2X-1)(X-1)(-\sum_{k=1}^{n-1}(X-1)^{2k-1}X^{2(n-1-k)}-\sum_{k=0}^{2n-1}X^k)\\
+ &=(2X-1)(X-1)(-\sum_{k=1}^{n-2}(X-1)^{2k-1}X^{2(n-1-k)}-\sum_{k=1}^{2n-1}X^k-1-(X-1)^{2n-3})\\
+ &=(2X-1)(X-1)(-\sum_{k=1}^{n-2}(X-1)^{2k-1}X^{2(n-1-k)}-\sum_{k=1}^{2n-3}X^k-\sum_{k=1}^{2n-3}(-1)^{2n-3-k}C_{2n-3}^kX^k)\\
+ &= X(2X-1)(X-1)(-\sum_{k=1}^{n-2}(X-1)^{2k-1}X^{2n-2k-3}-
+ \sum_{k=1}^{2n-3}X^{k-1}-\sum_{k=1}^{2n-3}(-1)^{2n-3-k}C_{2n-3}^kX^{k-1})
+\end{align*}
+
+\fincorrection
+\correction{005334}
+\begin{align*}\ensuremath
+1&=(X+(1-X))^{n+m-1}=\sum_{k=0}^{n+m-1}C_{n+m-1}^{k}X^k(1-X)^{n+m-1-k}\\
+ &=\sum_{k=0}^{n-1}C_{n+m-1}^{k}X^k(1-X)^{n+m-1-k}
++\sum_{k=n}^{n+m-1}C_{n+m-1}^{k}X^k(1-X)^{n+m-1-k}\\ 
+ &=(1-X)^m\sum_{k=0}^{n-1}C_{n+m-1}^{k}X^k(1-X)^{n-1-k}+X^n\sum_{k=n}^{n+m-1}C_{n+m-1}^{k}X^{k-n}(1-X)^{n+m-1-k}
+\end{align*}
+
+Soient $U=\sum_{k=n}^{n+m-1}C_{n+m-1}^{k}X^{k-n}(1-X)^{n+m-1-k}$ et $V=\sum_{k=0}^{n-1}C_{n+m-1}^{k}X^k(1-X)^{n-1-k}$. $U$ et $V$ sont des polynômes tels que $UX^n+V(1-X)^m=1$. De plus, pour $n\leq k\leq n+m-1$, $\mbox{deg}(X^{k-n}(1-X)^{n+m-1-k})=k-n+n+m-1-k=m-1<m$ et donc $\mbox{deg}(U)<m$ et de même pour $0\leq k\leq n-1$, $\mbox{deg}(X^k(1-X)^{n-1-k})=k+n-1-k=n-1<n$ et $\mbox{deg}(V)<n$.
+\fincorrection
+
+
+\end{document}
+

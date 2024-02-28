@@ -1,0 +1,633 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+	\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/3}\rfoot{PCSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+ 	
+%BIBMATH:
+
+%https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/algebrelineaire/matrices&type=fexo %%%%1
+
+%https://www.bibmath.net/ressources/index.php?action=affiche&quoi=mathsup/feuillesexo/matrices&type=fexo  %%%2
+
+%https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/algebrelineaire/systemelineaire&type=fexo	%%%%3
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 9 : Matrices et applications}}
+	\end{minipage}
+}
+\bigskip
+
+
+
+
+\section*{Opérations sur les matrices:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+	
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	On consid\`ere les matrices suivantes~:
+	$$
+	A = \left(\begin{array}{ccc}1& 2 & -1\\ 2 & 3 & -2\\ 0 &0 & 0\end{array}\right); \quad\quad B = \left(\begin{array}{ccc}1 & 0 & -1\\ 2 & 0 & 4\\ 1 & 0 & -2\end{array}\right); $$ \hfill\\[-0.5cm]$$  C = \left(\begin{array}{cc} 2 &-2 \\ 1 & 1\\ 3 & 1\end{array}\right);$$\hfill\\[-0.5cm]
+	$$D = \left(\begin{array}{c} 2 \\ 1 \\ 3\end{array}\right);\quad\quad E = \left(\begin{array}{ccc}0 & 1 & 2 \end{array}\right).
+	$$
+	Calculer \textit{(lorsque cela est bien d\'efini)} les produits de matrices suivants~: $AB$, $BA$, $AC$, $CA$, $AD$, $AE$, $BC$, $BD$, $BE$, $CD$, $DE$.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+ 	Soient les matrices suivantes~:
+ 	$$
+ 	A = \left(\begin{array}{ccc}2& 5 & -1\\ 0 & 1 & 3\\ 0 &-2 & 4\end{array}\right); \quad\quad B = \left(\begin{array}{ccc}1 & 7 & -1\\ 2 & 3 & 4\\ 0 & 0 & 0\end{array}\right); $$\hfill\\[-0.5cm] $$  C = \left(\begin{array}{cc} 1 & 2 \\ 0 & 4\\ -1 & 0\end{array}\right).
+ 	$$
+ 	Calculer~:
+ 	$(A - 2 B)C$,
+ 	$C^{T}A$,
+ 	$C^T B$,
+ 	$C^{T}(A^T - 2 B^T)$,
+ 	o\`u $C^T$ d\'esigne la matrice transpos\'ee de $C$.
+ 	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+ Pour $x$ réel, on pose~:\hfill\\[-0.5cm]
+ 
+ $$A(x)=
+ \left(
+ \begin{array}{cc}
+ \text{ch} x&\text{sh} x\\
+ \text{sh} x&\text{ch} x
+ \end{array}
+ \right)
+ .$$
+ 
+ Déterminer $(A(x))^n$ pour $x$ réel et $n$ entier relatif.
+ 
+ La matrice $(A(x))$ est-elle toujours inversible? 
+
+
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	On pose $u_0=1$, $v_0=0$, puis, pour $n\in\N$, $u_{n+1}=2u_n+v_n$ et $v_{n+1}=u_n+2v_n$.
+	\begin{enumerate}
+		\item  Soit $A=\left(
+		\begin{array}{cc}
+		2&1\\
+		1&2
+		\end{array}
+		\right)$. Pour $n\in\N$, calculer $A^n$. En déduire $u_n$ et $v_n$ en fonction de $n$.
+		\item  En utilisant deux combinaisons linéaires intéressantes des suites $u$ et $v$, calculer directement $u_n$ et $v_n$ en fonction de $n$.
+	\end{enumerate}
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Soit $A,\ B\in M_{2}(\mathbb R)$ les matrices définies par
+\begin{equation*}
+A=\left(\begin{array}{cc} 3 & -1\\-2&0 \end{array} \right)
+\quad \textrm{et} \quad B=\left(\begin{array}{cc} 0 & 1\\3&2 \end{array} \right).
+\end{equation*}
+Comparer les deux matrices $(A+B)^2$ et $A^2+2AB+B^2$. Puis comparer les deux matrices $(A+B)^2$ et $A^2+AB+BA+B^2$.
+	
+
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+Déterminer deux éléments $A$ et $B$ de
+$\mathcal M_2({\mathbb R})$ tels que : $AB=0$ et $BA\not = 0$.
+
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+Soit $A,B\in\mathcal M_n(\mathbb R)$ deux matrices telles que la somme des coefficients sur chaque ligne de $A$ et sur chaque ligne de $B$ vaut $1$
+(on dit qu'une telle matrice est une matrice stochastique).
+Montrer que la somme des coefficients sur chaque ligne de $AB$ vaut $1$.
+
+	\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+\end{minipage}
+\end{minipage}
+
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $$A=\left(
+			\begin{array}{ccc}
+			1&1&0\\
+			0&1&1\\
+			0&0&1
+			\end{array}\right),\quad
+			I=\left(
+			\begin{array}{ccc}
+			1&0&0\\
+			0&1&0\\
+			0&0&1
+			\end{array}\right)\textrm{ et }
+			B=A-I.$$
+			Calculer $B^n$ pour tout $n\in\mathbb N$. En déduire $A^n$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+			\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		Soient $\mathcal S_n(\mathbb R)$ l'ensemble des matrices symétriques ($A=\ ^t\!A$) et $\mathcal A_n(\mathbb R)$ l'ensemble des matrices anti-symétriques ($A=-\ ^t\!A$).Montrer que pour toute matrice $M\in\mathcal M_n(\mathbb R)$ il existe un unique couple $(S,A)\in\mathcal S_n(\mathbb R)\times \mathcal A_n(\mathbb R)$ tel que $M = S + A$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			On dit qu'une matrice $A\in\mathcal M_n(\mathbb K)$ est nilpotente s'il existe $p\in\mathbb N$ tel que $A^p=0$. Démontrer que si $A,B\in\mathcal M_n(\mathbb K)$ sont deux matrices nilpotentes telles que $AB=BA$, alors $AB$ et $A+B$ sont nilpotentes.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+			\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		\begin{enumerate}
+			\item Pour $n\geq 2$, déterminer le reste de la division euclidienne de $X^n$ par $X^2-3X+2$.
+			\item Soit  $A=\begin{pmatrix} 
+			0&1&-1\\
+			-1&2&-1\\
+			1&-1&2
+			\end{pmatrix}$. Déduire de la question précédente la valeur de $A^n$, pour $n\geq 2$.
+		\end{enumerate}
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		
+		
+
+		
+
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+
+\section*{Ensemble des matrices carrées:}\hfill\\[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(*)}\quad\\%[0.2cm]
+		Soit 
+		$A=\begin{pmatrix} 
+		1 & 0 & 2 \cr
+		0 & -1 & 1 \cr
+		1 & -2 & 0 \cr
+		\end{pmatrix}$. 
+		Calculer $A^3-A$. En déduire que $A$ est inversible puis déterminer $A^{-1}$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+				
+		\begin{exo}\textbf{(**)}\quad (Théorème de \textsc{Hadamard})\\%[0.2cm]
+			
+		Soit $A\in\mathcal{M}_n(\C)$ à diagonale strictement dominante, telle que~:~$\forall i\in\{1,...,n\},\;|a_{i,i}|>\sum_{j\neq i}^{}|a_{i,j}|$.
+		
+		\noindent Montrer que $A$ est inversible.
+		
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\%[0.2cm]
+		Soit  $A\in\mathcal{M}_{n}\left(\R\right)$.
+		Montrer que  $Tr(A^{T}A) \geq 0$. 
+		
+		Que peut-on en déduire sur la matrice $A$ si $Tr(A^{T}A) = 0$?
+			% Montrer que  $Tr(\lambda A + \beta B) = \lambda Tr(A) + \beta Tr(B)$.
+
+		
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(**)}\quad\\%[0.2cm]
+			
+		Les affirmations suivantes sont-elles vraies ? 
+		\begin{enumerate}
+			\item $\forall A,B,C\in\mathcal{M}_{2}\left(\R\right) : Tr(ABC) = Tr(BAC)  $
+			\item $\exists A,B \in \mathcal{M}_{n}\left(\R\right) : AB - BA = I_n $
+			\item  Soient $A,B \in \mathcal{M}_{n}\left(\R\right) $  tels que $AB - BA = A $. Alors pour tout $n\in\N^*$ on a $Tr(A^n) = 0$
+		\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+			
+
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+	\begin{exo}\textbf{(*)}\quad\\%[0.2cm]
+			Soient $A$ et $B \in \mathcal{M}_n(\R)$ telles que $\forall X \in \mathcal{M}_n (\R)$,
+		$\text{tr} (AX) = \text{tr} (BX)$. Montrer que $A = B$.
+		
+
+			\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+		
+							\begin{exo}\textbf{(*)}\quad\\%[0.2cm]
+			Calculer (s'il existe) l'inverse des matrices :\quad\\[-0.7cm]
+			$$
+			\begin{pmatrix} a & b \\ c & d \\ \end{pmatrix}
+			\qquad 
+			\begin{pmatrix} 1&2&1 \\ 1&2&-1\\ -2&-2&-1 \end{pmatrix}
+			\qquad 
+			\begin{pmatrix} 
+			1 &\bar\alpha &\bar\alpha^2 \cr
+			\alpha   &1          &\bar\alpha   \cr
+			\alpha^2 &\alpha     &1            \cr \end{pmatrix} (\alpha \in \C)
+			$$\quad\\[-0.5cm]
+			
+			$$
+			\begin{pmatrix}
+			1 & 1 & \cdots &\cdots & 1 \\
+			0 & 1 & \ddots & & \vdots  \\
+			& \ddots & \ddots & \ddots &  \vdots \\
+			& \cdots & 0 & 1 & 1 \\
+			0 & & \cdots & 0 & 1
+			\end{pmatrix}
+			\qquad 
+			\begin{pmatrix}
+			1 & 2 & 3 & \cdots & n \\
+			0 & 1 & 2 & \cdots & \vdots \\
+			& \ddots & \ddots & \ddots &  \vdots \\
+			\vdots &  & 0 & 1 & 2 \\
+			0 & \cdots & & 0 & 1
+			\end{pmatrix}
+			$$
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\%[0.2cm]
+			Soit $M \in \mathcal{M}_n(\R)$ antisymétrique.
+			
+			\begin{enumerate}
+				\item Montrer que $I+M$ est inversible (si $(I+M)X = 0$, calculer ${}^t\!(MX)(MX)$).
+				\item Soit $A = (I-M)(I+M)^{-1}$. Montrer que ${}^t\!A = A^{-1}$.
+			\end{enumerate}
+		
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+\newpage
+
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+				\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Dire si les matrices suivantes sont inversibles et, le
+			cas échéant, calculer leur inverse :\quad\\[-0.2cm]
+			$$A=\left(
+			\begin{array}{rcl}
+			1&1&2\\
+			1&2&1\\
+			2&1&1
+			\end{array}
+			\right),\quad
+			B=\left(
+			\begin{array}{rcl}
+			0&1&2\\
+			1&1&2\\
+			0&2&3
+			\end{array}
+			\right)$$\\[-0.2cm] $$ 
+			C=\left(
+			\begin{array}{rcl}
+			1&4&7\\
+			2&5&8\\
+			3&6&9
+			\end{array}\right),\quad
+			I=\left(
+			\begin{array}{rcl}
+			i&-1&2i\\
+			2&0&2\\
+			-1&0&1
+			\end{array}\right).$$
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+
+					\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		Soient $A$ et $B$ deux matrices de tailles $n$ vérifiant $AB-BA=A$. Montrer pour tout entier naturel $k$ :
+		
+		$A^{k+1}B  - BA^{k+1}= (k+ 1)A^{k+1}$
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}	
+
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Déterminer les réels $\lambda$ tels qu'il existe une matrice $A\in\mathcal M_n(\mathbb R)$ non nulle vérifiant ${}^t\!A = \lambda A$.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+		
+	\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		Soit $T$ une matrice triangulaire supérieure de taille $n\in\N$. Montrer que $T$ commute avec sa transposée, si et seulement si $T$ est diagonale.	
+		
+				\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			Déterminer le centre de $\mathcal M_n(\mathbb R)$, c'est-à-dire l'ensemble des matrices $A\in\mathcal M_n(\mathbb R)$ telle que, pour tout $M\in\mathcal M_n(\mathbb R)$, on a $AM=MA$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+
+		
+		
+	\end{minipage}
+\end{minipage}
+
+
+\section*{Systèmes linéaires:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Résoudre les systèmes linéaires suivants :
+	$$\left\{
+	\begin{array}{rcl}
+	x+y+2z&=&3\\
+	x+2y+z&=&1\\
+	2x+y+z&=&0
+	\end{array}\right.
+	\quad\quad\quad
+	\left\{
+	\begin{array}{rcl}
+	x+2z&=&1\\
+	-y+z&=&2\\
+	x-2y&=&1
+	\end{array}\right.$$
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Résoudre le système suivant:
+			
+			$$\left\{
+			\begin{array}{rcl}
+			x+y+z-3t&=&1\\
+			2x+y-z+t&=&-1
+			\end{array}\right.$$
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+		Discuter suivant la valeur du paramètre $m\in\mathbb R$ le système :$$\left\{
+		\begin{array}{rcl}
+		3x+y-z&=&1\\
+		x-2y+2z&=&m\\
+		x+y-z&=&1
+		\end{array}\right.$$
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Résoudre le système suivant, en discutant suivant la valeur du paramètre $m$.
+			$$\left\{
+			\begin{array}{rcl}
+			x+y+mz&=&0\\
+			x+my+z&=&0\\
+			mx+y+z&=&0
+			\end{array}\right.$$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Déterminer tous les triplets $(a,b,c)\in\mathbb R^3$ tels que le polynôme $P(x)=ax^2+bx+c$ vérifie
+			\begin{enumerate}
+				\item $P(-1)=5$, $P(1)=1$ et $P(2)=2$;
+				\item $P(-1)=4$ et $P(2)=1$.
+			\end{enumerate}
+		
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			Résoudre, pour $\lambda \in\C$, le système\\[-0.2cm]
+			
+			$$
+			\left\{\begin{array}{ccc}
+			\lambda x+y+z+t & = & 1 \\
+			x  +\lambda y+z+t & = & \lambda \\
+			x  +y+\lambda z+t & = & 1
+			\end{array}\right.
+			$$
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+	
+
+\end{document}

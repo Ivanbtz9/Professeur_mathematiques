@@ -1,0 +1,209 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor,multicol}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\p}{\mathbb{P}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	
+	
+	\begin{center}
+		\Large \sc colle 19 = espaces euclidiens 
+	\end{center}
+
+\section*{Espaces Euclidiens:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\[0.25cm]
+			Soient $A,B \in \mathcal{M}_n(\R)$, on définit:
+			$$\left\langle A|B\right\rangle = Tr(^tAB) $$
+			\begin{enumerate}
+				\item Démontrer que cette formule définit un produit scalaire sur $\mathcal{M}_n(\R)$
+				\item En déduire que, pour tous $A,B\in\mathcal{S}_n(\R)$, on a 
+				$$(Tr(AB))^2 \leq Tr(A^2)Tr(B^2) $$
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+			\begin{exo}\quad\\[0.25cm]
+				\begin{enumerate}
+					\item  Donner la matrice de la projection orthogonale sur la droite d'équations $3x=6y=2z$ dans la base canonique orthonormée de $\R^3$ ainsi que de la symétrie orthogonale par rapport à cette même droite.
+					\item Donner de manière générale, la matrice de la projection orthogonale sur la droite engendrée par le vecteur unitaire $u=(a,b,c)$.
+				\end{enumerate}
+
+		
+		
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}	
+	
+	\begin{exo}\quad\\[0.25cm]
+		Soit $E$ un espace préhilbertien, et $(e_1,...,e_n)$ une famille de $n$ vecteurs de $E$ de norme $1$ tels que, pour tout $x\in E $, on a: 
+		$$\|x\|^2 = \sum_{k=1}^{n} \left\langle x|e_k\right\rangle^2 $$
+		
+		Démontrer que $E$ est de dimension $n$ et que $(e_1,...,e_n)$ est une base orthonormale de E.
+	
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}	
+		
+		
+		
+		\begin{exo}\quad\\[0.25cm]
+			Soit $E$ un espace vectoriel euclidien et $x,y$ deux éléments de $E$. Montrer que $x$ et $y$ sont orthogonaux si et seulement si $\| x+\lambda y \| \geq \|x\|$ pour tout $\lambda\in\R$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+		\begin{exo}\quad\\[0.25cm]
+		Soit $\mathcal{B}$ une base orthonormée de $E$, espace euclidien de dimension $n$.
+		Montrer que~:~$$\forall(x_1,...,x_n)\in E^n,\;|\mbox{det}_{\mathcal{B}}(x_1,...,x_n)|\leq||x_1||...||x_n||$$ en précisant les cas d'égalité.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\quad\\[0.25cm]
+			
+			Déterminer une base orthonormale de $\R_2[X]$ muni du produit scalaire. 
+			 $$ \left\langle P|Q\right\rangle =\int_{-1}^{1}P(t)Q(t)\;dt$$
+			
+			
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}	
+
+		\begin{exo}\quad\\[0.25cm]
+		Soit $E$ un espace préhilbertien, et $A$ et $B$ deux parties de $E$. Démontrer les relations suivantes :
+		\begin{enumerate}
+		\item $A\subset B \Rightarrow B^{\perp}\subset A^{\perp}$.
+		\item $(A\cup B)^{\perp} = A^{\perp}\cap B^{\perp}$.
+		\item $A^{\perp} = vect(A)^{\perp}$.
+		\item $vect(A) \subset A^{\perp \perp}$
+		\item On suppose maintenant que $E$ est de dimension finie. Démontrer que $vect(A) = A^{\perp \perp}$
+		\end{enumerate}
+	
+		\centering
+		\rule{1\linewidth}{0.6pt}
+		\end{exo}	
+	
+		\begin{exo}\quad\\[0.25cm]
+		Soit $E$ un espace préhilbertien et soit $B=\{x\in E; \|x\| \leq 1\}$. Démontrer que $B$ est strictement convexe, c'est-à-dire que, pour tous $x,y\in B$, $x \neq y$ et tout $t\in \left]0,1\right[ $, $\|tx+(1-t)y\|<1$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+		\end{exo}	
+			
+		\begin{exo}\quad\\[0.25cm]
+		Soit $E= \R^4$ muni de son produit scalaire canonique et de la base canonique $\beta = (e_1, e_2, e_3, e_4) $ . On considère $G$ le sous-espace vectoriel défini par les équations:
+		$$\left\{\begin{array}{c}
+		x_1 + x_2 = 0\\
+		x_3 + x_4 = 0
+		\end{array}\right.$$ 
+		\begin{enumerate}
+			\item Déterminer une base orthonormale de $G$.
+			
+			\item Déterminer la matrice dans $\beta$
+			de la projection orthogonale $p_G$ sur $G$.
+			
+			\item Soit $x=(x_1,x_2,x_3,x_4)$ un élément de $E$. Déterminer la distance de $x$ à $G$. 
+		\end{enumerate}
+	
+		\centering
+		\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+		
+		\begin{exo}\quad\\[0.25cm]
+		
+		Soit $E$ un espace vectoriel euclidien, et $p$ un projecteur de $E$. Montrer que $p$ est un projecteur orthogonal si et seulement si pour tout $x$ de $E$, on a $\|p(x)\|\leq \|x\|$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+	\end{minipage}
+\end{minipage}	
+
+
+
+
+
+\end{document}

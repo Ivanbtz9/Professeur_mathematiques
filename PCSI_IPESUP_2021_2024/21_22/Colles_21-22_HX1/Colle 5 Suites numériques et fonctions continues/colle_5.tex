@@ -1,0 +1,241 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor,multicol}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	
+	
+	\begin{center}
+		\Large \sc colle 5 = suites numériques et fonctions continues
+	\end{center}
+	
+\section *{Questions de cours:}
+%\hyperref{http://www.normalesup.org/~sage/Enseignement/TSI/index.html}
+\noindent Soient $(u_n)_{n\in\N}$ , $(v_n)_{n\in\N}$,  $(u'_n)_{n\in\N}$ et $(v'_n)_{n\in\N}$ trois suites réelles ou complexes et $\lambda \in \C $. 
+\begin{enumerate} %[$\square$]
+\item Démontrer les affirmations suivantes: \begin{enumerate}
+\item Si $u_n= o\left(u'_n\right)$ et $v_n = o\left(u'_n\right)$ alors $u_n+v_n = o\left(u'_n\right)$
+\item Si $u_n= o\left(u'_n\right)$ alors $\lambda u_n= o\left(u'_n\right)$ 
+\item  Si $u_n= o\left(u'_n\right)$ alors $ u_nv_n= o\left(u'_nv_n\right)$ 
+\end{enumerate}
+\item Rappeler le théorème de Cesàro et donner sa démonstration
+\item Démontrer les affirmations suivantes: \begin{enumerate}
+\item Si $u_n \sim_{+\infty}u'_n$ alors $u'_n \sim_{+\infty}u_n$
+\item  Si $u_n \sim_{+\infty}u'_n$ et $v_n \sim_{+\infty}v'_n$ alors $u_nv_n \sim_{+\infty}u'_nv'_n$ 
+\item Si $u_n \sim_{+\infty}u'_n$ alors $\dfrac{1}{u_n} \sim_{+\infty}\dfrac{1}{u'_n}$
+\item Si $u_n \sim_{+\infty}u'_n$ et $v_n \sim_{+\infty}v'_n$ alors $\dfrac{u_n}{v_n} \sim_{+\infty}\dfrac{u'_n}{v'_n}$ 
+\end{enumerate}
+\item Rappeler la formule de Stirling et donner un équivalent de $\left(\begin{matrix}
+2n\\n
+\end{matrix}\right)$
+\item Démontrer la propriété suivante:
+\begin{pro}\hfil\\
+$f$ tend vers $l$  en $a$ si et seulement si  pour toute suite $(u_n)_{n\in\N}$ convergeant vers $a$, $(f(u_n))_{n\in\N}$ converge vers $l$
+\end{pro} 
+\end{enumerate}
+
+\section*{Suites numériques :}
+
+\begin{minipage}{1\linewidth}
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+\begin{exo}\quad\\
+Soit $(u_n)_{n\in\N}$ une suite à termes réels strictement positifs telle que $\left(\dfrac{u_{n+1}}{u_n}\right)_{n\in\N}$ converge vers un réel $l\in\R^+$.
+\begin{enumerate}
+\item On suppose $l<1$ et on fixe $\epsilon>0$ tel que $l+\epsilon<1$. 
+\begin{enumerate}
+\item Démontrer qu'il existe un entier $n_0\in\N$ tel que, pour $n\geq n_0$, on a 
+$$u_n\leq\left(l+\epsilon\right)^{n-n_0}u_{n_0}$$
+\item En déduire que la suite $(u_n)_{n\in\N}$ est convergente et donner sa limite. 
+
+
+\end{enumerate}
+\item  On suppose $l>1$. Démontrer que $(u_n)$ diverge vers $+\infty$.
+\item Étudier le cas $l=1$\\
+(\textit{Indication: étudier les suites } $(n^\alpha)_{n\in\N^*}$)
+\end{enumerate} 
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+
+Soient $(u_n)$ et $(v_n)$ deux suites réelles convergeant respectivement vers $u$ et $v$. Montrer que la suite $w_n=\dfrac{u_0v_n+...+u_nv_0}{n+1}$ converge vers $uv$.\\\hfill\\
+(\textit{Indication: on coupera ici la somme en 3 en isolant les bords})
+
+\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+\begin{exo}\quad\\
+Soit $(u_n)$ une suite de réels positifs vérifiant $$u_n\leq \dfrac{1}{k}+\dfrac{k}{n}$$ pour tous $(k,n)\in(\N^*)^2$.\\ Démontrer que $(u_n)$ tend vers $0$.
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+Démontrer que  
+\begin{enumerate}
+\item$ \ln(n+ e^n) \sim_{+\infty} n$
+\item $b^n-a^n   \sim_{+\infty} a^n+b^n$, \ $0<a<b$
+\item $ 4\ln(1+\sqrt{n}) \sim_{+\infty} \ln(1+n^2)$
+\end{enumerate}
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+\begin{exo}\quad\\
+Montrer que  
+
+$$\sum_{k=1}^{n-1}k! \ =_{+\infty} \  o\left(n!\right)$$
+
+En déduire que
+$$\sum_{k=1}^{n}k!  \sim_{+\infty} n!$$
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+\end{minipage}
+\end{minipage}
+\newpage
+\section*{Fonctions continues:}
+\begin{minipage}{1\linewidth}
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+\begin{exo}\quad\\
+Soit $f: \R^*\rightarrow\R$ la fonction définie par $$f(x) = x\sqrt{1+\dfrac{1}{x^2}}$$
+La fonction $f$ admet-elle un prolongement par continuité en $0$ ? 
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+Donner si elles existe les limites suivantes:
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\lim\limits_{x\rightarrow+\infty} \dfrac{\lfloor 2x\rfloor}{\lfloor x\rfloor}$
+\item $\lim\limits_{x\rightarrow 0}~ \left\lfloor\dfrac{ 1}{ x} \right\rfloor$
+\item $\lim\limits_{x\rightarrow 0} ~x\left\lfloor\dfrac{ 1}{ x} \right\rfloor$
+\item$\lim\limits_{x\rightarrow 0} ~x^2\left\lfloor\dfrac{ 1}{ x} \right\rfloor$
+\end{enumerate}
+\end{multicols}
+\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+Soit $f: \R\rightarrow\R$ la fonction définie par $$f(x) =\lfloor x\rfloor + \sqrt{x - \lfloor x\rfloor }$$
+Montrer que la fonction $f$ est continue sur $\R$.\\
+(\textit{Indication: Étudier }$f(x+1)$)
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+\begin{exo}\quad\\
+Soit $f: \R\rightarrow\R$ la fonction définie par 
+$$f(x) =\left\{\begin{array}{cl}
+1 & \text{si} \  x \in\Q\\
+0 & \text{sinon} 
+\end{array}\right.$$
+Montrer que la fonction $f$ est discontinue en tout point de $\R$.\\
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+\begin{exo}\quad\\
+Soit $f: \R\rightarrow\R$ périodique et admettant une limite finie $l$ en $+\infty$. Montrer que $f$ est constante.
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+Étudier les limites suivantes
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\lim\limits_{x\rightarrow+\infty} \dfrac{e^{3x}+2x+7}{e^x + e^{-x}}$
+\item $\lim\limits_{x\rightarrow 0}~\dfrac{\sqrt{1+x} - \left(1+ \dfrac{x}{2}\right) }{x^2 } $
+
+\end{enumerate}
+\end{multicols}
+\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+\begin{exo}\quad\\
+Soit $f: \R\rightarrow\R$ la fonction définie par 
+$$f(x) =\left\{\begin{array}{cl}
+0  & \text{Si} \ x \   \text{est irrationnel ou} \  x=0. \\
+\dfrac{1}{q} & \text{Si} \  x=\dfrac{p}{q},\ \text{avec} \  p\in\Z, q\geq 1 \ \text{et} \ pgcd(p,q) =1  
+\end{array}\right.$$
+Montrer que la fonction $f$ est continue sur $\R \backslash \Q$, discontinue sur $\Q^*$ \\
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\end{minipage}
+\end{minipage}
+
+\end{document}

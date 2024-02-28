@@ -1,0 +1,562 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{mathdots}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.2}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}\newcommand{\disp}{\displaystyle}
+\newcommand{\C}{\mathbb{C}}\newcommand{\K}{\mathbb{K}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/5}\rfoot{PCSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+ %%%%BIBMATH%%%%
+ 
+ %(1) https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/algebrebilineairegeo/espaceeuclidien-ps&type=fexo
+ 
+ %(2)  https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/algebrebilineairegeo/espaceprehilbertien&type=fexo
+ 
+ %(3)  https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/algebrebilineairegeo/espaceeuclidien-orthogonalite&type=fexo
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 20 : Espaces préhilbertiens et euclidiens  }}
+	\end{minipage}}
+
+\smallskip
+\section*{Connaître son cours:}
+\begin{itemize}[$\bullet$]
+	\item Citer l'identité du parallélogramme et donner une démonstration de celle-ci dans un espace préhilbertien. 
+	\item Montrer que l’application qui à deux matrices $A,B \in \mathcal{M}_n (\R)$ associe le réel tr$(A^T B )$ définit un produit scalaire sur $\mathcal{M}_n (\R)$.
+	\item Soit $n\geq 1$ et soit $a_0,\dots,a_n$ des réels distincts deux à deux. Montrer que l'application $\varphi:\mathbb R_n[X]\times\mathbb R_n[X]\to\mathbb R$
+	définie par $\disp \varphi(P,Q)=\sum_{i=0}^n P(a_i)Q(a_i)$ définit un produit scalaire sur $\mathbb R_n[X]$.
+	\item  Citer l'inégalité de Cauchy-Schwarz et donner une démonstration de celle-ci dans un espace préhilbertien. En déduire l'inégalité triangulaire pour la norme associée.
+	\item Soit $E$ un espace préhilbertien réel, montrer que toute famille orthogonale ne contenant pas le vecteur nul est libre. Pourquoi une famille orthonormale est-elle libre? 
+	\item Démontrer le théorème de Pythagore pour une une famille orthogonale $x_1 ,\dots , x_n$ d’un espace préhilbertien réel.
+	\item Soit $(e_1 , \dots , e_n )$ une famille libre d’un espace euclidien $E$, rappeler le procédé d’orthonormalisation de Gram-Schmidt. En déduire que tout espace euclidien admet une base orthonormée.
+	\item Soit $F$ et $G$ deux sous-espaces vectoriels d’un espace euclidien $E$, montrer que $F^\perp  \cap G^\perp = (F + G)^\perp$.
+	\item Soit $F$ un sous-espace vectoriel d’un espace euclidien $E$, montrer que les sous-espaces $F$ et $F^\perp$ sont supplémentaires dans $E$ et que $F^{\perp^\perp} = F$.
+	\item Soit $E$ un espace euclidien et $F$ un sous-espace de $E$, donner et démontrer l'inégalité de Bessel pour la projection orthogonale $p_F$ sur $F$. 
+
+\end{itemize}
+\raggedright
+
+\section*{Produit scalaire:}\hfill\\%[-0.25cm]
+
+   
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+
+\subsection*{Exemples de produits scalaires}
+
+	
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Les applications suivantes définissent-elles un produit scalaire sur $\mathbb R^2$?
+\begin{enumerate}
+	\item $\varphi_1\big((x,y),(a,b)\big)=\sqrt{x^2+a^2+y^2+b^2}$;
+	\item $\varphi_2\big((x,y),(a,b)\big)=4xa-yb$;
+	\item $\varphi_3\big((x,y),(a,b)\big)=xa-3xb-3ya+10yb$.
+\end{enumerate}
+
+	
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Sur $\R[X]$, on pose $P|Q=\int_{0}^{1}P(t)Q(t)\;dt$. 
+	
+	Existe-t-il $A$ élément de $\R[X]$ tel que $\forall P\in\R[X],\;P|A=P(0)$~?
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Démontrer que les formules suivantes définissent des produits scalaires sur l'espace vectoriel associé :
+\begin{enumerate}
+	\item $\langle f,g\rangle=f(0)g(0)+\int_0^1 f'(t)g'(t)dt$ sur $E=\mathcal C^1([0,1],\mathbb R)$;
+	\item $\langle f,g\rangle=\int_a^b f(t)g(t)w(t)dt$ sur $E=\mathcal C([a,b],\mathbb R)$ où $w\in E$ satisfait $w>0$ sur $]a,b[$.
+\end{enumerate}
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]	
+Soient $x, y$ deux vecteurs non nuls d'un espace préhilbertien réel. Établir
+
+$$
+\left\|\frac{x}{\|x\|^{2}}-\frac{y}{\|y\|^{2}}\right\|=\frac{\|x-y\|}{\|x\|\|y\|}
+$$
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+
+
+\end{minipage}\end{minipage} \newpage
+
+
+\setstretch{1.25}
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			Soit $E$ un $\R$ espace vectoriel de dimension finie. Soit $||\cdot||$ une norme sur $E$ vérifiant l'identité du parallèlogramme, c'est-à-dire~:~
+			
+			$$\forall(x,y)\in E^2,\;||x+y||^2+||x-y||^2=2(||x||^2+||y||^2)$$ 
+			
+			On se propose de démontrer que $||\cdot||$ est associée à un produit scalaire.
+			On définit sur $E^2$ une application $f$ par~:~
+			$$\forall(x,y)\in E^2,\;f(x,y)=\frac{1}{4}(||x+y||^2-||x-y||^2)$$
+			\begin{enumerate}
+				\item  Montrer que pour tout $(x,y,z) \in E^3$, on a~:~$f(x+z,y)+f(x-z,y)=2f(x,y)$.
+				\item  Montrer que pour tout $(x,y) \in E^2$, on a~:~$f(2x,y)=2f(x,y)$.
+				\item  Montrer que pour tout $(x,y) \in E^2$ et tout rationnel $r$, on a~:~$f(rx,y)=rf(x,y)$.
+				
+				On admettra que pour tout réel $\lambda$ et tout $(x,y) \in E^2$ on a~:~$f(\lambda x,y)=\lambda f(x,y)$
+				
+				(ce résultat provient de la continuité de $f$).
+				\item  Montrer que pour tout $(u,v,w) \in E^3$, $f(u,w)+f(v,w)=f(u+v,w)$.
+				\item  Montrer que $f$ est bilinéaire.
+				\item  Montrer que $||\cdot||$ est une norme euclidienne.
+			\end{enumerate}
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		\subsection*{Inégalité de Cauchy-Schwarz}
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Démontrer que pour tous $x_1,\dots,x_n\in\mathbb R,$
+			$$\left(\sum_{k=1}^n \frac{x_k}{2^k}\right)^2\leq\frac 13\sum_{k=1}^n x_k^2.$$
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			
+			Soient $A, B \in \mathcal{S}_{n}(\mathbb{R})$. Montrer
+			
+			$$
+			(\operatorname{tr}(A B+B A))^{2} \leq 4 \operatorname{tr}\left(A^{2}\right) \operatorname{tr}\left(B^{2}\right)
+			$$
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $f$ continue strictement positive sur $[0,1]$.
+			
+			Pour $n\in\N$, on pose $\disp I_n=\int_{0}^{1}f^n(t)\;dt$.
+			Montrer que la suite $\disp u_n=\frac{I_{n+1}}{I_n}$ est définie et croissante.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			Soit $A=\left(a_{i, j}\right)_{1 \leq i, j \leq n}$ une matrice réelle vérifiant
+			
+			$$\disp 
+			\forall i \in\{1, \ldots, n\},\  a_{i, i} \geq 1 \text { et } \sum_{i=1}^{n} \sum_{j=1, j \neq i}^{n} a_{i, j}^{2}<1
+			$$
+			\begin{enumerate}
+				\item Montrer $\disp\forall X \in \mathbb{R}^{n}, X\neq 0_n, \  X^{T} A X > 0$
+				\item En déduire que la matrice $A$ est inversible.
+			\end{enumerate}
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			
+			Soient $x_{1}, \ldots, x_{n}>0$ tels que $x_{1}+\cdots+x_{n}=1$. Montrer que
+			
+			$$
+			\sum_{k=1}^{n} \frac{1}{x_{k}} \geq n^{2}
+			$$
+			
+			Préciser les cas d'égalité.
+			
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+			
+		
+			\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $x,y,z$ trois réels tels que $2x^2+y^2+5z^2\leq 1$. Démontrer que $$(x+y+z)^2\leq\frac {17}{10}$$
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+			
+			\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Pour $A,B\in\mathcal M_n(\mathbb R)$, on munit $\mathcal M_n(\mathbb R)$ du produit scalaire usuel : $ \disp \langle A,B\rangle=\textrm{tr}(A^T B).$
+			\begin{enumerate}
+				\item Montrer que pour tous $A,B\in\mathcal S_n(\mathbb R)$, on a
+				$$\big(\textrm{tr}(AB)\big)^2\leq \textrm{tr}(A^2)\textrm{tr}(B^2).$$
+				\item Montrer que pour $A\in \mathcal M_n(\mathbb R)$, on a:
+				
+				$$\textrm{tr}(A^2) = \textrm{tr}(A^TA)  \equi A\in\mathcal S_n(\mathbb R)$$
+			\end{enumerate}	
+	
+	        \centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+		
+\end{minipage}\end{minipage}\newpage
+
+
+
+
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+		\section*{Orthogonalité :}%\hfill\\[-1cm]
+		\subsection*{Bases orthonormées et procédé d'orthonormalisation de Gram-Schmidt}
+
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+		Dans $\R^4$ muni du produit scalaire usuel, on pose~:~$V_1=(1,2,-1,1)$ et $V_2=(0,3,1,-1)$.
+		
+		On pose $F=\mbox{Vect}(V_1,V_2)$. Déterminer une base orthonormale de $F$ et un système d'équations de $F^\bot$.	
+			
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			
+			Soit $E$ un espace préhilbertien, et $A$ et $B$ deux parties de $E$. Démontrer les relations suivantes :
+			\begin{enumerate}
+				\item $A\subset B\alors B^\perp\subset A^\perp$.
+				\item $(A\cup B)^\perp=A^\perp\cap B^\perp$.
+				\item $A^\perp=\textrm{vect}(A)^\perp$;
+				\item $\textrm{vect}(A)\subset A^{\perp^\perp}$.
+				\item On suppose de plus que $E$ est de dimension finie. Démontrer que 
+				$\textrm{vect}(A)= A^{\perp^\perp}$.
+			\end{enumerate}
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+				
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $E$ espace vectoriel muni d'un produit scalaire $(\cdot \mid \cdot)$. Pour $a \in E$ non nul et $\lambda \in \mathbb{R}$, résoudre l'équation
+			$$(a \mid x)=\lambda $$
+			d'inconnue $x \in E$.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+				
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $n\in\mathbb N$ et $a\in\mathbb R$. Démontrer que l'application $\langle \cdot,\cdot\rangle$ définie sur $\mathbb R_n[X]^2$ par 
+			$$(P,Q)\mapsto \sum_{k=0}^n \frac{P^{(k)}(a)Q^{(k)}(a)}{(k!)^2}$$
+			\noindent définit un produit scalaire sur $\mathbb R_n[X]$. Sans calculs, déterminer une base orthonormée pour ce produit scalaire.
+			
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+				
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $E$ un espace vectoriel euclidien et $x,y$ deux éléments de $E$. Montrer que $x$ et $y$ sont orthogonaux si et seulement si $\|x+\lambda y\|\geq \|x\|$ pour tout $\lambda\in\mathbb R$.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+				
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			On considère $E=\mathscr{C}([0,1],\R)$ muni du produit scalaire $$(f,g)=\int_0^1 f(t)g(t)dt$$
+			
+			Soit $F=\{f\in E,\ f(0)=0\}$.
+			
+			Montrer que $F^\perp=\{0\}$. En déduire que $F$ n'admet pas
+			de supplémentaire orthogonal.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+	
+		
+		\begin{exo}\textbf{(***)}\quad (\textit{Polynômes de \textsc{Laguerre}})\\[0.2cm]
+			On pose, pour tout entier naturel $n$ et pour tout réel $x$, 
+			$$h_n(x)=x^ne^{-x}\textrm{ et }L_n(x)=\frac{e^x}{n!}h_n^{(n)}(x).$$
+			\begin{enumerate}
+				\item Calculer explicitement $L_0,L_1,L_2$.
+				\item Montrer que, pour tout entier $n$, $L_n$ est une fonction polynômiale. Préciser son degré et son coefficient dominant.
+				\item Pour tous $P,Q\in\mathbb R[X]$, on pose 
+				$$\varphi(P,Q)=\int_0^{+\infty}P(x)Q(x)e^{-x}dx.$$
+				Démontrer que $\varphi$ est bien définie et correspond à un produit scalaire sur $\mathbb R[X]$.
+				\item Calculer, pour tout $n\in\mathbb N$, $\varphi(L_0,X^n)$.
+				\item Montrer que, pour tout $k\in\{0,\dots,n\}$, il existe $Q_k\in\mathbb R[X]$ tel que, pour tout $x\in\mathbb R$, on a $$h_n^{(k)}(x)=x^{n-k}e^{-x}Q_k(x)$$
+					\item \'Etablir que : $\forall n\in\mathbb N,\ \forall P\in\mathbb R[X],\ \forall p\in\{0,\dots,n\}$
+					$$\varphi(L_n,P)=\frac{(-1)^p}{n!}\int_0^{+\infty}h_n^{(n-p)}(x)P^{(p)}(x)dx.$$
+				\item En déduire que $(L_n)_{n\in\mathbb N}$ est une famille orthonormée de $(\mathbb R[X],\varphi)$.
+			\end{enumerate}
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+\end{minipage}\end{minipage} \newpage
+
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			Considérons $\mathbb{R}_{n}[X]$ muni du produit scalaire
+			
+			$$
+			\langle P \mid Q\rangle=\int_{0}^{1} P(x) Q(x) \mathrm{d} x
+			$$
+			
+			Posons $L_{k}$ le polynôme égal à la dérivée $k^{\text {ième }} \text{de }[X(X-1)]^{k}$ pour $k \in \llbracket 0, n \rrbracket$.
+			\begin{enumerate}
+				\item Montrer que la famille $\left(L_{k}\right)_{k \in[0, n]}$ est orthogonale. 
+				\item Calculer la norme euclidienne de $L_{k}$ pour $k \in \llbracket 0, n \rrbracket$.
+			\end{enumerate}
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}	
+		
+		
+		\begin{exo}\textbf{(***)}\quad\ (\textit{Inégalité de \textsc{Hadamard}})\\[0.2cm]
+			Soit $\mathcal{B}$ une base orthonormée de $E$ un espace euclidien de dimension $n$.
+			Montrer que~:~$$\forall(x_1,...,x_n)\in E^n,\;|\mbox{det}_{\mathcal{B}}(x_1,...,x_n)|\leq||x_1||...||x_n||$$
+			 en précisant les cas d'égalité.
+			
+			%\centering\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			Soit $E$ un espace euclidien et $e_{1}, \ldots, e_{n} \in E$ tels que
+			
+			\centering $ \disp \forall x \in E, \quad\|x\|^{2}=\sum_{i=1}^{n}\left\langle x \mid e_{i}\right\rangle^{2} $
+			
+			\raggedright
+			
+			\begin{enumerate}
+				\item Montrer que la famille $\left(e_{1}, \ldots, e_{n}\right)$ est génératrice.
+				\item Supposons, dans cette question, que les vecteurs $e_{1}, \ldots, e_{n}$ sont unitaires. Montrer que $\left(e_{1}, \ldots, e_{n}\right)$ est une base orthonormale de $E$.
+				\item Supposons, dans cette question, que $\operatorname{dim} E=n$.
+				\begin{enumerate}
+					\item Montrer que $\left(e_{1}, \ldots, e_{n}\right)$ est une base de $E$.
+					\item Montrer que
+					
+					$
+					\disp \forall(x, y) \in E^{2}, \quad\langle x \mid y\rangle=\sum_{i=1}^{n}\left\langle x \mid e_{i}\right\rangle\left\langle y \mid e_{i}\right\rangle .
+					$
+					\item Soit $M \in \mathscr{M}_{n}(\mathbb{R})$ la matrice dont le coefficient en position $i, j$ est $\left\langle e_{i} \mid e_{j}\right\rangle$. Montrer que $M^{2}=M$ et conclure.
+					
+				\end{enumerate} 
+				
+			\end{enumerate}
+
+			%\centering\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+
+		
+		
+		
+\end{minipage}\end{minipage}\hfil\\[0.5cm]
+\rule{1\linewidth}{0.6pt}
+\subsection*{Projection orthogonale}
+
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+	
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Soit $A=\left(a_{i, j}\right)_{1 \leq i, j \leq n} \in \mathcal{M}_{n}(\mathbb{R})$. Calculer
+	
+	$$
+	\inf _{M \in \mathcal{S}_{n}(\mathbb{R})}\left(\sum_{1 \leq i, j \leq n}\left(a_{i, j}-m_{i, j}\right)^{2}\right) .
+	$$			
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Soit $E$ un espace vectoriel euclidien, et $p$ un projecteur de $E$. Montrer que $p$ est un projecteur orthogonal
+	si et seulement si pour tout $x$ de $E$, on a $$\|p(x)\|\leq \|x\|$$
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}	
+
+		
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	 Trouver $a$ et $b$ tels que $$\disp\int_{0}^{1}(x^4-ax-b)^2\;dx$$ soit minimum. 
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+	
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	
+	Soit $f$ un endomorphisme d'un espace vectoriel euclidien $E$ tel que
+	
+	$$
+	\forall x, y \in E,(f(x) \mid y)=(x \mid f(y)) .
+	$$
+	
+	Montrer
+	
+	$$
+	\operatorname{Im} f=(\operatorname{Ker} f)^{\perp}
+	$$
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	
+	Soit $p$ un projecteur orthogonal d'un espace euclidien $E$.
+
+	\begin{enumerate}
+		\item Montrer que $\|p(x)\|^{2}=\langle p(x) \mid x\rangle$ pour tout $x \in E$.
+		\item  Montrer que, pour toute base orthonormée $\left(e_{1}, \ldots, e_{n}\right)$ de $E$,
+		
+		$$
+		\sum_{k=1}^{n}\left\|p\left(e_{k}\right)\right\|^{2}=\operatorname{rg}(p)
+		$$
+	\end{enumerate}
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+\end{minipage}\end{minipage} \newpage
+
+\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+	Calculer $$\displaystyle \inf_{a,b\in\mathbb R}\int_0^{2\pi} \big(t-a\cos(t)-b\sin(t)\big)^2 dt.$$
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(***)}\quad  (\textit{Matrices de \textsc{Gram}})\\[0.2cm]
+	Soit $E$ un espace vectoriel euclidien de dimension $p$ sur $\R$ ($p\geq2$).
+	Pour $(x_1,...,x_n) \in E^n$, on définit la matrice de \textsc{Gram} par:  
+	$$G(x_1,...,x_n)=(x_i|x_j)_{1\leq i,j\leq n}$$ 
+	Le déterminant de \textsc{Gram}est noté: $$\gamma(x_1,...,x_n)=\mbox{det}(G(x_1 , ... , x_n))$$
+	\begin{enumerate}
+		\item  Montrer que $\mbox{rg}(G(x_1,...,x_n))=\mbox{rg}(x_1, ... ,x_n)$.
+		\item  Montrer que $(x_1,...,x_n)$ est liée si et seulement si $\gamma(x_1,...,x_n)=0$ et que $(x_1,...,x_n)$ est libre si et seulement si $\gamma(x_1,...,x_n)>0$.
+		\item  On suppose que $(x_1,...,x_n)$ est libre dans $E$ (et donc $n\leq p$). On pose $F=\mbox{Vect}(x_1,...,x_n)$.
+		
+		Pour $x\in E$, on note $p_F(x)$ la projection orthogonale de $x$ sur $F$ puis $d_F(x)=||x-p_F(x)||$ la distance de $x$ à $F$. Montrer que $$d_F(x)=\sqrt{\frac{\gamma(x,x_1,...,x_n)}{\gamma(x_1,...,x_n)}}$$
+	\end{enumerate}
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\end{document}

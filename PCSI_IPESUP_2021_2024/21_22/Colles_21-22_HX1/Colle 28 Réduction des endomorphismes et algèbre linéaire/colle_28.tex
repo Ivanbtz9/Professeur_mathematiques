@@ -1,0 +1,183 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb,stmaryrd}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace,xypic}
+\usepackage{xcolor,multicol,tabularx}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{relsize,exscale}
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\M}{\mathcal{M}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+ 	
+
+\begin{center}
+\Large \sc colle 28 = Algèbre linéaire et réduction des endomorphismes
+\end{center}
+
+\section*{Exercices mixtes:}%[-0.25cm]
+
+\raggedright
+
+\begin{exo}\quad\\[0.25cm]
+	Soit la matrice $A=\begin{pmatrix}
+	1&0&1\\0&1&0\\1&0&1
+	\end{pmatrix}$. 
+	\begin{enumerate}
+		\item  La matrice $A$ est-elle diagonalisable sur $\mathbb{R}$ ? Si oui, diagonaliser $A$.
+		\item  La matrice $A$ est-elle inversible ?
+	\end{enumerate}	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\[0.25cm]
+	Calculer les puissances n-ième de la matrice suivante : 
+	$$A  =  \begin{pmatrix}
+	1 & 1 \\
+	0 &  2\\
+	
+\end{pmatrix} $$
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}			
+
+
+
+
+\begin{exo}\textbf{}\quad\\[0.25cm]
+ On considère l'endomorphisme $f$ de $\R^3$ dont la matrice dans la
+base canonique est
+\[
+A = \begin{pmatrix}
+3&1&{ - 1}\\ 6&2&{ - 6}\\ 7&1&{ - 5}
+\end{pmatrix}.
+\]
+\begin{enumerate}
+	\item Montrer que $f$ admet deux valeurs propres réelles $\lambda_1
+	< \lambda _2$
+	\item Déterminer des vecteurs propres~$u_1$ et~$u_2$ associés aux
+	valeurs propres~$\lambda_1$ et~$\lambda_2$.
+	\item L'endomorphisme $f$ est-il diagonalisable ?
+	\item On note
+	\[ u_3 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}. \]
+	Montrer que $(u_1, u_2, u_3)$ est une base de $M_{3,1}(\R)$.
+	\item Écrire la matrice $B$ de $f$ dans cette base .   
+	\item Calculer $B^n$ pour tout $n \in \N$.
+\end{enumerate}
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{}\quad\\[0.25cm]
+  Pour tout $a \in \R$, on considère la matrice
+\[
+A(a) = \begin{pmatrix}
+a&0&0&0\\
+1&0&0&1\\
+0&0&1&0\\
+0&0&0&-1
+\end{pmatrix} \in M_4(\R).
+\]
+\begin{enumerate}	
+	\item Déterminer le polynôme caractéristique $\chi_{A(a)}(\lambda)$
+	ainsi que les valeurs propres de $A(a)$.
+	\item Justifier que si $a \not\in \{-1,0, 1\}$, alors $A(a)$ est
+	diagonalisable.
+	\item Étudier la diagonalisabilité de $A(0)$, $A(1)$ et $A(-1)$.\end{enumerate}
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{}\quad\\[0.25cm]
+  \begin{enumerate}
+	\item Soit $f$ l'endomorphisme de $\R^3$ dont la matrice dans la
+	base canonique est donnée par
+	\[
+	\frac{1}{6}\begin{pmatrix}
+	5 & -2 & 1\\
+	-2 & 2 & 2\\
+	1 & 2 & 5
+	\end{pmatrix}.
+	\]
+	Démontrer que $f$ est une projection sur un plan vectoriel dont on
+	donnera une équation cartésienne, parallèlement à une droite
+	vectorielle dont on donnera une base.
+	\item Écrire, dans la base canonique de $\R^3$, la matrice de la
+	symétrie par rapport au plan d'équation $x+y+z=0$ parallèlement à
+	la droite engendrée par le vecteur $(1,2,-2)$.
+\end{enumerate}
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+
+
+
+
+
+
+\end{document}

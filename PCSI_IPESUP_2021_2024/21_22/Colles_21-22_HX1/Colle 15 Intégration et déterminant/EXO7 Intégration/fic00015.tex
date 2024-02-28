@@ -1,0 +1,1127 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00015, bodin, 2007/09/01} 
+
+\titre{Calculs d'intégrales}
+
+Fiche d'Arnaud Bodin, soigneusement relue par Chafiq Benhida
+
+\section{Utilisation de la définition}
+\exercice{2081, bodin, 2008/02/04}
+\video{UXp2ntGBZNE}
+\enonce{002081}{}
+Soit $f$ la fonction définie sur $[0,4]$ par 
+\begin{equation*}
+  f(x)=
+  \begin{cases}
+    -1 &\text{ si $x=0$}\\
+    1 &\text{ si $0<x<1$}\\
+    3 &\text{ si $x=1$}\\
+    -2 &\text{ si $1<x\leq 2$}\\
+    4 &\text{ si $2<x\leq 4$.}
+  \end{cases}
+\end{equation*}
+\begin{enumerate}
+\item Calculer $\int_0^4f(t) \, dt$.
+\item Soit $x\in [0,4]$, calculer $F(x)=\int_0^x  f(t) \, dt$.
+\item Montrer que $F$ est une fonction continue sur $[0,4]$. La fonction
+$F$ est-elle dérivable sur $[0,4]$ ?
+\end{enumerate}
+\finenonce{002081} 
+
+
+\finexercice
+
+\exercice{2082, bodin, 2008/02/04}
+\video{KDx-xpueG-U}
+\enonce{002082}{}
+Soient les fonctions définies sur $\R$,
+$$f(x)=x \text{ , } g(x)=x^2 \text{ et  } h(x)=e^x,$$
+Justifier qu'elles sont intégrables sur tout intervalle fermé borné de $\R$. En utilisant les
+sommes de Riemann, calculer les intégrales $\int_0^1f(x)d x$, $\int_1^2 g(x)
+d x$ et $\int_0^x h(t) d t$.
+
+\finenonce{002082} 
+
+
+\finexercice
+
+\exercice{2085, bodin, 2008/02/04}
+\video{OjBbmNvQoSY}
+\enonce{002085}{}
+Soit $f:[a,b]\rightarrow \R$ une fonction continue sur $[a,b]$ ($a<b$).
+\begin{enumerate}
+\item On suppose que $f(x) \ge 0$ pour tout $x\in [a,b]$, et que $f(x_0)>0$ en un point $x_0\in [a,b]$. 
+Montrer que $\int_a^b f(x) d x>0$. En déduire que : <<si $f$ est une fonction continue
+positive sur $[a,b]$ telle que $\int_a^b f(x) d x=0$ alors $f$ est
+identiquement nulle>>.
+\item On suppose que $\int_a^b f(x) d x=0$. Montrer qu'il existe $c\in [a,b]$ tel que $f(c)=0$. 
+\item Application: on suppose
+que $f$ est une fonction continue sur $[0,1]$ telle que $\int_0^1 f(x) dx=\frac 12$. 
+Montrer qu'il existe $d\in [0,1]$ tel que $f(d)=d$.
+\end{enumerate}
+\finenonce{002085} 
+
+
+\finexercice
+
+
+\exercice{2091, bodin, 2008/02/04}
+\video{fKCXQ-Fl1Z8}
+\enonce{002091}{}
+Soit $f\,:\;\R\to\R$ une fonction continue sur $\R$ et $F(x)=\int_0^x
+f(t)d t$. Répondre par vrai ou faux aux affirmations suivantes:
+\begin{enumerate}
+\item $F$ est continue sur $\R$.
+\item $F$ est dérivable sur $\R$ de dérivée $f$.
+\item Si $f$ est croissante sur $\R$ alors $F$ est croissante sur $\R$.
+\item Si $f$ est positive sur $\R$ alors $F$ est positive sur $\R$.
+\item Si $f$ est positive sur $\R$ alors $F$ est croissante sur $\R$. 
+\item Si $f$ est $T$-périodique sur $\R$ alors $F$ est $T$-périodique sur $\R$.
+\item Si $f$ est paire alors $F$ est impaire.
+\end{enumerate}
+\finenonce{002091} 
+\finexercice
+
+
+\section{Calculs de primitives}
+\exercice{6864, bodin, 2012/04/13}
+\video{15IrPAzKwzc}
+\enonce{006864}{}
+Calculer les primitives suivantes par intégration par parties.
+\begin{enumerate}
+  \item $\int x^2 \ln x \, dx$
+
+  \item $\int x \arctan x \, dx$
+
+  \item $\int \ln x \, dx$ \quad  puis \quad  $\int (\ln x)^2 \, dx$
+
+  \item $\int \cos x\exp x \, dx$
+\end{enumerate}
+\finenonce{006864} 
+
+
+\finexercice
+\exercice{6865, bodin, 2012/04/13}
+\video{qdUaqxk3B2s}
+\enonce{006865}{}
+Calculer les primitives suivantes par changement de variable.
+\begin{enumerate}
+  \item $\int (\cos x) ^{1234} \sin x \, d x$
+
+  \item $\int \frac 1{x\ln x} \, dx$
+
+  \item $\int \frac 1{3+\exp \left( -x\right)}dx$
+
+  \item $\int \frac{1}{\sqrt{4x-x^2}}dx$
+\end{enumerate}
+\finenonce{006865} 
+
+
+\finexercice
+\exercice{6866, bodin, 2012/04/13}
+\video{0bvIaJVZNwY}
+\enonce{006866}{}
+Calculer les primitives suivantes, en précisant si nécessaire les
+intervalles de validité des calculs :
+\begin{enumerate}
+  \item $\int \frac{x+2}{x^2-3x-4}\,dx$
+
+  \item $\int \frac{x-1}{x^2+x+1}\,dx$
+
+  \item $\int \sin ^8x\cos ^3x \, dx$
+
+  \item $\int \frac 1{\sin x} \, dx$
+
+  \item $\int \frac{3-\sin x}{2\cos x+3\tan x}\,dx$ 
+\end{enumerate}
+\finenonce{006866} 
+
+
+\finexercice
+
+\section{Calculs d'intégrales}
+\exercice{6867, bodin, 2012/04/13}
+\video{Bydd17Yz8RA}
+\enonce{006867}{}
+Calculer les intégrales suivantes :
+\begin{enumerate}
+  \item $\int_0^{\frac \pi 2}x\sin x \, dx$ \quad (intégration par parties)
+
+  \item $\int_0^1 \frac{e^x}{\sqrt{e^x+1}} \,  dx$ \quad (à l'aide d'un changement de variable simple)
+
+  \item $\int_0^1\frac 1{\left( 1+x^2\right) ^2} \, dx$ \quad (changement de variable $x=\tan t$)
+
+  \item $\int_0^1\frac{3x+1}{\left( x+1\right) ^2} \,  dx$ \quad (décomposition en
+éléments simples)
+
+  \item $\int_{\frac 12}^2\left( 1+\frac 1{x^2}\right) \arctan x \, dx$ \quad (changement de variable $u=\frac 1x$)
+
+\end{enumerate}
+\finenonce{006867} 
+
+
+\finexercice
+\exercice{2095, bodin, 2008/02/04}
+\video{1uLeRF-liOk}
+\enonce{002095}{}
+Calculer les intégrales suivantes :
+$$\int_0^{\frac \pi 2}\frac 1{1+\sin x}d x \quad \mbox{ et } \quad \int_0^{\frac \pi 2}\frac{\sin
+x}{1+\sin x}d x.$$
+\finenonce{002095} 
+
+
+\finexercice
+
+\exercice{2096, bodin, 2008/02/04}
+\video{Rp5pIHte82w}
+\enonce{002096}{Intégrales de Wallis}
+Soit $\displaystyle I_n=\int_0^{\frac \pi 2}(\sin x)^n \, d x$ \ \ pour $n\in \N$.
+\begin{enumerate}
+\item Montrer que $I_{n+2}=\frac{n+1}{n+2}I_n$. Expliciter $I_n$. En déduire $\int_{-1}^1\left( 1-x^2\right) ^n d x$.
+\item Montrer que $\left( I_n\right) _n$ est positive décroissante. Montrer que $I_n\sim I_{n+1}$
+\item Simplifier $I_n \cdot I_{n+1}$. Montrer que $I_n\sim \sqrt{%
+\frac \pi {2n}}$. En déduire 
+$\frac{1 \cdot 3 \cdots \left( 2n+1\right) }{2 \cdot 4 \cdots \left( 2n\right) }\sim 2\sqrt{\frac n \pi }$.
+\end{enumerate}
+\finenonce{002096} 
+
+
+\finexercice
+
+\exercice{2097, bodin, 2008/02/04}
+\video{JSvF3eC5EuA}
+\enonce{002097}{}
+Soit $\displaystyle I_{n} = \int_0^1 \frac{x^n}{1 + x}d x$.
+\begin{enumerate}
+\item En majorant la fonction int\'egr\'ee, montrer que
+$\lim_{n\to +\infty} I_{n}=0$.
+\item  Calculer $I_n + I_{n + 1}$.
+\item D\'eterminer $\displaystyle \lim_{n \rightarrow  + \infty} \left(\sum_{k = 1}^n \frac{
+ (-1)^{k + 1}}k\right)$.
+\end{enumerate}
+\finenonce{002097} 
+
+
+
+\finexercice
+
+\section{Applications : calculs d'aires, calculs de limites}
+\exercice{2099, bodin, 2008/02/04}
+\video{1rhApdE7JPY}
+\enonce{002099}{}
+Calculer l'aire de la région délimitée par les courbes
+d'équation $\displaystyle y=\frac{x^2}2$ et $\displaystyle y=\frac 1{1+x^2}$. 
+\finenonce{002099} 
+
+
+\finexercice
+\exercice{6863, bodin, 2012/04/13}
+\video{U6GrjVSfshM}
+\enonce{006863}{}
+Calculer l'aire intérieure d'une ellipse d'équation :
+$$\frac{x^2}{a^2}+ \frac{y^2}{b^2} = 1.$$
+
+\emph{Indications.}  On pourra calculer seulement la partie de l'ellipse correspondant
+à $x\ge 0$, $y\ge 0$. Puis exprimer $y$ en fonction de $x$. Enfin calculer une intégrale.
+
+\finenonce{006863}
+
+
+\finexercice\exercice{2100, bodin, 2008/02/04}
+\video{Mw9ODmfCvyM}
+\enonce{002100}{}
+Calculer la limite des suites suivantes :
+  \begin{enumerate}
+  \item $\displaystyle u_n=n\sum_{k=0}^{n-1}\frac 1{k^2+n^2}$
+  \item $\displaystyle v_n=\prod\limits_{k=1}^n\left(1+\frac{k^2}{n^2}\right) ^{\frac 1n}$
+  \end{enumerate}
+\finenonce{002100} 
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\indication{002082}
+Les fonctions continues ne seraient-elles pas intégrables ?
+
+\medskip
+
+Il faut se souvenir de ce que vaut la somme des $n$ premiers entiers, la somme des carrés des $n$ premiers entiers 
+et la somme d'une suite géométrique.
+La formule générale pour les sommes de Riemann est que $\int_a^bf(x)d x$
+est la limite (quand $n \to +\infty$) de 
+$$S_n = \frac {b-a}n \sum_{k=0}^{n-1} f\left(a+k\frac {b-a}n\right).$$
+\finindication
+\indication{002085}
+  \begin{enumerate}
+  \item Revenir à la définition de la continuité en $x_0$ en prenant $\epsilon = \frac {f(x_0)}{2}$ par exemple.
+  \item Soit $f$ est tout le temps de même signe (et alors utiliser la première question), soit ce n'est pas le cas (et alors utiliser un théorème classique...).
+  \item On remarquera que $\int_0^1 f(x) \, dx - \frac 12 = \int_0^1 (f(x) - x) dx$.
+  \end{enumerate}
+\finindication
+\noindication
+\indication{006864}
+\begin{enumerate}
+  \item Pour $\int x^2 \ln x \, dx$ poser $v'=x^2$, $u=\ln x$.
+
+  \item Pour $\int x \arctan x \, dx$ poser $v'=x$ et $u= \arctan x$.
+
+  \item Pour les deux il faut faire une intégration par parties avec $v'=1$.
+
+  \item Pour $\int \cos x\exp x \,dx$ il faut faire deux intégrations par parties.
+\end{enumerate}
+\finindication
+\indication{006865}
+\begin{enumerate}
+  \item $\int \cos^{1234} x   \sin x \, d x = -\frac 1{1235}\cos^{1235}x+c$ (changement de variable $u = \cos x$)
+
+  \item $\int \frac 1{x\ln x} \, dx=\ln \left| \ln x\right| +c$  (changement de variable $u=\ln x$)
+
+  \item $\int \frac 1{3+\exp \left( -x\right) }dx=\frac 13\ln \left( 3\exp
+x+1\right) +c$ (changement de variable  $u=\exp x$)
+
+  \item $\int \frac{1}{\sqrt{4x-x^2}}dx=\arcsin \left( \frac 12x-1\right) +c$  (changement de variable $u=\frac 12x-1$)
+\end{enumerate}
+\finindication
+\indication{006866}
+\begin{enumerate}
+  \item $\int \frac{x+2}{x^2-3x-4}\,dx=-\frac 15\ln \left| x+1\right| +\frac 65\ln
+\left| x-4\right| +c$ (décomposition en éléments simples)
+
+  \item $\int \frac{x-1}{x^2+x+1}\,dx= \frac 12 \ln|x^2+x+1| - 
+\sqrt3 \arctan \left( \frac{2}{\sqrt3}\left(x+\frac 12\right) \right) + c$
+
+  \item $\int \sin ^8x\cos ^3x \, dx=\frac 19\sin ^9x-\frac 1{11}\sin ^{11}x+c$
+
+  \item $\int \frac 1{\sin x} \, dx=\frac 12\ln \left| \frac{1-\cos x}{1+\cos x}%
+\right| +c=\ln \left| \tan \frac x2\right| +c$ (changement de variable $u=\cos x$ ou $u=\tan \frac
+x2$)
+
+  \item $\int \frac{3-\sin x}{2\cos x+3\tan x}\,dx=-\frac 15\ln |2-\sin x| + \frac 75 \ln |1+2\sin x| + c$  
+(changement de variable $u=\sin x$)
+\end{enumerate}
+\finindication
+\indication{006867}
+\begin{enumerate}
+  \item $\int_0^{\frac \pi 2}x\sin x \, dx=1$ (intégration par parties $v'=\sin x$, $u=x$)
+
+  \item $\int_0^1 \frac{e^x}{\sqrt{e^x+1}} \,  dx=2\sqrt{e+1} -2\sqrt 2$ (à l'aide du changement de variable $u=e^x$)
+
+  \item $\int_0^1\frac 1{\left( 1+x^2\right) ^2} \, dx=\frac \pi 8+\frac 14$
+(changement de variable $x=\tan t$, $dx = (1+\tan^2 t) dt$ et $1+\tan^2 t = \frac{1}{\cos^2 t}$)
+
+  \item $\int_0^1\frac{3x+1}{\left( x+1\right) ^2} \, dx=3\ln 2-1$ (décomposition en
+éléments simples de la forme
+$\frac{3x+1}{\left( x+1\right) ^2} = \frac{\alpha}{x+1}+\frac{\beta}{(x+1)^2}$)
+
+  \item $\int_{\frac 12}^2\left( 1+\frac 1{x^2}\right) \arctan x \, dx=\frac{3\pi }4$
+(changement de variables $u=\frac 1x$ et $\arctan x+\arctan \frac 1x= \pm \frac \pi 2$)
+
+\end{enumerate}
+\finindication
+\indication{002095}
+$\int_0^{\frac \pi 2}\frac 1{1+\sin x}dx=1$ (changement de variables $t=\tan \frac x2$).
+
+$\int_0^{\frac \pi 2}\frac{\sin x}{1+\sin x}dx=\frac \pi 2-1$ (utiliser la précédente).
+\finindication
+\indication{002096}
+  \begin{enumerate}
+  \item Faire une intégration par parties afin d'exprimer $I_{n+2}$ en fonction de $I_n$. 
+Pour le calcul explicite on distinguera le cas des $n$ pairs et impairs.
+  \item Rappel : $u_n\sim v_n$ est équivalent à $\frac{u_n}{v_n} \to 1$. 
+Utiliser la décroissance de $I_n$ pour encadrer $\frac{I_{n+1}}{I_n}$.
+  \end{enumerate}
+\finindication
+\indication{002097}
+  \begin{enumerate}
+  \item Majorer par $x^n$.
+  \item
+  \item On pourra calculer $(I_0+I_1)-(I_1+I_2)+(I_2+I_3)- \cdots$
+  \end{enumerate}
+\finindication
+\indication{002099}
+Un dessin ne fait pas de mal !
+Il faut ensuite résoudre l'équation $\frac{x^2}2=\frac 1{x^2+1}$
+puis calculer deux intégrales.
+\finindication
+\indication{006863}
+Il faut se ramener au calcul de $\displaystyle \int_0^a b\sqrt{1-\frac{x^2}{a^2}} dx$.
+\finindication
+\indication{002100}
+On pourra essayer de reconnaître des sommes de Riemann, puis calculer des intégrales. 
+Pour le produit composer par la fonction $\ln$, afin de transformer le produit en une somme.
+\finindication
+
+
+\newpage
+
+\correction{002081}
+  \begin{enumerate}
+  \item On trouve $\int_0^4 f(t) \, dt = +7$. Il faut tout d'abord tracer le graphe de cette fonction. 
+Ensuite la valeur d'une intégrale ne dépend pas de la valeur de la fonction en un point, 
+c'est-à-dire ici les valeurs en $x=0$, $x=1$, $x=2$ n'ont aucune influence sur l'intégrale. 
+Ensuite on revient à la définition de $\int_0^4f(t) \, dt$ : pour la subdivision de $[0,4]$
+ définie par $\{x_0=0,x_1=1,x_2=2,x_3=3, x_4=4\}$, on trouve la valeur de l'intégrale (ici le sup et l'inf 
+sont atteints et égaux pour cette subdivision et toute subdivision plus fine).
+Une autre façon de faire est considérer que $f$ est une fonction en escalier (en <<oubliant>> les accidents en
+$x=0$, $x=1$, $x=2$) dont on sait calculer l'intégrale.
+  \item C'est la même chose pour $\int_0^x  f(t) \, dt$, mais au lieu d'aller jusqu'à $4$ on s'arrête à $x$, on trouve
+\begin{equation*}
+  F(x)=
+  \begin{cases}
+   x &\text{ si $0\leqslant x \leqslant 1$}\\
+   3-2x &\text{ si $1<x\leqslant 2$}\\
+   4x-9 &\text{ si $2 < x \leqslant 4$.}\\
+  \end{cases}
+\end{equation*}
+
+  \item Les seuls points à discuter pour la continuité sont les points $x=1$ et $x=2$,
+mais les limites à droite et à gauche de $F$ sont égales en ces points donc $F$ est continue. 
+Par contre $F$ n'est pas dérivable en $x=1$ (les dérivées à droite et à gauche 
+sont distinctes), $F$ n'est pas non plus dérivable en $x=2$.
+
+  \end{enumerate}
+\fincorrection
+\correction{002082}
+Les fonctions sont continues donc intégrables !
+
+  \begin{enumerate}
+  \item En utilisant les sommes de Riemann, on sait que $\int_0^1f(x)d x$
+est la limite (quand $n \to +\infty$) de $\frac 1n\sum_{k=0}^{n-1}  f(\frac kn)$.
+Notons $S_n = \frac 1n \sum_{k=0}^{n-1}  f(\frac kn)$.
+Alors $S_n = \frac 1n\sum_{k=0}^{n-1}\frac k{n}=\frac 1{n^2} \sum_{k=0}^{n-1} k = \frac 1{n^2} \frac{n(n-1)}{2}$. On a utilisé que la somme des entiers de $0$ à $n-1$ vaut $\frac{n(n-1)}{2}$. Donc $S_n$ tend vers $\frac 12$. Donc $\int_0^1f(x)d x = \frac 12$.
+  \item Même travail : $\int_1^2 g(x)
+d x$ est la limite de $S'_n = \frac {2-1} n\sum_{k=0}^{n-1}  g(1+ k\frac {2-1}n) = \frac 1 n \sum_{k=0}^{n-1}  (1+ \frac kn)^2 =  \frac 1 n \sum_{k=0}^{n-1}  (1+ 2\frac k n + \frac {k^2}{n^2})$.
+En séparant la somme en trois nous obtenons : $S'_n = \frac 1n (n+\frac 2 n\sum_{k=0}^{n-1} k + \frac 1 {n^2} \sum_{k=0}^{n-1} k^2)= 1+\frac 2 {n^2} \frac{n(n-1)}{2}+ \frac 1 {n^3} \frac{(n-1)n(2n-1)}{6}$. Donc à la limite on trouve
+$S'_n \to 1+1 + \frac 13 = \frac 73$. Donc $\int_1^2 g(x)
+d x = 7/3$. Remarque : on a utilisé que la somme des carrés des entiers de $0$ à $n-1$ est $\frac{(n-1)n(2n-1)}{6}$.
+
+  \item Même chose pour $\int_0^x h(t) d t$ qui est la limite de 
+$S''_n = \frac {x} n\sum_{k=0}^{n-1}  g(\frac {kx}n) = \frac {x} n\sum_{k=0}^{n-1}  e^{\frac {kx}n} = \frac {x} n\sum_{k=0}^{n-1}  (e^{\frac {x}n})^k$. Cette dernière somme est la somme d'une suite géométrique (si $x\neq 0$), donc 
+$S''_n = \frac {x} n \frac{1-(e^\frac xn)^n}{1-e^\frac xn}=  \frac {x} n \frac{1-e^x}{1-e^\frac xn}=(1-e^x) \frac{\frac xn}{1-e^\frac xn}$ 
+qui tend vers $e^x-1$. 
+Pour obtenir cette dernière limite on remarque qu'en posant 
+$u=\frac xn$ on a $\frac{\frac xn}{1-e^\frac xn}= -1/ \frac{e^u-1}{u}$ qui tend vers $-1$
+lorsque $u\to 0$ (ce qui est équivalent à $n\to +\infty$).
+
+  \end{enumerate}
+\fincorrection
+\correction{002085}
+ \begin{enumerate}
+  \item \'Ecrivons la continuité de $f$ en $x_0$ avec $\epsilon = \frac {f(x_0)}{2} > 0$ :
+il existe $\delta >0$ tel que pour tout $x\in [x_0-\delta, x_0+\delta]$ on ait $|f(x)-f(x_0)| \leqslant \epsilon$.
+Avec notre choix de $\epsilon$ cela donne pour $x\in [x_0-\delta, x_0+\delta]$ que $f(x) \geqslant \frac {f(x_0)}{2}$.
+Pour évaluer $\int_a^b f(x) \, dx$ nous la coupons en trois morceaux par linéarité de l'intégrale :
+$$\int_a^b f(x) \, dx = \int_a^{x_0-\delta} f(x) dx +  \int_{x_0-\delta}^{x_0+\delta} f(x) dx +  \int_{x_0+\delta}^b f(x) dx.$$
+Comme $f$ est positive alors par positivité de l'intégrale $\int_a^{x_0-\delta} f(x) dx \geqslant 0$ et
+$\int_{x_0+\delta}^b f(x) dx \geqslant 0$. Pour le terme du milieu on a $f(x) \geqslant \frac {f(x_0)}{2}$ donc
+$\int_{x_0-\delta}^{x_0+\delta} f(x) dx \geqslant \int_{x_0-\delta}^{x_0+\delta} \frac {f(x_0)}{2} dx =
+2\delta\frac {f(x_0)}{2}$ (pour la dernière équation on calcule juste l'intégrale d'une fonction constante !).
+Le bilan de tout cela est que $\int_a^b f(x) \, dx \geqslant 2\delta\frac {f(x_0)}{2} >0$.
+
+Donc pour une fonction continue et positive $f$, si elle est strictement positive en un point alors  $\int_a^b f(x) \, dx >0$.
+Par contraposition pour une fonction continue et positive si $\int_a^b f(x) \, dx =0$ alors
+$f$ est identiquement nulle.
+
+
+  \item Soit $f$ est tout le temps positive, soit elle tout le temps négative, soit elle change 
+(au moins un fois) de signe. Dans le premier cas $f$ est identiquement nulle par la première question, 
+dans le second cas c'est pareil (en appliquant la première question à $-f$). Pour le troisième cas 
+le théorème des valeurs intermédiaires affirme qu'il existe $c$ tel que $f(c)=0$.
+
+  \item Posons $g(x) = f(x)-x$. Alors $\int_0^1 g(x) dx = \int_0^1 \big( f(x) - x \big)  dx= \int_0^1 f(x) dx - \frac 12 = 0$.
+Donc par la question précédente, $g$ étant continue, il existe $d \in [0,1]$ tel que $g(d)=0$, ce qui est équivalent à $f(d)=d$.
+  \end{enumerate}
+\fincorrection
+\correction{002091}
+  \begin{enumerate}
+  \item Vrai.
+  \item Vrai.
+  \item Faux ! Attention aux valeurs négatives par exemple pour $f(x)=x$ alors $F$ est décroissante sur $]-\infty,0]$ et croissante sur $[0,+\infty[$.
+  \item Faux. Attention aux valeurs négatives par exemple pour $f(x)=x^2$ alors $F$ est négative sur $]-\infty,0]$ et positive sur $[0,+\infty[$.
+  \item Vrai.
+  \item Faux. Faire le calcul avec la fonction $f(x) = 1+\sin(x)$ par exemple.
+  \item Vrai.
+  \end{enumerate}
+\fincorrection
+\correction{006864}
+\begin{enumerate}
+  \item $\int x^2 \ln x \, dx$
+
+Considérons l'intégration par parties avec $u=\ln x$ et $v'=x^2$.
+On a donc $u'=\frac 1x$ et $v = \frac{x^3}3$.
+Donc
+\begin{align*}
+\int  \ln x \times x^2\, dx 
+  &= \int uv' = \big[ uv \big] - \int u'v \\
+  &= \left[ \ln x \times \frac{x^3}3 \right] - \int  \frac 1x\times\frac{x^3}3  \, dx \\
+  &= \left[ \ln x  \times \frac{x^3}3\right] - \int \frac{x^2}3 \, dx \\
+  &= \frac{x^3}3 \ln x - \frac{x^3}9 + c \\
+\end{align*}
+
+
+  \item $\int x \arctan x \, dx$
+
+Considérons l'intégration par parties avec $u=\arctan x$ et $v'=x$.
+On a donc $u'=\frac 1{1+x^2}$ et $v = \frac{x^2}2$.
+Donc
+\begin{align*}
+\int  \arctan x \times x \, dx 
+&= \int uv' = \big[ uv \big] - \int u'v \\
+&= \left[ \arctan x \times \frac{x^2}2  \right] - \int \frac 1{1+x^2} \times\frac{x^2}2  \, dx  \\
+&= \left[  \arctan x \times \frac{x^2}2\right] - \frac12 \int \left( 1 -  \frac 1{1+x^2} \right)\, dx  \\
+&= \frac{x^2}2  \arctan x -\frac 12 x + \frac 12 \arctan x + c \\
+&= \frac 12 (1+x^2) \arctan x -\frac 12 x+ c \\
+\end{align*}
+
+  \item $\int \ln x \, dx$ puis $\int (\ln x)^2 \, dx$
+
+Pour la primitive $\int \ln x \, dx$, regardons l'intégration par parties avec $u=\ln x$ et $v'=1$.
+Donc $u' = \frac 1x$ et $v=x$.
+\begin{align*}
+\int \ln x \, dx
+&= \int uv' = \big[ uv \big] - \int u'v \\
+&= \left[ \ln x \times x \right] - \int \frac 1x \times x \, dx \\
+&= \left[  \ln x \times x \right] - \int 1 \, dx \\
+&= x\ln x - x + c \\
+\end{align*}
+
+\bigskip
+
+Par la primitive $\int (\ln x)^2 \, dx$ soit l'intégration par parties définie par $u=(\ln x)^2$ et  $v'=1$.
+Donc $u' = 2 \frac 1x \ln x$ et $v=x$.
+\begin{align*}
+\int (\ln x)^2 \, dx
+&= \int uv' = \big[ uv \big] - \int u'v \\
+&= \left[ x (\ln x)^2 \right] - 2 \int \ln x \, dx \\
+&= x(\ln x)^2 -2 (x\ln x - x) + c \\
+\end{align*}
+Pour obtenir la dernière ligne on a utilisé la primitive calculée précédemment.
+
+  \item Notons $I=\int \cos x\exp x \, dx$.
+
+Regardons l'intégration par parties avec $u=\exp x$ et $v'=\cos x$.
+Alors  $u' = \exp x$ et $v=\sin x$.
+
+Donc
+
+$$I = \int \cos x\exp x \,dx= \big[ \sin x \exp x \big] - \int \sin x \exp x\,dx$$
+
+Si l'on note $J = \int \sin x \exp x\,dx$, alors on a obtenu
+\begin{equation}
+\label{eq:intI}
+I = \big[ \sin x \exp x \big] - J  
+\end{equation}
+ 
+Pour calculer $J$ on refait une deuxième intégration par parties
+avec  $u=\exp x$ et $v'=\sin x$.
+Ce qui donne
+$$J = \int \sin x \exp x\,dx = \big[ -\cos x \exp x \big] - \int -\cos x \exp x\,dx
+= \big[ -\cos x \exp x \big] + I$$
+Nous avons ainsi une deuxième équation :
+\begin{equation}
+\label{eq:intJ}
+J = \big[ -\cos x \exp x \big] + I
+\end{equation}
+
+Repartons de l'équation (\ref{eq:intI}) dans laquelle on remplace $J$ par la formule obtenue dans l'équation 
+(\ref{eq:intJ}).
+
+
+$$I=\big[ \sin x \exp x \big] - J  = \big[ \sin x \exp x \big] - \big[ -\cos x \exp x \big] - I$$
+D'où
+$$2I = \big[ \sin x \exp x \big] + \big[ \cos x \exp x \big]$$
+
+Ce qui nous permet de calculer notre intégrale :
+$$I= \frac12 (\sin x + \cos x) \exp x + c.$$
+\end{enumerate}
+\fincorrection
+\correction{006865}
+\begin{enumerate}
+  \item $\int (\cos x) ^{1234} \sin x \, d x$
+
+En posant le changement de variable $u = \cos x$ on a $x=\arccos u$ et $du = - \sin x \, dx$ et 
+on obtient 
+$$\int (\cos x) ^{1234} \sin x \, d x = \int u^{1234} (-du) = - \frac 1{1235} u^{1235} + c=  -\frac 1{1235}(\cos x)^{1235}+c$$
+Cette primitive est définie sur $\Rr$.
+
+  \item $\int \frac 1{x\ln x} \, dx$
+
+En posant le changement de variable $u=\ln x$ on a $x=\exp u$ et $du = \frac {dx}{x}$ on écrit :
+$$\int \frac 1{x\ln x} \, dx = \int \frac 1{\ln x} \frac{dx}{x} = \int \frac 1 u du= \ln |u| + c = \ln \left| \ln x\right| +c$$
+Cette primitive est définie sur $\left] 0,1\right[$ ou sur $\left] 1,+\infty \right[$ (la constante peut être différente pour chacun des intervalles).
+
+
+  \item $\int \frac 1{3+\exp \left( -x\right)}dx$
+
+Soit le changement de variable $u=\exp x$. Alors $x=\ln u$ et $du = \exp x \, dx$
+ce qui s'écrit aussi $dx = \frac{du}{u}$.
+$$\int \frac 1{3+\exp \left( -x\right) }dx = \int \frac{1}{3+\frac{1}{u}} \frac{du}{u}
+= \int \frac{1}{3u+1} du = \frac 13 \ln |3u+1| + c = \frac13\ln \left( 3\exp
+x+1\right) +c$$
+Cette primitive est définie sur $\Rr$.
+
+  \item $\int \frac{1}{\sqrt{4x-x^2}}dx$
+
+Le changement de variable a pour but de se ramener à quelque chose de connu.
+Ici nous avons une fraction avec une racine carrée au dénominateur et sous la racine un polynôme de degré $2$.
+Ce que l'on sait intégrer c'est
+$$\int \frac{1}{\sqrt{1-u^2}}du = \arcsin u + c,$$
+car on connaît la dérivée de la fonction $\arcsin(t)$ c'est $\arcsin'(t)=\frac{1}{\sqrt{1-t^2}}$.
+On va donc essayer de s'y ramener.
+Essayons d'écrire ce qu'il y a sous la racine, $4x-x^2$ sous la forme $1-t^2$ :
+$4x-x^2 =  4 - (x-2)^2 = 4 \bigg( 1 - \big(\frac 12 x - 1\big)^2\bigg)$.
+Donc il est naturel d'essayer le changement de variable $u= \frac 12 x - 1$
+pour lequel $4x-x^2=4(1-u^2)$ et $dx = 2du$. 
+
+$$\int \frac{1}{\sqrt{4x-x^2}}dx = \int \frac{1}{\sqrt{4(1-u^2)}} 2du = \int \frac{du}{\sqrt{1-u^2}}
+= \arcsin u + c = \arcsin \left( \frac 12x-1\right) +c$$
+La fonction $\arcsin u$ est définie et dérivable pour $u\in]-1,1[$ alors cette primitive est 
+définie sur $x \in \left] 0,4\right[$.
+\end{enumerate}
+\fincorrection
+\correction{006866}
+\begin{enumerate}
+  \item $\int \frac{x+2}{x^2-3x-4}\,dx$
+
+Pour calculer cette intégrale on décompose la fraction $\frac{x+2}{x^2-3x-4}$ en éléments simples, 
+le dénominateur n'étant pas irréductible.
+On sait que cette fraction rationnelle se décompose avec des dénominateurs de degré $1$ et des constantes aux numérateurs :
+$$\frac{x+2}{x^2-3x-4} = \frac{x+2}{(x+1)(x-4)} = \frac{\alpha}{x+1} + \frac{\beta}{x-4}$$
+Il ne reste plus qu'à calculer $\alpha$ et $\beta$ à l'aide de votre méthode favorite :
+$$\frac{x+2}{x^2-3x-4}  = \frac{-\frac15}{x+1} + \frac{\frac65}{x-4}$$
+
+Chacune de ces fractions est du type $\frac 1u$ qui s'intègre en $\ln |u|$, d'où :
+$$\int \frac{x+2}{x^2-3x-4}\,dx = -\frac15\int \frac{1}{x+1}\,dx + \frac65\int \frac{1}{x-4}\,dx
+= -\frac15 \ln |x+1| + \frac65 \ln |x-4| + c$$
+
+Cette primitive est définie sur $\Rr\setminus\left\{-1,4\right\} $
+
+
+  \item $\int \frac{x-1}{x^2+x+1}\,dx$
+
+Le dénominateur $u=x^2+x+1$ est irréductible, la fraction est donc déjà décomposée en éléments simples.
+On fait apparaître artificiellement une fraction du type $\frac {u'}{u}$
+qui s'intégrera à l'aide du logarithme :
+
+$$\frac{x-1}{x^2+x+1} =  \frac 12 \frac{2x+1}{x^2+x+1} - \frac 32 \frac{1}{x^2+x+1}$$
+Chacune de ces fractions s’intègre, la première est du type $\frac {u'}{u}$ dont une primitive sera $\ln |u|$, la deuxième sera 
+du type $\frac{1}{1+v^2}$ dont une primitive est $\arctan v$.
+
+En détails cela donne :
+\begin{align*}
+\int \frac{x-1}{x^2+x+1}\,dx 
+  &= \int  \frac 12 \frac{2x+1}{x^2+x+1} \, dx  - \frac 32\int \frac{1}{x^2+x+1} \, dx \\
+  &= \frac 12 \big[ \ln |x^2+x+1| \big] -  \frac 32\int \frac{1}{\frac 34} \frac{1}{1+ \left( \frac{2}{\sqrt3}\left(x+\frac 12\right) \right)^2} \, dx \\
+  &= \frac 12 \big[ \ln|x^2+x+1| \big] - 2 \int \frac{1}{1+v^2} \, \frac{\sqrt3}{2} dv \quad \text{en posant } v=\frac{2}{\sqrt3}\left(x+\frac 12\right) \\
+  &= \frac 12 \big[ \ln|x^2+x+1| \big] - \sqrt3 \big[\arctan v\big] \\
+  &= \frac 12 \ln|x^2+x+1| - \sqrt3 \arctan \left( \frac{2}{\sqrt3}\left(x+\frac 12\right) \right) + c \\
+\end{align*}
+
+Cette primitive est définie sur $\Rr$.
+
+
+  \item $\int \sin ^8x\cos ^3x \, dx$
+
+Lorsque l'on a une fonction qui s'exprime comme un polynôme (ou une fraction rationnelle),
+on peut tester un des changements de variable $u=\cos x$, $u= \sin x$ ou $u= \tan x$.
+Soit vous essayez les trois, soit vous appliquez les règles de Bioche. Ici,
+si l'on change $x$ en $\pi-x$ alors $\sin ^8x\cos ^3x \, dx$
+devient $\sin ^8(\pi-x)\cos ^3 (\pi-x) \, d(\pi -x)= \sin^8 x (-\cos^3 x) (-dx) = \sin ^8x\cos ^3x \, dx$.
+Donc le changement de variable adéquat est $u=\sin x$.
+
+
+Posons $u=\sin x$, $du = \cos x \, dx$.
+\begin{align*}
+\int \sin ^8x\cos ^3 x \, dx  
+  &= \int \sin^8 x \cos^2 x (\cos x \, dx) = \int \sin^8 x (1-\sin^2 x) (\cos x \, dx) \\ 
+  &= \int u^8 (1-u^2) du  = \int u^8 \, du - \int u^{10} \, du \\
+  &= \big[\frac19 u^9 \big] - \big[ \frac1{11} u^{11}\big] = \frac19\sin^9 x-\frac1{11}\sin^{11} x + c \\
+\end{align*}
+
+
+Cette primitive est définie sur $\Rr$.
+
+
+  \item $\int \frac 1{\sin x} \, dx$
+
+Comme $\frac 1{\sin (-x)} \, (-dx) = \frac 1{\sin x} \, dx$ la règle de Bioche nous indique le changement de variable 
+$u=\cos x$. Donc $du = -\sin x \, dx$.
+
+Donc
+\begin{align*}
+\int \frac 1{\sin x} \, dx 
+  &= \int \frac{-1}{\sin^2 x} (  -\sin x \, dx) \\
+  &= \int \frac{-1}{1-\cos^2 x} (  -\sin x \, dx) \\
+  &= -\int \frac{1}{1-u^2} \, du \\
+\end{align*}
+
+On décompose cette fraction en éléments simples : $\frac{1}{1-u^2}= \frac 12 \frac{1}{1+u} + \frac 12 \frac{1}{1-u}$.
+Donc
+\begin{align*}
+\int \frac 1{\sin x} \, dx 
+  &= - \frac 12 \int \frac{1}{1+u}\, du - \frac 12 \int \frac{1}{1-u}\, du \\
+  &= - \frac 12 \big[ \ln |1+u| \big]- \frac 12 \big[ \ln |1-u| \big] \\
+  &= - \frac 12 \ln |1+\cos x| - \frac 12 \ln |1-\cos x| + c  \\
+\end{align*}
+
+Cette primitive est définie sur tout intervalle du type $\left] k\pi ,\left(
+k+1\right) \pi \right[ $, $k \in \Zz$.
+Elle peut se réécrire sous différentes formes :
+$$\int \frac 1{\sin x} \, dx = \frac 12 \ln \frac{1-\cos x}{1+\cos x} +c= \ln \left| \tan \frac x2\right| +c$$
+
+Un autre changement de variable possible aurait été $t=\tan \frac x2$.
+
+  \item $\int \frac{3-\sin x}{2\cos x+3\tan x}\,dx$
+
+La règle de Bioche nous indique le changement de variable $u =\sin x$, $du = \cos x \, dx$.
+
+\begin{align*}
+\int \frac{3-\sin x}{2\cos x+3\tan x}\,dx  
+  &= \int \frac{3-\sin x}{2\cos x+3\tan x}\frac{1}{\cos x}(\cos x \,dx) \\
+  &= \int \frac{3-\sin x}{2\cos^2 x+3\sin x}(\cos x \,dx) \\
+  &= \int \frac{3-\sin x}{2-2\sin^2 x+3\sin x}(\cos x \,dx) \\
+  &= \int \frac{3-u}{2-2u^2 +3u} du \\ 
+\end{align*}
+
+Occupons nous de la fraction que l'on réduit en éléments simples :
+$$\frac{3-u}{2-2u^2 +3u} = \frac{u-3}{(u-2)(2u+1)} = \frac{\alpha}{u-2}+\frac{\beta}{2u+1}$$
+On trouve $\alpha = -\frac 15$ et $\beta = \frac 75$.
+
+Ainsi 
+\begin{align*}
+\int \frac{3-\sin x}{2\cos x+3\tan x}\,dx  
+  &=  \int \frac{\alpha \, du}{u-2}+\int\frac{\beta\, du}{2u+1}  \\ 
+  &= \alpha \ln |u-2| + \beta \ln |2u+1| + c \\
+  &= -\frac 15\ln |2-\sin x| + \frac 75 \ln |1+2\sin x| + c \\
+\end{align*}
+
+Cette primitive est définie pour les $x$ vérifiant $1+2\sin x >0$ donc sur tout intervalle du type $\left] -\frac\pi6 + 2k\pi , \frac{7\pi}{6} + 2k\pi\right[ $, $k \in \Zz$.
+\end{enumerate}
+\fincorrection
+\correction{006867}
+\begin{enumerate}
+  \item $\int_0^{\frac \pi 2}x\sin x \, dx$
+
+Par intégration par parties avec $u=x$, $v'=\sin x$ :
+\begin{align*}
+\int_0^{\frac \pi 2}x\sin x \, dx 
+  &= \big[ uv \big]_0^{\frac \pi 2} - \int_0^{\frac \pi 2} u'v \\
+  &= \big[ -x\cos x \big]_0^{\frac \pi 2}  + \int_0^{\frac \pi 2} \cos x \, dx \\
+  &= \big[ -x\cos x \big]_0^{\frac \pi 2} +  \big[ \sin x \big]_0^{\frac \pi 2} \\
+  &= 0-0 \quad + \quad 1-0 \\
+  &= 1 \\
+\end{align*}
+
+  \item $\int_0^1 \frac{e^x}{\sqrt{e^x+1}} \,  dx$
+
+Posons le changement de variable $u=e^x$ avec $x=\ln u$ et $du = e^x\, dx$.
+La variable $x$ varie de $x=0$ à $x=1$, donc la variable $u=e^x$ varie de
+$u=1$ à $u=e$.
+
+\begin{align*}
+\int_0^1 \frac{e^x \, dx}{\sqrt{e^x+1}} \,  dx 
+  &= \int_1^e \frac{du}{\sqrt{u+1}} \\
+  &= \big[ 2\sqrt{u+1} \big]_1^e \\
+  &= 2\sqrt{e+1} -2\sqrt 2 \\
+\end{align*}
+
+
+
+  \item $\int_0^1\frac 1{\left( 1+x^2\right) ^2} \, dx$
+
+Posons le changement de variable $x=\tan t$, 
+alors on a $dx = (1+\tan^2 t) dt$, $t=\arctan x$ et  on sait aussi que $1+\tan^2 t = \frac{1}{\cos^2 t}$.
+Comme $x$ varie de $x=0$ à $x=1$ alors $t$ doit varier de $t=\arctan 0=0$ à $t=\arctan 1 = \frac \pi4$.
+
+\begin{align*}
+\int_0^1\frac 1{\left( 1+x^2\right) ^2} \, dx 
+  &= \int_0^{\frac\pi4}  \frac{1}{(1+\tan^2 t)^2} (1+\tan^2 t) dt \\
+  &= \int_0^{\frac\pi4}  \frac{dt}{1+\tan^2 t}\\
+  &=  \int_0^{\frac\pi4}  \cos^2 t \, dt \\
+  & = \frac 12 \int_0^{\frac\pi4} (\cos(2t)+1) \, dt\\
+  &= \frac12 \Big[ \frac12 \sin(2t) + t \Big]_0^{\frac\pi4} \\
+  &= \frac 14 + \frac \pi8 \\
+\end{align*}
+
+
+
+  \item $\int_0^1\frac{3x+1}{\left( x+1\right) ^2} \,  dx$
+
+Commençons par décomposer la fraction en éléments simples :
+$$\frac{3x+1}{\left( x+1\right) ^2} = \frac{\alpha}{x+1}+\frac{\beta}{(x+1)^2}
+= \frac{3}{x+1}-\frac{2}{(x+1)^2}$$
+où l'on a trouvé $\alpha=3$ et $\beta=-2$.
+La première est une intégrale du type $\int \frac 1u = [\ln |u|]$ et la seconde
+$\int \frac 1{u^2} = [ -\frac 1u ]$.
+
+\begin{align*}
+\int_0^1\frac{3x+1}{\left( x+1\right) ^2} \,  dx
+  &=   3 \int_0^1 \frac{1}{x+1} dx   - 2 \int_0^1 \frac{1}{(x+1)^2} \, dx \\
+  &= 3 \Big[ \ln|x+1| \Big]_0^1  - 2 \Big[ - \frac{1}{x+1} \Big]_0^1 \\
+  &= 3 \ln 2 - 0 \quad + \quad 1 - 2 \\
+  &= 3 \ln 2 - 1 \\
+\end{align*}
+
+
+  \item Notons $I = \int_{\frac 12}^2\left( 1+\frac 1{x^2}\right) \arctan x \, dx$.
+
+Posons le changement de variable $u=\frac 1x$ et 
+on a $x=\frac 1u$, $dx = -\frac{du}{u^2}$.
+Alors $x$ variant de $x=\frac 12$ à $x=2$,
+$u$ varie lui de $u=2$ à $u=\frac 12$ (l'ordre est important !).
+
+\begin{align*}
+I &= \int_{\frac 12}^2\left( 1+\frac 1{x^2}\right) \arctan x \, dx  \\
+  &= \int_2^{\frac 12}\left( 1+u^2 \right) \arctan \frac 1u  \, \left(-\frac{du}{u^2}\right)  \\
+  &= \int_{\frac 12}^2 \left( \frac1{u^2} + 1\right) \arctan \frac 1u  \, du  \\
+  &= \int_{\frac 12}^2 \left( \frac1{u^2} + 1\right) \left( \frac \pi 2 - \arctan u \right)   \, du  \quad \text{car} \quad \arctan u+\arctan \frac1u=\frac\pi2\\
+  &= \frac \pi 2\int_{\frac 12}^2 \left( \frac1{u^2} + 1 \right)\, du  -  \int_{\frac 12}^2  \left( \frac1{u^2} + 1\right)\arctan u  \, du  \\  
+  &= \frac \pi 2 \left[ -\frac1{u} + u\right]_{\frac 12}^2  -  I \\  
+  &= \frac{3\pi}{2} - I\\
+\end{align*}
+
+Conclusion : $I = \frac{3\pi}{4}.$
+\end{enumerate}
+\fincorrection
+\correction{002095}
+\begin{enumerate}
+  \item Notons $I = \int_0^{\frac \pi 2}\frac 1{1+\sin x} dx$.
+Le changement de variable $t = \tan \frac x2$ transforme toute fraction rationnelle 
+de sinus et cosinus en une fraction rationnelle en $t$ (que l'on sait résoudre !).
+
+En posant $t=\tan \frac{x}{2}$ on a $x=\arctan \frac t2$ ainsi que les formules suivantes : 
+$$\cos x = \frac {1-t^2}{1+t^2}, \quad \sin x = \frac{2t}{1+t^2}, 
+\quad \tan x = \frac{2t}{1-t^2}, \quad dx=\dfrac{2dt}{1+t^2}.$$
+
+Ici, on a seulement à remplacer $\sin x$.
+Comme $x$ varie de $x=0$ à $x=\frac\pi 2$ alors $t=\tan \frac{x}{2}$ varie de $t=0$ à $t=1$.
+
+\begin{align*}  
+  I &= \int_0^{\frac \pi 2}\frac 1{1+\sin x} dx 
+     = \int_0^1  \frac 1 {1+ \frac{2t}{1+t^2}}  \dfrac{2dt}{1+t^2} \\ 
+    &= \int_0^1 \frac{2}{1+t^2 + 2t} dt 
+    = \int_0^1 \frac{2}{(1+t)^2} dt \\
+    &= \left[ \frac{-2}{1+t} \right]_0^1 
+    = 1
+\end{align*}
+
+  \item Notons $J = \int_0^{\frac \pi 2}\frac{\sin x}{1+\sin x} dx$.
+Alors 
+$$I+J =  \int_0^{\frac \pi 2}\frac 1{1+\sin x} dx + \int_0^{\frac \pi 2}\frac{\sin x}{1+\sin x} dx
+= \int_0^{\frac \pi 2} \frac{1+\sin x}{1+\sin x} dx = \int_0^{\frac \pi 2} 1 \, dx = \big[ x \big]_0^{\frac \pi 2} = \frac \pi 2.$$
+Donc $J = \frac \pi 2 - I= \frac \pi 2 - 1$.
+\end{enumerate}
+
+\fincorrection
+\correction{002096}
+  \begin{enumerate}
+
+  \item 
+  \begin{enumerate}
+     \item $$ I_{n+2}  = \int_0^{\frac \pi 2} \sin^{n+1} x \cdot \sin x \,  dx.$$
+En posant $u(x) = \sin^{n+1} x$ et $v'(x) = \sin x$ et en intégrant par parties nous obtenons
+\begin{align*}
+I_{n+2} &= \bigg[ -\cos x \sin^{n+1}x \bigg]_0^{\frac \pi 2} \ \  + \ \ (n+1)\int_0^{\frac \pi 2} \cos^2x \sin^nx \, dx \\
+ &= 0 \ \  + \ \ (n+1)\int_0^{\frac \pi 2} (1-\sin^2x)\sin^nx \, dx \\
+ &= (n+1)I_n-(n+1)I_{n+2}.  \\
+\end{align*}
+
+Donc $(n+2)I_{n+2}=(n+1)I_n$.
+Conclusion 
+$$I_{n+2} = \frac{n+1}{n+2} I_n.$$
+
+     \item Nous avons donc une formule de récurrence pour $I_n$ qui s'exprime en fonction de $I_{n-2}$
+qui a son tour s'exprime en fonction de $I_{n-4}$, etc. On se ramène ainsi à l'intégrale de $I_0$ (si $n$ est pair) 
+ou bien de $I_1$ (si $n$ est impair). Un petit calcul donne $I_0=\frac \pi 2$ et $I_1=1$.
+Par récurrence nous avons donc pour $n$ pair :
+$$I_n = \frac{1\cdot3 \cdots (n-1) }{2 \cdot 4 \cdots n} \frac \pi 2,$$
+et pour $n$ impair :
+$$I_n = \frac{2 \cdot 4 \cdots (n-1)}{1 \cdot 3 \cdots n}.$$
+
+     \item Pour calculer $\int_{-1}^1\left( 1-x^2\right) ^n d x$ nous allons nous ramener à une intégrale de Wallis.
+Avec le changement de variable $x=\cos u$, on montre assez facilement que :
+\begin{align*}
+ \int_{-1}^1\left( 1-x^2\right) ^n d x 
+   &=  2\int_0^1\left( 1-x^2\right) ^n d x\\
+   &=  2\int_{\frac \pi 2}^{0}  \left( 1-\cos ^2 u\right) ^n (- \sin u \, du)  \quad \text{ avec } x=\cos u \\
+   &=  2\int_0^{\frac \pi 2}  \sin^{2n+1} u \, du  \\
+   &= 2I_{2n+1}\\
+\end{align*}
+
+  \end{enumerate}
+
+  \item
+  \begin{enumerate}
+     \item Sur $[0,\frac \pi 2]$ la fonction sinus est positive donc $I_n$ est positive.
+De plus, sur ce même intervalle $\sin x \leqslant 1$ donc  $(\sin x)^{n+1}  \le (\sin x)^n$.
+Cela implique 
+$$I_{n+1}=\int_0^{\frac \pi 2}(\sin x)^{n+1} d x \le \int_0^{\frac \pi 2}(\sin x)^n d x = I_n.$$
+
+     \item Comme $(I_n)$ est décroissante alors $I_{n+2} \leqslant I_{n+1} \leqslant I_n$, en 
+divisant le tout par $I_n>0$ nous obtenons $\frac{I_{n+2}}{I_n} \leqslant \frac{I_{n+1}}{I_n} \leqslant 1$.
+Mais nous avons déjà calculé $\frac{I_{n+2}}{I_n} = \frac{n+1}{n+2}$ 
+qui tend vers $1$ quand $n$ tend vers l'infini. Donc $ \frac{I_{n+1}}{I_n}$ tend vers $+1$ donc $I_{n} \sim I_{n+1}$.
+
+  \end{enumerate}
+
+  \item 
+  \begin{enumerate}
+     \item Nous allons calculer $I_n\cdot I_{n+1}$.
+Supposons par exemple que $n$ est pair, alors par les formules obtenues précédemment :
+$$I_n \times I_{n+1} = 
+\frac{1\cdot3 \cdots (n-1) }{2 \cdot 4 \cdots n} \frac \pi 2 \times 
+\frac{2 \cdot 4 \cdots n}{1 \cdot 3 \cdots (n+1)} = \frac \pi 2 \times \frac{1}{n+1}.$$
+
+Si $n$ est impair nous obtenons la même fraction. 
+On en déduit que pour tout $n$ : $I_n \cdot I_{n+1} = \frac{\pi}{2(n+1)}$.
+
+     \item Maintenant 
+$$I_n^2 = I_n \cdot I_n \sim I_n \cdot I_{n+1} = \frac \pi {2(n+1)} \sim  \frac \pi {2n},$$
+donc $$I_n \sim \sqrt{\frac \pi {2n}}.$$
+
+     \item $$\frac{1\cdot3 \cdots (2n+1) }{2\cdot 4 \cdots (2n) } 
+= I_{2n} \cdot (2n+1) \cdot \frac 2 \pi  \sim \sqrt{\frac \pi {4n}} \cdot (2n+1) \cdot \frac 2 \pi 
+ \sim 2\sqrt {\frac n \pi}.$$
+
+  \end{enumerate}
+
+\end{enumerate}
+\fincorrection
+\correction{002097}
+  \begin{enumerate}
+  \item Pour $x>0$ on a $\frac{x^n}{1+x} \leqslant x^n$,
+donc 
+$$I_n  \leqslant \int_0^1 x^n dx = \left[ \frac{1}{n+1} x^{n+1} \right]_0^1=\frac{1}{n+1}.$$
+Donc $I_n \to 0$ lorsque $n\to +\infty$.
+  \item $I_n+I_{n+1}=\int_0^1 x^n \frac {1+x}{1+x} dx =  \int_0^1 x^n dx=\frac{1}{n+1}$.
+  \item Soit $S_n = 1-\frac 12 + \frac13-\frac 14 +\cdots \pm \frac 1n = \sum_{k = 1}^n \frac{
+ (-1)^{k + 1}}k$.
+Par la question pr\'ec\'edente nous avons 
+$S_n = (I_0+I_1)-(I_1+I_2)+(I_2+I_3)- \cdots \pm (I_{n-1}+I_n)$.
+Mais d'autre part cette somme \'etant t\'elescopique cela conduit à $S_n = I_0 \pm I_n$.
+ Alors la limite de $S_n$ et donc de $\sum_{k = 1}^n \frac{
+ (-1)^{k + 1}}k$ (quand $n\to +\infty$) est $I_0$ car $I_n \to 0$.
+Un petit calcul montre que $I_0 = \int_0^1 \frac {dx}{1+x} = \ln 2$.
+Donc la somme altern\'ee des inverses des entiers converge vers $\ln 2$.
+  \end{enumerate}
+\fincorrection
+\correction{002099}
+La courbe d'équation $y=x^2/2$ est une parabole, la courbe 
+d'équation $y=\frac 1{1+x^2}$ est une courbe en cloche. Dessinez les deux graphes.
+Ces deux courbes délimitent une région dont nous allons calculer l'aire.
+Tout d'abord ces deux courbes s'intersectent
+aux points d'abscisses $x=+1$ et $x=-1$ : cela se devine sur le graphique puis
+se vérifie en résolvant l'équation $\frac{x^2}2=\frac 1{x^2+1}$.
+
+Nous allons calculer deux aires :
+\begin{itemize}
+  \item L'aire $\mathcal{A}_1$ de la région sous la parabole, au-dessus de l'axe des abscisses et 
+entre les droites d'équation $(x=-1)$ et $(x=+1)$.
+Alors 
+$$\mathcal{A}_1 = \int_{-1}^{+1} \frac{x^2}2 \, dx = \left[ \frac{x^3}{6} \right]_{-1}^{+1} = \frac 13.$$
+
+  \item L'aire $\mathcal{A}_2$ de la région sous la cloche, au-dessus de l'axe des abscisses et 
+entre les droites d'équation $(x=-1)$ et $(x=+1)$.
+Alors 
+$$\mathcal{A}_2 = \int_{-1}^{+1} \frac 1{x^2+1} \, dx = \left[ \arctan x \right]_{-1}^{+1} = \frac{\pi}{2}.$$
+
+  \item L'aire $\mathcal{A}$ sous la cloche et au-dessus de la parabole vaut maintenant
+$$\mathcal{A}= \mathcal{A}_2 - \mathcal{A}_1 = \frac{\pi}{2} - \frac 13.$$
+\end{itemize}
+\fincorrection
+\correction{006863}
+ Calculons seulement un quart de l'aire : la partie du quadrant $x\ge 0, y\ge 0$.
+Pour ce quadrant les points de l'ellipse ont une abscisse $x$ qui vérifie $0 \le x \le a$.
+Et la relation $\frac{x^2}{a^2}+ \frac{y^2}{b^2} = 1$ donne $y = b\sqrt{1-\frac{x^2}{a^2}}$.
+
+\medskip
+
+Nous devons donc calculer l'aire sous la courbe d'équation $y = b\sqrt{1-\frac{x^2}{a^2}}$,
+au-dessus de l'axe des abscisses et entre les droites d'équations $(x=0)$ et $(x=a)$ (faites un dessin !).
+
+Cette aire vaut donc : $\displaystyle \int_0^a b\sqrt{1-\frac{x^2}{a^2}} dx$.
+Nous allons calculer cette intégrale à l'aide du changement de variable 
+$x=a \cos u$ qui donne $dx = -a\sin u \, du$. La variable $x$ variant de 
+$x=0$ à $x=a$ alors la nouvelle variable $u$ varie du $u=\frac \pi 2$ (pour lequel on a bien
+$a\cos \frac\pi 2 = 0$) à $u=\frac \pi 2$ (pour lequel on a bien
+$a\cos 0 = a$). Autrement dit la fonction $u \mapsto a\cos u$ est une bijection
+de $[\frac\pi2,0]$ vers $[0,a]$.
+
+\begin{align*}
+\int_0^a b\sqrt{1-\frac{x^2}{a^2}} dx
+  & = \int_{\frac \pi 2}^0 b \sqrt{1-\cos^2 u} (-a \sin u \, du) \quad \text{ en posant } x=a \cos u \\
+  & = \int_{\frac \pi 2}^0 b\sin u (-a \sin u \, du) \\
+  & = ab \int_0^{\frac \pi 2} \sin^2 u \, du \\
+  & = ab \int_0^{\frac \pi 2} \frac{1-\cos(2u)}{2} \, du \\ 
+  &= ab \left[ \frac u2 - \frac{\sin(2u)}{4} \right]_0^{\frac \pi 2} \\
+  &= \frac{\pi a b}{4} \\
+\end{align*}
+L'aire d'un quart d'ellipse est donc $\frac{\pi a b}{4}$. 
+
+Conclusion : l'aire d'une ellipse est $\pi a b$, où $a$ et $b$ sont les longueurs des demi-axes.
+Si $a=b=r$ on retrouve que l'aire d'un disque de rayon $r$ est $\pi r^2$.
+\fincorrection
+\correction{002100}
+  \begin{enumerate}
+  \item Soit 
+$$u_n =n \sum_{k=0}^{n-1}\frac 1{k^2+n^2} = \frac 1n  \sum_{k=0}^{n-1}\frac 1{1+\big(\frac k n \big)^2}.$$
+En posant $f(x) = \frac 1 {1+x^2}$ nous venons d'écrire la somme de Riemann correspondant à 
+$\int_0^1 f(x) dx$. Cette intégrale se calcule facilement : 
+$$\int_0^1 f(t) dt = \int_0^1 \frac {dx} {1+x^2} = \big[\arctan x\big]_0^1 = \frac \pi 4.$$
+La somme de Riemann $u_n$ convergeant vers $\int_0^1 f(x) dx$ nous venons de montrer que
+$(u_n)$ converge vers $\frac \pi 4$.
+
+  \item Soit $v_n=\prod\limits_{k=1}^n\left(1+\frac{k^2}{n^2}\right) ^{\frac 1n}$, notons 
+$$w_n = \ln v_n = \sum_{k=1}^n \ln\left( \left(1+\frac{k^2}{n^2}\right)^{\frac 1n} \right) 
+= \frac 1 n \sum_{k=1}^n \ln \left(1+\frac{k^2}{n^2}\right).$$
+En posant $g(x) = \ln (1+x^2)$ nous reconnaissons la somme de Riemann correspondant à
+$I = \int_0^1 g(x)dx$.
+
+Calculons cette intégrale : 
+\begin{align*}
+ I &= \int_0^1 g(x)dx = \int_0^1 \ln(1+x^2) dx \\
+   &= \big[x\ln(1+x^2)\big]_0^1 - \int_0^1 x \frac{2x}{1+x^2}dx \quad \text{par intégration par parties} \\
+   &= \ln 2 -2 \int_0^1 1-\frac 1{1+x^2} dx \\
+   &= \ln 2  - 2\big[x-\arctan x\big]_0^1 \\
+   &= \ln 2 - 2 + \frac \pi 2. \\
+\end{align*}
+
+
+Nous venons de prouver que $w_n=\ln v_n$ converge vers $I=\ln 2 - 2 + \frac \pi 2$,
+donc $v_n = \exp w_n$ converge vers $\exp(\ln 2 - 2 + \frac \pi 2) = 2e^{\frac \pi 2 -2}$.
+Bilan $(v_n)$ a pour limite $2e^{\frac \pi 2 -2}$.
+
+  \end{enumerate}
+\fincorrection
+
+
+\end{document}
+

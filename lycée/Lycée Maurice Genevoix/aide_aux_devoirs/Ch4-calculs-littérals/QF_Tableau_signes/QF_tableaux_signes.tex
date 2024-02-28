@@ -1,0 +1,82 @@
+\documentclass[t,12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{amssymb,amsmath,graphicx,amsthm}
+\usepackage{color}
+\usepackage{amsmath,amssymb,amsthm, mathrsfs,pifont}
+\usepackage{pgf,tikz,pgfplots,tkz-tab}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\eq}{\Longleftrightarrow}
+
+
+\usetheme{Warsaw}
+
+
+\begin{document}
+
+\begin{frame}
+	\frametitle{Question 1}
+Donner dans un tableau le signe de $4x-12$ en fonction de $x$. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Question 2}
+Donner dans un tableau le signe de $-6x+42$ en fonction de $x$. 
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{Question 3}
+	Donner dans un tableau le signe de $-\dfrac{3}{5}x+\dfrac{13}{25}$ \\en fonction de $x$. 
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Correction question 3}
+Il suffit de résoudre les deux inéquations ci-dessous:
+\begin{minipage}[t]{1\linewidth}
+	\begin{minipage}[t]{0.45\linewidth}
+		\scriptsize
+		\begin{align*}
+		&\quad\quad-\dfrac{3}{5}x+\dfrac{13}{25} \leq 0 \\
+		&\eq-\dfrac{3}{5}x \leq -\dfrac{13}{25} \\
+		&\eq-\dfrac{5}{3}\times-\dfrac{3}{5}x \geq -\dfrac{5}{3}\times -\dfrac{13}{25}\\
+		&\eq x \geq \dfrac{13}{15}\\ 
+		\end{align*}
+	\end{minipage}\hfill\vrule\hfill
+\begin{minipage}[t]{0.45\linewidth}
+	\scriptsize
+	\begin{align*}
+	& \quad\quad-\dfrac{3}{5}x+\dfrac{13}{25} \geq 0 	\\
+	& \eq-\dfrac{3}{5}x \geq -\dfrac{13}{25}\\
+	 &\eq-\dfrac{5}{3}\times-\dfrac{3}{5}x \leq -\dfrac{5}{3}\times -\dfrac{13}{25}\\
+	 &\eq x \leq \dfrac{13}{15}\\
+	\end{align*}
+\end{minipage}
+\end{minipage}
+\scriptsize
+$$\begin{tikzpicture}
+\tkzTabInit{$x$ / 1 , \text{signe de:} $\dfrac{-3x}{5}+\dfrac{13}{25}$ / 1}{$-\infty$, $\dfrac{13}{15}$, $+\infty$}
+\tkzTabLine{, +, z, - }
+\end{tikzpicture}$$
+
+	
+\end{frame}
+
+
+
+
+
+\end{document}

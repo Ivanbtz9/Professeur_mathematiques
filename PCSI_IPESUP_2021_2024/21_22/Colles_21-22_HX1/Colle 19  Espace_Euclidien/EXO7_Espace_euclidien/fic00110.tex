@@ -1,0 +1,994 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00110, rouget, 2010/07/11}
+
+\titre{Produit scalaire, espaces euclidiens} 
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable\quad T~:~pour travailler et mémoriser le cours
+\end{center}
+
+
+\exercice{5482, rouget, 2010/07/10}
+\enonce{005482}{***}
+Pour $A=(a_{i,j})_{1\leq i,j\leq n}\in\mathcal{M}_n(\Rr)$, $N(A)=\mbox{Tr}(^tAA)$. Montrer que $N$ est une norme vérifiant de plus $N(AB)\leq N(A)N(B)$ pour toutes matrices carrées $A$ et $B$. $N$ est-elle associée à un produit scalaire~?
+\finenonce{005482}
+
+
+\finexercice
+\exercice{5483, rouget, 2010/07/10}
+\enonce{005483}{***}
+Soit $E$ un $\Rr$ espace vectoriel de dimension finie. Soit $||\;||$ une norme sur $E$ vérifiant l'identité du parallèlogramme, c'est-à-dire~:~$\forall(x,y)\in E^2,\;||x+y||^2+||x-y||^2=2(||x||^2+||y||^2)$. On se propose de démontrer que $||\;||$ est associée à un produit scalaire.
+On définit sur $E^2$ une application $f$ par~:~$\forall(x,y)\in E^2,\;f(x,y)=\frac{1}{4}(||x+y||^2-||x-y||^2)$.
+\begin{enumerate}
+\item  Montrer que pour tout $(x,y,z)$ de $E^3$, on a~:~$f(x+z,y)+f(x-z,y)=2f(x,y)$.
+\item  Montrer que pour tout $(x,y)$ de $E^2$, on a~:~$f(2x,y)=2f(x,y)$.
+\item  Montrer que pour tout $(x,y)$ de $E^2$ et tout rationnel $r$, on a~:~$f(rx,y)=rf(x,y)$.
+
+On admettra que pour tout réel $\lambda$ et tout $(x,y)$ de $E^2$ on a~:~$f(\lambda x,y)=\lambda f(x,y)$ ( ce résultat provient de la continuité de $f$).
+\item  Montrer que pour tout $(u,v,w)$ de $E^3$, $f(u,w)+f(v,w)=f(u+v,w)$.
+\item  Montrer que $f$ est bilinéaire.
+\item  Montrer que $||\;||$ est une norme euclidienne.
+\end{enumerate}
+
+\finenonce{005483}
+
+
+\finexercice
+\exercice{5484, rouget, 2010/07/10}
+\enonce{005484}{**IT}
+Dans $\Rr^4$ muni du produit scalaire usuel, on pose~:~$V_1=(1,2,-1,1)$ et $V_2=(0,3,1,-1)$.
+On pose $F=\mbox{Vect}(V_1,V_2)$. Déterminer une base orthonormale de $F$ et un système d'équations de $F^\bot$.
+\finenonce{005484}
+
+
+\finexercice
+\exercice{5485, rouget, 2010/07/10}
+\enonce{005485}{**}
+Sur $\Rr[X]$, on pose $P|Q=\int_{0}^{1}P(t)Q(t)\;dt$. Existe-t-il $A$ élément de $\Rr[X]$ tel que $\forall P\in\Rr[X],\;P|A=P(0)$~?
+\finenonce{005485}
+
+
+\finexercice
+\exercice{5486, rouget, 2010/07/10}
+\enonce{005486}{***I Matrices et déterminants de \textsc{Gram}}
+Soit $E$ un espace vectoriel euclidien de dimension $p$ sur $\Rr$ ($p\geq2$).
+Pour $(x_1,...,x_n)$ donné dans $E^n$, on pose $G(x_1,...,x_n)=(x_i|x_j)_{1\leq i,j\leq n}$ (matrice de \textsc{Gram})
+et $\gamma(x_1,...,x_n)=\mbox{det}(G(x_1 , ... , x_n))$ (déterminant de \textsc{Gram}).
+\begin{enumerate}
+\item  Montrer que $\mbox{rg}(G(x_1,...,x_n))=\mbox{rg}(x_1, ... ,x_n)$.
+\item  Montrer que $(x_1,...,x_n)$ est liée si et seulement si $\gamma(x_1,...,x_n)=0$ et que $(x_1,...,x_n)$ est libre si et seulement si $\gamma(x_1,...,x_n)>0$.
+\item  On suppose que $(x_1,...,x_n)$ est libre dans $E$ (et donc $n\leq p$). On pose $F=\mbox{Vect}(x_1,...,x_n)$.
+
+Pour $x\in E$, on note $p_F(x)$ la projection orthogonale de $x$ sur $F$ puis $d_F(x)$ la distance de $x$ à $F$ (c'est-à-dire $d_F(x)=||x-p_F(x)||$). Montrer que $d_F(x)=\sqrt{\frac{\gamma(x,x_1,...,x_n)}{\gamma(x_1,...,x_n)}}$.
+\end{enumerate}
+\finenonce{005486}
+
+
+\finexercice
+\exercice{5487, rouget, 2010/07/10}
+\enonce{005487}{**I}
+Soit $a$ un vecteur non nul de l'espce euclidien $\Rr^3$. On définit $f$ de $\Rr^3$ dans lui même par~:~$\forall x\in\Rr^3,\;f(x)=a\wedge(a\wedge x)$. Montrer que $f$ est linéaire puis déterminer les vecteurs non nuls colinéaires à leur image par $f$.
+\finenonce{005487}
+
+
+\finexercice
+\exercice{5488, rouget, 2010/07/10}
+\enonce{005488}{**I}
+Matrice de la projection orthogonale sur la droite d'équations $3x=6y=2z$ dans la base canonique orthonormée de $\Rr^3$ ainsi que de la symétrie orthogonale par rapport à cette même droite.
+De manière générale, matrice de la projection orthogonale sur le vecteur unitaire $u=(a,b,c)$ et de la projection orthogonale sur le plan d'équation $ax+by+cz=0$ dans la base canonique orthonormée de $\Rr^3$.
+\finenonce{005488}
+
+
+\finexercice
+\exercice{5489, rouget, 2010/07/10}
+\enonce{005489}{**}
+$E=\Rr^3$ euclidien orienté rapporté à une base orthonormée directe $\mathcal{B}$.
+Etudier les endomorphismes de matrice $A$ dans $\mathcal{B}$ suivants~:
+
+$$\begin{array}{lll}
+1)\;A=-\frac{1}{3}
+\left(
+\begin{array}{ccc}
+-2&1&2\\
+2&2&1\\
+1&-2&2
+\end{array}
+\right)
+&2/\;A=\frac{1}{4}
+\left(
+\begin{array}{ccc}
+3&1&\sqrt{6}\\
+1&3&-\sqrt{6}\\
+-\sqrt{6}&\sqrt{6}&2
+\end{array}
+\right)&3/\;A=\frac{1}{9}
+\left(
+\begin{array}{ccc}
+8&1&4\\
+-4&4&7\\
+1&8&-4
+\end{array}
+\right).
+\end{array}
+$$
+\finenonce{005489}
+
+
+\finexercice
+\exercice{5490, rouget, 2010/07/10}
+\enonce{005490}{***}
+Soit $M=\left(
+\begin{array}{ccc}
+a&b&c\\
+c&a&b\\
+b&c&a
+\end{array}
+\right)$ avec $a$, $b$ et $c$ réels.
+Montrer que $M$ est la matrice dans la base canonique orthonormée directe de $R^3$ d'une rotation si et seulement si $a$, $b$ et $c$ sont les solutions d'une équation du type $x^3-x^2+k=0$ où $0\leq k\leq\frac{4}{27}$.
+En posant $k=\frac{4\sin^2\varphi}{27}$, déterminer explicitement les matrices $M$ correspondantes ainsi que les axes et les angles des rotations qu'elles représentent.
+
+\finenonce{005490}
+
+
+\finexercice
+\exercice{5491, rouget, 2010/07/10}
+\enonce{005491}{**}
+$\mathcal{B}$ est une base orthonormée directe de $\Rr^3$ donnée. Montrer que $\mbox{det}_{\mathcal{B}}(u\wedge v,v\wedge w,w\wedge u)=(\mbox{det}_{\mathcal{B}}(u,v,w))^2$ pour tous vecteurs $u$, $v$ et $w$.
+\finenonce{005491}
+
+
+\finexercice\exercice{5492, rouget, 2010/07/10}
+\enonce{005492}{***I Inégalité de \textsc{Hadamard}}
+Soit $\mathcal{B}$ une base orthonormée de $E$, espace euclidien de dimension $n$.
+Montrer que~:~$\forall(x_1,...,x_n)\in E^n,\;|\mbox{det}_{\mathcal{B}}(x_1,...,x_n)|\leq||x_1||...||x_n||$ en précisant les cas d'égalité.
+\finenonce{005492}
+
+
+\finexercice
+\exercice{5493, rouget, 2010/07/10}
+\enonce{005493}{**}
+Montrer que $u\wedge v|w\wedge s=(u|w)(v|s)-(u|s)(v|w)$ et $(u\wedge v)\wedge(w\wedge s)=[u,v,s]w-[u,v,w]s$.
+\finenonce{005493}
+
+
+\finexercice
+\exercice{5494, rouget, 2010/07/10}
+\enonce{005494}{**I}
+Existence, unicité et calcul de $a$ et $b$ tels que $\int_{0}^{1}(x^4-ax-b)^2\;dx$ soit minimum (trouver deux démonstrations, une dans la mentalité du lycée et une dans la mentalité maths sup).
+\finenonce{005494}
+
+
+\finexercice
+\exercice{5495, rouget, 2010/07/10}
+\enonce{005495}{***}
+Soit $(e_1,...,e_n)$ une base quelconque de $E$ euclidien. Soient $a_1$,..., $a_n$ $n$ réels donnés.
+Montrer qu'il existe un unique vecteur $x$ tel que $\forall i\in\{1,...,\},\;x|e_i=a_i$.
+\finenonce{005495}
+
+
+\finexercice
+\exercice{5496, rouget, 2010/07/10}
+\enonce{005496}{****}
+Soit $E$ un espace vectoriel euclidien de dimension $n\geq1$.
+Une famille de $p$ vecteurs $(x_1,...,x_p)$ est dite obtusangle si et seulement si pour tout $(i,j)$ tel que $i\neq j$, $x_i|x_j<0$. Montrer que l'on a nécessairement $p\leq n+1$.
+\finenonce{005496}
+
+
+\finexercice
+\exercice{5497, rouget, 2010/07/10}
+\enonce{005497}{***}
+Soit $P\in\Rr_3[X]$ tel que $\int_{-1}^{1}P^2(t)\;dt=1$. Montrer que $\mbox{sup}\{|P(x)|,\;|x|\leq1\}\leq2$. Cas d'égalité~?
+\finenonce{005497}
+
+
+\finexercice
+\exercice{5498, rouget, 2010/07/10}
+\enonce{005498}{**IT}
+Soit $r$ la rotation de $\Rr^3$, euclidien orienté, dont l'axe est orienté par $k$ unitaire et dont une mesure de l'angle est $\theta$.
+Montrer que pour tout $x$ de $\Rr^3$, $r(x)=(\cos\theta)x+(\sin\theta)(k\wedge x)+2(x.k)\sin^2(\frac{\theta}{2})k$.
+Application~:~écrire la matrice dans la base canonique (orthonormée directe de $\Rr^3$) de la rotation autour de $k=\frac{1}{\sqrt{2}}(e_1+e_2)$ et d'angle $\theta=\frac{\pi}{3}$.
+\finenonce{005498}
+
+
+\finexercice
+\exercice{5499, rouget, 2010/07/10}
+\enonce{005499}{**}
+Soit $f$ continue strictement positive sur $[0,1]$. Pour $n\in\Nn$, on pose $I_n=\int_{0}^{1}f^n(t)\;dt$.
+Montrer que la suite $u_n=\frac{I_{n+1}}{I_n}$ est définie et croissante.
+\finenonce{005499}
+
+
+\finexercice\exercice{5500, rouget, 2010/07/10}
+\enonce{005500}{****I}
+Sur $E=\Rr_n[X]$, on pose $P|Q=\int_{-1}^{1}P(t)Q(t)\;dt$.
+\begin{enumerate} 
+\item  Montrer que $(E,|)$ est un espace euclidien.
+\item  Pour $p$ entier naturel compris entre $0$ et $n$, on pose $L_p=((X^2-1)^p)^{(p)}$.
+Montrer que $\left(\frac{L_p}{||L_p||}\right)_{0\leq p\leq n}$ est l'orthonormalisée de \textsc{Schmidt} de la base canonique de $E$.
+
+Déterminer $||Lp||$.
+\end{enumerate}
+\finenonce{005500}
+
+
+\finexercice
+\finfiche
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005482}
+Posons $\varphi~:~(A,B)\mapsto\mbox{Tr}({^t}AB)$. Montrons que $\varphi$ est un produit scalaire sur $\mathcal{M}_n(\Rr)$. 
+\textbf{1ère solution.} \textbullet~$\varphi$ est symétrique. En effet, pour $(A,B)\in(\mathcal{M}_n(\Rr))^2$,
+
+$$\varphi(A,B)=\mbox{Tr}(^{t}AB)=\mbox{Tr}({^t}({^t}AB))=\mbox{Tr}({^t}BA)=\varphi(B,A).$$
+
+\textbullet~$\varphi$ est bilinéaire par linéarité de la trace et de la transposition.
+\textbullet~Si $A=(a_{i,j})_{1\leq i,j\leq n}\in\mathcal{M}_n(\Rr)\setminus\{0\}$, alors
+
+$$\varphi(A,A)=\sum_{i=1}^{n}\left(\sum_{j=1}^{n}a_{i,j}a_{i,j}\right)=\sum_{i,j}^{}a_{i,j}^2>0$$
+car au moins un des réels de cette somme est strictement positif. $\varphi$ est donc définie, positive.
+
+\textbf{2ème solution.} Posons $A=(a_{i,j})$ et $B=(b_{i,j})$. On a
+
+\begin{center}
+$\text{Tr}({^t}AB)=\sum_{j=1}^{n}\left(\sum_{i=1}^{n}a_{i,j}b_{i,j}\right)=\sum_{1\leq i,j\leq n}^{}a_{i,j}b_{i,j}$.
+\end{center}
+Ainsi, $\varphi$ est le produit scalaire canonique sur $\mathcal{M}_n(\Rr)$ et en particulier, $\varphi$ est un produit scalaire sur $\mathcal{M}_n(\Rr)$.
+$N$ n'est autre que la norme associée au produit scalaire $\varphi$ (et en particulier, $N$ est une norme).
+Soit $(A,B)\in(\mathcal{M}_n(\Rr))^2$.
+
+\begin{align*}\ensuremath
+N(AB)^2&=\sum_{i,j}^{}\left(\sum_{k=1}^{n}a_{i,k}b_{k,j}\right)^2\\
+ &\leq\sum_{i,j}^{}\left(\sum_{k=1}^{n}a_{i,k}^2\right)\left(\sum_{l=1}^{n}b_{l,j}^2\right)\;(\mbox{d'après l'inégalité de \textsc{Cauchy}-\textsc{Schwarz}})\\
+ &=\sum_{i,j,k,l}^{}a_{i,k}^2b_{l,j}^2=\left(\sum_{i,k}^{}a_{i,k}^2\right)\left(\sum_{l,j}^{}b_{l,j}^2\right)=N(A)^2N(B)^2,
+\end{align*}
+et donc,
+
+\begin{center}
+\shadowbox{
+$\forall(A,B)\in(\mathcal{M}_n(\Rr))^2,\;N(AB)\leq N(A)N(B)$.
+}
+\end{center}
+\fincorrection
+\correction{005483}
+\begin{enumerate}
+ \item  Soit $(x,y,z)\in\Rr^3$.
+
+\begin{align*}\ensuremath f(x+z,y)+f(x-z,y)&=\frac{1}{4}(||x+z+y||^2+||x-z+y||^2-||x+z-y||^2-||x-z-y||^2)\\
+ &=\frac{1}{4}\left(2(||x+y||^2+||z||^2)-2(||x-y||^2+||z||^2)\right)=2f(x,y).
+\end{align*}
+ \item  $2f(x,y)= f(x+x,y)+f(x-x,y)=f(2x,y)+f(0,y)$ mais $f(0,y)=(||y||^2-||-y||^2)=0$ (définition d'une norme).
+ \item  \textbullet~Montrons par récurrence que $\forall n\in\Nn,\;f(nx,y)=nf(x,y)$.
+C'est clair pour $n=0$ et $n=1$.
+Soit $n\geq0$. Si l'égalité est vraie pour $n$ et $n+1$ alors d'après 1), 
+
+$$f((n+2)x,y)+f(nx,y)=f((n+1)x+x,y)+f((n+1)x-x,y)=2f((n+1)x,y),$$
+et donc, par hypothèse de récurrence,
+
+$$f((n+2)x,y)=2f((n+1)x,y)-f(nx,y)=2(n+1)f(x,y)-nf(x,y)=(n+2)f(x,y).$$
+Le résultat est démontré par récurrence.
+\textbullet~Soit $n\in\Nn^*$, $f(x,y)=f\left(n\times\frac{1}{n}.x,y\right)=nf\left(\frac{1}{n}x,y\right)$ et donc $f\left(\frac{1}{n}x,y\right)=\frac{1}{n}f(x,y)$.
+\textbullet~Soit alors $r=\frac{p}{q}$, $p\in\Nn$, $q\in\Nn^*$, $f(rx,y)=\frac{1}{q}f(px,y)=p\frac{1}{q}f(x,y)=rf(x,y)$ et donc, pour tout rationnel positif $r$, $f(rx,y)=rf(x,y)$.
+Enfin, si $r\leq0$, $f(rx,y)+f(-rx,y)=2f(0,y)=0$ (d'après 1)) et donc= $f(-rx,y)=-f(-rx,y)=rf(x,y)$.
+
+\begin{center}
+$\forall(x,y)\in E^2,\;\forall r\in\Qq,\;f(rx,y)=rf(x,y)$.
+\end{center}
+ \item  On pose $x=\frac{1}{2}(u+v)$ et $y=\frac{1}{2}(u-v)$.
+
+$$f(u,w)+f(v,w)=f(x+y,w)+f(x-y,w)=2f(x,w)=2f\left(\frac{1}{2}(u+v),w\right)=f(u+v,w).$$
+ \item  f est symétrique (définition d'une norme) et linéaire par rapport à sa première variable (d'après 3) et 4)).
+Donc f est bilinéaire.
+ \item  f est une forme bilinéaire symétrique.
+Pour $x\in E$, $f(x,x)=\frac{1}{4}(||x+x||^2+||x-x||^2)=\frac{1}{4}||2x||^2=||x||^2$ (définition d'une norme) ce qui montre tout à la fois que $f$ est définie positive et donc un produit scalaire, et que $||\;||$ est la norme associée. $||\;||$ est donc une norme euclidienne.
+\end{enumerate}
+\fincorrection
+\correction{005484}
+La famille $(V_1,V_2)$ est clairement libre et donc une base de $F$. Son orthonormalisée $(e_1,e_2)$ est une base orthonormée de $F$.
+$||V_1||=\sqrt{1+4+1+1}=\sqrt{7}$ et $e_1=\frac{1}{\sqrt{7}}V_1=\frac{1}{\sqrt{7}}(1,2,-1,1)$.
+$(V_2|e_1)=\frac{1}{\sqrt{7}}(0+6-1-1)=\frac{4}{\sqrt{7}}$  puis $V_2-(V_2|e_1)e_1=(0,3,1,-1)-\frac{4}{7} (1,2,-1,1)=\frac{1}{7}(-4,13,11,-11)$ puis $e_2=\frac{1}{\sqrt{427}}(-4,13,11,-11)$.
+Une base orthonormée de $F$ est $(e_1,e_2)$ où $e_1=\frac{1}{\sqrt{7}}(1,2,-1,1)$ et $e_2=\frac{1}{\sqrt{427}}(-4,13,11,-11)$.
+Soit $(x,y,z,t)\in\Rr^4$.
+
+$$(x,y,z,t)\in F^\bot\Leftrightarrow(x,y,z,t)\in(V_1,V_2)^\bot\Leftrightarrow\left\{
+\begin{array}{l}
+x+2y-z+t=0\\
+3y+z-t=0
+\end{array}
+\right..$$
+\fincorrection
+\correction{005485}
+Soit $A$ un éventuel polynôme solution c'est à dire tel que $\forall P\in\Rr[X],\;\int_{0}^{1}P(t)A(t)\;dt=P(0)$.
+
+$P=1$ fournit $\int_{0}^{1}A(t)\;dt=1$ et donc nécessairement $A\neq0$. $P=XA$ fournit $\int_{0}^{1}tA^2(t)\;dt=P(0)=0$.
+Mais alors, $\forall t\in[0,1],\;tA^2(t)=0$ (fonction continue positive d'intégrale nulle) puis $A=0$ (polynôme ayant une infinité de racines deux à deux distinctes). $A$ n'existe pas.
+\fincorrection
+\correction{005486}
+\begin{enumerate}
+ \item  Soit $\mathcal{B}$ une base orthonormée de $E$ et $M=\mbox{Mat}_{\mathcal{B}}(x_1,...,x_n)$ ($M$ est une matrice de format $(p,n)$).
+Puisque $\mathcal{B}$ est orthonormée, le produit scalaire usuel des colonnes $C_i$ et $C_j$ est encore $x_i|x_j$.
+Donc, $\forall(i,j)\in\llbracket1,n\rrbracket^2,\;{^t}C_iC_j=x_i|x_j$ ou encore 
+
+\begin{center}
+\shadowbox{
+$G={^t}MM$.
+}
+\end{center}
+Il s'agit alors de montrer que $\mbox{rg}(M)=\mbox{rg}({^t}MM)$. Ceci provient du fait que $M$ et ${^t}MM$ ont même noyau. En effet, pour $X\in\mathcal{M}_{n,1}(\Rr)$, 
+
+$$X\in\mbox{Ker}M\Rightarrow MX=0\Rightarrow{^t}M\times MX=0\Rightarrow({^t}MM)X=0\Rightarrow X\in\mbox{Ker}({^t}MM)$$
+et
+
+\begin{align*}\ensuremath
+X\in\mbox{Ker}({^t}MM)&\Rightarrow{^t}MMX=0\Rightarrow{^t}X{^t}MMX=0\Rightarrow{^t}(MX)MX=0\Rightarrow||MX||^2=0\Rightarrow MX=0\\
+ &\Rightarrow X\in\mbox{Ker}M.
+\end{align*}
+Ainsi, $\text{Ker}(M)=\text{Ker}({^t}MM)=\text{Ker}(G(x_1,\ldots,x_n))$. Mais alors, d'après le théorème du rang, $\text{rg}(x_1,\ldots,x_n)=\text{rg}(M)=\text{rg}(G(x_1,\ldots,x_n))$.
+
+\begin{center}
+\shadowbox{
+$\text{rg}(G(x_1,\ldots,x_n))=\text{rg}(x_1,\ldots,x_n)$.
+}
+\end{center}
+ \item  Si la famille $(x_1,...,x_n)$ est liée, $\mbox{rg}(G)=\mbox{rg}(x_1,...,x_n)<n$, et donc, puisque $G$ est une matrice carrée de format $n$, $\gamma(x_1,...,x_n)=\mbox{det}(G)=0$.
+Si la famille $(x_1, ... ,x_n)$ est libre, $(x_1,...,x_n)$ engendre un espace $F$ de dimension $n$. Soient $\mathcal{B}$ une base orthonormée de $F$ et $M$ la matrice de la famille $(x_1,...,x_n)$ dans $\mathcal{B}$. D'après 1), on a $G={^t}MM$ et d'autre part, $M$ est une matrice carrée. Par suite,
+
+$$\gamma(x_1,...,x_n)=\mbox{det}({^t}MM)=\mbox{det}({^t}M)\mbox{det}(M)=(\mbox{det}M)^2>0.$$
+
+ \item  On écrit $x=x-p_F(x)+p_F(x)$. La première colonne de $\gamma(x,x_1,...,x_n)$ s'écrit~:
+
+$$\left(
+\begin{array}{c}
+||x||^2\\
+x|x_1\\
+x|x_2\\
+\vdots\\
+x|x_n
+\end{array}
+\right)=\left(
+\begin{array}{c}
+||x-p_F(x)+p_F(x)||^2\\
+x-p_F(x)+p_F(x)|x_1\\
+x-p_F(x)+p_F(x)|x_2\\
+\vdots\\
+x-p_F(x)+p_F(x)|x_n
+\end{array}
+\right)=\left(
+\begin{array}{c}
+||x-p_F(x)||^2\\
+0|x_1\\
+0|x_2\\
+\vdots\\
+0|x_n
+\end{array}
+\right)+\left(
+\begin{array}{c}
+||p_F(x)||^2\\
+p_F(x)|x_1\\
+p_F(x)|x_2\\
+\vdots\\
+p_F(x)|x_n
+\end{array}
+\right).$$  
+(en 1ère ligne, c'est le théorème de \textsc{Pythagore} et dans les suivantes, $x-p_F(x)\in F^\bot$). Par linéarité par rapport à la première colonne, $\gamma(x,x_1,...,x_n)$ est somme de deux déterminants. Le deuxième est  $\gamma(p_F(x),x_1,...,x_n)$ et est nul car la famille $(p_F(x),x_1,...,x_n)$ est liée. On développe le premier suivant sa première colonne et on obtient~:
+
+$$\gamma(x,x_1,...,x_n)=||x-p_F(x)||^2\gamma(x_1,...,x_n),$$
+ce qui fournit la formule désirée.
+
+\begin{center}
+\shadowbox{
+$\forall x\in E,\;d(x,F)=\|x-p_F(x)\|=\sqrt{\frac{\gamma(x,x_1,\ldots,x_n)}{\gamma(x_1,\ldots,x_n)}}$.
+}
+\end{center}
+\end{enumerate}
+\fincorrection
+\correction{005487}
+Je vous laisse vérifier la linéarité.
+Si $x$ est colinéaire à $a$, $f(x)=0$ et les vecteurs de $\mbox{Vect}(a)\setminus\{0\}$ sont des vecteurs non nuls colinéaires à leur image.
+Si $x$ n'est pas colinéaire à $a$, $a\wedge x$ est un vecteur non nul orthogonal à $a$ et il en est de même de $f(x)=a\wedge(a\wedge x)$. Donc, si $x$ est colinéaire à $f(x)$, $x$ est nécessairement orthogonal à $a$.
+Réciproquement, si $x$ est un vecteur non nul orthogonal à $a$, $f(x)=(a.x)a-\|a\|^2x=-||a||^2x$ et $x$ est colinéaire à $f(x)$. Les vecteurs non nuls colinéaires à leur image sont les vecteurs non nuls de $\mbox{Vect}(a)$ et de $a^\bot$.
+\fincorrection
+\correction{005488}
+Un vecteur engendrant $D$ est $\overrightarrow{u}=(2,1,3)$. Pour $(x,y,z)\in\Rr^3$,
+
+$$p((x,y,z))=\frac{(x,y,z)|(2,1,3)}{||(2,1,3)||^2}(2,1,3)=\frac{2x+y+3z}{14}(2,1,3).$$ 
+On en déduit que $\mbox{Mat}_{\mathcal{B}}p=P=\frac{1}{14}\left(
+\begin{array}{ccc}
+4&2&6\\
+2&1&3\\
+6&3&9
+\end{array}
+\right)$, puis $\mbox{Mat}_{\mathcal{B}}s=2P-I=\frac{1}{7}\left(
+\begin{array}{ccc}
+-3&2&6\\
+2&-6&3\\
+6&3&2
+\end{array}
+\right)$.
+Plus généralement, la matrice de la projection orthogonale sur le vecteur unitaire $(a,b,c)$ dans la base canonique orthonormée est $P=\left(
+\begin{array}{ccc}
+a^2&ab&ac\\
+ab&b^2&bc\\
+ac&bc&c^2
+\end{array}
+\right)$ et la matrice de la projection orthogonale sur le plan $ax+by+cz=0$ dans la base canonique orthonormée est $I-P=
+\left(
+\begin{array}{ccc}
+1-a^2&-ab&-ac\\
+-ab&1-b^2&-bc\\
+-ac&-bc&1-c^2
+\end{array}
+\right)$.
+
+\fincorrection
+\correction{005489}
+\begin{enumerate}
+ \item  $\|C_1\|=\|C_2\|=\frac{1}{3}\sqrt{4+4+1}=1$ et $C_1|C_2=\frac{1}{9}(-2+4-2)=0$. Enfin, 
+
+$$C_1\wedge C_2=\frac{1}{9}\left(
+\begin{array}{c}
+-2\\
+2\\
+1
+\end{array}
+\right)\wedge\left(
+\begin{array}{c}
+1\\
+2\\
+-2
+\end{array}
+\right)
+=\frac{1}{9}\left(
+\begin{array}{c}
+-6\\
+-3\\
+-6
+\end{array}
+\right)=-\frac{1}{3}\left(
+\begin{array}{c}
+2\\
+1\\
+2
+\end{array}
+\right)=C_3.$$ 
+Donc, $A\in O_3^+(\Rr)$ et $f$ est une rotation (distincte de l'identité).
+\textbf{Axe de $f$.} Soit $X\in\mathcal{M}_{3,1}(\Rr)$.
+
+$$AX=X\Leftrightarrow\left\{
+\begin{array}{l}
+-x-y-2z=0\\
+-2x-5y-z=0\\
+-x+2y-5z=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+z=-2x-5y\\
+3x+9y=0\\
+9x+27y=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x=-3y\\
+z=y
+\end{array}
+\right..$$ 
+L'axe $D$ de $f$ est $\mbox{Vect}(\overrightarrow{u})$ où $\overrightarrow{u}=(-3,1,1)$. $D$ est dorénavant orienté par $\overrightarrow{u}$.
+\textbf{Angle de $f$.} Le vecteur $\overrightarrow{v}=\frac{1}{\sqrt{2}}(0,1,-1)$ est un vecteur unitaire orthogonal à l'axe. Donc,
+
+$$\cos\theta=\overrightarrow{v}.f(\overrightarrow{v})=\frac{1}{\sqrt{2}}(0,1,-1).\frac{1}{\sqrt{2}}\frac{-1}{3}(-1,1,-4)=-\frac{1}{6}\times5
+=-\frac{5}{6},$$
+et donc, $\theta=\pm\Arccos(-\frac{5}{6})\;(2\pi)$. (Si on sait que $\text{Tr}(A)=2\cos\theta+1$, c'est plus court : $2\cos\theta+1=\frac{2}{3}-\frac{2}{3}-\frac{2}{3}$ fournit $\cos\theta=-\frac{5}{6}$).
+Le signe de $\sin\theta$ est le signe de $[\overrightarrow{i},f(\overrightarrow{i}),\overrightarrow{u}]=\left|
+\begin{array}{ccc}
+1&\frac{2}{3}&-3\\
+0&-\frac{2}{3}&1\\
+0&-\frac{1}{3}&1\\
+\end{array}
+\right|=-\frac{1}{3}<0$. Donc, 
+
+\begin{center}
+\shadowbox{
+$f$ est la rotation d'angle $-\Arccos(-\frac{5}{6})$ autour de $u=(-3,1,1)$.
+}
+\end{center}
+ \item  $||C_1||=||C_2||=\frac{1}{4}\sqrt{9+1+6}=1$ et $C_1|C_2=\frac{1}{16}(3+3-6)=0$. Enfin, 
+
+$$C_1\wedge C_2=\frac{1}{16}\left(
+\begin{array}{c}
+3\\
+1\\
+-\sqrt{6}
+\end{array}
+\right)\wedge\left(
+\begin{array}{c}
+1\\
+3\\
+\sqrt{6}
+\end{array}
+\right)
+=\frac{1}{16}\left(
+\begin{array}{c}
+4\sqrt{6}\\
+-4\sqrt{6}\\
+8
+\end{array}
+\right)=\frac{1}{4}\left(
+\begin{array}{c}
+\sqrt{6}\\
+-\sqrt{6}\\
+2
+\end{array}
+\right)
+=C_3.$$
+Donc, $A\in O_3^+(\Rr)$ et $f$ est une rotation.
+\textbf{Axe de $f$.} Soit $X\in\mathcal{M}_{3,1}(\Rr)$.
+
+$$AX=X\Leftrightarrow\left\{
+\begin{array}{l}
+-x+y+\sqrt{6}z=0\\
+x-y-\sqrt{6}z=0\\
+-\sqrt{6}x+\sqrt{6}y-2z=0
+\end{array}
+\right.\Leftrightarrow x-y=\sqrt{6}z=\frac{2}{\sqrt{6}}z\Leftrightarrow x=y\;\mbox{et}\;z=0.$$ 
+L'axe $D$ de $f$ est $\mbox{Vect}(\overrightarrow{u})$ où $\overrightarrow{u}=(1,1,0)$. $D$ est dorénavant orienté par $\overrightarrow{u}$.
+\textbf{Angle de $f$.} $\overrightarrow{k}=[0,0,1)$ est un vecteur unitaire orthogonal à $\overrightarrow{u}$. Par suite,
+
+$$\cos\theta=\overrightarrow{k}.f(\overrightarrow{k})=(0,0,1).\frac{1}{4}(\sqrt{6},-\sqrt{6},2)=\frac{1}{2},$$
+et donc $\cos\theta=\pm\frac{\pi}{3}\;(2\pi)$. Le signe de $\sin\theta$ est le signe de $\left[\overrightarrow{i},f(\overrightarrow{i}),\overrightarrow{u}\right]
+=\left|
+\begin{array}{ccc}
+1&3/4&1\\
+0&1/4&1\\
+0&-\sqrt{6}/4&0
+\end{array}
+\right|=\frac{1}{\sqrt{6}}>0$. Donc, 
+
+\begin{center}
+\shadowbox{
+$f$ est la rotation d'angle $\frac{\pi}{3}$ autour de $\overrightarrow{u}=(1,1,0)$.
+}
+\end{center}
+ \item  $||C_1||=||C_2||=\frac{1}{9}\sqrt{64+16+1}=1$ et $C_1|C_2=\frac{1}{81}(8-16+8)=0$. Enfin,
+
+$$C_1\wedge C_2=\frac{1}{81}\left(
+\begin{array}{c}
+8\\
+-4\\
+1
+\end{array}
+\right)\wedge\left(
+\begin{array}{c}
+1\\
+4\\
+8
+\end{array}
+\right)=\frac{1}{81}\left(
+\begin{array}{c}
+-36\\
+-63\\
+36
+\end{array}
+\right)=-\frac{1}{9}\left(
+\begin{array}{c}
+4\\
+7\\
+-4
+\end{array}
+\right)=-C_3.$$
+Donc, $A\in O_3^-(\Rr)$. $A$ n'est pas symétrique, et donc $f$ n'est pas une réflexion. $f$ est donc la composée commutative $s\circ r$ d'une rotation d'angle $\theta$ autour d'un certain vecteur unitaire $\overrightarrow{u}$ et de la réflexion de plan $\overrightarrow{u}^\bot$ où $\overrightarrow{u}$ et $\theta$ sont à déterminer.
+\textbf{Axe de $r$.} L'axe de $r$ est $Ker(f+Id_E)$ (car $f\neq-Id_E$).
+
+$$AX=-X\Leftrightarrow\left\{
+\begin{array}{l}
+17x+y+4z=0\\
+-4x+13y+7z=0\\
+x+8y+5z=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=-17x-4z\\
+-225x-45z=0\\
+-135x-27z=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+z=-5x\\
+y=3x
+\end{array}\right.$$
+$\mbox{Ker}(f+Id_E)=\mbox{Vect}(\overrightarrow{u})=D$ où $u=(1,3,-5)$. $D$ est dorénavant orienté par $\overrightarrow{u}$.
+$s$ est la réflexion par rapport au plan $P=u^\bot$ dont une équation est $x+3y-5z=0$.
+On écrit alors la matrice $S$ de $s$ dans la base de départ. On calcule $S^{-1}A=SA$ qui est la matrice de $r$ et on termine comme en 1) et 2).
+\end{enumerate}
+\fincorrection
+\correction{005490}
+Soit $f$ l'endomorphisme de $\Rr^3$ de matrice $M$ dans la base canonique de $\Rr^3$.
+
+\begin{align*}\ensuremath
+f\;\mbox{est une rotation}&\Leftrightarrow M\in O_3^+(\Rr)\Leftrightarrow||C_1||=||C_2||=||C_3||=1\;\mbox{et}\;C_1|C_2=C_1|C_3=C_2|C_3=0\;\mbox{et}\;\mbox{det}M=1\\
+ &\Leftrightarrow a^2+b^2+c^2=1\;\mbox{et}\;ab+bc+ca=0\;\mbox{et}\;a^3+b^3+c^3-3abc=1.
+\end{align*}
+Posons $\sigma_1=a+b+c$, $\sigma_2=ab+bc+ca$ et $\sigma_3=abc$. On a $a^2+b^2+c^2=(a+b+c)^2-2(ab+ac+bc)=\sigma_1^2-2\sigma_2$.
+Ensuite,
+
+$$\sigma_1^3=(a+b+c)^3=a^3+b^3+c^3+3(a^2b+ba^2+a^2c+ca^2+b^2c+c^2b)+6abc,$$
+et 
+
+$$\sigma_1(\sigma_1^2-2\sigma_2)=(a+b+c)(a^2+b^2+c^2)=a^3+b^3+c^3+(a^2b+b^2a+a^2c+c^2a+b^2c+c^2b).$$
+Donc, 
+
+$$\sigma_1^3-3\sigma_1(\sigma_1^2-2\sigma_2)=-2(a^3+b^3+c^3)+6\sigma_3$$ 
+et finalement, $a^3+b^3+c^3=\sigma_1^3-3\sigma_1\sigma_2+3\sigma_3$. 
+
+\begin{align*}\ensuremath
+M\in O_3^+(\Rr)&\Leftrightarrow\sigma_2=0\;\mbox{et}\;\sigma_1^2-2\sigma_2=1\;\mbox{et}\;\sigma_1^3-3\sigma_1\sigma_2=1\\
+ &\Leftrightarrow\sigma_2=0\;\text{et}\;\sigma_1=1\\
+ &\Leftrightarrow a,\;b\;\mbox{et}\;c\;\mbox{sont les solutions réelles d'une équation du type}\;x^3-x^2+k=0\;(\mbox{où}\;k=-\sigma_3).
+\end{align*}
+Posons $P(x)=x^3-x^2+k$ et donc $P'(x)=3x^2-2x=x(2x-3)$.
+Sur $]-\infty,0]$, $P$ est strictement croissante, strictement décroissante sur $\left[0,\frac{3}{2}\right]$ et strictement croissante sur $\left[\frac{3}{2},+\infty\right[$. $P$ admet donc au plus une racine dans chacun de ces trois intervalles.
+\textbf{1er cas.} Si $P(0)=k>0$ et $P\left(\frac{2}{3}\right)=k-\frac{4}{27}<0$ ou ce qui revient au même, $0<k<\frac{4}{27}$, P admet trois racines réelles deux à deux distinctes ($P$ étant d'autre part continue sur $\Rr$), nécessairement toutes simples.
+\textbf{2ème cas.} Si $k\in\left\{0,\frac{4}{27}\right\}$, $P$ et $P'$ ont une racine réelle commune (à savoir $0$ ou $\frac{4}{27}$) et $P$ admet une racine réelle d'ordre au moins $2$. La troisième racine est alors nécessairement réelle.
+\textbf{3ème cas.} Si $k<0$ ou $k>\frac{4}{27}$, P admet une racine réelle exactement. Celle-ci est nécessairement simple au vu du 2ème cas et donc $P$ admet deux autres racines non réelles.
+En résumé, $P$ a toutes ses racines réelles si et seulement si $0\leq k\leq\frac{4}{27}$ et donc, $f$ est une rotation si et seulement si $a$, $b$ et $c$ sont les solutions d'une équation du type $x^3-x^2+k=0$ où $0\leq k\leq\frac{4}{27}$.
+\fincorrection
+\correction{005491}
+\begin{align*}\ensuremath
+[u\wedge v,v\wedge w,w\wedge u]&=((u\wedge v)\wedge(v\wedge w))|(w\wedge u)=(((u\wedge v)|w)v-((u\wedge v)|v)w)|(w\wedge u)\\
+ &=(((u\wedge v)|w)v)|(w\wedge u)=((u\wedge v)w)\times(v|(w\wedge u))=[u,v,w][w,u,v]\\
+ &=[u,v,w]^2.
+\end{align*}
+\fincorrection
+\correction{005492}
+Si la famille $(x_i)_{1\leq i\leq n}$ est une famille liée, l'inégalité est claire et de plus, on a l'égalité si et seulement si l'un des vecteurs est nuls.
+Si la famille $(x_i)_{1\leq i\leq n}$ est une famille libre et donc une base de E, considérons $\mathcal{B}'=(e_1,...,e_n)$ son orthonormalisée de \textsc{Schmidt}. On a 
+
+$$\left|\mbox{det}_{\mathcal{B}}(x_i)_{1\leq i\leq n}\right|=\left|\mbox{det}_{\mathcal{B}'}(x_i)_{1\leq i\leq n}\times\mbox{det}_{\mathcal{B}}(\mathcal{B}')\right|=|\mbox{det}_{\mathcal{B}'}(x_i)_{1\leq i\leq n}|,$$
+car $\mbox{det}_{\mathcal{B}}\mathcal{B}'$ est le déterminant d'une d'une base orthonormée dans une autre et vaut donc $1$ ou $-1$.
+Maintenant, la matrice de la famille $(x_i)_{1\leq i\leq n}$ dans $\mathcal{B}'$ est triangulaire supérieure et son déterminant est le produit des coefficients diagonaux à savoir les nombres $x_i|e_i$ (puisque $\mathcal{B}'$ est orthonormée). Donc
+
+$$|\mbox{det}_{\mathcal{B}}(x_i)_{1\leq i\leq n}|=|\mbox{det}_{\mathcal{B}'}(x_i)_{1\leq i\leq n}|=\left|\prod_{i=1}^{n}(x_i|e_i)\right|\leq\prod_{i=1}^{n}\|x_i\|\times\|e_i\|=\prod_{i=1}^{n}||x_i||,$$
+d'après l'inégalité de \textsc{Cauchy}-\textsc{Schwarz}. De plus, on a l'égalité si et seulement si, pour tout $i$,  $|x_i|e_i|=\|x_i\|\times\|e_i\|$ ou encore si et seulement si, pour tout $i$, $x_i$ est colinéaire à $e_i$ ou enfin si et seulement si la famille $(x_i)_{1\leq i\leq n}$ est orthogonale.
+\fincorrection
+\correction{005493}
+$(u\wedge v)|(w\wedge s)=[u,v,w\wedge s]=[w\wedge s,u,v]=((w\wedge s)\wedge u)|v=((u|w)s-(u|s)w)|v=(u|w)(v|s)-(u|s)(v|w)$.
+De même, $(u\wedge v)\wedge(w\wedge s)=((u\wedge v)|s)w-((u\wedge v)|w)s=[u,v,s]w-[u,v,w]s$.
+\fincorrection
+\correction{005494}
+\textbf{1ère solution.}
+
+\begin{align*}\ensuremath
+\int_{0}^{1}(x^4-ax-b)^2\;dx&=\frac{1}{9}+\frac{1}{3}a^2+b^2-\frac{1}{3}a-\frac{2}{5}b+ab=\frac{1}{3}\left(a+\frac{1}{2}(3b-1)\right)^2-\frac{1}{12}(3b-1)^2+b^2-\frac{2}{5}b+\frac{1}{9}\\
+ &=\frac{1}{3}\left(a+\frac{1}{2}(3b-1)\right)^2+\frac{1}{4}b^2+\frac{1}{10}b+\frac{1}{36}=\frac{1}{3}\left(a+\frac{1}{2}(3b-1)\right)^2+\frac{1}{4}\left(b+\frac{1}{5}\right)^2+\frac{4}{225}\geq\frac{4}{225},
+\end{align*}
+avec égalité si et seulement si $a+\frac{1}{2}(3b-1)=b+\frac{1}{5}=0$ ou encore $b=-\frac{1}{5}$ et $a=\frac{4}{5}$.
+
+\begin{center}
+\shadowbox{
+$\int_{0}^{1}(x^4-ax-b)^2\;dx$ est minimum pour $a=\frac{4}{5}$ et $b=-\frac{1}{5}$ et ce minimum vaut $\frac{4}{225}$.
+}
+\end{center}
+\textbf{2ème solution.} $(P,Q)\mapsto\int_{0}^{1}P(t)Q(t)\;dt$ est un produit scalaire sur $\Rr_4[X]$ et $\int_{0}^{1}(x^4-ax-b)^2dx$ est, pour ce produit scalaire, le carré de la distance du polynôme $X^4$ au polynôme de degré inférieur ou égal à $1$, $aX+b$. On doit calculer $\mbox{Inf}\left\{\int_{0}^{1}(x^4-ax-b)^2\;dx,\;(a,b)\in\Rr^2\right\}$ qui est le carré de la distance de $X^4$ à $F=\Rr_1[X]$. On sait que cette borne inférieure est un minimum, atteint une et une seule fois quand $aX+b$ est la projection orthogonale de $X^4$ sur $F$.
+Trouvons une base orthonormale de $F$. L'orthonormalisée $(P_0,P_1)$ de $(1,X)$ convient.
+$||1||^2=\int_{0}^{1}1\;dt=1$ et $P_0=1$. Puis $X-(X|P_0)P_0=X-\int_{0}^{1}t\;dt=X-\frac{1}{2}$, et comme 
+$||X-(X|P_0)P_0||^2=\int_{0}^{1}\left(t-\frac{1}{2}\right)^2\;dt=\frac{1}{3}-\frac{1}{2}+\frac{1}{4}=\frac{1}{12}$, $P_1=2\sqrt{3}\left(X-\frac{1}{2}\right)=\sqrt{3}(2X-1)$.
+La projection orthogonale de $X^4$ sur $F$ est alors $(X^4|P_0)P_0+(X^4|P_1)P_1$ avec $(X^4|P_0)=\int_{0}^{1}t^4\;dt=\frac{1}{5}$ et $(X^4|P_1)=\sqrt{3}\int_{0}^{1}t^4(2t-1)\;dt=\sqrt{3}(\frac{1}{3}-\frac{1}{5})=\frac{2\sqrt{3}}{15}$. Donc, la projection orthogonale de $X^4$ sur $F$ est $\frac{1}{5}+\frac{2\sqrt{3}}{15}\sqrt{3}(2X-1)=\frac{1}{5}(4X-1)$.
+Le minimum cherché est alors $\int_{0}^{1}\left(t^4-\frac{1}{5}(4t-1)\right)^2\;dt=...=\frac{4}{225}$.
+\fincorrection
+\correction{005495}
+Soit $\begin{array}[t]{cccc}
+\varphi~:&E&\rightarrow&\Rr^n\\
+ &x&\mapsto&(x|e_1,...,x|e_n)
+\end{array}$. $\varphi$ est clairement linéaire et $\mbox{Ker}\varphi$ est $(e_1,...,e_n)^\bot=E^\bot=\{0\}$.
+Comme $E$ et $\Rr^n$ ont mêmes dimensions finies, $\varphi$ est un isomorphisme d'espaces vectoriels. En particulier, pour tout $n$-uplet $(a_1,...,a_n)$ de réels, il existe un unique vecteur $x$ tel que $\forall i\in\llbracket1,n\rrbracket,\;x|e_i=a_i$.
+\fincorrection
+\correction{005496}
+\textbf{1ère solution.}
+Montrons par récurrence que sur $n=\mbox{dim}(E)$ que, si $(x_i)_{1\leq i\leq p}$ est obtusangle, $p\leq n+1$.
+\textbullet~Pour $n=1$, une famille obtusangle ne peut contenir au moins trois vecteurs car si elle contient les vecteurs $x_1$ et $x_2$ verifiant $x_1.x_2<0$, un vecteur $x_3$ quelconque est soit nul (auquel cas $x_3.x_1=0$), soit de même sens que $x_1$ (auquel cas $x_1.x_3>0$) soit de même sens que $x_2$ (auquel cas $x_2.x_3>0$). Donc $p\leq2$.
+\textbullet~Soit $n\geq 1$. Suppososons que toute famille obtusangle d'un espace de dimension $n$ a un cardinal inférieur ou égal à $n+1$.
+Soit $(x_i)_{1\leq i\leq p}$ une famille obtusangle d'un espace $E$ de dimension $n+1$. Si $p=1$, il n'y a plus rien à dire. Supposons $p\geq2$. $x_p$ n'est pas nul et $H=x_p^\bot$ est un hyperplan de $E$ et donc est de dimension $n$.
+Soit, pour $1\leq i\leq p-1$, $y_i=x_i-\frac{(x_i|x_p)}{||x_p||^2}x_p$ le projeté orthogonal de $x_i$ sur $H$.
+Vérifions que la famille $(y_i)_{1\leq i\leq p-1}$ est une famille obtusangle. Soit $(i,j)\in\llbracket1,p-1\rrbracket$ tel que $i\neq j$.
+ 
+$$y_i.y_j=x_i.x_j-\frac{(x_i|x_p)(x_j|x_p)}{||x_p||^2}-\frac{(x_j|x_p)(x_i|x_p)}{||x_p||^2}+\frac{(x_i|x_p)(x_j|x_p)(x_p|x_p)}{||x_p||^4}= x_i|x_j-\frac{(x_i|x_p)(x_j|x_p)}{||x_p||^2}<0.$$
+Mais alors, par hypothèse de récurrence, $p-1\leq 1+\mbox{dim}H=n+1$ et donc $p\leq n+2$. 
+Le résultat est démontré par récurrence.
+\textbf{2ème solution.}
+Montrons que si la famille $(x_i)_{1\leq i\leq p}$ est obtusangle, la famille $(x_i)_{1\leq i\leq p-1}$ est libre.
+Supposons par l'absurde, qu'il existe une famille de scalaires $(\lambda_i)_{1\leq i\leq p-1}$ non tous nuls tels que $\sum_{i=1}^{p-1}\lambda_ix_i=0\;(*)$.
+Quite à multiplier les deux membres de $(*)$ par $-1$, on peut supposer qu'il existe au moins un réel $\lambda_i>0$. Soit $I$ l'ensemble des indices $i$ tels que $\lambda_i>0$ et $J$ l'ensemble des indices $i$ tels que $\lambda_i\leq0$ (éventuellement $J$ est vide). $I$ et $J$ sont disjoints.
+(*) s'écrit $\sum_{i\in I}^{}\lambda_ix_i=-\sum_{i\in J}^{}\lambda_ix_i$ (si $J$ est vide, le second membre est nul).
+On a 
+
+$$0\leq\left\|\sum_{i\in I}^{}\lambda_ix_i\right\|^2=\left(\sum_{i\in I}^{}\lambda_ix_i\right).\left(-\sum_{i\in  J}^{}\lambda_ix_i\right)=\sum_{(i,j)\in I\times J}^{}\lambda_i(-\lambda_j)x_i.x_j\leq 0.$$
+Donc, $\left\|\sum_{i\in I}^{}\lambda_ix_i\right\|^2=0$ puis $\sum_{i\in I}^{}\lambda_ix_i=0$.
+Mais, en faisant le produit scalaire avec $x_p$, on obtient $\left(\sum_{i\in I}^{}\lambda_ix_i\right).x_p=\sum_{i\in I}^{}\lambda_i(x_i.x_p)<0$ ce qui est une contradiction.
+La famille $(x_i)_{1\leq i\leq p-1}$ est donc libre. Mais alors son cardinal $p-1$ est inférieur ou égal à la dimension $n$ et donc $p\leq n+1$.
+\fincorrection
+\correction{005497}
+L'application $(P,Q)\mapsto\int_{0}^{1}P(t)Q(t)\;dt$ est un produit scalaire sur $E=\Rr_3[X]$. Déterminons une base orthonormée de $E$. Pour cela, déterminons $(Q_0,Q_1,Q_2,Q_3)$ l'orthonormalisée de la base canonique $(P_0,P_1,P_2,P_3)=(1,X,X^2,X^3)$.
+\textbullet~$||P_0||^2=\int_{-1}^{1}1^2\;dt=2$ et on prend \shadowbox{$Q_0=\frac{1}{\sqrt{2}}$.}
+\textbullet~$P_1|Q_0=\frac{1}{\sqrt{2}}\int_{-1}^{1}t\;dt=0$ puis $P_1-(P_1|Q_0)Q_0=X$ puis $||P_1-(P_1|Q_0)Q_0||^2=\int_{-1}^{1}t^2\;dt=\frac{2}{3}$ et \shadowbox{$Q_1=\sqrt{\frac{3}{2}}X$.}
+\textbullet~$P_2|Q_0=\frac{1}{\sqrt{2}}\int_{-1}^{1}t^2\;dt=\frac{\sqrt{2}}{3}$ et $P_2|Q_1=0$. Donc, $P_2-(P_2|Q_0)Q_0-(P_2|Q_1)Q_1=X^2-\frac{1}{3}$,
+puis $||P_2-(P_2|Q_0)Q_0-(P_2|Q_1)Q_1||^2=\int_{-1}^{1}\left(t^2-\frac{1}{3}\right)^2\;dt=2\left(\frac{1}{5}-\frac{2}{9}+\frac{1}{9}\right)=
+\frac{8}{45}$ et \shadowbox{$Q_2=\frac{\sqrt{5}}{2\sqrt{2}}(3X^2-1)$.}
+\textbullet~$P_3|Q_0=P_3|Q_2=0$ et $P_3|Q_1=\sqrt{\frac{3}{2}}\int_{-1}^{1}t^4\;dt=\frac{\sqrt{6}}{5}$ et 
+$P_3-(P_3|Q_0)Q_0-(P_3|Q_1)Q_1-(P_3|Q_2)Q_2=X^3-\frac{3}{5}X$,
+puis $\left\|X^3-\frac{3}{5}X\right\|^2=\int_{-1}^{1}\left(t^3-\frac{3}{5}t\right)^2\;dt=2\left(\frac{1}{7}-\frac{6}{25}+\frac{3}{25}\right)=2\frac{25-21}{175}=\frac{8}{175}$, et \shadowbox{$Q_3=\frac{\sqrt{7}}{2\sqrt{2}}(5X^3-3X)$.}
+Une base orthonormée de $E$ est $(Q_0,Q_1,Q_2,Q_3)$ où $Q_0=\frac{1}{\sqrt{2}}$, $Q_1=\frac{\sqrt{3}}{\sqrt{2}}X$, $Q_2=\frac{\sqrt{5}}{2\sqrt{2}}(3X^2-1)$ et $Q_3=\frac{\sqrt{7}}{2\sqrt{2}}(5X^3-3X)$.
+Soit alors $P$ un élément quelconque de $E=\Rr_3[X]$ tel que $\int_{-1}^{1}P^2(t)\;dt=1$. Posons $P=aQ_0+bQ_1+cQ_2+dQ_3$.
+Puisque $(Q_0,Q_1,Q_2,Q_3)$ est une base orthonormée de $E$, $\int_{-1}^{1}P^2(t)\;dt=||P||^2=a^2+b^2+c^2+d^2=1$. Maintenant, pour $x\in[-1,1]$, en posant $M_i=\mbox{Max}\{|Q_i(x)|,\;x\in[-1,1]\}$, on a~:
+
+\begin{align*}\ensuremath
+|P(x)|&\leq|a|\times|Q_0(x)|+|b|\times|Q_1(x)|+|c|\times|Q_2(x)|+|d|\times|Q_3(x)|\leq|a|M_0+|b|M_1+|c|M_2+|d|M_3\\
+ &\leq\sqrt{a^2+b^2+c^2+d^2}\sqrt{M_0^2+M_1^2+M_2^2+M_3^2}=\sqrt{M_0^2+M_1^2+M_2^2+M_3^2}.
+\end{align*}
+Une étude brève montre alors que chaque $|P_i|$ atteint son maximum sur $[-1,1]$ en $1$ (et $-1$) et donc 
+
+$$\sqrt{M_0^2+M_1^2+M_2^2+M_3^2}=\sqrt{\frac{1}{2}+\frac{3}{2}+\frac{5}{2}+\frac{7}{2}}=2\sqrt{2}.$$
+Ainsi, $\forall x\in[-1,1],\;|P(x)|\leq2\sqrt{2}$ et donc $\mbox{Max}\{|P(x)|,\;x\in[-1,1]\}\leq2\sqrt{2}$.
+Etudions les cas d'égalité. Soit $P\in\Rr_3[X]$ un polynôme éventuel tel que $\mbox{Max}\{|P(x)|,\;x\in[-1,1]\}\leq2\sqrt{2}$.
+Soit $x_0\in[-1,1]$ tel que $\mbox{Max}\{|P(x)|,\;x\in[-1,1]\}=|P(x_0)|$. Alors :
+
+\begin{align*}\ensuremath
+2\sqrt{2}&=|P(x_0)|\leq|a|\times|Q_0(x_0)|+|b|\times|Q_1(x_0)|+|c|\times|Q_2(x_0)|+|d|\times|Q_3(x_0)|\leq|a|M_0+|b|M_1+|c|M_2+|d|M_3\\
+ &\leq\sqrt{M_0^2+M_1^2+M_2^2+M_3^2}=2\sqrt{2}.
+\end{align*}
+Chacune de ces inégalités est donc une égalité. La dernière (\textsc{Cauchy}-\textsc{Schwarz}) est une égalité si et seulement si $(|a|,|b|,|c|,|d|)$ est colinéaire à $(1,\sqrt{3},\sqrt{5},\sqrt{7})$ ou encore si et seulement si $P$ est de la forme $\lambda(\pm Q_0\pm\sqrt{3}Q_1\pm\sqrt{5}Q_2\pm\sqrt{7}Q_3)$ où $\lambda^2(1+3+5+7)=1$ et donc $\lambda=\pm\frac{1}{4}$, ce qui ne laisse plus que $16$ polynômes possibles. L'avant-dernière inégalité est une égalité si et seulement si $x_0\in\{-1,1\}$ (clair). La première inégalité est une égalité si et seulement si 
+
+$$|aQ_0(1)+bQ_1(1)+cQ_2(1)+dQ_3(1)|=|a|Q_0(1)+|b|Q_1(1)+|c|Q_2(1)+|d|Q_3(1),$$
+ce qui équivaut au fait que $a$, $b$, $c$ et $d$ aient même signe et $P$ est l'un des deux polynômes
+ 
+\begin{align*}\ensuremath
+\pm\frac{1}{4}(Q_0+\sqrt{3}Q_1+\sqrt{5}Q_2+\sqrt{7}Q_3)&=\pm\frac{1}{4\sqrt{2}}\left(1+3X+\frac{5}{2}(3X^2-1)
++\frac{7}{2}(5X^3-3X)\right)\\
+ &=\pm\frac{1}{8\sqrt{2}}(35X^3+15X2-15X-3)
+\end{align*}
+\fincorrection
+\correction{005498}
+Si $x$ est colinéaire à $k$, $r(x)=x$, et si $x\in k^\bot,\;r(x)=(\cos\theta)x+(\sin\theta)k\wedge x$.
+Soit $x\in E$. On écrit $x=x_1+x_2$ où $x_1\in k^\bot$ et $x_2\in\mbox{Vect}(k)$. On a $x_2=(x.k)k$ (car $k$ est unitaire) et $x_1=x-(x.k)k$. Par suite,
+
+\begin{align*}\ensuremath
+r(x)&=r(x_1)+r(x_2)=(\cos\theta)x_1+(\sin\theta)k\wedge x_1+x_2=(\cos\theta)(x-(x.k)k)+(\sin\theta)k\wedge x+(x.k)k\\
+ &=(\cos\theta)x+(1-\cos\theta)(x.k)k+sin\theta(k\wedge x)=(\cos\theta)x+2\sin^2\left(\frac{\theta}{2}\right)(x.k)k+sin\theta(k\wedge x)
+\end{align*}
+\textbf{Application.} Si $k=\frac{1}{\sqrt{2}}(e_1+e_2)$ et $\theta=\frac{\pi}{3}$, pour tout vecteur $x$, on a~:
+
+$$r(x)=\frac{1}{2}x+\frac{1}{2}(x.k)k+\frac{\sqrt{3}}{2}(k\wedge x),$$
+puis,
+$r(e_1)=\frac{1}{2}e_1+\frac{1}{4}(e_1+e_2)-\frac{\sqrt{3}}{2\sqrt{2}}e_3=\frac{1}{4}(3e_1+e_2-\sqrt{6}e_3)$
+
+$r(e_2)=\frac{1}{2}e_2+\frac{1}{4}(e_1+e_2)+\frac{\sqrt{3}}{2\sqrt{2}}e_3=\frac{1}{4}(e_1+3e_2+\sqrt{6}e_3)$
+
+$r(e_3)=\frac{1}{2}e_3+\frac{\sqrt{3}}{2\sqrt{2}}(-e_2+e_1)=\frac{1}{4}(\sqrt{6}e_1-\sqrt{6}e_2+2e_3)$.
+
+\begin{center}
+\shadowbox{
+La matrice cherchée est $\frac{1}{4}\left(
+\begin{array}{ccc}
+3&1&\sqrt{6}\\
+1&3&-\sqrt{6}\\
+-\sqrt{6}&\sqrt{6}&2
+\end{array}
+\right)$.
+}
+\end{center}
+\fincorrection
+\correction{005499}
+L'application $(f,g)\mapsto\int_{0}^{1}f(t)g(t)\;dt$ est un produit scalaire sur $C^0([0,1],\Rr)$. D'après l'inégalité de \textsc{Cauchy}-\textsc{Schwarz},
+ 
+\begin{align*}\ensuremath
+I_nI_{n+2}&=\int_{0}^{1}f^n(t)\;dt\int_{0}^{1}f^{n+2}(t)\;dt=\int_{0}^{1}\left(\sqrt{(f(t))^n}\right)^2\;dt\int_{0}^{1}\left(\sqrt{(f(t))^{n+2}}\right)^2\;dt\\
+ &\geq\left(\int_{0}^{1}\sqrt{(f(t))^n}\sqrt{(f(t))^{n+2}}\;dt\right)^2=\left(\int_{0}^{1}f^{n+1}(t)\;dt\right)^2=I_{n+1}^2
+\end{align*}
+Maintenant, comme $f$ est continue et strictement positive sur $[0,1]$, $I_n$ est strictement positif pour tout naturel $n$. On en déduit que $\forall n\in\Nn,\;\frac{I_{n+1}}{I_n}\leq\frac{I_{n+2}}{I_{n+1}}$ et donc que
+
+\begin{center}
+\shadowbox{
+la suite $\left(\frac{I_{n+1}}{I_n}\right)_{n\in\Nn}$ est définie et croissante.
+}
+\end{center}
+\fincorrection
+\correction{005500}
+\begin{enumerate}
+ \item  La symétrie, la bilinéarité et la positivité sont claires. Soit alors $P\in\Rr_n[X]$. 
+
+\begin{align*}\ensuremath
+P|P=0&\Rightarrow\int_{0}^{1}P^2(t)\;dt=0\\
+ &\Rightarrow\forall t\in[0,1],\;P^2(t)=0\;(\mbox{fonction continue, positive, d'intégrale nulle})\\
+ &\Rightarrow P=0\;(\mbox{polynôme ayant une infinité de racines}).
+\end{align*}
+Ainsi, l'application $(P,Q)\mapsto\int_{0}^{1}P(t)Q(t)\;dt$ est un produit scalaire sur $\Rr_n[X]$.
+ \item  Pour vérifier que la famille $\left(\frac{L_p}{||L_p||}\right)_{0\leq p\leq n}$ est l'orthonormalisée de \textsc{Schmidt} de la base canonique de $E$, nous allons vérifier que
+  \begin{enumerate}
+  \item $\forall p\in\llbracket0,n\rrbracket,\;\mbox{Vect}(L_0,L_1,...,L_p)=\mbox{Vect}(1,X,...,X^p)$,\rule[-4mm]{0mm}{0mm}
+  \item la famille $\left(\frac{L_p}{||L_p||}\right)_{0\leq p\leq n}$ est orthonormale,
+  \item $\forall p\in\llbracket0,n\rrbracket,\;L_p|X^p>0$.\rule{0mm}{5mm}
+  \end{enumerate}
+Pour a), on note que $L_p$ est un polynôme de degré $p$ (et de coefficient dominant $\frac{(2p)!}{p!}$). Par suite, $(L_0,L_1,...,L_p)$ est une base de $\Rr_p[X]$, ou encore, $\forall p\in\llbracket0,n\rrbracket,\;\mbox{Vect}(L_0,L_1,...,L_p)=\mbox{Vect}(1,X,...,X^p)$.
+Soit $p\in\llbracket0,n\rrbracket$. Soit $P$ un polynôme de degré inférieur ou égal à $p$. Si $p\geq1$, une intégration par parties fournit :
+
+\begin{align*}\ensuremath
+L_p|P&=\int_{-1}^{1}((t^2-1)^p)^{(p)}P(t)\;dt=\left[((t^2-1)^p)^{(p-1)}P(t)\right]_{-1}^1-\int_{-1}^{1}((t^2-1)^p)^{(p-1)}P'(t)\;dt\\
+ &=-\int_{-1}^{1}((t^2-1)^p)^{(p-1)}P'(t)\;dt.
+\end{align*}
+En effet, $1$ et $-1$ sont racines d'ordre $p$ de $(t^2-1)^p$ et donc d'ordre $p-k$ de $((t^2-1)^p)^{(k)}$ pour $0\leq k\leq p$ et en particulier, racines de chaque $((t^2-1)^p)^{(k)}$ pour $0\leq k\leq p-1$.
+En réitérant, on obtient pour tout $k\in\llbracket0,p\rrbracket$, $L_p|P=(-1)^k\int_{-1}^{1}((t^2-1)^p)^{(p-k)}P^{(k)}(t)\;dt$ et pour $k=p$, on obtient enfin $L_p|P=(-1)^p\int_{-1}^{1}(t^2-1)^pP^{(p)}(t)\;dt$, cette formule restant vraie pour $p=0$.
+Soient $p$ et $q$ deux entiers tels que $0\leq q<p\leq n$. D'après ce qui précède, $L_p|L_q=(-1)^p\int_{-1}^{1}(t^2-1)^pL_q^{(p)}(t)\;dt=0$ car $q=\mbox{deg}(L_q)<q$. Ainsi, la famille $(L_p)_{0\leq p\leq n}$ est donc une famille orthogonale de $n+1$ polynômes tous non nuls et est par suite est une base orthogonale de $\Rr_n[X]$. On en déduit que la famille $\left(\frac{L_p}{||L_p||}\right)_{0\leq p\leq n}$ est une base orthonormale de $\Rr_n[X]$.
+Enfin, $L_p|X^p=(-1)^p\int_{-1}^{1}(t^2-1)^p(t^p)^{(p)}\;dt=p!\int_{-1}^{1}(1-t^2)^p\;dt>0$. On a montré que 
+
+\begin{center}
+\shadowbox{
+la famille $\left(\frac{L_p}{||L_p||}\right)_{0\leq p\leq n}$ est l'orthonormalisée de la base canonique de $\Rr_n[X]$.
+}
+\end{center}
+Calculons $\|L_p\|$. On note que $L_p\in(L_0,...,L_{p-1})^\bot=(\Rr_{p-1}[X])^\bot$. Par suite,
+
+\begin{align*}\ensuremath
+||L_p||^2&=L_p|L_p=L_p|\mbox{dom}(L_p)X^p\;(\mbox{car}\;L_p\in(\Rr_{p-1}[X])^\bot)\\
+ &=\frac{(2p)!}{p!}L_p|X^p=\frac{(2p)!}{p!}p!\int_{-1}^{1}(1-t^2)^p\;dt=2(2p)!\int_{0}^{1}(1-t^2)^p\;dt\\
+ &=2(2p)!\int_{\pi/2}^{0}(1-\cos^2u)^p(-\sin u)\;du=2(2p)!\int_{0}^{\pi/2}\sin^{2p+1}u\;du\\
+ &=2(2p)!W_{2p+1}\;(\mbox{intégrales de \textsc{Wallis}})\\
+ &=2(2p)!\frac{2^{2p}(p!)^2}{(2p+1)!}\;(\mbox{à revoir})\\
+ &=\frac{2}{2p+1}2^{2p}(p!)^2.
+\end{align*}
+Donc, $\forall p\in\llbracket0,n\rrbracket,\;\|L_p\|=\sqrt{\frac{2}{2p+1}}2^pp!$. On en déduit que la famille $\left(
+\sqrt{\frac{2p+1}{2}}\frac{1}{2^pp!}((X^2-1)^p)^{(p)}\right)_{0\leq p\leq n}$ est une base orthonormale de $\Rr_n[X]$ (pour le produit scalaire considéré).
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

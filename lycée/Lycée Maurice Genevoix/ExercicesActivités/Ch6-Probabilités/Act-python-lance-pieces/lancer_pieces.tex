@@ -1,0 +1,298 @@
+\documentclass[11pt,a4paper]{book}
+
+
+%\usepackage{geometry}
+%\geometry{a4paper,textheight=26cm,textwidth=19cm,hcentering,top=1cm,footnotesep=.5cm}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+
+\usepackage[usenames,dvipsnames,svgnames]{xcolor}
+
+\usepackage{listings}
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+%\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref}
+\usepackage{diagbox} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{tabularx}
+\parindent=0cm
+
+
+
+
+\lstset{
+	literate=
+	{�}{{\'a}}1 {�}{{\'e}}1 {�}{{\'i}}1 {�}{{\'o}}1 {�}{{\'u}}1
+	{�}{{\'A}}1 {�}{{\'E}}1{�}{{\'I}}1 {�}{{\'O}}1 {�}{{\'U}}1
+	{�}{{\`a}}1 {�}{{\`e}}1 {�}{{\`i}}1 {�}{{\`o}}1{�}{{\`u}}1
+	{�}{{\`A}}1 {�}{{\'E}}1 {�}{{\`I}}1 {�}{{\`O}}1 {�}{{\`U}}1
+	{�}{{\"a}}1 {�}{{\"e}}1 {�}{{\"i}}1 {�}{{\"o}}1 {�}{{\"u}}1
+	{�}{{\"A}}1 {�}{{\"E}}1 {�}{{\"I}}1 {�}{{\"O}}1 {�}{{\"U}}1
+	{�}{{\^a}}1 {�}{{\^e}}1 {�}{{\^i}}1 {�}{{\^o}}1 {�}{{\^u}}1
+	{�}{{\^A}}1 {�}{{\^E}}1 {�}{{\^I}}1 {�}{{\^O}}1 {�}{{\^U}}1
+	{?}{{\oe}}1 {?}{{\OE}}1 {�}{{\ae}}1 {�}{{\AE}}1 {�}{{\ss}}1
+	{?}{{\H{u}}}1 {?}{{\H{U}}}1 {?}{{\H{o}}}1 {?}{{\H{O}}}1
+	{�}{{\c c}}1 {�}{{\c C}}1 {�}{{\o}}1 {�}{{\r a}}1 {�}{{\r A}}1
+	{?}{{\EUR}}1 {�}{{\pounds}}1 {?}{{?}}1
+}
+\lstdefinestyle{stylepython}{
+	language=Python, 
+	basicstyle=\ttfamily,
+	%       name=iciNOM,title={Un programme Python}, 
+	%       caption={iciTitre},
+	%       label={iciNom},
+	commentstyle=\footnotesize\color{green!50!black}, 
+	keywordstyle=\color{blue},   
+	stringstyle=\color{olive},   
+	numberstyle=\tiny,  
+	%       mathescape,  
+	%       showstringspaces=false,   
+	tabsize=3,   
+	%framexleftmargin=5mm,  
+	framexrightmargin=5pt,
+	framexbottommargin=5pt
+	xleftmargin=0mm,  
+	%keepspaces=false,   
+	classoffset=1,     
+	numbers=left,    
+	%stepnumber=1,    
+	numbersep=8pt,   
+	%showstringspaces=false,  
+	%frame=single,
+	framerule=1pt,
+	%rulecolor=\color{yellow}, 
+	%       breaklines=true,  
+	%       rulesepcolor=\color{blue}, %avec frame=shadowsbox
+	%backgroundcolor=\color{yellow}
+}
+
+
+
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+
+
+
+
+\pagestyle{fancy}
+
+\begin{document}
+	\lhead{}\chead{}\rhead{}\lfoot{Chapitre 6 - TP sur machine}\cfoot{\thepage/2}\rfoot{M. Botcazou}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}
+	\hfill\\[-1cm]
+	$$\fbox{\text{\Large{Modéliser le lancer d'une pièce}}}$$
+	\hfil\\
+	\textit{\textbf{Objectif:} cette séance a pour but de vous faire programmer en \emph{Python} à l'aide de la bibliothèque \emph{Random}. Dans un premier temps vous allez modéliser le lancer d'une pièce équilibrée et celui d'une pièce truquée. Dans un second temps vous regarderez si les fréquences d'apparitions coïncident avec vos calculs théoriques. Enfin vous répéterez le lancer de deux pièces en étudiant les résultats possibles et les fréquences d'apparitions des différentes issues.   }
+	\section{Une pièce équilibrée VS une pièce truquée:}
+
+	\begin{enumerate}
+		\item Ouvrir le logiciel \emph{"Pyzo"} et créer un nouveau fichier qu'il faut sauvegarder sur le bureau avec l'intitulé suivant: \emph{"Nom1\_Nom2\_lancer\_pieces.py"}\\
+		\item Importer la bibliothèque \emph{"Random"} comme \emph{"rd"} dans votre programme \emph{"Python"}.\\
+		\item Recopier et remplir le code ci-dessous pour que la fonction \emph{"lancer\_une\_piece\_equilibree()" } modélise le lancer d'une pièce équilibrée.
+		
+\begin{lstlisting}[style=stylepython]
+def ............................():
+	k = rd.randint(...,...)
+	return k			
+\end{lstlisting}
+		
+		\item Recopier et remplir le code ci-dessous pour que la fonction \emph{"lancer\_une\_piece\_truquee()" } modélise le lancer d'une pièce truquée qui donne 4 fois plus de "Face" que de "Pile". 
+		
+\begin{lstlisting}[style=stylepython]
+def ............................():
+	k = rd.randint(....,....)
+	if k <= .....:
+		return ....
+	else:
+		return ....			
+\end{lstlisting}
+		\item On note \textbf{X1} la valeur de la pièce équilibrée et on note \textbf{X2} la valeur de la pièce truquée. Donner la loi de l'expérience aléatoire associée à \textbf{X1} et donner la loi de l'expérience aléatoire associée à \textbf{X2} dans un même tableau. \\
+		
+		
+		\noindent\fcolorbox{vert}{white}{
+			\begin{minipage}{1\linewidth}
+				\begin{defi}
+				Soient $n\in\N$, on considère une expérience aléatoire et une issue associée à cette expérience. On répète $n$ fois l'expérience et on compte le nombre de fois que l'issue voulue apparaît à l'aide d'un \emph{"compteur"}. La fréquence $F$ d'apparition de cette issue est: $$ F = \dfrac{compteur}{n}$$
+				\end{defi}
+			\end{minipage}}\hfill\\[0.2cm]
+		\item \begin{enumerate}
+			\item Si on répète un grand nombre de fois le lancer d'une pièce équilibrée et celui d'une pièce truquée et que l'on compte le nombre de "Piles" observé, comment évoluerons les fréquences d'observation de l'issue "Pile" plus on répète ces expériences aléatoires ? \\ 
+			\item Recopier et remplir le code qui est sur la page \textbf{2} pour que la fonction \emph{"frequence(n)"} nous renvoie les fréquences d'observation de l'issue "Pile" pour $n$ lancers de pièces équilibrées et $n$ lancers de pièces truquées.
+			\item À l'aide de la fonction \emph{"frequence(...)"} remplir le tableau sur la page \textbf{2} pour donner les fréquences\\ d'observation de l'issue "Pile" pour les différents nombres de lancers.\\ 
+			\newpage
+\begin{lstlisting}[style=stylepython]
+def ..............(...): #n est le nombre de lancers
+	compteur1 = 0
+	compteur2 = ....
+	for i in range(...):
+		a = lancer_une_piece_equilibree()
+		b = ......_..._......_.........()
+		if a ==....:
+			compteur1 = compteur1 + ....
+		if b ....  ....:
+			compteur2 = ............ + ....
+	frequence1 = ........../n
+	frequence2 = ........../....
+	return frequence1,frequence2			
+\end{lstlisting}
+
+		\end{enumerate}
+
+
+
+\begin{table}[htbp]
+	\centering
+	\begin{tabularx}{\textwidth}{| X | X | X | X | X | X | X | X | X |}
+		\hline
+		& 
+		2 & 5 & 10 & 20 & 50 & 100 &1000&10000  \\ 
+		\hline
+		F1   &  &  &  &  & & & & \\[0.2cm] \hline
+		F2 &   & & & & & & & \\[0.2cm] \hline
+	\end{tabularx}
+\end{table}
+	\end{enumerate}
+\hfill\\[-1.8cm]	
+\section{Répétition de deux lancers avec une pièce équilibrée:}
+
+\begin{enumerate}
+	\item Recopier le code ci-dessous pour que la fonction \emph{"repetition\_2\_lancers\_equilibrees()"} modélise le lancer de deux pièces équilibrées. Donner les issues possibles associées à cette expérience aléatoire. 
+\begin{lstlisting}[style=stylepython]
+def repetition_2_lancers_equilibrees():
+	p1 = lancer_une_piece_equilibree()
+	p2 = lancer_une_piece_equilibree()
+	somme = p1+p2
+	return somme			
+\end{lstlisting}
+\item Recopier et remplir le code ci-dessous pour que la fonction \emph{"frequence\_2\_pieces\_equilibrees(...)"} donne les fréquences d'observation des issues associées aux lancers de deux pièces équilibrées.
+\begin{lstlisting}[style=stylepython]
+def frequence_2_pieces_equilibrees(n): 
+	compteur0 = 0
+	compteur1= ...
+	compteur2= ...
+	for i in range(n):
+		a= repetition_2_lancers_equilibrees()
+		if a == .... :
+			compteur0 = compteur0 + 1
+		elif .... == ... :
+			compteur1 = ........ + ...
+		else:
+			compteur2 = ........ + ...
+	frequence0 = compteur0/n
+	frequence1 = ......../n
+	frequence2 = ......../...
+	return [frequence0, frequence1,frequence2]			
+\end{lstlisting}
+\item À l'aide de la fonction \emph{"frequence\_2\_pieces\_equilibrees(...)"} remplir le tableau.
+\begin{table}[htbp]
+	\centering
+	\begin{tabularx}{\textwidth}{| X | X | X | X | X | X | X | X | X |}
+		\hline
+		& 
+		2 & 5 & 10 & 20 & 50 & 100 &1000&10000  \\ 
+		\hline
+		F0   &  &  &  &  & & & & \\[0.2cm]  \hline
+		F1   &  &  &  &  & & & & \\[0.2cm] \hline
+		F2 &   & & & & & & & \\[0.2cm] \hline
+	\end{tabularx}
+\end{table}
+\end{enumerate}	
+
+\newpage
+
+\section{Répétition de deux lancers avec une pièce truquée:}
+
+\begin{enumerate}
+	\item Écrire le code d'une fonction \emph{"repetition\_2\_lancers\_truquees()"} pour qu'elle  modélise le lancer de deux pièces truquées. Donner les issues possibles associées à cette expérience aléatoire. 
+	\item Recopier et remplir le code ci-dessous pour que la fonction \emph{"frequence\_2\_pieces\_truquees(...)"} donne les fréquences d'observation des issues associées aux lancers de deux pièces truquées.
+	\begin{lstlisting}[style=stylepython]
+	def frequence_2_pieces_truquees(n): 
+	compteur0 = 0
+	compteur1= ...
+	compteur2= ...
+	for i in range(n):
+	a= ................................()
+	if a == .... :
+	compteur0 = ......... + ...
+	elif .... == ... :
+	compteur1 = ........ + ...
+	else:
+	compteur2 = ........ + ...
+	frequence0 = compteur0/n
+	frequence1 = ......../n
+	frequence2 = ......../...
+	return [frequence0, frequence1,frequence2]			
+	\end{lstlisting}
+	\item À l'aide de la fonction \emph{"frequence\_2\_pieces\_truquees(...)"} remplir le tableau.
+	\begin{table}[htbp]
+		\centering
+		\begin{tabularx}{\textwidth}{| X | X | X | X | X | X | X | X | X |}
+			\hline
+			& 
+			2 & 5 & 10 & 20 & 50 & 100 &1000&10000  \\ 
+			\hline
+			F0   &  &  &  &  & & & & \\[0.2cm]  \hline
+			F1   &  &  &  &  & & & & \\[0.2cm] \hline
+			F2 &   & & & & & & & \\[0.2cm] \hline
+		\end{tabularx}
+	\end{table}
+\end{enumerate}	
+\section{Répétition de deux lancers avec une pièce truquée:}
+
+\begin{enumerate}
+	\item Avec ce que vous venez de faire précédemment, donner une conjecture sur la loi de probabilité associée expériences: le lancer de deux pièces équilibrées, le lancer de deux pièces truquées.
+	\item Faire un arbre de probabilité qui représente le lancer de deux pièces équilibrées et en déduire la loi de cette expérience aléatoire.
+	\item Avec ce que vous venez de faire précédemment, donner une conjecture sur la loi de probabilité associée expériences: le lancer de deux pièces truquées.
+	\item Faire un arbre de probabilité qui représente le lancer de deux pièces truquées et en déduire la loi de cette expérience aléatoire. 
+\end{enumerate}	
+\end{document}

@@ -1,0 +1,186 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace,xypic}
+\usepackage{xcolor,multicol,tabularx}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{relsize,exscale}
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\p}{\mathbb{P}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+ 	
+
+\begin{center}
+\Large \sc colle 25 = Algèbre linéaire, espaces euclidiens, intégration et variables aléatoires
+\end{center}
+
+\section*{Exercices mixtes:}%[-0.25cm]
+
+\raggedright
+
+\begin{exo}\textbf{(Concours communs Polytechniques 2017)}\quad\\[0.25cm]
+Une particule possède deux états possibles numérotés $1$ et $2$ et peut passer de son état à l’état
+$1$ ou $2$ de façon aléatoire. On considère un espace probabilisé $(\Omega, \mathcal{F}, P)$ sur lequel on définit
+pour tout $n \in \N$, la variable aléatoire $X_n$ égale à l’état de la particule au temps $n$. L’état de la particule au temps $n 
++1$ dépend uniquement de son état au temps $n$ selon les règles suivantes :
+\begin{enumerate}[$\bullet$]
+	\item Si au temps $n$ la particule est dans l’état $1$, au temps $n + 1$ elle passe à l’état $2$ avec une probabilité de $\dfrac{1}{2}$.
+	\item Si au temps $n$ la particule est dans l’état $2$, au temps $n + 1$ elle passe à l’état $1$ avec une probabilité de $\dfrac{1}{4}$.
+\end{enumerate}
+On suppose que $P(X_0 = 1) = P (X_0 = 2) =\dfrac{1}{2}$.
+\subsubsection*{Questions:}
+\begin{enumerate}
+	\item Déterminer en justifiant la loi de $X_1$.\\
+	On pose $\mu_n = (P(X_n = 1), P (X_n = 2))$ le vecteur ligne de $\R^2$ caractérisant la loi de $X_n$ .
+	\item Justifier la relation matricielle suivante :
+	$$\forall n \in \N, \  \mu_{n+1} = \mu_n A  \ \ \text{avec} \ A = \begin{pmatrix} \dfrac{1}{2} &\dfrac{1}{2}\\[0.5cm]
+	\dfrac{1}{4} & \dfrac{3}{4}
+	\end{pmatrix}.$$
+	\item En déduire la loi de $X_3$.
+	\item \begin{enumerate}
+		\item Temps de premier accès à l’état $1$ : on note $T$ la variable aléatoire égale au plus petit entier $n \in \N$ tel que $X_n = 1$. Déterminer $P (T = 1)$, puis $P (T = k)$ pour tout entier $k \geq 2$.
+		\item En déduire $E[T]$.
+	\end{enumerate}
+\end{enumerate}
+
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(Concours communs Polytechniques 2018)}\quad\\[0.25cm]
+	On note $E$ l’espace vectoriel des applications continues sur le segment $[-1,1]$ et à valeurs réelles.
+\begin{enumerate}
+	\item Démontrer que l’on définit un produit scalaire sur $E$ en posant pour $f$ et $g$ éléments de $E$ :
+	$$\left(f|g\right) = \int_{-1}^{1}f(t)g(t)dt$$
+	\item On note $u : t \mapsto1$, $v : t \mapsto t$ et $F = vect \{ u , v \}$ , déterminer une base orthonormée de $F$.
+	\item Déterminer le projeté orthogonal de la fonction $w : t \mapsto e^t$ sur le sous-espace $F$ et en déduire \\la valeur du réel:
+	$$\underset{(a,b)\in\R^2}{inf}\left[\int_{-1}^{1}\left(e^t-(a+bt)\right)^2dt\right]$$
+\end{enumerate}
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\[0.25cm]
+Soit $E$ un $\R$ espace vectoriel de dimension finie. Soit $||\;||$ une norme sur $E$ vérifiant l'identité du parallèlogramme, c'est-à-dire~:~$\forall(x,y)\in E^2,\;||x+y||^2+||x-y||^2=2(||x||^2+||y||^2)$. On se propose de démontrer que $||\;||$ est associée à un produit scalaire.
+On définit sur $E^2$ une application $f$ par~:~$\forall(x,y)\in E^2,\;f(x,y)=\frac{1}{4}(||x+y||^2-||x-y||^2)$.
+\begin{enumerate}
+	\item  Montrer que pour tout $(x,y,z)$ de $E^3$, on a~:~$f(x+z,y)+f(x-z,y)=2f(x,y)$.
+	\item  Montrer que pour tout $(x,y)$ de $E^2$, on a~:~$f(2x,y)=2f(x,y)$.
+	\item  Montrer que pour tout $(x,y)$ de $E^2$ et tout rationnel $r$, on a~:~$f(rx,y)=rf(x,y)$.
+	
+	On admettra que pour tout réel $\lambda$ et tout $(x,y)$ de $E^2$ on a~:~$f(\lambda x,y)=\lambda f(x,y)$ ( ce résultat provient de la continuité de $f$).
+	\item  Montrer que pour tout $(u,v,w)$ de $E^3$, $f(u,w)+f(v,w)=f(u+v,w)$.
+	\item  Montrer que $f$ est bilinéaire.
+	\item  Montrer que $||\;||$ est une norme euclidienne.
+\end{enumerate}
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}			
+
+\newpage
+
+\begin{exo}\quad\\[0.25cm]
+Pour toute matrice carrée $A$ de dimension $n$, 
+on appelle trace de $A$, et l'on note $\textrm{tr}\, A$, la
+somme des éléments diagonaux de $A$\,:
+$$\textrm{tr}\, A = \sum_{i = 1}^n a_{i,i}$$
+\begin{enumerate}
+	\item Montrer que si $A, B$ sont deux matrices carrées
+	d'ordre $n$, alors $\textrm{tr}(AB)=\textrm{tr} (BA)$.
+	
+	\item Montrer que si $f$ est un endomorphisme d'un espace
+	vectoriel $E$ de dimension $n$, $M$ sa matrice par rapport à
+	une base $e$, $M'$ sa matrice par rapport à une base $e'$,
+	alors $\textrm{tr}\, M = \textrm{tr}\, M'$. 
+	On note $\textrm{tr}\, f$ la valeur commune de ces quantités.
+	
+	\item Montrer que si $g$ est un autre endomorphisme de $E$,
+	$\textrm{tr}(f\circ g - g\circ f) = 0$.
+\end{enumerate}
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\[0.25cm]
+Soit $E$ l'ensemble des fonctions continues strictement positives sur $[a,b]$.
+
+Soit $\begin{array}[t]{cccc}
+\varphi~:&E&\rightarrow&\R\\
+&f&\mapsto&\left(\int_{a}^{b}f(t)\;dt\right)\left(\int_{a}^{b}\frac{1}{f(t)}\;dt\right)
+\end{array}$.
+
+\begin{enumerate}
+	\item  Montrer que $\varphi(E)$ n'est pas majoré.
+	\item  Montrer que $\varphi(E)$ est minoré. Trouver $m=\mbox{Inf}\{\varphi(f),\;f\in E\}$. Montrer que cette borne infèrieure est atteinte et trouver toutes les $f$ de $E$ telles que $\varphi(f)=m$.
+\end{enumerate}	
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+\end{document}

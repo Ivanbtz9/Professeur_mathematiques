@@ -1,0 +1,1079 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00165, blanc-centi, 2015/07/04}
+
+\titre{\'Equations différentielles}
+
+Fiche de Léa Blanc-Centi.
+
+\section{Ordre 1}
+
+\exercice{6991, blanc-centi, 2015/07/04}
+\video{aFS_Z30s_RY}
+\enonce{006991}{}
+Résoudre sur $\R$ les équations différentielles suivantes: 
+\begin{enumerate}
+\item $y'+2y=x^2$ $(E_1)$
+\item $y'+y=2\sin x$ $(E_2)$
+\item $y'-y=(x+1)e^x$ $(E_3)$
+\item $y'+y=x-e^x+\cos x$ $(E_4)$
+\end{enumerate}
+\finenonce{006991}
+ 
+
+\finexercice
+\exercice{6992, blanc-centi, 2015/07/04}
+\video{hVq0LPY0kV0}
+\enonce{006992}{}
+Déterminer toutes les fonctions $f:[0;1]\to\R$, dérivables, telles que 
+$$\forall x\in[0;1],\ f'(x)+f(x)=f(0)+f(1)$$
+\finenonce{006992}
+ 
+
+\finexercice
+\exercice{6993, blanc-centi, 2015/07/04}
+\video{Fg3TtiARvxI}
+\enonce{006993}{}
+
+\begin{enumerate}
+\item Résoudre l'équation différentielle $(x^2+1)y'+2xy=3x^2+1$ sur $\R$.
+Tracer des courbes intégrales. Trouver la solution vérifiant $y(0) = 3$.
+
+
+\item Résoudre l'équation différentielle $y'\sin x-y\cos x+1=0$ sur $]0;\pi[$.
+Tracer des courbes intégrales. Trouver la solution vérifiant $y(\frac\pi4) = 1$.
+
+\end{enumerate}
+\finenonce{006993}
+ 
+
+\finexercice
+\exercice{6994, blanc-centi, 2015/07/04}
+\video{4M0txOmYb1I}
+\enonce{006994}{Variation de la constante}
+Résoudre les équations différentielles suivantes en trouvant 
+une solution particulière par la méthode de variation de la constante :
+\begin{enumerate}
+\item $y' - (2x - \frac{1}{x})y = 1$ sur $]0;+\infty[$
+\item $y'-y = x^k \exp(x)$ sur $\R$, avec $k \in \Nn$
+\item $x(1+\ln^2(x))y'+2\ln(x)y=1$ sur $]0;+\infty[$
+\end{enumerate}
+\finenonce{006994}
+ 
+
+\finexercice
+\exercice{6995, blanc-centi, 2015/07/04}
+\video{UW3uUaXMS34}
+\enonce{006995}{}
+On considère l'équation différentielle
+$$y'-e^xe^y=a$$
+Déterminer ses solutions, en précisant soigneusement leurs intervalles de définition, pour
+\begin{enumerate}
+\item $a=0$
+\item $a=-1$ (faire le changement de fonction inconnue $z(x)=x+y(x)$)
+\end{enumerate}
+Dans chacun des cas, construire la courbe intégrale qui passe par l'origine.
+\finenonce{006995}
+ 
+
+\finexercice
+\exercice{6996, blanc-centi, 2015/07/04}
+\video{1-v-EhSJHlk}
+\enonce{006996}{}
+Pour les équations différentielles suivantes,
+trouver les solutions définies sur $\R$ tout entier :
+\begin{enumerate}
+\item $x^2y'-y = 0$ $(E_1)$
+\item $xy'+y-1 = 0$ $(E_2)$
+\end{enumerate}
+\finenonce{006996}
+ 
+
+\finexercice
+
+\section{Second ordre}
+
+\exercice{6997, blanc-centi, 2015/07/04}
+\video{P_IrLQoPqYs}
+\enonce{006997}{}
+Résoudre
+\begin{enumerate}
+\item $y''-3y'+2y=0$
+\item $y''+2y'+2y=0$
+\item $y''-2y'+y=0$
+\item $y''+y=2\cos^2x$
+\end{enumerate}
+\finenonce{006997}
+
+
+\finexercice
+\exercice{6998, blanc-centi, 2015/07/04}
+\video{iRTCx-ikFP0}
+\enonce{006998}{}
+On considère $y''-4y'+4y=d(x)$. 
+Résoudre l'équation homogène, puis trouver une solution particulière 
+lorsque $d(x)=e^{-2x}$, puis $d(x)=e^{2x}$. 
+Donner la forme générale des solutions quand $d(x)=\frac{1}{2}\ch(2x)$.
+\finenonce{006998}
+
+
+\finexercice
+\exercice{6999, blanc-centi, 2015/07/04}
+\video{cNVcKnV6F2E}
+\enonce{006999}{}
+Résoudre sur $]0;\pi[$ l'équation différentielle
+$y''+y=\mathrm{cotan}\, x$, où $\mathrm{cotan}\, x = \frac{\cos x}{\sin x}$.
+\finenonce{006999}
+
+
+\finexercice
+\exercice{7000, blanc-centi, 2015/07/04}
+\video{nFoOhAmqUtQ}
+\enonce{007000}{}
+Résoudre les équations différentielles suivantes à l'aide du changement de variable suggéré.
+\begin{enumerate}
+\item $x^2y''+xy'+y=0$, sur $]0;+\infty[$, en posant $x=e^t$;
+\item $(1+x^2)^2y''+2x(1+x^2)y'+my=0$, sur $\R$, en posant $x=\tan t$ (en fonction de $m\in\R$).
+\end{enumerate}
+\finenonce{007000}
+
+
+\finexercice
+\section{Pour aller plus loin}
+
+\exercice{7001, blanc-centi, 2015/07/04}
+\video{k9R8_U4-Pyk}
+% extrait de 4112, 4113
+\enonce{007001}{\'Equations de Bernoulli et Riccatti}
+\ 
+\begin{enumerate}
+  \item \textbf{\'Equation de Bernoulli}
+  \begin{enumerate}
+    \item Montrer que l'équation de Bernoulli
+    $$y'+a(x)y+b(x)y^n = 0 \qquad n \in \Zz \quad n \neq 0, n\neq 1$$
+    se ramène à une équation linéaire par le changement de fonction 
+    $z(x) = 1/ y(x)^{n-1}$.
+    
+    
+    \item Trouver les solutions de l'équation $xy'+y-xy^3 = 0$.
+    
+  \end{enumerate}
+    \item \textbf{\'Equation de Riccati}
+  \begin{enumerate}
+    \item Montrer que si $y_0$ est une solution particulière de l'équation de Riccati 
+    $$y'+ a(x)y +b(x)y^2 = c(x)$$
+    alors la fonction définie par $u(x) = y(x)-y_0(x)$ vérifie une équation de Bernoulli
+    (avec $n=2$).
+    
+    \item Résoudre $x^2(y'+y^2) = xy-1$ en vérifiant d'abord que $y_0(x) = \frac1x$ est une solution.
+  \end{enumerate}
+
+\end{enumerate}
+\finenonce{007001}
+
+
+\finexercice
+\exercice{7002, blanc-centi, 2015/07/04}
+\video{xrbDXpFKgfE}
+\enonce{007002}{}
+\ 
+\begin{enumerate}
+\item Montrer que toute solution sur $\R$ de $y'+e^{x^2}y=0$ tend vers 0 en $+\infty$.
+\item Montrer que toute solution sur $\R$ de $y''+e^{x^2}y=0$ est bornée.
+(\emph{Indication :} étudier la fonction auxiliaire $u(x)=y(x)^2+e^{-x^2}y'(x)^2$.)
+\end{enumerate}
+\finenonce{007002}
+
+
+\finexercice
+\exercice{7003, blanc-centi, 2015/07/04}
+\video{lBNXBvuCSD0}
+\enonce{007003}{}
+\ \begin{enumerate}
+\item Résoudre sur $]0;+\infty[$ l'équation différentielle $x^2y''+y=0$ (utiliser le changement de variable $x=e^t$).
+\item Trouver toutes les fonctions de classe $\mathcal{C}^1$ sur $\R$ vérifiant
+$$\forall x\not=0,\ f'(x)=f\left(\frac{1}{x}\right)$$ 
+\end{enumerate}
+\finenonce{007003}
+
+
+\finexercice
+
+\finfiche
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\indication{006992}
+Une telle fonction $f$ est solution d'une équation différentielle $y'+y=c$.
+\finindication
+\indication{006993}\ 
+\begin{enumerate}
+  \item $x$ est solution particulière
+  \item $\cos$ est solution particulière
+\end{enumerate}
+\finindication
+\indication{006994}
+Solution particulière :
+\begin{enumerate}
+  \item $-\frac1{2x}$
+  
+  \item $\frac{x^{k+1}}{k+1} \exp(x)$
+  
+  \item $\frac{\ln x}{1+\ln^2(x)}$
+\end{enumerate}
+
+\finindication
+\indication{006995}
+1. C'est une équation à variables séparées.
+\finindication
+\indication{006996}\ 
+\begin{enumerate}
+  \item une infinité de solutions
+  \item une solution
+\end{enumerate}
+\finindication
+\noindication
+\indication{006998}
+Pour la fin: principe de superposition.
+\finindication
+\indication{006999}
+Utiliser la méthode de variation de la constante.
+\finindication
+\noindication
+\indication{007001}
+\begin{enumerate}
+  \item
+  \begin{enumerate}
+    \item Se ramener à $\frac{1}{1-n}z'+a(x)z+b(x)=0$.
+    \item $y = \pm\frac{1}{\sqrt{\lambda x^2 + 2x}}$ ou $y=0$.
+  \end{enumerate}
+    \item 
+  \begin{enumerate}
+    \item Remplacer $y$ par $u+y_0$.
+    \item $y=\frac1x+\frac1{x\ln|x|+\lambda x}$ ou $y = \frac1x$.
+  \end{enumerate}
+\end{enumerate}    
+\finindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{006991}\
+\begin{enumerate}
+\item Il s'agit d'une équation différentielle linéaire d'ordre 1, à coefficients constants, avec second membre.\\ 
+
+On commence par résoudre l'équation homogène associée $y'+2y=0$: les solutions sont les $y(x)=\lambda e^{-2x}$, $\lambda\in\R$.\\
+
+Il suffit ensuite de trouver une solution particulière de $(E_1)$. Le second membre étant polynomial de degré 2, on cherche une solution particulière de la m\^eme forme: \\
+$y_0(x)=ax^2+bx+c$ est solution de $(E_1)$\\
+\ \ \ $\Longleftrightarrow \forall x\in\R,\ y_0'(x)+2y_0(x)=x^2$ \\
+\ \ \  $\Longleftrightarrow \forall x\in\R,\ 2ax^2+(2a+2b)x+b+2c=x^2$ 
+
+\noindent Ainsi, en identifiant les coefficients, on voit que $y_0(x)=\frac{1}{2}x^2-\frac{1}{2}x+\frac{1}{4}$ convient.
+
+Les solutions de $(E_1)$ sont obtenues en faisant la somme de cette solution particulière et des solutions 
+de l'équation homogène: 
+$$y(x)=\frac{1}{2}x^2-\frac{1}{2}x+\frac{1}{4}+\lambda e^{-2x}\quad (x\in\R)$$
+où $\lambda$ est un paramètre réel.
+\item Il s'agit d'une équation différentielle linéaire d'ordre 1, à coefficients constants, avec second membre.\\ 
+
+
+Les solutions de l'équation homogène associée $y'+y=0$ sont les $y(x)=\lambda e^{-x}$, $\lambda\in\R$.\\
+
+Il suffit ensuite de trouver une solution particulière de $(E_2)$. Le second membre est cette fois une fonction trigonométrique, on cherche une solution particulière sous la forme d'une combinaison linéaire de $\cos$ et $\sin$:\\
+ $y_0(x)=a\cos x+b\sin x$ est solution de $(E_2)$\\
+$\Longleftrightarrow \forall x\in\R,\ y_0'(x)+y_0(x)=2\sin x$ \\
+$\Longleftrightarrow \forall x\in\R,\ (a+b)\cos x+(-a+b)\sin x=2\sin x$ 
+
+\noindent Ainsi, en identifiant les coefficients, on voit que $y_0(x)=-\cos x+\sin x$ convient.
+
+Les solutions de $(E_2)$ sont obtenues en faisant la somme de cette solution particulière et des solutions 
+de l'équation homogène:
+$$y(x)=-\cos x+\sin x+\lambda e^{-x}\quad (x\in\R)$$
+où $\lambda$ est un paramètre réel.
+\item Les solutions de l'équation homogène associée $y'-y=0$ sont les $y(x)=\lambda e^{x}$, $\lambda\in\R$. On remarque que le second membre est le produit d'une fonction exponentielle par une fonction polynomiale de degré $d=1$: or la fonction exponentielle du second membre est la m\^eme ($e^x$) que celle qui appara\^it dans les solutions de l'équation homogène. On cherche donc une solution particulière sous la forme d'un produit de $e^x$ par une fonction polynomiale de degré $d+1=2$:\\
+$y_0(x)=(ax^2+bx+c)e^x$ est solution de $(E_3)$ \\
+$\Longleftrightarrow \forall x\in\R,\ y_0'(x)-y_0(x)=(x+1)e^x$ \\
+$\Longleftrightarrow \forall x\in\R,\ (2ax+b)e^x=(x+1)e^x$ 
+
+\noindent Ainsi, en identifiant les coefficients, on voit que $y_0(x)=(\frac{1}{2}x^2+x)e^x$ convient.
+
+Les solutions de $(E_3)$ sont obtenues en faisant la somme de cette solution particulière et des solutions de l'équation homogène: 
+$$y(x)=(\frac{1}{2}x^2+x+\lambda)e^{x}\quad (x\in\R)$$
+où $\lambda$ est un paramètre réel.
+\item Les solutions de l'équation homogène associée $y'+y=0$ sont les $y(x)=\lambda e^{-x}$, $\lambda\in\R$. On remarque que le second membre est la somme d'une fonction polynomiale de degré 1, d'une fonction exponentielle (différente de $e^{-x}$) et d'une fonction trigonométrique. D'après le principe de superposition, on cherche donc une solution particulière sous la forme d'une telle somme:\\
+$y_0(x)=ax+b+\mu e^x+\alpha\cos x+\beta\sin x$ est solution de $(E_4)$ \\
+$\Longleftrightarrow \forall x\in\R,\ y_0'(x)+y_0(x)=x-e^x+\cos x$ \\
+$\Longleftrightarrow \forall x\in\R,\ ax+a+b+2\mu e^x+(\alpha+\beta)\cos x+(-\alpha +\beta)\sin x=x-e^x+\cos x$ 
+
+\noindent Ainsi, en identifiant les coefficients, on voit que $$y_0(x)=x-1-\frac{1}{2}e^x+\frac{1}{2}\cos x+\frac{1}{2}\sin x$$ convient.
+
+Les solutions de $(E_4)$ sont obtenues en faisant la somme de cette solution particulière et des solutions de l'équation homogène:
+$$y(x)=x-1-\frac{1}{2}e^x+\frac{1}{2}\cos x+\frac{1}{2}\sin x+\lambda e^{-x}\quad (x\in\R)$$
+où $\lambda$ est un paramètre réel.
+\end{enumerate}
+\fincorrection
+\correction{006992}
+Une fonction $f:[0;1]\to\R$ convient si et seulement si 
+\begin{itemize}
+\item $f$ est dérivable
+\item $f$ est solution de $y'+y=c$ 
+\item $f$ vérifie $f(0)+f(1)=c$ (où $c$ est un réel quelconque)
+\end{itemize}
+Or les solutions de l'équation différentielle $y'+y=c$ sont exactement les 
+$f:x\mapsto \lambda e^{-x}+c$, où $\lambda\in\R$ (en effet, on voit facilement que 
+la fonction constante égale à $c$ est une solution particulière de $y'+y=c$). \'Evidemment ces fonctions sont dérivables, et $f(0)+f(1)=\lambda(1+e^{-1})+2c$, donc la troisième condition est satisfaite si et seulement si $-\lambda(1+e^{-1})=c$.
+
+Ainsi les solutions du problème sont exactement les 
+$$f(x)=\lambda(e^{-x}-1-e^{-1})$$
+pour $\lambda\in\R$.
+\fincorrection
+\correction{006993}\
+\begin{enumerate}
+\item Comme le coefficient de $y'$ ne s'annule pas, on peut réécrire l'équation sous la forme
+$$y'+\frac{2x}{x^2+1}y=\frac{3x^2+1}{x^2+1}$$
+  \begin{enumerate}
+    \item Les solutions de l'équation homogène associée sont les $y(x)=\lambda e^{A(x)}$, 
+    où $A$ est une primitive de $a(x)=-\frac{2x}{x^2+1}$ et $\lambda\in\R$. 
+    Puisque $a(x)$ est de la forme $-\frac{u'}{u}$ avec $u>0$, on peut choisir $A(x)=-\ln(u(x))$ 
+    où $u(x)=x^2+1$. Les solutions sont donc les 
+    $\displaystyle y(x)=\lambda e^{-\ln(x^2+1)}=\frac{\lambda}{x^2+1}$.
+    
+    \item Il suffit ensuite de trouver une solution particulière de l'équation 
+    avec second membre: on remarque  que $y_0(x)=x$ convient.
+
+    \item Les solutions sont obtenues en faisant la somme:  
+    $$y(x)=x+\frac{\lambda}{x^2+1}\quad (x\in\R)$$
+    où $\lambda$ est un paramètre réel.
+    
+    \item $y(0)=3$ si et seulement si $\lambda=3$. La solution cherchée est donc
+    $y(x)=x+\frac{3}{x^2+1}$.
+  \end{enumerate}
+  
+  Voici les courbes intégrales pour $\lambda=-1,0,\ldots,5$.
+  
+  \begin{center}
+  \begin{tikzpicture}[scale=1]
+
+ \draw[->,>=latex,thick,gray] (-3,0)--(4,0);
+ \draw[->,>=latex,thick,gray] (0,-3)--(0,+5.5);
+
+\foreach \k in {-1,0,1,2,3,4,5}{
+ \draw [thick, color=red!60,samples=100,smooth, domain=-3:4] plot(\x,{\x + \k/(1+\x*\x)});
+}
+\draw [very thick, color=red,samples=100,smooth, domain=-3:4] plot(\x,{\x + 3/(1+\x*\x)});
+
+ \node[below right,gray] at (0,0) {$0$};
+\node[below,gray] at (1,0) {$1$};
+\node[left,gray] at (0,1) {$1$};
+\end{tikzpicture}
+\end{center}
+  
+\item On commence par remarquer que $y_0(x)=\cos x$ est une solution particulière. Pour l'équation homogène: sur l'intervalle considéré, le coefficient de $y'$ ne s'annule pas, et l'équation se réécrit
+$$y'-\frac{\cos x}{\sin x}y=0$$
+Les solutions sont les $y(x)=\lambda e^{A(x)}$, où $\lambda\in\R$ et $A$ est une primitive de $a(x)=\frac{\cos x}{\sin x}$. Puisque $a(x)$ est de la forme $\frac{u'}{u}$ avec $u>0$, on peut choisir $A(x)=\ln(u(x))$ avec $u(x)=\sin x$. Les solutions de l'équation sont donc les $\displaystyle y(x)=\lambda e^{\ln(\sin x)}=\lambda\sin x$.
+
+Finalement, les solutions de l'équation sont les 
+$$y(x)=\cos x+\lambda\sin x$$
+où $\lambda$ est un paramètre réel.
+
+  \item On a 
+  $$y(\frac\pi4) = 1 
+  \iff \cos\frac\pi4 +\lambda\sin \frac\pi4 = 1
+  \iff \frac{\sqrt 2}{2}(1+\lambda) = 1
+  \iff \lambda = \frac{2}{\sqrt 2}-1$$
+  La solution cherchée est $y(x)=\cos x+\left(\frac{2}{\sqrt 2}-1\right)\sin x$
+\end{enumerate}
+
+  Voici les courbes intégrales pour $\lambda=-2,-1,0,\ldots,4$
+  et $\frac{2}{\sqrt 2}-1$ (en gras).
+\begin{center}
+\begin{tikzpicture}[scale=1]
+
+ \draw[->,>=latex,thick,gray] (-0.5,0)--(4,0);
+ \draw[->,>=latex,thick,gray] (0,-2.5)--(0,+4.5);
+
+\foreach \k in {-2,-1,0,1,2,3,4}{
+ \draw [thick, color=red!60,samples=100,smooth, domain=0.0:3.14] plot(\x,{cos(\x r) + \k*sin(\x r)});
+}
+\def\k{0.4142}
+ \draw [ultra thick, color=red,samples=100,smooth, domain=0.0:3.14] plot(\x,{cos(\x r) + \k*sin(\x r)});
+
+ \node[below right,gray] at (0,0) {$0$};
+\node[below,gray] at (1,0) {$1$};
+\node[below right,gray] at (3.14,0) {$\pi$};
+\node[left,gray] at (0,1) {$1$};
+\end{tikzpicture}
+\end{center}
+
+\fincorrection
+\correction{006994}\ 
+\begin{enumerate}
+  \item $y' - (2x - \frac{1}{x})y = 1$ sur $]0;+\infty[$
+  \begin{enumerate}
+    \item  \textbf{Résolution de l'équation homogène $y' - (2x - \frac{1}{x})y = 0$.}
+    
+    Une primitive de $a(x) = 2x - \frac1x$ est $A(x) = x^2 - \ln x$,
+    donc les solutions de l'équation homogène sont les $y(x) = \lambda \exp(x^2 - \ln x) = \lambda \frac1x\exp(x^2)$,
+    pour $\lambda$ une constante réelle quelconque.
+    
+    
+    \item \textbf{Recherche d'une solution particulière.}
+    
+    Nous allons utiliser la méthode de variation de la constante pour trouver une solution particulière 
+    à l'équation $y' - (2x - \frac{1}{x})y = 1$.
+    On cherche une telle solution sous la forme $y_0(x) = \lambda(x) \frac1x\exp(x^2)$ 
+    où $x \mapsto \lambda(x)$ est maintenant une fonction.
+    
+    On calcule d'abord 
+    $$y_0'(x) = \lambda'(x) \frac1x\exp(x^2) + \lambda(x) \left(-\frac{1}{x^2}+2\right) \exp(x^2)$$
+    
+    Maintenant :
+    \begin{align*}
+          & y_0 \quad \text{ est  solution de }  y' - (2x + \frac{1}{x})y = 1 \\
+    \iff & y_0' - (2x - \frac{1}{x})y_0 = 1 \\
+    \iff& \lambda'(x) x\exp(x^2) + \lambda(x) \left(-\frac{1}{x^2}+2\right) \exp(x^2)
+        - (2x - \frac{1}{x})\lambda(x) \frac1x\exp(x^2) = 1 \\
+    \iff& \lambda'(x) \frac1x\exp(x^2) = 1 \qquad \text{cela doit se simplifier !}\\
+    \iff& \lambda'(x) = x\exp(-x^2)
+    \end{align*}
+    
+    Ainsi on peut prendre $\lambda(x) = -\frac12\exp(x^2)$, ce qui fournit la solution particulière :
+    $$y_0(x) = \lambda(x) \frac1x\exp(x^2) = -\frac12\exp(-x^2)\frac1x\exp(x^2) = -\frac1{2x}$$
+    
+    Pour se rassurer, on n'oublie pas de vérifier que c'est bien une solution !
+    
+    \item \textbf{Solution générale.}    
+    
+    L'ensemble des solutions s'obtient par la somme de la solution particulière avec les solutions de l'équation
+    homogène. Autrement dit, les solutions sont les :
+    $$y(x) = -\frac1{2x} + \lambda \frac1x\exp(x^2)\qquad (\lambda\in\Rr).$$
+    
+  \end{enumerate}  
+
+  \item $y'-y = x^k \exp(x)$ sur $\R$, avec $k \in \Nn$
+  \begin{enumerate}
+    \item  \textbf{Résolution de l'équation homogène $y' - y = 0$.}
+    
+    Les solutions de l'équation homogène sont les $y(x) = \lambda \exp(x)$, $\lambda \in \Rr$.
+        
+    \item \textbf{Recherche d'une solution particulière.}
+    
+    On cherche une solution particulière sous la forme $y_0(x) = \lambda(x) \exp(x)$ 
+    où $x \mapsto \lambda(x)$ est maintenant une fonction.
+    
+    Comme $y_0'(x) = \lambda'(x)\exp(x) + \lambda(x) \exp(x)$
+    alors
+
+    \begin{align*}
+          & y_0 \quad \text{ est  solution de }  y' - y = x^k \exp(x) \\
+    \iff& \lambda'(x)\exp(x) + \lambda(x) \exp(x) - \lambda(x) \exp(x) = x^k \exp(x)\\
+    \iff& \lambda'(x)\exp(x) = x^k \exp(x)\\
+    \iff& \lambda'(x) = x^k
+    \end{align*}
+    
+    On fixe $\lambda(x) = \frac{x^{k+1}}{k+1}$, ce qui conduit à la solution particulière :
+    $$y_0(x) = \frac{x^{k+1}}{k+1} \exp(x)$$
+    
+    \item \textbf{Solution générale.}    
+    
+    L'ensemble des solutions est formé des 
+    $$y(x) =\frac{x^{k+1}}{k+1} \exp(x) + \lambda \exp(x)\qquad (\lambda\in\Rr).$$
+    
+  \end{enumerate}  
+  
+  
+\item $x(1+\ln^2(x))y'+2\ln(x)y=1$ sur $]0;+\infty[$
+
+Le coefficient de $y'$ ne s'annule pas sur $]0;+\infty[$, l'équation peut donc se mettre sous la forme
+$$y'+\frac{2\ln x}{x(1+\ln^2(x))}y=\frac{1}{x(1+\ln^2(x))}$$
+  \begin{enumerate}
+  
+    \item Les solutions de l'équation homogène associée sont les $y(x)=\lambda e^{A(x)}$, 
+    où $A$ est une primitive de $a(x)=-\frac{2\ln x}{x(1+\ln^2(x))}$ et $\lambda\in\R$. 
+    On peut donc choisir $A(x)=-\ln(u(x))$ avec $u(x)=1+\ln^2(x)$. Les solutions 
+    de l'équation sont les $\displaystyle y(x)=\lambda e^{-\ln(1+\ln^2(x))}=\frac{\lambda}{1+\ln^2(x)}$.
+    
+    \item Utilisons la méthode de variation de la constante pour trouver une solution 
+    particulière de l'équation avec second membre. On cherche $y_0(x)=\frac{\lambda(x)}{1+\ln^2(x)}$, 
+    avec $\lambda$ une fonction dérivable. Or $z(x)=\frac{1}{1+\ln^2(x)}$ est solution 
+    de l'équation homogène et $y_0(x)=\lambda(x)z(x)$:
+    
+    \begin{align*}
+          & y_0 \quad \text{ est  solution} \\
+    \iff&  y_0'+\frac{2\ln x}{x(1+\ln^2(x))}y_0  =  \frac{1}{x(1+\ln^2(x))}\\
+    \iff& \lambda'(x)z(x)+\lambda(x)\underbrace{\left[z'(x)+\frac{2\ln x}{x(1+\ln^2(x))}z(x)\right]}_{=0} = \frac{1}{x(1+\ln^2(x))} \\
+    \iff& \frac{\lambda'(x)}{1+\ln^2(x)} = \frac{1}{x(1+\ln^2(x))}\\
+    \iff& \lambda'(x)=\frac{1}{x}
+    \end{align*}    
+    On peut donc choisir $\lambda(x)=\ln x$, ce qui donne la solution particulière 
+$y_0(x)=\frac{\ln x}{1+\ln^2(x)}$.
+     
+
+    \item Les solutions sont obtenues en faisant la somme de cette solution particulière et 
+    des solutions de l'équation homogène: ce sont les 
+$$y(x)=\frac{\ln x +\lambda}{1+\ln^2(x)}\qquad (\lambda\in\R)$$
+où $\lambda$ est un paramètre réel.
+  \end{enumerate}
+Remarque: le choix d'une primitive de $\lambda'$ se fait à constante additive près. 
+Si on avait choisi par exemple $\lambda(x)=\ln x + 1$, la solution particulière aurait été différente, mais les solutions de l'équation avec second membre auraient été les 
+$$y(x)=\frac{\ln x +1+\lambda}{1+\ln^2(x)}\quad (x\in\R)$$
+Quitte à poser $\lambda_0'=1+\lambda$, ce sont évidemment les m\^emes que celles trouvées précédemment!
+\end{enumerate}
+\fincorrection
+\correction{006995}\ 
+\begin{enumerate}
+\item L'équation différentielle $y'-e^xe^y=0$ est à variables séparées: 
+en effet, en divisant par $e^{y}$, on obtient $-y'e^{-y}=-e^x$. 
+Le terme de gauche est la dérivée de $e^{-y}$ ($y$ est une fonction de $x$), 
+celui de droite est la dérivée de $x\mapsto -e^x$: 
+$$\frac{\dd e^{-y}}{\dd x} = \frac{\dd (-e^x)}{\dd x}$$
+Les dérivées étant égales, cela implique que les deux fonctions sont égales à 
+une constante additive près: ainsi $y$ est solution sur $I$ si et seulement si 
+elle est dérivable sur $I$ et $\exists\,c\in\R,\ \forall x\in I$, $e^{-y}=-e^x+c$. 
+\`A $c$ fixé, cette égalité n'est possible que si $-e^x+c>0$, 
+c'est-à-dire si $c>0$ et $x<\ln c$. On obtient ainsi les solutions:
+$$y_c(x)=-\ln(c-e^x)\quad (\text{pour } x\in I_c=]-\infty;\ln c[)$$
+où $c$ est un paramètre réel strictement positif.
+
+Pour que l'une des courbes intégrales passe par l'origine, il faut qu'il existe $c>0$ tel que $0\in I_c$ et $y_c(0)=0$: autrement dit, $c>1$ et $c-1=1$. Il s'agit donc de $y_2:x\mapsto-\ln(2-e^x)$, la courbe intégrale cherchée est son graphe, au-dessus de l'intervalle $I_2=]-\infty;\ln 2[$. Sa tangente en l'origine a pour pente $y_2'(0)=e^0e^{y(0)}=1$, c'est la première bissectrice. Comme par construction $y_2'$ est à valeurs strictement positives, la fonction $y_2$ est strictement croissante.
+
+\begin{tikzpicture}[scale=1]
+
+ \draw[->,>=latex,thick,gray] (-3,0)--(2,0);
+ \draw[->,>=latex,thick,gray] (0,-1.5)--(0,+3);
+
+ \draw [very thick, color=red,samples=200,smooth, domain=-3:0.66] plot(\x,{-ln(2-exp(\x))})
+node[right]{$y_2(x)$};
+
+\draw[very thick, blue] (-1,-1)--(+1,+1);
+
+ \node[below right,gray] at (0,0) {$0$};
+\node[below,gray] at (1,0) {$1$};
+\node[left,gray] at (0,1) {$1$};
+
+
+\begin{scope} [xshift=6cm]
+ \draw[->,>=latex,thick,gray] (-3,0)--(2,0);
+ \draw[->,>=latex,thick,gray] (0,-1.5)--(0,+3);
+
+ \draw [very thick, color=red,samples=200,smooth, domain=-3:0.95] plot(\x,{-\x - ln(1-\x)})
+node[right]{$y_1(x)$};
+
+\draw[very thick, blue] (-2,0)--(+1.5,0);
+
+ \node[below right,gray] at (0,0) {$0$};
+\node[below,gray] at (1,0) {$1$};
+\node[left,gray] at (0,1) {$1$};
+\end{scope}
+
+\end{tikzpicture}
+
+\item Posons $z(x)=x+y(x)$: $z$ a le m\^eme domaine de définition que $y$ et est dérivable 
+si et seulement si $y$ l'est. En remplaçant $y(x)$ par $z(x)-x$ dans l'équation 
+différentielle $y'-e^xe^y=-1$, on obtient $z'-e^z=0$, c'est-à-dire $z'e^{-z}=1$. 
+Il s'agit de nouveau d'une équation à variables séparées: en intégrant cette égalité, 
+on obtient que $z$ est solution sur $J$ si et seulement si elle est dérivable sur 
+$J$ et $\exists\,c\in\R,\ \forall x\in J$, $e^{-z}=-x+c$. 
+\`A $c$ fixé, cette égalité n'est possible que si $c>x$. On obtient ainsi les solutions:
+$$y_c(x)=z_c(x)-x=-x-\ln(c-x)\quad (\text{pour } x\in J_c=]-\infty;c[)$$
+où $c$ est un paramètre réel.
+
+Pour que l'une des courbes intégrales passe par l'origine, 
+il faut qu'il existe $c\in\R$ tel que $0\in J_c$ et $y_c(0)=0$: 
+autrement dit, $c>0$ et $c=1$. Il s'agit donc de $y_1:x\mapsto-x-\ln(1-x)$, 
+la courbe intégrale cherchée est son graphe, au-dessus de l'intervalle $J_1=]-\infty;1[$. 
+Sa tangente en l'origine a pour pente $y_1'(0)=e^0e^{y(0)}-1=0$: elle est horizontale. 
+\end{enumerate}
+\fincorrection
+\correction{006996}\
+\begin{enumerate}
+\item $x^2y'-y = 0$ $(E_1)$
+
+
+Pour se ramener à l'étude d'une équation différentielle de la forme $y'+ay=b$, 
+on résout d'abord sur les intervalles où le coefficient de $y'$ ne s'annule pas: 
+on se place donc sur $]-\infty;0[$ ou $]0;+\infty[$.
+
+\begin{enumerate}
+ \item \textbf{Résolution sur $]-\infty;0[$ ou $]0;+\infty[$.}
+ 
+Sur chacun de ces intervalles, l'équation différentielle se réécrit 
+$$y'-\frac{1}{x^2}y=0$$ 
+qui est une équation différentielle linéaire homogène d'ordre 1 à coefficients non constants. Ses solutions sont de la forme $y(x)=\lambda e^{-1/x}$ (en effet, sur $]-\infty;0[$ ou $]0;+\infty[$, une primitive de $\frac{1}{x^2}$ est $\frac{-1}{x}$).
+
+  \item \textbf{Recollement en $0$.}
+  
+Une solution $y$ de $(E_1)$ sur $\R$ doit \^etre solution sur $]-\infty;0[$ et $]0;+\infty[$, il existe donc $\lambda_+,\ \lambda_-\in\R$ tels que 
+$$y(x)=\left\lbrace\begin{array}{l}
+\lambda_+e^{-1/x}\ \mathrm{si}\ x>0\\
+\lambda_-e^{-1/x}\ \mathrm{si}\ x<0
+\end{array}\right.$$
+Il reste à voir si l'on peut recoller les deux expressions pour obtenir une solution sur $\R$: autrement dit, pour quels choix de $\lambda_+,\ \lambda_-$ la fonction $y$ se prolonge-t-elle en 0 en une fonction dérivable vérifiant $(E_1)$? 
+\begin{itemize}
+\item $e^{-1/x}\xrightarrow[x\to\,0^-]{}+\infty$ et $e^{-1/x}\xrightarrow[x\to\,0^+]{}0$, donc $y$ est prolongeable par continuité en 0 si et seulement si \fbox{$\lambda_-=0$}. On peut alors poser \fbox{$y(0)=0$}, quel que soit le choix de $\lambda_+$.
+\item Pour voir si la fonction ainsi prolongée est dérivable en 0, on étudie son taux d'accroissement:
+$$\left\{\begin{array}{l}
+\text{pour}\ x>0,\ \frac{y(x)-y(0)}{x-0}=\frac{\lambda_+e^{-1/x}}{x}=-\lambda_+(\frac{-1}{x})e^{-1/x}\xrightarrow[x\to\,0^+]{}0\\
+\ \\
+\text{pour}\ x<0,\ \frac{y(x)-y(0)}{x-0}=0\xrightarrow[x\to\,0^-]{}0
+\end{array}\right.$$
+Ainsi la fonction $y$ est dérivable en 0 et \fbox{$y'(0)=0$}.
+\item Par construction, l'équation différentielle $(E_1)$ est satisfaite sur $\R^*$. 
+Vérifions qu'elle est également satisfaite au point $x=0$: $0^2 \cdot y'(0)-y(0)=-y(0)=0$.
+\end{itemize}
+
+  \item \textbf{Conclusion.}
+  
+Finalement, les solutions sur $\R$ sont exactement les fonctions suivantes: 
+$$y(x)=\left\lbrace\begin{array}{l}
+\lambda e^{-1/x}\quad \text{si}\ x>0\\
+0\qquad \text{si}\ x\le 0
+\end{array}\right. \qquad (\lambda\in\R)$$
+  \end{enumerate}
+
+\item $xy'+y-1 = 0$ $(E_2)$
+
+Pour se ramener à l'étude d'une équation différentielle de la forme 
+$y'+ay=b$, on résout d'abord sur les intervalles où le coefficient 
+de $y'$ ne s'annule pas: on se place donc sur $I=]-\infty;0[$ ou $I=]0;+\infty[$.
+
+  \begin{enumerate}
+  \item \textbf{Résolution sur $I$.}
+  
+  Sur l'intervalle $I$, l'équation différentielle se réécrit 
+$$y'+\frac{1}{x}y=\frac{1}{x}$$ 
+qui est une équation différentielle linéaire d'ordre 1 à 
+coefficients non constants.
+
+  \begin{itemize}
+    \item Pour l'équation homogène $y'+\frac{1}{x}y=0$
+ une primitive de $-\frac{1}{x}$ sur $I$, est $-\ln|x|$.
+Les solutions de l'équation homogène sont donc les $\lambda e^{-\ln|x|}=\lambda\frac{1}{|x|}$. 
+Quitte à changer $\lambda$ en $-\lambda$ si $I=]-\infty;0[$, on peut écrire les solutions de 
+l'équation homogène sous la forme $y(x)=\lambda \frac1x$.
+    
+    \item Pour trouver les solutions de 
+l'équation avec second membre, on applique la méthode de variation de la constante 
+en cherchant $y(x)=\lambda(x) \frac 1x$: en remplaçant, on voit que $y$ est solution sur $I$ 
+si et seulement si $\lambda'(x)=1$. En intégrant, on obtient $\lambda(x)=x$. 
+Une solution particulière en donc $y_0(x) = 1$.
+    
+    \item Sur $I$ les solutions de $(E_2)$ sont les $y(x)=1+\frac{\lambda}{x}$ où $\lambda$ est un paramètre réel.
+  \end{itemize}
+
+ 
+  \item \textbf{Recollement en $0$.}
+  
+Une solution $y$ de $(E_2)$ sur $\R$ doit \^etre solution sur $]-\infty;0[$ et $]0;+\infty[$, 
+il existe donc $\lambda_+,\ \lambda_-\in\R$ tels que 
+$$y(x)=\left\lbrace\begin{array}{l}
+1+\frac{\lambda_+}{x}\quad \text{si}\ x>0\\
+1+\frac{\lambda_-}{x}\quad \text{si}\ x<0
+\end{array}\right.$$
+Il reste à voir si l'on peut recoller les deux expressions pour obtenir 
+une solution sur $\R$. On voit tout de suite que $y$ a une limite (finie) 
+en $0$ si et seulement si \fbox{$\lambda_+=\lambda_-=0$}. 
+Dans ce cas, on peut alors poser \fbox{$y(0)=1$} et $y$ est la fonction constante 
+égale à 1, qui est bien s\^ur dérivable sur $\R$. De plus, $(E_2)$ est bien satisfaite au point $x=0$.
+
+  \item \textbf{Conclusion.}
+  
+Finalement, $(E_2)$ admet sur $\R$ une unique solution, qui est la fonction constante égale à $1$.
+  \end{enumerate}
+\end{enumerate}
+\fincorrection
+\correction{006997}
+\begin{enumerate}
+\item Il s'agit d'une équation homogène du second ordre. L'équation caractéristique associée est $r^2-3r+2=0$, qui admet deux solutions: $r=2$ et $r=1$. Les solutions sont donc les fonctions définies sur $\R$ par $y(x)=\lambda e^{2x}+\mu e^x$ ($\lambda,\mu\in\R$).
+\item L'équation caractéristique associée est $r^2+2r+2=0$, qui admet deux solutions: $r=-1+i$ et $r=-1-i$. On sait alors que les solutions sont donc les fonctions définies sur $\R$ par $y(x)=e^{-x}(A\cos x+ B\sin x)$ ($A, B\in\R$). Remarquons que, en utilisant l'expression des fonctions $\cos$ et $\sin$ à l'aide d'exponentielles, ces solutions peuvent aussi s'écrire sous la forme $\lambda e^{(-1+i)x}+\mu e^{(-1-i)x}$ $(\lambda,\mu\in\R)$.
+\item L'équation caractéristique est $r^2-2r+1=0$, dont 1 est racine double. 
+Les solutions de l'équation homogène sont donc de la forme $(\lambda x+\mu)e^x$. 
+\item Les solutions de l'équation homogène sont les $\lambda\cos x+\mu \sin x$. 
+Le second membre peut en fait se réécrire $\cos^2 x=1+\cos(2x)$: 
+d'après le principe de superposition, on cherche une solution particulière sous 
+la forme $a+b\cos(2x)+c\sin(2x)$. En remplaçant, on trouve qu'une telle fonction est solution si $a=1$, $b=-\frac{1}{3}$, $c=0$. Les solutions générales sont donc les $\lambda\cos x+\mu \sin x-\frac{1}{3}\cos(2x)+1$.
+\end{enumerate}
+\fincorrection
+\correction{006998}
+L'équation caractéristique associée à l'équation homogène est $r^2-4r+4=0$, 
+pour laquelle $r=2$ est racine double. Les solutions de l'équation homogène 
+sont donc les $(\lambda x+\mu)e^{2x}$. 
+
+Lorsque $d(x)=e^{-2x}$, on cherche une solution particulière sous la forme $ae^{-2x}$, 
+qui convient si $a=\frac{1}{16}$.
+
+Lorsque $d(x)=e^{2x}$, comme 2 est la racine double de l'équation caractéristique, 
+on cherche une solution comme le produit de $e^{2x}$ par un polyn\^ome de degré 2. 
+Comme on sait déjà que $(\lambda x+\mu)e^{2x}$ est solution de l'équation homogène, 
+il est inutile de faire intervenir des termes de degré $1$ et $0$: on cherche 
+donc une solution de la forme $ax^2e^{2x}$, qui convient si et seulement si $a=\frac{1}{2}$. 
+
+Puisque $\frac{1}{2}\ch(2x) =\frac{1}{4}(e^{2x}+e^{-2x})$, les solutions générales sont obtenues sous 
+la forme $y(x)=\frac{1}{64}e^{-2x}+\frac{1}{8}x^2e^{2x}+(\lambda x+\mu)e^{2x}$.
+\fincorrection
+\correction{006999}
+Les solutions de l'équation homogène sont les $\lambda\cos x+\mu\sin x$. 
+En posant $y_1(x)=\cos x$ et $y_2(x)=\sin x$, on va chercher les solutions sous 
+la forme $\lambda y_1+\mu y_2$, vérifiant
+$\begin{eqnarray*}
+\left\{\begin{array}{l}
+\lambda'y_1+\mu'y_2=0\\
+\lambda'y'_1+\mu'y'_2=\mathrm{cotan}\, x
+\end{array}\right.
+&\Longleftrightarrow&
+\left\{\begin{array}{l}
+\lambda'\cos x+\mu'\sin x=0\\
+\lambda'(-\sin x)+\mu'\cos x=\mathrm{cotan}\, x
+\end{array}\right.\\
+\ &\Longleftrightarrow&
+\left\{\begin{array}{l}
+\lambda'(x)=\frac{\begin{array}{|cc|}0&\sin x\\\mathrm{cotan}\, x&\cos x \end{array}}{\begin{array}{|cc|}\cos x&\sin x\\-\sin x&\cos x \end{array}}\\
+\ \\
+\mu'(x)=\frac{\begin{array}{|cc|}\cos x&0\\-\sin x&\mathrm{cotan}\, x \end{array}}{\begin{array}{|cc|}\cos x&\sin x\\-\sin x&\cos x \end{array}}
+\end{array}\right.
+\end{eqnarray*}$
+d'après les formules de Cramer, où $\begin{array}{|cc|}\cos x&\sin x\\-\sin x&\cos x \end{array}=1$. On obtient donc 
+$$\left\{\begin{array}{l}
+\lambda'(x)=-\cos x\\
+\mu'(x)=\frac{\cos^2x}{\sin x}
+\end{array}\right.
+$$
+ce qui donne une primitive $\lambda(x)=-\sin x$. 
+
+Pour $\mu$, on cherche à primitiver 
+$\frac{\cos^2x}{\sin x}$ à l'aide du changement de variable $t=\cos x$ (et donc $\dd t= -\sin t \,\dd x$), 
+on calcule une primitive
+\begin{eqnarray*}
+\int \frac{\cos^2x}{\sin x}\,\dd x&=&-\int\frac{t^2}{1-t^2}\,\dd t=t-\int\frac{1}{1-t^2}\,\dd t\\ 
+ &=&t+\frac{1}{2}\ln(1-t) -\frac{1}{2}\ln(1-t)= \cos x + \frac{1}{2}\ln(1-\cos x) - \frac{1}{2}\ln(1-\cos x)
+\end{eqnarray*}
+En remplaçant, les solutions générales sont les 
+$$y(x)=c_1\cos x+c_2\sin x +  (-\sin x)\cos x+\left(\cos x + \frac{1}{2}\ln(1-\cos x) - \frac{1}{2}\ln(1-\cos x)\right)\sin x$$
+qui se simplifie $y(x)=c_1\cos x+c_2\sin x + \frac{1}{2}\sin x\ln\frac{1-\cos x}{1+\cos x}$, $c_1,c_2\in\Rr$.
+\fincorrection
+\correction{007000}
+\begin{enumerate}
+\item Puisqu'on cherche $y$ fonction de $x\in]0;+\infty[$, et que l'application $t\mapsto e^t$ 
+est bijective de $\R$ sur $]0;+\infty[$, on peut poser $x=e^t$ et $z(t)=y(e^t)$. 
+On a alors $t= \ln x$ et $y(x) = z(\ln x)$.
+Ce qui donne :
+\begin{eqnarray*}
+y(x)&=&z(\ln x)=z(t)\\
+y'(x)&=&\frac{1}{x}z'(\ln x)=e^{-t}z'(t)\\
+y''(x)&=&-\frac{1}{x^2}z'(\ln x)+\frac{1}{x^2}z''(\ln x)=-e^{-2t}z'(t)+e^{-2t}z''(t)
+\end{eqnarray*}
+En remplaçant, on obtient donc que 
+$$\forall x\in]0;+\infty[,\ x^2y''+xy'+y=0\Longleftrightarrow\forall t\in\R,\ z''(t)+z(t)=0$$
+autrement dit, $z(t)=\lambda\cos t+\mu\sin t$ où $\lambda,\mu\in\R$. 
+Finalement, les solutions de l'équation de départ sont de la forme 
+$$y(x) = z(\ln x) = \lambda\cos(\ln x)+\mu\sin(\ln x)$$ où $\lambda,\mu\in\R$.
+
+\item L'application $t\mapsto \tan t$ étant bijective de 
+$]-\frac{\pi}{2};\frac{\pi}{2}[$ sur $\R$, on peut poser 
+$x=\tan t$ et $z(t)=y(\tan t)$. On a alors $t = \arctan x$ et ainsi :
+\begin{eqnarray*}
+y(x)&=&z(\arctan x)=z(t)\\
+y'(x)&=&\frac{1}{1+x^2}z'(\arctan x)\\
+y''(x)&=&\frac{1}{(1+x^2)^2}\big(z''(\arctan x)-2xz'(\arctan x)\big)
+\end{eqnarray*}
+En remplaçant, on obtient que $z$ est solution de l'équation différentielle $z''+mz=0$. Pour résoudre cette équation, on doit distinguer trois cas:
+\begin{itemize}
+  \item $m<0$: alors $z(t)=\lambda e^{\sqrt{-m}t}+\mu e^{-\sqrt{-m}t}$ et donc  
+$$y(x)=\lambda e^{\sqrt{-m}\arctan x}+\mu e^{-\sqrt{-m}\arctan x},$$
+  
+  \item $m=0$: $z''=0$ et donc $z(t)=\lambda t+\mu$ et $y(x)=\lambda\arctan x+\mu$,
+  
+  \item $m>0$: alors $z(t)=\lambda\cos(\sqrt{m}t)+\mu\sin(\sqrt{m}t)$ et donc 
+$$y(x)=\lambda\cos(\sqrt{m}\arctan x)+\mu\sin(\sqrt{m}\arctan x)$$
+où $\lambda,\mu\in\R$.
+\end{itemize}
+
+\end{enumerate}
+\fincorrection
+\correction{007001}
+\begin{enumerate}
+  \item \textbf{\'Equation de Bernoulli}
+  \begin{enumerate}
+    \item On suppose qu'une solution $y$ ne s'annule pas.
+    On divise l'équation $y'+a(x)y+b(x)y^n = 0$ par $y^n$, ce qui donne
+    $$\frac{y'}{y^n} +a(x) \frac{1}{y^{n-1}} + b(x) = 0.$$
+    On pose $z(x) = \frac{1}{y^{n-1}}$ et donc $z'(x) = (1-n)\frac{y'}{y^{n}}$.
+    L'équation de Bernoulli devient une équation différentielle linéaire :
+    $$\tfrac{1}{1-n} z' + a(x) z +b(x) = 0$$
+    
+    
+    \item \'Equation $xy'+y-xy^3 = 0$.
+    
+    Cherchons les solutions $y$ qui ne s'annulent pas. On peut alors diviser par $y^3$ pour obtenir :
+    $$x \frac{y'}{y^3} + \frac{1}{y^2} - x=0$$
+    On pose $z(x) = \frac{1}{y^2(x)}$, et donc $z'(x) = -2\frac{y'(x)}{y(x)^3}$.
+    L'équation différentielle s'exprime alors $\frac{-1}{2} xz'+z -x = 0$, c'est-à-dire :
+    $$xz'-2z = -2x.$$
+    Les solutions  sur $\Rr$ de cette dernière équation sont les 
+    $$z(x) =\begin{cases} \lambda_+ x^2+2x\ \text{si}\ x\ge 0 \cr\lambda_- x^2+2x\ 
+    \text{si}\ x< 0 \end{cases} ,\quad\lambda_+,\lambda_- \in \Rr$$
+    
+    Comme on a posé $z(x) = \frac{1}{y^2(x)}$, on se retreint à un intervalle $I$ sur lequel $z(x)>0$: nécessairement $0\notin I$, donc on considère $z(x)=\lambda x^2+2x$, qui est strictement positif sur $I_\lambda$ où
+$$I_\lambda=\begin{cases}
+]0;+\infty[\quad\text{si}\ \lambda=0\\
+\left]0;-\frac{2}{\lambda}\right[\quad\text{si}\ \lambda<0\\
+\left]-\infty;-\frac{2}{\lambda}\right[\ \mathrm{ou}\ \left]0;+\infty\right[\quad\text{si}\ \lambda>0              
+            \end{cases}
+$$
+On a $(y(x))^2 = \frac{1}{z(x)}$ pour tout $x\in I_\lambda$ et donc  $y(x) = \epsilon(x)\frac{1}{\sqrt{z(x)}}$, 
+où $\epsilon(x)=\pm 1$. Or $y$ est continue sur l'intervalle $I_\lambda$, et 
+ne s'annule pas par hypothèse: d'après le théorème des valeurs intermédiaires, $y$ 
+ne peut pas prendre à la fois des valeurs strictement positives et des valeurs 
+strictement négatives, donc $\epsilon(x)$ est soit constant égal à $1$, soit constant égal à $-1$.
+    Ainsi les solutions cherchées sont les :
+    $$y(x) = \frac{1}{\sqrt{\lambda x^2 + 2x}}\ \mathrm{ou}\ y(x) = \frac{-1}{\sqrt{\lambda x^2 + 2x}}\quad\mathrm{sur}\ I_\lambda\qquad (\lambda\in \Rr)$$
+    
+    Noter que la solution nulle est aussi solution.
+  \end{enumerate}
+  \item \textbf{\'Equation de Riccati}
+  \begin{enumerate}
+    \item Soit $y_0$ une solution de $y'+ a(x)y +b(x)y^2 = c(x)$.
+    Posons $u(x) = y(x)-y_0(x)$, donc $y = u +y_0$. L'équation devient :
+    $$u'+y_0' + a(x) (u+y_0)  + b(x) (u^2+2uy_0 + y_0^2) = c(x)$$
+    Comme $y_0$ est une solution particulière alors
+    $$y_0'+ a(x)y_0 +b(x)y_0^2 = c(x)$$
+    Et donc l'équation se simplifie en :
+    $$u' + \big(a(x)+2y_0(x)b(x)\big) u + b(x) u^2 = 0$$
+    qui est une équation du type Bernoulli.
+    
+    \item \'Equation $x^2(y'+y^2) = xy-1$.
+    
+    \begin{itemize}
+      \item Après division par $x^2$ c'est bien une équation de Riccati sur $I=]-\infty;0[$ ou $I=]0;+\infty[$.
+    
+      \item $y_0 = \frac{1}{x}$ est bien une solution particulière.
+      
+      \item On a $u(x) = y(x)-y_0(x)$ et donc $y = u + \frac1x$.
+      L'équation $x^2(y'+y^2) = xy-1$ devient 
+      $$x^2 \left( u'-\frac{1}{x^2} + u^2 + 2\frac{u}{x} + \frac{1}{x^2} \right) = x\left(u+\frac1x\right)-1$$
+      qui se simplifie en
+      $$x^2 \left( u' + u^2 + 2\frac{u}{x}  \right) = xu$$
+      ce qui correspond à l'équation de Bernoulli :
+      $$u'+\frac{1}{x}u+u^2 = 0.$$
+      
+      \item Si $u$ ne s'annule pas, en divisant par $u^2$, cette équation devient 
+      $\frac{u'}{u^2} + \frac{1}{x}\frac{1}{u} + 1 =0$.
+      On pose $z(x) = \frac{1}{u}$, l'équation devient
+      $-z'+\frac1x z+1 =0$.
+      Ses solutions sur $I$ sont les $z(x) = \lambda x + x\ln |x|$, $\lambda \in \Rr$.
+      Ainsi $u(x) = \frac{1}{z(x)} = \frac1{\lambda x + x\ln |x|}$ mais il y a aussi la solution nulle $u(x)= 0$.
+      
+      \item Conclusion. Comme $y = u + \frac1x$, on obtient alors des solutions de l'équation de départ sur $]-\infty;0[$ et $]0;+\infty[$:
+      $$y(x) = \frac1x \qquad \text{ ou } \qquad y(x) = \frac1x +  \frac1{\lambda x + x\ln |x|} \qquad (\lambda \in \Rr).$$
+    \end{itemize}
+
+  \end{enumerate}
+  \end{enumerate}  
+\fincorrection
+\correction{007002}
+\ \begin{enumerate}
+\item 
+Notons $A(x) = \int_0^xe^{t^2}\,\dd t$, une primitive de $e^{x^2}$.
+On ne sait pas expliciter cette primitive.
+Les solutions de $y'+e^{x^2}y=0$ s'écrivent 
+$f(x)=\lambda e^{-A(x)}$. 
+
+Si $x\ge 1$, on a par positivité de l'intégrale $A(x) = \int_0^xe^{t^2}\,\dd t\ge 0$ et 
+comme $e^{t^2} \ge 1$ alors 
+$$A(x) = \int_0^xe^{t^2}\,\dd t \ge \int_0^x 1 \,\dd t = x$$
+En conséquence :
+$$0 \le e^{-A(x)} \le e^{-x}$$
+Ainsi, 
+$$0\le |f(x)|\le |\lambda|e^{-x}$$ et $f(x)\xrightarrow[x\to +\infty]{}0$.
+
+\item Supposons que $y$ vérifie sur $\R$ l'équation, et 
+posons $u(x)=y(x)^2+e^{-x^2}y'(x)^2$. La fonction $u$ est à valeurs positives, 
+dérivable, et 
+$$u'(x) = 2y'(x)y(x)+e^{-x^2}2y''(x)y'(x)-2xe^{-x^2}y'(x)^2$$
+en utilisant que $e^{-x^2}y''(x) = -y(x)$ 
+(car $y$ est solution de l'équation différentielle) on obtient :
+$$u'(x)=-2xe^{-x^2}y'^2.$$ 
+
+Ainsi la fonction $u$ est croissante sur $]-\infty;0[$ 
+et décroissante sur $]0;+\infty[$, donc pour tout $x\in\R$, $0 \le u(x)\le u(0)$. 
+Or $y^2(x)\le u(x)$ par construction, donc
+$$\forall x\in\R,\qquad |y(x)|\le \sqrt{u(0)}=\sqrt{y(0)^2+y'(0)^2}$$
+\end{enumerate}
+\fincorrection
+\correction{007003}
+\ \begin{enumerate}
+\item En faisant le changement de variable $x=e^t$ (donc $t = \ln x$) et en posant 
+$z(t)=y(e^t)$ (donc $y(x) = z(\ln x)$, l'équation $x^2y''+y=0$ devient $z''-z'+z=0$, 
+dont les solutions sont les 
+$z(t)=e^{t/2}\cdot\left( \lambda\cos(\frac{\sqrt{3}}{2}t)+\mu\sin(\frac{\sqrt{3}}{2}t) \right)$,
+$\lambda,\mu\in\Rr$. 
+Autrement dit, 
+$$y(x)=\sqrt{x}\left(\lambda\cos(\frac{\sqrt{3}}{2}\ln x)+\mu\sin(\frac{\sqrt{3}}{2}\ln x)\right)$$
+\item Supposons que $f$ convienne: par hypothèse, $f$ est de classe $\mathcal{C}^1$, 
+donc $x\mapsto f(\frac{1}{x})$ est de classe $\mathcal{C}^1$ sur $\R^*$ et 
+par conséquent $f'$ aussi. Ainsi $f$ est nécessairement de classe 
+$\mathcal{C}^2$ sur $\R^*$ (en fait, en itérant le raisonnement, on montrerait 
+facilement que $f$ est $\mathcal{C}^\infty$ sur $\R^*$). 
+
+
+En dérivant l'équation $f'(x)=f\left(\frac{1}{x}\right)$, 
+on obtient 
+$$f''(x)=-\frac{1}{x^2}f'\left(\frac{1}{x}\right)$$
+et en réutilisant l'équation :
+$$f''(x)=-\frac{1}{x^2}f'\left(\frac{1}{x}\right)= -\frac{1}{x^2} f(x).$$
+Ainsi on obtient que $f$ est solution de $x^2y''+y=0$ sur $\R^*$. 
+Nécessairement, il existe $\lambda,\mu\in\Rr$ tels que 
+$$\forall x>0,\ f(x)=\sqrt{x}\left(\lambda\cos(\frac{\sqrt{3}}{2}\ln x)
++\mu\sin(\frac{\sqrt{3}}{2}\ln x)\right)$$
+
+
+Par hypothèse, $f$ est de classe $\mathcal{C}^1$ sur $\R$, en particulier 
+elle se prolonge en $0$ de façon $\mathcal{C}^1$. Cherchons à quelle condition 
+sur $\lambda,\mu$ cela est possible. Déjà, 
+$f(x)=\sqrt{x}\left(\lambda\cos(\frac{\sqrt{3}}{2}\ln x)+\mu\sin(\frac{\sqrt{3}}{2}\ln x)\right)
+\xrightarrow[x\to 0^+]{}0$ pour tous $\lambda,\mu$ ; donc $f(0)=0$. Mais
+$$\frac{f(x)-f(0)}{x-0}= \frac1{\sqrt{x}}
+\left(\lambda\cos(\frac{\sqrt{3}}{2}\ln x)+\mu\sin(\frac{\sqrt{3}}{2}\ln x)\right)$$ 
+n'a pas de limite en $0$ si $\lambda\neq0$ ou $\mu\neq0$. En effet, pour 
+$x_n=e^{\frac{2}{\sqrt{3}}(-2n\pi)}$, on a $x_n\to 0$ 
+mais $\frac{f(x_n)-f(0)}{x_n-0}=\frac{\lambda}{\sqrt{x_n}}$ qui admet une limite finie seulement si $\lambda = 0$.
+De même avec $x_n'=e^{\frac{2}{\sqrt{3}}(-2n\pi+\frac\pi2)}$ qui donne
+$\frac{f(x_n')-f(0)}{x_n'-0}=\frac{\mu}{\sqrt{x_n'}}$ et implique donc $\mu=0$.
+
+
+Par conséquent, la seule possibilité est $\lambda=\mu=0$. Ainsi $f$ est la fonction nulle, sur $[0,+\infty[$.
+Le même raisonnement s'applique sur $]-\infty,0]$. La fonction est donc nécessairement nulle sur $\Rr$.
+Réciproquement, la fonction constante nulle est bien solution du problème initial. 
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

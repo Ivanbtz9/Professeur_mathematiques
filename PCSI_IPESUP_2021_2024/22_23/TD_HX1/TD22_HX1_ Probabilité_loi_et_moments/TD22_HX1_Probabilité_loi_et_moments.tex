@@ -1,0 +1,398 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{mathdots}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\K}{\mathbb{K}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/3}\rfoot{PCSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+ %%%%BIBMATH%%%%
+ 
+%(1) Variables aléatoires, moments https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/proba/vagenerale&type=fexo
+ 
+%(2)  Inégalités de Markov et de Tchebychev https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/proba/va6-vaineg&type=fexo
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 22 : Variables aléatoires et moments }}
+	\end{minipage}}
+
+\smallskip
+\section*{Connaître son cours:}
+\begin{itemize}[$\bullet$]
+	\item Soit $X_1$ et $X_2$ deux variables indépendantes à valeurs dans $E_1$ et $E_2$ , $f_1 : E_1 \to F_1$ et $f_2 : E_2 \to F_2 $. Montrer que les variables $f_1 (X_1 )$ et $f_2 (X_2 )$ sont indépendantes.
+	\item Soit $X$ une variable aléatoire définie sur un espace probabilisé $(\Omega,\mathcal{A},\mathbb{P})$ à valeurs dans $E$ et $f : E \to F$. Donner et démontrer la formule de transfert.
+	\item Montrer que la somme de $n$ variables indépendantes de loi de Bernoulli de paramètre $p$ est une variable aléatoire de loi binomiale de paramètres $n$ et $p $.
+	\item Soit $X$ une variable aléatoire réelle, rappeler la définition de l'espérance de $X$. Donner l'espérance d'une variable aléatoire suivant une loi binomiale de paramètre $(n,p)$. 
+	\item Rappeler l'inégalité de Markov et donner la démonstration. En déduire l'inégalité de Bienaymé-Tchebychev.
+	\item Montrer que la variance d'une somme de variables aléatoires indépendantes est la somme des variances de ces variables.
+	\item Soient $X$ et $Y$ deux variables aléatoires réelles qui admettent un moment d'ordre 2. Démontrer la formule de Huygens.
+
+\end{itemize}
+\raggedright
+
+\section*{Variables aléatoires discrètes et espérances:}\hfill\\%[-0.25cm]
+
+   
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+	
+\begin{exo}\textbf{(*)}\quad\\[0.2cm] %p.
+	Soit $X,Y\sim \mathcal{U}(\llbracket0;n\rrbracket)$ indépendantes.\\
+	\begin{enumerate}
+		\item Donner la loi de $Z_1 = X+Y$. 
+		\item Donner la loi de $Z_2 = n-X$.
+		\item Soit $a\in\R^*_+$, donner la loi de $Z_3 = aX$.
+		\item Donner l'espérance des variables aléatoires précédentes. 
+	\end{enumerate}
+	
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	\begin{enumerate}
+		\item Donner une variable aléatoire $X$ à valeurs dans $\N$ qui n'admet pas d'espérance finie.
+		\item Soit $X$ une variable aléatoire à valeurs dans $\N$ qui admet une espérance et telle que $\mathbb{P}(X>n) \underset{\sim_{+\infty}}{=}o\left(\frac{1}{n}\right)$.
+		
+		 Montrer que  $$\mathbb{E}(X) = \sum_{k=0}^{+\infty}\mathbb{P}(X> k)$$
+	\end{enumerate}
+	%$\llbracket 0, n \rrbracket$.
+	
+
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+Soit $X$ et $Y$ deux variables aléatoires indépendantes suivant des lois de Poisson de paramètre respectif $\lambda$ et $\mu$. Déterminer par deux méthodes différentes la loi de $Z = X+Y$ et en déduire l'espérance de $Z$. 
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]% Delauney p.400 MP algèbre
+Soit $X$ et $Y$ deux variables aléatoires indépendantes géométriques de paramètres $p$ et $q$ à valeurs dans $]0;1[$. Calculer l'espérance de $Z= \max(X,Y)$. 
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]% Delauney p.400 MP algèbre
+	Soit $N\in\N^*$ et $(U_n)_{n\geq1}$ une suite de variables aléatoires indépendantes et identiquement distribuées selon une loi uniforme sur $\llbracket1;N\rrbracket$. Pour tout $n\in\N^*$, on pose 
+	\begin{center}
+		$M_n = \max(U_1, \dots , U_n).$
+	\end{center}
+	Déterminer les limites de $\mathbb{E}(M_n)$ et de $\mathbb{V}(M_n)$ lorsque n tend vers $+\infty$.
+	 
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\end{minipage}\end{minipage} \newpage
+
+
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm] %Dupuy exo5
+			On suppose qu'à la roulette d'un Casino, on obtient la couleur noire avec la probabilité $\frac{1}{2}$, la couleur rouge sinon (on ne suppose qu'il n'y a pas de 0 vert). Un joueur fortuné joue selon le protocole suivant :
+			
+			\begin{itemize}
+				\item il mise initialement 1 brouzouf sur la couleur noire.
+				\item s'il gagne, il arrête de jouer et empoche le double de sa mise.
+				\item s'il perd, il double sa mise et rejoue. 
+			\end{itemize}
+		
+			\begin{enumerate}
+				\item On suppose la fortune du joueur infinie. Montrer que le jeu s'arrête presque sûrement. Déterminer l'espérance de gain du joueur.
+				\item On suppose toujours la fortune du joueur infinie.	Que se passe-t-il si au lieu de doubler, il décide de tripler sa mise lorsqu'il rejoue?
+				\item Le joueur n'est en fait pas si fortuné qu'il le prétend : il ne possède que $2^{n}-1$ brouzoufs ce qui l'autorise à ne pouvoir jouer que $n$ parties. Que devient son espérance de gain?
+			\end{enumerate}
+
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			Dans une urne figurent $N$ boules numérotées de 1 à $N$ (avec $N \geq 2$ ). Dans celle-ci on opère des tirages successifs (avec remise) jusqu'à l'obtention d'une série de $k$ boules consécutives identiques $(k \geq 2)$. On admet qu'il est presque sûr que ce processus s'arrête et on note $T$ la variable aléatoire déterminant le nombre de tirages opérés à l'arrêt du processus.
+			
+			\begin{enumerate}
+				\item Déterminer $\mathrm{P}(T=k)$ et $\mathrm{P}(T=k+1)$.
+				\item Soit $n \geq 1$, établir
+				
+				$
+				\displaystyle\mathrm{P}(T=n+k)=\frac{N-1}{N^{k}} \mathrm{P}(T>n)
+				$
+				\item En déduire que la variable $T$ admet une espérance et déterminer celle-ci.
+				
+			\end{enumerate}  
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			Soit $X$ une variable aléatoire suivant une loi géométrique de paramètre $p$. 
+			
+			Calculer $
+			\mathrm{E}\left(\dfrac{1}{X}\right) \text {. }
+			$
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+	
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			On lance une pièce équilibrée jusqu'à ce que celle-ci ait produit au moins une fois «face et une fois «pile ».
+			
+			\begin{enumerate}
+				\item Justifier qu'il est presque sûr que le jeu s'arrête.
+				\item On note $X$ le nombre de lancers avant que le jeu cesse. Montrer que $X$ admet une espérance et déterminer celle-ci.
+			\end{enumerate}
+			
+			
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			Soient $X$ et $Y$ deux variables aléatoires à valeurs dans $\mathbb{N}$.
+			On suppose que la loi conjointe de $X$ et $Y$ vérifie
+			$$
+			\displaystyle\forall(j, k) \in \mathbb{N}^{2}, \mathrm{P}(X=j, Y=k)=a \frac{j+k}{2^{j+k}} \text { avec } a \in \mathbb{R} .
+			$$
+			\begin{enumerate}
+				\item Déterminer la valeur de $a$ pour que la somme des probabilités soit égale à 1.
+				\item Déterminer les lois marginales de $X$ et de $Y$. 
+				\item Les variables $X$ et $Y$ sont elles indépendantes?
+				\item Calculer $\mathrm{P}(X=Y)$.
+			\end{enumerate}
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			
+			Soit $T$ une variable aléatoire à valeurs naturelles vérifiant pour tout $n \in \mathbb{N}, \quad \mathrm{P}(T>n)>0$.
+			
+			On appelle taux de panne associé à $T$ la suite $\left(\theta_{n}\right)_{n \in \mathbb{N}}$ déterminée par
+			$$
+			\theta_{n}=\mathrm{P}(T=n \mid T \geq n)
+			$$
+			
+			Typiquement, si $T$ est la variable aléatoire indiquant l'instant où un matériel tombe à panne, la quantité $\theta_{n}$ indique la probabilité qu'il tombe en panne à l'instant présent alors qu'il est actuellement fonctionnel.
+			
+			\begin{enumerate}
+				\item Justifier $ \forall n \in \mathbb{N}, \theta_{n} \in[0 ; 1[$	
+				\item Exprimer en fonction des termes de la suite $\left(\theta_{n}\right)_{n \in \mathbb{N}}$, la probabilité $\mathrm{P}(T \geq n)$. En déduire la divergence de la série $\sum \theta_{n}$.
+			\end{enumerate}
+
+			
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+\end{minipage}\end{minipage}
+
+\section*{Moments d'ordre 2 d'une variable aléatoire:}\hfill\\%[-0.25cm]
+
+
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm] %Mansuy p.971
+		Soit $X$ une variable aléatoire admettant un moment d'ordre 2. Faire une étude de la fonction $a\mapsto E\big((X-a)^2\big)$ et donner une interprétation de la variance de $X$. 
+						
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+				\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			On dit qu'une variable aléatoire discrète réelle $X$ est quasi-certaine lorsqu'il existe un réel $a$ tel que $P(X=a)=1$. Soit $X$ une variable aléatoire discrète réelle telle que $X(\Omega)$. Démontrer que $X$ est quasi-certaine si et seulement si $V(X)=0$.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soient $X$ et $Y$ deux variables aléatoires réelles admettant chacune une variance. On suppose $\mathbb{V}(X)>0$. Déterminer $a, b \in \mathbb{R}$ minimisant la quantité
+			
+			$$
+			\mathrm{E}\left((Y-(a X+b))^{2}\right)
+			$$
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm] %EX0 3 Dupuy
+			
+			Soit $X$ une variable aléatoire discrète à valeurs \\
+			dans $[a ; b]$.
+			\begin{enumerate}
+				\item  Montrer que $X$ admet une espérance $m$ et que celle-ci est élément de $[a ; b]$. La variable $X$ admet aussi une variance $\sigma^{2}$ que l'on se propose de majorer. On introduit la variable aléatoire $Y=X-m$ et les quantités\end{enumerate}
+$$
+t=\sum_{y \geq 0} y P(Y=y),\  s=\sum_{y \geq 0} y^{2} \mathrm{P}(Y=y) \text { et }  \ u=\mathrm{P}(Y \geq 0) .
+$$			\begin{enumerate}\setcounter{enumi}{1}
+				\item Vérifier $t^{2} \leq s u$
+				\item Calculer espérance et variance de $Y$.\\ 
+				En déduire $t^{2} \leq\left(\sigma^{2}-s\right)(1-u)$
+				\item En exploitant les deux majorations précédentes, obtenir
+				$$
+				t^{2} \leq \sigma^{2} / 4
+				$$
+				\item Conclure $$
+				\sigma^{2} \leq(b-a)^{2} / 4
+				$$
+			\end{enumerate}
+	
+
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+\end{minipage}\end{minipage}\section*{Inégalités de Markov et de Bienaymé-Tchebychev :}\hfill\\%[-0.25cm]
+
+
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Soit $X$ une variable aléatoire réelle finie à valeurs dans $\mathbb R_+$, $f:\mathbb R_+\to\mathbb R_+^*$ une fonction croissante. Démontrer que
+	
+	$P(X\geq a)\leq \frac{E(f(X))}{f(a)}.$	\centering\rule{1\linewidth}{0.6pt}\end{exo} 
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	On jette 3600 fois un dé équilibré. Minorer la probabilité que le nombre d'apparitions du numéro 1 soit compris entre 480 et 720.
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Une usine fabrique des pièces dont une proportion inconnue $p$ est défectueuse, et on souhaite trouver une valeur approchée de $p$. 
+	\end{exo}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+On effectue un prélèvement de $n$ pièces. On suppose que le prélèvement se fait sur une population très grande, et donc qu'il peut s'apparenter à une suite de $n$  tirages indépendants avec remise. On note $X_n$ la variable aléatoire égale au nombre de pièces défectueuses et on souhaite quantifier le fait que $\dfrac{X_n}{n}$ approche $p$.
+\begin{enumerate}
+	\item Quelle est la loi de $X_n$? Sa moyenne? Sa variance?
+	\item Démontrer que, pour tout $\varepsilon>0$,\\[0.5cm]
+	\begin{center}	
+	 $\displaystyle P\left(\left|\frac{X_n}n-p\right|\geq\varepsilon\right)\leq\frac 1{4n\varepsilon^2}.$
+	\end{center}
+	\item En déduire une condition sur $n$ pour que $X_n/n$ soit une valeur approchée de $p$ à $10^{-2}$ près avec une probabilité supérieure ou égale à $95\%$.
+\end{enumerate}
+	
+	\centering\rule{1\linewidth}{0.6pt}
+
+
+
+
+\end{minipage}\end{minipage} \newpage
+
+\end{document}

@@ -1,0 +1,952 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00010, bodin, 2007/09/01} 
+
+\titre{Suites}
+
+\section{Convergence}
+\exercice{506, bodin, 1998/09/01}
+\video{lyrZpWFC8AM}
+\enonce{000506}{}
+ Montrer que toute suite convergente est born\'ee.
+\finenonce{000506} 
+
+
+\finexercice\exercice{519, ridde, 1999/11/01}
+\video{d6n_rWtLv1Y}
+\enonce{000519}{}
+ Montrer qu'une suite d'entiers qui converge est
+constante \`a partir d'un certain rang.
+\finenonce{000519} 
+
+
+\finexercice\exercice{507, bodin, 1998/09/01}
+\video{HI2i2rdz3_A}
+\enonce{000507}{}
+  Montrer que la suite $(u_n)_{n\in\Nn}$ d\'efinie par
+$$u_n = (-1)^n+\frac{1}{n}$$
+n'est pas convergente.
+\finenonce{000507} 
+
+
+\finexercice
+\exercice{505, bodin, 1998/09/01}
+\video{FRpMiQ8DOwI}
+\enonce{000505}{}
+ Soit $(u_n)_{n\in\N}$ une suite de $\R$. Que pensez-vous des
+propositions suivantes :
+\par\noindent $\bullet$ Si $(u_{n})_n$ converge vers un r\'eel $\ell$ alors $(u_{2n})_n$ et $(u_{2n+1})_n$
+convergent vers $\ell$.
+\par\noindent  $\bullet$ Si $(u_{2n})_n$ et $(u_{2n+1})_n$ sont convergentes, il en est
+de m\^{e}me de $(u_{n})_n$.
+\par\noindent $\bullet$ Si $(u_{2n})_n$ et $(u_{2n+1})_n$ sont convergentes, de m\^{e}me
+limite $\ell$, il en est de m\^{e}me de $(u_{n})_n$.
+\finenonce{000505} 
+
+
+\finexercice
+\exercice{524, monthub, 2001/11/01}
+\video{WW2PHzsJGkw}
+\enonce{000524}{}
+Soit $q$ un entier au moins {\'e}gal {\`a} $2$. Pour tout $n\in
+\N$, on pose $u_n=\cos{\dfrac{2n\pi}{q}}$.
+\begin{enumerate}
+\item Montrer que $u_{n+q}=u_n$ pour tout $n \in \N$.
+\item Calculer $u_{nq}$ et $u_{nq+1}$. En d{\'e}duire que la suite $(u_n)$
+  n'a pas de limite.
+\end{enumerate}
+\finenonce{000524} 
+
+
+\finexercice
+\exercice{520, ridde, 1999/11/01}
+\video{HZBJUfv7fSA}
+\enonce{000520}{}
+ Soit $H_n = 1 + \dfrac12 + \cdots + \dfrac1n$.
+\begin{enumerate}
+\item En utilisant une int\'egrale, montrer que pour tout $n>0$ : $\dfrac1{n + 1} \leq
+\ln (n + 1)-\ln (n) \leq \dfrac1n$.
+\item En d\'eduire que $\ln (n + 1) \leq H_n \leq \ln (n) + 1$.
+\item D\'eterminer la limite de $H_n$.
+\item Montrer que $u_n = H_n-\ln (n)$ est d\'ecroissante et positive.
+\item Conclusion ?
+\end{enumerate}
+\finenonce{000520} 
+
+
+\finexercice\exercice{539, bodin, 2001/11/01}
+\video{WJahdgKkrdc}
+\enonce{000539}{}
+ On consid\`ere la fonction $ f : \R \longrightarrow \R$ d\'efinie
+par
+$$f (x) = \frac{x^{3}}{9} + \frac{2 x}{3} + \frac{1}{9}$$
+et on d\'efinit la suite $(x_{n})_{n \geq 0}$ en posant $x_{0} =
+0$ et $x_{n + 1} = f (x_{n})$ pour $n \in \N.$
+\begin{enumerate}
+  \item Montrer que l'\'equation $x^{3} - 3 x + 1 = 0$ poss\`ede une
+solution unique $\alpha \in ]0, 1\slash 2[.$
+  \item Montrer que l'\'equation $f (x) = x$ est \'equivalente \`a
+l'\'equation $x^{3} - 3 x + 1 = 0$ et en d\'eduire que $\alpha $
+est l'unique solution de l'\'equation $f (x) = x$ dans
+l'intervalle $[0 , 1\slash 2].$
+  \item Montrer que  la fonction $f$ est croissante sur $\R^{+}$ et que $f (\R^{+}) \subset
+\R^{+}$. En
+d\'eduire que la suite $(x_{n})$ est croissante.
+   \item Montrer que
+$f (1\slash 2) < 1 \slash 2$ et en d\'eduire que $ 0 \leq  x_{n} <
+1 \slash 2$ pour tout $ n \geq 0.$
+  \item  Montrer que la suite
+$(x_{n})_{n \geq 0}$ converge vers $\alpha.$
+ \end{enumerate}
+\finenonce{000539} 
+
+
+\finexercice
+\section{Limites}
+\exercice{563, monthub, 2001/11/01}
+\video{FBzl-Zyr1e0}
+\enonce{000563}{}
+Posons $  u_2=1-\frac{1}{2^2}$ et pour tout entier $n\geq 3$,
+\[
+  u_n=\left(1-\frac{1}{2^2}\right)\left(1-\frac{1}{3^2}\right)\cdots\left(1-\frac{1}{n^2}\right).\]
+Calculer $u_n$. En d{\'e}duire que l'on a
+$\lim{u_n}=\dfrac{1}{2}$.
+\finenonce{000563} 
+
+
+\finexercice\exercice{568, cousquer, 2003/10/01}
+\video{M2V-1XVn_ig}
+\enonce{000568}{}
+D\'eterminer les limites lorsque $n$ tend vers l'infini des suites
+ci-dessous~; pour chacune, essayer de pr\'eciser en quelques mots la
+m\'ethode employ\'ee.
+\begin{enumerate}
+\item $\displaystyle 1\;;~-\frac{1}{2}\;;~\frac{1}{3}\;;~ 
+\ldots\;;~\frac{(-1)^{n-1}}{n}\;;~\ldots$
+\item $2/1$~; $4/3$~; $6/5$~; $\ldots$~; $2n/(2n-1)$~; $\ldots$
+\item $0{,}23\;;~0{,}233\;;~\ldots\;;~0{,}233\cdots3\;;~\ldots$
+\item $\displaystyle\frac{1}{n^2}+\frac{2}{n^2}+\cdots+\frac{n-1}{n^2}$
+\item $\displaystyle\frac{(n+1)(n+2)(n+3)}{n^3}$
+\item $\displaystyle\biggl\lbrack \frac{1+3+5+\cdots+(2n-1)}{n+1} -
+\frac{2n+1}{2}\biggr\rbrack$
+\item $\displaystyle\frac{n+(-1)^n}{n-(-1)^n}$
+\item  $\displaystyle\frac{2^{n+1}+3^{n+1}}{2^n + 3^n}$
+\item $\displaystyle\bigl(1/2+1/4+1/8+\cdots+1/2^n\bigr)$\quad 
+puis\quad $\displaystyle \sqrt{2}\;;~\sqrt{2\sqrt{2}}\;;~
+\sqrt{2\sqrt{2\sqrt{2}}}\;;~\ldots$
+\item  $\displaystyle\biggl(1-\frac{1}{3}+\frac{1}{9}-\frac{1}{27}+\cdots
++\frac{(-1)^n}{3^n} \biggr)$
+\item $\bigl( \sqrt{n+1}-\sqrt{n}\bigr)$
+\item $\displaystyle\frac{n\sin(n!)}{n^2+1}$
+\item  D\'emontrer la formule $1+2^2+3^2+\cdots+n^2 = 
+\frac{1}{6}
+n(n+1)(2n+1)$ ; en d\'eduire $\lim_{n \to\infty}
+\frac{1+2^2+3^2+\cdots+n^2}{n^3}$.
+\end{enumerate}
+\finenonce{000568} 
+
+
+\finexercice\exercice{570, bodin, 1998/09/01}
+\video{k8gZEvm5MQs}
+\enonce{000570}{}
+ On consid\`ere les deux suites :
+$$u_n =1+\frac{1}{2!}+\frac{1}{3!}+\cdots+\frac{1}{n!}\ ;\ n\in\N,$$
+$$v_n = u_n+\frac{1}{n!}\ ;\ n\in\N.$$
+\noindent Montrer que $(u_n)_n$ et $(v_n)_n$ convergent vers une m\^{e}me
+limite. Et montrer que cette limite est un \'el\'ement de $\R\backslash\Q$.
+\finenonce{000570} 
+
+
+\finexercice\exercice{569, bodin, 2001/11/01}
+\video{sHmOnEw9rxQ}
+\enonce{000569}{}
+ Soit $a>0$. On d\'efinit la suite $(u_n)_{n\geq 0}$ par
+$u_0$ un r\'eel v\'erifiant $u_0>0$ et par la relation
+$$u_{n+1}= \frac12 \left( u_n+\frac{a}{u_n}\right).$$
+On se propose de montrer que $(u_n)$ tend vers $\sqrt a$.
+\begin{enumerate}
+  \item Montrer que
+$${u_{n+1}}^2-a= \frac{({u_n}^2-a)^2}{4{u_n}^2}.$$
+\item Montrer que si $n\geq 1$ alors $u_n \geq \sqrt a$ puis que
+la suite $(u_n)_{n\geq 1}$ est d\'ecroissante.
+\item En d\'eduire que la suite $(u_n)$ converge vers $\sqrt a$.
+\item En utilisant la relation
+${u_{n+1}}^2-a= ({u_{n+1}}-\sqrt{a})({u_{n+1}}+\sqrt{a})$ donner
+une majoration de ${u_{n+1}}-\sqrt{a}$ en fonction de
+${u_{n}}-\sqrt{a}$.
+\item Si $u_1-\sqrt a \leq k$ et pour $n\geq 1$ montrer que
+$$u_n - \sqrt a \leq 2\sqrt a \left( \frac k {2\sqrt a}\right)^{2^{n-1}}.$$
+\item Application : Calculer $\sqrt{10}$ avec une pr\'ecision de 8 chiffres apr\`es la virgule,
+en prenant $u_0 = 3$.
+\end{enumerate}
+\finenonce{000569} 
+
+
+\finexercice\exercice{571, bodin, 1998/09/01}
+\video{4ehFn1cnohc}
+\enonce{000571}{}
+ Soient $a$ et $b$ deux r\'eels, $a<b$. On consid\`ere la
+fonction $f:\lbrack a,b\rbrack\longrightarrow \lbrack a,b\rbrack$ suppos\'ee continue
+et une suite r\'ecurrente $(u_n)_n$ d\'efinie par :
+$$u_0\in\lbrack a,b\rbrack\ \ \text{et pour tout }\ n\in\N,\ \ u_{n+1}=f(u_n).$$
+\begin{enumerate}
+    \item On suppose ici que $f$ est croissante. Montrer que $(u_n)_n$
+est monotone et en d\'eduire sa convergence vers une solution de l'\'equation
+$f(x)=x$.
+    \item  \emph{Application.} Calculer la limite de la suite définie par :
+$$u_0=4\ \ \text{et pour tout }\ n\in\N,\ \ u_{n+1}=\frac{4u_n+5}{u_n+3}.$$
+    \item  On suppose maintenant que $f$ est d\'ecroissante. Montrer que les suites
+$(u_{2n})_n$ et $(u_{2n+1})_n$ sont monotones et convergentes.
+    \item  \emph{Application.} Soit
+$$u_0=\frac{1}{2}\ \ \text{et pour tout }\  n\in\N,\ \ u_{n+1}=(1-u_n)^2.$$
+\noindent Calculer les limites des suites $(u_{2n})_n$ et $(u_{2n+1})_n$.
+\end{enumerate}
+\finenonce{000571} 
+
+
+\finexercice\exercice{572, bodin, 1998/09/01}
+\video{ZTrWGqYQ0R8}
+\enonce{000572}{}
+\begin{enumerate}
+    \item Soient $a,b > 0$. Montrer que $\sqrt{ab} \leqslant \frac{a+b}{2}$.
+    \item Montrer les in\'egalit\'es suivantes ($b \geqslant a > 0$) :
+$$ a \leqslant \frac{a+b}{2} \leqslant b \qquad \text{et} \qquad a \leqslant \sqrt{ab} \leqslant b.$$
+    \item Soient $u_0$ et $v_0$ des r\'eels strictement positifs avec
+$u_0 < v_0$. On d\'efinit deux
+suites $(u_n)$ et $(v_n)$ de la fa\c{c}on suivante :
+$$ u_{n+1} = \sqrt{u_nv_n} \quad \text{et}\quad v_{n+1}=\frac{u_n+v_n}{2}.$$
+    \begin{enumerate}
+        \item Montrer que $u_n \leqslant v_n$ quel que soit $n\in\Nn$.
+        \item Montrer que $(v_n)$ est une suite d\'ecroissante.
+        \item Montrer que $(u_n)$ est croissante En d\'eduire que
+les suites $(u_n)$ et $(v_n)$ sont convergentes et quelles ont m\^eme limite.
+    \end{enumerate}
+\end{enumerate}
+\finenonce{000572} 
+
+
+\finexercice
+\exercice{574, ridde, 1999/11/01}
+\video{1x3LSvkKLsM}
+\enonce{000574}{}
+ Soit $n \geq 1$.
+\begin{enumerate}
+\item Montrer que l'\'equation $\sum\limits_{k = 1}^n{x^k} = 1$ admet une unique solution,
+notée $a_n$, dans $[0, 1]$.
+\item Montrer que $ (a_n)_{n \in \Nn}$ est d\'ecroissante minor\'ee par $\frac12$.
+\item Montrer que $ (a_n)$ converge vers $\frac 12$.
+\end{enumerate}
+\finenonce{000574} 
+
+
+\finexercice
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\indication{000506}
+\'Ecrire la d\'efinition de la convergence d'une suite $(u_n)$ avec les ``$\epsilon$''. Comme on a une proposition qui est vraie pour tout $\epsilon >0$, c'est en particulier vrai pour $\epsilon =1$. Cela nous donne un ``$N$''. Ensuite s\'eparez la suite en deux : regardez les $n<N$ (il n'y a qu'un nombre fini de termes) et les $n\geqslant N$ (pour lequel on utilise notre $\epsilon=1$).
+\finindication
+\indication{000519}
+\'Ecrire la convergence de la suite et fixer $\epsilon = \frac 12$.
+Une suite est \emph{stationnaire} si, à partir d'un certain rang, elle est constante.
+\finindication
+\indication{000507}
+On prendra garde \`a ne pas parler de limite d'une suite sans savoir au pr\'ealable qu'elle converge !
+
+Vous pouvez utiliser le r\'esultat du cours suivant :
+Soit $(u_n)$ une suite convergeant  vers la limite $\ell$ alors toute sous-suite $(v_n)$ de $(u_n)$ a pour limite $\ell$.
+\finindication
+\indication{000505}
+Dans l'ordre c'est vrai, faux et vrai. Lorsque c'est faux chercher un contre-exemple, lorsque c'est vrai il faut le prouver.
+\finindication
+\indication{000524}
+Pour la deuxi\`eme question, raisonner par l'absurde et trouver deux sous-suites ayant des limites distinctes.
+\finindication
+\indication{000520}
+\begin{enumerate}
+\item En se rappelant que l'int\'egrale calcule une aire montrer : 
+$$\frac{1}{n+1} \leqslant \int_n^{n+1} \frac{dt}{t} \leqslant \frac 1n.$$
+\item Pour chacune des majorations, il s'agit de faire la somme de l'in\'egalit\'e pr\'ec\'edente et de s'apercevoir que d'un cot\'e on calcule $H_n$ et de l'autre les termes s'\'eliminent presque tous deux \`a deux.
+\item La limite est $+\infty$.
+\item Calculer $u_{n+1}-u_n$.
+\item C'est le th\'eor\`eme de Bolzano-Weierstrass.
+\end{enumerate}
+\finindication
+\indication{000539}
+Pour la premi\`ere question : attention on ne demande pas de calculer $\alpha$ !
+L'existence vient du th\'eor\`eme des valeurs interm\'ediaires. L'unicit\'e vient du fait que la fonction est strictement croissante.
+  
+
+Pour la derni\`ere question : il faut d'une part montrer que $(x_n)$ converge et on note $\ell$ sa limite
+et d'autre part il faut montrer que $\ell = \alpha$.
+\finindication
+\indication{000563}
+Remarquer que $1-\frac{1}{k^2} = \frac{(k-1)(k+1)}{k.k}$.
+Puis simplifier l'\'ecriture de $u_n$.
+\finindication
+\noindication
+\indication{000570}
+\begin{enumerate}
+  \item Montrer que $(u_n)$ est croissante et $(v_n)$ d\'ecroissante.
+  \item Montrer que $(u_n)$ est major\'ee et $(v_n)$ minor\'ee. Montrer que ces suites ont la m\^eme limite.
+  \item Raisonner par l'absurde : si la limite $\ell = \frac pq$
+alors multiplier l'in\'egalit\'e $u_q \leq \frac pq \leq v_q$  par $q!$ et raisonner avec des entiers.
+\end{enumerate}
+\finindication
+\indication{000569}
+\begin{enumerate}
+\item C'est un calcul de r\'eduction au m\^eme d\'enominateur.
+\item Pour montrer la d\'ecroisance, montrer $\frac{u_{n+1}}{ u_n} \leqslant 1$.
+\item Montrer d'abord que la suite converge, montrer ensuite que la limite est $\sqrt a$.
+\item Penser \`a \'ecrire $u_{n+1}^2-a = (u_{n+1}-\sqrt a)(u_{n+1}+\sqrt a)$.
+\item Raisonner par r\'ecurrence.
+\item Pour $u_0= 3$ on a $u_1=3,166\ldots$, donc $3\leqslant \sqrt{10} \leqslant u_1$
+et on peut prendre $k=0.17$ par exemple et $n=4$ suffit pour la pr\'ecision demand\'ee.
+\end{enumerate}
+\finindication
+\indication{000571}
+Pour la premi\`ere question et la monotonie il faut raisonner par r\'ecurrence.
+Pour la troisi\`eme question, remarquer que si $f$ est d\'ecroissante alors $f\circ f$ est croissante
+et appliquer la premi\`ere question.
+\finindication
+\indication{000572}
+\begin{enumerate}
+  \item Regarder ce que donne l'inégalité en élevant au carré de chaque coté.
+  \item Petites manipulations des inégalités.
+  \item 
+  \begin{enumerate}
+     \item Utiliser 1.
+     \item Utiliser 2.
+     \item Une suite croissante et majorée converge ; une suite décroissante et minorée aussi.
+  \end{enumerate}
+\end{enumerate}
+\finindication
+\indication{000574}
+On notera  $f_n : [0,1] \longrightarrow \Rr$ la fonction
+d\'efinie par $ f_n(x) = \sum_{k=1}^n x^k \ \ - 1.$
+\begin{enumerate}
+    \item C'est une \'etude de la fonction $f_n$.
+    \item On sait que $f_n(a_n)=0$. Montrer par un calcul que $f_n(a_{n-1}) > 0$,
+en d\'eduire la d\'ecroissance de $(a_n)$. En calculant $f_n(\frac 12)$ montrer que 
+la suite  $(a_n)$ est minor\'ee par $\frac 12$.
+    \item Une fois \'etablie la convergence de  $(a_n)$ vers une limite $\ell$,
+composer l'in\'egalit\'e $ \frac 12 \leqslant \ell < a_n$ par $f_n$. Conclure.
+\end{enumerate}
+\finindication
+
+
+\newpage
+
+\correction{000506}
+Soit $(u_n)$ une suite convergeant vers $\ell \in \Rr$. Par
+d\'efinition
+$$\forall \epsilon > 0 \quad \exists N \in \Nn \quad  \forall n\geqslant N \qquad |u_n-\ell| < \epsilon.$$
+Choisissons $\epsilon = 1$, nous obtenons le  $N$ correspondant.
+Alors pour $n\geqslant N$, nous avons $|u_n-\ell| < 1$ ; 
+autrement dit $\ell -1 <
+u_n < \ell + 1$. Notons $M = \max_{n=0,\ldots,N-1}  \{u_n\}$  et
+puis $ M' = \max (M,\ell+1)$. Alors  pour tout $n \in \Nn$ $u_n
+\leq M'$. De m\^eme en posant $m = \min_{n=0,\ldots,N-1} \{u_n\}$ et
+$m' = \min(m,\ell -1)$ nous obtenons pour tout $n\in \Nn$, $u_n
+\geq m'$.
+\fincorrection
+\correction{000519}
+Soit $(u_n)$ une suite d'entiers qui converge vers $\ell \in
+\Rr$.
+Dans l'intervalle $I = ] \ell - \frac12, \ell +\frac12[$ de
+longueur $1$, il existe au plus un \'el\'ement de $\Nn$. Donc $I \cap
+\Nn$ est soit vide soit un singleton $\{a \}$.
+
+La convergence de  $(u_n)$ s'\'ecrit :
+$$ \forall \epsilon > 0 \ \ \exists N \in \Nn \text{\  \ tel que\ \  }
+(n \geqslant N \Rightarrow |u_n-\ell| < \epsilon).$$ Fixons $\epsilon =
+\frac 12$, nous obtenons un $N$ correspondant. Et pour $n \geqslant N$,
+$u_n \in I$. Mais de plus $u_n$ est un entier, donc
+  $$ n \geqslant N \Rightarrow u_n \in I \cap \Nn.$$
+En cons\'equent, $I\cap \Nn$ n'est pas vide (par exemple $u_N$ en
+est un \'el\'ement) donc $I \cap \Nn = \{ a \}$. L'implication
+pr\'ec\'edente s'\'ecrit maintenant :
+$$ n \geqslant N \Rightarrow u_n = a.$$
+Donc la suite $(u_n)$ est stationnaire (au moins) \`a partir de
+$N$. En prime, elle est bien \'evidemment convergente vers $\ell = a
+\in \Nn$.
+\fincorrection
+\correction{000507}
+Il est facile de se convaincre que $(u_n)$ n'a pas de
+ limite, mais plus délicat d'en donner une d\'emonstration
+ formelle. En effet, d\`es lors qu'on ne sait pas qu'une suite $(u_n)$
+converge, on ne peut pas \'ecrire $\lim u_n$, c'est un nombre qui
+n'est pas d\'efini. Par exemple l'\'egalit\'e $$\lim_{n \rightarrow
+\infty}\: (-1)^n+1/n=\lim_{n\rightarrow \infty} (-1)^n$$ n'a pas de
+sens. Par contre voil\`a ce qu'on peut dire : \emph{Comme la
+suite $1/n$ tend vers $0$ quand $n \rightarrow \infty$, la suite $u_n$ est
+convergente si et seulement si la suite $(-1)^n$ l'est. De plus,
+dans le cas o\`u elles sont toutes les deux convergentes, elles
+ont m\^eme limite.} Cette affirmation provient tout simplement du
+th\'eor\`eme suivant
+
+\textbf{Th\'eor\`eme} : Soient $(u_n)$ et $(v_n)$ deux suites
+convergeant vers deux limites $\ell$ et $\ell'$. Alors la suite $(w_n)$ définie par
+$w_n=u_n+v_n$ est convergente (on peut donc parler de sa limite)
+et $\lim w_n=\ell+\ell'$.
+
+De plus, il n'est pas vrai que toute suite convergente
+doit forc\'ement \^etre croissante et major\'ee ou d\'ecroissante
+et minor\'ee. Par exemple, $(-1)^n/n$ est une suite qui converge
+vers $0$ mais qui n'est ni croissante, ni d\'ecroissante. 
+
+\bigskip
+
+Voici maintenant un exemple de r\'edaction de l'exercice.  On veut
+montrer que la suite $(u_n)$ n'est pas convergente. Supposons donc
+par l'absurde qu'elle soit convergente et notons
+$\ell=\lim_{n\rightarrow\infty} u_n$. (Cette expression a un sens puisqu'on
+suppose que $u_n$ converge).
+
+{\bf  Rappel.} Une {\em sous-suite} de $(u_n)$ (on dit aussi  {\em
+suite extraite} de $(u_n)$) est une suite $(v_n)$ de la forme
+$v_n=u_{\phi(n)}$ o\`u $\phi$ est une application strictement
+croissante de $\N$ dans $\N$. Cette fonction $\phi$ correspond
+``au choix des indices qu'on veut garder'' dans notre sous-suite.
+Par exemple, si on ne veut garder dans la suite $(u_n)$ que les
+termes pour lesquels $n$ est un multiple de trois, on pourra poser
+$\phi(n)=3n$, c'est \`a dire $v_n=u_{3n}$.
+
+\vspace{0.3cm}
+
+Consid\'erons maintenant les sous-suites $v_n=u_{2n}$ et
+$w_n=u_{2n+1}$ de $(u_n)$. On a que $v_n=1+1/2n\rightarrow1$ et que
+$w_n=-1+1/(2n+1)\rightarrow -1$. Or on a le th\'eor\`eme suivant sur les
+sous-suites d'une suite convergente:
+
+\textbf{Th\'eor\`eme} : Soit $(u_n)$ une suite convergeant  vers la
+limite $\ell$ (le th\'eor\`eme est encore vrai si $\ell=+\infty$ ou
+$\ell=-\infty$). Alors, toute sous-suite $(v_n)$ de $(u_n)$ a pour limite
+$\ell$.
+
+
+Par cons\'equent, ici, on a que $\lim v_n=\ell$ et $\lim w_n=\ell$  donc
+$\ell=1$ et $\ell=-1$ ce qui est une contradiction. L'hypoth\`ese disant
+que $(u_n)$ \'etait convergente est donc fausse. Donc $(u_n)$ ne
+converge pas.
+\fincorrection
+\correction{000505}
+\begin{enumerate}
+  \item Vrai. Toute sous-suite d'une suite convergente est convergente
+et admet la m\^eme limite (c'est un résultat du cours).
+  \item Faux. Un contre-exemple est la suite $(u_n)_n$ d\'efinie
+par $u_n = (-1)^n$. Alors $(u_{2n})_n$ est la suite constante
+(donc convergente) de valeur $1$, et $(u_{2n+1})_n$ est constante
+de valeur $-1$. Cependant la suite $(u_n)_n$ n'est pas
+convergente.
+  \item Vrai.
+La convergence de la suite $(u_n)_n$ vers $\ell$, que nous
+souhaitons d\'emontrer, s'\'ecrit :
+$$ \forall \epsilon > 0\  \ \exists N \in \Nn \ \text{\  tel que\ \  }
+(n \geqslant N \Rightarrow |u_n-\ell| < \epsilon).$$ 
+Fixons $\epsilon >
+0$. Comme, par hypoth\`ese, la suite $(u_{2p})_p$  converge vers
+$\ell$ alors il existe $N_1$ tel
+$$ 2p \geqslant N_1 \Rightarrow |u_{2p}-\ell| < \epsilon.$$
+Et de m\^eme, pour la suite $(u_{2p+1})_p$ il existe $N_2$ tel que
+$$ 2p+1 \geqslant N_2 \Rightarrow |u_{2p+1}-\ell| < \epsilon.$$
+Soit $N = \max(N_1,N_2)$, alors
+$$n \geqslant N\Rightarrow |u_{n}-\ell| < \epsilon.$$
+Ce qui prouve la convergence de $(u_n)_n$ vers $\ell$.
+\end{enumerate}
+\fincorrection
+\correction{000524}
+\begin{enumerate}
+  \item $u_{n+q} = \cos \left( \frac{2(n+q)\pi}{q} \right) = \cos \left(\frac{2n\pi}{q}+2\pi\right) = \cos \left(\frac{2n\pi}{q}\right) = u_n$.
+  \item $u_{nq} = \cos \left(\frac{2nq\pi}{q}\right) = \cos \left({2n\pi}\right)= 1 = u_0$ et $u_{nq+1} = \cos \left(\frac{2(nq+1)\pi}{q}\right) = \cos \left(\frac{2\pi}{q}\right) = u_1$.
+Supposons, par l'absurde que $(u_n)$ converge vers $\ell$.
+Alors la sous-suite $(u_{nq})_n$ converge vers $\ell$ comme 
+$u_{nq}= u_0 = 1$ pour tout $n$ alors $\ell = 1$. D'autre part
+la sous-suite $(u_{nq+1})_n$ converge aussi vers $\ell$, mais 
+$u_{nq+1}= u_1 = \cos \frac{2\pi}{q}$, donc $\ell = \cos \frac{2\pi}{q}$. Nous obtenons une contradiction car pour $q\geq 2$, nous avons $\cos \frac{2\pi}{q} \not= 1$. Donc la suite $(u_n)$ ne converge pas.
+\end{enumerate}
+\fincorrection
+\correction{000520}
+\begin{enumerate}
+\item La fonction $t \mapsto \frac 1 t$ est d\'ecroissante
+sur $[n,n+1]$ donc
+$$\frac{1}{n+1} \leqslant \int_n^{n+1} \frac{dt}{t} \leqslant \frac 1n$$
+(C'est un encadrement de l'aire de l'ensemble des points $(x,y)$
+du plan tels que $x\in[n,n+1]$ et $0\leqslant y\leqslant 1/x$ par l'aire de
+deux rectangles.) Par calcul de l'intégrale nous obtenons l'in\'egalit\'e :
+$$\frac{1}{n+1} \leqslant \ln(n+1)-\ln(n)  \leqslant \frac 1n.$$
+\item $H_n = \frac1n+\frac{1}{n-1}+\cdots +\frac12+1$, nous majorons chaque terme de cette somme en utilisant l'in\'egalit\'e $\frac1k \leqslant \ln(k)-\ln (k-1)$ obtenue pr\'ec\'edemment : nous obtenons
+$H_n \leqslant \ln(n)-\ln (n-1) + \ln(n-1)-\ln (n-2)+\cdots-\ln(2) +\ln (2) - \ln
+(1) + 1$. Cette somme est t\'elescopique (la plupart des termes
+s'\'eliminent et en plus $\ln (1) =0$) et donne $H_n \leqslant \ln (n) + 1$.
+
+L'autre in\'egalit\'e  s'obtient de la fa\c{c}on similaire en
+utilisant l'in\'egalit\'e $ \ln(k+1)-\ln(k) \leqslant \frac{1}{k}$ .
+\item Comme $H_n \geqslant \ln (n+1)$ et que $\ln(n+1) \rightarrow +\infty$ quand $n\rightarrow +\infty$ alors $H_n \rightarrow +\infty$ quand $n\rightarrow +\infty$.
+\item $u_{n+1}-u_n = H_{n+1}-H_n - \ln(n+1)+\ln(n) = \frac{1}{n+1}-(\ln (n+1)-\ln (n))\leqslant 0$ d'apr\`es la premi\`ere question. Donc $u_{n+1}-u_n  \leqslant 0$. Ainsi $u_{n+1} \leqslant u_n$ et la suite
+$(u_n)$ est d\'ecroissante.
+
+Enfin comme $H_n \geqslant \ln(n+1)$ alors $H_n \geqslant \ln (n)$ et donc
+$u_n\geqslant 0$.
+\item La suite $(u_n)$ est d\'ecroissante et minor\'ee (par $0$) donc elle converge
+vers un r\'eel $\gamma$. Ce r\'eel $\gamma$ s'appelle \emph{la constante d'Euler}
+(d'après Leonhard Euler, 1707-1783, math\'ematicien d'origine suisse). Cette
+constante vaut environ $0,5772156649\ldots$ mais on ne sait pas si
+$\gamma$ est rationnel ou irrationnel.
+\end{enumerate}
+\fincorrection
+\correction{000539}
+\begin{enumerate}
+\item
+ La fonction polynomiale $P (x) := x^{3} - 3 x + 1$ est continue et
+d\'erivable sur $\R$ et sa d\'eriv\'ee est $P' (x) = 3 x^{2} - 3,$
+qui est strictement n\'egative sur $]- 1 , + 1[.$ Par cons\'equent
+$P$ est strictement d\'ecroissante sur $]- 1 , + 1[.$ Comme $P (0)
+= 1 > 0$ et $P (1\slash 2) = - 3 \slash 8 < 0$ il en r\'esulte
+gr\^ace au th\'eor\`eme des valeurs interm\'ediaires qu'il existe
+un r\'eel unique $\alpha \in ]0,1\slash 2[$ tel que $P (\alpha) =
+0.$
+\item Comme $ f (x) - x = (x^{3} - 3 x + 1) \slash 9$ il en
+r\'esulte que $\alpha$ est l'unique solution de l'\'equation $f
+(x) = x$ dans $]0,1\slash 2[.$
+\item
+Comme $f' (x) = (x^{2} +2)\slash 3 > 0$ pour tout $x \in \R,$ on
+en d\'eduit que $f$ est strictement croissante sur $\R.$ Comme $f
+(0) = 1 \slash 9$ et $\lim_{x \to + \infty} f (x) = + \infty,$ on
+en d\'eduit que $ f (\R^{+}) = [1\slash 9 , + \infty[.$ Comme
+$x_{1} = f (x_{0}) = 1 \slash 9  >  0$ alors $x_1 > x_0=0$ ;   $f$ étant
+strictement croissante sur $\R^{+},$ on en d\'eduit par
+r\'ecurrence que $x_{n + 1} > x_{n}$ pour tout $n \in \N$ ce qui
+prouve que la suite $(x_{n})$ est croissante.
+\item  Un calcul simple montre que  $f (1 \slash 2) < 1
+\slash 2.$ Comme $0 = x_{0} < 1 \slash 2$ et que $f$ est
+croissante on en d\'eduit par r\'ecurrence que $ x_{n} < 1 \slash
+2$ pour tout $n \in \N$ (en effet si $x_n < 1/2$ alors 
+$x_{n+1} = f(x_n) < f(1/2) < 1/2$).
+\item D'apr\`es les questions
+pr\'ec\'edentes, la suite $(x_{n})$  est croissante et major\'ee,
+elle converge donc vers un nombre r\'eel $\ell \in ]0, 1 \slash 2].$
+De plus comme $x_{n + 1} = f (x_{n})$ pour tout $n \in \N,$ on en
+d\'eduit par continuit\'e de $f$ que $\ell  = f (\ell).$ Comme $f
+(1 \slash 2) < 1\slash 2,$ On en d\'eduit que $\ell \in ]0, 1
+\slash 2[$ et v\'erifie l'\'equation $f (\ell) = \ell.$ D'apr\`es
+la question 2, on en d\'eduit que $\ell = \alpha$ et donc $(x_{n})
+$ converge vers $\alpha.$
+\end{enumerate}
+\fincorrection
+\correction{000563}
+Remarquons d'abord que $1-\frac{1}{k^2} = \frac{1-k^2}{k^2} = \frac{(k-1)(k+1)}{k.k}$.
+En \'ecrivant les fractions de $u_n$ sous la cette forme, l'\'ecriture va se simplifier radicalement:
+$$u_n = \frac{(2-1)(2+1)}{2.2}\frac{(3-1)(3+1)}{3.3}\cdots \frac{(k-1)(k+1)}{k.k}\frac{(k)(k+2)}{(k+1).(k+1)}\cdots \frac{(n-1)(n+1)}{n.n}$$
+Tous les termes des num\'erateurs se retrouvent au d\'enominateur (et vice-versa), sauf aux extr\'emit\'es. D'o\`u:
+$$u_n = \frac12\frac{n+1}{n}.$$
+Donc $(u_n)$ tends vers $\frac12$ lorsque $n$ tend vers $+\infty$.
+\fincorrection
+\correction{000568}
+\begin{enumerate}
+  \item $0$.
+  \item $1$.
+  \item $7/30$.
+  \item $1/2$.
+  \item $1$.
+  \item $-3/2$.
+  \item $1$.
+  \item $3$.
+  \item $1$~; $2$.
+  \item $3/4$.
+  \item $0$.
+  \item $0$.
+  \item $1/3$.
+\end{enumerate}
+\fincorrection
+\correction{000570}
+\begin{enumerate}
+  \item La suite $(u_n)$ est strictement croissante, en effet $u_{n+1}-u_n = \frac{1}{(n+1)!} > 0$. La suite $(v_n)$ est strictement d\'ecroissante :
+$$v_{n+1}-v_n = u_{n+1}-u_n + \frac{1}{(n+1)!}-\frac{1}{n!}= \frac{1}{(n+1)!}+ \frac{1}{(n+1)!}-\frac{1}{n!}= \frac{1}{n!}(\frac 2n-1).$$
+Donc \`a partir de $n\geq 2$, la suite $(v_n)$ est strictement d\'ecroissante.
+  \item Comme $u_n \leq v_n \leq v_2$, alors $(u_n)$ est une suite croissante et major\'ee. Donc elle converge vers $\ell \in \Rr$.
+De m\^eme $v_n \geq u_n \geq u_0$, donc  $(v_n)$ est une suite d\'ecroissante et minor\'ee. Donc elle converge vers $\ell' \in \Rr$.
+De plus $v_n -u_n = \frac1{n!}$. Et donc $(v_n-u_n)$ tend vers $0$
+ce qui prouve que $\ell=\ell'$.
+  \item Supposons que $\ell \in \Qq$, nous \'ecrivons alors $\ell = \frac pq$ avec $p,q \in \Nn$. Nous obtenons pour $n\geq 2$:
+$$u_n \leq \frac pq \leq v_n.$$
+Ecrivons cette \'egalit\'e pour $n=q$: 
+$u_q \leq \frac pq \leq v_q$ et multiplions par $q!$:
+$q! u_q \leq q!\frac pq \leq q! v_q$. Dans cette double in\'egalit\'e toutes les termes sont des entiers ! De plus $v_q = u_q +\frac 1{q!}$ donc:
+$$q! u_q \leq q! \frac pq \leq q! u_q + 1.$$
+Donc l'entier $q! \frac pq$ est \'egal \`a l'entier $q! u_q$
+ou \`a $q! u_q + 1 = q! v_q$. Nous obtenons que $\ell = \frac pq$
+est \'egal \`a $u_q$ ou \`a $v_q$. Supposons par exemple que $\ell = u_q$,
+comme la suite $(u_n)$ est strictement croissante alors $u_q  < u_{q+1} < \cdots < \ell$, ce qui aboutit \`a une contradiction. Le m\^eme raisonnement s'applique en supposant $\ell = v_q$ car la suite $(v_n)$ est strictement d\'ecroissante. Pour conclure nous avons montré que $\ell$ n'est pas un nombre rationnel.
+\end{enumerate}
+
+En fait $\ell$ est le nombre $e = \exp(1)$.
+\fincorrection
+\correction{000569}
+\begin{enumerate}
+\item \begin{align*}
+       u_{n+1}^2-a &= \frac14\left(\frac{u_n^2+a}{u_n}\right)^2-a\\
+                   &= \frac1{4u_n^2}(u_n^4-2au_n^2+a^2)\\
+                   &= \frac14 \frac{(u_n^2-a)^2}{u_n^2}\\
+  \end{align*}
+\item Il est clair que pour $n\geqslant 0$ on a $u_n > 0$.
+D'apr\`es l'\'egalit\'e pr\'ec\'edente pour $n\geqslant 0$, $u_{n+1}^2-a \geqslant 0$ et
+comme $ u_{n+1}$ est positif alors $u_{n+1}\geqslant \sqrt a$.
+
+Soit $n\geqslant 1$. Calculons le quotient de $u_{n+1}$ par $u_n$ :
+$\frac{ u_{n+1}}{ u_n} = \frac12\left(1+\frac{a}{u_n^2}\right)$ or
+$\frac{a}{u_n^2}\leqslant 1$ car $u_n \geqslant \sqrt a$. Donc $\frac{
+u_{n+1}}{ u_n} \leqslant 1$ et donc $u_{n+1} \leqslant  u_n $. La suite
+$(u_n)_{n\geqslant 1}$ est donc d\'ecroissante.
+\item La suite $(u_n)_{n\geqslant 1}$ est d\'ecroissante et minor\'ee par $\sqrt a$ donc elle converge vers une limite $\ell>0$.
+D'apr\`es la relation
+$$u_{n+1} = \frac12\left(u_n+\frac{a}{u_n}\right)$$
+quand $n\rightarrow + \infty$ alors $u_n \rightarrow \ell$ et
+$u_{n+1} \rightarrow \ell$. \`A la limite nous obtenons la
+relation
+$$\ell = \frac12\left(\ell+\frac{a}{\ell}\right).$$
+La seule solution positive est $\ell = \sqrt a$. Conclusion
+$(u_n)$ converge vers $\sqrt a$.
+\item La relation
+$$ u_{n+1}^2-a =  \frac{(u_n^2-a)^2}{4u_n^2}$$
+s'\'ecrit aussi
+$$ (u_{n+1}-\sqrt a)(u_{n+1}+\sqrt a) = \frac{(u_n-\sqrt a)^2(u_n+\sqrt a)^2}{4u_n^2}.$$
+Donc
+\begin{align*}
+       u_{n+1}-\sqrt a &= (u_n-\sqrt a)^2 \frac{1}{4(u_{n+1}+\sqrt a)}\left(\frac{u_n+\sqrt a}{u_n}\right)^2\\
+                   &\leqslant (u_n-\sqrt a)^2 \frac{1}{4(2\sqrt a)}\left(1+\frac{\sqrt a}{u_n}\right)^2\\
+                   &\leqslant (u_n-\sqrt a)^2  \frac{1}{2\sqrt a}\\
+  \end{align*}
+\item Par r\'ecurrence pour $n=1$, $u_1-\sqrt a \leqslant k$.
+Si la proposition est vraie rang $n$, alors
+\begin{align*}
+       u_{n+1}-\sqrt a &\leqslant \frac{1}{2\sqrt a} (u_n-\sqrt a)^2  \\
+       &\leqslant \frac{1}{2\sqrt a} (2\sqrt a)^2\left(\left( \frac{k}{2\sqrt a} \right)^{2^{n-1}} \right)^2\\
+       &\leqslant 2\sqrt a \left( \frac{k}{2\sqrt a} \right)^{2^n}\\
+\end{align*}
+\item Soit $u_0=3$, alors $u_1 = \frac12(3+\frac{10}{3}) = 3,166\ldots$.
+Comme $3\leqslant \sqrt{10} \leqslant u_1$ donc $u_1-\sqrt{10} \le
+0.166\ldots$. Nous pouvons choisir $k=0,17$. Pour que l'erreur
+$u_n-\sqrt a$ soit inf\'erieure \`a $10^{-8}$ il suffit de calculer le
+terme $u_4$ car alors l'erreur (calcul\'ee par la formule de la
+question pr\'ec\'edente) est inf\'erieure \`a $1,53\times 10^{-10}$. Nous
+obtenons $u_4 = 3,16227766\ldots$
+Bilan $\sqrt{10} =  3,16227766\ldots$ avec une précision de $8$ chiffres après la virgule. 
+Le nombre de chiffres exacts double à chaque itération, avec $u_5$ nous aurions (au moins) $16$ chiffres exacts,
+et avec $u_6$ au moins $32$\ldots
+\end{enumerate}
+\fincorrection
+\correction{000571}
+\begin{enumerate}
+    \item Si $u_0 \leqslant u_1$ alors comme $f$ est croissante $f(u_0)\leqslant f(u_1)$ donc $u_1 \leqslant u_2$, ensuite $f(u_1)\leqslant f(u_2)$ soit $u_2 \leqslant u_3$,... Par r\'ecurrence on montre que $(u_n)$ est d\'ecroissante. Comme elle est minor\'ee par $a$ alors elle converge. Si $u_0 \leqslant u_1$ alors la suite $(u_n)$ est croissante et major\'ee par $b$ donc converge.
+
+Notons $\ell$ la limite de $(u_n)_n$. Comme $f$ est continue alors
+$(f(u_n))$ tend vers $f(\ell)$. De plus la limite de $(u_{n+1})_n$
+est aussi $\ell$. En passant \`a la limite dans l'expression
+$u_{n+1}=f(u_n)$ nous obtenons l'\'egalit\'e $\ell = f(\ell)$.
+
+  \item La fonction $f$ définie par $f(x) = \frac{4x+5}{x+3}$ est continue et d\'erivable sur l'intervalle $[0,4]$ et $f([0,4])\subset [0,4]$.
+La fonction $f$ est croissante (calculez sa d\'eriv\'ee). Comme $u_0 =
+4$ et $u_1= 3$ alors $(u_n)$ est d\'ecroissante. Calculons la valeur
+de sa limite $\ell$. $\ell$ est solution de l'\'equation $f(x)=x$
+soit $4x+5=x(x+3)$. Comme $u_n \geqslant 0$ pour tout $n$ alors $\ell
+\geqslant 0$. La seule solution positive de l'équation du second degré $4x+5=x(x+3)$ est $\ell =
+\frac{1+\sqrt{21}}{2}=2,7912\ldots$
+
+  \item Si $f$ est d\'ecroissante alors $f\circ f$ est croissante (car $x\leqslant y \Rightarrow
+f(x)\geqslant f(y) \Rightarrow f\circ f(x)\leqslant  f\circ f(y)$). Nous
+appliquons la premi\`ere question avec la fonction $f\circ f$. La
+suite $(u_0, u_2 = f\circ f(u_0),u_4 = f\circ f(u_2),\ldots)$ est
+monotone et convergente. De m\^eme pour la suite $(u_1, u_3 =
+f\circ f(u_1),u_5 = f\circ f(u_3),\ldots)$.
+
+  \item La fonction $f$ définie par $f(x) = (1-x)^2$ est continue et d\'erivable de $[0,1]$ dans $[0,1]$.
+Elle est d\'ecroissante sur cet intervalle. Nous avons $u_0 =
+\frac12$, $u_1=\frac14$, $u_2=\frac{9}{16}$, $u_3 =
+0,19\ldots$,... Donc la suite $(u_{2n})$ est croissante, nous
+savons qu'elle converge et notons $\ell$ sa limite. La suite
+$(u_{2n+1})$ et d\'ecroissante,  notons $\ell'$ sa limite. Les
+limites $\ell$ et $\ell'$ sont des solutions de l'\'equation
+$f\circ f(x)=x$. Cette \'equation s'\'ecrit $(1-f(x))^2=x$, ou encore
+$(1-(1-x)^2)^2=x$ soit $x^2(2-x)^2=x$. Il y a deux solutions
+\'evidentes $0$ et $1$. Nous factorisons le polyn\^ome
+$x^2(2-x)^2-x$ en $x(x-1)(x-\lambda)(x-\mu)$ avec $\lambda$ et
+$\mu$ les solutions de l'\'equation $x^2-3x+1$ : $\lambda =
+\frac{3-\sqrt{5}}{2} = 0,3819\ldots$ et $\mu =
+\frac{3+\sqrt{5}}{2} > 1$. Les solutions de l'\'equation $f\circ
+f(x)=x$ sont donc $\{ 0,1,\lambda, \mu\}$. Comme $(u_{2n})$ est
+croissante et que $u_0 = \frac12$ alors  $(u_{2n})$ converge vers
+$\ell=1$ qui est le seul point fixe de $[0,1]$ sup\'erieur \`a
+$\frac12$. Comme $(u_{2n+1})$ est d\'ecroissante et que $u_1 =
+\frac14$ alors  $(u_{2n+1})$ converge vers $\ell'=0$ qui est le
+seul point fixe de $[0,1]$ inf\'erieur \`a $\frac14$.
+\end{enumerate}
+\fincorrection
+\correction{000572}
+\begin{enumerate}
+    \item  Soient $a,b >0$. On veut d\'emontrer
+    que $\sqrt{ab}\leqslant \frac{a+b}{2}$. Comme les deux membres de cette
+in\'egalit\'e sont positifs, cette in\'egalit\'e est \'equivalente
+\`a $ ab\leqslant (\frac{a+b}{2})^2$. De plus,
+$$ ab\leqslant \left( \frac{a+b}{2}\right)^2  \Leftrightarrow 4ab\leqslant a^2+2ab+b$$
+$$ \Leftrightarrow 0\leqslant a^2-2ab+b^2$$ ce qui
+est toujours vrai car $a^2-2ab+b^2=(a-b)^2$ est un carr\'e parfait. On a
+donc bien l'in\'egalit\'e voulue.
+
+  \item  Quitte \`a \'echanger
+$a$ et $b$ (ce qui ne change pas les moyennes arithm\'etique et
+g\'eom\'etrique, et qui pr\'eserve le fait d'\^etre compris entre
+$a$ et $b$), on peut supposer que $a\leqslant b$. Alors en ajoutant les
+deux in\'egalit\'es $$a/2 \leqslant a/2 \leqslant b/2$$ $$a/2 \leqslant b/2 \leqslant
+b/2,$$ on obtient $$a\leqslant \frac{a+b}{2}\leqslant b.$$
+
+De m\^eme, comme tout est positif, en multipliant les deux
+in\'egalit\'es
+$$\sqrt{a} \leqslant \sqrt{a} \leqslant \sqrt{b}$$ $$\sqrt{a} \leqslant \sqrt{b} \leqslant
+\sqrt{b}$$ on obtient $$a\leqslant \sqrt{ab} \leqslant b.$$
+
+    \item  Il faut avant tout remarquer que pour tout $n$,
+    $u_n$ et $v_n$ sont strictement positifs, ce qui
+permet de dire que les deux suites sont bien d\'efinies. On le
+d\'emontre par r\'ecurrence: c'est clair pour $u_0$ et $v_0$, et
+si $u_n$ et $v_n$ sont strictement positifs alors leurs moyennes
+g\'eom\'etrique (qui est $u_{n+1}$) et arithm\'etique (qui est $v_{n+1}$) sont
+strictement positives.
+    \begin{enumerate}
+\item  On veut montrer que pour chaque $n$, $u_n\leqslant v_n$. L'in\'egalit\'e est claire pour $n=0$
+     gr\^ace aux hypoth\`eses faites sur $u_0$ et $v_0$.
+     Si maintenant $n$ est plus grand que 1, $u_{n}$ est la
+     moyenne g\'eom\'etrique de $u_{n-1}$ et $v_{n-1}$ et $v_{n}$
+     est la moyenne arithm\'etique de $u_{n-1}$ et $v_{n-1}$,
+     donc, par 1., $u_n\leqslant v_n$.
+
+ \item  On sait d'apr\`es 2. que $u_n\leqslant u_{n+1}\leqslant v_n$.
+ En particulier, $u_n\leqslant u_{n+1}$ i.e. $(u_n)$ est croissante.
+ De m\^eme, d'apr\`es 2., $u_n\leqslant v_{n+1}\leqslant v_n$. En particulier,
+ $v_{n+1}\leqslant v_n$ i.e. $(v_n)$ est d\'ecroissante.
+
+        \item  Pour tout $n$, on a $u_0\leqslant u_n\leqslant v_n\leqslant v_0$.
+        $(u_n)$ est donc croissante et major\'ee, donc converge
+        vers une limite $\ell$. Et $(v_n)$ est d\'ecroissante et
+        minor\'ee et donc converge vers une limite $\ell'$. 
+Nous savons maintenant que 
+$u_{n} \rightarrow \ell$, donc aussi $u_{n+1} \rightarrow \ell$, et $v_{n} \rightarrow \ell'$ ;
+la relation $u_{n+1}=\sqrt{u_n v_n}$ s'écrit à la limite :
+$$\ell=\sqrt{\ell\ell'}.$$
+De même la relation $v_{n+1}=\frac{u_n+v_n}{2}$ donnerait à la limite :
+$$\ell'=\frac{\ell+\ell'}{2}.$$
+Un petit calcul avec l'une ou l'autre de ces égalités implique $\ell=\ell'$.
+    \end{enumerate}
+\end{enumerate}
+
+Il y a une autre m\'ethode un peu plus longue mais toute aussi
+valable.
+
+{\bf D\'efinition} Deux suites $(u_n)$ et $(v_n)$ sont dites {\em
+adjacentes} si
+\begin{enumerate}
+\item $u_n\leqslant v_n$,
+\item $(u_n)$ est croissante et $(v_n)$ est d\'ecroissante,
+\item $\lim (u_n-v_n)=0$.
+\end{enumerate}
+
+Alors, on a le th\'eor\`eme suivant:\\
+ \textbf{Th\'eor\`eme} : Si
+$(u_n)$ et $(v_n)$ sont deux suites adjacentes, elles sont toutes les
+deux convergentes et ont la m\^eme limite.
+
+Pour appliquer ce th\'eor\`eme, vu qu'on sait d\'ej\`a que $(u_n)$
+et $(v_n)$ v\'erifient les points 1 et 2 de la d\'efinition, il
+suffit de d\'emontrer que $\lim (u_n-v_n)=0$. On a d'abord que
+$v_n-u_n\geqslant 0$. Or, d'apr\`es (a) $$v_{n+1}-u_{n+1}{\le}
+v_{n+1}-u_n=\frac{v_n-u_n}{2}. $$
+
+Donc, si on note $w_n= v_n-u_n$, on a que $0\leqslant w_{n+1}\leqslant w_n/2$.
+Donc, on peut d\'emontrer (par r\'ecurrence) que $0\leqslant w_n\le
+\frac{w_0}{2^n}$, ce qui implique que $\lim_{n\rightarrow\infty}w_n=0$.
+Donc $v_n-u_n$ tend vers 0, et ceci termine de d\'emontrer que les
+deux suites $(u_n)$ et $(v_n)$ sont convergentes et ont m\^eme limite
+en utilisant le th\'eor\`eme sur les suites adjacentes.
+\fincorrection
+\correction{000574}
+Notons $f_n : [0,1] \longrightarrow \Rr$ la fonction d\'efinie par :
+$$ f_n(x) = \sum_{k=1}^n x^k \ \ - 1.$$
+\begin{enumerate}
+  \item La fonction $f_n$ est continue
+sur $[0,1]$. De plus $f_n(0) = -1 < 0$ et $f_n(1) = n-1\geqslant 0$.
+D'apr\`es le th\'eor\`eme des valeurs interm\'ediaires, $f_n$, admet un
+z\'ero dans l'intervalle $[0,1]$. De plus elle strictement
+croissante (calculez sa d\'eriv\'ee) sur $[0,1]$ donc ce z\'ero est
+unique.
+  \item Calculons $f_n(a_{n-1})$.
+\begin{align*}
+f_n(a_{n-1}) &= \sum_{k=1}^{n} a_{n-1}^k  - 1 \\
+     &= a_{n-1}^n + \sum_{k=1}^{n-1} a_{n-1}^k  - 1 \\
+     &= a_{n-1}^n + f_{n-1}(a_{n-1})  \\
+     &= a_{n-1}^n \text{\ \  (car $f_{n-1}(a_{n-1})=0$ par d\'efinition de $a_{n-1}$).}
+\end{align*}
+
+Nous obtenons l'in\'egalit\'e
+$$ 0 = f_n(a_n) < f_n(a_{n-1}) = a_{n-1}^n.$$
+Or $f_n$ est strictement croissante, l'in\'egalit\'e ci-dessus
+implique donc $ a_n < a_{n-1}$.
+Nous venons de d\'emontrer que la suite $(a_n)_n$ est d\'ecroissante.
+
+
+Remarquons avant d'aller plus loin que $f_n(x)$ est la somme d'une
+suite g\'eom\'etrique :
+$$f_n(x) = \frac{1-x^{n+1}}{1-x}-2.$$
+
+\'Evaluons maintenant $f_n(\frac12)$, \`a l'aide de l'expression
+pr\'ec\'edente
+$$f_n(\frac12) = \frac{1-(\frac12)^{n+1}}{1-{\frac12}}-2 = -\frac 1 {2^n} < 0.$$
+Donc $ f_n(\frac12) < f_n(a_n)=0$ entra\^{\i}ne $\frac12 < a_n$.
+
+Pour r\'esumer, nous avons montré que la suite $(a_n)_n$ est
+strictement d\'ecroissante et minor\'ee par $\frac12$.
+
+\item Comme $(a_n)_n$ est
+d\'ecroissante et minor\'ee par $\frac12$ alors elle converge, nous
+notons $\ell$ sa limite :
+$$ \frac 12 \leqslant \ell < a_n.$$
+Appliquons $f_n$ (qui est strictement croissante) \`a cette
+in\'egalit\'e :
+ $$ f_n\left(\frac 12\right) \leqslant f_n(\ell) < f_n(a_n),$$
+qui s'\'ecrit aussi :
+$$ -\frac 1 {2^n} \leqslant f_n(\ell) < 0,$$
+et ceci quelque soit $n\geqslant 1$. La suite $(f_n(\ell))_n$ converge
+donc vers $0$ (th\'eor\`eme des  ``gendarmes''). Mais nous savons
+aussi que
+$$f_n(\ell) = \frac{1-\ell^{n+1}}{1-\ell}-2 ;$$
+donc $(f_n(\ell))_n$ converge vers $\frac{1}{1-\ell}-2$ car
+$(\ell^n)_n$ converge vers $0$. Donc
+$$\frac{1}{1-\ell}-2 = 0, \text{ d'o\`u } \ell = \frac12.$$
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

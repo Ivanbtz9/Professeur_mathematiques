@@ -1,0 +1,237 @@
+\documentclass[a4paper,11pt]{article}
+
+
+\usepackage[frenchb]{babel}
+
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-tétes
+\usepackage{lastpage}
+\usepackage{paralist}
+\usepackage{xspace,multicol}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{lipsum}
+
+\usepackage{enumitem}
+
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exer}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+
+
+
+
+\setlist[enumerate]{itemsep=1mm}
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M.Botcazou \& M.Dupré}\cfoot{\thepage/3}\rfoot{\textbf{Tournez la page S.V.P.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+
+	\noindent\shadowbox{
+		\begin{minipage}{1\linewidth}
+		$$\huge{\textbf{ Examen n°4}}$$
+		$$\left(\text{Temps : }4\text{ heures}\right) $$
+	
+		\end{minipage}
+	}
+\medskip
+
+\bigskip
+
+\begin{enumerate}
+
+\item La présentation, la lisibilité, l'orthographe, \textbf{la qualité de la rédaction et la précision des raisonnements} entreront pour
+une part importante dans l'appréciation des copies. Autrement dit, toute rédaction "fumeuse" ou toute justification bancale n'apportera qu'une faible quantité de points.
+\item Les étudiants sont invités é encadrer dans la mesure du possible les résultats de leurs calculs. \textbf{Les réponses doivent toutes étre soigneusement justifiées}
+\item Les calculatrices sont interdites.
+\end{enumerate}
+
+
+
+
+
+
+
+\newpage
+
+	\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M.Botcazou \& M.Dupré}\cfoot{\thepage/3}\rfoot{\textbf{FIN.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+	
+	
+\begin{exer}
+\begin{enumerate}
+\item Soit $f: \mathbb{R}_{+} \rightarrow \mathbb{R}_{+}$continue. On suppose que $x \mapsto \frac{f(x)}{x}$ admet une limite finie $l<1$ en $+\infty$. Démontrer que $f$ admet un point fixe
+\item 
+On dit qu'une matrice $A=(a_{i,j})$ est \textbf{stochastique} si :
+\begin{itemize}
+\item $a_{i,j} \geq 0 \ \forall \ (i,j) \in [|1,n|]^2$
+\item $\displaystyle\sum_{j=1}^{n}{a_{i,j}} = 1 \ \forall \ i \in [|1,n|]$
+\end{itemize}
+Montrer que le produit de deux matrices stochastiques est stochastique.
+\item Pour tout vecteur du plan fixé $\left(\begin{array}{c}x_0 \\ y_0\end{array}\right) \in \mathbb{R}^2$, on considère la suite définie par récurrence :
+$$
+\left(\begin{array}{l}
+x_{n+1} \\
+y_{n+1}
+\end{array}\right)=\left(\begin{array}{cc}
+0 & -1 \\
+1 & 0
+\end{array}\right)\left(\begin{array}{l}
+x_n \\
+y_n
+\end{array}\right)
+$$
+(a) En partant de $\left(\begin{array}{l}x_0 \\ y_0\end{array}\right)=\left(\begin{array}{l}1 \\ 0\end{array}\right)$, représenter les 8 premiers termes de la suite. \\
+(b) Cette suite est elle convergente?
+\end{enumerate}
+\end{exer}
+	
+
+\begin{exer}{\textbf{(Fonctions continues au sens de Césaro)}} \newline
+\textit{On a vu en cours que dire que $f$ est continue sur $\mathbb{R}$ revient à dire que pour toute suite $(x_n)$, pour tout $a \in \mathbb{R}$ :
+$$ \lim\limits_{n \to \infty} x_n = a \implies \lim\limits_{n \to \infty} f(x_n) = f(a) $$ (caractérisation séquentielle de la continuité) \newline \newline
+On va étudier une réciproque avec une hypothèse légèrement différente dans cet exercice et montrer que les seules fonctions qui la vérifient sont beaucoup plus restreintes que les fonctions continues sur $\mathbb{R}$ !
+}
+
+
+Soit $f : \mathbb{R} \longrightarrow \mathbb{R}$. On dit que $f$ est \textbf{continue au sens de Cesaro} en $a$ si pour toute suite $(x_n)$ :
+$$ \lim\limits_{n \to \infty} \dfrac{x_1+...+x_n}{n} = a \implies \lim\limits_{n \to \infty} \dfrac{f(x_1)+...+f(x_n)}{n} = f(a) $$
+On veut déterminer toutes les fonctions continue au sens de Cesaro sur $\mathbb{R}$ : on raisonne par analyse-synthèse.
+\begin{enumerate}
+\item Soit $a \in \mathbb{R}$. 
+
+\begin{enumerate}
+\item Montrer que $f$ est continue au sens de Cesaro revient à dire $f-a$ l'est aussi. 
+\item Montrer qu'on peut alors supposer que $f(0) = 0$
+\end{enumerate}
+\item On va maintenant utiliser une suite particulière pour se ramener à une équation fonctionnelle sur $f$ qu'on sait résoudre.
+\begin{enumerate}
+\item Montrer que si $f$ est continue au sens de Cesaro sur $\mathbb{R}$, alors :
+$$\forall (x,y) \in \mathbb{R}^2, f \left( \dfrac{x+y}{2} \right) = \dfrac{f(x) + f(y)}{2}$$ \newline
+\textit{Indication :} penser à une suite sympa
+\item En supposant $f(0) = 0$, montrer que $f \left( \dfrac{x}{2} \right) = \dfrac{f(x)}{2}$, puis que $f(x+y) = f(x) + f(y)$
+\end{enumerate}
+\item 
+\begin{enumerate}
+\item Montrer que $\forall r \in \mathbb{Q}$, $f(rx) = rf(x)$. 
+\item Redémontrer que pour tout réel $x$, il existe une suite $(x_n) \in \mathbb{Q}^{\mathbb{N}}$ tel que $\lim\limits_{n \to \infty} x_n = x$
+\item En déduire que $\forall r \in \mathbb{R}$, $f(rx) = rf(x)$
+\end{enumerate}
+\item Conclure
+\end{enumerate}
+\end{exer}
+
+
+
+
+
+
+
+\begin{exer}\textbf{(Les puissances d'une matrice triangulaire supérieure dont les coefficients diagonaux sont de module complexe inférieur à 1 tendent vers 0)}\\
+\textit{L'objectif de l'exercice est de montrer que les puissances d'une matrice triangulaire supérieure à coefficients complexes de module strictement inférieurs à 1 tendent vers 0 en l'infini. \\
+Une première question intéressante à se poser : que cela signifie t-il qu'une suite de matrices tend vers 0? On a défini la convergence pour une suite de réels ou à la rigueur de complexes au chapitre 7, mais jamais pour une suite de matrices. \\
+Ici, on dira que la suite de matrices tend vers $0$ si et seulement si la suite des coefficients tendent tous vers 0 en l'infini.
+}
+ \newline
+Autrement dit, si $T = (t_{i,j})_{1 \leq i,j \leq n}$ avec $t_{i,j} = 0$ pour $i>j$.
+et $|t_{i,i}| < 1$ pour tout $i \in [|1,n|]$, $\lim\limits_{p \to \infty} T^p = 0$. \newline
+\textbf{Notation :} on notera $(t_{i,j}^{(p)})_{1 \leq i,j \leq n}$ les coefficients de la matrice $T^p$. 
+On va montrer que tous les coefficients tendent vers 0, en procédant par récurrence selon la "distance" à la diagonale. Attention à ne pas confondre avec $t_{i,i}^n$ \\ \\
+Les questions 2 et 3 traite le cas des coefficients diagonaux et ceux au-dessus de la diagonale (initialisation). La question 4 correspond à l'hérédité.
+\begin{enumerate}
+\item \textbf{Préliminaires}
+\begin{enumerate}
+\item Soit $T=(t_{i,j})$ et $S=(s_{i,j})$ deux matrices triangulaires supérieures. Montrer que $TS$ est triangulaire supérieure. En déduire que $T^k$ est triangulaire supérieure.
+\end{enumerate}
+\item \textbf{Coefficients diagonaux : les $t_{i,i}^{(p)}$} \\
+Montrer que $\lim\limits_{n \to \infty} t_{i,i}^{(n)}  = 0$ \\ \\
+\item \textbf{Coefficients juste au-dessus de la diagonale :}
+\begin{enumerate}
+\item Calculer $t_{i,i+1}^{(2)}$, puis montrer que :
+$$ t_{i,i+1}^{(p+1)} = t_{i,i+1}^{(p)} t_{i,i} + t_{i+1,i+1}^{p} t_{i,i+1}$$
+\item Soit $(u_n)_{n \geq 1}$ une suite récurrente définie par : $u_{n+1} = a u_n + b_n$ avec $a \in \mathbb{R}$ et $(b_n)$ une suite réelle. Montrer que $$u_n = u_1 a^{n-1} + \displaystyle\sum_{k=1}^{n-1}{b_k a^{n-1-k}}$$ pour $n \geq 1$
+\item Trouver une expression simplifiée de $t_{i,i+1}^{(p)}$ en utilisant la formule précédente, puis montrer que cette suite tend vers $0$ \\
+\end{enumerate}
+\item \textbf{Cas général :}
+Soit $k \in [|1,n-1|]$.
+On suppose que  $\lim\limits_{n \to \infty} t_{i,i+l}^{(p)} = 0$ pour tout $0 \leq l \leq k-1$ $i \in [|1,n-l|]$, . On veut montrer que $\lim\limits_{n \to \infty} t_{i,i+k}^{(p)} = 0$ pour $i \in [|1,n-k|]$,
+\begin{enumerate}
+\item Montrer 
+%$$ t_{i,i+l}^{(p+1)} = t_{i,i+l}^{(p)} t_{i,i} + \displaystyle\sum_{k=1}^{l-1}{t_{i,i+k}^{(p)} t_{i+k,i+l}$$
+\item Soit $x \in ]-1,1[$
+\begin{enumerate}
+\item Montrer que pour tout $l \in \mathbb{N}, \displaystyle\sum_{k=0}^{l}{|x|^k} \leq \dfrac{1}{1-|x|}$
+\item Soit $(u_n)$ une suite qui tend vers $0$. Montrer que la suite $(w_n)$ définie par :
+$$ \forall n \in \mathbb{N}, w_n = \displaystyle\sum_{k=0}^{n}{u_k x^{n-k}}$$ tend vers $0$
+\end{enumerate}
+\item En utilisant la question 3(b), les questions 4(a) et 4(b), conclure que $\lim\limits_{p \to \infty} t_{i,i+l}^{(p)} = 0$.
+\end{enumerate}
+\item Conclure
+\end{enumerate}
+%\end{enumerate}
+\end{exer}
+
+
+
+	
+%\end{enumerate}
+
+\begin{exer}{\textbf{Opérateurs à noyau}}
+\textit{On étudie dans cet exercice une propriété des opérateurs à noyaux. Ca sert notamment en machine learning pour approximer des fonctions de décision. Vous pouvez taper "Méthodes à noyau" sur Google (après le DS évidemment !)}
+Soient $K \in \mathcal{C}^0\left([0,1]^2, \mathbf{R}^{+^*}\right), f$ et $g$ dans $\mathcal{C}^0\left([0,1], \mathbf{R}^{+^*}\right)$ vérifiant, pour tout $x$ de $[0,1]: \int_0^1 K(x, y) f(y) d y=g(x), \int_0^1 K(x, y) g(y) d y=f(x)$. 
+L'objectif du problème est de montrer que $f = g$ \\
+(\textit{Remarque} : il y a ci-dessus une fonction continue à 2 variables, ce qu'on a pas encore vu en cours. Pour ce problème, vous pouvez simplement considérer que la fonction est continue comme fonction de $x$ à $y$ fixé et continue comme fonction de $y$ à $x$ fixé).
+
+On note, si $h \in \mathcal{C}^0([0,1], \mathbf{R})$ :
+$$
+T : h \mapsto \left(T(h) :x \in[0,1] \quad \mapsto \quad T(h)(x) =\int_0^1 K(x, y) h(y) d y \right)
+$$
+$T$ associe donc à une fonction continue $h$ une fonction $T(h)$ dont on peut montrer qu'elle est continue.
+On a donc $T(f)=g$ et $T(g)=f$.
+\begin{enumerate}
+\item \textbf{Préliminaires :}
+\begin{enumerate}
+\item Montrer que si $h_1$ et $h_2 \in \mathcal{C}^0\left([0,1], \mathbf{R}^{+^*}\right)$, on a $T(h_1 + \lambda h_2) = T (h_1) + \lambda T(h_2)$ (on dit que $T$ est linéaire, on reverra ça pour l'algèbre linéaire) \newline
+\item L'objectif de cette question est de montrer que $T$ est un opérateur strictement positif, autrement dit que si $h \geq 0$, $T(h) > 0$ 
+\begin{enumerate}
+\item Montrer que si $h \in \mathcal{C}^0\left([0,1], \mathbf{R}^{+}\right), h \neq 0$, il existe un intervalle $A$ sur lequel $h > 0$
+\item Conclure \\
+\textit{Indication :} pour une fonction $f$ positive, $A$ un intervalle de $[0,1]$, on a $\displaystyle\int_0^1 f(y) d y \geq \displaystyle\int_{A} f(y) d y$
+\end{enumerate}
+
+\end{enumerate}
+\textbf{L'objectif des questions 2 et 3 est de se ramener à une fonction positive et de montrer une contradiction avec le caractère strictement positif de T}.
+\item 
+Montrer qu'il existe $r>0$ et $x_0 \in [0,1]$ tel que $f - rg \geq 0$ et $f(x_0) - r g(x_0) = 0$. \\
+\textit{Indication :} on pourra appliquer le théorème des bornes atteintes (le TBA...) à $\dfrac{f}{g}$. \\
+\item Dans cette question, on suppose par l'absurde que $f-r g$ n'est pas identiquement nulle
+\begin{enumerate}
+
+\item Montrer que si $x \in[0,1]$ , $T(f-r g)(x) > 0$ puis $T^2(f-r g)(x)>0$ ($T^2 = T \circ T$)
+\item En déduire enfin que $f - rg > 0$ et conclure à une absurdité
+\end{enumerate}
+\item On a donc montré que $f = rg$. Montrer que $r^2 = 1$, puis que $r=1$
+Conclure que $f=g$
+\end{enumerate}
+\end{exer} 
+
+%\end{exer}
+
+
+\end{document}

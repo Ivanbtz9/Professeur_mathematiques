@@ -1,0 +1,201 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 859
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Complétion d'une base
+\vskip0.2cm
+Pour $E=\mathbb R^4$, dire si les familles de vecteurs suivantes
+peuvent être complétées en une base de $E$. Si oui, le faire.
+\begin{enumerate}
+\item $(u,v,w)$ avec $u=(1,2,-1,0)$, $v=(0,1,-4,1)$ et $w=(2,5,-6,1)$;
+\item $(u,v,w)$ avec $u=(1,0,2,3)$, $v=(0,1,2,3)$ et $w=(1,2,0,3)$;
+\item $(u,v)$ avec $u=(1,-1,1,-1)$ et $v=(1,1,1,1)$.
+\end{enumerate}
+
+
+% Exercice 860
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Base d'un sous-espace vectoriel de fonctions continues
+\vskip0.2cm
+Soit $E$ l'ensemble des fonctions continues sur $[-1,1]$ qui sont affines sur $[-1,0]$ et sur $[0,1]$.
+Démontrer que $E$ est un espace vectoriel et en donner une base.
+
+
+% Exercice 862
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Polynômes de Lagrange
+\vskip0.2cm
+Soit $E=\mathbb C_{n-1}[X]$ et soit $\alpha_1,\dots,\alpha_n$ des nombres complexes deux à deux distincts. On pose, pour $k=1,\dots,n$,
+$$L_k=\frac{\prod_{\substack{i=1\\i\neq k}}^n (X-\alpha_i)}{\prod_{\substack{i=1\\i\neq k}}^n (\alpha_k-\alpha_i)}.$$
+Démontrer que $(L_k)_{k=1,\dots,n}$ est une base de $E$. Déterminer les coordonnées d'un élément $P\in E$ dans cette base.
+
+
+% Exercice 865
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Base de sevs - 3
+\vskip0.2cm
+Soient $F$ et $G$ les sous-espaces vectoriels suivants de $\mathbb R^3$ :
+\begin{eqnarray*}
+F&=&\{(x,y,z)\in\mathbb R^3;\ x-y-2z=0\}\\
+G&=&\{(x,y,z)\in\mathbb R^3;\ x=2y=x+z\}.
+\end{eqnarray*}
+\begin{enumerate}
+\item Déterminer la dimension de $F$, puis la dimension de $G$.
+\item Calculer $F\cap G$. En déduire que $F$ et $G$ sont supplémentaires.
+\end{enumerate}
+
+
+% Exercice 861
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Base d'un sous-espace de polynômes
+\vskip0.2cm
+Soit $F=\{P\in\mathbb R_n[X];\ P(\alpha)=0\}$. Démontrer que $\mathcal B=\{(X-\alpha)X^k;\ 0\leq k\leq n-1\}$
+est une base de $F$. Quelle est la dimension de $F$? Donner les coordonnées de $(X-\alpha)^n$ dans cette base.
+
+
+% Exercice 2622
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - Bases et coordonnées avec des polynômes
+\vskip0.2cm
+Montrer que $P_1(X)=(X-1)^2$, $P_2(X)=X^2$ et $P_3(X)=(X+1)^2$ forment une base de $\mathbb R_2[X]$ et donner les coordonnées de $X^2+X+1$ dans cette base.
+
+
+% Exercice 2478
+
+
+\vskip0.3cm\noindent\textsc{Exercice 7} - Polynômes de Bernstein
+\vskip0.2cm
+Pour $0\leq k\leq n$, on note $P_k(X)=X^k(1-X)^{n-k}$. Démontrer que la famille $(P_0,\dots,P_n)$ forme une base de $\mathbb R_n[X]$.
+
+
+% Exercice 2954
+
+
+\vskip0.3cm\noindent\textsc{Exercice 8} - Exercice de synthèse
+\vskip0.2cm
+Dans $\mathbb R^3$, on considère les 3 vecteurs suivants : 
+$$v_1=(1,0,-1),\ v_2=(0,1,2)\textrm{ et }v_3=(1,2,3).$$
+\begin{enumerate}
+\item La famille $(v_1,v_2,v_3)$ est-elle libre?
+\item On pose $F=\textrm{vect}(v_1,v_2,v_3)$. Déterminer une base de $F$ et sa dimension. 
+\item Déterminer trois réels $a,b,c$ tels que l'on ait 
+$$F=\{(x,y,z)\in\mathbb R^3:\ ax+by+cz=0\}.$$
+\item Déterminer un vecteur $w$ tel que $(v_1,v_2,w)$ soit une base de $\mathbb R^3$.
+\item Déterminer un supplémentaire de $F$ dans $\mathbb R^3$.
+\item On considère $G=\{(x,y,z)\in\mathbb R^3:\ x+3y+2z=0\}$. Déterminer une base de $G$. Quelle est sa dimension?
+\item Déterminer une base de $F\cap G$. Quelle est sa dimension?
+\item $F$ et $G$ sont-ils en somme directe?
+\item Sans chercher à déterminer une base de $F+G$, donner la dimension de $F+G$.
+\item En déduire que $F+G=\mathbb R^3$.
+\end{enumerate}
+
+
+% Exercice 817
+
+
+\vskip0.3cm\noindent\textsc{Exercice 9} - Opération
+\vskip0.2cm
+Soit $(v_1,\dots,v_n)$ une famille libre d'un $\mathbb R$-espace vectoriel $E$.
+Pour $k=1,\dots,n-1$, on pose $w_k=v_k+v_{k+1}$ et $w_n=v_n+v_1$. Etudier 
+l'indépendance linéaire de la famille $(w_1,\dots,w_n)$.
+
+
+% Exercice 898
+
+
+\vskip0.3cm\noindent\textsc{Exercice 10} - Supplémentaire commun
+\vskip0.2cm
+Soit $E$ un espace vectoriel de dimension finie $n$, et $F$, $G$ deux sous-espaces
+vectoriels de $E$ de même dimension $p<n$. Montrer que $F$ et $G$ ont un supplémentaire commun,
+c'est-à-dire qu'il existe un sous-espace $H$ de $E$ tel que $F\oplus H=G\oplus H=E$.
+
+
+% Exercice 816
+
+
+\vskip0.3cm\noindent\textsc{Exercice 11} - Familles de fonctions
+\vskip0.2cm
+Démontrer que les familles suivantes sont libres dans $\mathcal F(\mathbb R,\mathbb R)$:
+\begin{enumerate}
+\item $(x\mapsto e^{ax})_{a\in\mathbb R}$;
+\item $(x\mapsto |x-a|)_{a\in\mathbb R}$;
+\item $(x\mapsto \cos(ax))_{a>0}$;
+\item $(x\mapsto (\sin x)^n)_{n\geq 1}$.
+\end{enumerate}
+
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=27358
+\end{document}

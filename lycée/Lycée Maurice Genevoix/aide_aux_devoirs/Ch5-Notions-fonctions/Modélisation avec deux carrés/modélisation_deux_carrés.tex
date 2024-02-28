@@ -1,0 +1,172 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+\usepackage{array,multirow,makecell}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+
+\setcellgapes{1pt}
+\makegapedcells
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem*{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+\begin{document}
+\lhead{}\chead{}\rhead{}\lfoot{Chapitre 5 - Exercice}\cfoot{\thepage/3}\rfoot{M. Botcazou}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+$$\fbox{\text{\Large{ Fonctions et applications}}}$$
+\hfil\\
+
+\begin{exo}\textit{\textbf{Les fonctions un outil en géométrie:}}\\
+	
+\par On considère le carré $AEDC$ et le carré $BFGC$ et 
+le point C qui est mobile le long du segment $[A;B]$. Nous dirons que l'abscisse du point C est variable, nous noterons la distance AC par la lettre $l$ qui prend ses valeurs dans l'intervalle $[0;5]$ (dans ce problème ~$l\ = \ AC$). La variation du point C fait donc varier la configuration des deux carrés $AEDC$ et $BFGC$ comme sur les figures ci-dessous.\\
+
+\begin{figure}[h!]
+	\begin{minipage}[c]{.5\textwidth}
+		\centering
+		\includegraphics[width=2.5in]{EXO_2_1.jpg}
+		\caption{}
+		\label{fig1}
+		\includegraphics[width=2.5in]{EXO_2_2.jpg}
+		\caption{}
+		\label{fig2}
+	\end{minipage}
+\hfill
+\begin{minipage}[c]{.5\textwidth}
+	\centering
+	\includegraphics[width=2.5in]{EXO_2_3.jpg}
+	\caption{}
+	\label{fig3}
+	\includegraphics[width=2.5in]{EXO_2_4.jpg}
+	\caption{}
+	\label{fig4}
+\end{minipage}
+\end{figure}
+\quad\\\\
+\noindent\textbf{Construction Geogebra:}\\
+\begin{enumerate}
+	\item Placer le point ~A~ de coordonnées ~(0~;~0)~ et le point ~B~ de coordonnées ~(5~;~0)~\\ 
+	\item Construire un curseur ~~\textit{l}~~ variant de ~$0$~ à ~$5$~\\
+	\item Placer le point ~C~ de coordonnées ~(\textit{l}~;~0)~. Remarquer que le point ~C~ est mobile, l'abscisse du point C dépend de la valeur du curseur ~~\textit{l}~~\\
+	\item À l'aide de la commande "polygone régulier" sur Geogebra, construire le carré AEDC et le carré BFGC.\\ 
+	\item Faire varier le curseur ~~\textit{l}~~ pour modifier les configuration de ces deux carrés. 
+	
+\end{enumerate}
+
+
+\newpage
+\noindent\textbf{Questions:}\\
+\begin{enumerate}
+	\item Exprimer en fonction de $l$ les longueurs $AC$ et $CB$.\\
+	\item On note $P_1$ le périmètre du carré $AEDC$ et $P_2$ le périmètre du carré $BFGC$. On note $A_1$ l'aire du carré $AEDC$ et $A_2$ l'aire du carré $BFGC$. Exprimer $P_1, P_2, A_1, A_2$ en fonction de $l$.\\
+	\item Remplir le tableau ci-dessous:\\
+	\textit{(Vous pouvez utiliser la calculatrice si besoin)}\\
+\begin{center}
+	\setcellgapes{4pt}
+	\begin{tabular}{|C{1cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|C{1.5cm}|}
+		\hline
+		$l$ & $P_1(l)$ & $P_2(l)$ & $A_1(l)$ & $A_2(l)$\\
+		\hline
+		0 &   &   &   &  \\
+		\hline
+		0.5 &   &   &   &  \\
+		\hline
+		1 &   &   &   &  \\
+		\hline
+		1.5 &   &   &   &  \\
+		\hline
+		2 &   &   &   &  \\
+		\hline
+		2.5 &   &   &   &  \\
+		\hline
+		3 &   &   &   &  \\
+		\hline
+		3.5 &   &   &   &  \\
+		\hline
+		4 &   &   &   &  \\
+		\hline
+		4.5 &   &   &   &  \\
+		\hline
+		5 &   &   &   &  \\
+		\hline
+	
+	\end{tabular}
+\end{center}\quad\\
+	\item Tracer dans un même repère orthonormé les représentations graphiques des fonctions $P_1, P_2, A_1, A_2$ définies sur l'intervalle $[0;5]$ \textit{(Utiliser Annexe 1)}\\
+	\item Calculer $P_1(4)$ et $A_1(4)$ que pouvez vous dire sur l'image de $4$ par la fonction $P_1$ et par la fonction $A_1$\\
+	\item Grâce à la question précédente et à la lecture graphique, donner pour quelle valeur de $l$ nous avons $P_1(l)\leq A_1(l)$. Expliquer ce que cela signifie à l'aide d'une phrase.\\   
+	\item  Donner un antécédent de 7 par la fonction $A_1$ et un antécédent de $16$ par la fonction $A_2$.
+	 
+	
+\end{enumerate}
+	
+	\end{exo}
+\newpage
+
+\section*{ANNEXE:}\quad\\
+\subsection*{Annexe 1:}
+
+\definecolor{cqcqcq}{rgb}{0.7529411764705882,0.7529411764705882,0.7529411764705882}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm,yscale=0.5,xscale=2.5]
+\draw [color=cqcqcq,, xstep=0.5cm,ystep=1.0cm] (-0.34854709889064667,-0.8855173732392223) grid (5.478986118004205,25.59127505370952);
+\draw[->,color=black] (0.,0.) -- (5.478986118004205,0.);
+\foreach \x in {,0.5,1.,1.5,2.,2.5,3.,3.5,4.,4.5,5.}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,0.) -- (0.,25.59127505370952);
+\foreach \y in {,1.,2.,3.,4.,5.,6.,7.,8.,9.,10.,11.,12.,13.,14.,15.,16.,17.,18.,19.,20.,21.,22.,23.,24.,25.}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-0.34854709889064667,-0.8855173732392223) rectangle (5.478986118004205,25.59127505370952);
+\end{tikzpicture}
+
+\end{document}

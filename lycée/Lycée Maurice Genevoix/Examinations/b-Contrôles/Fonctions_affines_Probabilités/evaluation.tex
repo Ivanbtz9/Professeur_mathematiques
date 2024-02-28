@@ -1,0 +1,230 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+\usepackage{diagbox,makecell,setspace}
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+\usepackage{tabularx}
+\parindent=0cm
+
+
+
+
+\lstset{
+	literate=
+	{�}{{\'a}}1 {�}{{\'e}}1 {�}{{\'i}}1 {�}{{\'o}}1 {�}{{\'u}}1
+	{�}{{\'A}}1 {�}{{\'E}}1{�}{{\'I}}1 {�}{{\'O}}1 {�}{{\'U}}1
+	{�}{{\`a}}1 {�}{{\`e}}1 {�}{{\`i}}1 {�}{{\`o}}1{�}{{\`u}}1
+	{�}{{\`A}}1 {�}{{\'E}}1 {�}{{\`I}}1 {�}{{\`O}}1 {�}{{\`U}}1
+	{�}{{\"a}}1 {�}{{\"e}}1 {�}{{\"i}}1 {�}{{\"o}}1 {�}{{\"u}}1
+	{�}{{\"A}}1 {�}{{\"E}}1 {�}{{\"I}}1 {�}{{\"O}}1 {�}{{\"U}}1
+	{�}{{\^a}}1 {�}{{\^e}}1 {�}{{\^i}}1 {�}{{\^o}}1 {�}{{\^u}}1
+	{�}{{\^A}}1 {�}{{\^E}}1 {�}{{\^I}}1 {�}{{\^O}}1 {�}{{\^U}}1
+	{?}{{\oe}}1 {?}{{\OE}}1 {�}{{\ae}}1 {�}{{\AE}}1 {�}{{\ss}}1
+	{?}{{\H{u}}}1 {?}{{\H{U}}}1 {?}{{\H{o}}}1 {?}{{\H{O}}}1
+	{�}{{\c c}}1 {�}{{\c C}}1 {�}{{\o}}1 {�}{{\r a}}1 {�}{{\r A}}1
+	{?}{{\EUR}}1 {�}{{\pounds}}1 {?}{{?}}1
+}
+\lstdefinestyle{stylepython}{
+	language=Python, 
+	basicstyle=\ttfamily,
+	%       name=iciNOM,title={Un programme Python}, 
+	%       caption={iciTitre},
+	%       label={iciNom},
+	commentstyle=\footnotesize\color{green!50!black}, 
+	keywordstyle=\color{blue},   
+	stringstyle=\color{olive},   
+	numberstyle=\tiny,  
+	%       mathescape,  
+	%       showstringspaces=false,   
+	tabsize=3,   
+	%framexleftmargin=5mm,  
+	framexrightmargin=5pt,
+	framexbottommargin=5pt
+	xleftmargin=0mm,  
+	%keepspaces=false,   
+	classoffset=1,     
+	numbers=left,    
+	%stepnumber=1,    
+	numbersep=8pt,   
+	%showstringspac0ptes=false,  
+	%frame=single,
+	framerule=1pt,
+	%rulecolor=\color{yellow}, 
+	%       breaklines=true,  
+	%       rulesepcolor=\color{blue}, %avec frame=shadowsbox
+	%backgroundcolor=\color{yellow}
+}
+
+
+
+\setcellgapes{10pt}
+\makegapedcells
+
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{thm-def}{Théorème/Définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+
+
+\begin{document}
+
+
+\lhead{Lycée Le Maurice Genevoix}\chead{}\rhead{Année~2021-2022}\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{\textbf{Tourner la page S.V.P.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\hfill\\[-0.7cm]
+$$	\fbox{\text{\Large{ \sc Contrôle sur les fonctions affines et les probabilités }}}$$
+\centering \Large{ (55 minutes) }\\[0.5cm]
+
+\flushleft\normalsize
+
+
+\textbf{\textit{Note aux lecteurs:}} \textit{ce contrôle devra être rédigé sur une copie avec un stylo de couleur foncée. La présentation et la qualité de rédaction seront des points importants d'appréciation des copies.  Les calculatrices sont autorisées mais un résultat sans l'expression des calculs qui lui est associé ne rapportera pas la totalité des points.}\\[0.7cm]
+
+\begin{exo} \textbf{"Pièces équilibrée VS pièces truquée"}\\\hfil\\
+
+	\begin{enumerate}%[$\square$]
+		\item Remplir le programme python en \textbf{Annexe 1} pour que la fonction \emph{"piece\_equilibree" } modélise \\le lancer d'une pièce équilibrée. \hfill\textbf{/1pts}
+		\item On considère l'expérience aléatoire consistant à lancer une pièce truquée donnant 11 fois plus de "Face" que de "Pile".\\ Donner la loi de cette expérience aléatoire en expliquant votre raisonnement. \hfill\textbf{/3pts}
+		\item Remplir le programme python en \textbf{Annexe 2} pour que la fonction \emph{"piece\_truquee" } modélise\\ le lancer de cette pièce truquée. \hfill\textbf{/1.5pts}
+		\item Peut-on affirmer que la probabilité d'obtenir un "Pile" avec la pièce équilibrée est égale à 6 fois la probabilité d'obtenir un "Pile" avec la pièce truquée de l'expérience précédente. \textbf{(Justifier)} \\\hfill\textbf{/1pts}
+	\end{enumerate}
+\end{exo}
+	
+\begin{exo}\textbf{"Fonctions affines et courbes représentatives"}\\\hfil\\
+Soit $F$ une fonction affine définie sur $\R$.\hfill\\[0.2cm]
+
+On sait que la courbe de la fonction $F$ passe par les points de coordonnées $U(-9;-3)$ et $V(-1;5)$.\hfill\\[0.2cm]
+\begin{enumerate}
+	\item Donner l'expression de la fonction $F$.\hfill\textbf{/2.5pts}
+	\item Donner le tableau de signes de la fonction $F$. \hfill\textbf{/1pts}
+	\item Soit $\alpha\in\R$ et $W(6;\alpha)$. \\Donner la valeur de l'inconnue $\alpha$ pour que le coefficient de la droite $\left(UW\right)$ soit égal à $-4$. \hfill\textbf{/1.5pts}
+	%\item Trouver les coordonnées du point d'intersection  $Z$ entre la droite $\left(UW\right)$ et la droite\hfill\textbf{/1.5pts}\\ des ordonnées.  
+	
+\end{enumerate}
+
+\end{exo}
+\begin{exo}\textbf{"Des activités à l'université"}\\\hfil\\
+	Une université propose à ses $12000$ étudiants de première année une activité artistique ou sportive pour améliorer leurs notes au premier semestre de leur licence. Ces options sont facultatives, on note $S$ l'option sportive et $A$ l'option artistique, il est possible de choisir les deux options simultanément.
+	$4000$ étudiants ont choisi uniquement l'option $A$ et $5000$ étudiants ont choisi uniquement l'option $S$. $1500$ étudiants n'ont pas choisi d'option.\\ 
+	\begin{enumerate}
+		\item Compléter le diagramme en \textbf{Annexe 3} en indiquant \textbf{le cardinal} de chaque évènement. \hfill\textbf{/2pts}
+
+		\item On choisit au hasard un étudiant de cette université.
+		\begin{enumerate}
+			\item Quelle est la probabilité de tirer un étudiant qui suit l'activité artistique ? \hfill\textbf{/1pts}\\[0.25cm]
+			\item Quelle est la probabilité de tirer un étudiant qui suit les deux activités ? \hfill\textbf{/1pts}\\[0.25cm]
+			\item Quelle est la probabilité de tirer un étudiant qui suit au moins une des deux activités ?\hfill\textbf{/1pts}\\[0.25cm]
+			\item Quelle est la probabilité de tirer un étudiant qui ne suit pas d'activité? \hfill\textbf{/1pts}\\[0.25cm]
+			\item Quelle est la probabilité de tirer un étudiant qui suit l'activité $S$\hfill\textbf{/1pts}\\ mais qui ne suit pas l'activité $A$? \\[0.25cm]
+
+		\end{enumerate}
+		\item \begin{enumerate}
+			\item Calculer $P(S) + P(A) $.\hfill\textbf{/0.5pts}\\[0.25cm]
+			\item Calculer $P(S\cup A) + P(S\cap A) $.\hfill\textbf{/0.5pts}\\[0.25cm]
+			\item Exprimer $P(S\cup A)$ en fonction de $P(S)$, $P(A) $ et $P(S\cap A)$.\hfill\textbf{/0.5pts}
+		\end{enumerate} 
+		
+	\end{enumerate} 
+\end{exo}
+
+
+
+\newpage
+\lhead{Lycée Le Maurice Genevoix\\[0.2cm]
+\bfseries Nom:\\[0.2cm]\bfseries Prénom:}\chead{}\rhead[t]{Année~2021-2022\\[0.2cm]$Seconde \ .....$\\}\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{\textbf{Fin}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\hfill\\[0.5cm]
+	
+\section*{Annexe 1: une pièce équilibrée}
+
+
+\begin{lstlisting}[style=stylepython]
+def ............................():
+	k = rd.randint(...,...)	
+	return ....			
+\end{lstlisting}
+\section*{Annexe 2: une pièce truquée}
+\begin{lstlisting}[style=stylepython]
+def ............................():
+	k = rd.randint(....,....)
+	if k <= ..... :
+		return ....
+	else:
+		return ....			
+\end{lstlisting}
+\section*{Annexe 3:}
+\hfil\\[1cm]
+
+$$\begin{tikzpicture}[scale=2.3]
+\draw[red](-1,0) ellipse [x radius=2cm, y radius=1cm];
+\draw(-2,0.05) node{\large$\dots\dots\dots\dots\dots$};
+\draw(2,0.05) node{\large$\dots\dots\dots\dots\dots$};
+\draw(0,-1.5) node[]{\large$\dots\dots\dots\dots\dots$};
+\draw(0,0.05) node{\large$\dots\dots\dots\dots\dots$};
+\draw(2.5,2) node{\large$\dots\dots\dots\dots\dots$};
+\draw(1.5,1.05) node{\large$\dots\dots\dots\dots\dots$};
+\draw(-1.5,1.05) node{\large$\dots\dots\dots\dots\dots$};
+\draw[blue](1,0) ellipse [x radius=2cm, y radius=1cm];
+\draw[black](0,0) ellipse [x radius=4cm, y radius=2cm];
+\end{tikzpicture}$$
+
+\hfill\\[1cm]
+
+\section*{Bonus: À faire uniquement si tout a déjà été traité.}
+De combien de manières peut-on payer 1 euro, avec uniquement des pièces de 50 centimes, 20 centimes et 10 centimes.
+
+\end{document}
+
+
+

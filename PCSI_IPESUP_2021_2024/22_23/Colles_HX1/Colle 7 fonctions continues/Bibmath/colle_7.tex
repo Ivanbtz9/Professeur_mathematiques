@@ -1,0 +1,113 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+%\begin{center}\textsc{{\huge https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/analyse/une}}\end{center}
+
+% Exercice 200
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Majorée par une fonction affine - avec détails
+\vskip0.2cm
+Soit $F:[0,+\infty[\to\mathbb R$ une application uniformément continue. On se propose de démontrer qu'il existe
+deux réels $a$ et $b$ tels que, pour tout $x\in[0,+\infty[$, on ait $F(x)\leq ax+b$. Pour cela, on commence par fixer $\eta_1>0$
+tel que 
+$$\forall (x,y)\in([0,+\infty[)^2,\ \big(|x-y|<\eta_1\implies |F(x)-F(y)|\leq 1\big).$$
+On fixe également $x_0\in[0,+\infty[$.
+\begin{enumerate}
+\item Soit $n_0$ le plus petit entier tel que $\frac{x_0}{n_0}\leq \eta_1$; justifier l'existence de $n_0$ et démontrer que $n_0\leq \frac{x_0}{\eta_1}+1$.
+\item Montrer que 
+$$|F(x)-F(x_0)|\leq \sum_{k=0}^{n_0-1}\left|F\left(\frac{(k+1)x_0}{n_0}\right)-F\left(\frac{kx_0}{n_0}\right)\right|.$$
+\item Conclure.
+\item La fonction exponentielle est-elle uniformément continue sur $[0,+\infty[$?
+\end{enumerate}
+
+
+% Exercice 201
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Majorée par une fonction affine
+\vskip0.2cm
+Soit $f:[0,+\infty[\to\mathbb R$ une fonction uniformément continue.
+Montrer qu'il existe deux réels $a$ et $b$ tels que
+$|f(x)|\leq ax+b$ pour tout $x\geq 0$.
+
+
+% Exercice 3060
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Une fonction définie "par morceaux"
+\vskip0.2cm
+Soit $f,g:\mathbb R\to\mathbb R$ deux fonctions continues. On définit une fonction $h:\mathbb R\to\mathbb R$ par 
+$$h(x)=\left\{
+\begin{array}{ll}
+f(x)&\textrm{ si }x\in\mathbb Q\\
+g(x)&\textrm{ si }x\in\mathbb R\backslash \mathbb Q.
+\end{array}\right.$$
+Démontrer que $h$ est continue en $x_0\in\mathbb R$ si et seulement si $f(x_0)=g(x_0)$.
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=26177
+\end{document}

@@ -1,0 +1,277 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor,multicol}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	
+	
+	\begin{center}
+		\Large \sc colle 15 = intégration et Déterminants
+	\end{center}
+
+
+
+
+
+
+
+
+\section*{Intégration :}\hfill\\
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\
+			Soit $f:[a,b]\rightarrow \R$ une fonction continue sur $[a,b]$ ($a<b$).
+			\begin{enumerate}
+				\item On suppose que $f(x) \ge 0$ pour tout $x\in [a,b]$, et que $f(x_0)>0$ en un point $x_0\in [a,b]$. 
+				Montrer que $\int_a^b f(x) d x>0$. En déduire que : <<si $f$ est une fonction continue
+				positive sur $[a,b]$ telle que $\int_a^b f(x) d x=0$ alors $f$ est
+				identiquement nulle>>.
+				\item On suppose que $\int_a^b f(x) d x=0$. Montrer qu'il existe $c\in [a,b]$ tel que $f(c)=0$. 
+				\item Application: on suppose
+				que $f$ est une fonction continue sur $[0,1]$ telle que $\int_0^1 f(x) dx=\frac 12$. 
+				Montrer qu'il existe $d\in [0,1]$ tel que $f(d)=d$.
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+			\begin{exo}\quad\\
+			Soit $f$ une fonction de classe $C^1$ sur $[0,1]$ telle que $f(0)=0$. Montrer que $2\int_{0}^{1}f^2(t)\;dt\leq\int_{0}^{1}{f'}^2(t)\;dt$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+	\begin{exo}\quad\\
+		Soient les fonctions définies sur $\R$,
+		$$f(x)=x \text{ , } g(x)=x^2 \text{ et  } h(x)=e^x,$$
+		Justifier qu'elles sont intégrables sur tout intervalle fermé borné de $\R$. En utilisant les
+		sommes de Riemann, calculer les intégrales $\int_0^1f(x)d x$, $\int_1^2 g(x)
+		d x$ et $\int_0^x h(t) d t$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}	
+		
+	
+	\begin{exo}\quad\\
+		Calculer la limite des suites suivantes :
+		\begin{enumerate}
+			\item $\displaystyle u_n=n\sum_{k=0}^{n-1}\frac 1{k^2+n^2}$
+			\item $\displaystyle v_n=\prod\limits_{k=1}^n\left(1+\frac{k^2}{n^2}\right) ^{\frac 1n}$
+		\end{enumerate}
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+
+
+		
+		
+	\end{minipage}
+\end{minipage}
+
+
+\section*{Déterminant:}\hfill\\
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\
+			\begin{enumerate}
+				\item Calculer l'aire du parall\'elogramme construit sur les vecteurs 
+				$\vec{u} = \left(\begin{array}{c}2\\3\end{array}\right)$ et 
+				$\vec{v} = \left(\begin{array}{c}1\\4\end{array}\right)$.
+				\item Calculer le volume du  parall\'el\'epip\`ede construit sur les vecteurs \\
+				$\vec{u} = \left(\begin{array}{c}1\\2\\0\end{array}\right)$, 
+				$\vec{v} = \left(\begin{array}{c}0\\1\\3\end{array}\right)$ et 
+				$\vec{w} = \left(\begin{array}{c}1\\1\\1\end{array}\right)$.
+				\item Montrer que le volume d'un parall\'el\'epip\`ede dont les sommets sont des points de 
+				$\R^3$ \`a coefficients entiers est un nombre entier.
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\quad\\
+			Calculer les déterminants des matrices suivantes :
+			
+			$$
+			\begin{pmatrix}
+			a&b&c\\c&a&b\\b&c&a
+			\end{pmatrix}
+			\quad
+			\begin{pmatrix}
+			-1 & 1 & 1 & 1\\ 1 & -1 & 1 & 1\\ 1 & 1 & -1& 1\\ 1 & 1& 1&-1
+			\end{pmatrix}
+			$$
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+		\begin{exo}\quad\\[0.25cm]
+		Soit $(a_{0},...,a_{n-1})\in\C^{n}$, $x\in\C$. Calculer
+		$$
+		\Delta_{n}=
+		\left|
+		\begin{matrix}
+		x &  0    &        & a_{0}   \\
+		-1 &\ddots &\ddots  &\vdots  \\
+		&\ddots &x      & a_{n-2} \\
+		0 &       & -1      & x+a_{n-1}
+		\end{matrix}
+		\right|
+		$$
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\quad\\
+			Soit $a$ un réel.
+			On note $\Delta_n$ le déterminant suivant : 
+			$$
+			\Delta_n = 
+			\left\vert
+			\begin{matrix}
+			a   &    0   & \cdots & 0      & n-1 \\
+			0   &    a   & \ddots & \vdots & \vdots \\
+			\vdots & \ddots & \ddots & 0      & 2 \\
+			0   & \cdots &   0    & a      & 1 \\
+			n-1  & \cdots &   2    & 1      & a
+			\end{matrix}
+			\right\vert
+			$$
+			\begin{enumerate}
+				\item Calculer $\Delta_n$ en fonction de $\Delta_{n-1}$.
+				\item Démontrer que : $\displaystyle \forall n\geq2\quad
+				\Delta_n=a^n-a^{n-2}\sum_{i=1}^{n-1}{i^2}$.
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\quad\\
+		Calculer les déterminants des matrices suivantes :
+		
+		$$
+		\begin{pmatrix}
+		a&a&b&0 \\  a&a&0&b \\  c&0&a&a \\ 0&c&a&a
+		\end{pmatrix}
+		\quad
+		\begin{pmatrix}
+		1&0&0&1&0 \\ 0&-4&3&0&0 \\ -3&0&0&-3&-2 \\ 0&1&7&0&0 \\ 4&0&0&7&1  
+		\end{pmatrix}
+		$$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo} \textit{\textbf{Déterminant de Vandermonde}}\quad\\
+		Montrer que
+		$$\left|
+		\begin{array}{ccccc}
+		1 & t_1 & t_1^2 & \ldots & t_1^{n-1} \\
+		1 & t_2 & t_2^2 & \ldots & t_2^{n-1} \\\
+		\ldots&\ldots&\ldots& \ldots & \ldots \\
+		1 & t_n & t_n^2 & \ldots & t_n^{n-1}
+		\end{array}\right|
+		= \prod_{1 \le i < j \le n} (t_j - t_i) $$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+
+		
+		
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+\end{document}

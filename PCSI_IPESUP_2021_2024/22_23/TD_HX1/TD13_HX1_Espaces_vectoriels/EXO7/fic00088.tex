@@ -1,0 +1,1252 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00088, rouget, 2010/07/11}
+
+\titre{Espaces vectoriels} 
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable\quad T~:~pour travailler et mémoriser le cours
+\end{center}
+
+
+\exercice{5164, rouget, 2010/06/30}
+\enonce{005164}{*T}
+Soit $E$ le $\Rr$-espace vectoriel des applications de $[0,1]$ dans $\Rr$ (muni de $f+g$ et $\lambda.f$ usuels)
+(ne pas hésiter à redémontrer que $E$ est un $\Rr$ espace vectoriel). Soit $F$ l'ensemble des applications de $[0,1]$
+dans $\Rr$ vérifiant l'une des conditions suivantes~:
+
+$$\begin{array}{llll}
+1)\;f(0)+f(1)=0&2)\;f(0)=0&3)\;f(\frac{1}{2})=\frac{1}{4}&4)\;\forall x\in[0,1],\;f(x)+f(1-x)=0\\
+5)\;\forall x\in[0,1],\;f(x)\geq0&6)\;2f(0)=f(1)+3
+\end{array}$$
+
+Dans quel cas $F$ est-il un sous-espace vectoriel de $E$~?
+\finenonce{005164}
+
+
+\finexercice
+\exercice{5165, rouget, 2010/06/30}
+\enonce{005165}{**T}
+On munit $\Rr^n$ des lois produit usuelles. Parmi les sous-ensembles suivants $F$ de $\Rr^n$, lesquels
+sont des sous-espaces vectoriels~?
+
+$$\begin{array}{lll}
+1)\;F=\{(x_1,...,x_n)\in\Rr^n/\;x_1=0\}&2)\;F=\{(x_1,...,x_n)\in\Rr^n/\;x_1=1\}\\
+3)\;F=\{(x_1,...,x_n)\in\Rr^n/\;x_1=x_2\}&4)\;F=\{(x_1,...,x_n)\in\Rr^n/\;x_1+...+x_n=0\}\\
+5)\;F=\{(x_1,...,x_n)\in\Rr^n/\;x_1.x_2=0\}
+\end{array}$$
+\finenonce{005165}
+
+
+\finexercice
+\exercice{5166, rouget, 2010/06/30}
+\enonce{005166}{**}
+Soit $E$ un $\Kk$-espace vectoriel. Soient $A$, $B$ et $C$ trois sous-espaces vectoriels de $E$ vérifiant $A\cap
+B=A\cap C$, $A+B=A+C$ et $B\subset C$. Montrer que $B=C$.
+\finenonce{005166}
+
+
+\finexercice\exercice{5167, rouget, 2010/06/30}
+\enonce{005167}{**T}
+Soit $\Rr^\Nn$ le $\Rr$-espace vectoriel des suites réelles (muni des opérations usuelles). On considère les trois
+éléments de $E$ suivants~:~$u=(\cos(n\theta))_{n\in\Nn}$, $v=(\cos(n\theta+a))_{n\in\Nn}$ et
+$w=(\cos(n\theta+b))_{n\in\Nn}$ où $\theta$, $a$ et $b$ sont des réels donnés. Montrer que $(u,v,w)$ est une famille
+liée.
+\finenonce{005167}
+
+
+\finexercice\exercice{5168, rouget, 2010/06/30}
+\enonce{005168}{**T}
+Soit $F$ le sous-espace vectoriel de $\Rr^4$ engendré par $u=(1,2,-5,3)$ et $v=(2,-1,4,7)$. Déterminer $\lambda$ et
+$\mu$ réels tels que $(\lambda,\mu,-37,-3)$ appartienne à $F$.
+\finenonce{005168}
+
+
+\finexercice
+\exercice{5169, rouget, 2010/06/30}
+\enonce{005169}{**T}
+Montrer que $a=(1,2,3)$ et $b=(2,-1,1)$ engendrent le même sous espace de $\Rr^3$ que $c=(1,0,1)$ et $d=(0,1,1)$.
+\finenonce{005169}
+
+
+\finexercice\exercice{5170, rouget, 2010/06/30}
+\enonce{005170}{**T}
+\begin{enumerate}
+\item  Vérifier qu'il existe une unique application linéaire de $\Rr^3$ dans $\Rr^2$ vérifiant  $f((1,0,0))=(1,1)$
+puis $f((0,1,0))=(0,1)$ et $f((0,0,1))=(-1,1)$. Calculer $f((3,-1,4))$ et $f((x,y,z))$ en général.
+\item  Déterminer $\mbox{Ker}f$. En fournir une base. Donner un supplémentaire de $\mbox{Ker}f$ dans $\Rr^3$ et
+vérifier qu'il est isomorphe à $\mbox{Im}f$.
+\end{enumerate}
+\finenonce{005170}
+
+
+\finexercice
+\exercice{5171, rouget, 2010/06/30}
+\enonce{005171}{**I}
+Soit $E$ un $\Kk$-espace vectoriel et $f$ un élément de $\mathcal{L}(E)$.
+\begin{enumerate}
+\item  Montrer que $[\mbox{Ker}f=\mbox{Ker}f^2\Leftrightarrow\mbox{Ker}f\cap\mbox{Im}f=\{0\}]$ et $[\mbox{Im}f=\mbox{Im}f^2\Leftrightarrow
+E=\mbox{Ker}f+\mbox{Im}f]$ (où $f^2=f\circ f)$.
+\item  Par définition, un endomorphisme $p$ de $E$ est un projecteur si et seulement si $p^2=p$.
+
+Montrer que
+$$[p\;\mbox{projecteur}\Leftrightarrow Id-p\;\mbox{projecteur}]$$ puis que
+$$[p\;\mbox{projecteur}\Rightarrow\mbox{Im}p=\mbox{Ker}(Id-p)\;\mbox{et}\;\mbox{Ker}p=\mbox{Im}(Id-p)\;\mbox{et}\;
+E=\mbox{Ker}p\oplus\mbox{Im}p].$$
+
+\item  Soient $p$ et $q$ deux projecteurs, montrer que~:~$[\mbox{Ker}p=\mbox{Ker}q\Leftrightarrow p=p\circ
+q\;\mbox{et}\;q=q\circ p]$.
+\item  $p$ et $q$ étant deux projecteurs vérifiant $p\circ q+q\circ p=0$, montrer que $p\circ q=q\circ p=0$. Donner
+une condition nécessaire et suffisante pour que $p+q$ soit un projecteur lorsque $p$ et $q$ le sont. Dans ce
+cas, déterminer $\mbox{Im}(p+q)$ et $\mbox{Ker}(p+q)$ en fonction de $\mbox{Ker}p$, $\mbox{Ker}q$, $\mbox{Im}p$ et
+$\mbox{Im}q$.
+\end{enumerate}
+\finenonce{005171}
+
+
+\finexercice
+\exercice{5172, rouget, 2010/06/30}
+\enonce{005172}{**}
+ Soient $E$ un $\Kk$-espace vectoriel et $A$, $B$ et $C$ trois sous-espaces de $E$.
+\begin{enumerate}
+\item  Montrer que~:~$(A\cap B)+(A\cap C)\subset A\cap(B+C)$.
+\item  A-t-on toujours l'égalité~?
+\item  Montrer que~:~$(A\cap B)+(A\cap C)=A\cap(B+(A\cap C))$.
+\end{enumerate}
+\finenonce{005172}
+
+
+\finexercice
+\exercice{5173, rouget, 2010/06/30}
+\enonce{005173}{**T}
+Dans $E=\Rr^4$, on considère $V=\{(x,y,z,t)\in E/\;x-2y=0\;\mbox{et}\;y-2z=0\}$ et $W=\{(x,y,z,t)\in E/\;x+z=y+t\}$.
+\begin{enumerate}
+\item  Montrer que $V$ et $W$ sont des sous espaces vectoriels de $E$.
+\item  Donner une base de $V$, $W$ et $V\cap W$.
+\item  Montrer que $E=V+W$.
+\end{enumerate}
+\finenonce{005173}
+
+
+\finexercice
+\exercice{5174, rouget, 2010/06/30}
+\enonce{005174}{***}
+Soit $\begin{array}[t]{cccc}
+f~:&[0,+\infty[\times[0,2\pi[&\rightarrow&\Rr^2\\
+ &(x,y)&\mapsto&(x\cos y,x\sin y)
+\end{array}$.
+
+\begin{enumerate}
+\item  $f$ est-elle injective~?~surjective~?
+\item  Soient $a$, $b$, $\alpha$ et $\beta$ quatre réels. Montrer qu'il existe $(c,\gamma)\in\Rr^2$ tel que~:~
+$\forall x\in\Rr,\;a\cos(x-\alpha)+b\cos(x-\beta)=c\cos(x-\gamma)$.
+\item  Soit $E$ le $\Rr$-espace vectoriel des applications de $\Rr$ dans $\Rr$. Soit $F=\{u\in
+E/\;\exists(a,b,\alpha,\beta)\in\Rr^4\;\mbox{tel que}\;\forall x\in\Rr,\;u(x)=a\cos(x-\alpha)+b\cos(2x-\beta)\}$.
+Montrer que $F$ est un sous-espace vectoriel de $E$.
+\item  Déterminer $\{\cos x,\sin x,\cos(2x),\sin(2x),1,\cos^2x,\sin^2x\}\cap F$.
+\item  Montrer que $(\cos x,\sin x,\cos(2x),\sin(2x))$ est une famille libre de $F$.
+\end{enumerate}
+\finenonce{005174}
+
+
+\finexercice
+\exercice{5175, rouget, 2010/06/30}
+\enonce{005175}{**}
+Soit $C$ l'ensemble des applications de $\Rr$ dans $\Rr$, croissantes sur $\Rr$.
+\begin{enumerate}
+\item  $C$ est-il un espace vectoriel (pour les opérations usuelles)~?
+\item  Montrer que $V=\{f\in\Rr^\Rr/\;\exists(g,h)\in C^2\;\mbox{tel que}\;f= g-h\}$ est un $\Rr$-espace
+vectoriel.
+\end{enumerate}
+\finenonce{005175}
+
+
+\finexercice
+\exercice{5176, rouget, 2010/06/30}
+\enonce{005176}{**}
+Montrer que la commutativité de la loi $+$ est une conséquence des autres axiomes de la structure d'espace vectoriel.
+\finenonce{005176}
+
+
+\finexercice
+\exercice{5177, rouget, 2010/06/30}
+\enonce{005177}{***}
+Soient $E$ un $\Kk$-espace vectoriel et $A$, $B$ et $C$ trois sous-espaces vectoriels de $E$.
+Montrer que $$(A\cap B)+(B\cap C)+(C\cap A)\subset(A+B)\cap(B+C)\cap(C+A).$$
+\finenonce{005177}
+
+
+\finexercice\exercice{5178, rouget, 2010/06/30}
+\enonce{005178}{**IT}
+Soient $u=(1,1,...,1)$ et $F=\mbox{Vect}(u)$ puis $G=\{(x_1,...,x_n)\in\Rr^n/\;x_1+...+x_n=0\}$. Montrer que $G$ est
+un sous-espace vectoriel de $\Rr^n$ et que $\Rr^n=F\oplus G$.
+\finenonce{005178}
+
+
+\finexercice\exercice{5179, rouget, 2010/06/30}
+\enonce{005179}{****}
+\begin{enumerate}
+\item  Soit $n$ un entier naturel. Montrer que si $n$ n'est pas un carré parfait alors $\sqrt{n}\notin\Qq$.
+\item  Soit $E=\{a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6},\;(a,b,c,d)\in\Qq^4\}$. Vérifier que $E$ est un $\Qq$-espace
+vectoriel puis déterminer une base de $E$.
+\end{enumerate}
+\finenonce{005179}
+
+
+\finexercice
+\exercice{5180, rouget, 2010/06/30}
+\enonce{005180}{***T}
+Dans $E=\Rr^\Rr$, étudier la liberté des familles suivantes $A$ de vecteurs de $E$~:
+\begin{enumerate}
+\item  $a$, $b$ et $c$ étant trois réels donnés, $A=(f_a,f_b,f_c)$ où, pour tout réel $x$, $f_u(x)=\sin(x+u)$.
+\item  $A=(f_n)_{n\in\Zz}$ où, pour tout réel $x$, $f_n(x)=nx+n^2+1$.
+\item  $A=(x\mapsto x^\alpha)_{\alpha\in\Rr}$ (ici $E=(]0;+\infty[)^2$).
+\item  $A=(x\mapsto|x-a|)_{a\in\Rr}$.
+\end{enumerate}
+\finenonce{005180}
+
+
+\finexercice\exercice{5181, rouget, 2010/06/30}
+\enonce{005181}{****}
+Soit $E$ un $\Kk$-espace vectoriel et soit $(u,v)\in(\mathcal{L}(E))^2$.
+\begin{enumerate}
+\item  Montrer que $[\mbox{Ker}v\subset\mbox{Ker}u\Leftrightarrow\exists w\in\mathcal{L}(E)/\;u=w\circ v]$.
+\item  En déduire que $[v\;\mbox{injectif}\Leftrightarrow\exists w\in\mathcal{L}(E)/\;w\circ v=Id_E]$.
+\end{enumerate}
+\finenonce{005181}
+
+
+\finexercice
+\exercice{5182, rouget, 2010/06/30}
+\enonce{005182}{***}
+Soit $E=\Rr[X]$ le $\Rr$-espace vectoriel des polynômes à coefficients réels.
+
+\begin{itemize}
+\item  Soit $\begin{array}[t]{cccc}f~:&E&\rightarrow&E\\ &P&\mapsto&P'\end{array}$. $f$ est-elle linéaire, injective,
+surjective~?~Fournir un supplémentaire de $\mbox{Ker}f$.
+\item  Mêmes questions avec $\begin{array}[t]{cccc}g~:&E&\rightarrow&E\\ &P&\mapsto&\int_{0}^{x}P(t)\;dt\end{array}$.
+\end{itemize}
+\finenonce{005182}
+
+
+\finexercice
+\finfiche
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005164}
+\begin{enumerate}
+\item  La fonction nulle est dans $F$ et en particulier, $F\neq\varnothing$.
+Soient alors $(f,g)\in F^2$ et $(\lambda,\mu)\in\Rr^2$.
+
+$$(\lambda f+\mu g)(0)+(\lambda f+\mu g)(1)=\lambda(f(0)+f(1))+\mu(g(0)+g(1))=0.$$
+
+Par suite, $\lambda f+\mu g$ est dans $F$. On a montré que~:
+
+$$F\neq\varnothing\;\mbox{et}\;\forall(f,g)\in F^2,\;\forall(\lambda,\mu)\in\Rr^2,\;\lambda f+\mu g\in F.$$
+
+$F$ est donc un sous-espace vectoriel de $E$.
+
+\item  Même démarche et même conclusion .
+
+\item  $F$ ne contient pas la fonction nulle et n'est donc pas un sous-espace vectoriel de $E$.
+
+\item  La fonction nulle est dans $F$ et en particulier, $F\neq\varnothing$.
+Soient alors $(f,g)\in F^2$ et $(\lambda,\mu)\in\Rr^2$.
+
+Pour $x$ élément de $[0,1]$,
+$$(\lambda f+\mu g)(x)+(\lambda f+\mu g)(1-x)= \lambda(f(x)+f(1-x))+\mu(g(x)+g(1-x))=0$$ et $\lambda f+\mu g$ est dans
+$F$. $F$ est un sous-espace vectoriel de $E$.
+
+\textbf{Remarque.} Les graphes des fonctions considérés sont symétriques par rapport au point $(\frac{1}{2},0)$.
+
+\item  $F$ contient la fonction constante $1$ mais pas son opposé la fonction constante $-1$ et n'est donc pas un
+sous-espace vectoriel de $E$.
+
+\item  $F$ ne contient pas la fonction nulle et n'est donc pas un sous-espace vectoriel de $E$.
+\end{enumerate}
+\fincorrection
+\correction{005165}
+Dans les cas où $F$ est un sous-espace, on a à chaque fois trois démarches possibles pour le
+vérifier~:
+
+\begin{itemize}
+\item[-] Utiliser la caractérisation d'un sous-espace vectoriel.
+\item[-] Obtenir $F$ comme noyau d'une forme linéaire ou plus généralement, comme noyau d'une application linéaire.
+\item[-] Obtenir $F$ comme sous-espace engendré par une famille de vecteurs.
+\end{itemize}
+
+Je vous détaille une seule fois les trois démarches.
+
+\begin{enumerate}
+\item 
+\begin{itemize}
+\item[\textbf{1ère démarche.}] $F$ contient le vecteur nul $(0,...,0)$ et donc $F\neq\varnothing$.
+Soient alors $((x_1,...,x_n),(x_1' ,...,x_n'))\in F^2$ et $(\lambda,\mu)\in\Rr^2$. On a
+
+$$\lambda(x_1,...,x_n)+\mu(x_1',...,x_n')=(\lambda x_1+\mu x_1',...,\lambda x_n+\mu x_n')$$
+
+avec $\lambda x_1+\mu x_1'=0$. Donc, $\lambda(x_1,...,x_n)+\mu(x_1',...,x_n')\in F$. $F$ est un sous-espace
+vectoriel de $\Rr^n$.
+\item[\textbf{2ème démarche.}] L'application $(x_1,...,x_n)\mapsto x_1$ est une forme linéaire sur $\Rr^n$ et $F$ en
+est lenoyau. $F$ est donc un sous-espace vectoriel de $\Rr^n$.
+\item[\textbf{3ème démarche.}]
+
+\begin{align*}
+F&=\{(0,x_2,...,x_n),\;(x_2,...,x_n)\in\Rr^{n-1}\}
+=\{x_2(0,1,0,...,0)+...+x_n(0,...,0,1),\;(x_2,...,x_n)\in\Rr^{n-1}\}\\
+ &=\mbox{Vect}((0,1,0,...,0),...,(0,...,0,1)).
+\end{align*}
+
+$F$ est donc un sous-espace vectoriel de $\Rr^n$.
+
+\end{itemize}
+
+\item  $F$ ne contient pas le vecteur nul et n'est donc pas un sous-espace vectoriel de $\Rr^n$.
+
+\item  (Ici, $n\geq2$). L'application $(x_1,...,x_n)\mapsto x_1-x_2$ est une forme linéaire sur $\Rr^n$ et $F$ en
+est le noyau. $F$ est donc un sous-espace vectoriel de $\Rr^n$.
+
+\item  L'application $(x_1,...,x_n)\mapsto x_1+...+x_n$ est une forme linéaire sur $\Rr^n$ et $F$ en est le
+noyau. $F$ est donc un sous-espace vectoriel de $\Rr^n$.
+
+\item  (Ici, $n\geq2$). Les vecteurs $e_1=(1,0,...,0)$ et $e_2=(0,1,0...,0)$ sont dans $F$ mais $e_1+e_2=
+(1,1,0...0)$ n'y est pas. $F$ n'est donc pas un sous espace vectoriel de $E$.
+
+\textbf{Remarque.} $F$ est la réunion des sous-espaces $\{(x_1,...,x_n)\in\Rr^n/\;x_1=0\}$ et
+$\{(x_1,...,x_n)\in\Rr^n/\;x_2=0\}$.
+\end{enumerate}
+\fincorrection
+\correction{005166}
+Il suffit de montrer que $C\subset B$.
+
+Soit $x$ un élément de $C$. Alors $x\in A+C=A+B$ et il existe $(y,z)\in A\times B$ tel que $x=y+z$. Mais $z\in
+B\subset C$ et donc, puisque $C$ est un sous-espace vectoriel de $E$, $y=x-z$ est dans $C$. Donc, $y\in A\cap C=A\cap B$
+et en particulier $y$ est dans $B$. Finalement, $x=y+z$ est dans $B$. On a montré que tout élément de $C$ est dans $B$
+et donc que, $C\subset B$. Puisque d'autre part $B\subset C$, on a $B=C$.
+\fincorrection
+\correction{005167}
+Soit $u'=(\sin(n\theta))_{n\in\Nn}$. On a~:~$u=1.u+0.u'$, puis $v=\cos a.u-\sin a.u'$, puis $w=\cos b.u-\sin b.u'$.
+Les trois vecteurs $u$, $v$ et $w$ sont donc combinaisons linéaires des deux vecteurs $u$ et $u'$ et constituent par
+suite une famille liée ($p+1$ combinaisons linéaires de $p$ vecteurs constituent une famille liée).
+\fincorrection
+\correction{005168}
+Soit $(\lambda,\mu)\in\Rr^2$.
+
+\begin{align*}
+(\lambda,\mu,-37,-3)\in F&\Leftrightarrow\exists(a,b)\in\Rr^2/\;(\lambda,\mu,-37,-3)=au+bv
+\Leftrightarrow\exists(a,b)\in\Rr^2/\;
+\left\{
+\begin{array}{l}
+a+2b=\lambda\\
+2a-b=\mu\\
+-5a+4b=-37\\
+3a+7b=-3
+\end{array}
+\right.\\
+ &\Leftrightarrow\exists(a,b)\in\Rr^2/\;
+\left\{
+\begin{array}{l}
+a+2b=\lambda\\
+2a-b=\mu\\
+a=\frac{247}{47}\\
+b=-\frac{126}{47}
+\end{array}
+\right.
+\Leftrightarrow
+\left\{
+\begin{array}{l}
+\lambda=\frac{247}{47}+2(-\frac{126}{47})\\
+\mu=2\frac{247}{47}+\frac{126}{47}
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+\lambda=-\frac{5}{47}\\
+\mu=\frac{620}{47}
+\end{array}
+\right..
+\end{align*}
+\fincorrection
+\correction{005169}
+Posons $F=\mbox{Vect}(a,b)$ et $G=\mbox{Vect}(c,d)$.
+
+Montrons que $c$ et $d$ sont dans $F$.
+
+\begin{align*}
+c\in F\Leftrightarrow\exists(\lambda,\mu)\in\Rr^2/\;c=\lambda a+\mu b
+\Leftrightarrow\exists(\lambda,\mu)\in\Rr^2/\;
+\left\{
+\begin{array}{l}
+\lambda+2\mu=1\\
+2\lambda-\mu=0\\
+3\lambda+\mu=1
+\end{array}
+\right.
+\Leftrightarrow\exists(\lambda,\mu)\in\Rr^2/\;
+\left\{
+\begin{array}{l}
+\lambda=\frac{1}{5}\\
+\mu=\frac{2}{5}\\
+3\lambda+\mu=1
+\end{array}
+\right..
+\end{align*}
+
+Puisque $3.\frac{1}{5}+\frac{2}{5}=1$, le système précédent admet bien un couple $(\lambda,\mu)$ solution
+et $c$ est dans $F$. Plus précisément, $c=\frac{1}{5}a+\frac{2}{5}b$.
+
+\begin{align*}
+d\in F\Leftrightarrow\exists(\lambda,\mu)\in\Rr^2/\;d=\lambda a+\mu b
+\Leftrightarrow\exists(\lambda,\mu)\in\Rr^2/\;
+\left\{
+\begin{array}{l}
+\lambda+2\mu=0\\
+2\lambda-\mu=1\\
+3\lambda+\mu=1
+\end{array}
+\right.
+\Leftrightarrow\exists(\lambda,\mu)\in\Rr^2/\;
+\left\{
+\begin{array}{l}
+\lambda=\frac{2}{5}\\
+\mu=-\frac{1}{5}\\
+3\lambda+\mu=1
+\end{array}
+\right..
+\end{align*}
+
+Puisque $3.\frac{2}{5}-\frac{1}{5}=1$, le système précédent admet bien un couple $(\lambda,\mu)$
+solution et $d$ est dans $F$. Plus précisément, $d=\frac{2}{5}a-\frac{1}{5}b$. En résumé,
+$\{c,d\}\subset F$ et donc $G=\mbox{Vect}(c,d)\subset F$.
+
+Montrons que $a$ et $b$ sont dans $G$ mais les égalités $c=\frac{1}{5}a+\frac{2}{5}b$ et
+$d=\frac{2}{5}a-\frac{1}{5}b$ fournissent $a=c+2d$ et $b=2c-d$. Par suite, $\{a,b\}\subset G$ et donc
+$F=\mbox{Vect}(a,b)\subset G$. Finalement $F=G$.
+\fincorrection
+\correction{005170}
+\begin{enumerate}
+\item  Si $f$ existe alors nécessairement, pour tout $(x,y,z)\in\Rr^3$~:
+
+$$f((x,y,z))=xf((1,0,0))+yf((0,1,0))+zf((0,0,1))=x(1,1)+y(0,1)+z(-1,1)=(x-z,x+y+z).$$
+
+On en déduit l'unicité de $f$.
+
+Réciproquement, $f$ ainsi définie vérifie bien les trois égalités de l'énoncé. Il reste donc à se convaincre que $f$ est
+linéaire.
+
+Soient $((x,y,z),(x',y',z'))\in(\Rr^3)^2$ et $(\lambda,\mu)\in\Rr^2$.
+
+\begin{align*}
+f(\lambda(x,y,z)+\mu(x',y',z'))&=f((\lambda x+\mu x',\lambda y+\mu y',\lambda z+\mu z'))\\
+ &=((\lambda x+\mu x')-(\lambda z+\mu z'),(\lambda x+\mu x')+(\lambda y+\mu y')+(\lambda z+\mu
+z'))\\
+ &=\lambda(x-z,x+y+z)+\mu(x'-z',x'+y'+z')\\
+ &=\lambda f((x,y,z))+\mu f((x',y',z')).
+\end{align*}
+
+$f$ est donc linéaire et convient. On en déduit l'existence de $f$. On a alors $f((3,-1,4))=(3-4,3-1+4)=(-1,6)$.
+
+\textbf{Remarque.} La démonstration de la linéarité de $f$ ci-dessus est en fait superflue car le cours donne
+l'expression générale d'une application linéaire de $\Rr^n$ dans $\Rr^p$.
+
+\item  Détermination de $\mbox{Ker}f$.
+
+Soit $(x,y,z)\in\Rr^3$.
+
+\begin{align*}
+(x,y,z)\in\Rr^3\Leftrightarrow f((x,y,z))=(0,0)\Leftrightarrow(x-z,x+y+z)=(0,0)\Leftrightarrow
+\left\{
+\begin{array}{l}
+x-z=0\\
+x+y+z=0
+\end{array}
+\right.\Leftrightarrow
+\left\{
+\begin{array}{l}
+z=x\\
+y=-2x
+\end{array}
+\right.
+\end{align*}
+
+Donc, $\mbox{Ker}f=\{(x,-2x,x),\;x\in\Rr\}=\{x(1,-2,1),\;x\in\Rr\}=\mbox{Vect}((1,-2,1))$.
+La famille $((1,-2,1))$ engendre $\mbox{Ker}f$ et est libre. Donc, la famille $((1,-2,1))$ est une base de
+$\mbox{Ker}f$.
+Détermination de $\mbox{Im}f$.
+
+Soit $(x',y')\in\Rr^2$.
+
+\begin{align*}
+(x',y')\in\mbox{Im}f&\Leftrightarrow\exists(x,y,z)\in\Rr^3/\;f((x,y,z))=(x',y')\\
+ &\Leftrightarrow\exists(x,y,z)\in\Rr^3/\;
+\left\{
+\begin{array}{l}
+x-z=x'\\
+x+y+z=y'
+\end{array}
+\right.
+\Leftrightarrow\exists(x,y,z)\in\Rr^3/\;
+\left\{
+\begin{array}{l}
+z=x-x'\\
+y=-2x+x'+y'
+\end{array}
+\right.\\
+ &\Leftrightarrow\mbox{le système d'inconnue}\;(x,y,z)~:~\left\{
+\begin{array}{l}
+z=x-x'\\
+y=-2x+x'+y'
+\end{array}
+\right.
+\;\mbox{a au moins une solution.}
+\end{align*}
+
+Or, le triplet $(0,x'+y',-x')$ est solution et le système proposé admet une solution. Par suite, tout $(x',y')$ de
+$\Rr^2$ est dans $\mbox{Im}f$ et finalement, $\mbox{Im}f=\Rr^2$.
+
+Détermination d'un supplémentaire de $\mbox{Ker}f$.
+
+Posons $e_1=(1,-2,1)$, $e_2=(1,0,0)$ et $e_3=(0,1,0)$ puis $F=\mbox{Vect}(e_2,e_3)$ et montrons que
+$\Rr^3=\mbox{Ker}f\oplus F$.
+
+Tout d'abord, $\mbox{Ker}f\cap F=\{0\}$. En effet~:
+
+\begin{align*}
+(x,y,z)\in\mbox{Ker}f\cap F&\Leftrightarrow\exists(a,b,c)\in\Rr^3/\;(x,y,z)=ae_1=be_2+ce_3\\
+ &\Leftrightarrow\exists(a,b,c)\in\Rr^3/\;
+\left\{
+\begin{array}{l}
+x=a=b\\
+y=-2a=c\\
+z=a=0
+\end{array}
+\right.
+\Leftrightarrow x=y=z=0
+\end{align*}
+
+Vérifions ensuite que $\mbox{Ker}f+F=\Rr^3$.
+
+\begin{align*}
+(x,y,z)\in\mbox{Ker}f+F&\Leftrightarrow\exists(a,b,c)\in\Rr^3/\;(x,y,z)=ae_1+be_2+ce_3\\
+ &\Leftrightarrow\exists(a,b,c)\in\Rr^3/\;
+\left\{
+\begin{array}{l}
+a+b=x\\
+-2a+c=y\\
+a=z
+\end{array}
+\right.
+\Leftrightarrow
+\exists(a,b,c)\in\Rr^3/\;\left\{
+\begin{array}{l}
+a=z\\
+b=x-z\\
+c=y+2z
+\end{array}
+\right.
+\end{align*}
+
+Le système précédent (d'inconnue $(a,b,c)$) admet donc toujours une solution et on a montré que $\Rr^3=\mbox{Ker}f+F$.
+Finalement, $\Rr^3=\mbox{Ker}f\oplus F$ et $F$ est un supplémentaire de $\mbox{Ker}f$ dans $\Rr^3$.
+
+Vérifions enfin que $F$ est isomorphe à $\mbox{Im}f$. Mais, $F=\{(x,y,0),\;(x,y)\in\Rr^2\}$ et
+$\begin{array}[t]{cccc}
+\varphi~:&F&\rightarrow&\Rr^2\\
+ &(x,y,0)&\mapsto&(x,y)
+\end{array}$ est clairement un isomorphisme de $F$ sur $\mbox{Im}f(=\Rr^2)$.
+\end{enumerate}
+\fincorrection
+\correction{005171}
+\begin{enumerate}
+\item  On a toujours $\mbox{Ker}f\subset\mbox{Ker}f^2$.
+
+En effet, si $x$ est un vecteur de $\mbox{Ker}f$, alors $f^2(x)=f(f(x))=f(0)=0$ (car $f$ est linéaire) et $x$ est 
+dans $\mbox{Ker}f^2$.
+
+Montrons alors que~:~$[\mbox{Ker}f=\mbox{Ker}f^2\Leftrightarrow\mbox{Ker}f\cap\mbox{Im}f=\{0\}]$.
+Supposons que $\mbox{Ker}f=\mbox{Ker}f^2$ et montrons que $\mbox{Ker}f\cap\mbox{Im}f=\{0\}$.
+
+Soit $x\in\mbox{Ker}f\cap\mbox{Im}f$. Alors, d'une part f(x) = 0 et d'autre part, il existe $y$ élément de $E$ tel que
+$x=f(y)$. Mais alors, $f^2(y)=f(x)=0$ et $y\in\mbox{Ker}f^2=\mbox{Ker}f$. Donc, $x=f(y)=0$. On a montré
+que $\mbox{Ker}f=\mbox{Ker}f^2\Rightarrow\mbox{Ker}f\cap\mbox{Im}f=\{0\}$.
+
+Supposons que $\mbox{Ker}f\cap\mbox{Im}f=\{0\}$ et montrons que $\mbox{Ker}f=\mbox{Ker}f^2$.
+
+Soit $x\in\mbox{Ker}f^2$. Alors $f(f(x))=0$ et donc $f(x)\in\mbox{Ker}f\cap\mbox{Im}f=\{0\}$. Donc, $f(x)=0$ et $x$ est
+dans $\mbox{Ker}f$. On a ainsi montré que $\mbox{Ker}f^2\subset\mbox{Ker}f$ et, puisque l'on a toujours
+$\mbox{Ker}f\subset\mbox{Ker}f^2$, on a finalement $\mbox{Ker}f=\mbox{Ker}f^2$. On a montré
+que $\mbox{Ker}f\cap\mbox{Im}f=\{0\}\Rightarrow\mbox{Ker}f=\mbox{Ker}f^2$.
+
+On a toujours $\mbox{Im}f^2\subset\mbox{Im}f$. En effet~:~$y\in\mbox{Im}f^2\Rightarrow\exists x\in E/\;y=f^2(x)=f(f(x))
+\Rightarrow y\in\mbox{Im}f$.
+
+Supposons que $\mbox{Im}f=\mbox{Im}f^2$ et montrons que $\mbox{Ker}f+\mbox{Im}f=E$.
+Soit $x\in E$. Puisque $f(x)\in\mbox{Im}f=\mbox{Im}f^2$, il existe $t\in E$ tel que $f(x)=f^2(t)$. Soit
+alors $z=f(t)$ et $y=x-f(t)$. On a bien $x=y+z$ et $z\in\mbox{Im}f$. De plus, $f(y)=f(x)-f(f(t))=0$ et $y$ est bien
+élément de $\mbox{Ker}f$. On a donc montré que $E=\mbox{Ker}f+\mbox{Im}f$.
+
+Supposons que $\mbox{Ker}f+\mbox{Im}f=E$ et montrons que $\mbox{Im}f=\mbox{Im}f^2$.
+
+Soit $x\in E$. Il existe $(y,z)\in\mbox{Ker}f\times\mbox{Im}f$ tel que $x=y+z$. Mais alors $f(x)=f(z)\in\mbox{Im}f^2$
+car $z$ est dans $\mbox{Im}f$. Ainsi, pour tout $x$ de $E$, $f(x)$ est dans $\mbox{Im}f^2$ ce qui montre que
+$\mbox{Im}f\subset\mbox{Im}f^2$ et comme on a toujours $\mbox{Im}f^2\subset\mbox{Im}f$, on a montré que
+$\mbox{Im}f=\mbox{Im}f^2$.
+
+\item  $Id-p\;\mbox{projecteur}\Leftrightarrow(Id-p)^2=Id-p\Leftrightarrow Id-2p+p^2=Id-p\Leftrightarrow p^2=p\Leftrightarrow p\;\mbox{projecteur}$.
+
+Soit $x$ un élément de $E$.
+$x\in\mbox{Im}p\Rightarrow\exists y\in E/\;x=p(y)$. Mais alors $p(x)=p^2(y)=p(y)=x$. Donc,
+$\forall x\in E,\;(x\in\mbox{Im}p\Rightarrow p(x)=x)$.
+
+Réciproquement, si $p(x)=x$ alors bien sûr, $x$ est dans $\mbox{Im}p$.
+
+Finalement, pour tout vecteur $x$ de $E$, $x\in\mbox{Im}p\Leftrightarrow p(x)=x\Leftrightarrow(Id-p)(x)=0\Leftrightarrow x\in\mbox{Ker}(Id-p)$. On a
+montré que $\mbox{Im}p=\mbox{Ker}(Id-p)$.
+
+En appliquant ce qui précède à $Id -p$ qui est également un projecteur, on obtient
+$\mbox{Im}(Id-p)=\mbox{Ker}(Id-(Id-p))=\mbox{Ker}p$.
+
+Enfin, puisque $p^2=p$ et donc en particulier que $\mbox{Ker}p=\mbox{Ker}p^2$ et $\mbox{Im}p=\mbox{Im}p^2$, le 1) montre
+que $E=\mbox{Ker}p\oplus\mbox{Im}p$.
+
+\item 
+\begin{align*}
+p=p\circ q\;\mbox{et}\;q=q\circ p&\Leftrightarrow
+p\circ(Id-q)=0\;\mbox{et}\;q\circ(Id-p)=0\Leftrightarrow\mbox{Im}(Id-q)\subset\mbox{Ker}p\;\mbox{et}\;\mbox{Im}(Id-p)\subset
+\mbox{Ker}q\\
+ &\Leftrightarrow\mbox{Ker}q\subset\mbox{Ker}p\;\mbox{et}\;\mbox{Ker}p\subset\mbox{Ker}q\;(\mbox{d'après 2)})\\
+ &\Leftrightarrow\mbox{Ker}p=\mbox{Ker}q.
+\end{align*}
+
+\item  $p\circ q+q\circ p=0\Rightarrow p\circ q=(p\circ p)\circ q=p\circ(p\circ q)=-p\circ (q\circ p)$ et de même,
+$q\circ p=q\circ p\circ p=-p\circ q\circ p$. En particulier, $p\circ q=q\circ p$ et donc
+$0=p\circ q+q\circ p=2p\circ q=2q\circ p$ puis $p\circ q=q\circ p=0$.
+
+La réciproque est immédiate.
+
+$p+q\;\mbox{projecteur}\;\Leftrightarrow(p+q)^2=p+q\Leftrightarrow p^2+pq+qp+q^2=p+q\Leftrightarrow pq+qp= 0\Leftrightarrow pq=qp=0$ (d'après ci-dessus).
+Ensuite, $\mbox{Im}(p+q)=\{p(x)+q(x),\;x\in E\}\subset\{p(x)+q(y),\;(x,y)\in E^2\}=\mbox{Im}p+\mbox{Im}q$.
+
+Réciproquement, soit $z$ un élément de $\mbox{Im}p+\mbox{Im}q$. Il existe deux vecteurs $x$ et $y$ de $E$ tels que
+$z=p(x)+q(y)$. Mais alors, $p(z)=p^2(x)+pq(y)=p(x)$ et $q(z)=qp(x)+q^2(y)=q(y)$ et donc
+
+$$z=p(x)+p(y)=p(z)+q(z)=(p+q)(z)\in\mbox{Im}(p+q).$$
+
+Donc, $\mbox{Im}p+\mbox{Im}q\subset\mbox{Im}(p+q)$ et finalement, $\mbox{Im}(p+q)=\mbox{Im}p+\mbox{Im}q$.
+
+$\mbox{Ker}p\cap\mbox{Ker}q=\{x\in E/\;p(x)=q(x)=0\}\subset\{x\in E/\;p(x)+q(x)=0\}=\mbox{Ker}(p+q)$.
+
+Réciproquement, si $x$ est élément de $\mbox{Ker}(p+q)$ alors $p(x)+q(x)=0$. Par suite,
+$p(x)=p^2(x)+pq(x)=p(p(x)+q(x))=p(0)=0$ et $q(x)=qp(x)+q^2(x)=q(0)=0$. Donc, $p(x)=q(x)=0$ et
+$x\in\mbox{Ker}p\cap\mbox{Ker}q$. Finalement, $\mbox{Ker}(p+q)=\mbox{Ker}p\cap\mbox{Ker}q$.
+\end{enumerate}
+\fincorrection
+\correction{005172}
+\begin{enumerate}
+\item  Soit $x\in E$.
+
+$x\in(A\cap B)+(A\cap C)\Rightarrow\exists y\in A\cap B,\;\exists z\in A\cap C/\;x=y+z$.
+
+$y$ et $z$ sont dans $A$ et donc $x=y+z$ est dans $A$ car $A$ est un sous-espace vectoriel de $E$.
+
+Puis $y$ est dans $B$ et $z$ est dans $C$ et donc $x=y+z$ est dans $B+C$.
+Finalement,
+
+$$\forall x\in E,\;[x\in(A\cap B)+(A\cap C)\Rightarrow x\in A\cap(B+C)].$$
+
+Autre démarche.
+
+$(A\cap B\subset B$ et $A\cap C\subset C)\Rightarrow(A\cap B)+(A\cap C)\subset B+C$ puis
+$(A\cap B\subset A$ et $A\cap C\subset A\Rightarrow (A\cap B)+(A\cap C)\subset A+A=A$, et finalement
+$(A\cap B)+(A\cap C)\subset A\cap(B+C)$.
+
+\item  Si on essaie de démontrer l'inclusion contraire, le raisonnement coince car la somme $y+z$ peut être dans
+$A$ sans que ni $y$, ni $z$ ne soient dans $A$.
+
+Contre-exemple. Dans $\Rr^2$, on considère $A=\Rr.(1,0)=\{(x,0),\;x\in\Rr\}$, $B=\Rr.(0,1)$ et $C=\Rr.(1,1)$.
+
+$B+C=\Rr^2$ et $A\cap(B+C)=A$ mais $A\cap B=\{0\}$ et $A\cap C=\{0\}$ et donc $(A\cap B)+(A\cap C)=\{0\}\neq
+A\cap(B+C)$.
+
+\item  $A\cap B\subset B\Rightarrow (A\cap B)+(A\cap C)\subset B+(A\cap C)$ mais aussi $(A\cap B)+(A\cap C)\subset
+A+A=A$. Donc, $(A\cap B)+(A\cap C)\subset A\cap(B+(A\cap C))$.
+
+Inversement, soit $x\in A\cap(B+(A\cap C))$ alors $x=y+z$ où $y$ est dans $B$ et $z$ est dans $A\cap C$. Mais alors,
+$x$ et $z$ sont dans $A$ et donc $y=x-z$ est dans $A$ et même plus précisément dans $A\cap B$. Donc,
+$x\in(A\cap B)+(A\cap C)$. Donc,  $A\cap(B+(A\cap C))\subset(A\cap B)+(A\cap C)$ et finalement, $A\cap(B+(A\cap
+C))=(A\cap B)+(A\cap C)$.
+\end{enumerate}
+\fincorrection
+\correction{005173}
+\begin{enumerate}
+\item  Pour $(x,y,z,t)\in\Rr^4$, on pose $f((x,y,z,t))=x-2y$, $g((x,y,z,t))=y-2z$ et $h((x,y,z,t))=x-y+z-t$. $f$,
+$g$ et $h$ sont des formes linéaires sur $\Rr^4$. Donc, $V=\mbox{Ker}f\cap\mbox{Ker}g$ est un sous-espace vectoriel de
+$\Rr^4$ en tant qu'intersection de sous-espaces vectoriels de $\Rr^4$ et $W=\mbox{Ker}h$ est un sous-espace vectoriel
+de $\Rr^4$.
+
+\item  Soit $(x,y,z,t)\in\Rr^4$.
+
+\begin{align*}
+(x,y,z,t)\in V\Leftrightarrow
+\left\{
+\begin{array}{l}
+x=2y\\
+y=2z
+\end{array}
+\right.\Leftrightarrow
+\Leftrightarrow
+\left\{
+\begin{array}{l}
+x=4z\\
+y=2z
+\end{array}
+\right.
+.
+\end{align*}
+
+Donc, $V=\{(4z,2z,z,t),\;(z,t)\in\Rr^2\}=\mbox{Vect}(e_1,e_2)$ où $e_1=(4,2,1,0)$ et $e_2=(0,0,0,1)$. Montrons alors
+que $(e_1,e_2)$ est libre. Soit $(z,t)\in\Rr^2$.
+
+$$ze_1+te_2=0\Rightarrow(4z,2z,z,t)=(0,0,0,0)\Rightarrow z=t=0.$$
+
+Donc, $(e_1,e_2)$ est une base de $V$.
+
+Pour $(x,y,z,t)\in\Rr^4$, $(x,y,z,t)\in W\Leftrightarrow t=x-y+z$. Donc,
+$W=\{(x,y,z,x-y+z),\;(x,y,z)\in\Rr^3\}=\mbox{Vect}(e_1',e_2',e_3')$ où $e_1'=(1,0,0,1)$, $e_2'=(0,1,0,-1)$ et
+$e_3'=(0,0,1,1)$.
+
+Montrons alors que $(e_1',e_2',e_3')$ est libre. Soit $(x,y,z)\in\Rr^3$.
+
+$$xe_1'+ye_2'+ze_3'=0\Rightarrow(x,y,z,x-y+z)=(0,0,0,0)\Rightarrow x=y=z=0.$$
+
+Donc, $(e_1',e_2',e_3')$ est une base de $W$.
+Soit $(x,y,z,t)\in\Rr^4$.
+
+$$(x,y,z,t)\in V\cap W\Leftrightarrow
+\left\{
+\begin{array}{l}
+x=2y\\
+y=2z\\
+x-y+z-t=0
+\end{array}
+\right.\Leftrightarrow
+\left\{
+\begin{array}{l}
+x=4z\\
+y=2z\\
+t=3z
+\end{array}
+\right..$$
+
+Donc, $V\cap W=\{(4z,2z,z,3z),\;z\in\Rr\}=\mbox{Vect}(e)$ où $e=(4,2,1,3)$. De plus, $e$ étant non nul, la famille
+$(e)$ est libre et est donc une base de $V\cap W$.
+
+\item  Soit $u=(x,y,z,t)$ un vecteur de $\Rr^4$.
+
+On cherche $v=(4\alpha,2\alpha,\alpha,\beta)\in V$ et $w=(a,b,c,a-b+c)\in W$ tels que $u=v+w$.
+
+$$u=v+w\Leftrightarrow\left\{
+\begin{array}{l}
+4\alpha+a=x\\
+2\alpha+b=y\\
+\alpha+c=z\\
+\beta+a-b+c=t
+\end{array}
+\right.\Leftrightarrow
+\left\{
+\begin{array}{l}
+a=x-4\alpha\\
+b=y-2\alpha\\
+c=z-\alpha\\
+\beta=-x+y-z+t-3\alpha
+\end{array}
+\right..$$
+
+et $\alpha=0$, $\beta=-x+y-z+t$, $a=x$, $b=y$ et $c=z$ conviennent. Donc, $\forall u\in\Rr^4,\;\exists(v,w)\in
+V\times W/\;u=v+w$. On a montré que $\Rr^4=V+W$.
+\end{enumerate}
+\fincorrection
+\correction{005174}
+\begin{enumerate}
+\item  Pour tout $(y,y')$ élément de $[0,2\pi[^2$, $f((0,y))=f((0,y'))$ et f n'est pas injective.
+
+Montrons que $f$ est surjective.
+
+Soit $(X,Y)\in\Rr^2$.
+\begin{itemize}
+\item[-] Si $X=Y=0$, $f((0,0))=(0,0)$.
+\item[-] Si $X=0$ et $Y>0$, $f((Y,\frac{\pi}{2}))=(0,Y)$ avec $(Y,\frac{\pi}{2})$ élément de
+$[0,+\infty[\times[0,2\pi[$.
+\item[-] Si $X=0$ et $Y<0$, $f((-Y,\frac{3\pi}{2}))=(0,Y)$ avec $(-Y,\frac{3\pi}{2})$ élément
+de $[0,+\infty[\times[0,2\pi[$.
+\item[-] Si $X>0$ et $Y\geq0$, $f((\sqrt{X^2+Y^2},\Arctan\frac{Y}{X}))=(X,Y)$ avec
+$(\sqrt{X^2+Y^2},\Arctan\frac{Y}{X})$ élément de
+
+$[0,+\infty[\times[0,2\pi[$.
+\item[-] Si $X<0$ et $Y\geq0$, $f((\sqrt{X^2+Y^2},\pi+\Arctan\frac{Y}{X}))=(X,Y)$ avec
+$(\sqrt{X^2+Y^2},\pi+\Arctan\frac{Y}{X})$ élément de $[0,+\infty[\times[0,2\pi[$.
+\item[-] Si $X>0$ et $Y<0$, $f((\sqrt{X^2+Y^2},2\pi+\Arctan\frac{Y}{X}))=(X,Y)$ avec $(\sqrt{X^2+Y^2},
+2\pi+\Arctan\frac{Y}{X})$ élément de $[0,+\infty[\times[0,2\pi[$.
+\item[-] Si $X<0$ et $Y<0$, $f((\sqrt{X^2+Y^2},\pi+\Arctan\frac{Y}{X}))=(X,Y)$ avec
+$(\sqrt{X^2+Y^2},\pi+\Arctan\frac{Y}{X})$ élément de $[0,+\infty[\times[0,2\pi[$.
+\end{itemize}
+
+\item  Pour tout réel $x$, on a $a\cos(x-\alpha)+b\cos(x-\beta)=(a\cos\alpha+b\cos\beta)\cos
+x+(a\sin\alpha+b\sin\beta)\sin x$.
+
+D'après 1), $f$ est surjective et il existe $(c,\gamma)$ élément de $[0,+\infty[\times[0,2\pi[$ tel que
+$a\cos\alpha+b\cos\beta=c\cos\gamma$ et $a\sin\alpha+b\sin\beta=c\sin\gamma$. Donc,
+
+$$\exists(c,\gamma)\in[0,+\infty[\times[0,2\pi[/\;\forall
+x\in\Rr,\;a\cos(x-\alpha)+b\cos(x-\beta)=c(\cos xcos\gamma+\sin x\sin\gamma)=c\cos(x-\gamma).$$
+\item  $F$ est non vide car contient l'application nulle et est contenu dans $E$. De plus, pour $x$ réel,
+
+\begin{align*}
+a\cos(x-\alpha)+b\cos(2x-\beta)&+a'\cos(x-\alpha')+b'\cos(2x-\beta')\\
+ &=a\cos(x-\alpha)+a'\cos(x-\alpha')+b\cos(2x-\beta)
++b'\cos(2x-\beta')\\
+ &=a''cos(x-\alpha'')+b''\cos(2x-\beta''),
+\end{align*}
+
+pour un certain $(a',b'',\alpha'',\beta'')$ (d'après 2)). $F$ est un sous-espace vectoriel de $E$.
+
+\item 
+
+Pour tout réel $x$, $\cos x=1.\cos(x-0)+0.\cos(2x-0)$ et $x\mapsto\cos x$ est élément de $F$.
+
+Pour tout réel $x$, $\sin x=1.\cos(x-\frac{\pi}{2})+0.\cos(2x-0)$ et $x\mapsto\sin x$ est élément de $F$.
+
+Pour tout réel $x$, $\cos(2x)=0.\cos(x-0)+1.\cos(2x-0)$ et $x\mapsto\cos(2x)$ est élément de $F$.
+
+Pour tout réel $x$, $\sin(2x)=0.\cos(x-0)+1.\cos(2x-\frac{\pi}{2})$ et $x\mapsto\sin(2x)$ est élément de $F$.
+
+D'autre part, pour tout réel $x$, $\cos(2x)=2\cos^2x-1=1-2\sin^2x$ et donc,
+
+$$x\mapsto1\in F\Leftrightarrow x\mapsto\cos^2x\in F\Leftrightarrow x\mapsto\sin^2x\in F.$$
+
+Montrons alors que $1\notin F$.
+
+On suppose qu'il existe $(a,b,\alpha,\beta)\in\Rr^4$ tel que
+
+$$\forall x\in\Rr,\;a\cos(x-\alpha)+b\cos(2x-\beta)=1.$$
+
+En dérivant deux fois, on obtient~:
+
+$$\forall x\in\Rr,\;-a\cos(x-\alpha)-4b\cos(2x-\beta)=0,$$
+
+et donc en additionnant
+
+$$\forall x\in\Rr,\;-3b\cos(2x-\beta)=1,$$
+
+ce qui est impossible (pour $x=\frac{\pi}{4}+\frac{\beta}{2}$, on trouve $0$). Donc, aucune des trois
+dernières fonctions n'est dans $F$.
+
+\item  On a vu que $(x\mapsto\cos x,\;x\mapsto\sin x,\;x\mapsto\cos(2x),\;x\mapsto\sin(2x))$ est une famille
+d'éléments de $F$. Montrons que cette famille est libre.
+
+Soit $(a,b,c,d)\in\Rr^4$.
+
+Supposons que $\forall x\in\Rr,\;a\cos x+b\sin x+c\cos(2x)+d\sin(2x)=0$. En dérivant deux fois, on obtient $\forall
+x\in\Rr,\;-a\cos x-b\sin x-4c\cos(2x)-4d\sin(2x)=0$ et en additionnant~:~$\forall
+x\in\Rr,\;-3c\cos(2x)-3d\sin(2x)=0$. Donc,
+
+$$\forall x\in\Rr,\;\left\{
+\begin{array}{l}
+a\cos x+b\sin x=0\\
+c\cos(2x)+d\sin(2x)=0
+\end{array}
+\right..$$
+
+$x=0$ fournit $a=c=0$ puis $x=\frac{\pi}{4}$ fournit $b=d=0$. Donc, $(x\mapsto\cos x,\;x\mapsto\sin
+x,\;x\mapsto\cos(2x),\;x\mapsto\sin(2x))$ est une famille libre d'éléments de $F$.
+\end{enumerate}
+\fincorrection
+\correction{005175}
+\begin{enumerate}
+\item  $C$ contient l'identité de $\Rr$, mais ne contient pas son opposé. Donc, $C$ n'est pas un espace vectoriel.
+
+\item  Montrons que $V$ est un sous-espace vectoriel de l'espace vectoriel des applications de $\Rr$ dans $\Rr$.
+$V$ est déjà non vide car contient la fonction nulle $(0=0-0)$.
+
+Soit $(f_1,f_2)\in V^2$. Il existe $(g_1,g_2,h_1,h_2)\in C^4$ tel que $f_1=g_1-h_1$ et $f_2=g_2-h_2$. Mais alors,
+$f_1+f_2=(g_1+g_2)-(h_1+h_2)$. Or, une somme de fonctions croissantes sur $\Rr$ est croissante sur $\Rr$, et 
+donc, $g_1+g_2$ et $h_1+h_2$ sont des éléments de $C$ ou encore $f_1+f_2$ est dans $V$.
+
+Soit $f\in V$ et $\lambda\in\Rr$. Il existe $(g,h)\in V^2$ tel que $f=g-h$ et donc $\lambda f=\lambda g-\lambda h$.
+
+Si $\lambda\geq 0$, $\lambda g$ et $\lambda h$ sont croissantes sur $\Rr$ et $\lambda f$ est dans $V$.
+
+Si $\lambda<0$, on écrit $\lambda f=(-\lambda h)-(-\lambda g)$, et puisque $-\lambda g$ et $-\lambda h$ sont 
+croissantes sur $\Rr$, $\lambda f$ est encore dans $V$. $V$ est donc un sous-espace vectoriel de l'espace vectoriel
+des applications de $\Rr$ dans $\Rr$.
+\end{enumerate}
+\fincorrection
+\correction{005176}
+Soit $(x,y)\in E^2$.
+
+$(1+1).(x+y)=1.(x+y)+1.(x+y)=(x+y)+(x+y)=x+y+x+y$ mais aussi
+$(1+1).(x+y)=(1+1).x+(1+1).y=x+x+y+y$.
+
+Enfin, $(E,+)$ étant un groupe, tout élément est régulier et en particulier $x$ est régulier à gauche et $y$ est
+régulier à droite. On a montré que pour tout couple $(x,y)$ élément de $E^2$, $x+y=y+x$.
+\fincorrection
+\correction{005177}
+Soit $F=(A\cap B)+(A\cap C)+(B\cap C)$.
+
+$F\subset A+A+B=A+B$ puis $F\subset A+C+C=A+C$ puis $F\subset B+C+C=B+C$ et finalement
+$F\subset(A+B)\cap(A+C)\cap(B+C)$.
+\fincorrection
+\correction{005178}
+$F=\mbox{Vect}(u)$ est un sous espace vectoriel de $\Rr^n$ et $G$ est un sous espace vectoriel de $\Rr^n$, car est le
+noyau de la forme linéaire $(x_1,...,x_n)\mapsto x_1+...+x_n$.
+
+Soit $x=(x_1,...,x_n)\in\Rr^n$ et soit $\lambda\in\Rr$.
+
+$$x-\lambda u\in G\Leftrightarrow(x_1-\lambda,...,x_n-\lambda)\in
+G\Leftrightarrow\sum_{k=1}^{n}(x_k-\lambda)=0\Leftrightarrow\lambda=\frac{1}{n}\sum_{k=1}^{n}x_k.$$
+
+Donc,
+
+$$\forall x\in\Rr^n,\;\exists!\lambda\in\Rr/\;x-\lambda u\in G,$$
+
+et donc,
+
+$$\Rr^n=F\oplus G.$$
+
+Le projeté sur $F$ parallèlement à $G$ d'un vecteur $x=(x_1,...,x_n)$ est
+
+$$\frac{1}{n}\sum_{k=1}^{n}x_k.u=(\frac{1}{n}\sum_{k=1}^{n}x_k,...,\frac{1}{n}\sum_{k=1}^{n}x_k)$$
+
+et le projeté du même vecteur sur $G$ parallèlement à $F$ est
+
+$$x-(\frac{1}{n}\sum_{k=1}^{n}x_k).u =(x_1-\frac{1}{n}\sum_{k=1}^{n}x_k,...,x_n-\frac{1}{n}\sum_{k=1}^{n}x_k).$$
+\fincorrection
+\correction{005179}
+\begin{enumerate}
+\item  Soit $n$ un entier naturel supèrieur ou égal à $2$.
+
+Si $\sqrt{n}\in\Qq$, il existe $(a,b)\in(\Nn^*)^2$ tel que $\sqrt{n}=\frac{a}{b}$ ou encore tel que $n.b^2=a^2$. Mais
+alors, par unicité de la décomposition d'un entier naturel supèrieur ou égal à 2 en facteurs premiers, tous les
+facteurs premiers de $n$ ont un exposant pair ce qui signifie exactement que $n$ est un carré parfait.
+
+Si $n=0$ ou $n=1$, $\sqrt{n}\in\Qq$ et $n$ est d'autre part un carré parfait. On a montré que~:
+
+$$\forall n\in\Nn,\;(\sqrt{n}\in\Qq\Rightarrow n\;\mbox{est un carré parfait})$$
+
+ou encore par contraposition
+
+$$\forall n\in\Nn,\;(n\;\mbox{n'est pas un carré parfait}\Rightarrow\sqrt{n}\notin\Qq).$$
+
+\item  D'après 1), $\sqrt{2}$, $\sqrt{3}$ et $\sqrt{6}$ sont irrationnels.
+
+$E=\mbox{Vect}_\Qq(1,\sqrt{2},\sqrt{3},\sqrt{6})$ et donc, $E$ est un $\Qq$-espace
+vectoriel et $(1,\sqrt{2},\sqrt{3},\sqrt{6})$ en est une famille génératrice.
+
+Montrons que cette famille est $\Qq$-libre.
+
+Soit $(a,b,c,d)\in\Qq^4$.
+
+\begin{align*}
+a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}=0&\Rightarrow(a+d\sqrt{6})^2=(-b\sqrt{2}-c\sqrt{3})^2
+\Rightarrow a^2+2ad\sqrt{6}+6d^2=2b^2+2bc\sqrt{6}+3c^2\\
+ &\Rightarrow a^2-2b^2-3c^2+6d^2=2(-ad+bc)\sqrt{6}
+\end{align*}
+
+Puisque $\sqrt{6}\notin\Qq$, on obtient $a^2-2b^2-3c^2+6d^2=2(-ad+bc)=0$ (car si $bc-ad\neq0$,
+$\sqrt{6}=\frac{a^2-2b^2-3c^2+6d^2}{2(-ad+bc)}\in\Qq$) ou encore,
+
+$$\left\{
+\begin{array}{l}
+a^2-3c^2=2b^2-6d^2\quad(1)\\
+ad=bc\quad(2)
+\end{array}
+\right..$$
+
+De même,
+
+\begin{align*}
+a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}=0&\Rightarrow(a+c\sqrt{3})^2=(-b\sqrt{2}-d\sqrt{6})^2
+\Rightarrow(a^2+2ac\sqrt{3}+3c^2=2b^2+4bd\sqrt{3}+6d^2\\
+ &\Rightarrow\left\{
+\begin{array}{l}
+a^2+3c^2=2b^2+6d^2\quad(3)\\
+ac=2bd\quad(4)
+\end{array}
+\right..
+\end{align*}
+
+(puisque $\sqrt{3}$ est irrationnel). En additionnant et en retranchant (1) et (3), on obtient $a^2=2b^2$ et
+$c^2=2d^2$.Puisque $\sqrt{2}$ est irrationnel, on ne peut avoir $b\neq0$ (car alors $\sqrt{2}=\pm\frac{a}{b}\in\Qq$) 
+ou $d\neq0$. Donc, $b=d=0$ puis  $a=c=0$. Finalement, la famille $(1,\sqrt{2},\sqrt{3},\sqrt{6})$ est $\Qq$-libre et
+est donc une base de E.
+\end{enumerate}
+\fincorrection
+\correction{005180}
+\begin{enumerate}
+\item  Notons respectivement $g$ et $h$, les fonctions sinus et cosinus.
+
+$f_a=\cos a.g+\sin a.h$, $f_b=\cos b.g+\sin b.h$ et $f_c=\cos c.g+\sin c.h$. Donc, $f_a$, $f_b$ et $f_c$ sont trois
+combinaisons linéaires des deux fonctions $g$ et $h$ et constituent donc une famille liée ($p+1$ combinaisons linéaires
+de $p$ vecteurs donnés constituent une famille liée).
+
+\item  $f_0$, $f_1$ et $f_2$ sont trois combinaisons linéaires des deux fonctions $x\mapsto1$ et $x\mapsto x$. Donc,
+la famille $(f_0,f_1,f_2)$ est une famille liée puis la famille $(f_n)_{n\in\Zz}$ est liée en tant que sur-famille
+d'une famille liée.
+
+\item  Pour $\alpha$ réel donné et $x>0$, posons $f_\alpha(x)=x^\alpha$.
+
+Soient $n$ un entier naturel supérieur ou égal à $2$, puis $(\alpha_1,...,\alpha_n)\in\Rr^n$ tel que
+$\alpha_1<...<\alpha_n$. Soit encore $(\lambda_1,...,\lambda_n)\in\Rr^n$.
+
+$$\sum_{k=1}^{n}\lambda_kf_{\alpha_k}=0\Rightarrow\forall
+x\in]0;+\infty[,\;\sum_{k=1}^{n}\lambda_kx^{\alpha_k}=0\Rightarrow\forall
+x\in]0;+\infty[,\;\sum_{k=1}^{n}\lambda_kx^{\alpha_k-\alpha_n}=0,$$
+
+(en divisant les deux membres par $x^{\alpha_n}$). Dans cette dernière égalité, on fait tendre $x$ vers
+$+\infty$ et on obtient $\lambda_n=0$. Puis, par récurrence descendante, $\lambda_{n-1}=...=\lambda_1=0$. On a montré
+que toute sous-famille finie de la famille $(f_\alpha)_{\alpha\in\Rr}$ est libre et donc, la famille
+$(f_\alpha)_{\alpha\in\Rr}$ est libre.
+
+\item  Pour $a$ réel donné et $x$ réel, posons $f_a(x)=|x-a|$. Soient $n$ un
+entier naturel supérieur ou égal à $2$, puis $a_1$,...,$a_n$, $n$ réels deux à deux distincts. Soit
+$(\lambda_1,...,\lambda_n)\in\Rr^n$ tel que $\sum_{k=1}^{n}\lambda_kf_{a_k}=0$.
+
+S'il existe $i\in\{1,...,n\}$ tel que $\lambda_i\neq 0$ alors,
+
+$$f_{a_i}=-\frac{1}{\lambda_i}\sum_{k\neq i}^{}\lambda_kf_{a_k}.$$
+
+Mais cette dernière égalité est impossible car $f_{a_i}$ n'est pas dérivable en $a_i$ alors que
+$-\frac{1}{\lambda_i}\sum_{k\neq i}^{}\lambda_kf_{a_k}$ l'est. Donc, tous les $\lambda_i$ sont nuls.
+
+\end{enumerate}
+\fincorrection
+\correction{005181}
+\begin{enumerate}
+\item 
+\begin{itemize}
+\item[$\Leftarrow$] Soit $(u,v)((\mathcal{L}(E))^2$. On suppose qu'il existe $w\in\mathcal{L}(E)$ tel que $u=w\circ
+v$. Soit $x$ un élément de $\mbox{Ker}v$. Alors $v(x)=0$ et donc $u(x)=w(v(x))=w(0)=0$. Mais alors, $x$ est dans
+$\mbox{Ker}u$. Donc $\mbox{Ker}v\subset{Ker}u$.
+
+\item[$\Rightarrow$] Supposons que $\mbox{Ker}v\subset\mbox{Ker}u$. On cherche à définir $w$, élément de
+$\mathcal{L}(E)$ tel que $w\circ v=u$. Il faut définir précisément $w$ sur $\mbox{Im}v$ car sur $E\setminus\mbox{Im}v$,
+on a aucune autre contrainte que la linéarité.
+
+Soit $y$ un élément de $\mbox{Im}v$. (Il existe $x$ élément de $E$ tel que $y=v(x)$. On
+a alors envie de poser $w(y)=u(x)$ mais le problème est que $y$, élément de $\mbox{Im}v$ donné peut avoir plusieurs
+antécédents $x$, $x'$... et on peut avoir $u(x)\neq u(x')$ de sorte que l'on n'aurait même pas défini une application
+$w$.)
+\end{itemize}
+
+Soient $x$ et $x'$ deux éléments de $E$ tels que $v(x)=v(x')=y$ alors $v(x-x')=0$ et donc
+$x-x'\in\mbox{Ker}v\subset\mbox{Ker}u$. Par suite, $u(x-x')=0$ ou encore $u(x)=u(x')$. En résumé, pour $y$ élément donné
+de $\mbox{Im}v$, il existe $x$ élément de $E$ tel que $v(x)=y$. On pose alors $w(y)=u(x)$ en notant que $w(y)$ est bien
+uniquement défini, car ne dépend pas du choix de l'antécédent $x$ de $y$ par $v$. $w$ n'est pas encore défini sur $E$
+tout entier. Notons $F$ un supplémentaire quelconque de $\mbox{Im}v$ dans $E$ (l'existence de $F$ est admise).
+
+Soit $X$ un élément de $E$. Il existe deux vecteurs $y$ et $z$, de $\mbox{Im}v$ et $F$ respectivement, tels que $X=y+z$.
+On pose alors $w(X)=u(x)$ où $x$ est un antécédent quelconque de $y$ par $v$ (on a pris pour restriction de $w$ à $F$
+l'application nulle). $w$ ainsi définie est une application de $E$ dans $E$ car, pour $X$ donné $y$ est uniquement
+défini puis $u(x)$ est uniquement défini (mais pas nécessairement $x$).
+
+Soit $x$ un élément de $E$ et $y=v(x)$. $w(v(x))=w(y)=w(y+0)=u(x)$ (car 1)$y$ est dans $\mbox{Im}v$ 2)$0$ est dans $F$
+3) $x$ est un antécédent de $y$ par $v$) et donc $w\circ v=u$.
+
+Montrons que $w$ est linéaire. Soient, avec les notations précédentes, $X_1=y_1+z_1$ et $X_2=y_2+z_2$ ...
+
+\begin{align*}
+w(X_1+X_2)&=w((y_1+y_2)+(z_1+z_2))=u(x_1+x_2)\quad(\mbox{car}\;y_1+y_2=v(x_1)+v(x_2)=v(x_1+x2))\\
+ &=u(x_1)+u(x_2)=w(X_1)+w(X_2)
+\end{align*}
+
+et
+
+$$w(\lambda X)=w(\lambda y+\lambda z)=u(\lambda x)=\lambda u(x)=\lambda w(X).$$
+
+\item  On applique 1) à $u=Id$.
+
+$$v\;\mbox{injective}\Leftrightarrow\mbox{Ker}v=\{0\}\Leftrightarrow\mbox{Ker}v=\mbox{Ker}Id\Leftrightarrow\exists w\in\mathcal{L}(E)/\;w\circ v=Id.$$
+
+\end{enumerate}
+\fincorrection
+\correction{005182}
+\begin{enumerate}
+\item  $\forall P\in E$, $f(P)=P'$ est un polynôme et donc $f$ est une application de $E$ vers $E$.
+
+$\forall(P,Q)\in E^2,\;\forall(\lambda,\mu)\in\Rr^2,\;f(\lambda P+\mu Q)=(\lambda P+\mu Q)'=\lambda P'+\mu
+Q'=\lambda f(P)+\mu f(Q)$ et $f$ est un endomorphisme de $E$.
+
+Soit $P\in E$. $P\in\mbox{Ker}f\Leftrightarrow P'=0\Leftrightarrow P$ est constant. $\mbox{Ker}f$ n'est pas nul et $f$ n'est pas injective.
+
+Soient $Q\in E$ puis $P$ le polynôme défini par~:~$\forall x\in\Rr,\;P(x)=\int_{0}^{x}Q(t)\;dt$. $P$ est bien un
+polynôme tel que $f(P)=Q$. $f$ est surjective.
+
+Soit $F=\{P\in E/\;P(0) = 0\}$. $F$ est un sous espace de $E$ en tant que noyau de la forme linéaire $P\mapsto
+P(0)$. $\mbox{Ker}f\cap F=\{0\}$ car si un polynôme est constant et s'annule en $0$, ce polynôme est nul. Enfin, si $P$
+est un polynôme quelconque, $P=P(0)+(P-P(0))$ et $P$ s'écrit bien comme la somme d'un polynôme constant et d'un
+polynôme s'annulant en $0$. Finalement $E=\mbox{Ker}f\oplus F$.
+
+\item  On montre facilement que $g$ est un endomorphisme de $E$.
+
+$P\in\mbox{Ker}g\Rightarrow\forall x\in\Rr,\;\int_{0}^{x}P(t)\;dt=0\Rightarrow\forall x\in\Rr,\;P(x)=0$
+(en dérivant). Donc, $\mbox{Ker}g=\{0\}$ et donc $g$ est injective.
+
+Si P est dans $\mbox{Im}g$ alors $P(0)=0$ ce qui montre que $g$ n'est pas surjective.
+De plus, si $P(0)=0$ alors $\int_{0}^{x}P'(t)\;dt=P(x)-P(0)=P(x)$ ce qui montre que $P=g(P')$ est dans $\mbox{Im}g$
+et donc que $\mbox{Im}g=\{P\in E/\;P(0)=0\}$.
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

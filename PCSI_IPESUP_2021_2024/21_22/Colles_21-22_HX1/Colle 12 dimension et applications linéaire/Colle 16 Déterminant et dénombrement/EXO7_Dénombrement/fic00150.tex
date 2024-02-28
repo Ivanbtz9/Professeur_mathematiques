@@ -1,0 +1,365 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00150, quinio, 2011/05/18}
+
+Exercices : Martine Quinio
+
+\titre{Probabilité et dénombrement ; indépendance}
+
+\exercice{5983, quinio, 2011/05/18}
+
+\enonce{005983}{}
+Une entreprise décide de classer $20$ personnes
+susceptibles d'être embauchées; leurs CV étant très proches,
+le patron décide de recourir au hasard : combien y-a-il de classements
+possibles : sans ex-aequo; avec exactement $2$ ex-aequo ?
+\finenonce{005983}
+
+
+
+\finexercice
+\exercice{5984, quinio, 2011/05/18}
+
+\enonce{005984}{}
+Un étudiant s'habille très vite le matin et prend, au hasard
+dans la pile d'habits, un pantalon, un tee-shirt, une paire de chaussettes;
+il y a ce jour-là dans l'armoire $5$ pantalons dont $2$ noirs, 
+$6$ tee-shirt dont $4$ noirs, $8$ paires de chaussettes, dont $5$ paires
+noires. Combien y-a-t-il de façons de s'habiller? Quelles sont les
+probabilités des événements suivants : il est tout en noir; une
+seule pièce est noire sur les trois.
+\finenonce{005984}
+
+
+\finexercice
+\exercice{5985, quinio, 2011/05/18}
+
+\enonce{005985}{}
+Si $30$ personnes sont présentes à un réveillon et si, à minuit, chaque personne fait $2$ bises à toutes les autres,
+combien de bises se sont-elles échangées en tout ? (On appelle bise un contact entre deux joues...)
+\finenonce{005985}
+
+
+\finexercice
+\exercice{5986, quinio, 2011/05/18}
+
+\enonce{005986}{}
+Un QCM comporte $10$ questions, pour chacune desquelles $4$ réponses sont proposées, une seule est exacte. Combien y-a-t-il de
+grilles-réponses possibles? Quelle est la probabilité de répondre au hasard au moins $6$ fois correctement?
+\finenonce{005986}
+
+
+\finexercice
+\exercice{5987, quinio, 2011/05/18}
+
+\enonce{005987}{}
+ Amédée, Barnabé, Charles tirent sur un oiseau; si les
+probabilités de succès sont pour Amédée : $70$\%, Barnabé : $50$\%, Charles : $90$\%, quelle est la probabilité que l'oiseau soit
+touché?
+\finenonce{005987}
+
+
+\finexercice
+\exercice{5988, quinio, 2011/05/18}
+
+\enonce{005988}{}
+Lors d'une loterie de Noël, $300$ billets sont
+vendus aux enfants de l'école ; $4$ billets sont gagnants.
+J'achète $10$ billets, quelle est la probabilité pour que je gagne au moins un lot?
+\finenonce{005988}
+
+
+\finexercice
+\exercice{5989, quinio, 2011/05/18}
+
+\enonce{005989}{}
+La probabilité pour une population d'être atteinte
+d'une maladie $A$ est $p$ donné; dans cette même population, un individu
+peut être atteint par une maladie $B$ avec une probabilité $q$ donnée aussi; 
+on suppose que les maladies sont indépendantes : quelle est la
+probabilité d'être atteint par l'une et l'autre de ces maladies?
+Quelle est la probabilité d'être atteint par l'une ou l'autre de ces
+maladies?
+\finenonce{005989}
+
+
+\finexercice
+\exercice{5990, quinio, 2011/05/18}
+\enonce{005990}{}
+Dans un jeu de $52$ cartes, on prend une carte au hasard : les événements <<tirer un roi>> et 
+<<tirer un pique>> sont-ils indépendants? quelle est la probabilité de <<tirer un roi ou
+un pique>> ? 
+\finenonce{005990}
+
+
+\finexercice
+\exercice{5991, quinio, 2011/05/18}
+
+\enonce{005991}{}
+La famille Potter comporte $2$ enfants; les événements $A$ : 
+<<il y a deux enfants de sexes différents chez les Potter>> 
+et $B$ : <<la famille Potter a au
+plus une fille>> sont-ils indépendants? 
+Même question si la famille Potter comporte $3$ enfants. Généraliser.
+\finenonce{005991}
+
+
+\finexercice
+
+\finfiche 
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005983}
+Classements possibles : sans ex-aequo, il y en a 20!.
+
+Avec exactement $2$ ex-aequo, il y en a :
+\begin{enumerate}
+\item Choix des deux ex-aequo : $\binom{20}{2}=$ $190$ choix;
+\item Place des ex-aequo : il y a $19$ possibilités;
+\item Classements des $18$ autres personnes, une fois les ex-aequo placés : il y a $18!$ choix.
+\end{enumerate}
+Il y a au total : $19\binom{20}{2}(18!)$ choix possibles.
+\fincorrection
+\correction{005984}
+- Une tenue est un triplet $(P, T, C)$ : il y a $5\times 6\times 8=240$ tenues
+différentes;
+
+- <<Il est tout en noir>> : de combien de façons différentes ? 
+Réponse : de $2\times 4\times 5=40$ façons.
+
+La probabilité de l'événement <<Il est tout en
+noir>> est donc : $\frac{40}{240}=\frac{1}{6}$.
+
+- <<Une seule pièce est noire sur les trois >> : notons les événements :
+$N_{1}$ la première pièce (pantalon) est noire, $N_{2}$ la deuxième pièce (tee-shirt)
+ est noire, $N_{3}$ la troisième pièce
+(chaussette) est noire: l'événement est représenté par :
+$(N_{1}\cap \overline{N_{2}}\cap \overline{N_{3}})\cup (\overline{N_{1}}\cap
+N_{2}\cap \overline{N_{3}})\cup (\overline{N_{1}}\cap \overline{N_{2}}\cap
+N_{3})$.
+Ces trois événements sont disjoints, leurs probabilités
+s'ajoutent. La probabilité de l'événement <<une seule pièce est noire sur les trois>> est donc : 
+$0.325$.
+\fincorrection
+\correction{005985}
+Il y a $\binom{30}{2}$ façons de choisir $2$ personnes parmi $30$ et donc $2\cdot\binom{30}{2} = 870$ bises.
+\fincorrection
+\correction{005986}
+\begin{enumerate}
+\item Une grille-réponses est une suite ordonnée de $10$ réponses,
+il y a $4$ choix possibles pour chacune. Il y a donc $4^{10}$ grilles-réponses possibles.
+\item L'événement $E$ <<répondre au hasard au moins $6$ fois correctement>> est 
+réalisé si le candidat répond bien à $6$ ou $7$ ou $8$ ou $9$ ou $10$ questions. Notons $A_{n}$ l'événement : <<répondre au hasard
+exactement $n$ fois correctement>>. Alors, $A_{n}$ est réalisé si $n$ réponses sont correctes et $10-n$
+sont incorrectes : $3$ choix sont possibles pour chacune de ces dernières.
+Comme il y a $\binom{10}{n}$ choix de $n$ objets parmi $10$, et donc il y a :
+$\binom{10}{n} \times 3^{10-n}$ façons de réaliser $A_{n}$ et :
+\begin{equation*}
+P(A_n)=\frac{\binom{10}{n}\cdot 3^{10-n}}{4^{10}}
+\end{equation*}
+pour $n= 6, 7, 8, 9, 10$.
+$P(E)=\sum_{n=6}^{10}\frac{\binom{10}{n}\cdot 3^{10-n}}{4^{10}} \simeq 1.9728\times 10^{-2}$, soit environ $2$\%.
+\end{enumerate}
+\fincorrection
+\correction{005987}
+
+Considérons plutôt l'événement complémentaire :
+l'oiseau n'est pas touché s'il n'est touché ni par Amédée,
+ni par Barnabé, ni par Charles.
+Cet événement a pour probabilité : $(1-0.7)\cdot (1-0.5)\cdot (1-0.9)=0.015$.
+La probabilité que l'oiseau soit touché est donc : $1-0.015=0.985$.
+\fincorrection
+\correction{005988}
+
+L'univers des possibles est ici l'ensemble des combinaisons de $10$ billets
+parmi les $300$ ; il y en a $\binom{300}{10}$.
+Je ne gagne rien si les $10$ billets achetés se trouvent parmi les $296$
+billets perdants, ceci avec la probabilité : 
+\begin{equation*}
+\frac{\binom{296}{10}}{\binom{300}{10}}.
+\end{equation*}
+
+La probabilité cherchée est celle de l'événement complémentaire : 
+\begin{equation*}
+1-\frac{\binom{296}{10}}{\binom{300}{10}}\simeq 0.127.
+\end{equation*}
+
+La probabilité est environ $12.7$\% de gagner au moins un lot.
+\fincorrection
+\correction{005989}
+$P(A\cap B)=pq$ car les maladies sont indépendantes.
+$P(A\cup B)=P(A)+P(B)-P(A\cap B)=p+q-pq$
+\fincorrection
+\correction{005990}
+Soit $A$ : l'événement <<tirer un roi>>
+et $B$ : <<tirer un pique>>.
+
+$P(A\cap B)=\frac{1}{52};P(A)=\frac{4}{52}=\frac{1}{13};P(B)=\frac{13}{52}=\frac{1}{4}.$
+
+Donc $P(A\cap B)=P(A)P(B)$ et donc les événements $A$ et $B$ sont indépendants.
+
+$P(A\cup B)=P(A)+P(B)-P(A\cap B)=\frac{1}{13}+\frac{1}{4}-\frac{1}{52}=\frac{4}{13}$.
+\fincorrection
+\correction{005991}
+Notons, pour le cas où la famille Potter comporte $2$
+enfants, l'univers des possibles pour les enfants :
+$\Omega =\{(G,G),(G,F),(F,G),(F,F)\}$, représente les cas possibles, 
+équiprobables, d'avoir garçon-garçon, garçon-fille etc... :
+Alors $P(A)=\frac{2}{4},$ $P(B)=\frac{3}{4}, P(A\cap B) = \frac{2}{4}$.
+On en conclut que : $P(A\cap B)\neq P(A)P(B)$ et donc que les événements $A$ et $B$ ne sont pas indépendants.
+
+Si maintenant la famille Potter comporte $3$ enfants :
+Alors $\Omega' = \{ (a,b,c) \mid a \in \{ G,F \}, b\in \{G,F\}, c\in \{G,F\}\}$ 
+représente les $2^{3}=8$ cas possibles, équiprobables.
+Cette fois, $P(A)=1-P(\{(G,G,G),(F,F,F)\})=\frac{6}{8}$ ;
+$P(B)=\frac{4}{8}, P(A\cap B)=P\{(F,G,G),(G,F,G),\{(G,G,F)\}=\frac{3}{8}$.
+On a $P(A)P(B)=\frac{3}{8}=P(A\cap B),$ et les événements $A$ et $B$
+sont indépendants
+
+Avec $n$ enfants, on peut généraliser sans difficulté : 
+$P(A)=1-\frac{2}{2^{n}},$ $P(B)=\frac{1+n}{2^{n}}$
+$P(A\cap B)=\frac{n}{2^{n}}$
+Un petit calcul montre que
+$P(A)P(B)=P(A\cap B)$ si et seulement si $n=3$.
+\fincorrection
+
+
+\end{document}
+

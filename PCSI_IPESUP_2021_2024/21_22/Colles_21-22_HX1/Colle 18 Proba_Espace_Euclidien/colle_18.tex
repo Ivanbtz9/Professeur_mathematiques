@@ -1,0 +1,251 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor,multicol}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\p}{\mathbb{P}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	
+	
+	\begin{center}
+		\Large \sc colle 18 = Probabilités sur un espace fini et espaces euclidiens 
+	\end{center}
+
+
+
+
+\section*{Probabilités sur un espace fini}
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+
+		
+		\begin{exo}\quad\\
+		Dans les barres de chocolat, on trouve des images équitablement
+		réparties de cinq grands mathématiciens, une image par
+		tablette. On veut avoir l'image de Denis Poisson : combien dois-je
+		acheter de barres pour que la probabilité d'avoir la figurine attendue dépasse $80$\%? 
+		Même question pour être sûr à $90$\%.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo} \quad\\
+		En cas de migraine trois patients sur cinq prennent de l'aspirine
+		(ou équivalent), deux sur cinq prennent un médicament M présentant des effets secondaires :
+		
+		Avec l'aspirine, 75\% des patients sont soulagés.
+		
+		Avec le médicament M, 90\% des patients sont soulagés.
+		\begin{enumerate}
+			\item Quel est le taux global de personnes soulagées?
+			
+			\item Quel est la probabilité pour un patient d'avoir pris de l'aspirine
+			sachant qu'il est soulagé?
+		\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+\begin{exo} \quad\\
+	On jette 3 fois un dé à $6$ faces, et on note $a$, $b$ et $c$ les résultats successifs obtenus. On note $Q(x)=ax^2+bx+c$. Déterminer la probabilité pour que : 
+\begin{enumerate}
+	\item $Q$ ait deux racines réelles distinctes. 
+	
+	\item $Q$ ait une racine réelle double.
+	\item $Q$ n'ait pas de racines réelles. 
+	
+\end{enumerate}	
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\quad\\
+	Quelle est la probabilité $p_n$ pour que dans un groupe de $n$ personnes choisies au hasard, deux personnes au moins aient le même anniversaire (on considèrera que l'année a toujours $365$ jours, tous équiprobables). Montrer que pour $n\geq23$, on a $p_n\geq\frac{1}{2}$.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+	
+		\begin{exo}\quad\\
+		Un professeur oublie fréquemment ses clés. Pour tout $n$, on note :
+		$E_n$ l'événement <<le jour $n$, le professeur oublie ses clés>>, 
+		$P_{n}=P(E_n)$, $Q_n=P(\overline{E_n})$.
+		
+		On suppose que : $P_{1}=a$ est donné et que si le jour $n$ il oublie ses clés, 
+		le jour suivant il les oublie avec la probabilité $\frac{1}{10}$ ; 
+		si le jour $n$ il n'oublie pas ses clés, le jour suivant il les oublie
+		avec la probabilité $\frac{4}{10}$.
+		
+		Montrer que $P_{n+1}=\frac{1}{10}P_{n}+\frac{4}{10}Q_{n}$.
+		En déduire une relation entre $P_{n+1}$ et $P_{n}$
+		
+		Quelle est la probabilité de l'événement <<le jour $n$, le professeur oublie ses clés>> ?
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	\begin{exo} \quad\\%\textbf{\textit{(Inégalité de Bonferroni) }}
+		Soient $\Omega$ un ensemble fini, $\left( \Omega, \mathcal{P}(\Omega),\p) \right)$ un espace probabilisé et $A_1,...,A_n$ des événements. Démontrer que:
+		$$\p(A_1\cap...\cap A_n) \geq \left(\sum_{i=1}^{n} \p(A_i)\right) - (n-1)$$ 
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}	
+	\end{minipage}
+\end{minipage}
+\section*{Espaces Euclidiens:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\
+			Soient $A,B \in \mathcal{M}_n(\R)$, on définit:
+			$$\left\langle A|B\right\rangle = Tr(^tAB) $$
+			\begin{enumerate}
+				\item Démontrer que cette formule définit un produit scalaire sur $\mathcal{M}_n(\R)$
+				\item En déduire que, pour tous $A,B\in\mathcal{S}_n(\R)$, on a 
+				$$(Tr(AB))^2 \leq Tr(A^2)Tr(B^2) $$
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\quad\\
+			Soit $E$ un espace vectoriel euclidien et $x,y$ deux éléments de $E$. Montrer que $x$ et $y$ sont orthogonaux si et seulement si $\| x+\lambda y \| \geq \|x\|$ pour tout $\lambda\in\R$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\quad\\
+			Sur $\R[X]$, on pose $ \left\langle P|Q\right\rangle =\int_{0}^{1}P(t)Q(t)\;dt$. Existe-t-il $A$ élément de $\R[X]$ tel que $\forall P\in\R[X],\;\left\langle P|A\right\rangle=P(0)$~?
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\quad\\[0.25cm]
+			
+			
+			Dans $\R^4$ muni du produit scalaire usuel, on pose~:~$V_1=(1,2,-1,1)$ et $V_2=(0,3,1,-1)$.\\
+			On pose $F=\mbox{Vect}(V_1,V_2)$. Déterminer une base orthonormale de $F$ et un système d'équations de $F^\bot$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\quad\\[0.25cm]
+			Pour $A=(a_{i,j})_{1\leq i,j\leq n}\in\mathcal{M}_n(\R)$, $N(A)=\sqrt{\mbox{Tr}(^tAA)}$. Montrer que $N$ est une norme vérifiant de plus $N(AB)\leq N(A)N(B)$ pour toutes matrices carrées $A$ et $B$. $N$ est-elle associée à un produit scalaire~?			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\quad\\[0.25cm]
+			Soit $E$ un espace préhilbertien et soit $B=\{x\in E; \|x\| \leq 1\}$. Démontrer que $B$ est strictement convexe, c'est-à-dire que, pour tous $x,y\in B$, $x \neq y$ et tout $t\in \left]0,1\right[ $, $\|tx+(1-t)y\|<1$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+	\end{minipage}
+\end{minipage}	
+
+
+
+
+
+\end{document}

@@ -1,0 +1,143 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 657
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Un calcul de somme
+\vskip0.2cm
+\begin{enumerate}
+\item Décomposer en éléments simples la fraction rationnelle $\displaystyle\frac{1}{X(X+1)(X+2)}$.
+\item En déduire la limite de la suite $(S_n)$ suivante : $\displaystyle S_n=\sum_{k=1}^n \frac{1}{k(k+1)(k+2)}$.
+\end{enumerate}
+
+
+% Exercice 658
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Un calcul de somme
+\vskip0.2cm
+Soit $P\in\mathbb R[X]$ un polynôme de degré $n\geq 1$ possédant $n$ racines distinctes $x_1,\dots,x_n$ non-nulles.
+\begin{enumerate}
+\item Décomposer en éléments simples la fraction rationnelle $\displaystyle \frac1{XP(X)}$.
+\item En déduire que $\displaystyle\sum_{k=1}^n \frac{1}{x_k P'(x_k)}=\frac{-1}{P(0)}$.
+\end{enumerate}
+
+
+
+% Exercice 660
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Enveloppe convexe des zéros
+\vskip0.2cm
+Soit $P\in\mathbb C_n[X]$ admettant $n$ racines simples $\alpha_1,\dots,\alpha_n$.
+Soient $A_1,\dots,A_n$ les points du plan complexe d'affixe respectives $\alpha_1,\dots,\alpha_n$.
+\begin{enumerate}
+\item Décomposer la fraction rationnelle $P'/P$ en éléments simples.
+\item Soit $\beta$ une racine de $P'$, et soit $B$ son image dans le plan complexe. Déduire de la question précédente que 
+$$\sum_{j=1}^n \frac{1}{\beta-\alpha_j}=0.$$
+\item En déduire que $B$ est un barycentre de la famille de points $(A_1,\dots,A_n)$, avec des coefficients positifs.
+Interpréter géométriquement cette propriété.
+\end{enumerate}
+
+
+% Exercice 649
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Tout polynôme positif est somme de deux carrés
+\vskip0.2cm
+Soit $P\in\mathbb R[X]$ non constant tel que $P(x)\geq 0$ pour tout réel $x$.
+\begin{enumerate}
+ \item Montrer que le coefficient dominant de $P$ est positif et que les racines réelles de $P$ sont de multiplicité paire.
+ \item Montrer qu'il existe un polynôme $C\in\mathbb C[X]$ tel que $P=C\overline{C}$.
+ \item En déduire qu'il existe $A$ et $B$ dans $\mathbb R[X]$ tels que $P=A^2+B^2$.
+\end{enumerate}
+
+
+% Exercice 633
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Racines rationnelles
+\vskip0.2cm
+Soit $P(X)=a_nX^n+\dots+a_0$ un polynôme à coefficients dans $\mathbb Z$, avec
+$a_n\neq 0$ et $a_0\neq 0$. On suppose que $P$ admet une racine rationnelle $p/q$
+avec $p\wedge q=1$. Démontrer que $p|a_0$ et que $q|a_n$. Le polynôme $P(X)=X^5-X^2+1$
+admet-il des racines dans $\mathbb Q$?
+
+
+% Exercice 632
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - Somme des racines
+\vskip0.2cm
+Soit $P\in\mathbb C[X]$. On note, pour $p<n$, $u_p$ la somme des racines de $P^{(p)}$. Démontrer que
+$u_0,\dots,u_{n-1}$ forme une progression arithmétique.
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=26589
+\end{document}

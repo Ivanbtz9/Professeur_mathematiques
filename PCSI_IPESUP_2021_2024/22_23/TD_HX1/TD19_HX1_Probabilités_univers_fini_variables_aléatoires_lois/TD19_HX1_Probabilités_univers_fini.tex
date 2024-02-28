@@ -1,0 +1,366 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{mathdots}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\K}{\mathbb{K}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+\newcommand{\Pb}{\mathbf{P}}
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/3
+}\rfoot{PCSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+ %%%%BIBMATH%%%%
+ 
+ %(1) https://www.bibmath.net/ressources/index.php?action=affiche&quoi=mpsi/feuillesexo/espaceproba&type=fexo
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 19 : Probabilités sur un univers fini  }}
+	\end{minipage}}
+
+\bigskip
+\section*{Connaître son cours:}
+\begin{itemize}[$\bullet$]
+	\item Soit $(\Omega, \mathcal P(\Omega))$ un espace probabilisable fini, exprimer la probabilité uniforme. Donner un exemple de votre choix.  
+	\item Soit $(\Omega, \mathcal P(\Omega),\Pb)$ un espace probabilisé fini et $(A_k )_{k\leq n}$ une famille d’événements vérifiant $\displaystyle\Pb\left(\underset{k\leq n}{\bigcap} A_k \right) >   0$. Donner et démontrer la formule des probabilités composées. 
+	\item Soit $(\Omega, \mathcal P(\Omega),\Pb)$ un espace probabilisé fini et $(A_1,\dots,A_n)_{k\leq n}$ une partition de $\Omega$ d’événements de probabilités non nulles. Soit $B \subset \Omega$, donner et démontrer la formule des probabilités totales.
+	\item Soit $(\Omega, \mathcal P(\Omega),\Pb)$ un espace probabilisé fini, $A$ et $B$ deux éléments de $\mathcal P(\Omega)$ de probabilité non nulle. Donner et démontrer la formule de Bayes.
+
+
+\end{itemize}
+\raggedright
+\medskip
+
+\section*{Probabilité, dénombrement et indépendance:}\hfill\\%[-0.25cm]
+\medskip
+   
+\begin{minipage}{1\linewidth}\begin{minipage}[c]{0.48\linewidth}\raggedright
+	
+\begin{exo}\textbf{(*)}\quad\\[0.1cm]
+Si $30$ personnes sont présentes à un réveillon et si, à minuit, chaque personne fait $2$ bises à toutes les autres, combien de bises se sont-elles échangées en tout ? (On appelle bise un contact entre deux joues...)
+
+	
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+\begin{exo}\textbf{(*)}\quad\\[0.1cm]
+	Amédée, Barnabé, Charles tirent sur un oiseau; si les
+	probabilités indépendantes de succès sont pour Amédée : $70$\%, Barnabé : $50$\%, Charles : $90$\%, quelle est la probabilité que l'oiseau soit
+	touché?
+
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+\begin{exo}\textbf{(*)}\quad\\[0.1cm]
+	Dans un jeu de $52$ cartes, on prend une carte au hasard : les événements <<tirer un roi>> et 
+	<<tirer un pique>> sont-ils indépendants? quelle est la probabilité de <<tirer un roi ou
+	un pique>> ? 
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+		\begin{exo}\textbf{(**)}\quad\\[0.1cm]
+	Soit $A$ et $B$ deux événements d'un espace probabilisé tels que $\mathbf{P}(A)=\mathbf{P}(B)=\frac{3}{4}$. 
+	
+	Déterminer le meilleur encadrement pour $\mathbf{P}(A \cap B)$.
+	
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[c]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+Soit $n\geq 1$. On lance $n$ fois un dé parfaitement équilibré. Quelle est la probabilité d'obtenir
+\begin{enumerate}
+	\item au moins une fois le chiffre 6?
+	\item au moins deux fois le chiffre 6?
+	\item au moins $k$ fois le chiffre 6?
+\end{enumerate}
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+On dispose d'un dé pipé tel que la probabilité d'obtenir une face soit proportionnelle au chiffre porté par cette face. On lance le dé pipé. 
+\begin{enumerate}
+	\item Donner un espace probabilisé modélisant l'expérience aléatoire.
+	\item Quelle est la probabilité d'obtenir un chiffre pair?
+	\item Reprendre les questions si cette fois le dé est pipé de sorte que la probabilité d'une face paire soit le double de la probabilité d'une face impaire.
+\end{enumerate}
+
+\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\end{minipage}\end{minipage} \newpage
+
+
+\begin{minipage}{1\linewidth}\begin{minipage}[c]{0.48\linewidth}\raggedright
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Lors d'une loterie de Noël, $300$ billets sont
+			vendus aux enfants de l'école ; $4$ billets sont gagnants.
+			J'achète $10$ billets, quelle est la probabilité pour que je gagne au moins un lot?
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+
+		
+		
+		
+	\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+		
+		Soit $A_{1}, \ldots, A_{n}$ des événements d'un espace probabilisé fini $(\Omega, \mathscr{P}(\Omega), \mathbf{P})$.
+		\begin{enumerate}
+			\item Montrer que
+			$\mathbf{P}\left(A_{1} \cap \ldots \cap A_{n}\right) \geq \sum_{i=1}^{n} \mathbf{P}\left(A_{i}\right)-(n-1)$.
+			\item Montrer que $\mathbf{P}\left(A_{1} \cap \ldots \cap A_{n}\right) \leq \min _{1 \leq i \leq n} \mathbf{P}\left(A_{i}\right)$. 
+			
+			Étudier le cas d'égalité.
+			
+		\end{enumerate}
+		\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{minipage}\hfill\vrule\hfill\begin{minipage}[c]{0.48\linewidth}\raggedright
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $A_{1}, \ldots, A_{n}$ des événements indépendants d'un espace probabilisé $(\Omega, \mathscr{A}, \mathbf{P})$. Montrer que
+			
+			$$
+			\mathbf{P}\left(\bigcap_{k=1}^{n} \bar{A}_{k}\right) \leq \exp \left(-\sum_{k=1}^{n} \mathbf{P}\left(A_{k}\right)\right) .
+			$$
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Une personne négligente extrait $2 r$ chaussettes d'un tiroir où se trouvent $n$ paires de chaussettes non triées. Quelle est la probabilité de n'obtenir aucune paire de chaussettes assortie? d'obtenir $k \leq r$ paires assorties
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+\end{minipage}\end{minipage} 
+			
+
+
+\section*{Probabilité conditionnelle :}\hfill\\%[-0.25cm]
+
+
+\begin{minipage}{1\linewidth}\begin{minipage}[t]{0.48\linewidth}\raggedright
+		
+
+		
+		\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Une fête réunit $35$ hommes, $40$ femmes, $25$ enfants. Il y a $3$ urnes $H$, $F$, $E$ contenant des boules de couleurs dont
+			respectivement $10$\%, $40$\%, $80$\% de boules noires. Un présentateur
+			aux yeux bandés désigne une personne au hasard et lui demande de
+			tirer une boule dans l'urne $H$ si cette personne est un homme, dans l'urne $F$
+			si cette personne est une femme, dans l'urne $E$ si cette personne est un
+			enfant. La boule tirée est noire : quelle est la probabilité pour que
+			la boule ait été tirée par un homme? une femme? un enfant? Le présentateur pronostique le genre de la personne au hasard , que doit-il dire pour avoir le moins de risque d'erreur?
+			
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+			\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Dans les barres de chocolat N., on trouve des images équitablement
+			réparties des cinq personnages du dernier Walt Disney, une image par
+			tablette. Ma fille veut avoir le héros Prince charmant : combien dois-je
+			acheter de barres pour que la probabilité d'avoir la figurine attendue dépasse $80$\%? 
+			Même question pour être sûr à $90$\%.
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		
+		
+		
+		
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{0.48\linewidth}\raggedright
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+			\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+			Un fumeur, après avoir lu une série de statistiques
+			effrayantes sur les risques de cancer, problèmes cardio-vasculaires 
+			liés au tabac, décide d'arrêter de fumer; toujours d'après des
+			statistiques, on estime les probabilités suivantes : si cette personne
+			n'a pas fumé un jour $J_{n}$, alors la probabilité
+			pour qu'elle ne fume pas le jour suivant $J_{n+1}$ est $0.3$; 
+			mais si elle a fumé un jour $J_{n}$, alors la probabilité 
+			pour qu'elle ne fume pas le jour suivant $J_{n+1}$ est $0.9$; 
+			quelle est la probabilité $P_{n+1}$ pour qu'elle
+			fume le jour $J_{n+1}$ en fonction de la probabilité 
+			$P_{n}$ pour qu'elle fume le jour $J_{n}$ ? Quelle est la
+			limite de $P_{n}$ ? Va-t-il finir par s'arrêter?
+			
+			\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+	\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+		
+		Soit $(\Omega, \mathscr{P}(\Omega), \mathbf{P})$ un espace probabilisé fini, $A \subset \Omega, A_{1}, \ldots, A_{n}$ une partition de $A$ d'événements de probabilités non nulles, et $B \subset \Omega$, telle que la probabilité $\mathbf{P}\left(B \mid A_{k}\right)$ ne dépende pas de $k$. Montrer que, pour tout $k \in \llbracket 1, n \rrbracket, \mathbf{P}\left(B \mid A_{k}\right)=\mathbf{P}(B \mid A)$.
+		
+		
+		\centering\rule{1\linewidth}{0.6pt}\end{exo}
+		
+		
+		
+		
+\end{minipage}\end{minipage} \newpage
+
+\begin{minipage}{1\linewidth}\begin{minipage}[c]{0.48\linewidth}\raggedright
+
+\begin{exo}\textbf{(**)}\quad\textit{(Loi de \sc Hardy-Weinberg)}\\[0.2cm]
+	Considérons un gène qui se présente sous deux allèles (c'est-à-dire deux variantes) $A$ et $a$. Un individu dispose de deux allèles d'un même gène donc $A A, A a$ ou $a a$. Un individu reçoit un allèle de chacun de ses parents au hasard. Notons $p, q$ et $r$ les proportions des génotypes dans une génération et $P, Q$ et $R$ les proportions dans la génération suivante. Montrer que $Q^{2}=4 P R$.
+	
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+\begin{exo}\textbf{(***)}\quad\textit{(Succession de \sc Laplace)}\\[0.2cm]
+	
+	Considérons $n+1$ urnes numérotées de 0 à $n$ telle que l'urne numérotée $k$ contienne $n-k$ boules colorées et $k$ boules blanches. On choisit une urne au hasard et on effectue des tirages avec remises au hasard dans cette urne.
+	
+	\begin{enumerate}
+		\item Déterminer la probabilité $p_{n}$ que les $N$ premiers tirages amènent des boules blanches. Déterminer la limite de $p_{n}$ lorsque $n$ tend vers $+\infty$.
+		
+		\item Déterminer la probabilité $q_{n}$ que la $(N+1)^{\text {ième }}$ boule tirée soit colorée sachant que les $N$ premières boules tirées étaient blanches. Déterminer la limite de $q_{n}$ lorsque $n$ tend vers $+\infty$.
+		
+	\end{enumerate}
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}\hfill\vrule\hfill\begin{minipage}[c]{0.48\linewidth}\raggedright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+	Soit $n \in \mathbb{N}^{*}$ un entier fixé. Une urne contient $b$ boules blanches et $c$ boules colorées; tirons les boules avec les règles suivantes
+	
+	- si la boule est blanche, on la retire définitivement;
+	
+	- si la boule est colorée, on la replace dans l'urne.
+	
+	Déterminer la probabilité d'obtenir exactement une boule blanche en $n$ tirages.
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\begin{exo}\textbf{(****)}\quad\textit{(Urne de \sc Polya)}\\[0.2cm]
+	
+	On considère une urne contenant $a$ boules colorées et $b$ boules blanches. Après chaque tirage, la boule extraite est remise dans l'urne avec $c$ boules de la même couleur.
+	\begin{enumerate}
+		\item Pour $a=3, b=2, c=4$, faire un schéma pour le premier tirage
+		\item Déterminer la probabilité que la n-ième boule tirée soit blanche.
+	\end{enumerate}
+	
+	
+	
+	\centering\rule{1\linewidth}{0.6pt}\end{exo}
+
+
+\end{minipage}\end{minipage} \newpage
+
+\end{document}

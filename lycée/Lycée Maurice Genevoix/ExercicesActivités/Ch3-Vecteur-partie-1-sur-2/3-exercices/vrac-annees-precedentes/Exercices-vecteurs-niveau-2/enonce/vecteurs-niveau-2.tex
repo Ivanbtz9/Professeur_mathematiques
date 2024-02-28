@@ -1,0 +1,404 @@
+\documentclass[11pt,a4paper]{article}
+\oddsidemargin 0.1 cm \evensidemargin 0.1cm \textwidth 16cm
+\textheight24cm
+\setlength{\topmargin}{0pt}\setlength{\headsep}{0pt}\pagestyle{empty}
+
+\usepackage{graphicx}
+\usepackage{variations}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage[latin1]{inputenc}  
+\usepackage{fontenc}   
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsthm}
+\usepackage{xypic}
+\usepackage{variations}
+%\usepackage{fancyhdr}
+%\usepackage{xcolor}
+%\usepackage{pstricks-add}
+\usepackage[francais]{babel}
+%\usepackage[french]{babel}
+\newtheorem{defi}{D\'{e}finition}
+\newtheorem{thm}{Th\'{e}or\`{e}me}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propri\'{e}t\'{e}}
+\newtheorem{prop-def}{Propri\'{e}t\'{e}-D\'{e}finition}
+\newtheorem{ex}{Exemple}
+\newtheorem{exs}{Exemples}
+\newtheorem{exer}{Exercice}
+%\newtheorem{proof}{D\'{e}monstration}
+\def\di{\displaystyle}
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\usepackage[top=0.5cm,bottom=0.5cm,right=1.5cm,left=1.5cm]{geometry}
+\usepackage{pstricks,pst-plot} 
+%\usepackage{framed}
+\usepackage{amsmath}
+%\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{multicol}
+%\usepackage{xcolor}
+\usepackage{epsfig}
+\usepackage{pifont}
+%\usepackage[framed]{ntheorem}
+%\usepackage[frenchb]{babel}
+\usepackage{tabularx}
+\def\R{{\mathbb R}}
+\newtheorem{Rem}{Remarque}
+\newcommand{\V}{\overrightarrow}
+\newcommand{\Rep}{(O;\V{\imath};\V{\jmath})}
+\newcommand{\Coor}[2]{\begin{pmatrix} #1\\#2 \end{pmatrix}}
+
+\begin{document}
+\title{}         % Enter your title between curly braces
+\author{}        % Enter your name between curly braces
+\date{}          % Enter your date or \today between curly braces
+\maketitle
+     
+\indent\vspace{-3cm}
+$$\fbox{\text{\begin{Large}Vecteurs - Feuille d'exercices niveau 2 \end{Large}}}$$
+     
+\hfill\\[0.2cm]
+
+\noindent\underline{\textbf{Exercice 1 : représentant d'un vecteur, égalité de deux vecteurs}}
+\begin{enumerate}
+\item On considère la figure ci-dessous :
+$$\includegraphics[scale=0.6]{exo1.eps}$$
+\hfill\\
+	\begin{enumerate}[$a.$]
+	\item Construire au compas sur la figure ci-dessus les points $M$ et $N$ vérifiant $\V{PM}=\V{u}$ et $\V{QN}=\V{u}$.
+	\item Que peut-on dire des vecteurs $\V{PQ}$ et $\V{MN}$. Justifier.
+	\end{enumerate}
+\item On considère quatre points $A$, $B$, $C$, $D$ tels que $\V{AB}=\V{CD}$. Faire une figure à main levée, puis compléter les égalités suivantes à l'aide des points $A$, $B$, $C$ et $D$ :\\[0.2cm]
+\begin{minipage}{0.25\linewidth}
+%\begin{enumerate}[$\diamond$]
+%\item 
+$$\V{B....}=\V{....C} \ \ ;$$
+%\end{enumerate}
+\end{minipage}
+\begin{minipage}{0.25\linewidth}
+%\begin{enumerate}[$\diamond$]
+%\item 
+$$\V{....A}=\V{D....} \ \ ;$$
+%\end{enumerate}
+\end{minipage}
+\begin{minipage}{0.25\linewidth}
+%\begin{enumerate}[$\diamond$]
+%\item 
+$$\V{A....}=\V{B....} \ \ ;$$
+%\end{enumerate}
+\end{minipage}
+\begin{minipage}{0.25\linewidth}
+%\begin{enumerate}[$\diamond$]
+%\item 
+$$\V{CC}=\V{D....} \ \ . $$
+%\end{enumerate}
+\end{minipage}
+\end{enumerate}
+\hfill\\
+
+\noindent\underline{\textbf{Exercice 2 : égalité de deux vecteurs et parallélogramme}}
+\begin{enumerate}
+\item Tracer un triangle $IJK$. On définit le point $L$ tel que $\V{IJ}+\V{IL}=\V{IK}$.\\
+Construire le point $L$ après avoir indiqué la nature du quadrilatère $IJKL$.
+\item Soit $ABCD$ un parallélogramme.
+	\begin{enumerate}[$a.$]
+	\item Construire le symétrique $E$ de $D$ par rapport à $C$ et le symétrique $F$ de $B$ par rapport à $A$. \\
+Que peut-on dire des vecteurs $\V{DC}$ et $\V{CE}$ ? Des vecteurs $\V{AF}$ et $\V{BA}$ ? Justifier les réponses. 
+	\item Démontrer que le quadrilatère $CEAF$ est un parallélogramme.
+	\item Parmi les points de la figure, reconnaître les points $P$ et $Q$ définis par :
+$$\text{$\V{DP}=\V{DA}+\V{AB}$ et $\V{CQ}=\V{CD}+\V{CB}$.}$$
+	\item Construire le symétrique $H$ de $B$ par rapport à $C$.
+	\item Comparer $\V{AC}$ et $\V{DH}$. Justifier.
+	\end{enumerate}
+\end{enumerate}
+\hfill\\[-0.4cm]
+
+\noindent\underline{\textbf{Exercice 3 : direction, sens et norme d'un vecteur}}\\[-0.3cm]
+\begin{minipage}{0.5\linewidth}
+\noindent $1$. On considère la figure ci-contre. Citer :
+	\begin{enumerate}[$a.$]
+	\item deux vecteurs égaux à $\V{KJ}$ ;
+	\item deux vecteurs égaux à $\V{JC}$ ;
+	\item deux vecteurs égaux à $\V{KA}$.
+	\end{enumerate}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+$$\includegraphics[scale=0.5]{exo3-qu1.eps}$$
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\indent $2$. On considère la figure ci-contre. Avec tous les points de cette figure, écrire :
+	\begin{enumerate}[$a.$]
+	\item tous les vecteurs égaux à $\V{BC}$ ;
+	\item tous les vecteurs égaux à $\V{FB}$ ;
+	\item tous les vecteurs égaux à $\V{DB}$.
+	\end{enumerate}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+$$\includegraphics[scale=0.5]{exo3-qu2.eps}$$
+\end{minipage}
+\hfill\\
+
+\newpage
+\noindent\underline{\textbf{Exercice 4 : représentant d'un vecteur d'origine donnée}}\\[0.1cm] 
+Les questions suivantes sont indépendantes.
+\begin{enumerate}[$\bullet$]
+\item \underline{Sans quadrillage.}\\[0.1cm]
+Soit $ABC$ un triangle.
+	\begin{enumerate}[$1.$]
+	\item Tracer au compas le point $E$ tel que $\V{AE}=\V{BC}$.
+	\item Tracer au compas le point $F$ tel que $\V{CF}=\V{BA}$.
+	\item Que peut-on dire des points $E$ et $F$ ? Justifier.
+	\end{enumerate}
+\item \underline{Avec deux vecteurs et quadrillage.}
+	\begin{enumerate}[$1.$]
+	\item Construire sur la figure ci-dessous le point $M$ défini par $\V{AM}=\V{AB}+\V{CD}$ et le point $N$ défini par $\V{BN}=\V{AB}+\V{CD}$.
+\psset{unit=0.65}
+$$\begin{pspicture}(10,6)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](10,6)      
+      \rput(0.7,1.7){$A$}
+      \rput(6.3,1.7){$B$}
+      \rput(5.3,5.3){$C$}
+      \rput(3.3,3.3){$D$}
+      \psdots(1,2)
+      \psdots(6,2)
+      \psdots(5,5)
+      \psdots(3,3)
+   \end{pspicture}$$
+	\item Construire sur la figure ci-dessous le point $M$ défini par $\V{AM}=\V{AB}+\V{BC}$.
+$$\begin{pspicture}(9,2)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](9,2)      
+      \rput(1.7,0.7){$A$}
+      \rput(4.7,0.7){$C$}
+      \rput(7.3,0.7){$B$}
+      \psdots(2,1)
+      \psdots(5,1)
+      \psdots(7,1)
+   \end{pspicture}$$
+	\item Construire sur la figure ci-dessous le point $M$ défini par $\V{AM}=\V{AB}+\V{AC}$.
+$$\begin{pspicture}(12,2)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](12,2)      
+      \rput(1.7,0.7){$A$}
+      \rput(4.7,0.7){$C$}
+      \rput(7.3,0.7){$B$}
+      \psdots(2,1)
+      \psdots(5,1)
+      \psdots(7,1)
+   \end{pspicture}$$
+	\end{enumerate}
+\item \underline{Avec deux vecteurs et sans quadrillage.}\\[0.1cm]
+Les questions suivantes sont équivalentes.
+	\begin{enumerate}[$1.$]
+	\item Soit $ABC$ un triangle. Faire une figure puis construire les points $D$, $E$, $F$, $G$, $H$, $I$, $J$ et $K$ tels que :
+$$\text{$\V{AD}=\V{AB}+\V{AC}$ \ , \ $\V{BE}=\V{BA}+\V{BC}$ \ , \ $\V{CF}=\V{CA}+\V{CB}$ \ , \ $\V{AG}=\V{AB}+\V{AB}$ \ , \ $\V{AH}=\V{AC}+\V{BA}$}$$
+$$\text{\ , \ $\V{AI}=\V{BA}+\V{AC}$ \ , \ $\V{CJ}=\V{CA}+\V{BA}$ \ et \ $\V{AK}=\V{CB}+\V{BA}$.}$$
+	\item Soit un carré $ABCD$. Faire une figure puis construire les points $E$ et $F$ tels que :
+$$\text{$\V{CE}=\V{CA}+\V{CB}$ \ et \ $\V{DF}=\V{DB}+\V{DA}$. }$$
+	\item Soit $ABCD$ un losange. Faire une figure puis construire le quadrilatère $DEFG$ tel que :
+$$\text{$\V{DG}=\V{DA}+\V{DB}$ \ , \ $\V{BE}=\V{BD}+\V{BA}$ \ et \ $\V{DF}=\V{DA}+\V{BA}$.}$$
+	\item Soit $LUMA$ un rectangle de centre $O$. Construire les points $X$ et $Y$ tels que :
+$$\V{LX}=\V{AM}+\V{OU} \ \ \ \text{et} \ \ \ \V{AY}=\V{LU}+\V{OM}$$
+	\item Soit $(O ; I , J)$ un repère orthonormé. Construire le polygone $OABCDEFGH$ où :\\
+	\begin{minipage}{0.25\linewidth}
+	$\V{OA}=\V{OI}+\V{OJ}$,\\
+	$\V{OB}=\V{OI}+\V{OI}$,
+	\end{minipage}\hfill
+	\begin{minipage}{0.25\linewidth}
+	$\V{OC}=\V{OB}+\V{OB}$,\\
+	$\V{OH}=\V{OJ}+\V{OJ}$,
+	\end{minipage}\hfill
+	\begin{minipage}{0.25\linewidth}
+	$\V{OD}=\V{OB}+\V{OH}$,\\
+	$\V{OF}=\V{OH}+\V{OH}$,
+	\end{minipage}\hfill
+	\begin{minipage}{0.25\linewidth}
+	$\V{OG}=\V{OD}+\V{BA}$,\\
+	$\V{OE}=\V{OG}+\V{AD}$.
+	\end{minipage}
+	\end{enumerate}
+\end{enumerate}  
+\hfill\\
+
+\noindent\underline{\textbf{Exercice 5 : enchaînement de deux translations, construction du vecteur somme.}}\\[0.2cm]
+Soient $A$, $B$, $E$ et $F$ quatre points tels que $\V{AB}=\V{EF}$. Soit $D$ un point quelconque. Quelle est l'image du point $E$ par la translation de vecteur $\V{AD}$ suivie de la translation de vecteur $\V{DB}$ ? Justifier.\\
+\hfill\\
+
+\newpage
+
+\noindent\underline{\textbf{Exercice 6 : milieu d'un segment}}\\[0.1cm]
+Les questions suivantes sont équivalentes.
+\begin{enumerate}
+\item Construire trois $M$, $I$ et $N$ tels que $\V{MI}=\V{IN}$. Que peut-on dire du point $I$ ? La réponse serait-elle la même si les points $M$, $I$ et $N$ vérifiaient seulement l'égalité $MI=IN$ ?
+\item Construire cinq points non alignés $A$, $B$, $C$, $D$ et $O$ tels que $\V{AO}=\V{OC}$ et $\V{DO}=\V{OB}$. Que peut-on dire du quadrilatère $ABCD$ ? Justifier.
+\item Soit $ABC$ un triangle.
+	\begin{enumerate}
+	\item Construire le point $D$ vérifiant $\V{AD}=\V{AB}+\V{AC}$.
+	\item Construire le point $E$ vérifiant $\V{AE}=\V{AB}-\V{AC}$.
+	\item Démontrer que le point $B$ est le milieu de $[DE]$.
+	\end{enumerate}
+\end{enumerate}
+\hfill\\[-0.3cm]
+
+\noindent\underline{\textbf{Exercice 7 : coordonnées d'un vecteur : lecture graphique et calcul}}\\[0.1cm] 
+Soit $(O;I,J)$ un repère orthonormé.
+\begin{enumerate}
+\item Soient $A(2;-5)$, $B(3;4)$ et $C(1;-1)$. Calculer les coordonnées du point $D$ tel que $\V{AB}=\V{CD}$ et vérifier sur un graphique.
+\item Soient $E(-1;2)$ et $F(3;-1)$.
+	\begin{enumerate}[$a.$]
+	\item Calculer les coordonnées du milieu $M$ de $[EF]$.
+	\item Calculer les coordonnées du point $H$ tel que $E$ soit le milieu de $[HF]$.
+	\item Calculer les coordonnées du point $K$ tel que $\V{EF}=\V{FK}$.
+	\item Faire une figure et contrôler les résultats des questions précédentes.
+	\end{enumerate}
+\item On donne la figure ci-contre :\\[-0.4cm]
+\begin{minipage}{0.5\linewidth}
+	\begin{enumerate}[$a.$]
+	\item Lire les coordonnées des points $G$, $H$, $K$ et $L$.
+	\item Démontrer que $GHKL$ est un parallélogramme.
+	\end{enumerate}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\psset{unit=0.6}
+$$\begin{pspicture}(11,6)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](11,6)      
+      \psline{->}(0,4)(11,4)
+      \psline{->}(5,0)(5,6)
+      \rput(1.6,0.6){$G$}
+      \rput(7.3,1.6){$L$}
+      \rput(5.3,2.6){$H$}
+      \rput(10.3,3.6){$K$}
+      \rput(4.7,3.7){$O$}
+      \rput(5.7,3.7){$I$}
+      \rput(4.7,4.7){$J$}
+      \psdots(5,4)
+      \psdots(6,4)
+      \psdots(5,5)
+      \psdots(2,1)
+      \psdots(7,2)
+      \psdots(5,3)
+      \psdots(10,4)
+      \psline(2,1)(5,3)
+      \psline(5,3)(10,4)
+      \psline(10,4)(7,2)
+      \psline(7,2)(2,1)
+      %\psaxes(5,4)(0,0)(11,6)
+      \end{pspicture}$$
+\end{minipage}			
+\item On donne les points $M(-2;-3)$ et $N(-1;2)$. Calculer les coordonnées du point $P$ tel que $-2\V{MP}+5\V{PN}=\V{0}$.  
+\end{enumerate}
+\hfill\\[-0.3cm]
+
+
+\noindent\underline{\textbf{Exercice 8 : Relation de Chasles.}}\\
+Les questions suivantes sont indépendantes.
+\begin{enumerate}
+\item Compléter les égalités suivantes sans faire de figure :\\
+\begin{minipage}{0.33\linewidth}
+$$\V{AM}+\V{BA}+\V{MN}=........ \ ;$$
+\end{minipage}\hfill
+\begin{minipage}{0.33\linewidth}
+$$\V{AP}+\V{QR}+\V{PQ}=........ \ ;$$
+\end{minipage}\hfill
+\begin{minipage}{0.33\linewidth}
+$$\V{AB}+\V{....C}+\V{....D}=\V{AD} \ .$$
+\end{minipage} 
+\item Soit $ABC$ un triangle. Soient $E$, $F$ et $D$ les milieux respectifs des côtés $[AC]$, $[BC]$ et $[AB]$.
+	\begin{enumerate}[$a.$]
+	\item Faire une figure, puis compléter les égalités suivantes :
+		$$\V{EB}=\V{E....}+\V{C....} \ \ \ ; \ \ \ \V{DC}=\V{....B}+\V{....C}.$$ 
+	\item Déduire de la question précédente que $\V{EB}+\V{DC}=\V{DB}+\V{EC}$.
+	\end{enumerate}
+\item Soit $ABCD$ un parallélogramme. 
+	\begin{enumerate}[$a.$]
+	\item Simplifier les sommes suivantes :
+	$$\V{AB}+\V{CD} \ \ ; \ \ \V{BC}+\V{DA} \ \ ; \ \ \V{BC}+\V{BA} \ \ ; \ \ \V{CA}+\V{DC}+\V{AD}.$$
+	\item Démontrer que pour tout point $M$ du plan, on a $\V{AB}+\V{CM}=\V{DM}$.
+	\end{enumerate}
+\item Simplifier les sommes suivantes :\\
+  \begin{minipage}{0.5\linewidth}
+	\begin{enumerate}[$\diamond$]
+	\item $\V{AB}+\V{CA}+\V{BC}$ ;
+	\item $\V{AB}+\V{CA}+\V{BA}$ ;
+	\end{enumerate}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+	\begin{enumerate}[$\diamond$]
+	\item $\V{AE}+\V{AE}+\V{BA}+\V{EB}$ ;
+	\item $\V{OA}+\V{CD}+\V{AB}+\V{DO}+\V{BC}$.
+	\end{enumerate}
+	\end{minipage}
+\item On considère la figure ci-dessous où $ABCD$ est un rectangle.\\[-0.4cm]
+\begin{minipage}{0.6\linewidth}
+Simplifier les sommes suivantes :\\
+	\begin{minipage}{0.5\linewidth}
+	\begin{enumerate}[$\diamond$]
+	\item $\V{AB}+\V{RI}$ ;
+	\item $\V{DC}+\V{BR}$ ;	 
+	\end{enumerate}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+	\begin{enumerate}[$\diamond$]
+	\item $\V{AD}+\V{IR}$ ;
+	\item $\V{IC}+\V{DA}$ ;
+	\item $\V{AB}+\V{RI}+\V{CD}$.
+	\end{enumerate}
+	\end{minipage}
+\end{minipage} \hfill
+\begin{minipage}{0.4\linewidth}
+$$\includegraphics[scale=0.5]{exo9-qu5.eps}$$
+\end{minipage}
+\item Soient $A$, $B$, $C$ et $D$ quatre points du plan tels que $\V{AC}+\V{AD}-\V{BC}=\V{AB}$. Démontrer que les points $A$ et $D$ sont confondus.
+\item Soient $A$, $B$, $C$ et $D$ quatre points quelconques du plan. Démontrer que $\V{BA}+\V{DC}=\V{BC}=\V{DA}$.
+\end{enumerate}
+\hfill\\
+
+%\noindent\underline{\textbf{Exercice 9 : Construction de la somme de deux vecteurs sans quadrillage.}}\\
+%Construire au compas sur la figure ci-dessous le point $M$ défini par $\V{PM}=\V{PQ}+\V{PR}$.
+%$$\includegraphics[scale=0.5]{exo10-qu1.eps}$$
+%\hfill\\
+
+
+\noindent\underline{\textbf{Exercice 9 : exercice-bilan.}}\\
+Les questions suivantes sont indépendantes.
+\begin{enumerate}
+\item Soit $A(7;5)$, $B(-3;3)$, $C(-1;-3)$ et $D(7;-5)$. On note $K$, $L$, $M$ et $N$ les milieux respectifs de $[AB]$, $[BC]$, $[CD]$ et $[DA]$. Démontrer que $KLMN$ est un parallélogramme. (Indication : on commencera par calculer les coordonnées des points $K$, $L$, $M$ et $N$).  
+\item Soit $ABCD$ un parallélogramme. Soit $E$ le symétrique de $D$ par rapport à $C$ et soit $F$ le symétrique de $C$ par rapport à $D$. 
+	\begin{enumerate}[$a.$]
+	\item Que peut-on dire des vecteurs $\V{DC}$ et $\V{CE}$ ? Des vecteurs $\V{DC}$ et $\V{FD}$ ? Justifier les réponses.
+	\item Démontrer que les segments $[FE]$ et $[CD]$ ont le même milieu.
+	\end{enumerate}
+\item Soient $ABCD$ et $CBEF$ deux parallélogrammes tels que les points $A$, $B$ et $E$ ne soient pas alignés. Démontrer que $\V{AE}=\V{DF}$.
+\item Soit $ABCDEF$ un hexagone régulier de centre $O$ (c'est-à-dire composé de six triangles équilatéraux de sommet $O$).\\
+	\begin{minipage}{0.5\linewidth}
+	\begin{enumerate}[$a.$]
+	\item Pourquoi a-t-on $\V{DC}=\V{EO}$ ? Donner d'autres représentants du vecteur $\V{DC}$.
+	\item Indiquer tous les vecteurs égaux à $\V{AB}$.
+	\item A quels vecteurs la somme $\V{DC}+\V{AB}$ est-elle égale ?
+	\item Parmi les six triangles équilatéraux dessinés, quels sont ceux qui sont images du triangle $AOF$ par une translation ? Dans chaque cas, citer le vecteur associé à la translation.
+	\end{enumerate}
+	\end{minipage}\hfill
+	\begin{minipage}{0.5\linewidth}
+	$$\includegraphics[scale=0.5]{exo11-qu4.eps}$$
+	\end{minipage}
+\item Soit $ABC$ un triangle.
+	\begin{enumerate}[$a.$]
+	\item Construire les points $A'$, $B'$ et $C'$ tels que :
+	$$\text{$\V{AA'}=\V{AB}+\V{AC}$ \ \ , \ \ $\V{BB'}=\V{BA}+\V{BC}$ \ \ , \ \ $\V{CC'}=\V{CA}+\V{CB}$.}$$
+	\item Quelle est la nature du quadrilatère $CAC'B$ ?
+	\item Qu'en déduit-on pour $\V{BC}$ et $\V{C'A}$ ?
+	\item Démontrer que $\V{C'A}=\V{AB'}$.
+	\item Justifier que le point $A$ est le milieu de $[C'B']$. Que peut-on en déduire pour la droite $(AA')$.
+	\item Démontrer que les droites $(AA')$, $(BB')$ et $(CC')$ sont concourantes.
+	\end{enumerate}
+\item Soit $ABCD$ un rectangle de centre $I$.
+	\begin{enumerate}[$a.$]
+	\item Construire le point $K$ tel que $\V{IK}=\V{IA}+\V{IB}$. Montrer que le quadrilatère $AKBI$ est un losange. 
+	\item Soient $P$ le symétrique de $I$ par rapport à $B$ et $R$ symétrique de $K$ par rapport à $B$. Prouver que les points $I$, $K$, $P$ et $R$ sont sur un même cercle et indiquer le rayon et le centre de ce cercle. En déduire la nature du quadrilatère $IKPR$.
+	\end{enumerate}
+\end{enumerate}
+
+
+
+
+\end{document}

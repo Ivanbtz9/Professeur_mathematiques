@@ -1,0 +1,347 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor,multicol}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\p}{\mathbb{P}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	
+	
+	\begin{center}
+		\Large \sc colle 17 = Dénombrement et espaces euclidiens 
+	\end{center}
+
+
+\section*{Dénombrement - Combinatoire:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\
+		Combien y a-t-il de nombres de $5$ chiffres où $0$ figure une fois et une seule~?
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	\begin{exo}\quad\\
+		Dénombrer les anagrammes des mots suivants:\\[0.25cm]
+		
+		\centering
+		$MATRICE , \quad ANALYSE,\quad ANANAS$
+		
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		\begin{exo} \quad\\
+			On part du point de coordonnées $(0,0)$ pour rejoindre le point de coordonnées $(p,q)$ ($p$ et $q$ entiers naturels donnés) en se déplaçant à chaque étape d'une unité vers la droite ou vers le haut. Combien y a-t-il de chemins possibles~?
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\quad\\
+			Un damier est un plateau carré contenant 100 cases.
+			\begin{enumerate}
+				\item Combien y a-t-il de manières de placer 50 pièces blanches et 50 pièces noires sur ce damier ? 
+				\item Soient $n_1,n_2,n_3,n_4 \in\N$ tels que $n_1 + n_2 + n_3 +n_4 = 100$. On dispose de $n_1$ pièces noires, $n_2$ pièces blanches, $n_3$ pièces bleus et $n_4$ pièces rouges. Combien y a-t-il de manières différentes différentes de placer toutes ces pièces sur un damier. 
+			\end{enumerate}
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	
+	\begin{exo}\quad\\
+		De combien de façons peut-on payer $100$ euros avec des pièces de $10$, $20$ et $50$ centimes~?
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}	
+	\end{minipage}
+\end{minipage}
+
+\section*{Probabilités sur un espace fini}
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+
+	\begin{exo}\quad\\
+		Lors d'une loterie de Noël, $300$ billets sont
+		vendus aux enfants de l'école ; $4$ billets sont gagnants.
+		J'achète $10$ billets, quelle est la probabilité pour que je gagne au moins un lot?
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		\begin{exo}\quad\\
+		Dans les barres de chocolat, on trouve des images équitablement
+		réparties de cinq grands mathématiciens, une image par
+		tablette. On veut avoir l'image de Denis Poisson : combien dois-je
+		acheter de barres pour que la probabilité d'avoir la figurine attendue dépasse $80$\%? 
+		Même question pour être sûr à $90$\%.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo} \quad\\
+		En cas de migraine trois patients sur cinq prennent de l'aspirine
+		(ou équivalent), deux sur cinq prennent un médicament M présentant des effets secondaires :
+		
+		Avec l'aspirine, 75\% des patients sont soulagés.
+		
+		Avec le médicament M, 90\% des patients sont soulagés.
+		\begin{enumerate}
+			\item Quel est le taux global de personnes soulagées?
+			
+			\item Quel est la probabilité pour un patient d'avoir pris de l'aspirine
+			sachant qu'il est soulagé?
+		\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+\begin{exo} \quad\\
+	Dans l'ancienne formule du Loto il fallait choisir 6 numéros parmi 49.
+\begin{enumerate}
+	\item Combien y-a-t-il de grilles possibles ? En déduire la probabilité de
+	gagner en jouant une grille.
+	
+	\item Quelle est la probabilité que la grille gagnante comporte 2
+	nombres consécutifs?
+\end{enumerate}	
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\quad\\
+	Quelle est la probabilité $p_n$ pour que dans un groupe de $n$ personnes choisies au hasard, deux personnes au moins aient le même anniversaire (on considèrera que l'année a toujours $365$ jours, tous équiprobables). Montrer que pour $n\geq23$, on a $p_n\geq\frac{1}{2}$.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+		
+		
+		\begin{exo}\quad\\
+		Dans une salle $60$\% des personnes sont des femmes ; une femme sur trois
+		porte des lunettes et un homme sur deux porte des lunettes : quelle est la
+		probabilité pour qu'un porteur de lunettes pris au hasard soit une femme?
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\quad\\
+		Un professeur oublie fréquemment ses clés. Pour tout $n$, on note :
+		$E_n$ l'événement <<le jour $n$, le professeur oublie ses clés>>, 
+		$P_{n}=P(E_n)$, $Q_n=P(\overline{E_n})$.
+		
+		On suppose que : $P_{1}=a$ est donné et que si le jour $n$ il oublie ses clés, 
+		le jour suivant il les oublie avec la probabilité $\frac{1}{10}$ ; 
+		si le jour $n$ il n'oublie pas ses clés, le jour suivant il les oublie
+		avec la probabilité $\frac{4}{10}$.
+		
+		Montrer que $P_{n+1}=\frac{1}{10}P_{n}+\frac{4}{10}Q_{n}$.
+		En déduire une relation entre $P_{n+1}$ et $P_{n}$
+		
+		Quelle est la probabilité de l'événement <<le jour $n$, le professeur oublie ses clés>> ?
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	\begin{exo} \quad\\%\textbf{\textit{(Inégalité de Bonferroni) }}
+		Soient $\Omega$ un ensemble fini, $\left( \Omega, \mathcal{P}(\Omega),\p) \right)$ un espace probabilisé et $A_1,...,A_n$ des événements. Démontrer que:
+		$$\p(A_1\cap...\cap A_n) \geq \left(\sum_{i=1}^{n} \p(A_i)\right) - (n-1)$$ 
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}	
+	\end{minipage}
+\end{minipage}
+	
+
+
+\newpage
+\section*{Exercice supplémentaire:}\hfill\\[-0.5cm]
+\begin{exo}\quad\\
+	\begin{enumerate}
+		\item  Soit $E$ un ensemble fini et non vide. Soient $n$ un entier naturel non nul et $A_1$,..., $A_n$, $n$ parties de $E$. Montrer la \og~formule du crible~\fg~:
+		
+		\begin{align*}\ensuremath
+		\mbox{card}(A_1\cup...\cup A_n)&=\sum_{i=1}^{n}\mbox{card}(A_i)-\sum_{1\leq i_1< i_2\leq n}^{}\mbox{card}(A_{i_1}\cap A_{i_2})\\
+		&+...+(-1)^{k-1}\sum_{1\leq i_1<i_2<...<i_k\leq n}^{}\mbox{card}(A_{i_1}\cap A_{i_2}\cap...\cap A_{i_k})\\
+		&+...+(-1)^{n-1}\mbox{card}(A_1\cap...\cap A_n).
+		\end{align*}
+		
+		\item  Combien y a-t-il de permutations $\sigma$ de $\{1,...,n\}$ vérifiant $\forall i\in\{1,...,n\},\;\sigma(i)\neq i$~?~(Ces permutations sont appelées dérangements (permutations sans point fixe)). Indication~:~noter $A_i$ l'ensemble des permutations qui fixent $i$ et utiliser 1).
+		
+		On peut alors résoudre un célèbre problème de probabilité, le problème des chapeaux. $n$ personnes laissent leur chapeau à un vestiaire. En repartant, chaque personne reprend un chapeau au hasard. Montrer que la probabilité qu'aucune de ces personnes n'ait repris son propre chapeau est environ $\frac{1}{e}$ quand $n$ est grand.
+	\end{enumerate}	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\newpage
+
+\section*{Espaces Euclidiens:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\
+			Soient $A,B \in \mathcal{M}_n(\R)$, on définit:
+			$$\left\langle A|B\right\rangle = Tr(^tAB) $$
+			\begin{enumerate}
+				\item Démontrer que cette formule définit un produit scalaire sur $\mathcal{M}_n(\R)$
+				\item En déduire que, pour tous $A,B\in\mathcal{S}_n(\R)$, on a 
+				$$(Tr(AB))^2 \leq Tr(A^2)Tr(B^2) $$
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\quad\\
+			Soit $E$ un espace vectoriel euclidien et $x,y$ deux éléments de $E$. Montrer que $x$ et $y$ sont orthogonaux si et seulement si $\| x+\lambda y \| \geq \|x\|$ pour tout $\lambda\in\R$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\quad\\
+			Sur $\R[X]$, on pose $ \left\langle P|Q\right\rangle =\int_{0}^{1}P(t)Q(t)\;dt$. Existe-t-il $A$ élément de $\R[X]$ tel que $\forall P\in\R[X],\;\left\langle P|A\right\rangle=P(0)$~?
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\quad\\[0.25cm]
+			
+			
+			Dans $\R^4$ muni du produit scalaire usuel, on pose~:~$V_1=(1,2,-1,1)$ et $V_2=(0,3,1,-1)$.\\
+			On pose $F=\mbox{Vect}(V_1,V_2)$. Déterminer une base orthonormale de $F$ et un système d'équations de $F^\bot$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		\begin{exo}\quad\\[0.25cm]
+			Pour $A=(a_{i,j})_{1\leq i,j\leq n}\in\mathcal{M}_n(\R)$, $N(A)=\mbox{Tr}(^tAA)$. Montrer que $N$ est une norme vérifiant de plus $N(AB)\leq N(A)N(B)$ pour toutes matrices carrées $A$ et $B$. $N$ est-elle associée à un produit scalaire~?			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\quad\\[0.25cm]
+			Soit $E$ un espace préhilbertien et soit $B=\{x\in E; \|x\| \leq 1\}$. Démontrer que $B$ est strictement convexe, c'est-à-dire que, pour tous $x,y\in B$, $x \neq y$ et tout $t\in \left]0,1\right[ $, $\|tx+(1-t)y\|<1$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+	\end{minipage}
+\end{minipage}
+\end{document}

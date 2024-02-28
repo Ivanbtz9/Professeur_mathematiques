@@ -1,0 +1,570 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00009, bodin, 2007/09/01} 
+
+\titre{Propriétés de $\Rr$}
+
+\section{Les rationnels $\Qq$}
+\exercice{451, bodin, 1998/09/01}
+\video{1d2LZ6zGdjg}
+\enonce{000451}{}
+\begin{enumerate}
+    \item D\'emontrer que si $r \in \Q$ et $ x \notin \Q $ alors $ r+x
+\notin \Q $ et si $r\not= 0$ alors $ r.x \notin \Q $.
+    \item Montrer que $\sqrt 2 \not\in\Q$,
+    \item En d\'eduire : entre deux nombres rationnels il y a toujours un nombre irrationnel.
+\end{enumerate}
+\finenonce{000451} 
+
+
+\finexercice\exercice{461, gourio, 2001/09/01}
+\video{cHENuXePV9g}
+\enonce{000461}{}
+Montrer que $\frac{\ln 3}{\ln 2}$ est irrationnel.
+\finenonce{000461} 
+
+
+\finexercice\exercice{459, bodin, 1998/09/01}
+\video{0MkdQiQ4ceI}
+\enonce{000459}{}
+\begin{enumerate}
+    \item Soit $N_n = 0,1997\,1997\ldots 1997$ ($n$ fois).
+Mettre $N_n$ sous la forme $\frac{p}{q}$ avec $p,q \in \Nn^*$.
+    \item Soit $M = 0,1997\,1997\,1997\ldots\ldots$ Donner
+le rationnel dont l'\'ecriture d\'ecimale est $M$.
+    \item M\^eme question avec :
+$ P = 0,11111\ldots + 0,22222\ldots +0,33333\ldots
++0,44444\ldots+0,55555\ldots+0,66666\ldots
++0,77777\ldots + 0,88888\ldots+0,99999\ldots $
+\end{enumerate}
+\finenonce{000459} 
+
+
+\finexercice\exercice{457, bodin, 1998/09/01}
+\video{KX375CPpZjU}
+\enonce{000457}{}
+ Soit $p(x) = \sum_{i=0}^{n} a_i \cdot x^i$. On suppose que tous les
+$a_i$ sont des entiers.
+\begin{enumerate}
+    \item  Montrer que si $p$ a une racine rationnelle $\frac{\alpha}{\beta}$ (avec $\alpha$ et $\beta$ premiers entre eux)
+alors $\alpha$ divise $a_0$ et $\beta$ divise $a_n$.
+
+    \item On consid\`ere le nombre $\sqrt 2+\sqrt 3$. En calculant son carr\'e, montrer que ce
+carr\'e est racine d'un polyn\^ome de degr\'e 2. En d\'eduire, \`a
+l'aide du r\'esultat pr\'ec\'edent qu'il n'est pas rationnel.
+\end{enumerate}
+\finenonce{000457} 
+
+
+\finexercice
+\section{Maximum, minimum, borne supérieure...}
+\exercice{464, bodin, 1998/09/01}
+\video{RCu1h2v86Ig}
+\enonce{000464}{}
+ Le maximum de deux nombres $x,y$ (c'est-\`a-dire le plus grand des
+deux) est not\'e $\max(x,y)$. De m\^eme on notera $\min(x,y)$ le plus petit des deux nombres
+$x,y$. D\'emontrer que :
+$$ \max(x,y)= \frac{x+y+ \vert x-y\vert}{ 2} \quad \hbox{et}\quad  \min(x,y)= \frac{x+y- \vert
+x-y\vert}{ 2}. $$
+Trouver une formule pour $\max(x,y,z)$.
+\finenonce{000464} 
+
+
+\finexercice\exercice{465, monthub, 2001/11/01}
+\video{icn0oS9sQ-0}
+\enonce{000465}{}
+D{\'e}terminer la borne sup{\'e}rieure et inf{\'e}rieure
+(si elles existent) de : $A=\{u_n \mid n\in\N\}$ en posant
+$u_n=2^n$ si $n$ est pair et  $u_n=2^{-n}$ sinon.
+\finenonce{000465} 
+
+
+\finexercice\exercice{466, bodin, 1998/09/01}
+\video{P4ovnPBvMNo}
+\enonce{000466}{}
+ D\'eterminer (s'ils existent) : les majorants, les
+minorants, la borne sup\'erieure, la borne inf\'erieure, le plus
+grand \'el\'ement, le plus petit \'el\'ement des ensembles
+suivants :
+$$
+[0,1]\cap \Qq \ , \quad ]0,1[\cap\Qq \ ,\quad \Nn \ ,\quad \left\lbrace (-1)^n+\frac{1}{n^2} \mid n\in \Nn^* \right\rbrace.
+$$
+\finenonce{000466} 
+
+
+\finexercice\exercice{476, bodin, 1998/09/01}
+\video{72sAcDZMmL8}
+\enonce{000476}{}
+Soient $A$ et $B$ deux parties born\'ees de $\Rr$.
+On note $A+B = \{ a+b \mid (a,b)\in A\times B \}$.
+\begin{enumerate}
+    \item Montrer que $\sup A + \sup B$ est un majorant de $A+B$.
+    \item Montrer que $\sup(A+B)=\sup A + \sup B$.
+\end{enumerate}
+\finenonce{000476} 
+
+
+\finexercice\exercice{477, bodin, 1998/09/01}
+\video{HlWsIpnoVLI}
+\enonce{000477}{}
+ Soit $A$ et $B$ deux parties born\'ees de $\Rr$.
+\textbf{Vrai} ou \textbf{faux} ?
+\begin{enumerate}
+    \item  $A \subset B \Rightarrow \sup A \leqslant \sup B$,
+    \item $A \subset B \Rightarrow \inf A \leqslant \inf B$,
+    \item $\sup (A\cup B) = \max(\sup A,\sup B)$,
+    \item $\sup(A+B) < \sup A + \sup B$,
+    \item $\sup(-A) = -\inf A$,
+    \item $\sup A +\inf B \leqslant \sup(A+B)$.
+\end{enumerate}
+\finenonce{000477} 
+
+
+\finexercice
+\section{Divers}
+\exercice{5982, bodin, 2010/12/06}
+\video{DJNMuwA-0Ts}
+\enonce{005982}{}
+
+Soit $x$ un r\'eel.
+\begin{enumerate}
+	\item Donner l'encadrement qui définit la partie entière $E(x)$.
+	\item Soit $(u_n)_{n\in \Nn^*}$ la suite définie par $u_n = \dfrac{E (x) + E (2x) + \ldots + E (nx)}{n^2}$. \\
+	Donner un encadrement simple de $n^2 \times u_n$, qui utilise $\sum_{k=1}^n k$.
+	\item En déduire que $(u_n)$ converge et calculer sa limite.
+	\item En d\'eduire que $\Qq$ est dense dans $\Rr$.
+\end{enumerate}
+\finenonce{005982}
+
+
+
+\finexercice\exercice{497, ridde, 1999/11/01}
+\video{TLQnc9s8vkc}
+\enonce{000497}{}
+ Soit $f : \Rr \rightarrow \Rr$  telle que
+$$\forall (x, y)\in \Rr^2 \quad  f(x + y) = f(x) + f(y).$$ 
+Montrer que
+\begin{enumerate}
+\item $\forall n\in \Nn \qquad f(n) = n \cdot f(1)$.
+\item $\forall n\in \Zz \qquad f(n) = n \cdot f(1)$.
+\item $\forall q\in \Qq \qquad f(q) = q \cdot f(1)$.
+\item $\forall x\in \Rr \qquad f(x) = x \cdot f(1)$ si $f$ est croissante.
+\end{enumerate}
+\finenonce{000497} 
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\indication{000451}
+\begin{enumerate}
+  \item Raisonner par l'absurde.
+  \item Raisonner par l'absurde en \'ecrivant $\sqrt2=\frac pq$ avec $p$ et $q$ premiers entre eux. Ensuite plusieurs méthodes sont possibles par exemple essayer de montrer que $p$ et $q$ sont tous les deux pairs.
+  \item Considérer $r + \frac{\sqrt 2}{2}(r'-r)$ (faites un dessin !) pour deux rationnels $r,r'$. Puis utiliser les deux questions pr\'ec\'edentes.
+
+\end{enumerate}
+\finindication
+\indication{000461}
+Raisonner par l'absurde !
+\finindication
+\indication{000459}
+\begin{enumerate}
+  \item Mutiplier $N_n$ par une puissance de $10$ suffisament grande pour obtenir un nombre entier.
+  \item Mutiplier $M$ par une puissance de $10$ suffisament grande (pas trop grande) puis soustraire $M$ pour obtenir un nombre entier.
+\end{enumerate}
+\finindication
+\indication{000457}
+\begin{enumerate}
+  \item Calculer $\beta^n p(\frac \alpha \beta)$ et utiliser le lemme de Gauss.
+  \item Utiliser la premi\`ere question avec $p(x)=(x^2-5)^2-24$.
+
+\end{enumerate}
+\finindication
+\indication{000464}
+Distinguer des cas.
+\finindication
+\indication{000465}
+$\inf A =0$, $A$ n'a pas de borne supérieure.
+\finindication
+\noindication
+\indication{000476}
+Il faut revenir à la définition de la borne supérieure d'un ensemble borné :
+c'est le plus petit des majorants. En particulier la borne supérieure est un majorant.
+\finindication
+\indication{000477}
+Deux propositions sont fausses...
+\finindication
+\indication{005982}
+\begin{enumerate}
+ \item Rappelez-vous que la partie entière de $x$ est le plus grand entier, inférieur ou égal à $x$. Mais il est ici préférable de donner la définition de $E(x)$ en disant que $E(x) \in \Zz$ et que $x$ vérifie un certain encadrement...
+
+ \item Encadrer $E(kx)$, pour $k=1,\ldots,n$.
+
+ \item Rappelez-vous d'abord de la formule $1+2+\cdots+n$ puis utilisez le fameux théorème des gendarmes.
+
+ \item Les $u_n$ ne seraient-ils pas des rationnels ? 
+\end{enumerate}
+\finindication
+\indication{000497}
+\begin{enumerate}
+  \item $f(2)= f(1+1)= \cdots$, faire une r\'ecurrence.
+  \item $f((-n)+n)=\cdots$.
+  \item Si $q = \frac ab$, calculer $f(\frac ab + \frac ab + \cdots +\frac ab)$
+avec $b$ termes dans cette somme.
+  \item Utiliser la densit\'e
+de $\Qq$ dans $\Rr$ : pour $x\in\Rr$ fix\'e, prendre une suite de rationnels qui croit vers $x$, et une autre qui d\'ecroit vers $x$.
+\end{enumerate}
+\finindication
+
+
+\newpage
+
+\correction{000451}
+\begin{enumerate}
+\item Soit $r=\frac pq\in \Qq$ et $x\notin\Qq$.
+Par l'absurde supposons que $r+x\in \Qq$ alors il existe deux
+entiers $p', q'$ tels que $r+x =\frac {p'}{q'}$. Donc $x = \frac
+{p'}{q'}-\frac pq = \frac{qp'-pq'}{qq'}\in\Qq$ ce qui est absurde
+car $x\notin \Qq$.
+
+De la m\^eme fa\c{c}on  si $r \cdot x \in \Qq$ alors $r \cdot x = \frac{p'}{q'}$
+Et donc $x = \frac {p'}{q'}\frac {q}{p}$. Ce qui est absurde.
+
+\item \emph{Méthode ``classique''.} Supposons, par l'absurde, que $\sqrt2 \in \Qq$ alors il existe deux entiers $p,q$ tels que $\sqrt2=\frac pq$. De plus nous pouvons supposer que la fraction est irr\'eductible ($p$ et $q$ sont premiers entre eux). En \'elevant l'\'egalit\'e au carr\'e nous obtenons $q^2\times 2=p^2$. Donc $p^2$ est un nombre pair, cela implique que $p$ est un nombre pair (si vous n'\^etes pas convaincu \'ecrivez la contrapos\'ee ``$p$ impair $\Rightarrow$ $p^2$ impair''). Donc $p = 2\times p'$ avec $p'\in \Nn$, d'o\`u $p^2= 4\times {p'}^2$. Nous obtenons $q^2=2\times {p'}^2$. Nous en d\'eduisons maintenant que $q^2$ est pair et comme ci-dessus que $q$ est pair.
+Nous obtenons ainsi une contradiction car  $p$ et $q$ \'etant tous
+les deux pairs la fraction $\frac pq$ n'est pas irr\'eductible et
+aurait pu \^etre simplifiée. Donc $\sqrt 2\notin\Qq$.
+
+\emph{Autre méthode.} Supposons par l'absurde que $\sqrt 2 \in \Qq$. Alors $\sqrt 2 = \frac pq$ pour deux entiers $p,q \in \Nn^*$.
+Alors nous avons $q \cdot \sqrt 2 \in \Nn$. Considérons l'ensemble suivant :
+$$\mathcal{N} = \left\lbrace n \in \Nn^* \mid n\cdot \sqrt 2 \in \Nn \right\rbrace.$$
+Cet ensemble $\mathcal{N}$ est une partie de $\Nn^*$ qui est non vide car $q\in\mathcal{N}$.
+On peut alors prendre le plus petit élément de $\mathcal{N}$ : $n_0 = \min \mathcal{N}$.
+En particulier $n_0 \cdot \sqrt 2 \in \Nn$.
+Définissons maintenant $n_1$ de la façon suivante : $n_1 = n_0 \cdot \sqrt 2 - n_0$.
+Il se trouve que $n_1$ appartient aussi à $\mathcal{N}$ car d'une part
+ $n_1 \in \Nn$ (car $n_0$ et $n_0 \cdot \sqrt{2}$ sont des entiers) et d'autre part
+$n_1 \cdot \sqrt 2 = n_0 \cdot 2 - n_0 \cdot \sqrt 2 \in \Nn$.
+Montrons maintenant que $n_1$ est plus petit que $n_0$.
+Comme $0 < \sqrt 2 -1 < 1$ alors $n_1 = n_0 (\sqrt 2 -1) < n_0$ et est non nul.
+
+Bilan : nous avons trouvé $n_1 \in \mathcal{N}$ strictement plus petit que $n_0 = \min \mathcal{N}$.
+Ceci fournit une contradiction. Conclusion : $\sqrt{2}$ n'est pas un nombre rationnel.
+
+\item Soient $r,r'$ deux rationnels avec $r<r'$. Notons $x=r + \frac{\sqrt2}{2}(r'-r)$.
+D'une part $x\in]r,r'[$ (car $0 < \frac{\sqrt2}{2} < 1$) et d'apr\`es les deux premi\`eres questions
+$\sqrt2\left(\frac{r'-r}{2}\right) \notin \Qq$ donc $x\notin \Qq$. Et donc $x$ est un
+nombre irrationnel compris entre $r$ et $r'$.
+\end{enumerate}
+\fincorrection
+\correction{000461}
+Par l'absurde supposons que $\frac{\ln 3}{\ln 2}$ soit un rationnel.
+Il s'\'ecrit alors $\frac pq$ avec $p\geqslant 0,q>0$ des entiers.
+On obtient $q\ln 3=p\ln 2$. En prenant l'exponentielle nous obtenons :
+$\exp (q\ln 3) = \exp(p\ln 2)$ soit
+$3^q=2^p$. Si $p \ge 1$ alors $2$ divise $3^q$ donc $2$ divise $3$, ce qui est absurde.
+Donc $p=0$. Ceci nous conduit à l'égalité $3^q=1$, donc $q=0$. La seule solution possible est
+$p=0$, $q=0$.  Ce qui contredit $q\neq 0$.
+Donc $\frac{\ln 3}{\ln 2}$ est irrationnel.
+\fincorrection
+\correction{000459}
+\begin{enumerate}
+\item
+Soit $p = 1997\,1997\,\ldots 1997$ et $q = 1\, 0000\, 0000\, \ldots
+0000 = 10^{4n}$. Alors $N_n = \frac pq$.
+\item Remarquons que $10\,000 \times M = 1997,1997\,1997\,\ldots$ Alors
+$10\,000 \times M -M=1997$ ; donc $9999\times M = 1997$ d'o\`u $M
+= \frac{1997}{9999}$.
+\item $0,111\ldots = \frac19$, $0,222\ldots = \frac 29$, etc.
+D'o\`u $P = \frac 19 + \frac 29 +\cdots + \frac 99 =
+\frac{1+2+\cdots+9}{9}= \frac {45}{9}= 5$.
+\end{enumerate}
+\fincorrection
+\correction{000457}
+\begin{enumerate}
+\item
+  Soit $\frac \alpha \beta \in \Qq$ avec $\pgcd(\alpha,\beta) = 1$.
+Pour $p(\frac \alpha \beta) = 0$, alors $\sum_{i=0}^n {a_i
+\left(\frac \alpha \beta \right)^i} = 0$. Apr\`es multiplication par
+$\beta^n$ nous obtenons l'\'egalit\'e suivante :
+$$
+a_n\alpha^n+a_{n-1}\alpha^{n-1}\beta + \cdots +
+a_1\alpha\beta^{n-1}+a_0\beta^n = 0.$$ 
+En factorisant tous les termes de cette somme sauf le premier par $\beta$, nous \'ecrivons
+$a_n\alpha^n+\beta q=0$. Ceci entra\^{\i}ne que $\beta$ divise
+$a_n\alpha^n$, mais comme $\beta$ et $\alpha^n$ sont premier entre
+eux alors par le lemme de Gauss
+$\beta$ divise $a_n$. De m\^eme en factorisant par $\alpha$ tous les termes
+de la somme ci-dessus, sauf le dernier,  nous obtenons $\alpha q'
++a_0\beta^n = 0$ et par un raisonnement similaire $\alpha$ divise
+$a_0$.
+  \item  Notons $\gamma = \sqrt 2+\sqrt 3$.
+Alors $\gamma^2 = 5 +2\sqrt 2 \sqrt 3$ Et donc
+$\left(\gamma^2-5\right)^2= 4\times 2 \times 3$, Nous choisissons
+$p(x) = (x^2-5)^2-24$, qui s'\'ecrit aussi $p(x)=x^4-10x^2+1$. Vu
+notre choix de $p$, nous avons $p(\gamma)=0$. Si nous supposons
+que $\gamma$ est rationnel, alors $\gamma = \frac \alpha \beta$ et
+d'apr\`es la premi\`ere question $\alpha$ divise le terme constant de
+$p$, c'est-\`a-dire $1$. Donc $\alpha=\pm 1$. De m\^eme $\beta$
+divise le coefficient du terme de plus haut degr\'e de $p$, donc
+$\beta$ divise $1$, soit $\beta = 1$. Ainsi $\gamma = \pm 1$, ce
+qui est \'evidemment absurde !
+\end{enumerate}
+\fincorrection
+\correction{000464}
+Explicitons la formule pour $\max(x,y)$. Si $x\geqslant y$, alors $|x-y|
+= x-y$ donc $\frac12(x+y+|x-y|) = \frac12(x+y+x-y) = x$. De m\^eme
+si $x \leqslant y$, alors $|x-y| = -x + y$ donc $\frac12(x+y+|x-y|) =
+\frac12(x+y-x+y) = y$.
+
+Pour trois \'el\'ements, nous avons $\max(x,y,z) = \max
+\big(\max(x,y),z\big)$, donc d'apr\`es les formules pour deux
+\'el\'ements :
+\begin{align*}
+\max(x,y,z) &= \frac{\max(x,y)+z+| \max(x,y)-z |}{2} \\
+&= \frac{\frac12(x+y+|x-y|)+z+\left|\frac12(x+y+|x-y|) -z
+\right|}{2}.
+\end{align*}
+\fincorrection
+\correction{000465}
+$(u_{2k})_k$ tend vers $+\infty$ et donc 
+$A$ ne possède pas de majorant, ainsi
+$A$ n'a pas de borne supérieure (cependant certains écrivent alors $\sup A = +\infty$). 
+D'autre part toutes les valeurs de $(u_n)$ sont
+positives et $(u_{2k+1})_k$ tend vers $0$, donc $\inf A =0$.
+\fincorrection
+\correction{000466}
+\begin{enumerate}
+\item $[0,1]\cap \Qq$. Les majorants   : $[1,+\infty[$. Les minorants : $]-\infty,0]$. La borne sup\'erieure :
+$1$. La borne inf\'erieure : $0$. Le plus grand \'el\'ement : $1$. Le
+plus petit \'el\'ement $0$.
+\item $]0,1[\cap \Qq$. Les majorants   : $[1,+\infty[$. Les minorants : $]-\infty,0]$. La borne sup\'erieure :
+$1$. La borne inf\'erieure : $0$. Il nexiste pas de plus grand
+\'el\'ement ni de plus petit \'el\'ement.
+\item $\Nn$. Pas de majorants, pas de borne sup\'erieure, ni de plus grand \'el\'ement. Les minorants : $]-\infty,0]$.  La borne inf\'erieure : $0$. Le plus petit \'el\'ement : $0$.
+\item $\Big\lbrace (-1)^n+\frac{1}{n^2} \mid n \in \Nn^* \Big\rbrace$. Les majorants   : $[\frac54,+\infty[$. Les minorants : $]-\infty,-1]$. La borne sup\'erieure :
+$\frac54$. La borne inf\'erieure : $-1$. Le plus grand \'el\'ement :
+$\frac54$. Pas de  plus petit \'el\'ement.
+\end{enumerate}
+\fincorrection
+\correction{000476}
+\begin{enumerate}
+
+    \item  Soient $A$ et $B$ deux parties born\'ees de $\R$.
+On sait que $\sup A$ est un majorant de $A$, c'est-\`a-dire,
+pour tout $a\in A$, $a\leqslant \sup A$. De m\^eme, pour tout $b\in B$, $b\le
+\sup B$. On veut montrer que $\sup A+\sup B$ est un majorant de
+$A+B$. Soit donc $x\in A+B$. Cela signifie que $x$ est de la forme
+$a+b$ pour un $a\in A$ et un $b\in B$. Or $a\leqslant \sup A$, et $b \le
+\sup B$, donc $x=a+b\leqslant \sup A+\sup B$. Comme ce raisonnement est
+valide pour tout $x\in A+B$ cela signifie que  $\sup A+\sup B$ est
+un majorant de $A+B$.
+
+    \item On veut montrer que, quel que soit
+$\epsilon>0$, $\sup A +\sup B-\epsilon$ n'est pas un majorant de $A+B$. On
+prend donc un $\epsilon >0$ quelconque, et on veut montrer que $\sup A
++\sup B-\epsilon$ ne majore pas $A+B$. On s'interdit donc dans la
+suite de modifier $\epsilon$. Comme $\sup A$ est le plus petit des
+majorants de $A$, $\sup A-\epsilon/2$ n'est pas un majorant de $A$.
+Cela signifie qu'il existe un \'el\'ement $a$ de $A$ tel que
+$a>\sup A-\epsilon/2$. {\em Attention: $\sup A-\epsilon/2$ n'est pas
+forc\'ement dans $A$ ; $\sup A$ non plus.} De la m\^eme mani\`ere, il existe $b\in B$ tel que
+$b>\sup B-\epsilon/2$. Or l'\'el\'ement $x$ d\'efini par $x=a+b$ est
+un \'el\'ement de $A+B$, et il v\'erifie $x>(\sup A-\epsilon/2)+(\sup
+B-\epsilon/2)=\sup A +\sup B-\epsilon.$ Ceci implique que $\sup A +\sup
+B-\epsilon$ n'est pas un majorant de $A+B$.
+
+    \item  $\sup A+\sup B$
+est un majorant de $A+B$ d'apr\`es la partie 1. Mais, d'apr\`es la
+partie 2., d\`es qu'on prend un $\epsilon>0$, $\sup A+\sup B -\epsilon$
+n'est pas un majorant de $A+B$. Donc $\sup A+\sup B$ est bien le
+plus petit des majorants de $A+B$, c'est donc la borne supérieure de $A+B$. Autrement dit
+ $\sup (A+B)= \sup A +\sup B$.
+\end{enumerate}
+\fincorrection
+\correction{000477}
+\begin{enumerate}
+  \item Vrai.
+  \item Faux. C'est vrai avec l'hypothèse $B \subset A$ et non $A \subset B$.
+  \item Vrai.
+  \item Faux. Il y a égalité.
+  \item Vrai.
+  \item Vrai.
+\end{enumerate}
+\fincorrection
+\correction{005982}
+\begin{enumerate}
+ \item Par définition est l'unique nombre $E(x) \in \Zz$ tel que 
+ $$E(x) \le x < E(x)+1.$$
+
+ \item Pour le réel $kx$, ($k=1,\ldots,n$) l'encadrement précédent s'écrit $E(kx) \le kx < E(kx)+1$.
+ Ces deux inégalités s'écrivent aussi $E(kx) \le kx$ et $E(kx) > kx - 1$, d'où l'encadrement
+ $kx-1 < E(kx) \le kx$. On somme cet encadrement, $k$ variant de $1$ à $n$, pour obtenir :
+ $$\sum_{k=1}^n (kx-1) < \sum_{k=1}^n E(kx) \le \sum_{k=1}^n kx.$$
+Ce qui donne 
+$$ x \cdot \sum_{k=1}^n k \quad - n < n^2 \cdot u_n \le x \cdot  \sum_{k=1}^n k.$$
+
+ \item On se rappelle que $\sum_{k=1}^n k = \frac{n(n+1)}{2}$ donc 
+ nous obtenons l'encadrement :
+ $$ x\cdot  \frac{1}{n^2} \cdot \frac{n(n+1)}{2} -   \frac{1}{n} < u_n \le x \cdot  \frac{1}{n^2} \cdot  \frac{n(n+1)}{2}.$$
+ $\frac{1}{n^2} \cdot \frac{n(n+1)}{2}$ tend vers $\frac 12$, donc par le théorème des gendarmes $(u_n)$ tend vers $\frac x2$.
+
+ \item Chaque $u_n$ est un rationnel (le numérateur et le dénominateur sont des entiers).
+Comme la suite $(u_n)$ tend vers $\frac x 2$, alors la suite de rationnels $(2u_n)$ tend vers $x$.
+Chaque réel $x\in \Rr$ peut être approché d'aussi près que l'on veut par des rationnels, donc 
+$\Qq$ est dense dans $\Rr$. 
+\end{enumerate}
+\fincorrection
+\correction{000497}
+\begin{enumerate}
+\item  Calculons d'abord $f(0)$. Nous savons $f(1) = f(1+0) = f(1) +f(0)$, donc $f(0) = 0$.
+Montrons le r\'esultat demand\'e par r\'ecurrence : pour $n=1$, nous
+avons bien $f(1)=1\times f(1)$. Si $f(n) = n f(1)$ alors $f(n+1) =
+f(n) + f(1) = nf(1) + f(1) = (n+1)f(1)$.
+\item $0 = f(0) = f(-1 + 1) = f(-1) + f(1)$. Donc $f(-1) = - f(1)$. Puis comme ci-dessus $f(-n) = n f(-1)= -n f(1)$.
+\item Soit $q = \frac ab$. Alors $f(a) = f(\frac ab + \frac ab + \cdots +\frac ab) = f(\frac ab ) + \cdots + f(\frac ab)$
+($b$ termes dans ces sommes). Donc $f(a) = b f(\frac ab)$. Soit
+$a f(1) = b f(\frac ab)$. Ce qui s'\'ecrit aussi $f(\frac ab) =
+\frac ab f(1)$.
+\item Fixons $x \in \Rr$. Soit $(\alpha_i)$ une suite croissante de rationnels qui tend vers $x$. Soit
+$(\beta_i)$ une suite d\'ecroissante de rationnels qui tend vers $x$
+:
+$$\alpha_1\leq \alpha_2 \leq \alpha_3 \leq \ldots \leq x \leq \cdots \leq \beta_2 \leq \beta_1.$$
+Alors comme $\alpha_i \leq x \leq \beta_i$ et que $f$ est
+croissante nous avons $f(\alpha_i)\leq f(x) \leq f(\beta_i)$.
+D'apr\`es la question pr\'ec\'edent cette in\'equation devient : $\alpha_i
+f(1)\leq f(x)\leq \beta_i f(1)$. Comme $(\alpha_i)$ et $(\beta_i)$
+tendent vers $x$. Par le ``th\'eor\`eme des gendarmes'' nous obtenons
+en passant \`a la limite : $x f(1) \leq f(x) \leq xf(1)$.  Soit
+$f(x) = xf(1)$.
+\end{enumerate}
+\fincorrection
+
+
+\end{document}
+

@@ -1,0 +1,208 @@
+\documentclass[11pt,a4paper]{article}
+\oddsidemargin 0.1 cm \evensidemargin 0.1cm \textwidth 16cm
+\textheight24cm
+\setlength{\topmargin}{0pt}\setlength{\headsep}{0pt}\pagestyle{empty}
+
+\usepackage{graphicx}
+\usepackage{variations}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage[latin1]{inputenc}  
+\usepackage{fontenc}   
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsthm}
+\usepackage{xypic}
+\usepackage{variations}
+%\usepackage{fancyhdr}
+%\usepackage{xcolor}
+%\usepackage{pstricks-add}
+\usepackage[francais]{babel}
+%\usepackage[french]{babel}
+\newtheorem{defi}{D\'{e}finition}
+\newtheorem{thm}{Th\'{e}or\`{e}me}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propri\'{e}t\'{e}}
+\newtheorem{prop-def}{Propri\'{e}t\'{e}-D\'{e}finition}
+\newtheorem{ex}{Exemple}
+\newtheorem{exs}{Exemples}
+\newtheorem{exer}{Exercice}
+%\newtheorem{proof}{D\'{e}monstration}
+\def\di{\displaystyle}
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\usepackage[top=0.5cm,bottom=0.5cm,right=1.5cm,left=1.5cm]{geometry}
+\usepackage{pstricks,pst-plot} 
+%\usepackage{framed}
+\usepackage{amsmath}
+%\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{fancybox}
+\usepackage{multicol}
+%\usepackage{xcolor}
+\usepackage{epsfig}
+\usepackage{pifont}
+%\usepackage[framed]{ntheorem}
+%\usepackage[frenchb]{babel}
+\usepackage{tabularx}
+\def\R{{\mathbb R}}
+\newtheorem{Rem}{Remarque}
+\newcommand{\V}{\overrightarrow}
+\newcommand{\Rep}{(O;\V{\imath};\V{\jmath})}
+\newcommand{\Coor}[2]{\begin{pmatrix} #1\\#2 \end{pmatrix}}
+
+\begin{document}
+\title{}         % Enter your title between curly braces
+\author{}        % Enter your name between curly braces
+\date{}          % Enter your date or \today between curly braces
+\maketitle
+
+\indent\vspace{-3cm}
+$$\fbox{\text{\begin{Large}Vecteurs - Feuille d'exercices niveau 0 - Révisions sur le chapitre repérage\end{Large}}}$$
+
+     
+\hfill\\
+\noindent\underline{\textbf{Exercice 1 : Coordonnées d'un point dans un repère}}\\
+\\
+\begin{minipage}{0.45\linewidth}
+On considère le graphique ci-contre.\\
+Lire les coordonnées des points $O$, $I$, $J$, $A$, $B$, $C$, $D$, $E$, $F$ et $G$ dans le repère $(O ; I , J)$.\\
+
+$O ( \hspace{0.6cm}; \hspace{0.6cm})$ \hspace{2cm} $C ( \hspace{0.6cm}; \hspace{0.6cm})$\\
+\\
+$I ( \hspace{0.6cm}; \hspace{0.6cm} )$ \hspace{2cm} $D ( \hspace{0.6cm}; \hspace{0.6cm})$\\
+\\
+$J ( \hspace{0.6cm}; \hspace{0.6cm})$ \hspace{2cm} $E ( \hspace{0.6cm}; \hspace{0.6cm})$\\
+\\
+$A ( \hspace{0.6cm}; \hspace{0.6cm})$ \hspace{2cm} $F ( \hspace{0.6cm}; \hspace{0.6cm})$\\
+\\
+$B ( \hspace{0.6cm}; \hspace{0.6cm})$ \hspace{2cm} $G ( \hspace{0.6cm}; \hspace{0.6cm})$\\
+
+\end{minipage}
+\hfill \ \ \ \
+\begin{minipage}{0.55\linewidth}
+\psset{unit=0.8}
+   \begin{pspicture}(12,8)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](12,8)
+      \psline{->}(0,3)(12,3)
+      \psline{->}(6,0)(6,8)
+      \rput(6.3,6.3){$A$}
+      \rput(4.3,3.3){$B$}
+      \rput(5.7,1.7){$C$}
+      \rput(10.3,3.3){$D$}
+      \rput(2.3,7.3){$E$}
+      \rput(5.7,2.7){$0$}
+      \rput(6.7,2.7){$I$} 
+      \rput(5.7,4.3){$J$}
+      \rput(1.8,1.3){$F$} 
+      \rput(8.2,4.2){$G$} 
+      \psdots(6,6)
+      \psdots(4,3)      
+      \psdots(6,2)
+      \psdots(10,3)
+      \psdots(2,7)
+      \psdots(6,3)
+      \psdots(7,3)
+      \psdots(6,4)
+      \psdots(1.5,1)
+      \psdots(8.5,4.5)
+   \end{pspicture}
+\end{minipage}
+\hfill\\
+\\
+
+
+
+\noindent\underline{\textbf{Exercice 2 : calcul de distances dans un repère orthonormé}}\\[0.3cm]
+On considère le graphique ci-dessous :\\
+\\
+\begin{minipage}{0.55\linewidth}
+\psset{unit=0.7}
+   $$\begin{pspicture}(10,8)
+      \psgrid[gridlabels=0,subgriddiv=0,griddots=10](10,8)
+      \psline{->}(0,3)(10,3)
+      \psline{->}(4,0)(4,8)
+      \rput(1.7,5.3){$A$}
+      \rput(6.3,6.3){$B$}
+      \rput(8.3,4.3){$C$}
+      \rput(2.7,0.7){$D$}
+      \rput(3.7,2.7){$0$}
+      \rput(4.7,2.7){$I$} 
+      \rput(3.7,4.3){$J$}
+      \psdots(2,5)
+      \psdots(6,6)      
+      \psdots(8,4)
+      \psdots(3,1)
+      \psdots(5,3)
+      \psdots(4,3)
+      \psdots(4,4)
+   \end{pspicture}$$
+\end{minipage}
+\hfill\\
+\\
+\\
+Calculer $AB$, $BC$, $CD$, $DA$, $IA$, $IJ$ et $JD$.\\
+\hfill\\
+
+\noindent\underline{\textbf{Exercice 3 :}} Soit $(O;I,J)$ un repère orthonormé.
+\begin{enumerate}
+\item Soient $A\left(-\di\frac{1}{2} \ ; \ -3\right)$ et $B\left(5 \ ; \ \di\frac{1}{4}\right)$. Calculer $OA$, $OB$ et $AB$. 
+\item Soit $C(1+\sqrt{2} \ ; \ 1-\sqrt{2})$. Calculer $OC$.
+\item Soit $\mathcal{C}$ le cercle de centre $I$ et de rayon $\sqrt{2}$.
+\begin{enumerate}[$a.$]
+\item Le point $J$ appartient-il à $\mathcal{C}$ ?
+\item Le point $D\left(2 \ ; \ \di\frac{3\sqrt{2}}{4}\right)$ appartient-il à $\mathcal{C}$ ?
+\end{enumerate}
+\end{enumerate}
+\hfill\\
+\\
+
+\noindent\underline{\textbf{Exercice 4 : triangle}}\\[0.2cm] 
+Soit $(O;I,J)$ un repère orthonormé. Soient $A(1 \ ; \ 3)$, $B(-1 \ ; \ 1)$ et $C(2 \ ; \ 2)$. Quelle est la nature exacte du triangle $ABC$ ?\\
+\\
+
+
+\noindent\underline{\textbf{Exercice 5 : triangle}}\\[0.2cm] 
+Soit $(O;I,J)$ un repère orthonormé. On considère la figure suivante : 
+$$\includegraphics[scale=0.5]{exo-5.eps}$$
+Démontrer que le triangle $ABC$ est équilatéral.\\
+\\
+
+\noindent\underline{\textbf{Exercice 6 : coordonnées du milieu d'un segment}}\\[0.2cm] 
+Soit $(O;I,J)$ un repère quelconque du plan.
+\begin{enumerate}
+\item Soient $E(-2;3)$ et $F(5;-7)$. 
+		\begin{enumerate}[$a.$]
+		\item Calculer les coordonnées du milieu $A$ de $[EF]$.
+		\item Calculer les coordonnées du point $B$ symétrique de $E$ par rapport à $F$.
+		\end{enumerate}
+\item Soient $C\left( \di\frac{4}{5};2 \right)$ et $D\left( -2 ; \di\frac{3}{4}\right)$. Calculer les coordonnées du milieu $M$ de $[CD]$.
+\end{enumerate}
+\hfill\\[-0.2cm]
+
+\noindent\underline{\textbf{Exercice 7 : coordonnées du milieu d'un segment}}\\[0.2cm] 
+Soit $(O;I,J)$ un repère quelconque du plan et soient $A\left(\di\frac{\sqrt{2}+1}{\sqrt{2}-1} \ ;\ \sqrt{3}\right)$ et $B\left(-3-2\sqrt{2};\di\frac{3}{\sqrt{3}}\right)$. \\
+Calculer les coordonnées du milieu $P$ de $[AB]$.
+\hfill\\
+
+\noindent\underline{\textbf{Exercice 8 : médiatrice}}\\[0.2cm] 
+Soit $(O;I,J)$ un repère orthonormé du plan. On considère les points $A(-2 ; -1)$, $B(2;3)$, $C(-2;3)$ et $D(3;-2)$. Démontrer que la droite $(CD)$ est la médiatrice de $[AB]$.\\
+\hfill\\
+
+\noindent\underline{\textbf{Exercice 9 : losange}}\\[0.2cm] 
+Soit $(O;I,J)$ un repère orthonormé du plan. Soient $D(4;-3)$, $E(3;1)$, $F(0;-2)$ et $G(-1;2)$. Démontrer que $FGED$ est un losange.\\
+\hfill\\
+
+\noindent\underline{\textbf{Exercice 10 : exercice-bilan}}\\[0.2cm] 
+Soit $(O;I,J)$ un repère orthonormé. Soient $A(1;6)$, $B(-3;3)$, $C(3;0)$, $D(-1;2)$, $E(-3;1)$ et $F(-5;2)$.
+\begin{enumerate}
+\item Démontrer de deux manières différentes que $D$ appartient au cercle de diamètre $[AC]$.
+\item Démontrer que $DEFB$ est un parallélogramme.
+\item Calculer $DB$ et $DE$. Quelle est la nature exacte de $DEFB$ ?
+\item Démontrer que les triangles $ADC$ et $ADB$ sont rectangles en $D$.
+\item Que peut-on en déduire pour la droite $(AD)$ ?
+\item Calculer l'aire du triangle $ABC$.
+\end{enumerate}
+
+
+
+\end{document}

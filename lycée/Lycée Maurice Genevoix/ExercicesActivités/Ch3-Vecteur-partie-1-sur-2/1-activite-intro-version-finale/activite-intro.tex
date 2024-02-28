@@ -1,0 +1,326 @@
+\documentclass[a4paper,10pt]{article}
+%\usepackage{calc}
+%\usepackage{esvect}
+%\setlength{\parindent}{0mm}
+%\usepackage [alwaysadjust]{paralist}
+%\renewcommand*{\tabularxcolumn}[1]{m{#1}} %centrage vertical des cellules d'un tableau tabularx
+\setlength{\oddsidemargin}{0.25in}
+
+% Set width of the text - What is left will be the right margin.
+% In this case, right margin is 8.5in - 1.25in - 6in = 1.25in.
+\setlength{\textwidth}{6in}
+
+% Set top margin - The default is 1 inch, so the following 
+% command sets a 0.75-inch top margin.
+\setlength{\topmargin}{-0.25in}
+% Set height of the text - What is left will be the bottom margin.
+% In this case, bottom margin is 11in - 0.75in - 9.5in = 0.75in
+\setlength{\textheight}{8in}
+\usepackage[latin1]{inputenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\pagestyle{fancy}
+%\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+\lstdefinestyle{customc}{
+	belowcaptionskip=1\baselineskip,
+	breaklines=true,
+	frame=none,
+	backgroundcolor=\color{gray!20!},
+	xleftmargin={1em},
+	language=html,
+	showstringspaces=false,
+	basicstyle=\small\ttfamily,
+	keywordstyle=\bfseries\color{red!60!black},
+	commentstyle=\color{blue},
+	identifierstyle=\color{black},
+	stringstyle=\color{black},
+	extendedchars=true,
+	literate={à}{{\`a}}1 {é}{{\'e}}1 {è}{{\`e}}1 {ù}{{\`u}}1 {ê}{{\^e}}1,
+}
+\lstset{escapechar=@,style=customc,numbers=left, stepnumber=1}
+
+\usepackage{xlop} % pour poser les opérations à la main
+\usepackage{pstricks,pst-plot} 
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.25cm,left=1.25cm]{geometry}
+\newtheorem{defi}{D\'{e}finition}
+\newtheorem{thm}{Th\'{e}or\`{e}me}
+\newtheorem{thm-def}{Théorème-définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propri\'{e}t\'{e}}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+%\newcommand{\rectvert}{\fcolorbox{green}{green}{\begin{minipage}{1\linewidth}\end{minipage}}}
+%\newenvironment{rectvert}{\fcolorbox{green}{green}\begin{minipage}{1\linewidth}}{\end{minipage}}
+
+\newcommand{\V}{\overrightarrow}
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+\newcommand\opidivzarbi[3][nil]{%
+	\begingroup
+	\opset{#1}%
+	\opidiv*{#2}{#3}{q}{r}%
+	\begin{tabular}{r|l}
+		\opdisplay{operandstyle.1}{#2} &
+		\opdisplay{operandstyle.2}{#3} \\\cline{2-2}
+		\opdisplay{remainderstyle}{r} &
+		\opdisplay{resultstyle}{q}
+	\end{tabular}%
+	\endgroup
+}
+
+% Set the beginning of a LaTeX document
+\begin{document}
+	
+	\fancyhead{}
+	\fancyfoot[L]{Chapitre 3 - Activité d'introduction}
+	\fancyfoot[C]{Page \thepage/2}
+	\fancyfoot[R]{Mme Beudez}
+	\renewcommand{\footrulewidth}{0.4pt}
+	
+	
+	
+	\title{}         % Enter your title between curly braces
+	\author{}        % Enter your name between curly braces
+	\date{}          % Enter your date or \today between curly braces
+	\maketitle
+	
+	\hfill\\[-5cm]
+
+	$$\fbox{\text{\Large{ Chapitre 3 - Activité d'introduction - Associer vecteur et translation.}}}$$
+	
+	\hfill\\
+	
+	\noindent On considère onze " flèches ", appelés \textbf{vecteurs}. Chacune d'entre elles représente une translation. %Deux précisions : 
+%	\begin{enumerate}[$\diamond$]
+%		\item le vecteur $\V{u_{10}}$ est particulier : il n'apparaît pas car il correspond à l'absence de déplacement ;
+%		\item le vecteur $\V{u_{11}}$ n'a volontairement pas été tracé. Ce sera à vous de le faire une fois que vous saurez à quelle situation il est associé.
+%	\end{enumerate}
+%	
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw[dotted] (0,0) grid (16,9);
+	\draw [->, line width = 1pt, color=blue, >=latex'](1,6) -- (4,8);
+	\draw (2,7) node[above right, color=blue]{$\V{u_1}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](7,5) -- (5,8);
+	\draw (6,6.5) node[below left, color=blue]{$\V{u_2}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](8,6) -- (10,7);
+	\draw (9,6.5) node[below right, color=blue]{$\V{u_3}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](15,7) -- (11,8);
+	\draw (13,7) node[below, color=blue]{$\V{u_4}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](2,6) -- (2,4);
+	\draw (2,5) node[below right, color=blue]{$\V{u_5}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](5,6) -- (3,3);
+	\draw (4,4.5) node[below right, color=blue]{$\V{u_6}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](6,4) -- (10,3);
+	\draw (13,5) node[above right, color=blue]{$\V{u_8}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](11,5) -- (15,5);
+	\draw (8,3.5) node[below left, color=blue]{$\V{u_7}$};
+	\draw [->, line width = 1pt, color=blue, >=latex'](5,2) -- (3,2);
+	\draw (4,2) node[above, color=blue]{$\V{u_9}$};
+	\draw (8,2) node[below left, color=blue]{$\V{u_{10}}$};
+	\draw (12,2) node[below left, color=blue]{$\V{u_{11}}$};
+	\draw (15,2) node[below left]{(à tracer ici)};
+	\end{tikzpicture}$$   
+	
+	\hfill\\
+	Ci-dessous sont représentés douze schémas. Chacun correspond à une transformation qui transforme " Fig 1" en " Fig 2 ".\\
+	\\
+	Un seul de ces schémas ne correspond pas à une translation. Lequel ? \dotfill\\
+	
+	$$\begin{tabular}{cc}
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw [line width = 1pt, fill = gray!60, fill opacity=0.2](1,2) -- (4,2)--(3,3)--(1,2);
+	\draw (2.5,1) node[above]{Fig 1};
+	\draw [line width = 1pt, fill = gray!60, fill opacity=0.8](3,3) -- (6,3)--(5,4)--(3,3);
+	\draw (7,3) node[above]{Fig 2};
+	\draw [line width = 1pt](-0.5,-0.5) -- (-0.5,4.5)--(8.5,4.5)--(8.5,-0.5)--(-0.5,-0.5);
+	\draw[dotted] (-0.5,-0.5) grid (8.5,4.5);
+	\draw (4,-0.7) node[below]{\textbf{Schéma $\mathbf{A}$}};
+	\end{tikzpicture}$$
+	&
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw [line width = 1pt, fill = gray!60, fill opacity=0.2](0,0) -- (1,0)--(1,1)--(2,3)--(2,4)--(1,4)--(1,3)--(0,1)--(0,0);
+	\draw (0.85,2.5) node[left]{Fig 1};
+	\draw [line width = 1pt, fill = gray!60, fill opacity=0.2](4,0) -- (5,0)--(5,1)--(6,3)--(6,4)--(5,4)--(5,3)--(4,1)--(4,0);
+	\draw (6,1) node[above]{Fig 2};
+	\draw [line width = 1pt](-0.5,-0.5) -- (-0.5,4.5)--(7.5,4.5)--(7.5,-0.5)--(-0.5,-0.5);
+	\draw[dotted] (-0.5,-0.5) grid (7.5,4.5);
+	\draw (3.5,-0.7) node[below]{\textbf{Schéma $\mathbf{B}$}};
+	\end{tikzpicture}$$
+	\\
+	& \\
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw[dotted] (-0.5,-0.5) grid (8.5,6.5);
+	\draw [line width = 1pt](2,1) -- (2,4);
+	\draw [line width = 1pt](1,3) -- (3,3);
+	\draw (2,3) node[below left]{Fig 1};
+	\draw [line width = 1pt] (2,5) circle [radius=1];
+	\draw [line width = 1pt](6,0) -- (6,3);
+	\draw [line width = 1pt](5,2) -- (7,2);
+	\draw [line width = 1pt] (6,4) circle [radius=1];
+	\draw (6,2) node[below left]{Fig 2};
+	\draw [line width = 1pt](-0.5,-0.5) -- (-0.5,6.5)--(8.5,6.5)--(8.5,-0.5)--(-0.5,-0.5);
+	\draw (4,-0.7) node[below]{\textbf{Schéma $\mathbf{C}$}};
+	\end{tikzpicture}$$
+	&
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw[dotted] (-0.5,-0.5) grid (7.5,6.5);
+	\draw [line width = 1pt](2,0) -- (2,2)--(1,4);
+	\draw [line width = 1pt](2,2) -- (3,4);
+	\draw (2,1.5) node[left]{Fig 1};
+	\draw [line width = 1pt](5,2) -- (5,4)--(4,6);
+	\draw [line width = 1pt](5,4) -- (6,6);
+	\draw (5,3.5) node[right]{Fig 2};
+	\draw [line width = 1pt](-0.5,-0.5) -- (-0.5,6.5)--(7.5,6.5)--(7.5,-0.5)--(-0.5,-0.5);
+	\draw (3.5,-0.7) node[below]{\textbf{Schéma $\mathbf{D}$}};
+	\end{tikzpicture}$$
+	\\
+	& \\
+	
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw [line width = 1pt, fill = gray!60](1,4) -- (3,5)--(4,4)--(3,2)--(1,4);
+	\draw (2.5,3.5) node{Fig 2};
+	\draw [line width = 1pt, fill = gray!60](5,3) -- (7,4)--(8,3)--(7,1)--(5,3);
+	\draw (6.25,2.5) node[above right]{Fig 1};
+	\draw [line width = 1pt](-0.5,-0.5) -- (-0.5,5.5)--(9.5,5.5)--(9.5,-0.5)--(-0.5,-0.5);
+	\draw[dotted] (-0.5,-0.5) grid (9.5,5.5);
+	\draw (4.5,-0.7) node[below]{\textbf{Schéma $\mathbf{E}$}};
+	\end{tikzpicture}$$
+	&
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw [line width = 1pt] (1.5,2.5) circle [radius=0.75];
+	\draw (1,2)--(1,3);
+	\draw (1.5,1)[above] node{Fig 2};
+	\draw [line width = 1pt] (3.5,2.5) circle [radius=0.75];
+	\draw (3,2)--(3,3);
+	\draw (3.5,1)[above] node{Fig 1};
+	\draw[dotted] (-0.5,-0.5) grid (5.5,5.5);
+	\draw [line width = 1pt](-0.5,-0.5) -- (-0.5,5.5)--(5.5,5.5)--(5.5,-0.5)--(-0.5,-0.5);
+	\draw (2.5,-0.7) node[below]{\textbf{Schéma $\mathbf{F}$}};
+	\end{tikzpicture}$$
+	\end{tabular}$$
+	
+	$$\begin{tabular}{cc}
+	& \\
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw [line width = 1pt, fill = gray!60] (0,2)--(6,2)--(5,1)--(1,1)--(0,2);
+	\draw [line width = 1pt] (4,2)--(4,4);
+	\draw [line width = 1pt, fill = gray!60] (3,4)--(4,4)--(4,5)--(3,5)--(3,4);
+	\draw (2.5,1)[above right] node{Fig 1};
+	\draw [line width = 1pt, fill = gray!60] (9,0)--(13,0)--(14,1)--(8,1)--(9,0);
+	\draw [line width = 1pt] (10,1)--(10,3);
+	\draw [line width = 1pt, fill = gray!60] (10,3)--(11,3)--(11,4)--(10,4)--(10,3);
+	\draw (10.5,0)[above right] node{Fig 2};
+	\draw[dotted] (-0.5,-0.5) grid (14.5,5.5);
+	\draw [line width = 1pt](-0.5,-0.5) -- (-0.5,5.5)--(14.5,5.5)--(14.5,-0.5)--(-0.5,-0.5);
+	\draw (7,-0.7) node[below]{\textbf{Schéma $\mathbf{G}$}};
+	\end{tikzpicture}$$
+	&
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw [line width = 1pt, fill = gray!60] (1,4)--(3,5)--(5,4)--(4,2)--(2,2)--(1,4);
+	\draw (3,3)[above right] node{Fig 1};
+	\draw [line width = 1pt, fill = gray!60] (1,2)--(3,3)--(5,2)--(4,0)--(2,0)--(1,2);
+	\draw (3,1)[above right] node{Fig 2};
+	\draw [line width = 1pt] (1,4)--(3,5)--(5,4)--(4,2)--(2,2)--(1,4);
+	\draw[dotted] (-0.5,-0.5) grid (7.5,5.5);
+	\draw [line width = 1pt](-0.5,-0.5) -- (-0.5,5.5)--(7.5,5.5)--(7.5,-0.5)--(-0.5,-0.5);
+	\draw (4,-0.7) node[below]{\textbf{Schéma $\mathbf{H}$}};
+	\end{tikzpicture}$$
+	\\
+	& \\
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw [line width = 1pt, fill = gray!60] (3,2)--(4,3)--(4,5)--(3,2);
+	\draw (4,3)[above right] node{Fig 1 = Fig 2};
+	\draw[dotted] (-0.5,-0.5) grid (8.5,7.5);
+	\draw [line width = 1pt](-0.5,-0.5) -- (-0.5,7.5)--(8.5,7.5)--(8.5,-0.5)--(-0.5,-0.5);
+	\draw (4,-0.7) node[below]{\textbf{Schéma $\mathbf{I}$}};
+	\end{tikzpicture}$$
+	&
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw [line width = 1pt, fill = gray!60] (3,3)--(5,3)--(5,4)--(4,4)--(4,5)--(3,5)--(3,3);
+	\draw (3,3)[above right] node{Fig 1};
+	\draw[dotted] (-0.5,-0.5) grid (8.5,7.5);
+	\draw [line width = 1pt](-0.5,-0.5) -- (-0.5,7.5)--(8.5,7.5)--(8.5,-0.5)--(-0.5,-0.5);
+	\draw (4,-0.7) node[below]{\textbf{Schéma $\mathbf{J}$}};
+	\end{tikzpicture}$$
+	\\
+	& \\
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw [line width = 1pt, fill = gray!60] (0,5)--(1,5)--(3,4)--(4,4)--(4,7)--(3,7)--(1,6)--(0,6)--(0,5);
+	\draw (1,6.5)[above right] node{Fig 1};
+	\draw[dotted] (-0.5,-0.5) grid (11.5,7.5);
+	\draw [line width = 1pt](-0.5,-0.5) -- (-0.5,7.5)--(11.5,7.5)--(11.5,-0.5)--(-0.5,-0.5);
+	\draw (7,2)[above right] node{Fig 2 (à compléter)};
+	\draw (5.5,-0.7) node[below]{\textbf{Schéma $\mathbf{K}$}};
+	\draw [line width = 1pt]  (6,2)--(6,3)--(5,3);
+	\end{tikzpicture}$$
+	&
+	$$\begin{tikzpicture}[scale=0.7]
+	\draw [line width = 1pt, fill = gray!60] (4,3)--(4,5)--(3,6)--(6,6)--(5,5)--(5,3)--(4,3);
+	\draw (4.5,5)[above] node{Fig 2};
+	\draw[dotted] (-0.5,-0.5) grid (10.5,7.5);
+	\draw [line width = 1pt](-0.5,-0.5) -- (-0.5,7.5)--(10.5,7.5)--(10.5,-0.5)--(-0.5,-0.5);
+	\draw [line width = 1pt](7,3)--(8,3)--(7,2) ;
+	\draw (8,1)[above] node{Fig 1 (à compléter)};
+	\draw (4.5,-0.7) node[below]{\textbf{Schéma $\mathbf{L}$}};
+	\end{tikzpicture}$$
+	\\
+	
+	\end{tabular}$$
+	
+	
+	\hfill\\
+	\\
+	\noindent \underline{\textbf{Ce que vous devez faire :}} : 
+	\begin{enumerate}[$\diamond$]
+		\item associer à chaque vecteur le schéma correspondant à la translation associée à ce vecteur. Compléter le tableau suivant : 
+		\renewcommand{\arraystretch}{2}
+		$$\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		Vecteurs & \ $\V{u_1}$ \ & \ $\V{u_2}$ \ & \ $\V{u_3}$ \ & \ $\V{u_4}$ \ & \ $\V{u_5}$ \ & \ $\V{u_6}$ \ & \ $\V{u_7}$ \ & \ $\V{u_8}$ \ & \ $\V{u_9}$ \ & \ $\V{u_{10}}$ \ & \ $\V{u_{11}}$ \ \\
+		\hline
+		Schéma correspondant & & & & & & & & & & & \\
+		\hline
+		\end{tabular}$$
+		\item tracer les figures incomplètes ou manquantes (schémas $J$, $K$ et $L$) ;
+		\item tracer le vecteur $\V{u_{11}}$ sur le quadrillage situé en tout début d'activité.
+		
+	\end{enumerate} 
+	
+	
+	
+	
+	
+	
+% Set the ending of a LaTeX document
+\end{document}
+ 

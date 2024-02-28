@@ -1,0 +1,155 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 1110
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Équivalents et majorations - 2
+\vskip0.2cm
+\'Etudier la convergence des séries $\sum u_n$ suivantes :
+$$\begin{array}{lllll}
+\displaystyle \mathbf 1.\ u_n=\left(\frac{1}{2}\right)^{\sqrt{n}}&&
+\displaystyle \mathbf 2.\ u_n=a^n n!,\ a\in\mathbb R_+&&\displaystyle \mathbf 3. \ u_n=ne^{-\sqrt n}\\
+\displaystyle {\bf 4.}
+\ u_n=\frac{\ln(n^2+3)\sqrt{2^n+1}}{4^n}.&&
+\displaystyle {\bf 5}.\ 
+\ u_n=\frac{\ln n}{\ln(e^n -1)}&&
+\displaystyle \mathbf 6.\ u_n=\left(\frac 1n\right)^{1+\frac 1n}\\
+\ \displaystyle \mathbf 7.\ u_n=\frac{(n!)^3}{(3n)!}.
+\end{array}$$
+
+
+
+% Exercice 1127
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Une erreur classique...
+\vskip0.2cm
+\begin{enumerate}
+\item Démontrer que la série $\sum_n \frac{(-1)^n}{\sqrt n}$ converge.
+\item Démontrer que $\displaystyle \frac{(-1)^n}{\sqrt n+(-1)^n}=\frac{(-1)^n}{\sqrt n}-\frac1n+\frac{(-1)^n}{n\sqrt
+n}+o\left(\frac 1{n\sqrt n}\right)$.
+\item \'Etudier la convergence de la série $\displaystyle \sum_n \frac{(-1)^n}{\sqrt n+(-1)^n}$.
+\item Qu'a-t-on voulu mettre en évidence dans cet exercice?
+\end{enumerate}
+
+
+% Exercice 1115
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Séries de Bertrand
+\vskip0.2cm
+On souhaite étudier, suivant la valeur de $\alpha,\beta\in\mathbb R$, la convergence de la série de terme général
+$$u_n=\frac{1}{n^\alpha(\ln n)^\beta}.$$
+\begin{enumerate}
+\item Démontrer que la série converge si $\alpha>1$.
+\item Traiter le cas $\alpha<1$.
+\item On suppose que $\alpha=1$. 
+On pose $T_n=\int_2^n \frac{dx}{x(\ln x)^\beta}$.
+\begin{enumerate}
+\item Montrer si $\beta\leq 0$, alors la série de terme général $u_n$ est divergente.
+\item Montrer que si $\beta>1$, alors la suite $(T_n)$ est bornée, alors que si $\beta\leq 1$, la suite $(T_n)$ tend vers $+\infty$.
+\item Conclure pour la série de terme général $u_n$, lorsque $\alpha=1$.
+\end{enumerate}
+\end{enumerate}
+
+
+% Exercice 1153
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Développement asymptotique de la série harmonique
+\vskip0.2cm
+On pose $H_n=1+\frac12+\dots+\frac1n$. 
+\begin{enumerate}
+\item Prouver que $H_n\sim_{+\infty}\ln n$.
+\item On pose $u_n=H_n-\ln n$, et $v_n=u_{n+1}-u_n$.
+\'Etudier la nature de la série $\sum_n v_n$. En déduire que la suite $(u_n)$ est convergente. On notera $\gamma$ sa limite.
+\item Soit $R_n=\sum_{k=n}^{+\infty} \frac{1}{k^2}$. Donner un équivalent de $R_n$.
+\item Soit $w_n$ tel que $H_n=\ln n+\gamma+w_n$, et soit 
+$t_n=w_{n+1}-w_n$. Donner un équivalent du reste $\sum_{k\geq n}t_k$.
+En déduire que $H_n=\ln n+\gamma+\frac{1}{2n}+o\left(\frac1n\right)$.
+\end{enumerate}
+
+
+% Exercice 1160
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Formule de Stirling
+\vskip0.2cm
+\begin{enumerate}
+\item Soit $(x_n)$ une suite de réels et soit $(y_n)$ définie par $y_n=x_{n+1}-x_n$. Démontrer que la série $\sum_n y_n$ et la suite
+$(x_n)$ sont de même nature.
+\item On pose  $(u_n)$ la suite définie par $\dis u_n=\frac{n^ne^{-n}\sqrt{n}}{n!}$. 
+Donner la nature de la série de terme général $\dis v_n=\ln\left(\frac{u_{n+1}}{u_n}\right)$. 
+\item En déduire l'existence d'une constante $C>0$ telle que :
+$$n!\sim_{+\infty} C\sqrt{n}n^ne^{-n}.$$
+\end{enumerate}
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=29273
+\end{document}

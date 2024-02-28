@@ -1,0 +1,234 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge TD7 suites numériques}}\end{center}
+
+% Exercice 2960
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Suite homographique
+\vskip0.2cm
+Soit la suite réelle $(u_n)$ définie par 
+$$u_0=3\quad\textrm{ et }\quad u_{n+1}=\frac{4u_n-2}{u_n+1}.$$
+Pour $x\neq -1$, on pose $f(x)=\frac{4x-2}{x+1}$.
+\begin{enumerate}
+\item \'Etudier les variations de $f$ sur $[1,+\infty[$.
+\item Démontrer que, pour tout $n\geq 0$, on a $u_n > 1$.
+\item On définit une suite $(v_n)$ à partir de $(u_n)$ en posant, pour tout $n\in\mathbb N$,
+$$v_n=\frac{u_n-2}{u_n-1}.$$
+Démontrer que $(v_n)$ est une suite géométrique, et donner l'expression de son terme général.
+\item En déduire la valeur de $u_n$ en fonction de $n$. 
+\item Justifier enfin que $(u_n)$ converge et déterminer sa limite.
+\end{enumerate}
+
+
+% Exercice 2937
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Limite infinie
+\vskip0.2cm
+Soit $(u_n)$ la suite définie par $u_0=3$ et $u_{n+1}=(u_n^2+2)/3$.
+\begin{enumerate}
+\item Démontrer que $u_n\geq 3$ pour tout $n\in\mathbb N$.
+\item Démontrer que la suite $(u_n)$ est croissante.
+\item On suppose que la suite $(u_n)$ converge. Quelles peuvent être les limites possibles de $(u_n)$?
+\item En déduire que la suite $(u_n)$ tend vers $+\infty$.
+\end{enumerate}
+
+
+% Exercice 665
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Approximation du nombre d'or
+\vskip0.2cm
+On appelle nombre d'or et on note $\phi$ la solution positive réelle de l'équation d'inconnue réelle $x$ :
+$$x^2-x-1=0.$$
+En particulier, on  a $\phi=\sqrt{1+\phi}$.
+\begin{enumerate}
+\item Justifier, sans calculatrice, que $1<\phi<2$. 
+\item On considère la suite $(u_n)$ définie sur $\mathbb N^*$ par 
+$$u_1=\sqrt 1,\ u_2=\sqrt{1+\sqrt{1}},\ u_3=\sqrt{1+\sqrt{1+\sqrt 1}}$$
+et ainsi de suite, 
+$$u_n=\sqrt{1+\dots+\sqrt{1+\sqrt 1}}$$
+avec $n$ radicaux.\newline
+Exprimer, pour tout entier $n$ supérieur ou égal à $1$, $u_{n+1}$ en fonction de $u_n$.
+\item Montrer que, pour tout $n\geq 1$,
+$$1\leq u_n\leq\phi.$$
+\item Montrer que la suite $(u_n)$ est croissante.
+\item Démontrer que $(u_n)$ converge vers $\phi$.
+\item Montrer que, pour tout entier $n\geq 1$, 
+$$|u_{n+1}-\phi|\leq \frac 12 |u_n-\phi|.$$
+\item En déduire que, pour tout $n\geq 1$,
+$$|u_n–\phi|\leq\frac 1{2^{n-1}}.$$
+\end{enumerate}
+
+
+% Exercice 91
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Suites récurrentes linéaires d'ordre 2
+\vskip0.2cm
+Donner l'expression du terme général des suites récurrentes $(u_n)$ suivantes :
+\begin{enumerate}
+\item $u_{n+2}=3u_{n+1}-2u_n$, $u_0=3$, $u_1=5$.
+\item $u_{n+2}=4u_{n+1}-4u_n$, $u_0=1$, $u_1=0$.
+\item $u_{n+2}=u_{n+1}-u_n$, $u_0=1$ et $u_1=2$.
+\end{enumerate}
+
+
+% Exercice 66
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Nature
+\vskip0.2cm
+\'Etudier la nature des suites suivantes, et déterminer leur limite éventuelle :
+$$\begin{array}{lcl}
+\displaystyle \mathbf 1.\ u_n=\frac{\ln(n!)}n&&\displaystyle\mathbf 2.\ u_n=\frac{\lfloor nx\rfloor}{n^\alpha}\textrm{ en fonction de }x,\alpha\in\mathbb R\\
+\displaystyle \mathbf 3.\ u_n=\frac{1}{n!}\sum_{k=1}^n k!
+\end{array}$$
+
+
+% Exercice 102
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - Partie entière
+\vskip0.2cm
+Soit $(u_n)$ une suite convergente.
+La suite $(\lfloor u_n\rfloor)$ est-elle convergente?
+
+
+% Exercice 2690
+
+
+\vskip0.3cm\noindent\textsc{Exercice 7} - Somme et produit
+\vskip0.2cm
+Soit $(u_n)$ et $(v_n)$ deux suites de nombres réels. On suppose que $(u_nv_n)$ et que $(u_n+v_n)$ convergent vers $0$. 
+\begin{enumerate}
+ \item Démontrer que $(u_n^2+v_n^2)$ converge vers $0$.
+ \item En déduire que $(u_n)$ et $(v_n)$ convergent vers $0$.
+\end{enumerate}
+
+
+% Exercice 108
+
+
+\vskip0.3cm\noindent\textsc{Exercice 8} - Moyenne de Ces\`aro
+\vskip0.2cm
+Soit $(u_n)_{n\geq 1}$ une suite réelle. On pose $S_n=\frac{u_1+\dots+u_n}{n}$.
+\begin{enumerate}
+\item On suppose que $(u_n)$ converge vers 0. Soient $\veps>0$ et $n_0\in\mathbb N^*$ tel que, pour
+$n\geq n_0$, on a $|u_n|\leq\veps$.
+\begin{enumerate}
+\item Montrer qu'il existe une constante $M$ telle que, pour $n\geq n_0$, on a 
+$$|S_n|\leq \frac{M(n_0-1)}{n}+\veps.$$
+\item En déduire que $(S_n)$ converge vers 0.
+\end{enumerate}
+\item On suppose que $u_n=(-1)^n$. Que dire de $(S_n)$? Qu'en déduisez-vous?
+\item On suppose que $(u_n)$ converge vers $l$. Montrer que $(S_n)$ converge vers $l$.
+\item On suppose que $(u_n)$ tend vers $+\infty$. Montrer que $(S_n)$ tend vers $+\infty$.
+\end{enumerate}
+
+
+% Exercice 2538
+
+
+\vskip0.3cm\noindent\textsc{Exercice 9} - Suite sur-additive
+\vskip0.2cm
+Soit $(u_n)_{n\geq 0}$ une suite de réels telle que, pour tout $(m,n)\in\mathbb N^2$, 
+$$u_{m+n}\geq u_m+u_n.$$
+On suppose que l'ensemble $\left\{\frac{u_n}n;\ n\in\mathbb N^*\right\}$ est majoré, et on note $\ell$ sa borne supérieure.
+\begin{enumerate}
+\item Soit $m,q,r\in \mathbb N$. On pose $n=mq+r$. Comparer $u_n$ et $qu_m+u_r$.
+\item On fixe $m\in\mathbb N^*$ et $\veps>0$. En utilisant la division euclidienne de $n$ par $m$, démontrer qu'il existe un entier $N$ tel que, pour tout $n>N$, 
+$$\frac{u_n}n\geq\frac{u_m}m-\veps.$$
+\item Démontrer que $\lim_{n\to+\infty}\frac{u_n}n=\ell$.
+\end{enumerate}
+
+
+% Exercice 109
+
+
+\vskip0.3cm\noindent\textsc{Exercice 10} - Produit de Cauchy
+\vskip0.2cm
+Soient $(u_n)$ et $(v_n)$ deux suites réelles convergeant respectivement vers $u$ et $v$.
+Montrer que la suite $\displaystyle w_n=\frac{u_0v_n+\dots+u_nv_0}{n+1}$ converge vers $uv$.
+
+
+% Exercice 111
+
+
+\vskip0.3cm\noindent\textsc{Exercice 11} - Convergence des suites extraites
+\vskip0.2cm
+Soit $(u_n)$ une suite de nombres réels.
+\begin{enumerate}
+\item On suppose que $(u_{2n})$ et $(u_{2n+1})$ convergent vers la même limite. Prouver que $(u_n)$ est convergente.
+\item Donner un exemple de suite telle que $(u_{2n})$ converge, $(u_{2n+1})$ converge, mais $(u_{n})$ n'est pas convergente.
+\item On suppose que les suites $(u_{2n})$, $(u_{2n+1})$ et $(u_{3n})$ sont convergentes. Prouver que $(u_n)$ est convergente.
+\end{enumerate}
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{http://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=25449
+\end{document}

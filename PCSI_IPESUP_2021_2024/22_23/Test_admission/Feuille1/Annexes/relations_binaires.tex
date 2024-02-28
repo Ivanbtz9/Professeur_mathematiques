@@ -1,0 +1,139 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge relations binaires }}\end{center}
+
+% Exercice 518
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Nature des relations
+\vskip0.2cm
+Dire si les relations suivantes sont réflexives, symétriques, antisymétriques, transitives :
+\begin{enumerate}
+\item $E=\mathbb Z$ et $x\mathcal R y\iff x=-y$;
+\item $E=\mathbb R$ et $x\mathcal R y\iff \cos^2 x+\sin^2 y=1$;
+\item $E=\mathbb N$ et $x\mathcal R y\iff \exists p,q\geq 1,\ y=px^q$ ($p$ et $q$ sont des entiers).
+\end{enumerate}
+Quelles sont parmi les exemples précédents les relations d'ordre et les relations d'équivalence?
+
+
+% Exercice 520
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Relation d'équivalence et fonction
+\vskip0.2cm
+On définit sur $\mathbb R$ la relation $x\mathcal R y$ si et seulement si
+$x^2-y^2=x-y$.
+\begin{enumerate}
+\item Montrer que $\mathcal R$ est une relation d'équivalence.
+\item Calculer la classe d'équivalence d'un élément $x$ de $\mathbb R$.
+Combien y-a-t-il d'éléments dans cette classe?
+\end{enumerate}
+
+
+% Exercice 2516
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - 
+\vskip0.2cm
+On munit  l'ensemble $E=\mathbb R^2$ de la relation $\cal R$ définie par 
+$$(x, y)\ {\cal R}\ (x',y')\iff\exists a>0,\ \exists b>0\mid x'=ax{\rm \ et\ }y'=by.$$
+\begin{enumerate}
+\item Montrer que $\cal R$ est une relation d'équivalence.
+\item Donner la classe d'équivalence des éléments $A=(1,0)$, $B=(0,-1)$ et $C=(1,1)$.
+\item Déterminer les classes d'équivalence de $\mathcal{R}$.
+\end{enumerate}
+
+
+% Exercice 526
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Ordre lexicographique
+\vskip0.2cm
+On définir sur $\mathbb R^2$ la relation $\prec$ par 
+$$(x,y)\prec (x',y')\iff \big( (x<x')\textrm{ ou }(x=x'\textrm{ et }y\leq y')\big).$$
+Démontrer que ceci définit une relation d'ordre sur $\mathbb R^2$. 
+
+
+% Exercice 524
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Une relation d'ordre sur les entiers
+\vskip0.2cm
+On définit la relation $\mathcal R$ sur $\mathbb N^*$ par $p\mathcal R q\iff \exists k\in\mathbb N^*,\ q=p^k$. Montrer que $\mathcal R$ définit un ordre partiel sur $\mathbb N^*$.
+Déterminer les majorants de $\{2,3\}$ pour cet ordre.
+
+
+% Exercice 2171
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - Pas d'élément maximal
+\vskip0.2cm
+Soit $E$ un ensemble ordonné. Démontrer que toute partie de $E$ admet un élément maximal si et seulement si toute suite croissante de $E$ est stationnaire.
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{http://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : http://www.bibmath.net/ressources/justeunefeuille.php?id=24408
+\end{document}

@@ -1,0 +1,72 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+
+\title{3. Un résultat universel de convergence }
+
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+Soit $\left(a_{n}\right)_{n \in \mathbb{N}}$ une suite d'entiers naturels non nuls. On note $\left(p_{n}\right)_{n \in \mathbb{N}}$ et $\left(q_{n}\right)_{n \in \mathbb{N}}$ les suites définies par :
+
+$$
+\left\{\begin{array} { l } 
+{ p _ { 0 } = a _ { 0 } } \\
+{ q _ { 0 } = 1 }
+\end{array} \text { et } \left\{\begin{array}{l}
+p_{1}=1+a_{0} a_{1} \\
+q_{1}=a_{1}
+\end{array} \text { et } \forall n \in \mathbb{N}, \quad\left\{\begin{array}{l}
+p_{n+2}=p_{n+1} a_{n+2}+p_{n} \\
+q_{n+2}=q_{n+1} a_{n+2}+q_{n}
+\end{array}\right.\right.\right.
+$$
+
+On admet que $p_{n}$ et $q_{n}$ sont des entiers naturels non nuls pour tout $n \in \mathbb{N}$ (récurrence immédiate).
+
+(a) Etudier la stricte monotonie de la suite $\left(q_{n}\right)_{n \in \mathbb{N}^{*}}$ et déterminer sa limite.
+
+(b) Montrer que pour tout $n \in \mathbb{N}: p_{n+1} q_{n}-p_{n} q_{n+1}=(-1)^{n}$.
+
+(c) En déduire que les suites $\left(\frac{p_{2 n}}{q_{2 n}}\right)_{n \in \mathbb{N}}$ et $\left(\frac{p_{2 n+1}}{q_{2 n+1}}\right)_{n \in \mathbb{N}}$ sont adjacentes. On note $\ell$ leur limite commune.
+
+(d) Montrer que pour tout $n \in \mathbb{N}^{*}:\left|\ell-\frac{p_{n}}{q_{n}}\right|<\frac{1}{q_{n}^{2}}$. On pourra remarquer que $\ell$ est compris entre $\frac{p_{n}}{q_{n}}$ et $\frac{p_{n+1}}{q_{n+1}}$.
+
+(e) En déduire que $\ell$ est irrationnel.
+
+(f) Montrer que pour tous $n \in \mathbb{N}$ et $t>0: F_{n+2}\left(a_{0}, \ldots, a_{n+1}, t\right)=\frac{p_{n+1} t+p_{n}}{q_{n+1} t+q_{n}}$.
+
+(g) En déduire que pour tout $n \in \mathbb{N}: F_{n}\left(a_{0}, \ldots, a_{n}\right)=\frac{p_{n}}{q_{n}}$.
+
+En conclusion, la suite de rationnels $\left(F_{n}\left(a_{0}, \ldots, a_{n}\right)\right)_{n \in \mathbb{N}}$ converge vers un irrationnel, et ceci quelle que soit la suite $\left(a_{n}\right)_{n \in \mathbb{N}}$ d'entiers naturels non nuls choisie au départ.
+
+\section{Développement d'un irrationnel en fraction continue}
+Soit $x$ un irrationnel supérieur à 1.
+
+(a) Justifier la bonne définition de la suite $\left(x_{n}\right)_{n \in \mathbb{N}}$ définie par: $x_{0}=x$ et pour tout $n \in \mathbb{N}, \quad x_{n+1}=\frac{1}{x_{n}-\left\lfloor x_{n}\right\rfloor}$.
+
+On pose alors pour tout $n \in \mathbb{N}: a_{n}=\left\lfloor x_{n}\right\rfloor$.
+
+(b) Montrer que $a_{n}$ est un entier naturel non nul pour tout $n \in \mathbb{N}$.
+
+On peut dès lors associer à la suite $\left(a_{n}\right)_{n \in \mathbb{N}}$ deux suites $\left(p_{n}\right)_{n \in \mathbb{N}}$ et $\left(q_{n}\right)_{n \in \mathbb{N}}$ comme à la question 3.
+
+(c) Montrer, en exploitant notamment le résultat de la question 3.(f), que pour tout $n \in \mathbb{N}: x=\frac{p_{n+1} x_{n+2}+p_{n}}{q_{n+1} x_{n+2}+q_{n}}$.
+
+(d) En déduire que pour tout $n \in \mathbb{N}$ : $\left|x-\frac{p_{n+1}}{q_{n+1}}\right|<\frac{1}{q_{n+1}^{2}}$, puis que $\lim _{n \rightarrow+\infty} F_{n}\left(a_{0}, \ldots, a_{n}\right)=x$.
+
+Conclusion : $x=a_{0}+\frac{1}{a_{1}+\frac{1}{a_{2}+\frac{1}{a_{3}+\ldots}}}$.
+
+La suite $\left(a_{n}\right)_{n \in \mathbb{N}}$ est appelée le développement de $x$ en fraction continue.
+
+
+\end{document}

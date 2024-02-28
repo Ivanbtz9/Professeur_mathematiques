@@ -1,0 +1,1404 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+
+\fiche{f00122, rouget, 2010/10/16}
+
+\titre{Séries}
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable
+\end{center}
+
+
+\exercice{5688, rouget, 2010/10/16}
+\enonce{005688}{}
+\label{ex:rou1ter}
+Nature de la série de terme général 
+
+\begin{center}
+\begin{tabular}{llll}
+\textbf{1) (*)} $\ln\left(\frac{n^2+n+1}{n^2+n-1}\right)$&\textbf{2) (*)}  $\frac{1}{n+(-1)^n\sqrt{n}}$&\textbf{3) (**)} $\left(\frac{n+3}{2n+1}\right)^{\ln n}$  &\textbf{4) (**)} $\frac{1}{\ln(n)\ln(\ch n)}$\\
+\textbf{5) (**)} $\Arccos\sqrt[3]{1-\frac{1}{n^2}}$&\textbf{6) (*)} $\frac{n^2}{(n-1)!}$&\textbf{7)} $\left(\cos\frac{1}{\sqrt{n}}\right)^n-\frac{1}{\sqrt{e}}$&\textbf{8) (**)} $\ln\left(\frac{2}{\pi}\Arctan\frac{n^2+1}{n}\right)$\\
+\textbf{9) (*)} $\int_{0}^{\pi/2}\frac{\cos^2x}{n^2+\cos^2x}\;dx$&  
+\textbf{10) (**)} $n^{-\sqrt{2}\sin(\frac{\pi}{4}+\frac{1}{n})}$&
+\textbf{11) (**)} $e-\left(1+\frac{1}{n}\right)^n$
+\end{tabular}
+\end{center}
+\finenonce{005688}
+
+
+\finexercice
+\exercice{5689, rouget, 2010/10/16}
+\enonce{005689}{}
+Nature de la série de terme général 
+
+\textbf{1) (***)} $\sqrt[4]{n^4+2n^2}-\sqrt[3]{P(n)}$  où $P$ est un polynôme. \qquad\textbf{2) (**)} $\frac{1}{n^\alpha}S(n)$ où $S(n) =\sum_{p=2}^{+\infty}\frac{1}{p^n}$. 
+
+\textbf{3) (**)} $u_n$ où $\forall n\in\Nn^*$, $u_n=\frac{1}{n}e^{-u_{n-1}}$.
+
+\textbf{4) (****)} $u_n=\frac{1}{p_n}$ où $p_n$ est le $n$-ème nombre premier
+
+(indication : considérer 
+$\sum_{n=1}^{N}\ln\left(\frac{1}{1-\frac{1}{p_n}}\right)=\sum_{n=1}^{N}\ln(1+p_n+p_n^2+\ldots)$).
+
+\textbf{5) (***)} $u_n=\frac{1}{n(c(n))^\alpha}$  où $c(n)$ est le nombre de chiffres de $n$ en 
+base $10$.
+
+\textbf{6) (*)} $\frac{\left(\prod_{k=2}^{n}\ln k\right)^a}{(n!)^b}$ $a > 0$ et $b> 0$.\qquad \textbf{7) (**)} $\Arctan\left(\left(1+\frac{1}{n}\right)^a\right) -\Arctan\left(\left(1-\frac{1}{n}\right)^a\right)$.
+
+\textbf{8) (**)} $\frac{1}{n^\alpha}\sum_{k=1}^{n}k^{3/2}$.\qquad \textbf{9) (***) } $\left(\prod_{k=1}^{n}\left(1+\frac{k}{n^\alpha}\right)\right)-1$.
+
+\finenonce{005689}
+
+
+\finexercice
+\exercice{5690, rouget, 2010/10/16}
+\enonce{005690}{}
+Nature de la série de terme général 
+
+\textbf{1) (***)} $\sin\left(\frac{\pi n^2}{n+1}\right)$\qquad\textbf{2) (**)} $\frac{(-1)^n}{n+(-1)^{n-1}}$\qquad\textbf{3) (**)} $\ln\left(1+\frac{(-1)^n}{\sqrt{n}}\right)$\qquad\textbf{4) (***)} $\frac{e^{in\alpha}}{n}$, $\frac{\cos(n\alpha)}{n}$ et $\frac{\sin(n\alpha)}{n}$
+
+\textbf{5) (**)} $(-1)^n\frac{\ln n}{n}$\quad
+
+ $(-1)^n\frac{P(n)}{Q(n)}$ où $P$ et $Q$ sont deux polynômes non nuls\quad
+
+\textbf{7) (****)} $(\sin(n!\pi e))^p$ $p$ entier naturel non nul.
+\finenonce{005690}
+
+
+\finexercice
+\exercice{5691, rouget, 2010/10/16}
+\enonce{005691}{}
+\label{ex:rou4}
+Calculer les sommes des séries suivantes après avoir vérifié leur convergence.
+
+\begin{center}
+\begin{tabular}{lll}
+\textbf{1) (**)} $\sum_{n=0}^{+\infty}\frac{n+1}{3^n}$&\textbf{2) (**)} $\sum_{n=3}^{+\infty}\frac{2n-1}{n^3-4n}$&\textbf{3) (***)} $\sum_{n=0}^{+\infty}\frac{1}{(3n)!}$\\
+\textbf{4) (*)} $\sum_{n=2}^{+\infty}\left(\frac{1}{\sqrt{n-1}}+\frac{1}{\sqrt{n+1}}-\frac{2}{\sqrt{n}}\right)$&
+\textbf{5) (**)} $\sum_{n=2}^{+\infty}\ln\left(1+\frac{(-1)^n}{n}\right)$&\textbf{6) (***)} $\sum_{n=0}^{+\infty}\ln\left(\cos\frac{a}{2^n}\right)$  $a\in\left]0,\frac{\pi}{2}\right[$\\
+textbf{7)}  $\sum_{n=0}^{+\infty}\frac{\tanh\frac{a}{2^n}}{2^n}$
+\end{tabular}
+\end{center}
+\finenonce{005691}
+
+
+\finexercice
+\exercice{5692, rouget, 2010/10/16}
+\enonce{005692}{*** I}
+Soit $(u_n)_{n\in\Nn}$ une suite décroissante de nombres réels strictement positifs telle que la série de terme général $u_n$ converge. Montrer que $u_n\underset{n\rightarrow+\infty}{=}o\left(\frac{1}{n}\right)$. Trouver un exemple de suite $(u_n)_{n\in\Nn}$ de réels strictement positifs telle que la série de terme général $u_n$ converge mais telle que la suite de terme général $nu_n$ ne tende pas vers $0$.
+\finenonce{005692}
+
+
+\finexercice
+\exercice{5693, rouget, 2010/10/16}
+\enonce{005693}{***}
+Soit $\sigma$ une injection de $\Nn^*$ dans lui-même. Montrer que la série de terme général $\frac{\sigma(n)}{n^2}$ diverge.
+
+\finenonce{005693}
+
+
+\finexercice
+\exercice{5694, rouget, 2010/10/16}
+\enonce{005694}{**}
+Soit $(u_n)_{n\in\Nn}$ une suite de réels strictement positifs. Montrer que les séries de termes généraux $u_n$, $\frac{u_n}{1+u_n}$, $\ln(1+u_n)$ et $\int_{0}^{u_n}\frac{dx}{1+x^e}$  sont de mêmes natures.
+\finenonce{005694}
+
+
+\finexercice
+\exercice{5695, rouget, 2010/10/16}
+\enonce{005695}{***}
+Trouver un développement limité à l'ordre $4$ quand $n$ tend vers l'infini de $\left(e-\sum_{k=0}^{n}\frac{1}{k!}\right)\times(n+1)!$.
+\finenonce{005695}
+
+
+\finexercice
+\exercice{5696, rouget, 2010/10/16}
+\enonce{005696}{***}
+Nature de la série de terme général $u_n=\sin\left(\pi(2+\sqrt{3})^n\right)$.
+\finenonce{005696}
+
+
+\finexercice
+\exercice{5697, rouget, 2010/10/16}
+\enonce{005697}{**}
+Soit $(u_n)_{n\in\Nn}$ une suite positive telle que la série de terme général $u_n$ converge. Etudier la nature de la série de terme général $\frac{\sqrt{u_n}}{n}$.
+\finenonce{005697}
+
+
+\finexercice
+\exercice{5698, rouget, 2010/10/16}
+\enonce{005698}{***}
+Soit $(u_n)_{n\in\Nn}$ une suite de réels positifs. Trouver la nature de la série de terme général $v_n =\frac{u_n}{(1+u_1)\ldots(1+u_n)}$, $n\geqslant1$,  connaissant la nature de la série de terme général $u_n$ puis en calculer la somme en cas de convergence.
+\finenonce{005698}
+
+
+\finexercice
+\exercice{5699, rouget, 2010/10/16}
+\enonce{005699}{****}
+Soit  $(u_n)_{n\in\Nn}$ une suite de réels strictement positifs telle que la série de terme général $u_n$ diverge.
+
+Pour $n\in\Nn$, on pose $S_n = u_0+...+u_n$. Etudier en fonction de $\alpha> 0$ la nature de la série de terme général $\frac{u_n}{(S_n)^\alpha}$.
+
+\finenonce{005699}
+
+
+\finexercice
+\exercice{5700, rouget, 2010/10/16}
+\enonce{005700}{**}
+Soit $\alpha\in\Rr$. Nature de la série de terme général $u_n=\frac{1+(-1)^nn^\alpha}{n^{2\alpha}}$, $n\geqslant1$.  
+\finenonce{005700}
+
+
+\finexercice
+\exercice{5701, rouget, 2010/10/16}
+\enonce{005701}{****}
+On sait que $1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\ldots=\ln2$.
+
+A partir de la série précédente, on construit une nouvelle série en prenant $p$ termes positifs, $q$ termes négatifs, $p$ termes positifs ... (Par exemple pour $p = 3$ et $q = 2$, on s'intéresse à $1+\frac{1}{3}+\frac{1}{5}-\frac{1}{2}-\frac{1}{4}+\frac{1}{7}+\frac{1}{9}+\frac{1}{11}-\frac{1}{6}-\frac{1}{8}+\ldots$). Convergence et somme de cette série.
+\finenonce{005701}
+
+
+\finexercice
+\exercice{5702, rouget, 2010/10/16}
+\enonce{005702}{***}
+Nature de la série de terme général $u_n=\sum_{k=1}^{n-1}\frac{1}{(k(n-k))^\alpha}$.  
+\finenonce{005702}
+
+
+\finexercice
+\exercice{5703, rouget, 2010/10/16}
+\enonce{005703}{}
+Convergence et somme éventuelle de la série de terme général
+
+\begin{center}
+\textbf{1) (**)} $u_n =\frac{2n^3-3n^2+1}{(n+3)!}$\qquad\textbf{2) (***)} $u_n=\frac{n!}{(a+1)(a+2)\ldots(a+n)}$, $n\geqslant1$, $a\in\Rr^{+*}$ donné.
+\end{center} 
+\finenonce{005703}
+
+
+\finexercice
+\exercice{5704, rouget, 2010/10/16}
+\enonce{005704}{*}
+Nature de la série de terme général $u_n=\sum_{k=1}^{n}\frac{1}{(n+k)^p}$, $p\in]0,+\infty[$.
+\finenonce{005704}
+
+
+\finexercice
+\exercice{5705, rouget, 2010/10/16}
+\enonce{005705}{**}
+Déterminer un équivalent simple de $\frac{n!}{(a+1)(a+2)\ldots(a+n)}$ quand $n$ tend vers l'infini ($a$ réel positif donné).
+\finenonce{005705}
+
+
+\finexercice
+\exercice{5706, rouget, 2010/10/16}
+\enonce{005706}{*}
+Nature de la série de terme général $u_n=\sum_{k=1}^{n}\frac{1}{(n+k)^p}$, $p\in]0,+\infty[$.
+\finenonce{005706}
+
+
+\finexercice
+\exercice{5707, rouget, 2010/10/16}
+\enonce{005707}{*** I}
+Développement limité à l'ordre $4$ de $\sum_{k=n+1}^{+\infty}\frac{1}{k^2}$ quand $n$ tend vers l'infini.
+\finenonce{005707}
+
+
+\finexercice
+\exercice{5708, rouget, 2010/10/16}
+\enonce{005708}{}
+Partie principale quand $n$ tend vers $+\infty$ de
+
+\begin{center}
+\textbf{1) (***)} $\sum_{p=n+1}^{+\infty}(-1)^p\frac{\ln p}{p}$\qquad\textbf{2) (**)} $\sum_{p=1}^{n}p^p$.
+\end{center}
+\finenonce{005708}
+
+
+\finexercice
+\exercice{5709, rouget, 2010/10/16}
+\enonce{005709}{***}
+Soit $p\in\Nn^*$, calculer $\sum_{p\in\Nn^*}^{}\left(\sum_{n\in\Nn^*,\;n\neq p}^{}\frac{1}{n^2-p^2}\right)$ et $\sum_{n\in\Nn^*}^{}\left(\sum_{p\in\Nn^*,\;p\neq n}^{}\frac{1}{n^2-p^2}\right)$. Que peut-on en déduire ?
+\finenonce{005709}
+
+
+\finexercice
+\exercice{5710, rouget, 2010/10/16}
+\enonce{005710}{**}
+ Calculer $\sum_{n=0}^{+\infty}\frac{(-1)^n}{3n+1}$.
+\finenonce{005710}
+
+
+\finexercice
+\exercice{5711, rouget, 2010/10/16}
+\enonce{005711}{****}
+Soient $(u_n)_{n\geqslant1}$ une suite réelle. Pour $n\geqslant 1$, on pose $v_n=\frac{u_1+\ldots+u_n}{n}$. Montrer que si la série de terme général $(u_n)^2$ converge alors la série de terme général $(v_n)^2$ converge et que $\sum_{n=1}^{+\infty}(v_n)^2\leqslant4\sum_{n=1}^{+\infty}(u_n)^2$ (indication : majorer $v_n^2 - 2u_nv_n$).
+\finenonce{005711}
+
+
+\finexercice
+\exercice{5712, rouget, 2010/10/16}
+\enonce{005712}{***}
+Convergence et somme de la série de terme général $u_n=\frac{\pi}{4}-\sum_{k=0}^{n}\frac{(-1)^k}{2k+1}$, $n\geqslant 0$.
+\finenonce{005712}
+
+
+\finexercice
+
+\finfiche
+
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005688}
+\begin{enumerate}
+ \item  Pour $n\geqslant1$, on pose $u_n =\ln\left(\frac{n^2+n+1}{n^2+n-1}\right)$. $\forall n\geqslant 1$, $u_n$ existe
+
+\begin{center} 
+$u_n=\ln\left(1+\frac{1}{n}+\frac{1}{n^2}\right)-\ln\left(1+\frac{1}{n}-\frac{1}{n^2}\right)\underset{n\rightarrow+\infty}{=}\left(\frac{1}{n}+O\left(\frac{1}{n^2}\right)\right)-\left(\frac{1}{n}+O\left(\frac{1}{n^2}\right)\right)=O\left(\frac{1}{n^2}\right)$.
+\end{center}
+
+Comme la série de terme général $\frac{1}{n^2}$, $n\geqslant1$, converge (série de \textsc{Riemann} d'exposant $\alpha>1$), la série de terme général $u_n$ converge.
+
+\item  Pour $n\geqslant2$, on pose $u_n =\frac{1}{n+(-1)^n\sqrt{n}}$. $\forall n\geqslant 2$, $u_n$ existe et de plus $u_n\underset{n\rightarrow+\infty}{\sim}\frac{1}{n}$. Comme la série de terme général $\frac{1}{n}$, $n\geqslant 2$, diverge et est positive, la série de terme général $u_n$ diverge.
+
+\item  Pour $n\geqslant1$, on pose $u_n =\left(\frac{n+3}{2n+1}\right)^{\ln n}$. Pour $n\geqslant1$, $u_n > 0$ et 
+
+\begin{align*}\ensuremath
+\ln(u_n)&=\ln(n)\ln\left(\frac{n+3}{2n+1}\right) =\ln(n)\left(\ln\left(\frac{1}{2}\right)+\ln\left(1+\frac{3}{n}\right) -\ln\left(1+\frac{1}{2n}\right)\right)\\
+ &\underset{n\rightarrow+\infty}{=}\ln(n)\left(-\ln2+O\left(\frac{1}{n}\right)\right)\underset{n\rightarrow+\infty}{=}-\ln2\ln(n)+o(1).
+\end{align*}
+
+Donc $u_n=e^{\ln(u_n)}\underset{n\rightarrow+\infty}{\sim}e^{-\ln2\ln n}=\frac{1}{n^{\ln2}}$.  Comme la série de terme général $\frac{1}{n^{\ln 2}}$, $n\geqslant1$, diverge (série de \textsc{Riemann} d'exposant $\alpha\leqslant1$) et est positive, la série de terme général $u_n$ diverge.
+
+\item  Pour $n\geqslant2$, on pose $u_n=\frac{1}{\ln(n)\ln(\ch n)}$. $u_n$ existe pour $n\geqslant2$. $\ln(\ch n)\underset{n\rightarrow+\infty}{\sim}\ln\left(\frac{e^n}{2}\right)=n -\ln2\underset{n\rightarrow+\infty}{\sim}n$ et $un\underset{n\rightarrow+\infty}{\sim}\frac{1}{n\ln(n)}>0$.
+
+Vérifions alors que la série de terme général $\frac{1}{n\ln n}$, $n\geqslant2$, diverge. La fonction $x\rightarrow x\ln x$ est continue, croissante et strictement positive sur $]1,+\infty[$ (produit de deux fonctions strictement positives et croissantes sur $]1,+\infty[$). Par suite, la fonction $x\rightarrow\frac{1}{x\ln x}$ est continue et décroissante sur $]1,+\infty[$ et pour tout entier $k$ supérieur ou égal à $2$, 
+
+\begin{center}
+$\frac{1}{k\ln k}\geqslant\int_{k}^{k+1}\frac{1}{x\ln x}\;dx$
+\end{center}
+
+Par suite, pour $n\geqslant2$, 
+
+\begin{center}
+$\sum_{k=2}^{n}\frac{k\ln k}\geqslant\sum_{k=2}^{n}\int_{k}^{k+1}\frac{1}{x\ln x}\;dx=\int_{2}^{n+1}\frac{1}{x\ln x}\;dx=\ln(\ln(n+1)) -\ln(\ln(2)\underset{n\rightarrow+\infty}{\rightarrow}+\infty.$
+\end{center}
+
+Donc $u_n$ est positif et équivalent au terme général d'une série divergente. La série de terme général $u_n$ diverge.
+
+\item  Pour $n\geqslant1$, on pose $u_n=\Arccos\sqrt[3]{1-\frac{1}{n^2}}$. $u_n$ existe pour $n\geqslant 1$. De plus $u_n\underset{n\rightarrow+\infty}{\rightarrow}0$. On en déduit que 
+
+\begin{align*}\ensuremath
+u_n&\underset{n\rightarrow+\infty}{\sim}\sin(u_n)=\sin\left(\Arccos\sqrt[3]{1-\frac{1}{n^2}}\right) =\sqrt{1-\left(1-\frac{1}{n^2}\right)^{2/3}}\underset{n\rightarrow+\infty}{=}\sqrt{1-1+\frac{2}{3n^2}+o\left(\frac{1}{n^2}\right)}\\
+ &\underset{n\rightarrow+\infty}{\sim}\sqrt{\frac{2}{3}}\frac{1}{n}>0
+\end{align*}
+
+terme général d'une série de \textsc{Riemann} divergente. La série de terme général un diverge.
+
+\item  Pour $n\geqslant1$, on pose $u_n=\frac{n^2}{(n-1)!}$. $u_n$ existe  et $u_n \neq0$ pour $n\geqslant1$. De plus,
+
+\begin{center}
+$\left|\frac{u_{n+1}}{u_n}\right|=\frac{(n+1)^2}{n^2}\times\frac{(n-1)!}{n!}=\frac{(n+1)^2}{n^3}  \underset{n\rightarrow+\infty}{\sim}\frac{1}{n}\underset{n\rightarrow+\infty}{\rightarrow}0< 1$.
+\end{center}
+
+D'après la règle de d'\textsc{Alembert}, la série de terme général $u_n$ converge.
+
+\item  Pour $n\geqslant1$, on pose $u_n=\left(\cos\frac{1}{\sqrt{n}}\right)^n-\frac{1}{\sqrt{e}}$. $u_n$ est défini pour $n\geqslant1$ car pour $n\geqslant1$, $\frac{1}{\sqrt{n}}\in\left]0,\frac{\pi}{2}\right[$ et donc $\cos\frac{1}{\sqrt{n}}>0$. Ensuite
+
+\begin{align*}\ensuremath
+\ln\left(\cos\frac{1}{\sqrt{n}}\right)&\underset{n\rightarrow+\infty}{=}\ln\left(1-\frac{1}{2n}+\frac{1}{24n^2}+o\left(\frac{1}{n^2}\right)\right)\underset{n\rightarrow+\infty}{=}-\frac{1}{2n}+\frac{1}{24n^2}-\frac{1}{8n^2}+o\left(\frac{1}{n^2}\right)\\
+ &\underset{n\rightarrow+\infty}{=}-\frac{1}{2n}-\frac{1}{12n^2}+o\left(\frac{1}{n^2}\right).
+\end{align*}
+
+Puis $n\ln\left(\cos\frac{1}{\sqrt{n}}\right)\underset{n\rightarrow+\infty}{=}-\frac{1}{2}-\frac{1}{12n}+o\left(\frac{1}{n}\right)$ et donc
+
+\begin{center}
+$u_n=e^{n\ln(\cos(1/\sqrt{n})}-\frac{1}{\sqrt{e}}\underset{n\rightarrow+\infty}{=}\frac{1}{\sqrt{e}}\left(e^{-\frac{1}{12n}+o\left(\frac{1}{n}\right)}-1\right)\underset{n\rightarrow+\infty}{\sim}-\frac{1}{12n\sqrt{e}}<0$.
+\end{center}
+
+La série de terme général $-\frac{1}{12n\sqrt{e}}$ est  divergente et donc la série de terme général $u_n$ diverge.
+
+\item 
+
+\begin{align*}\ensuremath
+\ln\left(\frac{2}{\pi}\Arctan\left(\frac{n^2+1}{n}\right)\right)&=\ln\left(1-\frac{2}{\pi}\Arctan\left(\frac{n}{n^2+1}\right)\right)\\
+ &\underset{n\rightarrow+\infty}{\sim}-\frac{2}{\pi}\Arctan\left(\frac{n}{n^2+1}\right)\underset{n\rightarrow+\infty}{\sim}-\frac{2}{\pi}\frac{n}{n^2+1}\underset{n\rightarrow+\infty}{\sim}-\frac{2}{n\pi}<0.
+\end{align*}
+
+Donc, la série de terme général $u_n$ diverge.
+
+\item  Pour $n\geqslant1$, on pose $u_n=\int_{0}^{\pi/2}\frac{\cos^2x}{n^2+\cos^2x}\;dx$.
+
+Pour $n\geqslant1$, la fonction $x\mapsto\frac{\cos^2x}{n^2+\cos^2x}\;dx$ est continue sur $\left[0,\frac{\pi}{2}\right]$ et positive et donc, $u_n$ existe et est positif. De plus, pour $n\geqslant1$,
+
+\begin{center}
+$0\leqslant u_n\leqslant\int_{0}^{\pi/2}\frac{1}{n^2+0}\;dx=\frac{\pi}{2n^2}$.
+\end{center}
+
+La série de terme général $\frac{\pi}{2n^2}$ converge et donc la série de terme général $u_n$ converge.
+
+\item  $-\sqrt{2}\sin\left(\frac{\pi}{4}+\frac{1}{n}\right) =-\sin\left(\frac{1}{n}\right)-\cos\left(\frac{1}{n}\right)\underset{n\rightarrow+\infty}{=}-1+O\left(\frac{1}{n}\right)$ puis
+
+\begin{center}
+$-\sqrt{2}\sin\left(\frac{\pi}{4}+\frac{1}{n}\right)\ln n\underset{n\rightarrow+\infty}{=}-\ln(n)+O\left(\frac{\ln n}{n}\right)\underset{n\rightarrow+\infty}{=}-\ln(n)+o(1)$.
+\end{center}
+
+Par suite,
+
+\begin{center}
+$0< u_n=e^{-\sqrt{2}\sin\left(\frac{\pi}{4}+\frac{1}{n}\right)\ln n}\underset{n\rightarrow+\infty}{\sim}e^{-\ln n}=\frac{1}{n}$.
+\end{center}
+
+La série de terme général $\frac{1}{n}$ diverge et la série de terme général $u_n$ diverge.
+
+\item  $n\ln\left(1+\frac{1}{n}\right)\underset{n\rightarrow+\infty}{=}1-\frac{1}{2n}+o\left(\frac{1}{n}\right)$ et donc
+
+\begin{center}
+$u_n\underset{n\rightarrow+\infty}{=}e-e^{1-\frac{1}{2n}+o\left(\frac{1}{n}\right)}\underset{n\rightarrow+\infty}{=}e\left(1-1+\frac{1}{2n}+o\left(\frac{1}{n}\right)\right)\underset{n\rightarrow+\infty}{\sim}\frac{e}{2n}>0$.
+\end{center}
+
+La série de terme général $\frac{e}{2n}$ diverge et la série de terme général $u_n$ diverge.
+\end{enumerate}
+\fincorrection
+\correction{005689}
+\begin{enumerate}
+ \item  Si $P$ n'est pas unitaire de degré $3$, $u_n$ ne tend pas vers $0$ et la série de terme général $u_n$ diverge grossièrement.
+
+Soit $P$ un polynôme unitaire de degré $3$. Posons $P =X^3+aX^2+bX+c$.
+
+\begin{align*}\ensuremath
+u_n&=n\left(\left(1+\frac{2}{n^2}\right)^{1/4}-\left(1+\frac{a}{n}+\frac{b}{n^2}+\frac{c}{n^3}\right)^{1/3}\right)\\
+ &\underset{n\rightarrow+\infty}{=}n\left(\left(1+\frac{1}{2n^2}+O\left(\frac{1}{n^3}\right)\right)-\left(1+\frac{a}{3n}+\frac{b}{3n^2}-\frac{a^2}{9n^2}+O\left(\frac{1}{n^3}\right)\right)\right)\\
+ &\underset{n\rightarrow+\infty}{=}-\frac{a}{3}+\left(\frac{1}{2}-\frac{b}{3}+\frac{a^2}{9}\right)\frac{1}{n}+O\left(\frac{1}{n^2}\right).
+\end{align*}
+
+\textbullet~Si $a\neq0$, $u_n$ ne tend pas vers $0$ et la série de terme général $u_n$ diverge grossièrement.
+
+\textbullet~Si $a=0$ et $\frac{1}{2}-\frac{b}{3}\neq0$, $u_n\underset{n\rightarrow+\infty}{\sim}\left(\frac{1}{2}-\frac{b}{3}\right)\frac{1}{n}$. $u_n$ est donc de signe constant pour $n$ grand et est équivalent au terme général d'une série divergente. Donc la série de terme général $u_n$ diverge.
+
+\textbullet~Si $a = 0$ et $\frac{1}{2}-\frac{b}{3}= 0$, $u_n\underset{n\rightarrow+\infty}{=}O\left(\frac{1}{n^2}\right)$. Dans ce cas, la série de terme général $u_n$ converge (absolument).
+
+En résumé, la série de terme général $u_n$ converge si et seulement si $a = 0$ et  $b=\frac{3}{2}$ ou encore la série de terme général $u_n$ converge si et seulement si $P$ est de la forme $X^3+\frac{3}{2}X+c$, $c\in\Rr$.
+
+\item  Pour $n\geqslant2$, posons $u_n=\frac{1}{n^\alpha}S(n)$. Pour $n\geqslant2$,
+
+\begin{center}
+$0<S(n+1)=\sum_{p=2}^{+\infty}\frac{1}{p}\times\frac{1}{p^n}\leqslant\frac{1}{2}\sum_{p=2}^{+\infty}\frac{1}{p^n}=\frac{1}{2}S(n)$
+\end{center}
+
+et donc $\forall n\geqslant2$, $S(n)\leqslant\frac{S(2)}{2^{n-2}}$. Par suite,
+
+\begin{center}
+$u_n\leqslant\frac{1}{n^\alpha}\frac{S(2)}{2^{n-2}}\underset{n\rightarrow+\infty}{=}o\left(\frac{1}{n^2}\right)$.
+\end{center}
+
+Pour tout réel $\alpha$, la série de terme général $u_n$ converge.
+
+\item  $\forall u_0\in\Rr$, $\forall n\in\Nn^*$, $u_n > 0$. Par suite, $\forall n\geqslant 2$, $0< u_n<\frac{1}{n}$.
+
+On en déduit que $\lim_{n \rightarrow +\infty}u_n=0$ et par suite $u_n\underset{n\rightarrow+\infty}{\sim}\frac{1}{n}>0$. La série de terme général $u_n$ diverge.
+
+\item  On sait qu'il existe une infinité de nombres premiers.
+
+Notons $(p_n)_{n\in\Nn^*}$ la suite croissante des nombres premiers. La suite $(p_n)_{n\in\Nn^*}$ est une suite strictement croissante d'entiers et donc $\lim_{n \rightarrow +\infty}p_n= +\infty$ ou encore $\lim_{n \rightarrow +\infty}\frac{1}{p_n}=0$.
+
+Par suite, $0<\frac{1}{p_n}\underset{n\rightarrow+\infty}{\sim}\ln\left(\left(1-\frac{1}{p_n}\right)^{-1}\right)$ et les séries de termes généraux $\frac{1}{p_n}$ et $\ln\left(\left(1-\frac{1}{p_n}\right)^{-1}\right)$ sont de même nature.
+
+Il reste donc à étudier la nature de la série de terme général $\ln\left(\left(1-\frac{1}{p_n}\right)^{-1}\right)$.
+
+Montrons que $\forall N\in\Nn^*$,  $\sum_{n=1}^{+\infty}\ln\left(\left(1-\frac{1}{p_n}\right)^{-1}\right)\geqslant\ln\left(\sum_{k=1}^{N}\frac{1}{k}\right)$.
+
+Soit $n\geqslant$. Alors $\frac{1}{p_n}<1$ et la série de terme général $\frac{1}{p_n^k}$, $k\in\Nn$, est une série géométrique convergente de somme : $\sum_{k=0}^{+\infty}\frac{1}{p_n^k}= \left(1-\frac{1}{p_n}\right)^{-1}$.
+
+Soit alors $N$ un entier naturel supérieur ou égal à $2$ et $p_1 < p_2... < p_n$ la liste des nombres premiers inférieurs ou égaux à $N$.
+
+Tout entier entre $1$ et $N$ s'écrit de manière unique $p_1^{\beta_1}\ldots p_k^{\beta_k}$ où $\forall i\in\llbracket1,n\rrbracket$, $0\leqslant\beta_i\leqslant\alpha_i=E\left(\frac{\ln(N)}{\ln(p_i)}\right)$ et deux entiers distincts ont des décompositions distinctes. Donc
+
+\begin{align*}\ensuremath
+\sum_{k=1}^{+\infty}\ln\left(\left(1-\frac{1}{p_k}\right)^{-1}\right)&\geqslant\sum_{k=1}^{n}\ln\left(\left(1-\frac{1}{p_k}\right)^{-1}\right)\;(\text{car}\;\forall k\in\Nn^*,\;\left(1-\frac{1}{p_k}\right)^{-1}> 1)\\
+ &=\sum_{k=1}^{n}\ln\left(\sum_{i=0}^{+\infty}\frac{1}{p_k^i}\right)\geqslant\sum_{k=1}^{n}\ln\left(\sum_{i=0}^{\alpha_k}\frac{1}{p_k^i}\right)\\
+  &=\ln\left(\prod_{k=1}^{n}\left(\sum_{i=0}^{\alpha_k}\frac{1}{p_k^i}\right)\right)=\ln\left(\sum_{0\leqslant\beta_1\leqslant\alpha_1,\ldots,\ldots0\leqslant\beta_n\leqslant\alpha_n}^{}\frac{1}{p_1^{\beta_1}\ldots,\;p_n^{\beta_n}}\right)\\
+   &\geqslant\ln\left(\sum_{k=1}^{N}\frac{1}{k}\right).
+\end{align*}
+
+Or $\lim_{N \rightarrow +\infty}\ln\left(\sum_{k=1}^{N}\frac{1}{k}\right)=+\infty$ et donc $\sum_{k=1}^{+\infty}\ln\left(\left(1-\frac{1}{p_k}\right)^{-1}\right)=+\infty$.
+
+La série de terme général $\ln\left(1-\frac{1}{p_k}\right)^{-1}$ diverge et il en est de même de la série de terme général $\frac{1}{p_n}$.
+
+(Ceci montre qu'il y a beaucoup de nombres premiers et en tout cas beaucoup plus de nombres premiers que de carrés parfaits par exemple).
+
+\item  Soit $n\in\Nn^*$. Posons $n =a_p\times10^p+\ldots+a_1\times10+a_0$ où $\forall i\in\llbracket0,p\rrbracket$, $a_i\in\{0,1;...,9\}$ et $a_p\neq 0$. Alors $c(n) = p+1$.
+
+Déterminons $p$ est  en fonction de $n$. On a $10^p\leqslant n <10^{p+1}$ et donc $p=E\left(\log(n)\right)$. Donc
+
+\begin{center}
+$\forall n\in\Nn^*$, $u_n=\frac{1}{n(E(\log n)+1)^\alpha}$.
+\end{center}
+
+Par suite, $u_n\underset{n\rightarrow+\infty}{\sim}\frac{\ln^\alpha(10)}{n\ln^\alpha(n)}$ et la série de terme général $u_n$ converge si et seulement si $\alpha> 1$ (séries de \textsc{Bertrand}). Redémontrons ce résultat qui n'est pas un résultat de cours.
+
+La série de terme général $\frac{1}{n\ln n}$ est divergente (voir l'exercice \ref{ex:rou1ter}, 4)). Par suite, si $\alpha\leqslant1$, la série de terme général $\frac{1}{n\ln^\alpha(n)}$ est divergente car $\forall n\geqslant2$, $\frac{1}{n\ln^\alpha(n)}\geqslant\frac{1}{n\ln n}$.
+
+Soit $\alpha>1$. Puisque la fonction $x\mapsto\frac{1}{x\ln^\alpha x}$ est continue et strictement décroissante sur $]1,+\infty[$, pour $k\geqslant3$,
+
+\begin{center}
+$\frac{1}{k\ln^\alpha k}\leqslant\int_{k-1}^{k}\frac{1}{x\ln^\alpha x}\;dx$
+\end{center}
+
+puis, pour $n\geqslant3$, en sommant pour $k\in\llbracket3,n\rrbracket$
+
+\begin{center}
+$\sum_{k=3}^{n}\frac{1}{k\ln^\alpha k}\leqslant\sum_{k=3}^{n}\int_{k-1}^{k}\frac{1}{x\ln^\alpha x}\;dx=\int_{2}^{n}\frac{1}{x\ln^\alpha x}\;dx=\frac{1}{\alpha-1}\left(\frac{1}{\ln^{\alpha-1}(2)}-\frac{1}{\ln^{\alpha-1}(n)}\right)\leqslant\frac{1}{\alpha-1}\frac{1}{\ln^{\alpha-1}(2)}$.
+\end{center}
+
+Ainsi, la suite des sommes partielles de la série à termes positifs, de terme général $\frac{1}{k\ln^\alpha k}$, est majorée et donc la série de terme général $\frac{1}{k\ln^\alpha k}$ converge.
+
+\textbf{6} Soit $n\geqslant2$.
+
+\begin{center}
+$\left|\frac{u_{n+1}}{u_n}\right|=\frac{\ln^a(n+1)}{(n+1)^b}\underset{n\rightarrow+\infty}{\rightarrow}0 < 1$
+\end{center}
+
+et d'après la règle de d'\textsc{Alembert}, la série de terme général $u_n$ converge.
+
+\item  $\lim_{n \rightarrow +\infty}u_n=\frac{\pi}{4}-\frac{\pi}{4}= 0$. Donc
+
+\begin{align*}\ensuremath
+u_n&\underset{n\rightarrow+\infty}{\sim}\tan(u_n)\\
+ &=\frac{\left(1+\frac{1}{n}\right)^a-\left(1-\frac{1}{n}\right)^a}{1+\left(1-\frac{1}{n^2}\right)^a}\underset{n\rightarrow+\infty}{=}\frac{\frac{2a}{n}+O\left(\frac{1}{n^2}\right)}{2+O\left(\frac{1}{n^2}\right)}\underset{n\rightarrow+\infty}{=}\frac{a}{n}+O\left(\frac{1}{n^2}\right).
+\end{align*}
+
+Par suite, la série de terme général $u_n$ converge si et seulement si $a = 0$.
+
+\item  La fonction $x\mapsto x^{3/2}$ est continue et croissante sur $\Rr^+$. Donc pour $k\geqslant 1$, $\int_{k-1}^{k}x^{3/2}\;dx\leqslant k^{3/2}\leqslant\int_{k}^{k+1}x^{3/2}\;dx$ puis pour $n\in\Nn^*$ :
+
+\begin{center}
+$\int_{0}^{n}x^{3/2}\;dx\sum_{k=1}^{n}\int_{k-1}^{k}x^{3/2}\;dx\leqslant\sum_{k=1}^{n}k^{3/2}\leqslant\sum_{k=1}^{n}\int_{k}^{k+1}x^{3/2}\;dx=\int_{1}^{n+1}x^{3/2}\;dx$
+\end{center}
+
+ce qui fournit
+
+\begin{center}
+$\frac{2}{5}n^{5/2}\leqslant\sum_{k=1}^{n}k^{3/2}\leqslant\frac{2}{5}((n+1)^{5/2}-1)$ et donc $\sum_{k=1}^{n}k^{3/2}\underset{n\rightarrow+\infty}{\sim}\frac{2n^{5/2}}{5}$.
+\end{center}
+
+Donc $u_n\underset{n\rightarrow+\infty}{\sim}\frac{2n^{\frac{5}{2}-\alpha}}{5}>0$. La série de terme général $u_n$ converge si et seulement si $\alpha>\frac{7}{2}$.
+
+\item  Pour $n\geqslant1$,
+
+\begin{center}
+$u_n =\left(1+\frac{1}{n^\alpha}\right)\left(1+\frac{2}{n^\alpha}\right)\ldots\left(1+\frac{n}{n^\alpha}\right)-1\geqslant\frac{1}{n^\alpha}+\frac{2}{n^\alpha}+\ldots+\frac{n}{n^\alpha}=\frac{n(n+1)}{2n^\alpha}>0$.
+\end{center}
+
+Comme $\frac{n(n+1)}{2n^\alpha}\underset{n\rightarrow+\infty}{\sim}\frac{1}{2n^{\alpha-2}}$, si $\alpha\leqslant3$, on a $\alpha-2\leqslant1$ et la série de terme général $u_n$ diverge.
+
+Si $\alpha> 3$,
+
+\begin{align*}\ensuremath
+0 < u_n&\leqslant\left(1+\frac{n}{n^\alpha}\right)^n -1= e^{n\ln\left(1+\frac{1}{n^{\alpha-1}}\right)}-1\\
+ &\underset{n\rightarrow+\infty}{\sim}n\ln\left(1+\frac{1}{n^{\alpha-1}}\right)\\
+ &\underset{n\rightarrow+\infty}{\sim}\frac{1}{n^{\alpha-2}}\;\text{terme général d'une série de \textsc{Riemann} convergente},
+\end{align*}
+			   
+			   
+et, puisque $\alpha-2>1$,  la série de terme général $u_n$ converge. Finalement, la série de terme général $u_n$ converge si et seulement si $\alpha > 3$.
+\end{enumerate}
+\fincorrection
+\correction{005690}
+\begin{enumerate}
+ \item  Pour $n\in\Nn$,
+
+\begin{center}
+$u_n =\sin\left(\frac{\pi n^2}{n+1}\right)=\sin\left(\frac{\pi(n^2-1+1)}{n+1}\right)=\sin\left(\frac{\pi}{n+1}+(n-1)\pi\right)=(-1)^{n-1}\sin\left(\frac{\pi}{n+1}\right)$.
+\end{center}
+
+La suite $\left((-1)^{n-1}\sin\left(\frac{\pi}{n+1}\right)\right)_{n\in\Nn}$ est alternée en signe et sa valeur absolue tend vers 0 en décroissant. La série de terme général $u_n$ converge donc en vertu du critère spécial aux séries alternées.
+
+\item  (la suite $\left(\frac{1}{n+(-1)^{n-1}}\right)_{n\in\Nn}$ n'est pas décroisante à partir d'un certain rang).
+
+\begin{center}
+$u_n=\frac{(-1)^n}{n}\frac{1}{1+\frac{(-1)^{n-1}}{n}}\underset{n\rightarrow+\infty}{=}\frac{(-1)^n}{n}\left(1+O\left(\frac{1}{n}\right)\right)\underset{n\rightarrow+\infty}{=}\frac{(-1)^n}{n}+O\left(\frac{1}{n^2}\right)$.
+\end{center}
+
+La série de terme général $\frac{(-1)^n}{n}$ converge en vertu du critère spécial aux séries alternées et la série de terme général $O\left(\frac{1}{n^2}\right)$ est absolument convergente. On en déduit que la série de terme général $u_n$ converge.
+
+\item  $u_n=\ln\left(1+\frac{(-1)^n}{\sqrt{n}}\right)\underset{n\rightarrow+\infty}{=}\frac{(-1)^n}{\sqrt{n}}-\frac{1}{2n}+ O\left(\frac{1}{n^{3/2}}\right)$. Les séries de termes généraux respectifs $\frac{(-1)^n}{\sqrt{n}}$  et $O\left(\frac{1}{n^{3/2}}\right)$ sont convergentes et la série de terme général $-\frac{1}{2n}$  est divergente. Si la série de terme général $u_n$ convergeait alors la série de terme général $-\frac{1}{2n}=u_n-\frac{(-1)^n}{\sqrt{n}}-O\left(\frac{1}{n^{3/2}}\right)$ convergerait ce qui n'est pas. Donc la série de terme général $u_n$ diverge.
+
+\textbf{Remarque.} La série de terme général $u_n$ diverge bien que $u_n$ soit équivalent au terme général d'une série convergente.
+
+\item  Si $\alpha\in2\pi\Zz$, alors les deux premières séries divergent et la dernière converge.
+
+Soit $\alpha\notin2\pi\Zz$. Pour $n\in\Nn^*$, posons $v_n=e^{in\alpha}$ et $\varepsilon_n=\frac{1}{n}$ de sorte que $u_n=\varepsilon_nv_n$. Pour $n\in\Nn^*$, posons encore $V_n =\sum_{k=1}^{n}v_k$.
+
+Pour $(n ,p)\in(\Nn^*)^2$, posons enfin $R_n^p=\sum_{k=1}^{n+p}u_k-\sum_{k=1}^{n}u_k=\sum_{k=n+1}^{n+p}u_k$. (On effectue alors une transformation d'\textsc{Abel}).
+
+\begin{align*}\ensuremath
+R_n^p&=\sum_{k=n+1}^{n+p}\varepsilon_kv_k =\sum_{k=n+1}^{n+p}\varepsilon_k(V_k-V_{k-1}) =\sum_{k=n+1}^{n+p}\varepsilon_kV_k-\sum_{k=n+1}^{n+p}\varepsilon_kV_{k-1} =\sum_{k=n+1}^{n+p}\varepsilon_kV_k-\sum_{k=n}^{n+p-1}\varepsilon_{k+1}V_{k}\\
+ &=\varepsilon_{n+p}V_{n+p}-\varepsilon_{n+1}V_n+ \sum_{k=n+1}^{n+p-1}(\varepsilon_k-\varepsilon_{k+1})V_k.
+\end{align*}
+
+Maintenant, pour $n\in\Nn^*$, $V_n=e^{i\alpha}\frac{e^{in\alpha}-1}{e^{i\alpha}-1}=e^{i\alpha}\frac{\sin(n\alpha/2)}{\sin(\alpha/2)}$  et donc $\forall n\in\Nn^*$, $|V_n|\leqslant\frac{1}{|\sin(\alpha/2)|}$. Par suite, pour $(n,p)\in(\Nn^*)^2$
+
+\begin{align*}\ensuremath
+|R_n^p|&=\left|\frac{1}{n+p}V_{n+p}-\frac{1}{n+1}V_n+ \sum_{k=n+1}^{n+p-1}\left(\frac{1}{k}-\frac{1}{k+1}\right)V_k\right|&\\
+ &\leqslant\frac{1}{|\sin(\alpha/2)|}\left(\frac{1}{n+p}+\frac{1}{n+1}+ \sum_{k=n+1}^{n+p-1}\left(\frac{1}{k}-\frac{1}{k+1}\right)\right)\\
+ &=\frac{1}{|\sin(\alpha/2)|}\left(\frac{1}{n+p}+\frac{1}{n+1}+\frac{1}{n+1}-\frac{1}{n+p}\right)=\frac{2}{|\sin(\alpha/2)|(n+1)}\\
+  &\leqslant\frac{2}{n|\sin(\alpha/2)|}.
+\end{align*}
+
+Soit alors $\varepsilon$ un réel strictement positif. Pour $n\geqslant E\left(\frac{2}{\varepsilon|\sin(\alpha/2)|}\right)+ 1$ et p entier naturel non nul quelconque, on a $|R_n^p|<\varepsilon$.
+
+On a montré que $\forall\varepsilon>0$, $\exists n_0\in\Nn^*/$ $\forall(n,p)\in\Nn^*$, $(n\geqslant n_0\Rightarrow\left|\sum_{k=1}^{n+p}u_k-\sum_{k=1}^{n}u_k\right|<\varepsilon$.
+
+Ainsi, la série de terme général $u_n$ vérifie le critère de \textsc{Cauchy} et est donc convergente.
+Il en est de même des séries de termes généraux respectifs  $\frac{\cos(n\alpha)}{n}=\text{Re}\left(\frac{e^{in\alpha}}{n}\right)$ et $\frac{\sin(n\alpha)}{n}=\text{Im}\left(\frac{e^{in\alpha}}{n}\right)$.
+
+\item  Pour $x\in]0,+\infty[$, posons $f(x)=\frac{\ln x}{x}$. $f$ est dérivable sur $]0,+\infty[$ et $\forall x>e$, $f'(x)=\frac{1-\ln x}{x}< 0$.
+
+Donc, la fonction $f$ est décroissante sur $[e,+\infty[$. On en déduit que la suite $\left(\frac{\ln n}{n}\right)_{n\geqslant3}$ est une suite décroissante. Mais alors la série de terme général $(-1)^n\frac{\ln n}{n}$ converge en vertu du critère spécial aux séries alternées.
+
+\item  \textbullet~Si $\text{deg}P\geqslant\text{deg}Q$, $u_n$ ne tend pas vers $0$ et la série de terme général $u_n$ est grossièrement divergente.
+
+\textbullet~Si $\text{deg}P\leqslant\text{deg}Q - 2$, $u_n=O\left(\frac{1}{n^2}\right)$ et la série de terme général $u_n$ est absolument convergente.
+
+\textbullet~Si $\text{deg}P =\text{deg}Q - 1$, $u_n\underset{n\rightarrow+\infty}{=}(-1)^n\frac{\text{dom}P}{n\;\text{dom}Q}+O\left(\frac{1}{n^2}\right)$. $u_n$ est alors somme de deux termes généraux de séries convergentes et la série de terme général $u_n$ converge.
+
+En résumé, la série de terme général $u_n$ converge si et seulement si $\text{deg}P <\text{deg}Q$.
+
+\item  $e=\sum_{k=0}^{+\infty}\frac{1}{k!}$  puis pour $n\geqslant2$, $n!e=1+ n+\sum_{k=0}^{n-2}\frac{n!}{k!}+\sum_{k=n+1}^{+\infty}\frac{n!}{k!}$.
+
+Pour $0\leqslant k\leqslant n-2$, $\frac{n!}{k!}$ est un entier divisible par $n(n-1)$ et est donc un entier pair que l'on note $2K_n$. Pour $n\geqslant2$, on obtient
+
+\begin{center}
+$\sin(n!\pi e)=\sin\left(2K_n\pi+(n+1)\pi+\pi\sum_{k=n+1}^{+\infty}\frac{n!}{k!}\right)=(-1)^{n+1}\sin\left(\pi\sum_{k=n+1}^{+\infty}\frac{n!}{k!}\right)$.
+\end{center}
+
+Déterminons un développement limité à l'ordre $2$ de $\sum_{k=n+1}^{+\infty}\frac{n!}{k!}$ quand $n$ tend vers $+\infty$.
+
+\begin{center}
+$\sum_{k=n+1}^{+\infty}\frac{n!}{k!}=\frac{1}{n+1}+\frac{1}{(n+1)(n+2)}+\sum_{k=n+3}^{+\infty}\frac{n!}{k!}$.
+\end{center}
+
+Maintenant, pour $k\geqslant n+3$, $\frac{n!}{k!}=\frac{1}{k(k-1)\ldots(n+1)}\leqslant\frac{1}{(n+1)^{k-n}}$ et donc
+
+\begin{center} 
+$\sum_{k=n+3}^{+\infty}\frac{n!}{k!}\leqslant\sum_{k=n+3}^{+\infty}\frac{1}{(n+1)^{k-n}}=\frac{1}{(n+1)^3}\times\frac{1}{1-\frac{1}{n+1}}=\frac{1}{n(n+1)^2}\leqslant\frac{1}{n^3}$.
+\end{center}
+
+On en déduit que $\sum_{k=n+3}^{+\infty}\frac{n!}{k!}\underset{n\rightarrow+\infty}{=}o\left(\frac{1}{n^2}\right)$. Il reste
+
+\begin{center}
+$\sum_{k=n+1}^{+\infty}\frac{n!}{k!}\underset{n\rightarrow+\infty}{=}
+\frac{1}{n+1}+\frac{1}{(n+1)(n+2)}+o\left(\frac{1}{n^2}\right)\underset{n\rightarrow+\infty}{=}\frac{1}{n}\left(1+\frac{1}{n}\right)^{-1}+\frac{1}{n^2}+o\left(\frac{1}{n^2}\right)
+\underset{n\rightarrow+\infty}{=}\frac{1}{n}+o\left(\frac{1}{n^2}\right)
+$.
+\end{center}
+
+Finalement , $\sin(n!\pi e)\underset{n\rightarrow+\infty}{=}(-1)^{n+1}\sin\left(\frac{\pi}{n}+o\left(\frac{1}{n^2}\right)\right)=\frac{(-1)^{n+1}\pi}{n}+\left(\frac{1}{n^2}\right)$.
+
+$\sin(n!\pi e)$ est somme de deux termes généraux de séries convergentes et la série de terme général $\sin(n!\pi e)$ converge.
+
+Si $p\geqslant2$, $|\sin^p(n!\pi e)|\underset{n\rightarrow+\infty}{\sim}\frac{\pi^p}{n^p}$ et la série de terme général $\sin^p(n!\pi e)$ converge absolument.
+\end{enumerate}
+\fincorrection
+\correction{005691}
+\begin{enumerate}
+ \item  $\frac{n+1}{3^n}\underset{n\rightarrow+\infty}{=}o\left(\frac{1}{n^2}\right)$. Par suite, la série de terme général $\frac{n+1}{3^n}$ converge.
+
+\textbf{1er calcul.} Soit $S=\sum_{n=0}^{+\infty}\frac{n+1}{3^n}$. Alors
+
+\begin{align*}\ensuremath
+\frac{1}{3}S&=\sum_{n=0}^{+\infty}\frac{n+1}{3^{n+1}}=\sum_{n=1}^{+\infty}\frac{n}{3^{n}}=\sum_{n=1}^{+\infty}\frac{n+1}{3^{n}}-\sum_{n=1}^{+\infty}\frac{1}{3^{n}}\\
+ &=(S-1)-\frac{1}{3}\frac{1}{1-\frac{1}{3}}=S-\frac{3}{2}.
+\end{align*}
+
+On en déduit que $S=\frac{9}{4}$.
+
+\begin{center}
+\shadowbox{
+$\sum_{n=0}^{+\infty}\frac{n+1}{3^n}=\frac{9}{4}$.
+}
+\end{center}
+
+\textbf{2ème calcul.} Pour $x\in\Rr$ et $n\in\Nn$, on pose $f_n(x)=\sum_{k=0}^{n}x^k$.
+
+Soit $n\in\Nn^*$. $f_n$ est dérivable sur $\Rr$ et pour $x\in\Rr$,
+
+\begin{center}
+$f_n'(x)=\sum_{k=1}^{n}kx^{k-1}=\sum_{k=0}^{n-1}(k+1)x^k$.
+\end{center}
+
+Par suite, pour $n\in\Nn^*$ et $x\in\Rr\setminus\{1\}$
+
+\begin{center}
+$\sum_{k=0}^{n-1}(k+1)x^k=f_n'(x)=\left(\frac{x^n-1}{x-1}\right)'(x)=\frac{nx^{n-1}(x-1)-(x^n-1)}{(x-1)^2}=\frac{(n-1)x^n-nx^{n-1}+1}{(x-1)^2}$.
+\end{center}
+
+Pour $x=\frac{1}{3}$, on obtient  $\sum_{k=0}^{n-1}\frac{k+1}{3^k}=\frac{\frac{n-1}{3^n}-\frac{n}{3^{n-1}}+1}{\left(\frac{1}{3}-1\right)^2}$ et quand $n$ tend vers l'infini, on obtient de nouveau $S=\frac{9}{4}$.
+
+\item  Pour $k\geqslant3$, $\frac{2k-1}{k^3-4k}=\frac{3}{8(k-2)}+\frac{1}{4k}-\frac{5}{8(k+2)}$. Puis
+
+\begin{align*}\ensuremath
+\sum_{k=3}^{n}\frac{2k-1}{k^3-4k}&=\frac{3}{8}\sum_{k=3}^{n}\frac{1}{k-2}+\frac{1}{4}\sum_{k=3}^{n}\frac{1}{k}-\frac{5}{8}\sum_{k=3}^{n}\frac{1}{k+2}=\frac{3}{8}\sum_{k=1}^{n-2}\frac{1}{k}+\frac{1}{4}\sum_{k=3}^{n}\frac{1}{k}-\frac{5}{8}\sum_{k=5}^{n+2}\frac{1}{k}\\
+ &\underset{n\rightarrow+\infty}{=}\frac{3}{8}\left(1+\frac{1}{2}+\sum_{k=3}^{n}\frac{1}{k}\right)+\frac{1}{4}\sum_{k=3}^{n}\frac{1}{k}-\frac{5}{8}\left(-\frac{1}{3}-\frac{1}{4}\sum_{k=3}^{n}\frac{1}{k}\right)+o(1)\\
+ &\underset{n\rightarrow+\infty}{=}\frac{3}{8}\times\frac{3}{2}+\frac{5}{8}\times\frac{7}{12}+o(1)\underset{n\rightarrow+\infty}{=}\frac{89}{96}+ o(1) .
+\end{align*}
+
+La série proposée est donc convergente de somme $\frac{89}{96}$.
+
+\begin{center}
+\shadowbox{
+$\sum_{n=3}^{+\infty}\frac{2n-1}{n^3-4n}=\frac{89}{96}$.
+}
+\end{center}
+
+\item  Pour $k\in\Nn$, on a $1^{3k}+j^{3k}+(j^2)^{3k}=3$ puis $1^{3k+1}+j^{3k+1}+(j^2)^{3k+1} =1+j+j^2= 0$ et $1^{3k+2}+j^{3k+2}+(j^2)^{3k+2}=1+j^2 + j^4 = 0$. Par suite,
+
+\begin{center}
+$e+e^j+e^{j^2}=\sum_{n=0}^{+\infty}\frac{1^n+j^n+(j^2)^n}{n!}=3\sum_{n=0}^{+\infty}\frac{1}{(3n)!}$,
+\end{center}
+
+et donc
+
+\begin{align*}\ensuremath
+\sum_{n=0}^{+\infty}\frac{1}{(3n)!}&=\frac{1}{3}(e+e^j+e^{j^2})=\frac{1}{3}\left(e+e^{-\frac{1}{2}+i\frac{\sqrt{3}}{2}}+e^{-\frac{1}{2}-i\frac{\sqrt{3}}{2}}\right) =\frac{1}{3}\left(e + 2e^{-1/2}\text{Re}(e^{-i\sqrt{3}/2})\right)\\
+ &=\frac{1}{3}\left(e +2e^{-1/2}\cos\left(\frac{\sqrt{3}}{2}\right)\right).
+\end{align*}
+
+\begin{center}
+\shadowbox{
+$\sum_{n=0}^{+\infty}\frac{1}{(3n)!}=\frac{1}{3}\left(e +\frac{2}{\sqrt{e}}\cos\left(\frac{\sqrt{3}}{2}\right)\right)$.
+}
+\end{center}
+
+\item 
+
+\begin{align*}\ensuremath
+\sum_{k=2}^{n}\left(\frac{1}{\sqrt{k-1}}+\frac{1}{\sqrt{k+1}}-\frac{2}{\sqrt{k}}\right)&=\sum_{k=2}^{n}\left(\left(\frac{1}{\sqrt{k-1}}-\frac{1}{\sqrt{k}}\right)-\left(\frac{1}{\sqrt{k}}-\frac{1}{\sqrt{k+1}}\right)\right)\\
+ &=\left(1-\frac{1}{\sqrt{2}}\right)-\left(\frac{1}{\sqrt{n}}-\frac{1}{\sqrt{n+1}}\right)\;(\text{somme télescopique})\\
+ &\underset{n\rightarrow+\infty}{=}1-\frac{1}{\sqrt{2}}+o(1) 
+\end{align*}
+
+\begin{center}
+\shadowbox{
+$\sum_{n=2}^{+\infty}\left(\frac{1}{\sqrt{n-1}}+\frac{1}{\sqrt{n+1}}-\frac{2}{\sqrt{n}}\right)=1-\frac{1}{\sqrt{2}}$.
+}
+\end{center}
+
+\item  $\ln\left(1+\frac{(-1)^n}{n}\right)\underset{n\rightarrow+\infty}{=}\frac{(-1)^n}{n}+O\left(\frac{1}{n^2}\right)$. Donc la série de terme général $\ln\left(1+\frac{(-1)^n}{n}\right)$ converge.
+
+Posons $S=\sum_{k=2}^{+\infty}\ln\left(1+\frac{(-1)^k}{k}\right)$ puis pour $n\geqslant2$, $S_n=\sum_{k=2}^{n}\ln\left(1+\frac{(-1)^k}{k}\right)$. Puisque la série converge $S=\lim_{n \rightarrow +\infty}S_n=\lim_{p \rightarrow +\infty}S_{2p+1}$ avec
+
+\begin{align*}\ensuremath
+S_{2p+1}&=\sum_{k=2}^{2p+1}\ln\left(1+\frac{(-1)^k}{k}\right)=\sum_{k=1}^{p}\left(\ln\left(1-\frac{1}{2k+1}\right)+\ln\left(1+\frac{1}{2k}\right)\right)\\
+ &=\sum_{k=1}^{p}(\ln(2k)-\ln(2k+1)+\ln(2k+1)-\ln(2k))=0
+\end{align*}
+
+et quand $p$ tend vers $+\infty$, on obtient $S = 0$.
+
+\begin{center}
+\shadowbox{
+$\sum_{n=2}^{+\infty}\ln\left(1+\frac{(-1)^n}{n}\right)=0$.
+}
+\end{center}
+
+\item  Si $a\in\left]0,\frac{\pi}{2}\right[$ alors, pour tout entier naturel $n$, $\frac{a}{2^n}\in\left]0,\frac{\pi}{2}\right[$ et donc $\cos\left(\frac{a}{2^n}\right)>0$.
+
+Ensuite, $\ln\left(\cos\left(\frac{a}{2^n}\right)\right)\underset{n\rightarrow+\infty}{=}\ln\left(1+O\left(\frac{1}{2^{2n}}\right)\right)\underset{n\rightarrow+\infty}{=}O\left(\frac{1}{2^{2n}}\right)$ et la série converge. Ensuite,
+
+\begin{align*}\ensuremath
+\sum_{k=0}^{n}\ln\left(\cos\left(\frac{a}{2^k}\right)\right)&=\ln\left(\prod_{k=0}^{n}\cos\left(\frac{a}{2^k}\right)\right)=\ln\left(\prod_{k=0}^{n}\frac{\sin\left(2\times\frac{a}{2^k}\right)}{2\sin\left(\frac{a}{2^k}\right)}\right)=\ln\left(\frac{1}{2^{n+1}}\prod_{k=0}^{n}\frac{\sin\left(\frac{a}{2^{k-1}}\right)}{\sin\left(\frac{a}{2^k}\right)}\right)\\
+ &=\ln\left(\frac{\sin(2a)}{2^{n+1}\sin\left(\frac{a}{2^n}\right)}\right)\;(\text{produit télescopique})\\
+ &\underset{n\rightarrow+\infty}{\sim}\ln\left(\frac{\sin(2a)}{2^{n+1}\times\frac{a}{2^n}}\right)=\ln\left(\frac{\sin(2a)}{2a}\right).
+\end{align*}
+
+\begin{center}
+\shadowbox{
+$\forall a\in\left]0,\frac{\pi}{2}\right[$, $\sum_{n=0}^{+\infty}\ln\left(\cos\left(\frac{a}{2^n}\right)\right)=\ln\left(\frac{\sin(2a)}{2a}\right)$.
+}
+\end{center}
+
+\item  Vérifions que pour tout réel $x$ on a $\tanh(2x)=\frac{2\tanh x}{1+\tanh^2x}$. Soit $x\in\Rr$.
+
+$\ch^2x+\sh^2x=\frac{1}{4}((e^x+e^{-x})^2+(e^x-e^{-x})^2)=\frac{1}{2}(e^{2x}+e^{-2x})=\ch(2x)$ et $2\sh x\ch x=\frac{1}{2}(e^{x}-e^{-x})(e^x+e^{-x})=\frac{1}{2}(e^{2x}-e^{-2x})=\sh(2x)$ puis
+
+\begin{center}
+$\frac{2\tanh x}{1+\tanh^2x}=\frac{2\sh x\ch x}{\ch^2x+\sh^2x}=\frac{\sh(2x)}{\ch(2x)}=\tanh(2x)$.
+\end{center}
+
+Par suite, pour $x\in\Rr^*$, $\tanh x=\frac{2}{\tanh(2x)}-\frac{1}{\tanh x}$. Mais alors, pour $a\in\Rr^*$ et $n\in\Nn$
+
+\begin{align*}\ensuremath
+\sum_{k=0}^{n}\frac{1}{2^k}\tanh\left(\frac{a}{2^k}\right)&=\sum_{k=0}^{n}\frac{1}{2^k}\left(\frac{2}{\tanh\frac{a}{2^{k-1}}}-\frac{1}{\tanh\frac{a}{2^{k}}}\right)=\sum_{k=0}^{n}\left(\frac{1}{2^{k-1}\tanh\frac{a}{2^{k-1}}}-\frac{1}{2^k\tanh\frac{a}{2^{k}}}\right)\\
+ &=\frac{2}{\tanh(2a)}-\frac{1}{2^n\tanh\frac{a}{2^{n}}}\;(\text{somme télescopique})\\
+ &\underset{n\rightarrow+\infty}{\rightarrow}\frac{2}{\tanh(2a)}-\frac{1}{a},
+\end{align*}
+
+ce qui reste vrai quand $a=0$.
+
+\begin{center}
+\shadowbox{
+$\forall a\in\Rr$, $\sum_{n=0}^{+\infty}\frac{1}{2^n}\tanh\left(\frac{a}{2^n}\right)=\frac{2}{\tanh(2a)}-\frac{1}{a}$.
+}
+\end{center}
+\end{enumerate}	
+\fincorrection
+\correction{005692}
+Il faut vérifier que $nu_n\underset{n\rightarrow+\infty}{\rightarrow}0$. Pour $n\in\Nn$, posons $S_n =\sum_{k=0}^{n}u_k$. Pour $n\in\Nn$, on a
+
+\begin{align*}\ensuremath
+0<(2n)u_{2n}&=2(\underbrace{u_{2n}+\ldots+u_{2n}}_{n})\leqslant2\sum_{k=n+1}^{2n}u_k\;(\text{car la suite}\;u\;\text{est décroissante})\\
+ &= 2(S_{2n} - S_n).
+\end{align*}
+
+Puisque la série de terme général $u_n$ converge, $\lim_{n \rightarrow +\infty}2(S_{2n} - S_n)=0$ et donc $\lim_{n \rightarrow +\infty}(2n)u_{2n}=0$.
+
+Ensuite, $0 < (2n+1)u_{2n+1}\leqslant(2n+1)u_{2n}=(2n)u_{2n}+u_{2n}\underset{n\rightarrow+\infty}{\rightarrow}0$. Donc les suites des termes de rangs pairs et impairs extraites de la suite $(nu_n)_{n\in\Nn}$ convergent et ont même limite à savoir $0$. On en déduit que $\lim_{n \rightarrow +\infty}nu_n=0$ ou encore que $u_n\underset{n\rightarrow+\infty}{=}o\left(\frac{1}{n}\right)$.
+
+Contre exemple avec $u$ non monotone. Pour $n\in\Nn$, on pose $u_n=\left\{
+\begin{array}{l}
+0\;\text{si}\;n=0\\
+\rule[-4mm]{0mm}{10mm}\frac{1}{n}\;\text{si}\;n\;\text{est un carré parfait non nul}\\
+0\;\text{sinon}
+\end{array}
+\right.$. La suite $u$ est positive et $\sum_{n=0}^{+\infty}u_n=\sum_{p=1}^{+\infty}\frac{1}{p^2}<+\infty$. Pourtant, $p^2u_{p^2}=1\underset{p\rightarrow+\infty}{\rightarrow}1$ et la suite $(nu_n)$ admet une suite extraite convergeant vers $1$. On a donc pas $\lim_{n \rightarrow +\infty}nu_n=0$.
+\fincorrection
+\correction{005693}
+Soit $\sigma$ une permutation de $\llbracket1,n\rrbracket$. Montrons que la suite $S_n=\sum_{k=1}^{n}\frac{\sigma(k)}{k^2}$, $n\geqslant1$, ne vérifie pas le critère de \textsc{Cauchy}. Soit $n\in\Nn^*$.
+
+\begin{align*}\ensuremath
+S_{2n}-S_n&=\sum_{k=n+1}^{2n}\frac{\sigma(k)}{k^2}\geqslant\frac{1}{(2n)^2}\sum_{k=n+1}^{2n}\sigma(k)\\
+ &\geqslant\frac{1}{4n^2}(1+2+...+n)\;(\text{car les}\;n\;\text{entiers}\;\sigma(k),\;1\leqslant k\leqslant n,\;\text{sont strictement positifs et deux à deux distincts})\\
+ &=\frac{n(n+1)}{8n^2}\geqslant\frac{n^2}{8n^2}=\frac{1}{8}.
+\end{align*}
+
+Si la suite $(S_n)$ converge, on doit avoir $\lim_{n \rightarrow +\infty}(S_{2n}-S_n)=0$ ce qui contredit l'inégalité précédente. Donc la série de terme général $\frac{\sigma(n)}{n^2}$, $n\geqslant1$, diverge.
+\fincorrection
+\correction{005694}
+Pour $n\in\Nn$, posons $v_n=\ln(1+u_n)$, $w_n=\frac{u_n}{1+u_n}$ et $t_n=\int_{0}^{u_n}\frac{dx}{1+x^e}$.
+
+\textbullet~Si $u_n\underset{n\rightarrow+\infty}{\rightarrow}0$, alors $0\leqslant u_n\underset{n\rightarrow+\infty}{\sim}v_n\underset{n\rightarrow+\infty}{\sim}w_n$. Dans ce cas, les séries de termes généraux $u_n$, $v_n$ et $w_n$ sont de même nature.
+
+D'autre part, pour $n\in\Nn$, $\frac{u_n}{1+u_n^e}\leqslant t_n\leqslant u_n$ puis $\frac{1}{1+u_n^e}\leqslant\frac{t_n}{u_n}\leqslant1$et donc $t_n\underset{n\rightarrow+\infty}{\sim}u_n$. Les séries de termes généraux $u_n$ et $t_n$ sont aussi de même nature.
+
+\textbullet~Si $u_n$ ne tend pas vers $0$, la série de terme général $u_n$ est grossièrement divergente. Puisque $u_n =e^{v_n}-1$, $v_n$ ne tend pas vers $0$ et la série de terme général $v_n$ est grossièrement divergente. Dans ce cas aussi, les séries de termes généraux sont de même nature.
+
+De même, puisque $w_n=\frac{u_n}{1+u_n}<1$, on a $u_n =\frac{w_n}{1-w_n}$ et $w_n$ ne peut tendre vers $0$.
+
+Enfin, puisque $u_n$ ne tend pas vers $0$, il existe $\varepsilon> 0$ tel que pour tout entier naturel $N$, il existe $n = n(N)\geqslant N$ tel que $u_n\geqslant\varepsilon$. Pour cet $\epsilon$ et ces $n$, on a $t_n\geqslant\int_{0}^{\varepsilon}\frac{dx}{1+x^e}>0$ (fonction continue, positive et non nulle) et la suite $t_n$ ne tend pas vers $0$. Dans le cas où $u_n$ ne tend pas vers $0$, les quatre séries sont grossièrement divergentes.
+
+\fincorrection
+\correction{005695}
+Pour $n\in\Nn$, posons $u_n= (n+1)!\left(e-\sum_{k=0}^{n}\frac{1}{k!}\right)$. Soit $n\in\Nn$.
+
+\begin{align*}\ensuremath
+u_n&=\sum_{k=n+1}^{+\infty}\frac{(n+1)!}{k!}\\
+ &=1+\frac{1}{n+2}+\frac{1}{(n+2)(n+3)}+\frac{1}{(n+2)(n+3)(n+4)}+\frac{1}{(n+2)(n+3)(n+4)(n+5)}+\sum_{k=n+6}^{+\infty}\frac{1}{(n+2)(n+3)\ldots k}
+\end{align*}
+	
+
+On a $0 <\sum_{k=n+6}^{+\infty}\frac{1}{(n+2)(n+3)\ldots k}=\sum_{k=n+1}^{+\infty}\frac{1}{(n+2)^{k-(n+1)}}=\frac{1}{(n+2)^5}\frac{1}{1-\frac{1}{n+2}}=\frac{1}{(n+2)^4(n+1)}\leqslant\frac{1}{n^5}$. On en déduit que $\sum_{k=n+6}^{+\infty}\frac{1}{(n+2)(n+3)\ldots k}\underset{n\rightarrow+\infty}{=}o\left(\frac{1}{n^4}\right)$. Donc
+
+\begin{align*}\ensuremath
+u_n&\underset{n\rightarrow+\infty}{=}1+\frac{1}{n+2}+\frac{1}{(n+2)(n+3)}+\frac{1}{(n+2)(n+3)(n+4)}+\frac{1}{(n+2)(n+3)(n+4)(n+5)}+o\left(\frac{1}{n^4}\right)\\
+ &\underset{n\rightarrow+\infty}{=}1+\frac{1}{n}\left(1+\frac{2}{n}\right)^{-1}+\frac{1}{n^2}\left(1+\frac{2}{n}\right)^{-1}\left(1+\frac{3}{n}\right)^{-1}+\frac{1}{n^3}\left(1+\frac{2}{n}\right)^{-1}\left(1+\frac{3}{n}\right)^{-1}\left(1+\frac{4}{n}\right)^{-1}+\frac{1}{n^4}+o\left(\frac{1}{n^4}\right)\\
+  &\underset{n\rightarrow+\infty}{=}1+\frac{1}{n}\left(1-\frac{2}{n}+\frac{4}{n^2}-\frac{8}{n^3}\right)+\frac{1}{n^2}\left(1-\frac{2}{n}+\frac{4}{n^2}\right)\left(1-\frac{3}{n}+\frac{9}{n^2}\right)+\frac{1}{n^3}\left(1-\frac{2}{n}\right)\left(1-\frac{3}{n}\right)\left(1-\frac{4}{n}\right)\\
+  &\;+\frac{1}{n^4}+o\left(\frac{1}{n^4}\right)\\
+  &\underset{n\rightarrow+\infty}{=}1+\frac{1}{n}\left(1-\frac{2}{n}+\frac{4}{n^2}-\frac{8}{n^3}\right)+\frac{1}{n^2}\left(1-\frac{5}{n}+\frac{19}{n^2}\right)+\frac{1}{n^3}\left(1-\frac{9}{n}\right)+\frac{1}{n^4}+o\left(\frac{1}{n^4}\right)\\
+  &\underset{n\rightarrow+\infty}{=}1+\frac{1}{n}-\frac{1}{n^2}+\frac{3}{n^4}+o\left(\frac{1}{n^4}\right).
+\end{align*}
+
+Finalement
+
+\begin{center}
+\shadowbox{
+$(n+1)!\left(e-\sum_{k=0}^{n}\frac{1}{k!}\right)\underset{n\rightarrow+\infty}{=}1+\frac{1}{n}-\frac{1}{n^2}+\frac{3}{n^4}+o\left(\frac{1}{n^4}\right)$.
+}
+\end{center}
+\fincorrection
+\correction{005696}
+ Pour $n\in\Nn$, posons $u_n=\sin\left(\pi(2+\sqrt{3})^n\right)$. D'après la formule du binôme de \textsc{Newton}, $(2+\sqrt{3})^n=A_n +B_n\sqrt{3}$ où $A_n$ et $B_n$ sont des entiers naturels. Un calcul conjugué fournit aussi $(2-\sqrt{3})^n=A_n-B_n\sqrt{3}$. Par suite, $(2+\sqrt{3})^n+(2-\sqrt{3})^n= 2A_n$ est un entier pair. Par suite, pour $n\in\Nn$,
+
+\begin{center}
+$u_n =\sin\left(2A_n\pi-\pi(2-\sqrt{3})^n\right)=-\sin\left(\pi(2-\sqrt{3})^n\right)$.
+\end{center}
+
+Mais $0< 2-\sqrt{3}< 1$ et donc $(2-\sqrt{3})^n\underset{n\rightarrow+\infty}{\rightarrow}0$. On en déduit que $|u_n|\underset{n\rightarrow+\infty}{\sim}\pi(2-\sqrt{3})^n$ terme général d'une série géométrique convergente. Donc la série de terme général $u_n$ converge.
+\fincorrection
+\correction{005697}
+Pour $n\in\Nn^*$, on a $\left(\sqrt{u_n}-\frac{1}{n}\right)^2$ et donc $0\leqslant\frac{\sqrt{u_n}}{n}\leqslant\frac{1}{2}\left(u_n+\frac{1}{n^2}\right)$. Comme la série terme général $\frac{1}{2}\left(u_n+\frac{1}{n^2}\right)$ converge, la série de terme général $\frac{\sqrt{u_n}}{n}$  converge.
+\fincorrection
+\correction{005698}
+ Pour $n\geqslant2$, $v_n=\frac{u_n+1-1}{(1+u_1)\ldots(1+u_n)}=\frac{1}{(1+u_1)\ldots(1+u_{n-1})}-\frac{1}{(1+u_1)\ldots(1+u_n)}$  et d'autre part $v_1=1-\frac{1}{1+u_1}$. Donc, pour $n\geqslant2$
+
+\begin{center}
+$\sum_{k=1}^{n}v_k =1-\frac{1}{(1+u_1)\ldots(1+u_n)}$ (somme télescopique).
+\end{center}
+
+Si la série de terme général $u_n$ converge alors $\lim_{n \rightarrow +\infty}u_n=0$ et donc $0<u_n\underset{n\rightarrow+\infty}{\sim}\ln(1+u_n)$. Donc la série de terme général $\ln(1+u_n)$ converge ou encore la suite  $\left(\ln\left(\prod_{k=1}^{n}(1+u_k)\right)\right)_{n\geqslant1}$
+converge vers un certain réel $\ell$. Mais alors la suite $\left(\prod_{k=1}^{n}(1+u_k)\right)_{n\geqslant1}$ converge vers le réel strictement positif $P=e^{\ell}$.
+Dans ce cas, la suite $\left(\sum_{k=1}^{n}v_k\right)_{n\geqslant1}$ converge vers $1-\frac{1}{P}$.
+
+Si la série de terme général $u_n$ diverge alors la série de terme général $\ln(1+u_n)$ diverge vers $+\infty$ et il en est de même que la suite $\left(\prod_{k=1}^{n}(1+u_k)\right)_{n\geqslant1}$. Dans ce cas, la suite $\left(\sum_{k=1}^{n}v_k\right)_{n\geqslant1}$ converge vers $1$.
+\fincorrection
+\correction{005699}
+Etudions tout d'abord la convergence de la série de terme général $\frac{u_n}{S_n}$.
+
+Si  $\frac{u_n}{S_n}$ tend vers $0$ alors
+
+\begin{center}
+$0<\frac{u_n}{S_n}\underset{n\rightarrow+\infty}{\sim}-\ln\left(1-\frac{u_n}{S_n}\right)=\ln\left(\frac{S_{n-1}}{S_n}\right)=\ln(S_n) -\ln(S_{n-1})$.
+\end{center}
+
+Par hypothèse, $\lim_{n \rightarrow +\infty}S_n=+\infty$. On en déduit que la série de terme général $\ln(S_n) - \ln(S_{n-1})$ est divergente car  $\sum_{k=1}^{n}\ln(S_k) - \ln(S_{k-1}) =\ln(S_n)-\ln(S_0)\underset{n\rightarrow+\infty}{\rightarrow}+\infty$. Dans ce cas, la série de terme général $\frac{u_n}{S_n}$  diverge ce qui est aussi le cas si $\frac{u_n}{S_n}$ ne tend pas vers $0$.
+
+Donc, dans tous les cas, la série de terme général $\frac{u_n}{S_n}$  diverge.
+
+Si $\alpha\leqslant1$, puisque $S_n$ tend vers $+\infty$, à partir d'un certain rang on a $S_n^\alpha\leqslant S_n$ et donc  $\frac{u_n}{S_n^\alpha}\geqslant\frac{u_n}{S_n}$. Donc, si $\alpha\leqslant1$, la série de terme général  $\frac{u_n}{S_n^\alpha}$ diverge.
+
+Si $\alpha> 1$, puisque la suite $(S_n)$ est croissante,
+
+\begin{center}
+$0<\frac{u_n}{S_n^\alpha}=\frac{S_n-S_{n-1}}{S_n^\alpha}=\int_{S_{n-1}}^{S_n}\frac{dx}{S_n^\alpha}\leqslant\frac{dx}{x^\alpha}=\frac{1}{\alpha-1}\left(\frac{1}{S_{n-1}^{\alpha-1}}-\frac{1}{S_n^{\alpha-1}}\right)$,
+\end{center}
+
+qui est le terme général d'une série télescopique convergente puisque $\frac{1}{S_n^{\alpha-1}}$ tend vers $0$ quand $n$ tend vers l'infini. Dans ce cas, la série de terme général $\frac{u_n}{S_n^\alpha}$  converge.
+
+\begin{center}
+\shadowbox{
+La série de terme général $\frac{u_n}{S_n^\alpha}$ converge si et seulement si $\alpha>1$.
+}
+\end{center}
+\fincorrection
+\correction{005700}
+Si $\alpha<0$, $u_n\underset{n\rightarrow+\infty}{\sim}n^{-2\alpha}$  et si $\alpha=0$, $u_n=1+(-1)^n$. Donc si $\alpha\leqslant0$, $u_n$ ne tend pas vers $0$. La série de terme général $u_n$ diverge grossièrement dans ce cas.
+
+On suppose dorénavant que $\alpha> 0$. Pour tout entier naturel non nul $n$, $|u_n|\underset{n\rightarrow+\infty}{\sim}\frac{1}{n^\alpha}$ et donc la série de terme général $u_n$ converge absolument si et seulement si $\alpha> 1$.
+
+Il reste à étudier le cas où $0 <\alpha\leqslant1$. On a $u_n=\frac{(-1)^n}{n^\alpha}+\frac{1}{n^{2\alpha}}$. La suite $\left(\frac{1}{n^\alpha}\right)_{n\geqslant1}$ tend vers $0$ en décroissant et donc la série de terme général $\frac{(-1)^n}{n^\alpha}$ converge en vertu du critère spécial aux séries alternées. On en déduit que la série de terme général $u_n$ converge si et seulement si la série de terme général $\frac{1}{n^{2\alpha}}$ converge ou encore si et seulement si $\alpha>\frac{1}{2}$.
+
+En résumé
+
+\begin{center}
+\shadowbox{
+\begin{tabular}{l}
+Si $\alpha\leqslant0$, la série de terme général $\frac{1+(-1)^nn^\alpha}{n^{2\alpha}}$ diverge grossièrement,\\
+\rule[-4mm]{0mm}{10mm}si $0 <\alpha\leqslant\frac{1}{2}$, la série de terme général $\frac{1+(-1)^nn^\alpha}{n^{2\alpha}}$ diverge,\\
+\rule[-4mm]{0mm}{10mm}si  $\frac{1}{2}<\alpha\leqslant1$, la série de terme général $\frac{1+(-1)^nn^\alpha}{n^{2\alpha}}$ est semi convergente,\\
+si $\alpha> 1$, la série de terme général $\frac{1+(-1)^nn^\alpha}{n^{2\alpha}}$ converge absolument.
+\end{tabular}
+}
+\end{center}
+\fincorrection
+\correction{005701}
+Pour $n\in\Nn^*$, on note $S_n$ la somme des $n$ premiers termes de la série considérée et on pose $H_n=\sum_{k=1}^{n}\frac{1}{k}$. Il est connu que $H_n\underset{n\rightarrow+\infty}{=}\ln n+\gamma+o(1)$.
+
+Soit $m\in\Nn^*$.
+
+\begin{align*}\ensuremath
+S_{m(p+q)}&=\left(1+\frac{1}{3}+\ldots+\frac{1}{2p-1}\right) -\left(\frac{1}{2}+\frac{1}{4}+\ldots+\frac{1}{2q}\right)+\left(\frac{1}{2p+1}+...+\frac{1}{4p-1}\right) -\left(\frac{1}{2q+2}+...+\frac{1}{4q}\right) +...\\
+ &\;+\left(\frac{1}{2(m-1)p+1}+...+\frac{1}{2mp-1}\right) -\left(\frac{1}{2(m-1)q+2}+...+\frac{1}{2mq}\right)\\
+ &=\sum_{k=1}^{mp}\frac{1}{2k-1}-\sum_{k=1}^{mq}\frac{1}{2k}=\sum_{k=1}^{2mp}\frac{1}{k}-\sum_{k=1}^{mp}\frac{1}{2k}-\sum_{k=1}^{mq}\frac{1}{2k}= H_{2mp} -\frac{1}{2}(H_{mp}+H_{mq})\\
+  &\underset{m\rightarrow+\infty}{=}(\ln(2mp)+\gamma) -\frac{1}{2}(\ln(mp) +\gamma+\ln(mq) +\gamma)+ o(1)=\ln2 +\frac{1}{2}\ln\left(\frac{p}{q}\right)+o(1).
+\end{align*}
+
+Ainsi, la suite extraite $(S_{m(p+q)})_{m\in\Nn^*}$ converge vers $\ln2 +\frac{1}{2}\ln\left(\frac{p}{q}\right)$.
+
+Montrons alors que la suite $(S_n)_{n\in\Nn^*}$ converge. Soit $n\in\Nn^*$. Il existe un unique entier naturel non nul $m_n$ tel que $m_n(p+q)\leqslant n <(m_n+1)(p+q)$ à savoir $m_n=E\left(\frac{n}{p+q}\right)$.
+
+\begin{align*}\ensuremath
+|S_n-S_{m_n(p+q)}|&\leqslant\frac{1}{2m_np+1}+\ldots+\frac{1}{2(m_n+1)p-1}+\frac{1}{2m_nq+2}+\frac{1}{2(m_n+1)q}\\
+ &\leqslant\frac{p}{2m_np+1}+\frac{q}{2m_nq+2}\leqslant\frac{1}{2m_n}+\frac{1}{2m_n}=\frac{1}{m_n}.
+\end{align*}
+
+Soit alors $\varepsilon>0$.
+
+Puisque $\lim_{n \rightarrow +\infty}m_n=+\infty$, il existe $n_0\in\Nn^*$ tel que pour $n\geqslant n_0$, $\frac{1}{m_n}<\frac{\varepsilon}{2}$ et aussi $\left|S_{m_n(p+q)}-\ln2-\frac{1}{2}\ln\left(\frac{p}{q}\right)\right|<\frac{\varepsilon}{2}$. Pour $n\geqslant n_0$, on a alors
+
+\begin{align*}\ensuremath
+\left|S_{n}-\ln2 -\frac{1}{2}\ln\left(\frac{p}{q}\right)\right|&\leqslant|S_n-S_{m_n(p+q)}|+\left|S_{m_n(p+q)}-\ln2-\frac{1}{2}\ln\left(\frac{p}{q}\right)\right|\leqslant\frac{1}{m_n}+\left|S_{m_n(p+q)}-\ln2-\frac{1}{2}\ln\left(\frac{p}{q}\right)\right|\\
+ &<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+\end{align*}
+
+On a montré que $\forall \varepsilon>0,\;\exists n_0\in\Nn^*/\;\forall n\in\Nn,\;(n\geqslant n_0\Rightarrow\left|S_{n}-\left(\ln2 +\frac{1}{2}\ln\left(\frac{p}{q}\right)\right)\right|<\varepsilon)$ et donc, la série proposée converge et a pour somme $\ln2 +\frac{1}{2}\ln\left(\frac{p}{q}\right)$.
+\fincorrection
+\correction{005702}
+La série proposée est le produit de \textsc{Cauchy} de la série de terme général   $\frac{1}{n^\alpha}$, $n\geqslant1$, par elle même.
+
+\textbullet~Si $\alpha>1$, on sait que la série de terme général $\frac{1}{n^\alpha}$ converge absolument et donc que la série proposée converge.
+
+\textbullet~Si $0\leqslant\alpha\leqslant1$, pour $0 < k < n$ on a $0<k(n-k)\leqslant\frac{n}{2}\left(n-\frac{n}{2}\right)=\frac{n^2}{4}$. Donc $u_n\geqslant\frac{n-1}{\left(\frac{n^2}{4}\right)^\alpha}$ avec $\frac{n-1}{\left(\frac{n^2}{4}\right)^\alpha}\underset{n\rightarrow+\infty}{\sim}\frac{4^\alpha}{n^{2\alpha-1}}$. Comme $2\alpha-1\leqslant1$, la série proposée diverge.
+
+\textbullet~Si $\alpha< 0$, $u_n\geqslant\frac{1}{(n-1)^\alpha}$  et donc $u_n$ ne tend pas vers $0$. Dans ce cas, la série proposée diverge grossièrement.
+
+\fincorrection
+\correction{005703}
+\begin{enumerate}
+ \item  Soit $n\in\Nn$.
+
+\begin{align*}\ensuremath
+2n^3-3n^2+1&=2(n+3)(n+2)(n+1)-15n^2 - 22n -11= 2(n+3)(n+2)(n+1)-15(n+3)(n+2) +53n+79\\
+ &= 2(n+3)(n+2)(n+1)-15(n+3)(n+2)+53(n+3)-80
+\end{align*}
+
+Donc
+
+\begin{align*}\ensuremath
+\sum_{n=0}^{+\infty}\frac{2n^3-3n^2+1}{(n+3)!}&=\sum_{n=0}^{+\infty}\left(\frac{2}{n!}-\frac{15}{(n+1)!}+\frac{53}{(n+2)!}-\frac{80}{(n+3)!}\right)=2e-15(e-1)+53(e-2)-80\left(e-\frac{5}{2}\right)\\
+ &=-40e + 111.
+\end{align*}
+
+\begin{center}
+\shadowbox{
+$\sum_{n=0}^{+\infty}\frac{2n^3-3n^2+1}{(n+3)!}=-40e + 111$.
+}
+\end{center}
+
+\item  Pour $n\in\Nn$, on a $u_{n+1}=\frac{n+1}{a+n+1}u_n$. Par suite $(n+a+1)u_{n+1}= (n+1)u_n = (n+a)u_n + (1-a)u_n$ puis
+
+\begin{center}
+$(1-a)\sum_{k=1}^{n}u_k=\sum_{k=1}^{n}(k+a+1)u_{k+1}-\sum_{k=1}^{n}(k+a)u_k =(n+a+1)u_{n+1}-(a+1)u_1 =(n+a+1)u_{n+1}-1.$
+\end{center}
+
+Si $a = 1$, $\forall n\in\Nn^*$, $u_n=\frac{1}{n+1}$. Dans ce cas, la série diverge.
+
+Si $a\neq 1$, $\forall n\in\Nn^*$, $\sum_{k=1}^{n}u_k=\frac{1}{1-a}((n+a+1)u_{n+1} - 1)=\frac{1}{a-1}- \frac{1}{a-1}(a+n+1)u_{n+1}$.
+
+Si $a > 1$, la suite $u$ est strictement positive et la suite des sommes partielles $(S_n)$ est majorée par $\frac{1}{a-1}$. Donc la série de terme général $u_n$ converge. Il en est de même de la suite $((a+n+1)u_{n+1})$. Soit $\ell=\lim_{n \rightarrow +\infty}(a+n+1)u_{n+1}$.
+
+Si $\ell\neq0$, $u_{n+1}\underset{n\rightarrow+\infty}{\sim}\frac{\ell}{n+a+1}$ contredisant la convergence de la série de terme général $u_n$. Donc $\ell= 0$ et
+
+\begin{center}
+si $a > 1$,  $\sum_{n=1}^{+\infty}u_n=\frac{1}{a-1}$.
+\end{center}
+
+Si $0<a<1$, pour tout $n\in\Nn^*$, $u_n\geqslant\frac{1\times2\times\ldots\times n}{2\times3\ldots\times(n+1)}=\frac{1}{n+1}$. Dans ce cas, la série diverge.
+\end{enumerate}
+\fincorrection
+\correction{005704}
+Pour tout entier naturel non nul $n$, $0<\frac{1}{2^pn^{p-1}}=\sum_{k=1}^{n}\frac{1}{(2n)^p}\leqslant\sum_{k=1}^{n}\frac{1}{(n+k)^p}\leqslant\sum_{k=1}^{n}\frac{1}{n^p}=\frac{1}{n^{p-1}}$ et la série de terme général $u_n$ converge si et seulement si $p > 2$.
+\fincorrection
+\correction{005705}
+(On applique la règle de \textsc{Raabe}-\textsc{Duhamel} qui n'est pas un résultat de cours.) Pour $n\in\Nn$, posons $u_n=\frac{n!}{(a+1)(a+2)\ldots(a+n)}$.
+
+\begin{center}
+$\frac{u_{n+1}}{u_n}=\frac{n+1}{a+n+1}=\left(1+\frac{1}{n}\right)\left(1+\frac{a+1}{n}\right)^{-1}\underset{n\rightarrow+\infty}{=}\left(1+\frac{1}{n}\right)\left(1-\frac{a+1}{n}+O\left(\frac{1}{n^2}\right)\right)\underset{n\rightarrow+\infty}{=}1-\frac{a}{n}+O\left(\frac{1}{n^2}\right)$,
+\end{center}
+
+et \og on sait \fg~qu'il existe un réel strictement positif $K$ tel que $u_n\underset{n\rightarrow+\infty}{\sim}\frac{K}{n^a}$.  
+
+\fincorrection
+\correction{005706}
+Pour tout entier naturel non nul $n$, $0<\frac{1}{2^pn^{p-1}}=\sum_{k=1}^{n}\frac{1}{(2n)^p}\leqslant\sum_{k=1}^{n}\frac{1}{(n+k)^p}\leqslant\sum_{k=1}^{n}\frac{1}{n^p}=\frac{1}{n^{p-1}}$ et la série de terme général $u_n$ converge si et seulement si $p > 2$.
+\fincorrection
+\correction{005707}
+Pour $n\in\Nn^*$, posons $R_n=\sum_{k=n+1}^{+\infty}\frac{1}{k^2}$. Puisque la série de terme général $\frac{1}{k^2}$, $k\geqslant 1$, converge, la suite $(R_n)$ est définie et tend vers $0$ quand $n$ tend vers $+\infty$.
+
+$0<\frac{1}{k^2}\underset{k\rightarrow+\infty}{\sim}\frac{1}{k(k-1)}=\frac{1}{k-1}-\frac{1}{k}$  et puisque la série de terme général $\frac{1}{k^2}$ converge, la règle de l'équivalence des restes de séries à termes positifs convergentes permet d'affirmer que
+
+\begin{align*}\ensuremath
+R_n&= \sum_{k=n+1}^{+\infty}\frac{1}{k^2}\underset{n\rightarrow+\infty}{\sim} \sum_{k=n+1}^{+\infty}\left(\frac{1}{k-1}-\frac{1}{k}\right)\\
+ &=\lim_{N \rightarrow +\infty}\sum_{k=n+1}^{N}\left(\frac{1}{k-1}-\frac{1}{k}\right)\;(\text{surtout ne pas décomposer en deux sommes})\\
+ &=\lim_{N \rightarrow +\infty}\left(\frac{1}{n}-\frac{1}{N}\right)\;(\text{somme télescopique})\\
+ &=\frac{1}{n} 
+\end{align*}
+
+ou encore $R_n\underset{n\rightarrow+\infty}{=}\frac{1}{n}+o\left(\frac{1}{n}\right)$.
+
+Plus précisément, pour $n\in\Nn^*$, $R_n-\frac{1}{n}=\sum_{k=n+1}^{+\infty}\frac{1}{k^2}-\sum_{k=n+1}^{+\infty}\frac{1}{k(k-1)}=-\sum_{k=n+1}^{+\infty}\frac{1}{k^2(k-1)}$.
+
+Or $-\frac{1}{k^2(k-1)}+\frac{1}{k(k-1)(k-2)}=\frac{2}{k^2(k-1)(k-2)}$ puis
+
+$\frac{2}{k^2(k-1)(k-2)}-\frac{2}{k(k-1)(k-2)(k-3)}=-\frac{6}{k^2(k-1)(k-2)(k-3)}$ et donc
+
+\begin{align*}\ensuremath
+R_n&=\frac{1}{n}-\sum_{k=n+1}^{+\infty}\frac{1}{k^2(k-1)}=\frac{1}{n}-\sum_{k=n+1}^{+\infty}\frac{1}{k(k-1)(k-2)}+\sum_{k=n+1}^{+\infty}\frac{2}{k^2(k-1)(k-2)}\\
+ &=\frac{1}{n}-\sum_{k=n+1}^{+\infty}\frac{1}{k(k-1)(k-2)}+\sum_{k=n+1}^{+\infty}\frac{2}{k(k-1)(k-2)(k-3)}-\sum_{k=n+1}^{+\infty}\frac{6}{k^2(k-1)(k-2)(k-3)}
+\end{align*}
+
+Ensuite  $\sum_{k=n+1}^{+\infty}\frac{1}{k^2(k-1)(k-2)(k-3)}\underset{n\rightarrow+\infty}{\sim}\sum_{k=n+1}^{+\infty}\frac{1}{k^5}\underset{n\rightarrow+\infty}{\sim}\frac{1}{4n^4}$ ou encore $-\sum_{k=n+1}^{+\infty}\frac{6}{k^2(k-1)(k-2)(k-3)}\underset{n\rightarrow+\infty}{=}-\frac{3}{2n^4}+o\left(\frac{1}{n^4}\right)$. Puis
+
+\begin{align*}\ensuremath
+\sum_{k=n+1}^{+\infty}\frac{1}{k(k-1)(k-2)}&=\lim_{N \rightarrow +\infty}\frac{1}{2}\sum_{k=n+1}^{N}\left(\frac{1}{(k-1)(k-2)}-\frac{1}{k(k-1)}\right)=\lim_{N \rightarrow +\infty}\frac{1}{2}\left(\frac{1}{n(n-1)}-\frac{1}{N(N-1)}\right)=\frac{1}{2n(n-1)}\\
+ &=\frac{1}{2n^2}\left(1-\frac{1}{n}\right)^{-1}\underset{n\rightarrow+\infty}{=}\frac{1}{2n^2}+\frac{1}{2n^3}+\frac{1}{2n^4}+o\left(\frac{1}{n^4}\right)
+\end{align*}
+
+et
+
+\begin{align*}\ensuremath
+\sum_{k=n+1}^{+\infty}\frac{2}{k(k-1)(k-2)(k-3)}&=\lim_{N \rightarrow +\infty}\frac{2}{3}\sum_{k=n+1}^{N}\left(\frac{1}{(k-1)(k-2)(k-3)}-\frac{1}{k(k-1)(k-2)}\right)\\
+ &=\lim_{N \rightarrow +\infty}\frac{2}{3}\left(\frac{1}{n(n-1)(n-2)}-\frac{1}{N(N-1)(N-2)}\right)=\frac{2}{3n(n-1)(n-2)}\\
+ &=\frac{2}{3n^3}\left(1-\frac{1}{n}\right)^{-1}\left(1-\frac{2}{n}\right)^{-1}\underset{n\rightarrow+\infty}{=}\frac{2}{3n^3}\left(1+\frac{1}{n}+o\left(\frac{1}{n}\right)\right)\left(1+\frac{2}{n}+o\left(\frac{1}{n}\right)\right)\\
+  &\underset{n\rightarrow+\infty}{=}\frac{2}{3n^3}+\frac{2}{n^4}+o\left(\frac{1}{n^4}\right)
+\end{align*}
+
+et finalement
+
+\begin{center}
+$R_n\underset{n\rightarrow+\infty}{=}\frac{1}{n}-\left(\frac{1}{2n^2}+\frac{1}{2n^3}+\frac{1}{2n^4}\right)+\left(\frac{2}{3n^3}+\frac{2}{n^4}\right)-\frac{3}{2n^4}+o\left(\frac{1}{n^4}\right)\underset{n\rightarrow+\infty}{=}\frac{1}{n}-\frac{1}{2n^2}+\frac{1}{6n^3}+o\left(\frac{1}{n^4}\right)$.
+\end{center}
+
+\begin{center}
+\shadowbox{
+$\sum_{k=n+1}^{+\infty}\frac{1}{k^2}\underset{n\rightarrow+\infty}{=}\frac{1}{n}-\frac{1}{2n^2}+\frac{1}{6n^3}+o\left(\frac{1}{n^4}\right)$.
+}
+\end{center}
+\fincorrection
+\correction{005708}
+\begin{enumerate}
+ \item  La suite $\left(\frac{\ln n}{n}\right)_{n\in\Nn^*}$ tend vers $0$, en décroissant à partir du rang $3$ (fourni par l'étude de la fonction $x\mapsto\frac{\ln x}{x}$ sur $[e,+\infty[$) et donc la série de terme général $(-1)^n\frac{\ln n}{n}$, $n\geqslant1$, converge en vertu du critère spécial aux séries alternées. Pour $n\in\Nn^*$, on pose $R_n=\sum_{p=n+1}^{+\infty}(-1)^p\frac{\ln p}{p}$.
+
+$(-1)^k\frac{\ln k}{k}$  n'est pas de signe constant à partir d'un certain rang et on ne peut donc lui appliquer la règle de l'équivalence des restes.
+
+Par contre, puisque la série de terme général $(-1)^k\frac{\ln k}{k}$ converge, on sait que l'on peut associer les termes à volonté et pour $k\in\Nn^*$, on a
+
+\begin{center}
+$R_{2k-1}=\sum_{p=2k}^{+\infty}(-1)^p\frac{\ln p}{p}=\sum_{p=k}^{+\infty}\left(\frac{\ln(2p)}{2p}-\frac{\ln(2p+1)}{2p+1}\right)$.
+\end{center}
+
+Puisque la fonction  $x\mapsto\frac{\ln x}{x}$ est décroissante sur $[e,+\infty[$ et donc sur $[3,+\infty[$, pour $p\geqslant 2$, $\frac{\ln(2p)}{2p}-\frac{\ln(2p+1)}{2p+1}\geqslant0$ et on peut utiliser la règle de l'équivalence des restes de séries à termes positifs convergentes.
+
+Cherchons déjà un équivalent plus simple de $\frac{\ln(2p)}{2p}-\frac{\ln(2p+1)}{2p+1}$ quand $p$ tend vers $+\infty$.
+
+\begin{align*}\ensuremath
+\frac{\ln(2p)}{2p}-\frac{\ln(2p+1)}{2p+1}&=\frac{\ln(2p)}{2p}-\frac{1}{2p}\left(\ln(2p)+\ln\left(1+\frac{1}{2p}\right)\right)\left(1+\frac{1}{2p}\right)^{-1}\\
+ &\underset{p\rightarrow+\infty}{=}\frac{\ln(2p)}{2p}-\frac{1}{2p}\left(\ln(2p)+\frac{1}{2p}+o\left(\frac{1}{p}\right)\right)\left(1-\frac{1}{2p}+o\left(\frac{1}{p}\right)\right)\\
+ &\underset{p\rightarrow+\infty}{=}\frac{\ln(2p)}{4p^2}+o\left(\frac{\ln p}{p^2}\right)\underset{p\rightarrow+\infty}{=}\frac{\ln p+\ln2}{4p^2}+o\left(\frac{\ln p}{p^2}\right)\\
+ &\underset{p\rightarrow+\infty}{\sim}\frac{\ln p}{4p^2}.
+\end{align*}   
+
+et donc $R_{2k-1}\underset{k\rightarrow+\infty}{\sim}\frac{1}{4}\sum_{p=k}^{+\infty}\frac{\ln p}{p^2}$.
+
+Cherchons maintenant un équivalent simple de $\frac{\ln p}{p^2}$  de la forme $v_p - v_{p+1}$. 
+
+Soit $v_p=\frac{\ln p}{p}-\frac{\ln(p+1)}{p+1}$ (suggéré par $\left(\frac{\ln x}{x}\right)'=\frac{1-\ln x}{x^2}\underset{x\rightarrow+\infty}{\sim}-\frac{\ln x}{x^2}$). Alors 
+
+\begin{align*}\ensuremath
+v_p- v_{p+1}&=\frac{\ln p}{p}-\frac{1}{p}\left(\ln p+\ln\left(1+\frac{1}{p}\right)\right)\left(1+\frac{1}{p}\right)^{-1}\underset{p\rightarrow+\infty}{=}\frac{\ln p}{p}-\frac{1}{p}\left(\ln p+\frac{1}{p}+o\left(\frac{1}{p}\right)\right)\left(1-\frac{1}{p}+o\left(\frac{1}{p}\right)\right)\\
+ &\underset{p\rightarrow+\infty}{\sim}\frac{\ln p}{p^2}.
+\end{align*}
+
+D'après la règle de l'équivalence des restes de séries à termes positifs convergentes, $R_{2k-1}\underset{k\rightarrow+\infty}{\sim}\frac{1}{4}\sum_{p=k}^{+\infty}\left(\frac{\ln p}{p}-\frac{\ln(p+1)}{p+1}\right)=\frac{\ln k}{4k}$ (série télescopique). 
+
+Puis, $R_{2k}=R_{2k-1}-\frac{\ln(2k)}{2k}\underset{k\rightarrow+\infty}{\sim}\frac{\ln k}{4k}-\frac{\ln(2k)}{2k}+o\left(\frac{\ln k}{k}\right)\underset{k\rightarrow+\infty}{\sim}\frac{\ln k}{4k}-\frac{\ln k}{2k}+o\left(\frac{\ln k}{k}\right)\underset{k\rightarrow+\infty}{\sim}-\frac{\ln k}{4k}+o\left(\frac{\ln k}{k}\right)$.
+
+En résumé, $R_{2k-1}\underset{k\rightarrow+\infty}{\sim}\frac{\ln k}{4k}$ et $R_{2k}\underset{k\rightarrow+\infty}{\sim}-\frac{\ln k}{4k}$.
+
+On peut unifier : $R_{2k-1}\underset{k\rightarrow+\infty}{\sim}\frac{\ln k}{4k}\underset{k\rightarrow+\infty}{\sim}\frac{\ln(2k-1)}{2(2k-1)}$   et $R_{2k}\underset{k\rightarrow+\infty}{\sim}-\frac{\ln k}{4k}\underset{k\rightarrow+\infty}{\sim}-\frac{\ln(2k)}{2(2k)}$. Finalement,
+
+\begin{center}
+\shadowbox{
+$\sum_{p=n+1}^{+\infty}(-1)^p\frac{\ln p}{p}\underset{n\rightarrow+\infty}{\sim}(-1)^{n-1}\frac{\ln n}{2n}$.
+}
+\end{center}
+
+\item  $\sum_{}^{}n^n$ est une série à termes positifs grossièrement divergente.
+
+\textbf{1 ère solution.}
+
+$0< n^n\underset{n\rightarrow+\infty}{\sim} n^n - (n-1)^{n-1}$ car $\frac{n^n - (n-1)^{n-1}}{n^n}=  1-\frac{1}{n-1}\left(1-\frac{1}{n}\right)^{n}\underset{n\rightarrow+\infty}{=}1-\frac{1}{ne}+o\left(\frac{1}{n}\right)\underset{n\rightarrow+\infty}{\rightarrow}1$.
+
+D'après la règle de l'équivalence des sommes partielles de séries à termes positifs divergentes,
+
+\begin{center}
+$\sum_{p=1}^{n}p^p\underset{n\rightarrow+\infty}{\sim}\sum_{p=2}^{n}p^p\underset{n\rightarrow+\infty}{\sim}\sum_{p=2}^{n}(p^p-(p-1)^{p-1}) = n^n-1\underset{n\rightarrow+\infty}{\sim}n^n$.
+\end{center}
+
+(La somme est équivalente à son dermier terme.)
+
+\textbf{2 ème solution.} Pour $n\geqslant3$, $0\leqslant\frac{1}{n^n}\sum_{p=1}^{n-2}p^p\leqslant\frac{1}{n^n}\times(n-2)(n-2)^{n-2}\leqslant \frac{n^{n-1}}{n^n}=\frac{1}{n}$. Donc $\frac{1}{n^n}\sum_{p=1}^{n-2}p^p$. On en déduit que $\frac{1}{n^n}\sum_{p=1}^{n}p^p=1+\frac{(n-1)^{n-1}}{n^n}+\frac{1}{n^n}\sum_{p=1}^{n-2}p^p\underset{n\rightarrow+\infty}{=}1+o(1)+o(1)=1+o(1)$.
+
+\begin{center}
+\shadowbox{
+$\sum_{p=1}^{n}p^p\underset{n\rightarrow+\infty}{\sim}n^n$.
+}
+\end{center}
+\end{enumerate}
+\fincorrection
+\correction{005709}
+Soit $p\in\Nn^*$. Pour $n\in\Nn^*\setminus\{p\}$, $\frac{1}{n^2-p^2}=\frac{1}{2p}\left(\frac{1}{n-p}-\frac{1}{n+p}\right)$. Donc pour $N > p$,
+
+\begin{align*}
+\sum_{1\leqslant n\leqslant N,\;n\neq p}^{}\frac{1}{n^2-p^2}&=\frac{1}{2p}\sum_{1\leqslant n\leqslant N,\;n\neq p}^{}\left(\frac{1}{n-p}-\frac{1}{n+p}\right)=\frac{1}{2p}\left(\sum_{1-p\leqslant k\leqslant N-p,\;k\neq 0}^{}\frac{1}{k}-\sum_{p+1\leqslant k\leqslant N+p,\;k\neq 2p}^{}\frac{1}{k}\right)\\
+ &=\frac{1}{2p}\left(-\sum_{k=1}^{p-1}\frac{1}{k}+\sum_{k=1}^{N-p}\frac{1}{k}-\sum_{k=1}^{N+p}\frac{1}{k}+\frac{1}{2p}+\sum_{k=1}^{p}\frac{1}{k}\right)=\frac{1}{2p}\left(\frac{3}{2p}-\sum_{k=N-p+1}^{N+p}\frac{1}{k}\right)
+\end{align*}
+
+Maintenant,  $\sum_{k=N-p+1}^{N+p}\frac{1}{k}=\frac{1}{N-p+1}+\ldots+\frac{1}{N+p}$ est une somme de $2p-1$ termes tendant vers $0$ quand $N$ tend vers $+\infty$. Puisque $2p-1$ est constant quand $N$ varie, $\lim_{N \rightarrow +\infty}\sum_{k=N-p+1}^{N+p}\frac{1}{k}=0$ et donc
+
+\begin{center}
+$\sum_{n\in\Nn^*,\;n\neq p}^{}\frac{1}{n^2-p^2}=\frac{1}{2p}\times\frac{3}{2p}=\frac{3}{4p^2}$ puis $\sum_{p\in\Nn^*}^{}\left(\sum_{n\in\Nn^*,\;n\neq p}^{}\frac{1}{n^2-p^2}\right)=\sum_{p=1}^{+\infty}\frac{3}{4p^2}=\frac{\pi^2}{8}$.
+\end{center}
+
+Pour $n\in\Nn^*$ donné, on a aussi $\sum_{p\in\Nn^*,\;p\neq n}^{}\frac{1}{n^2-p^2}=-\sum_{p\in\Nn^*,\;p\neq n}^{}\frac{1}{p^2-n^2}=-\frac{3}{4n^2}$ et donc
+
+\begin{center}
+$\sum_{n\in\Nn^*}^{}\left(\sum_{p\in\Nn^*,\;p\neq n}^{}\frac{1}{n^2-p^2}\right)=-\frac{\pi^2}{8}$.
+\end{center}
+
+On en déduit que la suite double $\left(\frac{1}{n^2-p^2}\right)_{(n,p)\in(\Nn^*)^2,\;n\neq p}$ n'est pas sommable.
+\fincorrection
+\correction{005710}
+La suite $\left((-1)^n\frac{1}{3n+1}\right)_{n\in\Nn}$ est alternée en signe et sa valeur absolue tend vers $0$ en décroissant. Donc la série de terme général $(-1)^n\frac{1}{3n+1}$, $n\geqslant 1$, converge en vertu du critère spécial aux séries alternées.
+
+Soit $n\in\Nn$.
+
+\begin{center}
+$\sum_{k=0}^{n}\frac{(-1)^k}{3k+1}=\sum_{k=0}^{n}(-1)^k\int_{0}^{1}t^{3k}\;dt=\int_{0}^{1}\frac{1-(-t^3)^{n+1}}{1-(-t^3)}\;dt=\int_{0}^{1}\frac{1}{1+t^3}\;dt+(-1)^n\int_{0}^{1}\frac{t^{3n+3}}{1+t^3}\;dt$.
+\end{center}
+
+Mais $\left|(-1)^n\int_{0}^{1}\frac{t^{3n+3}}{1+t^3}\;dt\right|=\int_{0}^{1}\frac{t^{3n+3}}{1+t^3}\;dt\leqslant\int_{0}^{1}t^{3n+3}\;dt=\frac{1}{3n+4}$. On en déduit que $(-1)^n\int_{0}^{1}\frac{t^{3n+3}}{1+t^3}\;dt$ tend vers $0$ quand $n$ tend vers $+\infty$ et donc que
+
+\begin{center}
+$\sum_{n=0}^{+\infty}\frac{(-1)^n}{3n+1}=\int_{0}^{1}\frac{1}{1+t^3}\;dt$.
+\end{center}
+
+Calculons cette dernière intégrale.
+
+\begin{align*}\ensuremath
+\frac{1}{X^3+1}&=\frac{1}{(X+1)(X+j)(X+j^2)}=\frac{1}{3}\left(\frac{1}{X+1}+\frac{j}{X+j}+\frac{j^2}{X+j^2}\right)=\frac{1}{3}\left(\frac{1}{X+1}+\frac{-X+2}{X^2-X+1}\right)\\
+ &\frac{1}{3}\left(\frac{1}{X+1}-\frac{1}{2}\frac{2X-1}{X^2-X+1}+
+ \frac{3}{2}\frac{1}{\left(X-\frac{1}{2}\right)^2+\left(\frac{\sqrt{3}}{2}\right)^2}
+ \right).
+\end{align*}
+
+ 
+Donc, 
+
+\begin{center}
+$\sum_{n=0}^{+\infty}\frac{(-1)^n}{3n+1}=\frac{1}{3}\left[\ln(t+1)-\frac{1}{2}\ln(t^2-t+1)+\sqrt{3}\Arctan\left(\frac{2t-1}{\sqrt{3}}\right)\right]_0^1=\frac{1}{3}\left(\ln2+\sqrt{3}\left(\frac{\pi}{6}-\left(-\frac{\pi}{6}\right)\right)\right)=\frac{3\ln2+\pi\sqrt{3}}{9}$.
+\end{center}
+
+\begin{center}
+\shadowbox{
+$\sum_{n=0}^{+\infty}\frac{(-1)^n}{3n+1}=\frac{3\ln2+\pi\sqrt{3}}{9}$.
+}
+\end{center}
+\fincorrection
+\correction{005711}
+Pour tout entier $n\geqslant 2$, on a $nv_n-(n-1)v_{n-1}=u_n$ ce qui reste vrai pour $n = 1$ si on pose de plus $v_0 = 0$. Par suite, pour $n\in\Nn^*$
+
+\begin{align*}\ensuremath
+v_n^2 -2u_nv_n&=v_n^2 - 2(nv_n - (n-1)v_{n-1})v_n = -(2n-1) v_n^2 + 2(n-1)v_{n-1}v_n\\
+ &\leqslant -(2n-1) v_n^2 +(n-1)(v_{n-1}2+v_n^2) =(n-1)v_{n-1}^2 - n v_n^2.
+\end{align*}
+	
+        
+Mais alors, pour $N\in\Nn^*$,
+
+\begin{center}
+$\sum_{n=1}^{N}(v_n^2 - 2u_nv_n)\leqslant\sum_{n=1}^{N}((n-1)v_{n-1}^2 - n v_n^2)= - nv_n^2\leqslant0$.
+\end{center}
+
+Par suite, 
+
+\begin{center}
+$\sum_{n=1}^{N}v_n^2\leqslant\sum_{n=1}^{N}2u_nv_n\leqslant2\left(\sum_{n=1}^{N}u_n^2\right)^{1/2}\left(\sum_{n=1}^{N}v_n^2\right)^{1/2}\;$ (inégalité de \textsc{Cauchy}-\textsc{Schwarz}).
+\end{center}
+
+Si $\left(\sum_{n=1}^{N}v_n^2\right)^{1/2}>0$, on obtient après simplification par $\left(\sum_{n=1}^{N}v_n^2\right)^{1/2}$ puis élévation au carré
+
+\begin{center}
+$\sum_{n=1}^{N}v_n^2\leqslant4\sum_{n=1}^{N}u_n^2$,
+\end{center}
+
+cette inégalité restant claire si $\left(\sum_{n=1}^{N}v_n^2\right)^{1/2}=0$. Finalement,
+
+\begin{center}
+$\sum_{n=1}^{N}v_n^2\leqslant4\sum_{n=1}^{N}u_n^2\leqslant4\sum_{n=1}^{+\infty}u_n^2$.
+\end{center}
+
+La suite des sommes partielles de la série de terme général $v_n^2(\geqslant0)$ est majorée. Donc la série de terme général $v_n^2$ converge et de plus, quand $N$ tend vers l'infini, on obtient
+
+\begin{center}
+$\sum_{n=1}^{+\infty}v_n^2\leqslant 4\sum_{n=1}^{+\infty}u_n^2$.
+\end{center} 
+\fincorrection
+\correction{005712}
+Soit $n\in\Nn$.
+
+\begin{align*}\ensuremath
+u_n&=\frac{\pi}{4}-\sum_{k=0}^{n}\frac{(-1)^k}{2k+1}=\int_{0}^{1}\frac{1}{1+t^2}\;dt-\sum_{k=0}^{n}(-1)^k\int_{0}^{1}t^{2k}\;dt=\int_{0}^{1}\frac{1}{1+t^2}\;dt-\int_{0}^{1}\frac{1-(-t^2)^{n+1}}{1+t^2}\;dt\\
+ &= (-1)^{n+1}\int_{0}^{1}\frac{t^{2n+2}}{1+t^2}\;dt.
+\end{align*}
+
+Par suite, pour $N\in\Nn$,
+
+\begin{align*}\ensuremath
+\sum_{n=0}^{N}u_n=\int_{0}^{1}\sum_{n=0}^{N}\frac{(-t^2)^{n+1}}{1+t^2}\;dt  =\int_{0}^{1}(-t^2)\frac{1-(-t^2)^{N+1}}{(1+t^2)^2}\;dt=-\int_{0}^{1}\frac{t^2}{(1+t^2)^2}\;dt+(-1)^{N+1}\int_{0}^{1}\frac{t^{2N+2}}{(1+t^2)^2}\;dt.
+\end{align*}
+
+Or $\left|(-1)^{N+1}\int_{0}^{1}\frac{t^{2N+2}}{(1+t^2)^2}\;dt\right|=\int_{0}^{1}\frac{t^{2N+2}}{(1+t^2)^2}\;dt\leqslant\int_{0}^{1}t^{2N+2}\;dt=\frac{1}{2N+3}$. Comme $\frac{1}{2N+3}$ tend vers $0$ quand $N$ tend vers $+\infty$, il en est de même de $(-1)^{N+1}\int_{0}^{1}\frac{t^{2N+2}}{(1+t^2)^2}\;dt$. On en déduit que la série de terme général $u_n$, $n\in\Nn$, converge et de plus
+
+\begin{align*}\ensuremath
+\sum_{n=0}^{+\infty}u_n&=-\int_{0}^{1}\frac{t^2}{(1+t^2)^2}\;dt=\int_{0}^{1}\frac{t}{2}\times\frac{-2t}{(1+t^2)^2}\;dt\\
+ &=\left[\frac{t}{2}\times\frac{1}{1+t^2}\right]_0^1-\int_{0}^{1}\frac{1}{2}\times\frac{1}{1+t^2}\;dt=\frac{1}{4}-\frac{\pi}{8}.
+\end{align*}
+
+\begin{center}
+\shadowbox{
+$\sum_{n=0}^{+\infty}\left(\frac{\pi}{4}-\sum_{k=0}^{n}\frac{(-1)^k}{2k+1}\right)=\frac{1}{4}-\frac{\pi}{8}$.
+}
+\end{center}
+\fincorrection
+
+
+\end{document}
+

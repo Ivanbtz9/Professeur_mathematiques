@@ -1,0 +1,254 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor,multicol}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage/2}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	
+	
+	\begin{center}
+		\Large \sc colle 8 =   fonctions dérivables et polynômes
+	\end{center}
+	
+\section *{Questions de cours:}
+
+\begin{enumerate} 
+
+\item Soient $k\in\N^*$ et $f,g\in\mathbb{C}^k\left(I,\R\right)$, exprimer $(fg)^{(k)}$. \\En déduire les dérivées successives de la fonction $x\mapsto x^3e^x$
+
+\item Démontrer la propriété suivante:
+\begin{pro}\hfil\\
+Soient $I\subset\R$, $f:I\rightarrow\C$ une fonction dérivable sur $I$ et $a\in I$. \\Si $f(a)$ est un extremum local de $f$ alors $f'(a)=0$. 
+\end{pro}
+\item Rappeler le théorème de Rolle et donner sa démonstration.
+\item Rappeler le théorème des acroissements finis et démontrer la propriété suivante:
+\begin{pro}\hfil\\
+Soient $I\subset\R$ et $f:I\rightarrow\C$ une fonction dérivable sur $I$. \\
+$f$ est constante sur $I$ si et seulement si $f'$ est nulle sur $I$.
+\end{pro}
+\item Soit $P$ un polynôme différent de $X$. Montrer que $P(X)-X$ divise $P(P(X))-X$.
+\item Démontrer la propriété suivante:
+\begin{pro}\hfil\\
+Soient $P\in K[X]$ et $a\in K$.\\
+$a$ est racine de $P$ si et seulement si $(X-a)$ divise $P$
+\end{pro}
+\item Soient $x_1,x_2,...,x_n\in K$ distincts et $y_1,y_2,...,y_n\in K$ quelconques. Donner l'espression du seul et unique polynôme $P$ de degré $n-1$ pour lequel $P(x_i)=y_i$ pour tout $i\in [\![1;n]\!] $ 
+\end{enumerate}
+
+
+\section*{Fonctions dérivables:}
+\begin{minipage}{1\linewidth}
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+
+
+\begin{exo}\quad\\
+\noindent Soit $f\in\mathcal{C}^1\left(\R,\R\right)$. On fait l'hypothèse que:
+ $$\forall x\in\R : f\circ f\left(x\right) = \dfrac{x}{4} +1$$
+ \begin{enumerate}
+\item Montrer que : $f'(x) = f'\left( \dfrac{x}{4} +1\right)  $ pour tout $x\in\R$.
+\item En déduire de $f'$ est une fonction constante sur $\R$
+\item Déterminer les fonctions $f\in\mathcal{C}^1\left(\R,\R\right)$ telles que $f\circ f\left(x\right) = \dfrac{x}{4} +1$ pour tout $x\in\R$.
+ \end{enumerate}
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}
+Soient $x$ et $y$ r\'eels avec $0<x<y$.
+\begin{enumerate}
+    \item Montrer que
+$$ x < \frac{y-x}{\ln y - \ln x} < y.$$
+    \item On consid\`ere la fonction $f$ d\'efinie sur
+$[0,1]$ par
+$$\alpha \mapsto f(\alpha) = \ln (\alpha x +(1-\alpha)y)-\alpha
+\ln x -(1-\alpha)\ln y.$$
+De l'\'etude de $f$ d\'eduire que pour tout $\alpha$ de $]0,1[$
+$$ \alpha
+\ln x +(1-\alpha)\ln y < \ln (\alpha x +(1-\alpha)y) .$$
+Interpr\'etation g\'eom\'etrique ?
+\end{enumerate}
+
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+
+
+
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+\begin{exo}\quad\\
+\'Etudier  la d\'erivabilit\'e des fonctions suivantes :
+$$f_1(x)=x^2\cos \frac{1}{x}, \text{\ \  si }x\not=0 \qquad ; \qquad f_1(0)=0 ;$$
+
+$$f_2(x)= \sin x \cdot \sin \frac{1}{x}, \text{\ \  si }x\not=0 \qquad ; \qquad f_2(0)=0 ;$$
+
+$$f_3(x) = \frac{|x|\sqrt{x^2-2x+1}}{x-1}, \text{\ \  si } x\not= 1 \qquad ; \qquad f_3(1)=1.$$
+\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+Montrer que le polyn\^ome $  X^n+aX+b  $,  ($  a  $ et $  b  $ r\' eels) admet au plus trois racines r\' eelles.
+
+\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+Pour tous $n\in\N^*$, calculer la dérivée $n^{\text{ème}}$ \\de $x \mapsto  x^{n-1}\ln(1+x)$ sur $]-1,+\infty[$.
+
+\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+Montrer que pour tous $n\in\N*$ et $x\in\R*$:
+$$\dfrac{d^n}{dx^n}\left(x^{n-1} \exp\left(\tiny\dfrac{1}{x}\right)\right) = \dfrac{(-1)^n}{x^{n+1}} \exp\left(\tiny\dfrac{1}{x}\right)$$
+
+\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+\end{minipage}
+\end{minipage}
+
+
+\section*{Polynômes:}
+\begin{minipage}{1\linewidth}
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+
+
+\begin{exo}\quad\\
+Soit $P$ un polynôme à coefficients réels tel que $\forall x\in\R,\;P(x)\geq 0$. Montrer qu'il existe deux polynômes $R$ et $S$ à coefficients réels tels que $P=R^2+S^2$.
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\quad\\
+Montrer que pour tout $n\in\N$:
+$$\sum_{k=0}^{n}\begin{pmatrix}
+n\\k
+\end{pmatrix}^2  =  \begin{pmatrix}
+2n\\n
+\end{pmatrix}$$
+(\textit{Indication: étudier le polynôme } $(X+1)^{2n} $ )
+
+\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+Trouver les polynômes $P$ de $\R[X]$ vérifiant $P(X^2)=P(X)P(X+1)$ (penser aux racines de $P$).
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+
+
+\begin{exo}\quad\\
+Soit $P$ un polynôme à coefficients entiers relatifs de degré supérieur ou égal à $1$. Soit $n$ un entier relatif 
+et $m=P(n)$.
+\begin{enumerate}
+\item  Montrer que $\forall k\in\Z,\;P(n+km)$ est un entier divisible par $m$.
+\item  Montrer qu'il n'existe pas de polynômes non constants à coefficients entiers tels que $P(n)$ soit premier pour tout entier $n$.
+\end{enumerate}
+\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+Trouver tous les polynômes divisibles par leur dérivée.
+
+\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+
+Déterminer deux polynômes $U$ et $V$ vérifiant $UX^n+V(1-X)^m=1$ et $\mbox{deg}(U)<m$ et $\mbox{deg}(V)<n$.
+
+\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+
+
+
+\end{minipage}
+\end{minipage}
+\end{document}

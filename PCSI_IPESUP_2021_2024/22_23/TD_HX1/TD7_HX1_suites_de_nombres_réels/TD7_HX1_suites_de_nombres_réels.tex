@@ -1,0 +1,606 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M. Botcazou \& M.Dupré}\cfoot{\thepage/4}\rfoot{PCSI }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+ 	
+	
+
+\noindent\shadowbox{
+	\begin{minipage}{1\linewidth}
+		\centering
+		\huge{\textbf{ TD 7 : Suites numériques }}
+	\end{minipage}
+}
+\medskip
+%%%%%%%%%% Bibmath %%%%%%%%%%%%%%
+
+%https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/analyse/suitesseries/suitenum_rec&type=fexo
+
+%https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/analyse/suitesseries/suitenum_prat&type=fexo
+
+%https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/analyse/suitesseries/suitenum_theo&type=fexo
+
+%https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/analyse/unevariable/compafonctions&type=fexo
+
+\section*{Connaître son cours:}
+\begin{itemize}[$\bullet$]
+	\item  Montrer que toute suite convergente est born\'ee et donner un exemple d'une suite bornée non convergente.
+	\item  Montrer qu'une suite d'entiers qui converge est
+	constante \`a partir d'un certain rang.
+	\item Montrer que si $(u_{2n})_n$ et $(u_{2n+1})_n$ sont convergentes, de m\^{e}me
+	limite $\ell$, il en est de m\^{e}me de $(u_{n})_n$.
+	\item On suppose que $(u_{2n})_n$, $(u_{2n+1})_n$ et $(u_{3n})_n$ convergent. En déduire que $(u_{n})$ converge. 
+	\item Montrer que: si $u_n \sim_{+\infty} v_n$ alors $v_n \sim_{+\infty} u_n$.
+	\item Montrer que: si $u_n \sim_{+\infty} v_n$ alors à partir d'un certain rang $u_n\times v_n \geq 0$.  
+\end{itemize}
+
+
+
+\section*{Calculs explicites de suites:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+
+	
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+	
+		\subsection*{Récurrence d’ordre 1}	
+		
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Expliciter la suite $(u_n )_{n\in\N}$ définie par $u_0 = 0$ et pour tout $n\in\N$ , 
+	$u_{n+1} = 2u_n + 2^n - 1$.
+	
+\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+ 	Calculer en fonction de $n$ le terme général de la suite $\left(u_n\right)_{n\in\N}$ définie par $u_0 = 1$ et pour tout $n\in\N$, \ $u_{n+1} = 2u_n^2$
+ 		
+ 	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+
+	Soit $\left(u_n\right)_{n\in\N}$ la suite de nombres réels définie par $u_0 \in ]0,1]$ et par la relation de récurrence 
+	$$u_{n+1} = \dfrac{u_n}{2} + \dfrac{(u_n)^2}{4}$$
+	
+	\begin{enumerate}
+		\item Montrer que : $\forall n\in \N, u_n > 0$.
+		\item Montrer que : $\forall n\in \N, u_n \leq 1$.
+		\item Montrer que la suite est monotone, en déduire ensuite la limite de la suite $\left(u_n\right)_{n\in\N}$.
+	\end{enumerate}
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(****)}\quad\\[0.2cm]%exo7_92
+	On pose $u_1=1$ et pour tout $ n\in\N^*,\;u_{n+1}=1+\frac{n}{u_n}$. Montrer que $\lim\limits_{n\rightarrow +\infty}(u_n-\sqrt{n})=\frac{1}{2}$.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+	\subsection*{Récurrence d’ordre 2}
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Déterminer $u_n$ en fonction de $n$ et de ses premiers termes dans chacun des cas suivants~:
+	
+	\begin{enumerate}
+		\item  $\forall n\in\N,\;4u_{n+2}=4u_{n+1}+3u_n$.
+		\item  $\forall n\in\N,\;\frac{2}{u_{n+2}}=\frac{1}{u_{n+1}}-\frac{1}{u_n}$.
+		\item  $\forall n\geq2,\;u_n= 3u_{n-1}-2u_{n-2}+n$.
+		\item $ \forall n\in\N,\; u_{n+2}- 2 \cos(\alpha)u_{n+1}+ u_n = 0$,
+		
+		 avec $\alpha\in\R$.
+	\end{enumerate}
+
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Calculer en fonction de $n$ le terme général de la suite $\left(u_n\right)_{n\in\N}$ définie par :
+$u_0 = 1$, $u_1 = 2$ et pour tout $n\in\N$, \  $u_{n+2} = \dfrac{u_{n+1}^6}{u_{n}^5}$.
+
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\subsection*{Récurrence homographique}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Déterminer $u_n$ en fonction de $n$ quand la suite $u$ vérifie~:
+	\begin{enumerate}
+		\item $\forall n\in\N,\;u_{n+1}=\frac{u_n}{3-2u_n}$.
+		\item $\forall n\in\N,\;u_{n+1}=\frac{4(u_n-1)}{u_n}$.
+		\item $\forall n\in\N,\;u_{n+1}=\frac{u_n+8}{2u_n+1}$ et $u_0=1$. %exo 5 feuille feuille suite corrigée 
+	\end{enumerate}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+
+
+\end{minipage}
+\end{minipage}
+
+
+\section*{Suites convergentes et propriétés:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+		
+\subsection*{Définitions et premières propriétés}
+
+\begin{exo}\textbf{(*)}\quad\\[0.2cm]
+	Soient $u$ et $v$ deux suites de réels de $[0,1]$ telles que $\lim_{n\rightarrow +\infty}u_nv_n=1$. Montrer que $(u_n)$ et $(v_n)$ convergent vers $1$.
+
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Soit $f$ une application injective de $\N$ dans $\N$. Montrer que $\lim\limits_{n\rightarrow +\infty}f(n)=+\infty$.
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+\begin{enumerate}
+	\item  Soit $u$ une suite de réels strictement positifs. Montrer que si la suite $(\frac{u_{n+1}}{u_n})$ converge vers un réel $\ell$, alors $(\sqrt[n]{u_n})$ converge et a la même limite.
+	\item  Etudier la réciproque.
+	\item  Application~:~limites de 
+	\begin{enumerate}
+		\item $\sqrt[n]{C_{2n}^n}$,
+		\item $\frac{n}{\sqrt[n]{n!}}$,
+		\item $\frac{1}{n^2}\sqrt[n]{\frac{(3n)!}{n!}}$.
+	\end{enumerate}
+\end{enumerate}
+
+		
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}				
+
+
+
+
+\begin{exo}\textbf{(***)} \ \textbf{(Lemme de Fekete)}\quad\\[0.2cm]
+	Soit $u$ une suite de réels positifs telle que 
+	$$\forall n,m\in \N \ \ u_{n+m}\leq u_n +u_m$$
+	Montrer que la suite $
+	\left(\dfrac{u_n}{n}\right)_{n\geq1}$ converge vers
+	$$l = \text{inf}\left\{ \dfrac{u_n}{n} : \ n\in\N^* \right\}$$
+	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[c]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $(u_n )_n$ une suite réelle convergente de limite $l$.
+			\begin{enumerate}
+				\item Montrer que si $l\not\in \Z$, la suite $(\lfloor u_n \rfloor)_n$ converge.
+				\item Dans le cas général, est-ce que $(\lfloor u_n \rfloor)_n$ est convergente ?
+			\end{enumerate}
+			
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+			\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			\'Etudier la nature des suites suivantes, et déterminer leur limite éventuelle :
+			$$\begin{array}{lcl}
+			\displaystyle \mathbf 1.\ u_n=\frac{\ln(n!)}n&&\displaystyle\mathbf 2.\ u_n=\frac{\lfloor nx\rfloor}{n^\alpha}\textrm{ en fonction de }x,\alpha\in\mathbb R\\
+			\displaystyle \mathbf 3.\ u_n=\frac{1}{n!}\sum_{k=1}^n k!
+			\end{array}$$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}	
+	
+	
+
+		
+		\subsection*{Théorèmes de Cesàro et produit de Cauchy}
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Soit $(u_n)_{n\in\N}$ une suite réelle. Montrer que si la suite $(u_n)_{n\in\N}$ converge au sens de \textsc{Césaro} et est monotone, alors la suite $(u_n)_{n\in\N}$ converge.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			
+			Soit $z_1 ,..., z_p$ des complexes de module $1$ tels que la suite $(z_1^n +... + z _p^n )_n$ converge vers $l$ sa limite. Montrer
+			que $l\in \llbracket 0, p \rrbracket$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+	
+	\begin{exo}\textbf{(***)}\quad\\[0.2cm]%bibmath
+		Soient $(u_n)$ et $(v_n)$ deux suites réelles convergeant respectivement vers $u$ et $v$.
+		Montrer que la suite $\displaystyle w_n=\frac{u_0v_n+\dots+u_nv_0}{n+1}$ converge vers $uv$.
+
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+\section*{Relations de comparaison pour les suites:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	Montrer que 
+	$$\sum_{k=1}^n k!\sim_{+\infty} n!.$$
+		
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Trouver un équivalent le plus simple possible aux suites suivantes :
+			$$\begin{array}{lll}
+			\mathbf 1.\ u_n=\frac{1}{n-1}-\frac{1}{n+1}&\quad&\mathbf 2.\ v_n=\sqrt{n+1}-\sqrt{n-1}\\
+			\mathbf 3.\ w_n=\frac{n^3-\sqrt{1+n^2}}{\ln n-2n^2}&\quad&\mathbf 4.\ z_n=\sin\left(\frac1{\sqrt{n+1}}\right).
+			\end{array}$$
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			
+			Soit $\gamma>0$. Le but de l'exercice est de prouver que 
+			$e^{\gamma n}=o(n!).$ Pour cela, on pose, pour $n\geq 1$, 
+			
+			\centering$u_n=e^{\gamma n}$ et $v_n=n!$.
+			
+			\raggedright 
+			
+			\begin{enumerate}
+				\item Démontrer qu'il existe un entier $n_0\in\mathbb N$ tel que, pour tout $n\geq n_0$, 
+				
+				\centering$\frac{u_{n+1}}{u_n}\leq\frac 12\frac{v_{n+1}}{v_n}.$
+				
+				\raggedright
+				\item En déduire qu'il existe une constante $C>0$ telle que, pour tout $n\geq n_0$, on a
+				
+				\centering$u_n\leq C\left(\frac 12\right)^{n-n_0}v_n.$
+				
+				\raggedright
+				\item Conclure.
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+
+\section*{Suites extraites et propriétés:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+				\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+			Pour tout vecteur du plan fixé $\left(\begin{array}{c}
+			x_0\\
+			y_0
+			\end{array}\right) \ \in\R^2$, on considère la suite définie par récurrence :
+			$$\left(\begin{array}{c}
+			x_{n+1}\\
+			y_{n+1}
+			\end{array}\right) \ = \ \left(\begin{array}{cc}
+			0 & -1\\
+			1 & 0
+			\end{array}\right) \left(\begin{array}{c}
+			x_n\\
+			y_n
+			\end{array}\right)$$
+			\begin{enumerate}
+				\item En partant de $\left(\begin{array}{c}
+				x_0\\
+				y_0
+				\end{array}\right)  =  \left(\begin{array}{c}
+				1\\
+				0
+				\end{array}\right) $,
+				
+				représenter les $8$ premiers termes de la suite.
+				\item Cette suite est elle convergente ? 
+			\end{enumerate}
+			
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+			Soit $(u_n)_n$ une suite bornée telle que $u_n + \dfrac{1}{2} u_{2n} \longrightarrow 1$. Montrer que $(u_n )_n$ converge vers une limite que l’on
+			précisera.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+
+	
+		
+	
+\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+	Soit $(u_n)=\left(\frac{p_n}{q_n}\right)$ avec $p_n\in\Z$ et $q_n\in\N^*$, une suite de rationnels convergeant vers un irrationnel $x$. Montrer que les suites $(|p_n|)$ et $(q_n)$ tendent vers $+\infty$ quand $n$ tend vers $+\infty$.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+
+		
+		
+		\begin{exo}\textbf{(***)}\quad\\[0.2cm]
+		
+			\begin{enumerate}
+				\item Donner une suite réelle qui admet (au moins) une suite extraite croissante et (au moins) une suite extraite décroissante et qui ne converge pas.
+			\begin{prop}\textbf{(Lemme des pics)}
+					
+					Soit $(u_n)_n$ une suite numérique, bornée.
+					Alors $(u_n)_n$ admet une suite extraite croissante ou une suite extraite décroissante.
+				\end{prop}
+				
+				
+				\item Soit $(u_n)_n$ une suite réelle.
+				
+				On note $P = \{n \in \N \ | \ \forall m \geq n,\ u_n \leq u_m \}$
+				\begin{enumerate}
+					\item On suppose que $P$ est infini. Montrer qu'on peut extraire de $(u_n)_n$ une suite croissante.
+					\item On suppose que $P$ est fini. Montrer qu'on peut extraire de $(u_n)_n$ une suite décroissante.
+				\end{enumerate}
+				\item Si $(u_n)_n$ est bornée, montrer qu'elle admet une suite extraite croissante bornée ou une suite extraite décroissante bornée. 
+				\item Application. Donner une nouvelle démonstration du théorème de Bolzano-Weierstrass.
+			\end{enumerate}
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+	
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+\newpage
+\section*{Exercices complémentaires:}\hfill\\%[-0.25cm]
+
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+\begin{exo}\textbf{(**)}\quad\\[0.2cm]
+	
+	Soit $a>0$. On d\'efinit la suite $(u_n)_{n\geq 0}$ par
+	$u_0$ un r\'eel v\'erifiant $u_0>0$ et par la relation
+	$$u_{n+1}= \frac12 \left( u_n+\frac{a}{u_n}\right).$$
+	On se propose de montrer que $(u_n)$ tend vers $\sqrt a$.
+	\begin{enumerate}
+		\item Montrer que
+		$${u_{n+1}}^2-a= \frac{({u_n}^2-a)^2}{4{u_n}^2}.$$
+		\item Montrer que si $n\geq 1$ alors $u_n \geq \sqrt a$ puis que
+		la suite $(u_n)_{n\geq 1}$ est d\'ecroissante.
+		\item En d\'eduire que la suite $(u_n)$ converge vers $\sqrt a$.
+		\item En utilisant la relation
+		${u_{n+1}}^2-a= ({u_{n+1}}-\sqrt{a})({u_{n+1}}+\sqrt{a})$ donner
+		une majoration de ${u_{n+1}}-\sqrt{a}$ en fonction de
+		${u_{n}}-\sqrt{a}$.
+		\item Si $u_1-\sqrt a \leq k$ et pour $n\geq 1$ montrer que
+		$$u_n - \sqrt a \leq 2\sqrt a \left( \frac k {2\sqrt a}\right)^{2^{n-1}}.$$
+		\item Application : Calculer $\sqrt{10}$ avec une pr\'ecision de 8 chiffres apr\`es la virgule,
+		en prenant $u_0 = 3$.
+	\end{enumerate}	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+\begin{exo}\textbf{(****)}\quad\\[0.2cm]
+	L'objectif est de montrer qu’il existe une fonction $f : \R \longrightarrow \R $ telle que la restriction de $f$ à tout intervalle non trivial soit surjective.
+	
+	Posons, pour tout $x \in \R$, $f (x )$ la limite finie de la suite $(\tan(n!\pi x ))_n$ si celle-ci existe, $0$ sinon.
+	\begin{enumerate}
+		\item \begin{enumerate}
+			\item Montrer que, pour tout $r \in \Q$, la fonction $f$ est $r-$périodique.
+			\item En déduire la restriction de $f$ à $\Q$.
+		\end{enumerate}
+		\item Le but de cette question est de montrer que $f$ est périodique. Soit $y \in \R$.
+		\begin{enumerate}
+			\item Montrer qu’il existe $x \in [0, 1[$ tel que $y = \tan(\pi x )$.
+			
+			Notons, pour tout $n$,
+			$$u_n = \sum^{n}_{k=0}\dfrac{\lfloor kx \rfloor}{k!}$$
+			\item Justifier que la suite $(u_n)$ converge. 
+			
+			Soit $l$ la limite de cette suite.
+			\item Établir que $n!(l - u_n ) \longrightarrow x $.
+		\end{enumerate}
+		\item En déduire que $f (l) = y $.
+		\item Montrer le résultat annoncé.
+		
+	\end{enumerate}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+		
+		
+		
+	\end{minipage}
+\end{minipage}
+
+		
+
+
+
+
+
+
+\end{document}

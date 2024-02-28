@@ -1,0 +1,192 @@
+\documentclass[a4paper,11pt]{article}
+
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{tgbonum}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{paralist}
+\usepackage{xspace,multicol}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{lipsum}
+
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exer}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+\setlist[enumerate]{itemsep=1mm}
+
+\pagestyle{fancy}
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M.Botcazou}\cfoot{\thepage/2}\rfoot{\textbf{MP2I}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+
+\begin{document}
+
+	\noindent\shadowbox{
+		\begin{minipage}{1\linewidth}
+		$$\huge{\textbf{ DEVOIR MAISON N°1 }}$$
+		$$\left(\text{Temps : }4\text{ heures}\right) $$
+	
+		\end{minipage}
+	}
+\medskip
+\begin{exer}\textit{(Temps : 1 heure et 30 minutes)}\\
+	
+	
+	\begin{enumerate}
+		\item Étudier le sens de variation de la fonction $g$ définie pour tout $t$ de $\R$ par : $ g(t) = e^t - t - 1$.
+		\item Quel est le minimum de la fonction $g$ sur $\R$ ?
+		\item En déduire les inégalités suivantes :
+		\begin{enumerate}
+			\item pour tout réel $t$ :
+			\begin{multicols}{3}
+			\begin{itemize}
+				\item[$\quad$] $ e^t \geq 1+t$ \item[$\quad$] $ e^t > t$ \item[$\quad$] $-te^{-t}>-1$
+			\end{itemize}
+			\end{multicols}
+			\item pour tout réel $t$ tel que $t > -1$ :
+			$$\ln(1 + t ) \leq t$$
+			\item pour tout réel $x$ :
+			$$\ln(1 - xe^{-x}) \leq -xe^{-x}$$
+		\end{enumerate}
+		\item On considère la fonction $f$ définie par la relation: 
+		$$f(x)= x^2- 2\ln(e^x -x)$$
+		\begin{enumerate}
+			\item Montrer que $f$ est définie sur $\R$ et que pour tout $x \in \R$ , $f(x) = x^2 - 2x - 2\ln(1 - xe^{-x})$.
+			\item En déduire la limite de $f$ en $+\infty$.
+			\item Montrer que pour tout $x<0$: $f(x) = x^2\left(1-2\dfrac{\ln(-x)}{(-x)^2}\right) - 2 \ln\left(1-\dfrac{e^x}{x}\right) $
+			\item En déduire la limite de $f$ en $-\infty$.
+			\item Justifier que $f$ est dérivable sur $\R$ et calculer $f'$. Montrer que pour tout réel $x$ : $$f'(x) = \dfrac{2(x-1)(e^x-x-1)}{e^x-x}$$
+			Dresser le tableau de variation de la fonction $f$.
+			\item On considère la parabole $(\mathscr{P})$ d'équation $y = x^2 - 2x$ et $(\mathscr{C})$ la courbe représentative de $f$. Tracer dans un même repère orthonormal (unité : 3cm) l'allure des courbes $(\Ps)$ et $(\Cs)$ et les tangentes horizontales $(\Ds)$ et $(\Ds')$ à $(\Cs)$.
+			\item Montrer que $(\Ps)$ et $(\Cs)$ sont asymptotes en $+\infty$, c'est-à-dire que la limite en $+\infty$ de $f(x) - x^2 -2x$ est nulle.
+			Étudier les positions relatives des courbes $(\Ps)$ et $(\Cs)$.
+		\end{enumerate}
+		\item Soit $n$ un entier naturel, on pose :
+		$$u_n = \int_{0}^{n}xe^{-x}dx $$
+		\begin{enumerate}
+			\item Démontrer que la suite $(u_n)_{n\geq0}$ est croissante.
+			\item Calculer $u_n$ pour tout $n\in\N$.\\
+			 On pourra d'abord calculer la dérivée de $h : x \longmapsto -(x + 1)e^{-x}$.
+			\item Déterminer la limite de la suite $u$.
+		\end{enumerate}
+	\item L'aire du domaine (en unités d'aire) limité par les droites d'équation $x = 0$, $x = n$, entre la parabole $(\Ps)$ et la courbe $(\Cs)$ est définie par:
+	$$I_n = -2\int_{0}^{n}\ln(1-xe^{-x})dx $$\newpage
+	\begin{enumerate}
+		\item Montrer en utilisant certaines des questions précédentes que $I_n \geq 2u_n$ .
+		\item On admet que la suite $(I_n)$ converge vers une limite $l$. Montrer que : $l\geq2$.
+	\end{enumerate}
+	 
+	\end{enumerate}
+\end{exer}
+
+\begin{exer}\textit{(Temps : 1 heure et 20 minutes)}\\
+	On définit la suite de Fibonacci $(F_n )_{n\in\N}$ par $F_0 = 0$, $F_1 = 1$ et la relation de récurrence : $$\forall n\in\N , \  F_{n+2} = F_{n+1} + F_n$$
+	\begin{enumerate}
+		\item Déterminer la liste des $10$ premiers nombres de Fibonacci (de $F_1$ à $F_{10}$ ).
+		\item Montrer que : $\forall n\in \N , n\geq 6 \alors  F_n > n$.\\
+		Que peut-on en déduire pour la suite $(F_n )_{n\in\N}$?
+		\item Montrer que : $\forall n\in \N, \ n\geq 2 \alors F_n < F_{n+1} \leq 2F_n$. 
+		\item Montrer que : $\forall n\in \N^*,\sum\limits_{k=1}^{n}F_k = F_{n+2}-1$
+		\item Montrer que : $\forall n\in \N^*,\sum\limits_{k=1}^{n}F_k^2 = F_nF_{n+1}$
+		\item Montrer que : $\forall n\in \N^*,\sum\limits_{k=1}^{2n-1}F_kF_{k+1} =F_{2n}^2$
+		\item Montrer que : $\forall n\in \N^*,F_{2n} = F_{n+1}^2-F_{n-1}^2$ et $F_{2n+1}= F_{n+1}^2+ F_n^2$.
+		\item Montrer que : $\forall n\in \N^*,\sum\limits_{k=0}^{n} \begin{pmatrix} 2n-k\\k\end{pmatrix} = F_{2n+1}$ et $\sum\limits_{k=0}^{n} \begin{pmatrix} 2n+1-k\\k\end{pmatrix} = F_{2n+2}$
+		\item Montrer que si l'on pose: $\varphi = \dfrac{1+\sqrt{5}}{2}$ : $\forall n\in \N^*, F_{n-1}+ \varphi F_n = \varphi^n.$
+		\item  Montrer que si l'on pose: $\overline{\varphi} = \dfrac{1-\sqrt{5}}{2}$ : $\forall n\in \N, F_n = \dfrac{\varphi^n - \overline{\varphi}^n}{\varphi- \overline{\varphi}}.$
+	\end{enumerate}
+\end{exer}
+
+\begin{exer}\textit{(Temps : 1 heure et 10 minutes)}\\
+	
+	\begin{enumerate}
+		\item Résoudre dans $\R$ :
+		\begin{enumerate}
+			\item $\sqrt{x-9} +\sqrt{x-24} = x$
+			\item $x-1 < \sqrt{x^2-2}$
+			\item  $ |(x - 3)(x - 5)|  > x - 3$
+			\item  $ |x| + |x-1| +  |x-2| \leq 6$
+		\end{enumerate}
+		\item En raisonnant par \textbf{équivalences}, résoudre les inéquations :
+		\begin{enumerate}
+			\item $|1-x| \leq \dfrac{x}{2-x} $
+			\item $x+1 \leq \sqrt{x+2}$
+		\end{enumerate}
+	\item \begin{enumerate}
+		\item Montrer que toute fonction $f : \R \longrightarrow \R$ peut s'écrire comme la somme d'une fonction polynomiale de degré	au plus $2$ et d'une fonction s'annulant en $-1$, $0$ et $1$. Y a-t-il unicité ?
+		\item Montrer que toute fonction continue $f : [0,1] \longrightarrow \R$ est la somme d?une fonction linéaire $(x \longmapsto ax)$ et d'une fonction d'intégrale nulle sur $[0,1]$ . Y a-t-il unicité ?
+	\end{enumerate}
+		 
+	\end{enumerate}
+\end{exer}
+
+
+\end{document}

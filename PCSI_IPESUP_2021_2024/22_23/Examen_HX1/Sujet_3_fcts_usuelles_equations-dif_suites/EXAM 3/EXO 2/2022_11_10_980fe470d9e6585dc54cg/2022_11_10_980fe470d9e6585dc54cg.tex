@@ -1,0 +1,112 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+
+\title{EXERCICE 2. }
+
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+\section{Partie I}
+\begin{enumerate}
+  \item Soit $h$ la fonction qui, à tout réel strictement positif $x$, associe : $\operatorname{Arctan}(x)+\operatorname{Arctan}\left(\frac{1}{x}\right)$.
+\end{enumerate}
+
+Montrer que la fonction $h$ est constante sur $] 0,+\infty$ [ (on précisera la valeur prise par $h$ sur $] 0,+\infty[$ ).
+
+\begin{enumerate}
+  \setcounter{enumi}{1}
+  \item (a) Pour tout réel $t$ de $\left[0, \frac{\pi}{2}\right]$, exprimer $\cos (t)$ en fonction de $\cos \left(\frac{t}{2}\right)$.
+\end{enumerate}
+
+(b) Pour tout réel $t$ de $\left[0, \frac{\pi}{2}\right]$, comparer $\frac{1}{1+\tan ^{2}\left(\frac{t}{2}\right)}$ et $\cos ^{2}\left(\frac{t}{2}\right)$.
+
+(c) Pour tout réel $t$ de $\left[0, \frac{\pi}{2}\right]$, on pose:
+
+$$
+u=\tan \left(\frac{t}{2}\right)
+$$
+
+Exprimer $\cos (t)$ en fonction de $u$.
+
+\section{Partie II}
+Pour tout réel $x$ de $]-1,1\left[\right.$, on pose $: F(x)=\int_{0}^{\frac{\pi}{2}} \frac{d t}{1-x \cos (t)}$.
+
+\begin{enumerate}
+  \setcounter{enumi}{2}
+  \item Que vaut $F(0)$ ?
+
+  \item A l'aide du changement de variable $u=\tan \left(\frac{t}{2}\right)$, montrer que, pour tout réel $x$ de $]-1,1[:$
+
+\end{enumerate}
+
+$$
+F(x)=\frac{2}{\sqrt{1-x^{2}}} \operatorname{Arctan} \sqrt{\frac{1+x}{1-x}}
+$$
+
+Indication: on pensera à utiliser la première partie.
+
+\begin{enumerate}
+  \setcounter{enumi}{4}
+  \item En déduire, pour tout réel $x$ de $]-1,1[$, une relation entre $F(x)$ et $F(-x)$.
+
+  \item En déduire que $F$ est dérivable sur] - 1,1 [ et démontrer que pour tout réel $x$ de] $-1,1[:$
+
+\end{enumerate}
+
+$$
+\left(1-x^{2}\right) F^{\prime}(x)=x F(x)+1
+$$
+
+\begin{enumerate}
+  \setcounter{enumi}{6}
+  \item (a) Donner la solution générale sur ] - 1,1[ de l'équation différentielle homogène :
+\end{enumerate}
+
+$$
+\left(E_{0}\right) \quad\left(1-x^{2}\right) y^{\prime}-x y=0
+$$
+
+(b) A l'aide de la méthode de variation de la constante, donner la solution générale sur $]-1,1[$ de l'équation différentielle :
+
+$$
+\text { (E) } \quad\left(1-x^{2}\right) y^{\prime}-x y=1
+$$
+
+(c) Donner les solutions respectives des problèmes de Cauchy :
+
+$$
+\left(P_{0}\right) \quad\left\{\begin{array}{l}
+\left(1-x^{2}\right) y^{\prime}-x y=1 \\
+y(0)=0
+\end{array}\right.
+$$
+
+et
+
+$$
+\left(P_{1}\right) \quad\left\{\begin{array}{l}
+\left(1-x^{2}\right) y^{\prime}-x y=1 \\
+y(0)=\frac{\pi}{2}
+\end{array}\right.
+$$
+
+(d) Pour tout réel $x$ de $]-1,1\left[\right.$, déduire de la résolution de $\left(P_{1}\right)$ une expression simplifiée de $F(x)$ avec la fonction Arcsin.
+
+\begin{enumerate}
+  \setcounter{enumi}{7}
+  \item On admet que $F$ est dérivable sur $]-1,1[$ avec pour tout $x \in]-1,1\left[: F^{\prime}(x)=\int_{0}^{\frac{\pi}{2}} \frac{\cos (t)}{(1-x \cos (t))^{2}} d t\right.$.
+\end{enumerate}
+
+En déduire la valeur de $\int_{0}^{\frac{\pi}{2}} \frac{\cos (t)-x}{(1-x \cos (t))^{2}} d t$ pour tout réel $x$ de $]-1,1[$.
+
+
+\end{document}

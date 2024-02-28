@@ -1,0 +1,138 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 3151
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Une fonction lipschitzienne
+\vskip0.2cm
+\begin{enumerate}
+\item Démontrer que la fonction $\sin$ est lipschitzienne sur $\mathbb R$.
+\item Soit $f:[a,b]\to\mathbb R$ continue. Démontrer que la fonction $F:\mathbb R\to\mathbb R$ définie par 
+$$F(x)=\int_a^b f(t)\sin(xt)dt$$
+est lipschitzienne.
+\end{enumerate}
+
+
+% Exercice 3151
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Une fonction lipschitzienne
+\vskip0.2cm
+\begin{enumerate}
+\item Démontrer que la fonction $\sin$ est lipschitzienne sur $\mathbb R$.
+\item Soit $f:[a,b]\to\mathbb R$ continue. Démontrer que la fonction $F:\mathbb R\to\mathbb R$ définie par 
+$$F(x)=\int_a^b f(t)\sin(xt)dt$$
+est lipschitzienne.
+\end{enumerate}
+
+
+% Exercice 408
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Limites de suites
+\vskip0.2cm
+Calculer la limite des suites suivantes :
+\begin{enumerate}
+\item $\dis u_n=\frac 1n\left(\sin\left(\frac{\pi}{n}\right)+\sin\left(\frac{2\pi}{n}\right)+\dots+\sin\left(\frac{n\pi}{n}\right)\right).$
+\item $\dis u_n=n\left(\frac{1}{(n+1)^2}+\dots+\frac{1}{(n+n)^2}\right).$
+\item $\dis u_n=\frac{\sqrt{1}+\sqrt{2}+\dots+\sqrt{n-1}}{n\sqrt{n}}.$
+\item $\dis u_n=\sqrt[n]{\left(1+\left(\frac{1}{n}\right)^2\right)\left(1+\left(\frac{2}{n}\right)^2\right)\dots\left(1+\left(\frac{n}{n}\right)^2\right)}$.
+\end{enumerate}
+
+
+% Exercice 409
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Produit
+\vskip0.2cm
+Déterminer la limite de 
+$$v_n=\frac1n\prod_{k=1}^n (k+n)^{1/n}.$$
+
+
+% Exercice 410
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Inégalité de Jensen
+\vskip0.2cm
+Soit $f:[a,b]\to\mathbb R$ continue et $g:\mathbb R\to\mathbb R$ continue et convexe. Démontrer que 
+$$g\left(\frac{1}{b-a}\int_a^b f(t)dt \right)\leq \frac{1}{b-a}\int_a^b g(f(t))dt.$$
+
+
+% Exercice 418
+
+
+\vskip0.3cm\noindent\textsc{Exercice 6} - Cesaro pour les intégrales
+\vskip0.2cm
+Soit $f:[0,+\infty[\to\mathbb R$ une fonction continue admettant une limite finie $a$ en $+\infty$.
+Montrer que
+$$\frac 1x\int_0^x f(t)dt\to a\textrm{ quand }x\to+\infty.$$
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=27787
+\end{document}

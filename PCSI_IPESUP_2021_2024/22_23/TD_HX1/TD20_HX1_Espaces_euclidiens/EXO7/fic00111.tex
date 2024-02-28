@@ -1,0 +1,1549 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00111, rouget, 2010/07/11}
+
+\titre{Géométrie analytique (affine ou euclidienne)} 
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable\quad T~:~pour travailler et mémoriser le cours
+\end{center}
+
+
+\exercice{5501, rouget, 2010/07/10}
+\enonce{005501}{**T}
+Dans $E_3$ rapporté à un repère $(O,i,j,k)$, on donne les points $A(1,2,-1)$, $B(3,2,0)$, $C(2,1,-1)$ et $D(1,0,4)$. Déterminer l'intersection des plans $(OAB)$ et $(OCD)$.
+\finenonce{005501}
+
+
+\finexercice
+\exercice{5502, rouget, 2010/07/10}
+\enonce{005502}{**T}
+Dans $E_3$ rapporté à un repère $(O,i,j,k)$, on donne~:
+la droite $(D)$ dont un système d'équations paramétriques est $\left\{
+\begin{array}{l}
+x=2+3t\\
+y=-t\\
+z=1+t
+\end{array}
+\right.
+$,
+le plan $P$ dont un système d'équations paramétriques est $\left\{
+\begin{array}{l}
+x=1+2\lambda+\mu\\
+y=-1-3\lambda+2\mu\\
+z=1+\lambda
+\end{array}
+\right.
+$,
+le plan $P'$ dont un système d'équations paramétriques est $\left\{
+\begin{array}{l}
+x=-5-\nu\\
+y=3+\nu+3\eta\\
+z=\nu+\eta
+\end{array}
+\right.
+$,
+Etudier $D\cap P$ et $P\cap P'$
+\finenonce{005502}
+
+
+\finexercice
+\exercice{5503, rouget, 2010/07/10}
+\enonce{005503}{**T}
+Matrice dans la base canonique orthonormée directe de la rotation vectorielle de $\Rr^3$ autour de $(1,2,2)$ qui transforme $j$ en $k$.
+\finenonce{005503}
+
+
+\finexercice
+\exercice{5504, rouget, 2010/07/15}
+\enonce{005504}{**T}
+Dans $\Rr^3$, espace vectoriel euclidien orienté rapporté à la base orthonormée directe $(i,j,k)$, déterminer l'image du plan d'équation $x+y=0$ par \begin{enumerate}
+ \item  la symétrie orthogonale par rapport au plan d'équation $x-y+z=0$,  
+ \item  la symétrie orthogonale par rapport au vecteur $(1,1,1)$,  
+ \item  par la rotation d'angle $\frac{\pi}{4}$ autour du vecteur $(1,1,1)$.
+\end{enumerate}
+\finenonce{005504}
+
+
+\finexercice
+\exercice{5505, rouget, 2010/07/15}
+\enonce{005505}{*T}
+Dans $\Rr^3$ affine, déterminer un repère de la droite $(D)$ $\left\{
+\begin{array}{l}
+x-y+2z+7=0\\
+2x+2y+3z-5=0
+\end{array}
+\right.$.
+\finenonce{005505}
+
+
+\finexercice
+\exercice{5506, rouget, 2010/07/15}
+\enonce{005506}{*T}
+Dans $\Rr^3$, déterminer l'intersection de $(D)$ $\left\{
+\begin{array}{l}
+x=2+\lambda\\
+y=3-\lambda\\
+z=7
+\end{array}
+\right.$ et $(P)~:~x+3y-5z+2=0$.
+\finenonce{005506}
+
+
+\finexercice
+\exercice{5507, rouget, 2010/07/15}
+\enonce{005507}{**}
+Dans $\Rr^3$ affine, déterminer le réel $a$ pour que les droites $\left\{
+\begin{array}{l}
+x+2=-2z\\
+y=3x+z
+\end{array}
+\right.$ et $\left\{
+\begin{array}{l}
+x+y+z=1\\
+2x+y-z=a
+\end{array}
+\right.$ soient coplanaires, puis déterminer une équation du plan les contenant.
+\finenonce{005507}
+
+
+\finexercice
+\exercice{5508, rouget, 2010/07/15}
+\enonce{005508}{**T}
+Dans $\Rr^3$, équation du plan $P$ parallèle à la droite $(Oy)$ et passant par $A(0,-1,2)$ et $B(-1,2,3)$.
+\finenonce{005508}
+
+
+\finexercice
+\exercice{5509, rouget, 2010/07/15}
+\enonce{005509}{**T}
+Dans $\Rr^3$, soient $(D)$ $\left\{
+\begin{array}{l}
+x+y+z=1\\
+x-2y-z=0
+\end{array}
+\right.$ et $(\Delta)~:~6x=2y=3z$ puis $(P)~:~x+3y+2z=6$. Déterminer la projection de $(D)$ sur $(P)$ parallèlement à $(\Delta)$.
+
+\finenonce{005509}
+
+
+\finexercice
+\exercice{5510, rouget, 2010/07/15}
+\enonce{005510}{**}
+Dans $\Rr^3$, soient $(D)$ $\left\{
+\begin{array}{l}
+x-z-a=0\\
+y+3z+1=0
+\end{array}
+\right.$ et $(D')$ $\left\{
+\begin{array}{l}
+x+2y+z-2b=0\\
+3x+3y+2z-7=0
+\end{array}
+\right.$.
+Vérifier que $(D)$ et $(D')$ ne sont pas parallèles puis trouver $a$ et $b$ pour que $(D)$ et $(D')$ soient sécantes. Former alors une équation cartésienne de leur plan.
+\finenonce{005510}
+
+
+\finexercice
+\exercice{5511, rouget, 2010/07/15}
+\enonce{005511}{**}
+Système d'équations cartésiennes de la droite $(\Delta)$ parallèle à la droite $(D)$~:~$2x=3y=6z$ et sécante aux droites $(D_1)$~:~$x=z-4=0$ et $(D_2)$~:~$y=z+4=0$.
+\finenonce{005511}
+
+
+\finexercice
+\exercice{5512, rouget, 2010/07/15}
+\enonce{005512}{***}
+Trouver toutes les droites sécantes aux quatre droites $(D_1)$~$x-1=y=0$, $(D_2)$~:~$y-1=z=0$, $(D_3)$~:~$z-1=x=0$ et $(D_4)$~:~$x=y=-6z$.
+
+\finenonce{005512}
+
+
+\finexercice
+\exercice{5513, rouget, 2010/07/15}
+\enonce{005513}{**T}
+Dans $\Rr^3$ euclidien rapporté à un repère orthonormé, on donne $A(2,-2,0)$, $B(4,2,6)$ et 
+$C(-1,-3,0)$. Déterminer l'orthocentre, le centre de gravité, les centres des cercles circonscrits et inscrits au triangle $(A,B,C)$.
+\finenonce{005513}
+
+
+\finexercice\exercice{5514, rouget, 2010/07/15}
+\enonce{005514}{**T}
+Soit $M(x,y,z)$ un point de $\Rr^3$ rapporté à un repère orthonormé. Déterminer la distance de $M$ à la droite 
+$(D)$ $\left\{
+\begin{array}{l}
+x+y+z+1=0\\
+2x+y+5z=2
+\end{array}
+\right.$. En déduire une équation du cylindre de révolution d'axe $(D)$ et de rayon $2$. 
+\finenonce{005514}
+
+
+\finexercice
+\exercice{5515, rouget, 2010/07/15}
+\enonce{005515}{**T}
+Dans $\Rr^3$ rapporté à un repère orthonormé, soient $(D)$ $\left\{
+\begin{array}{l}
+x+y+z+1=0\\
+2x+y+5z=2
+\end{array}
+\right.$ et $(D')$ $\left\{
+\begin{array}{l}
+x+y+z=2\\
+2x+y-5z=3
+\end{array}
+\right.$. Déterminer la distance de $(D)$ à $(D')$ puis la perpendiculaire commune à ces deux droites.
+\finenonce{005515}
+
+
+\finexercice
+\exercice{5516, rouget, 2010/07/15}
+\enonce{005516}{**}
+Montrer que les plans $(P_1)$~:~$z-2y=5$, $(P_2)$~:~$2x-3z=0$ et $(P_3)~:~3y-x=0$ admettent une parallèle commune. Ils définissent ainsi un prisme. Déterminer l'aire d'une section perpendiculaire.
+\finenonce{005516}
+
+
+\finexercice
+\exercice{5517, rouget, 2010/07/15}
+\enonce{005517}{*T}
+Angle des plans $x+2y+2z=3$ et $x+y=0$.
+\finenonce{005517}
+
+
+\finexercice
+\exercice{5518, rouget, 2010/07/15}
+\enonce{005518}{**T}
+Soient $(P_1)~:~4x+4y-7z-1=0$ et $(P_2)~:~8x-4y+z+7=0$. Trouver une équation cartésienne des plans bissecteurs de $(P_1)$ et $(P_2)$.
+\finenonce{005518}
+
+
+\finexercice
+\exercice{5519, rouget, 2010/07/15}
+\enonce{005519}{**T}
+Déterminer la perpendiculaire commune aux droites $(D)$ et $(D')$~:~$(D)$ $\left\{
+\begin{array}{l}
+x+y-3z+4=0\\
+2x-z+1=0
+\end{array}
+\right.$ et $(D')$ $\left\{
+\begin{array}{l}
+x=z-1\\
+y=z-1
+\end{array}
+\right.$. 
+\finenonce{005519}
+
+
+\finexercice
+\exercice{5520, rouget, 2010/07/15}
+\enonce{005520}{**}
+Soient $(D)$ la droite dont un système d'équations cartésiennes est 
+$\left\{
+\begin{array}{l}
+x+y+z=1\\
+x-2y-z=0
+\end{array}
+\right.$ et $(P)$ le plan d'équation cartésienne $x+3y+2z=6$. Déterminer la projetée (orthogonale) de $(D)$ sur $(P)$.
+\finenonce{005520}
+
+
+\finexercice
+\exercice{5521, rouget, 2010/07/15}
+\enonce{005521}{**I}
+Déterminer les différents angles d'un tétraèdre régulier (entre deux faces, entre deux arêtes et entre une arête et une face).
+\finenonce{005521}
+
+
+\finexercice
+\exercice{5522, rouget, 2010/07/15}
+\enonce{005522}{**T}
+Déterminer la distance de l'origine $O$ à la droite $(D)$ dont un système d'équations cartésiennes est $\left\{
+\begin{array}{l}
+x-y-z=0\\
+x+2y-z=10
+\end{array}
+\right.$.
+\finenonce{005522}
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005501}
+\textbullet~$\overrightarrow{n}=\overrightarrow{OA}\wedge\overrightarrow{OB}$ a pour coordonnées $(2,-3,-4)$. Ce vecteur n'est pas nul. Par suite, les points $O$, $A$ et $B$ ne sont pas alignés et le plan $(OAB)$ est bien défini. C'est le plan passant par $O$ et de vecteur normal $\overrightarrow{n}(2,-3,-4)$. Une équation cartésienne du plan $(OAB)$ est donc $2x-3y-4z=0$.
+\textbullet~$\overrightarrow{n}'=\overrightarrow{OC}\wedge\overrightarrow{OD}$ a pour coordonnées $(4,-9,-1)$. Ce vecteur n'est pas nul. Par suite, les points $O$, $C$ et $D$ ne sont pas alignés et le plan $(OCD)$ est bien défini. C'est le plan passant par $O$ et de vecteur normal $\overrightarrow{n}'(4,-9,-1)$. Une équation cartésienne du plan $(OAB)$ est donc $4x-9y-z=0$.
+\textbullet$-\overrightarrow{n}\wedge\overrightarrow{n}'$ a pour coordonnées $(33,14,6)$. Ce vecteur n'est pas nul et on sait que les plans $(OAB)$ et $(OCD)$ sont sécants en une droite, à savoir la droite passant par $O(0,0,0)$ et de vecteur directeur $(33,14,6)$. Un système d'équations cartésiennes de cette droite est 
+$\left\{
+\begin{array}{l}
+2x-3y-4z=0\\
+4x-9y-z=0
+\end{array}
+\right.$.
+\fincorrection
+\correction{005502}
+Les vecteurs $(2,-3,1)$ et $(1,2,0)$ ne sont pas colinéaires, de sorte que $(P)$ est bien un plan. Trouvons alors une équation cartésienne de $(P)$
+
+\begin{align*}\ensuremath
+M(x,y,z)\in(P)&\Leftrightarrow\exists(\lambda,\mu)\in\Rr^2/\;
+\left\{
+\begin{array}{l}
+x=1+2\lambda+\mu\\
+y=-1-3\lambda+2\mu\\
+z=1+\lambda
+\end{array}
+\right.
+\Leftrightarrow\exists(\lambda,\mu)\in\Rr^2/\;
+\left\{
+\begin{array}{l}
+\lambda=z-1\\
+x=1+2(z-1)+\mu\\
+y=-1-3(z-1)+2\mu
+\end{array}
+\right.
+\\
+ &\Leftrightarrow\exists(\lambda,\mu)\in\Rr^2/\;
+\left\{
+\begin{array}{l}
+\lambda=z-1\\
+\mu=x-2z+1\\
+y=-1-3(z-1)+2(x-2z+1)
+\end{array}
+\right.
+\\
+ &\Leftrightarrow
+-2x+y+7z-4=0
+\end{align*}
+Soit alors $M(2+3t,-t,1+t)$, $t\in\Rr$, un point de $(D)$
+
+\begin{align*}\ensuremath
+M\in(P)&\Leftrightarrow-2(2+3t)+(-t)+7(1+t)-4=0
+\Leftrightarrow
+0\times t-1=0.
+\end{align*}
+Ce dernier système n'a pas de solution et donc $(D)\cap(P)=\varnothing$. La droite $(D)$ est strictement parallèle au plan $(P)$.
+
+\begin{align*}\ensuremath
+M(x,y,z)\in(P)\cap(P')&\Leftrightarrow\exists(\nu,\eta)\in\Rr^2/\;\left\{
+\begin{array}{l}
+x=-5-\nu\\
+y=3+\nu+3\eta\\
+z=\nu+\eta\\
+-2x+y+7z-4=0
+\end{array}
+\right.\\
+ &\Leftrightarrow\exists(\nu,\eta)\in\Rr^2/\;\left\{
+\begin{array}{l}
+x=-5-\nu\\
+y=3+\nu+3\eta\\
+z=\nu+\eta\\
+-2(-5-\nu)+(3+\nu+3\eta)+7(\nu+\eta)-4=0
+\end{array}
+\right.\\
+ &\Leftrightarrow\exists(\nu,\eta)\in\Rr^2/\;\left\{
+\begin{array}{l}
+\eta=-\nu-\frac{9}{10}\\
+x=-5-\nu\\
+y=3+\nu+3\left(-\nu-\frac{9}{10}\right)\\
+z=\nu+\left(-\nu-\frac{9}{10}\right)
+\end{array}
+\right.
+\Leftrightarrow
+\exists\nu\in\Rr/\;
+\left\{
+\begin{array}{l}
+x=-\nu-5\\
+y=-2\nu+\frac{3}{10}\\
+z=-\frac{9}{10}
+\end{array}
+\right.
+\end{align*}
+$(P)$ et $(P')$ sont donc sécants en la droite passant par le point $\left(-5,\frac{3}{10},-\frac{9}{10}\right)$ et de vecteur directeur $(1,2,0)$.
+\fincorrection
+\correction{005503}
+Soit $r$ la rotation cherchée. Notons $u$ le vecteur $\frac{1}{3}(1,2,2)$ ($u$ est unitaire) et $\theta$ l'angle de $r$. $r$ est la rotation d'angle $\theta$ autour du vecteur unitaire $u$.  On sait que pour tout vecteur $v$ de $\Rr^3$
+
+\begin{center}
+$r(v)=(\cos\theta)v+(1-\cos\theta)(v.u)u+(\sin\theta) u\wedge v\quad(*)$
+\end{center}
+et en particulier que $[v,r(v),u]=\sin\theta\|v\wedge u\|^2$. L'égalité $r(j)=k$ fournit
+
+\begin{center}
+$\sin\theta\|j\wedge u\|^2=\left[j,r(j),u\right]=\left[u,j,k\right]=\frac{1}{3}\left|\begin{array}{ccc}
+1&0&0\\
+2&1&0\\
+3&0&1
+\end{array}
+\right|=\frac{1}{3}$.
+\end{center}
+
+Comme $u\wedge j=\frac{1}{3}(i+2j+2k)\wedge j=-\frac{2}{3}j+\frac{1}{3}k$, on a $\|j\wedge u\|^2=\frac{5}{9}$ et donc $\sin\theta=\frac{3}{5}$. L'égalité $r(j)=k$ fournit ensuite
+
+\begin{center}
+$k=(\cos\theta)j+(1-\cos\theta)\times\frac{2}{3}\times\frac{1}{3}(i+2j+2k)+\frac{3}{5}\times\frac{1}{3}(i+2j+2k)\wedge j$
+\end{center}
+En analysant la composante en $i$, on en déduit que $\frac{2}{9}(1-\cos\theta)-\frac{2}{5}=0$ et donc $\cos\theta=-\frac{4}{5}$. Ainsi, pour tout vecteur $v=(x,y,z)$ de $\Rr^3$, l'égalité $(*)$ s'écrit
+
+\begin{align*}\ensuremath
+r(v)&=-\frac{4}{5}(x,y,z)+\frac{9}{5}\times\frac{1}{3}\times\frac{1}{3}(x+2y+2z)(1,2,2)+\frac{3}{5}\times\frac{1}{3}
+(2z-2y,2x-z,-2x+y)\\
+ &=\frac{1}{5}(-4x+(x+2y+2z)+(2z-2y),-4y+2(x+2y+2z)+(2x-z),-4z+2(x+2y+2z)+(-2x+y))\\
+ &=\frac{1}{5}(-3x+4z,4x+3z,5y)=\frac{1}{5}\left(
+ \begin{array}{ccc}
+ -3&0&4\\
+ 4&0&3\\
+ 0&5&0
+ \end{array}
+ \right)\left(
+ \begin{array}{c}
+ x\\
+ y\\
+ z
+ \end{array}
+ \right)
+\end{align*}
+La matrice cherchée est
+
+\begin{center}
+\shadowbox{
+$\left(
+ \begin{array}{ccc}
+ -\frac{3}{5}&0&\frac{4}{5}\\
+\rule[-4mm]{0mm}{10mm} \frac{4}{5}&0&\frac{3}{5}\\
+ 0&1&0
+ \end{array}
+ \right)$.
+ }
+ \end{center}
+\fincorrection
+\correction{005504}
+Notons $P$ le plan d'équation $x+y=0$ dans la base $\mathcal{B}=(i,j,k)$. $P$ est le plan de vecteur normal $n=i+j$.
+
+\begin{enumerate}
+ \item  Soit $s$ la symétrie orthogonale par rapport au plan $P'$ d'équation $x-y+z=0$. $s(P)$ est le plan de vecteur normal $s(n)$. 
+Or, le vecteur $n$ est dans $P'$  et donc $s(n)=n$ puis $s(P)=P$.
+
+\begin{center}
+\shadowbox{
+$s(P)$ est le plan $P$.
+}
+\end{center}
+ \item  Notons $\sigma$ la symétrie orthogonale par rapport au vecteur $u=(1,1,1)$. $\sigma(P)$ est le plan de vecteur normal 
+
+\begin{center}
+$\sigma(n)=2\frac{n.u}{\|u\|^2}u-n=2\frac{2}{3}(1,1,1)-(1,1,0)=\frac{1}{3}(1,1,4)$.
+\end{center}
+
+\begin{center}
+\shadowbox{
+$\sigma(P)$ est le plan d'équation $x+y+4z=0$.
+}
+\end{center}
+ \item  Notons $r$ la rotation d'angle $\frac{\pi}{4}$ autour du vecteur unitaire $u=\frac{1}{\sqrt{3}}(1,1,1)$. $r(P)$ est le plan de vecteur normal 
+\begin{align*}\ensuremath
+r(n)&=\left(\cos\frac{\pi}{4}\right)n+\left(1-\cos\frac{\pi}{4}\right)(n.u)u+\left(\sin\frac{\pi}{4}\right)u\wedge n\\
+ &=\frac{1}{\sqrt{2}}(1,1,0)+\left(1-\frac{1}{\sqrt{2}}\right)\times\frac{2}{3}(1,1,1)+\frac{1}{\sqrt{2}}\times\frac{1}{\sqrt{3}}(-1,1,0)\\
+ &=\frac{1}{3\sqrt{2}}(3+2(\sqrt{2}-1)-\sqrt{3},3+2(\sqrt{2}-1)+\sqrt{3},2(\sqrt{2}-1))=\frac{1}{3\sqrt{2}}(1+2\sqrt{2}-\sqrt{3},1+2\sqrt{2}+\sqrt{3},2(\sqrt{2}-1)).
+\end{align*}
+
+\begin{center}
+\shadowbox{
+$r(P)$ est le plan d'équation $(1+2\sqrt{2}-\sqrt{3})x+(1+2\sqrt{2}+\sqrt{3})y+2(\sqrt{2}-1)z=0$.
+}
+\end{center}
+\end{enumerate}
+\fincorrection
+\correction{005505}
+Puisque $\left|
+\begin{array}{cc}
+1&2\\
+2&3
+\end{array}\right|=-1$, on choisit d'exprimer $x$ et $z$ en fonction de $y$.
+Soit $M(x,y,z)\in\Rr^3$. D'après les formules de \textsc{Cramer}, on a
+\begin{align*}\ensuremath
+M\in(D)&\Leftrightarrow\left\{
+\begin{array}{l}
+x-y+2z+7=0\\
+2x+2y+3z-5=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x+2z=y-7\\
+-2x-3z=2y-5
+\end{array}
+\right.\\
+ &\Leftrightarrow x=\frac{1}{1}\left|
+\begin{array}{cc}
+y-7&2\\
+2y-5&-3
+\end{array}
+\right|\;\text{et}\;z=\frac{1}{1}\left|
+\begin{array}{cc}
+1&y-7\\
+-2&2y-5
+\end{array}
+\right|\\
+ &\Leftrightarrow\left\{\begin{array}{l}
+ x=31-7y\\
+ z=-19+4y
+ \end{array}\right..
+\end{align*}
+
+\begin{center}
+\shadowbox{
+$(D)$ est la droite passant par $A(31,0,-19)$ dirigée par le vecteur $u(-7,1,4)$.
+}
+\end{center}
+\fincorrection
+\correction{005506}
+Soit $M(2+\lambda,3-\lambda,7)$, $\lambda\in\Rr$, un point quelconque de $(D)$.
+
+\begin{center}
+$M\in(P)\Leftrightarrow(2+\lambda)+3(3-\lambda)-5\times7+2=0\Leftrightarrow \lambda=12$.
+\end{center}
+$(P)\cap(D)$ est donc un singleton. Pour $\lambda=12$, on obtient les coordonnées du point d'intersection
+
+\begin{center}
+\shadowbox{
+$(P)\cap(D)=\{(14,-9,7)\}$.
+}
+\end{center}
+\fincorrection
+\correction{005507}
+\textbullet~\textbf{Repère de $(D)$.}
+
+\begin{center}
+$\left\{
+\begin{array}{l}
+x+2=-2z\\
+y=3x+z
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x=-2-2z\\
+y=3(-2-2z)+z
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x=-2-2z\\
+y=-6-5z
+\end{array}
+\right.$
+\end{center}
+
+$(D)$ est la droite passant par $A(0,-1,-1)$ et dirigée par $u(2,5,-1)$.
+ \textbullet~\textbf{Repère de $(D')$.}
+
+\begin{center}$\left\{
+\begin{array}{l}
+x+y+z=1\\
+2x+y-z=a
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+-x-y=z-1\\
+2x+y=z+a
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x=2z+a-1\\
+y=2-a-3z
+\end{array}
+\right.$
+\end{center}
+$(D')$ est la droite passant par $A'(a-1,2-a,0)$ et dirigée par $u'(2,-3,1)$.
+\textbullet~Déjà $u$ et $u'$ ne sont pas colinéaires et donc $(D)$ et $(D')$ sont ou bien sécantes en un point et dans ce cas coplanaires ou bien non coplanaires.
+\textbullet~Le plan $(P)$ contenant $(D)$ et parallèle à $(D')$ est le plan de repère $(A,u,u')$. Déterminons une équation de ce plan.
+
+\begin{center}
+$M(x,y,z)\in(P)\Leftrightarrow
+\left|
+\begin{array}{ccc}
+x&2&2\\
+y+1&5&-3\\
+z+1&-1&1
+\end{array}\right|=0\Leftrightarrow 2x-4(y+1)-16(z+1)=0\Leftrightarrow-x+2y+8z=-10$.
+\end{center}
+\textbullet~Enfin, $(D)$ et $(D')$ sont coplanaires si et seulement si $(D')$ est contenue dans $(P)$. Comme $(D')$ est déjà parallèle à $(P)$, on a
+
+\begin{center}
+$(D)$ et $(D')$ coplanaires $\Leftrightarrow A'\in(P)\Leftrightarrow-(a-1)+2(2-a)=-10\Leftrightarrow a=\frac{5}{3}$.
+\end{center}
+
+\begin{center}
+\shadowbox{
+\begin{tabular}{c}
+$(D)$ et $(D')$ sont coplanaires si et seulement si $a=\frac{5}{3}$ et dans ce cas, une équation du plan contenant $(D)$\\
+ et $(D')$ est $-x+2y+8z=-10$.
+ \end{tabular}
+}
+\end{center}
+\fincorrection
+\correction{005508}
+Puisque $P$ parallèle à la droite $(Oy)$, le vecteur $\overrightarrow{j}=(0,1,0)$ est dans $\overrightarrow{P}$. De même, le vecteur $\overrightarrow{AB}=(-1,3,1)$ est dans $\overrightarrow{P}$.
+$P$ est donc nécessairement le plan passant par $A(0,-1,2)$ et de vecteur normal $\overrightarrow{j}\wedge\overrightarrow{AB}=(1,0,1)$. Réciproquement, ce plan convient.
+Une équation de $P$ est donc $(x-0)+(z-2)=0$ ou encore $x+z=2$.
+
+\begin{center}
+\shadowbox{
+Une équation du plan parallèle à la droite $(Oy)$ et passant par $A(0,-1,2)$ et $B(-1,2,3)$ est $x+z=2$.
+}
+\end{center}
+\fincorrection
+\correction{005509}
+Notons $p$ la projection sur $(P)$ parallèlement à $(\Delta)$.
+\textbullet~Déterminons un repère de $(D)$. 
+\begin{center}$\left\{
+\begin{array}{l}
+x+y+z=1\\
+x-2y-z=0
+\end{array}
+\right.\Leftrightarrow
+\left\{
+\begin{array}{l}
+y+z=-x+1\\
+2y+z=x
+\end{array}
+\right.
+\Leftrightarrow
+\left\{
+\begin{array}{l}
+y=2x-1\\
+z=-3x+2
+\end{array}
+\right.
+$
+\end{center}
+$(D)$ est la droite de repère $(A,\overrightarrow{u})$ où $A(0,-1,2)$ et $\overrightarrow{u}(1,2,-3)$.
+\textbullet~$(\Delta)$ est dirigée par le vecteur $\overrightarrow{u'}(1,3,2)$. $\overrightarrow{u}$ n'est pas colinéaire à $\overrightarrow{u'}$ et donc $(D)$ n'est pas parallèle à $(\Delta)$. On en déduit que $p(D)$ est une droite. 
+Plus précisément, $p(D)$ est la droite intersection du plan $(P)$ et du plan $(P')$ contenant $(D)$ et parallèle à $(\Delta)$. Déterminons une équation de $(P')$. Un repère de $(P')$ est $(A,\overrightarrow{u},\overrightarrow{u'})$. Donc
+
+\begin{center}
+$M(x,y,z)\in(P')\Leftrightarrow\left|
+\begin{array}{ccc}
+x&1&1\\
+y+1&2&3\\
+z-2&-3&2
+\end{array}
+\right|=0\Leftrightarrow 13x-5(y+1)+(z-2)=0\Leftrightarrow13x-5y+z=7$.
+\end{center}
+
+Finalement
+
+\begin{center}
+\shadowbox{
+$p(D)$ est la droite dont un système d'équations cartésiennes est $\left\{
+\begin{array}{l}
+13x-5y+z=7\\
+x+3y+2z=6
+\end{array}
+\right.$
+}
+\end{center}
+\fincorrection
+\correction{005510}
+\textbullet~\textbf{Repère de $(D)$.}
+
+\begin{center}
+$\left\{
+\begin{array}{l}
+x-z-a=0\\
+y+3z+1=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x=a+z\\
+y=-1-3z
+\end{array}
+\right.$.
+\end{center}
+
+$(D)$ est la droite passant par $A(a,-1,0)$ et dirigée par $u(1,-3,1)$.
+ \textbullet~\textbf{Repère de $(D')$.}
+
+\begin{center}$\left\{
+\begin{array}{l}
+x+2y+z-2b=0\\
+3x+3y+2z-7=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+2y+z=2b-x\\
+3y+2z=7-3x
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=4b-7+x\\
+z=14-6b-3x
+\end{array}
+\right.$
+\end{center}
+$(D')$ est la droite passant par $A'(0,4b-7,-6b+14)$ et dirigée par $u'(1,1,-3)$.
+\textbullet~Les vecteurs $u$ et $u'$ ne sont pas colinéaires et donc $(D)$ et $(D')$ ne sont pas parallèles.
+\textbullet~Le plan $(P)$ contenant $(D)$ et parallèle à $(D')$ est le plan de repère $(A,u,u')$. Déterminons une équation de ce plan.
+
+\begin{center}
+$M(x,y,z)\in(P)\Leftrightarrow
+\left|
+\begin{array}{ccc}
+x-a&1&1\\
+y+1&-3&1\\
+z&1&-3
+\end{array}\right|=0\Leftrightarrow 8(x-a)+4(y+1)+4z=0\Leftrightarrow2x+y+z=2a-1$.
+\end{center}
+\textbullet~Enfin, $(D)$ et $(D')$ sont sécantes si et seulement si $(D')$ est contenue dans $(P)$. Comme $(D')$ est déjà parallèle à $(P)$, on a
+
+\begin{center}
+$(D)$ et $(D')$ sécantes $\Leftrightarrow A'\in(P)\Leftrightarrow(4b-7)+(-6b+14)=2a-1\Leftrightarrow b=-a+4$.
+\end{center}
+
+\begin{center}
+\shadowbox{
+\begin{tabular}{c}
+$(D)$ et $(D')$ sont sécantes si et seulement si $b=-a+4$ et dans ce cas, une équation du plan contenant $(D)$\\
+ et $(D')$ est $2x+y+z=2a-1$.
+ \end{tabular}
+}
+\end{center}
+\fincorrection
+\correction{005511}
+\textbullet~$(\Delta)$ est parallèle à $(D)$ si et seulement si $(\Delta)$ est dirigée par le vecteur $u(3,2,1)$ ou encore $(\Delta)$ admet un système d'équations paramétriques de la forme $\left\{
+\begin{array}{l}
+x=a+3\lambda\\
+y=b+2\lambda\\
+z=c+\lambda
+\end{array}
+\right.$. Ensuite, 
+$(\Delta)$ est sécante à $(D_1)$ si et seulement si on peut choisir le point $(a,b,c)$ sur $(D_1)$ ou encore si et seulement si $(\Delta)$ admet un système d'équations paramétriques de la forme $\left\{
+\begin{array}{l}
+x=3\lambda\\
+y=b+2\lambda\\
+z=4+\lambda
+\end{array}
+\right.$.
+Enfin,
+
+\begin{center}
+$(\Delta)$ et $(D_2)$ sécantes $\Leftrightarrow\exists\lambda\in\Rr/\;b+2\lambda=4+\lambda+4=0\Leftrightarrow b+2\times(-8)=0\Leftrightarrow b=16$.
+\end{center}
+Ceci démontre l'existence et l'unicité de $(\Delta)$ : un système d'équations paramétriques de $(\delta)$ est $\left\{
+\begin{array}{l}
+x=3\lambda\\
+y=16+2\lambda\\
+z=4+\lambda
+\end{array}
+\right.$. Un système d'équations cartésiennes de $(\Delta)$ est $\left\{
+\begin{array}{l}
+x=3(z-4)\\
+y=16+2(z-4)
+\end{array}
+\right.$ ou encore
+
+\begin{center}
+\shadowbox{
+$(\Delta)$ : $\left\{
+\begin{array}{l}
+x-3z+12=0\\
+y-2z-8=0
+\end{array}
+\right.$.
+}
+\end{center}
+\fincorrection
+\correction{005512}
+Notons $(\Delta)$ une éventuelle droite solution.
+\textbullet~$(\Delta)$ est sécante à $(D_1)$ et $(D_2)$ si et seulement si $(\Delta)$ passe par un point de la forme $(1,0,a)$ et par un point de la forme $(b,1,0)$ ou encore si et seulement si $(\Delta)$ passe par un point de la forme $(1,0,a)$ et est dirigée par un vecteur de la forme $(b-1,1,-a)$.
+Ainsi, $(\Delta)$ est sécante à $(D_1)$ et $(D_2)$ si et seulement si $(\Delta)$ admet un système d'équations paramétriques de la forme $\left\{
+\begin{array}{l}
+x=1+\lambda(b-1)\\
+y=\lambda\\
+z=a-\lambda a
+\end{array}
+\right.$ ou encore un système d'équations cartésiennes de la forme $\left\{
+\begin{array}{l}
+x-(b-1)y=1\\
+ay+z=a
+\end{array}
+\right.$.
+
+\textbullet~Ensuite, $(\Delta)$ et $(D_3)$ sécantes $\Leftrightarrow\exists y\in\Rr/\;\left\{
+\begin{array}{l}
+-(b-1)y=1\\
+ay+1=a
+\end{array}
+\right.\Leftrightarrow b\neq 1\;\text{et}\;-\frac{a}{b-1}+1=a\Leftrightarrow b\neq0\;\text{et}\;b\neq1\;\text{et}\;a=1-\frac{1}{b}$.
+En résumé, les droites sécantes à $(D_1)$, $(D_2)$ et $(D_3)$ sont les droites dont un système d'équations cartésiennes est 
+
+\begin{center}
+$\left\{
+\begin{array}{l}
+x-(b-1)y=1\\
+\left(1-\frac{1}{b}\right)y+z=1-\frac{1}{b}
+\end{array}
+\right.$, $b\notin\{0,1\}$.
+\end{center}
+Enfin,
+
+\begin{align*}\ensuremath
+(\Delta)\;\text{et}\;(D)\;\text{sécantes}&\Leftrightarrow\exists(x,y,z)\in\Rr^3/\;\left\{
+\begin{array}{l}
+x-(b-1)y=1\\
+\left(1-\frac{1}{b}\right)y+z=1-\frac{1}{b}\\
+x=y=-6z
+\end{array}
+\right.\\
+&\Leftrightarrow\exists(x,y,z)\in\Rr^3/\;\left\{
+\begin{array}{l}
+-6z+6(b-1)z=1\\
+-6\left(1-\frac{1}{b}\right)z+z=1-\frac{1}{b}\\
+x=y=-6z
+\end{array}
+\right.\\
+ &\Leftrightarrow b\notin\{0,1,2\}\;\text{et}\;-6\left(1-\frac{1}{b}\right)\frac{1}{6(b-2)}+\frac{1}{6(b-2)}=1-\frac{1}{b}\\
+ &\Leftrightarrow b\notin\{0,1,2\}\;\text{et}\;-6(b-1)+b=6(b-1)(b-2)\Leftrightarrow b\notin\{0,1,2\}\;\text{et}\;6b^2-13b+6=0\\
+ &\Leftrightarrow b\in\left\{\frac{2}{3},\frac{3}{2}\right\}.
+\end{align*}
+
+\begin{center}
+\shadowbox{
+Les droites solutions sont $(\Delta_1)$ : $\left\{
+\begin{array}{l}
+3x+y=3\\
+y-2z=1
+\end{array}
+\right.$ et $(\Delta_2)$ : $\left\{
+\begin{array}{l}
+2x-y=2\\
+y+3z=1
+\end{array}
+\right.$.
+}
+\end{center}
+\fincorrection
+\correction{005513}
+\textbullet~Déterminons le centre de gravité $G$.
+
+\begin{center}
+$G=\frac{1}{3}A+\frac{1}{3}B+\frac{1}{3}C=\frac{1}{3}(2,-2,0)+\frac{1}{3}(4,2,6)+\frac{1}{3}(-1,-3,0)=\left(\frac{5}{3},-1,2\right)$.
+\end{center}
+\textbullet~Déterminons le centre du cercle circonscrit $O$. Une équation du plan $(ABC)$ est $\left|
+\begin{array}{ccc}
+x-2&2&-3\\
+y+2&4&-1\\
+z&6&0
+\end{array}
+\right|=0$ ou encore $6(x-2)-18(y+2)+10z=0$ ou enfin $3x-9y+5z=24$. Posons alors $O(a,b,c)$.
+Ensuite, $OA=OB\Leftrightarrow(a-2)^2+(b+2)^2+c^2=(a-4)^2+(b-2)^2+(c-6)^2\Leftrightarrow4a+8b+12c=48\Leftrightarrow a+2b+3c=16$ et 
+$OA=OC\Leftrightarrow(a-2)^2+(b+2)^2+c^2=(a+1)^2+(b+3)^2+c^2\Leftrightarrow-6a-2b=2\Leftrightarrow3a+b=-1$.
+D'où le système
+
+\begin{align*}\ensuremath
+\left\{
+\begin{array}{l}
+3a-9b+5c=24\\
+a+2b+3c=16\\
+3a+b=-1
+\end{array}
+\right.&\Leftrightarrow\left\{
+\begin{array}{l}
+b=-3a-1\\
+3a-9(-3a-1)+5c=24\\
+a+2(-3a-1)+3c=16
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+b=-3a-1\\
+6a+c=3\\
+-5a+3c=18
+\end{array}
+\right.\\
+ &\Leftrightarrow\left\{
+\begin{array}{l}
+b=-3a-1\\
+c=3-6a\\
+-5a+3(3-6a)=18
+\end{array}
+\right.
+\Leftrightarrow\left\{
+\begin{array}{l}
+a=-\frac{9}{23}\\
+b=\frac{4}{23}\rule{0mm}{7mm}\\
+c=\frac{123}{23}\rule{0mm}{7mm}
+\end{array}
+\right.
+\end{align*}
+Donc $O\left(-\frac{9}{23},\frac{4}{23},\frac{123}{23}\right)$.
+\textbullet~Déterminons l'orthocentre $H$. D'après la relation d'\textsc{Euler},
+
+\begin{center}
+$H=O+3\overrightarrow{OG}=\left(-\frac{9}{23},\frac{4}{23},\frac{123}{23}\right)+3\left(-\frac{9}{23}-\frac{5}{3},\frac{4}{23}+1,\frac{123}{23}-2\right)=\left(\frac{-151}{23},\frac{85}{23},\frac{354}{23}\right)$.
+\end{center}
+\textbullet~Déterminons le centre du cercle inscrit $I$. On sait que $I=\text{bar}\left\{A(a),B(b),C(c)\right\}$ où $a=BC=\sqrt{5^2+5^2+6^2}=\sqrt{86}$, $b=AC=\sqrt{3^2+1^2+0^2}=\sqrt{10}$ et $c=AB=\sqrt{2^2+4^2+6^2}=\sqrt{54}$. Donc
+
+\begin{align*}\ensuremath
+I&=\frac{\sqrt{86}}{\sqrt{86}+\sqrt{10}+\sqrt{54}}A
++\frac{\sqrt{10}}{\sqrt{86}+\sqrt{10}+\sqrt{54}}B+\frac{\sqrt{54}}{\sqrt{86}+\sqrt{10}+\sqrt{54}}C\\
+ &=\left(
+ \frac{2\sqrt{86}+4\sqrt{10}-\sqrt{54}}{\sqrt{86}+\sqrt{10}+\sqrt{54}},
+ \frac{-2\sqrt{86}+2\sqrt{10}-3\sqrt{54}}{\sqrt{86}+\sqrt{10}+\sqrt{54}},
+ \frac{6\sqrt{10}}{\sqrt{86}+\sqrt{10}+\sqrt{54}}
+ \right).
+\end{align*}
+
+Dans $\Rr^3$ euclidien rapporté à un repère orthonormé, on donne $A(2,-2,0)$, $B(4,2,6)$ et 
+$C(-1,-3,0)$. Déterminer l'orthocentre, le centre de gravité, les centres des cercles circonscrits et inscrits au triangle $(A,B,C)$.
+\begin{center}
+\shadowbox{
+\begin{tabular}{c}
+$G\left(\frac{5}{3},-1,2\right)$, $O\left(-\frac{9}{23},\frac{4}{23},\frac{123}{23}\right)$ et $H\left(\frac{-151}{23},\frac{85}{23},\frac{354}{23}\right)$ puis\\
+$I\left(\frac{2\sqrt{86}+4\sqrt{10}-\sqrt{54}}{\sqrt{86}+\sqrt{10}+\sqrt{54}},\frac{-2\sqrt{86}+2\sqrt{10}-3\sqrt{54}}{\sqrt{86}+\sqrt{10}+\sqrt{54}},\frac{6\sqrt{10}}{\sqrt{86}+\sqrt{10}+\sqrt{54}}\right)$.\rule{0mm}{10mm}
+\end{tabular}
+}
+\end{center}
+\fincorrection
+\correction{005514}
+\textbullet~Déterminons un repère de $(D)$.
+\begin{center}
+$\left\{
+\begin{array}{l}
+x+y+z+1=0\\
+2x+y+5z=2
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x+y=-1-z\\
+2x+y=2-5z
+\end{array}
+\right.\Leftrightarrow\Leftrightarrow\left\{
+\begin{array}{l}
+x=3-4z\\
+y=-4+3z
+\end{array}
+\right.$. 
+\end{center}
+Un repère de $(D)$ est $\left(A,\overrightarrow{u}\right)$ où $A(3,-4,0)$ et $\overrightarrow{u}(-4,3,1)$.
+\textbullet~Soit $M(x,y,z)$ un point du plan. On sait que
+
+\begin{center}
+$d(A,(D))=\frac{\|\overrightarrow{AM}\wedge\overrightarrow{u}\|}{\|\overrightarrow{u}\|}=\frac{\sqrt{(y-3z+4)^2+(x+4z-3)^2+(3x+4y+7)^2}}{\sqrt{26}}$
+\end{center}
+\textbullet~Notons $\mathcal{C}$ le cylindre de révolution d'axe $(D)$ et de rayon $2$.
+\begin{center}
+$M(x,y,z)\in\mathcal{C}\Leftrightarrow d(A,(D))=2\Leftrightarrow(y-3z+4)^2+(x+4z-3)^2+(3x+4y+7)^2=104$
+\end{center}
+
+\begin{center}
+\shadowbox{
+\begin{tabular}{c}
+Une équation cartésienne  du cylindre de révolution d'axe $(D)$ et de rayon $2$ est\\
+$(y-3z+4)^2+(x+4z-3)^2+(3x+4y+7)^2=104$.
+\end{tabular}
+}
+\end{center}
+\fincorrection
+\correction{005515}
+\textbullet~Déterminons un repère de $(D)$.
+
+\begin{center}
+$\left\{
+\begin{array}{l}
+x+y+z+1=0\\
+2x+y+5z=2
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x+y=-z-1\\
+2x+y=-5z+2
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x=-4z+3\\
+y=3z-4
+\end{array}
+\right.$
+\end{center}
+Un repère de $(D)$ est $\left(A,\overrightarrow{u}\right)$ où $A(3,-4,0)$ et $\overrightarrow{u}(-4,3,1)$.
+\textbullet~Déterminons un repère de $(D')$.
+
+\begin{center}
+$\left\{
+\begin{array}{l}
+x+y+z=2\\
+2x+y-5z=3
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x+y=-z+2\\
+2x+y=5z+3
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x=6z+1\\
+y=-7z+1
+\end{array}
+\right.$
+\end{center}
+Un repère de $(D')$ est $\left(A',\overrightarrow{u'}\right)$ où $A'(1,1,0)$ et $\overrightarrow{u'}(6,-7,1)$.
+\textbullet~$\overrightarrow{u}\wedge\overrightarrow{u'}=\left(
+\begin{array}{c}
+-4\\
+3\\
+1
+\end{array}
+\right)\wedge\left(
+\begin{array}{c}
+6\\
+-7\\
+1
+\end{array}
+\right)=\left(
+\begin{array}{c}
+10\\
+10\\
+10
+\end{array}
+\right)\neq\overrightarrow{0}$.
+\rule{0mm}{5mm}Puisque $\overrightarrow{u}$ et $\overrightarrow{u'}$ ne sont pas colinéaires, les droites $(D)$ et $(D')$ ne sont parallèles. Ceci assure l'unicité de la perpendiculaire commune  à $(D)$ et $(D')$.
+\textbullet~On sait que la distance $d$ de $(D)$ à $(D')$ est donnée par
+
+\begin{center}
+$d=\frac{\text{abs}\left(\left[\overrightarrow{AA'},\overrightarrow{u},\overrightarrow{u'}\right]\right)}{\|\overrightarrow{u}\wedge\overrightarrow{u'}\|}$,
+\end{center}
+avec $[\overrightarrow{AA'},\overrightarrow{u},\overrightarrow{u'}]=\left|
+\begin{array}{ccc}
+-2&-4&6\\
+5&3&-7\\
+0&1&1
+\end{array}
+\right|=10\times(-2)+10\times5=30$ et donc $d=\frac{30}{10\sqrt{3}}=\sqrt{3}$.
+
+\begin{center}
+\shadowbox{
+$d((D),(D'))=\sqrt{3}$.
+}
+\end{center}
+
+\textbullet~Un système d'équations de la perpendiculaire commune est 
+$\left\{
+\begin{array}{l}
+\left[\overrightarrow{AM},\overrightarrow{u},\overrightarrow{u}\wedge\overrightarrow{u'}\right]=0\\
+\rule{0mm}{6mm}\left[\overrightarrow{A'M},\overrightarrow{u'},\overrightarrow{u}\wedge\overrightarrow{u'}\right]=0
+\end{array}
+\right.$. Or,
+
+\begin{center}
+$\frac{1}{10}\left[\overrightarrow{AM},\overrightarrow{u},\overrightarrow{u}\wedge\overrightarrow{u'}\right]=\left|
+\begin{array}{ccc}
+x-3&-4&1\\
+y+4&3&1\\
+z&1&1
+\end{array}
+\right|=2(x-3)+5(y+4)-7z=2x+5y-7z+14$,
+\end{center}
+et
+
+\begin{center}
+$\frac{1}{10}\left[\overrightarrow{A'M},\overrightarrow{u'},\overrightarrow{u}\wedge\overrightarrow{u'}\right]=\left|
+\begin{array}{ccc}
+x-1&6&1\\
+y-1&-7&1\\
+z&1&1
+\end{array}
+\right|=-8(x-1)-5(y-1)+13z=-8x-5y+13z+13$.
+\end{center}
+Donc
+
+\begin{center}
+\shadowbox{
+\begin{tabular}{c}
+un système d'équations cartésienne de la perpendiculaire commune à $(D)$ et $(D')$ est\\
+$\left\{
+\begin{array}{l}
+2x+5y-7z=-14\\
+8x+5y-13z=13
+\end{array}
+\right.$.
+\end{tabular}
+}
+\end{center}
+\fincorrection
+\correction{005516}
+$\overrightarrow{u}\in\overrightarrow{P_1}\cap\overrightarrow{P_2}\cap\overrightarrow{P_3}\Leftrightarrow\left\{
+\begin{array}{l}
+z-2y=0\\
+2x-3z=0\\
+3y-x=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x=3y\\
+z=2y
+\end{array}
+\right.$.
+Ainsi, les plans $(P_1)$, $(P_2)$ et $(P_3)$ sont tous trois parallèles à la droite affine $(D)$ d'équations $\left\{
+\begin{array}{l}
+x=3y\\
+z=2y
+\end{array}
+\right.$. Ces plans définissent donc un prisme.
+Déterminons alors l'aire d'une section droite. Le plan $(P)$ d'équation $3x+y+2z=0$ est perpendiculaire à la droite $(D)$. Son intersection avec les plans $(P_1)$, $(P_2)$ et $(P_3)$ définit donc une section droite du prisme.
+\textbullet~Soit $M(x,y,z)$ un point de l'espace.
+
+\begin{center}
+$M\in(P_1)\cap(P_2)\cap(P)\Leftrightarrow
+\left\{
+\begin{array}{l}
+z-2y=5\\
+2x-3z=0\\
+3x+y+2z=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=\frac{z-5}{2}\\
+x=\frac{3}{2}z\\
+\frac{9}{2}z+\frac{z-5}{2}+2z=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+z=\frac{5}{14}\\
+y=-\frac{65}{28}\rule[-4mm]{0mm}{11mm}\\
+x=\frac{15}{28}
+\end{array}
+\right.$
+\end{center}
+Notons $A\left(\frac{15}{28},-\frac{65}{28},\frac{5}{14}\right)$.
+\textbullet~Soit $M(x,y,z)$ un point de l'espace.
+
+\begin{center}
+$M\in(P_1)\cap(P_3)\cap(P)\Leftrightarrow
+\left\{
+\begin{array}{l}
+z-2y=5\\
+3y-x=0\\
+3x+y+2z=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+z=2y+5\\
+x=3y\\
+9y+y+2(2y+5)=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=-\frac{5}{7}\\
+x=-\frac{15}{7}\rule[-4mm]{0mm}{11mm}\\
+z=\frac{25}{7}
+\end{array}
+\right.$
+\end{center}
+Notons $B\left(-\frac{15}{7},-\frac{5}{7},\frac{25}{7}\right)$.
+
+\textbullet~Soit $M(x,y,z)$ un point de l'espace.
+
+\begin{center}
+$M\in(P_2)\cap(P_3)\cap(P)\Leftrightarrow
+\left\{
+\begin{array}{l}
+2x-3z=0\\
+3y-x=0\\
+3x+y+2z=0
+\end{array}
+\right.\Leftrightarrow x=y=z=0$
+\end{center}
+Une section droite est $OAB$ où $A\left(\frac{15}{28},-\frac{65}{28},\frac{5}{14}\right)$ et $B\left(-\frac{15}{7},-\frac{5}{7},\frac{25}{7}\right)$. De plus
+
+\begin{align*}\ensuremath
+\text{aire de}(OAB)&=\frac{1}{2}\left\|\overrightarrow{OA}\wedge\overrightarrow{OB}\right\|=\frac{1}{2}\times\frac{5}{28}\times\frac{5}{7}\left\|\left(
+\begin{array}{c}
+3\\
+-13\\
+2
+\end{array}\right)
+\wedge
+\left(
+\begin{array}{c}
+-3\\
+-1\\
+5
+\end{array}\right)\right\|=\frac{1}{2}\times\frac{5}{28}\times\frac{5}{7}\sqrt{63^2+21^2+42^2}\\
+ &=\frac{1}{2}\times\frac{5}{28}\times\frac{5}{7}\times21\sqrt{3^2+1^2+2^2}=\frac{75}{4\sqrt{14}}
+\end{align*}
+\begin{center}
+\shadowbox{
+L'aire d'une section droite est $\frac{75}{4\sqrt{14}}$.
+}
+\end{center}
+\fincorrection
+\correction{005517}
+Soient $(P)$ le plan d'équation $x+2y+2z=3$ et $(P')$ le plan d'équation $x+y=0$. L'angle entre $(P)$ et $(P')$ est l'angle entre les vecteurs normaux $\overrightarrow{n}(1,2,2)$ et $\overrightarrow{n'}(1,1,0)$ :
+
+\begin{center}
+$\left(\widehat{\overrightarrow{n},\overrightarrow{n'}}\right)=\Arccos\left(\frac{\overrightarrow{n}.\overrightarrow{n'}}{\|\overrightarrow{n}\|\|\overrightarrow{n'}\|}\right)=\Arccos\left(\frac{3}{3\sqrt{2}}\right)=\Arccos\left(\frac{1}{\sqrt{2}}\right)=\frac{\pi}{4}$.
+\end{center}
+\fincorrection
+\correction{005518}
+Soit $M(x,y,z)$ un point de l'espace. On a 
+\begin{center}
+$d(M,(P_1))=\frac{\left|4x+4y-7z-1\right|}{\sqrt{4^2+4^2+7^2}}=\frac{\left|4x+4y-7z-1\right|}{9}$ et $d(M,(P_2))=\frac{\left|8x-4y+z+7\right|}{\sqrt{8^2+4^2+1^2}}=\frac{\left|8x-4y+z+7\right|}{9}$.
+\end{center}
+Par suite,
+
+\begin{align*}\ensuremath
+d(M,(P_1))=d(M,(P_2)&\Leftrightarrow|4x+4y-7z-1|=|8x-4y+z+7|\Leftrightarrow(4x+4y-7z-1)^2=(8x-4y+z+7)^2\\
+ &\Leftrightarrow\left((4x+4y-7z-1)-(8x-4y+z+7)\right)\left((4x+4y-7z-1)+(8x-4y+z+7)\right)=0\\
+ &\Leftrightarrow(-4x+8y-8z-8)(12x-6z+6)=0\Leftrightarrow x-2y+2z+2=0\;\text{ou}\;2x-z+1=0.
+\end{align*}
+\begin{center}
+\shadowbox{
+Les plans bissecteurs de $(P_1)$ et $(P_2)$ admettent pour équation cartésienne $x-2y+2z+2=0$ et $2x-z+1=0$.
+}
+\end{center}
+\fincorrection
+\correction{005519}
+\textbullet~Déterminons un repère de $(D)$.
+
+\begin{center}
+$\left\{
+\begin{array}{l}
+x+y-3z+4=0\\
+2x-z+1=0
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y-3z=-x-4\\
+z=2x+1
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=5x-1\\
+z=2x+1
+\end{array}
+\right.$
+\end{center}
+Un repère de $(D)$ est $\left(A,\overrightarrow{u}\right)$ où $A(0,-1,1)$ et $\overrightarrow{u}(1,5,2)$.
+\textbullet~Puisque un système d'équations de $(D')$ est $\left\{
+\begin{array}{l}
+x=z-1\\
+y=z-1
+\end{array}
+\right.$, un repère de $(D')$ est $\left(A',\overrightarrow{u'}\right)$ où $A'(-1,-1,0)$ et $\overrightarrow{u'}(1,1,1)$.
+\textbullet~$\overrightarrow{u}\wedge\overrightarrow{u'}=\left(
+\begin{array}{c}
+1\\
+5\\
+2
+\end{array}
+\right)\wedge\left(
+\begin{array}{c}
+1\\
+1\\
+1
+\end{array}
+\right)=\left(
+\begin{array}{c}
+3\\
+1\\
+-4
+\end{array}
+\right)\neq\overrightarrow{0}$.
+\rule{0mm}{5mm}Puisque $\overrightarrow{u}$ et $\overrightarrow{u'}$ ne sont pas colinéaires, les droites $(D)$ et $(D')$ ne sont parallèles. Ceci assure l'unicité de la perpendiculaire commune  à $(D)$ et $(D')$.
+
+\textbullet~Un système d'équations de la perpendiculaire commune est 
+$\left\{
+\begin{array}{l}
+\left[\overrightarrow{AM},\overrightarrow{u},\overrightarrow{u}\wedge\overrightarrow{u'}\right]=0\\
+\rule{0mm}{6mm}\left[\overrightarrow{A'M},\overrightarrow{u'},\overrightarrow{u}\wedge\overrightarrow{u'}\right]=0
+\end{array}
+\right.$. Or,
+
+\begin{center}
+$\left[\overrightarrow{AM},\overrightarrow{u},\overrightarrow{u}\wedge\overrightarrow{u'}\right]=\left|
+\begin{array}{ccc}
+x&1&3\\
+y+1&5&1\\
+z-1&2&-4
+\end{array}
+\right|=-22x+10(y+1)-14(z-1)=-22x+10y-14z+24$,
+\end{center}
+et
+
+\begin{center}
+$\left[\overrightarrow{A'M},\overrightarrow{u'},\overrightarrow{u}\wedge\overrightarrow{u'}\right]=\left|
+\begin{array}{ccc}
+x+1&1&3\\
+y+1&1&1\\
+z&1&-4
+\end{array}
+\right|=-5(x+1)+7(y+1)-2z=-5x+7y-2z+2$.
+\end{center}
+Donc
+
+\begin{center}
+\shadowbox{
+\begin{tabular}{c}
+un système d'équations cartésienne de la perpendiculaire commune à $(D)$ et $(D')$ est\\
+$\left\{
+\begin{array}{l}
+11x-5y+7z=12\\
+5x-7y+2z=2
+\end{array}
+\right.$.
+\end{tabular}
+}
+\end{center}
+
+\fincorrection
+\correction{005520}
+Notons $p$ la projection orthogonale sur $(P)$.
+Un repère de $(D)$ est $\left(A,\overrightarrow{u}\right)$ où $A(0,-1,2)$ et $\overrightarrow{u}(1,2,-3)$. Un vecteur normal à $(P)$ est $\overrightarrow{n}(1,3,2)$. $\overrightarrow{u}$ et $\overrightarrow{n}$ ne sont pas colinéaires et donc $p(D)$ est une droite du plan $(P)$.
+Plus précisément, $p(D)$ est l'intersection du plan $(P)$ et du plan $(P')$ contenant $(D)$ et perpendiculaire à $(P)$. Un repère de $(P')$ est $\left(A,\overrightarrow{u},\overrightarrow{n}\right)$. Donc
+
+\begin{align*}\ensuremath
+M(x,y,z)\in(P')&\Leftrightarrow\left|
+\begin{array}{ccc}
+x&1&1\\
+y+1&2&3\\
+z-2&-3&2
+\end{array}
+\right|=0\Leftrightarrow13x-5(y+1)+(z-2)=0\Leftrightarrow13x-5y+z=7.
+\end{align*}
+
+\begin{center}
+\shadowbox{
+La projetée orthogonale de $(D)$ sur $(P)$ est la droite d'équations $\left\{
+\begin{array}{l}
+13x-5y+z=7\\
+x+3y+2z=6
+\end{array}
+\right.$.
+}
+\end{center}
+\fincorrection
+\correction{005521}
+
+
+
+%$$\includegraphics{../images/img005521-1}$$
+
+
+\textbf{Angle entre deux arêtes.} Les faces du tétraèdre $ABCD$ sont des triangles équilatéraux et donc l'angle entre deux arêtes est $60^\circ$.
+
+%$$\includegraphics{../images/img005521-2}$$
+
+\textbf{Angle entre une  arête et une face.} C'est l'angle $\widehat{CDI}$ de la figure ci-dessus.
+
+\begin{center}
+$\widehat{CDI}=\Arccos\left(\frac{HD}{DI}\right)=\Arccos\left(\frac{a/2}{a\sqrt{3}/2}\right)=\Arccos\left(\frac{1}{\sqrt{3}}\right)=54,7\ldots^\circ$.
+\end{center}
+\textbf{Angle entre deux faces.} C'est l'angle $\widehat{CID}$ de la figure ci-dessus.
+
+\begin{center}
+$\widehat{CID}=\pi-2\widehat{CDI}=2\left(\frac{\pi}{2}-\Arccos\left(\frac{1}{\sqrt{3}}\right)\right)=2\Arcsin\left(\frac{1}{\sqrt{3}}\right)=70,5\ldots^\circ$.
+\end{center}
+\fincorrection
+\correction{005522}
+Déterminons un repère de $(D)$.
+
+\begin{center}
+$\left\{
+\begin{array}{l}
+x-y-z=0\\
+x+2y-z=10
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+x-z=y\\
+y+2y=10
+\end{array}
+\right.\Leftrightarrow\left\{
+\begin{array}{l}
+y=\frac{10}{3}\\
+z=x-\frac{10}{3}
+\end{array}
+\right.$.
+\end{center}
+Un repère de $(D)$ est $\left(A,\overrightarrow{u}\right)$ où $A\left(\frac{10}{3},\frac{10}{3},0\right)$ et $\overrightarrow{u}(1,0,1)$.
+On sait alors que
+
+\begin{center}
+$d(O,(D))=\frac{\|\overrightarrow{AO}\wedge\overrightarrow{u}\|}{\|\overrightarrow{u}\|}=\frac{1}{\sqrt{2}}\times\frac{10}{3}\left\|
+\left(
+\begin{array}{c}
+1\\
+1\\
+0
+\end{array}
+\right)\wedge\left(
+\begin{array}{c}
+1\\
+0\\
+1
+\end{array}
+\right)\right\|=\frac{10}{\sqrt{6}}
+$.
+\end{center}
+\begin{center}
+\shadowbox{
+$d(O,(D))=\frac{10}{\sqrt{6}}$.
+}
+\end{center}
+\fincorrection
+
+
+\end{document}
+

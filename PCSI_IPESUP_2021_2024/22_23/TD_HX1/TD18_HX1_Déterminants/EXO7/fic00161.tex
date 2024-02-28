@@ -1,0 +1,988 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+
+\fiche{f00161, bodin, 2012/09/01} 
+
+\titre{Calculs de déterminants}
+
+Fiche corrigée par Arnaud Bodin
+
+\bigskip
+
+\exercice{6885, exo7, 2012/09/05}
+\video{ifWv3IZcAKU}
+% D'après #1134 barraud et #2755 tumpach
+\enonce{006885}{}
+  Calculer les déterminants des matrices suivantes :
+$$
+  \begin{pmatrix}
+    7 & 11 \\
+    -8 & 4
+  \end{pmatrix}
+\quad
+  \begin{pmatrix}
+    1 & 0 & 6 \\
+    3 & 4 & 15\\
+    5 & 6 & 21
+  \end{pmatrix}
+\quad
+  \begin{pmatrix}
+    1 & 0 & 2 \\
+    3 & 4 & 5  \\
+    5 & 6  & 7
+  \end{pmatrix}
+\quad
+  \begin{pmatrix}
+    1 & 0 & -1 \\
+    2 & 3 & 5  \\
+    4 & 1 & 3
+  \end{pmatrix}
+$$
+
+$$
+  \begin{pmatrix} 0 & 1 & 2 & 3\\ 1 & 2 & 3 & 0\\ 2 & 3 & 0 & 1\\3 & 0 & 1 & 2\end{pmatrix}
+  \begin{pmatrix} 0 & 1 & 1 & 0\\ 1 & 0 & 0 & 1\\ 1 & 1 & 0 & 1\\  1 & 1 & 1 &0\end{pmatrix}
+  \begin{pmatrix} 1 & 2 & 1 & 2\\ 1 & 3 & 1 & 3\\ 2 & 1 & 0& 6\\ 1 & 1& 1&7\end{pmatrix}
+$$
+
+
+\finenonce{006885}
+
+
+
+\finexercice
+\exercice{2753, tumpach, 2009/10/25}
+\video{d4ZZDotSUcw}
+\enonce{002753}{}
+\begin{enumerate}
+\item Calculer l'aire du parall\'elogramme construit sur les vecteurs 
+$\vec{u} = \left(\begin{array}{c}2\\3\end{array}\right)$ et 
+$\vec{v} = \left(\begin{array}{c}1\\4\end{array}\right)$.
+\item Calculer le volume du  parall\'el\'epip\`ede construit sur les vecteurs \\
+$\vec{u} = \left(\begin{array}{c}1\\2\\0\end{array}\right)$, 
+$\vec{v} = \left(\begin{array}{c}0\\1\\3\end{array}\right)$ et 
+$\vec{w} = \left(\begin{array}{c}1\\1\\1\end{array}\right)$.
+\item Montrer que le volume d'un parall\'el\'epip\`ede dont les sommets sont des points de 
+$\Rr^3$ \`a coefficients entiers est un nombre entier.
+\end{enumerate}
+\finenonce{002753}
+
+
+\finexercice
+\exercice{6886, exo7, 2012/09/05}
+\video{ibKDAQnNURg}
+
+% D'après #1121 ridde, #2756 tumpach, #1130 barraud; #1124 liousse
+\enonce{006886}{}  
+
+Calculer les déterminants des matrices suivantes :
+
+$$
+\begin{pmatrix}
+a&b&c\\c&a&b\\b&c&a
+\end{pmatrix}
+\begin{pmatrix}
+1&0&0&1 \\ 0&1&0&0 \\ 1&0&1&1 \\ 2&3&1&1
+\end{pmatrix}
+\begin{pmatrix}
+-1 & 1 & 1 & 1\\ 1 & -1 & 1 & 1\\ 1 & 1 & -1& 1\\ 1 & 1& 1&-1
+\end{pmatrix}
+\begin{pmatrix}
+10 & 0 & -5 & 15 \\ -2 & 7 & 3 & 0 \\ 8 & 14 & 0 & 2 \\ 0 & -21 & 1 & -1
+\end{pmatrix}
+$$
+ 
+$$
+\begin{pmatrix}
+a&a&b&0 \\  a&a&0&b \\  c&0&a&a \\ 0&c&a&a
+\end{pmatrix}
+\begin{pmatrix}
+1&0&3&0&0 \\ 0&1&0&3&0 \\ a&0&a&0&3 \\ b&a&0&a&0 \\ 0&b&0&0&a  
+\end{pmatrix}
+\begin{pmatrix}
+1&0&0&1&0 \\ 0&-4&3&0&0 \\ -3&0&0&-3&-2 \\ 0&1&7&0&0 \\ 4&0&0&7&1  
+\end{pmatrix}
+$$
+\finenonce{006886}
+
+
+
+
+\finexercice
+\exercice{6887, barraud, 2012/09/05}
+\video{D-wMy5vRJo4}
+% D'apres #1139 barraud
+\enonce{006887}{}
+  Calculer les déterminants suivant~:
+$$
+ \left\vert
+   \begin{matrix}
+     a_1   &a_2   &\cdots&a_n    \\
+     a_1   &a_1   &\ddots&\vdots \\
+     \vdots&\ddots&\ddots&a_2    \\
+     a_1   &\cdots&a_1   &a_1
+   \end{matrix}
+ \right\vert
+\qquad
+\left\vert
+\begin{matrix}
+  1    &      &        &1 \\
+  1    &1      & (0)   & \\
+       &\ddots &\ddots & \\  
+  (0)  &       &1      &1
+\end{matrix}
+\right\vert
+\qquad
+\left\vert
+\begin{matrix}
+    a+b  &    a   & \cdots &  a       \\
+     a   &   a+b  & \ddots & \vdots   \\
+  \vdots & \ddots & \ddots &  a       \\
+     a   & \cdots &    a   & a+b 
+\end{matrix}
+\right\vert
+$$
+\finenonce{006887}
+
+
+\finexercice\exercice{1143, barraud, 2003/09/01}
+\video{64911kcKNmg}
+\enonce{001143}{}
+  Soit $(a_{0},...,a_{n-1})\in\C^{n}$, $x\in\C$. Calculer
+ $$
+ \Delta_{n}=
+ \left|
+   \begin{matrix}
+   x &  0    &        & a_{0}   \\
+    -1 &\ddots &\ddots  &\vdots  \\
+      &\ddots &x      & a_{n-2} \\
+    0 &       & -1      & x+a_{n-1}
+   \end{matrix}
+\right|
+ $$
+\finenonce{001143}
+
+
+\finexercice
+\exercice{1145, barraud, 2003/09/01}
+\video{YveAcpVpK2g}
+\enonce{001145}{}
+Soit $a$ un réel.
+On note $\Delta_n$ le déterminant suivant : 
+$$
+\Delta_n = 
+\left\vert
+\begin{matrix}
+       a   &    0   & \cdots & 0      & n-1 \\
+       0   &    a   & \ddots & \vdots & \vdots \\
+    \vdots & \ddots & \ddots & 0      & 2 \\
+       0   & \cdots &   0    & a      & 1 \\
+      n-1  & \cdots &   2    & 1      & a
+\end{matrix}
+\right\vert
+$$
+\begin{enumerate}
+  \item Calculer $\Delta_n$ en fonction de $\Delta_{n-1}$.
+  \item Démontrer que : $\displaystyle \forall n\geq2\quad
+\Delta_n=a^n-a^{n-2}\sum_{i=1}^{n-1}{i^2}$.
+\end{enumerate}
+ 
+\finenonce{001145}
+
+
+\finexercice
+
+\exercice{2453, matexo1, 2002/02/01}
+\video{NwFtb_SYHA8}
+\enonce{002453}{Déterminant de Vandermonde}
+Montrer que
+$$\left|
+\begin{array}{ccccc}
+1 & t_1 & t_1^2 & \ldots & t_1^{n-1} \\
+1 & t_2 & t_2^2 & \ldots & t_2^{n-1} \\\
+\ldots&\ldots&\ldots& \ldots & \ldots \\
+1 & t_n & t_n^2 & \ldots & t_n^{n-1}
+\end{array}\right|
+ = \prod_{1 \le i < j \le n} (t_j - t_i) $$
+\finenonce{002453}
+
+
+\finexercice
+
+
+\finfiche
+
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\indication{006886}
+\begin{enumerate}
+  \item Règle de Sarrus.
+  \item Développer par rapport à la deuxième ligne.
+  \item Faire apparaître des $0$ sur la première colonne.
+  \item Utiliser la linéarité par rapports à chaque ligne et chaque colonne
+pour simplifier les coefficients.
+  \item Faire apparaître des $0$...
+  \item Faire apparaître des $0$...
+  \item Permuter les lignes et les colonnes pour faire apparaître une matrice triangulaire
+par blocs.
+\end{enumerate}
+\finindication
+\noindication
+\indication{001143}
+Développer par rapport à la dernière colonne.
+\finindication
+\indication{001145}
+Développer par rapport à la première colonne
+pour obtenir $\Delta_{n-1}$ et un autre déterminant facile à calculer
+en développant par rapport à sa première ligne.
+\finindication
+\indication{002453}
+Faire les opérations suivantes sur les colonnes
+$C_n \leftarrow C_n-t_n C_{n-1}$,
+puis $C_{n-1} \leftarrow C_{n-1}-t_n C_{n-2}$,...,
+$C_2 \leftarrow  C_2-t_nC_1$.
+Développer par rapport a la bonne ligne et reconnaître
+que l'on obtient le déterminant recherché mais au rang $n-1$.
+\finindication
+
+
+\newpage
+
+\correction{006885}
+\begin{enumerate}
+  \item  Le déterminant de la matrice $\begin{pmatrix} a & b \\ c & d \end{pmatrix}$
+est $\begin{vmatrix} a & b \\ c & d \end{vmatrix} =  ad-bc$.
+Donc $\begin{vmatrix} 7 & 11 \\ -8 & 4 \end{vmatrix} = 7 \times 4 - 11 \times (-8) = 116$.
+
+  \item Nous allons voir différentes méthodes pour calculer les déterminants.
+
+\textbf{Première méthode.} \emph{Règle de Sarrus.} 
+Pour le matrice $3\times 3$ il existe une formule qui permet de calculer directement le déterminant.
+$$\begin{vmatrix} 
+a_{11} & a_{12} & a_{13} \\   
+a_{21} & a_{22} & a_{23} \\  
+a_{31} & a_{32} & a_{33} \\ 
+  \end{vmatrix}
+= a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{21}a_{32}a_{13}
+- a_{13}a_{22}a_{31} - a_{11} a_{32}a_{23}  - a_{12}a_{21}a_{33}$$
+Donc 
+$$\begin{vmatrix}
+    1 & 0 & 6 \\
+    3 & 4 & 15\\
+    5 & 6 & 21
+  \end{vmatrix}
+= 1\times 4 \times 21 + 0 \times 15 \times 5 + 3\times 6 \times 6
+- 5\times 4\times 6 -6\times 15 \times 1 -3 \times 0 \times 21 = -18$$
+
+
+Attention ! La règle de Sarrus ne s'applique qu'aux matrices $3\times 3$.
+
+  \item \textbf{Deuxième méthode.} \emph{Se ramener à une matrice diagonale ou triangulaire.}
+
+
+Si dans une matrice on change un ligne $L_i$ en $L_i-\lambda L_j$ alors le déterminant reste le même.
+Même chose avec les colonnes. 
+
+$$ \begin{array}{l|ccc|}
+    _{L_1} & 1 & 0 & 2 \\
+    _{L_2} & 3 & 4 & 5\\
+    _{L_3} & 5 & 6  & 7
+  \end{array}
+= \begin{array}{l|ccc|}
+    & 1 & 0 & 2  \\
+    _{L_2 \leftarrow L_2-3L_1} & 0 & 4 & -1 \\
+    _{L_3 \leftarrow L_3-5L_1} & 0 & 6  & -3 \\
+  \end{array}
+= \begin{array}{l|ccc|}
+    & 1 & 0 & 2 \\
+    & 0 & 4 & -1 \\
+    _{L_3 \leftarrow L_3-\frac32 L_2} & 0 & 0  & -\frac32 \\
+  \end{array} = 1\times 4 \times (-\tfrac32) = -6
+$$
+On a utilisé le fait  que le déterminant d'une matrice diagonale (ou triangulaire) est le produit
+des coefficients sur la diagonale.
+
+
+  \item \textbf{Troisième méthode.} \emph{Développement par rapport à une ligne ou une colonne.}
+Nous allons développer par rapport à la deuxième colonne. 
+$$\begin{vmatrix}
+    1 & 0 & -1 \\
+    2 & 3 & 5  \\
+    4 & 1 & 3
+  \end{vmatrix}
+= (-0) \times \begin{vmatrix}
+    2 & 5  \\
+    4 & 3
+  \end{vmatrix}
++ (+3)\times \begin{vmatrix}
+    1 & -1 \\
+    4 & 3
+  \end{vmatrix}
++ (-1) \times \begin{vmatrix}
+    1 & -1 \\
+    2 & 5  \\
+  \end{vmatrix}
+= 0 + 3 \times 7 - 1  \times 7 = 14$$
+
+
+Bien souvent on commence par simplifier la matrice en faisant apparaître un maximum de $0$
+par les opérations élémentaires sur les lignes et les colonnes. Puis on développe en choisissant 
+la ligne ou la colonne qui a le plus de $0$.
+
+
+  \item 
+On fait apparaître des $0$ sur la première colonne puis on développe par rapport à cette colonne.
+$$\Delta = \begin{array}{l|cccc|} 
+_{L_1} & 0 & 1 & 2 & 3 \\ _{L_2} & 1 & 2 & 3 & 0 \\ _{L_3} & 2 & 3 & 0 & 1 \\ _{L_4} & 3 & 0 & 1 & 2 \end{array}
+=  \begin{array}{l|cccc|}& 0 & 1 & 2 & 3\\  & 1 & 2 & 3 & 0\\ _{L_3 \leftarrow L_3 -2 L_2} & 0 & -1 & -6 & 1\\ _{L_4\leftarrow L_4 -3 L_2} & 0 & -6 & -8 & 2\end{array}
+= - \begin{array}{|ccc|}  1 & 2 & 3\\  -1 & -6 & 1\\  -6 & -8 & 2\end{array}
+$$
+Pour calculer le déterminant $3\times 3$ on fait apparaître des $0$ sur la première colonne, puis on la développe.
+$$-\Delta = \begin{array}{l|ccc|} _{L_1} & 1 & 2 & 3\\ _{L_2} & -1 & -6 & 1\\ _{L_3} & -6 & -8 & 2\end{array}
+= \begin{array}{l|ccc|}  & 1 & 2 & 3\\ _{L_2\leftarrow L_2+L_1} & 0 & -4 & 4\\ _{L_3\leftarrow L_3+6L_1} & 0 & 4 & 20\end{array}
+=1\begin{vmatrix}-4 & 4 \\ 4 & 20\end{vmatrix} = -96
+$$
+Donc $\Delta=96$.
+
+
+  \item La matrice a déjà beaucoup de $0$ mais on peut en faire apparaître davantage sur la dernière colonne, puis on développe par rapport à la dernière colonne.
+$$
+\Delta'= \begin{array}{l|cccc|} 
+_{L_1} & 0 & 1 & 1 & 0\\ _{L_2} & 1 & 0 & 0 & 1\\ _{L_3} & 1 & 1 & 0 & 1\\  _{L_4} & 1 & 1 & 1 &0  
+\end{array}
+= \begin{array}{l|cccc|}  & 0 & 1 & 1 & 0\\  & 1 & 0 & 0 & 1\\ _{L_3 \leftarrow L_3-L_2} & 0 & 1 & 0 & 0 \\  & 1 & 1 & 1 &0  
+\end{array}
+= \begin{array}{|ccc|}  0 & 1 & 1 \\  0 & 1 & 0  \\   1 & 1 & 1  
+\end{array}
+$$
+On développe ce dernier déterminant par rapport à la première colonne :
+$$ \Delta'=\begin{array}{|ccc|}  0 & 1 & 1 \\  0 & 1 & 0  \\   1 & 1 & 1  
+\end{array} = 1 \times \begin{vmatrix} 1 & 1 \\ 1 & 0 \end{vmatrix} = -1$$
+
+  \item Toujours la même méthode, on fait apparaître des $0$ sur la première colonne, puis on développe par rapport à cette colonne.
+$$
+\Delta''= \begin{array}{l|cccc|} 
+_{L_1} & 1 & 2 & 1 & 2\\  _{L_2} &1 & 3 & 1 & 3\\  _{L_3} &2 & 1 & 0& 6\\  _{L_4} &1 & 1& 1&7\end{array}
+=\begin{array}{l|cccc|}  & 1 & 2 & 1 & 2\\  _{L_2\leftarrow L_2-L_1} &0 & 1 & 0 & 1\\  _{L_3\leftarrow L_3-2L_1} & 0 & -3 & -2 & 2 \\ 
+ _{L_4\leftarrow L_4-L_1} & 0 & -1 & 0 & 5 \end{array}
+= \begin{array}{|ccc|} 1 & 0 & 1\\-3 & -2 & 2 \\ -1 & 0 & 5 \end{array}
+$$
+On développe par rapport à la deuxième colonne :
+$$\Delta''= -2 \times \begin{vmatrix}  1 & 1 \\ -1 & 5 \end{vmatrix} = -12$$
+\end{enumerate}
+\fincorrection
+\correction{002753}
+\begin{enumerate}
+  \item L'aire $\mathcal{A}$ du parallélogramme construit sur les vecteurs $\vec{u} = \left(\begin{array}{c}a\\c\end{array}\right)$ et 
+$\vec{v} = \left(\begin{array}{c}b\\d\end{array}\right)$ est la valeur absolue du déterminant $\begin{vmatrix} a & b \\ c & d \end{vmatrix}$
+donc $\mathcal{A} =  |ad-bc|$.
+Ici on trouve 
+$\mathcal{A} = \text{abs} \begin{vmatrix} 2 & 1 \\ 3 & 4 \end{vmatrix} = + 5 $
+où $\text{abs}$ désigne la fonction valeur absolue.
+
+  \item Le volume  du  parall\'el\'epip\`ede construit sur trois vecteurs de $\Rr^3$ est la valeur absolue du déterminant
+de la matrice formée des trois vecteurs.
+Ici $$\mathcal{V} = \text{abs} \begin{vmatrix} 1 & 0 & 1 \\ 2 & 1 & 1 \\ 0 & 3 & 1\end{vmatrix} 
+= \text{abs} \Big(+1 \begin{vmatrix} 1 & 1 \\ 3 & 1\end{vmatrix}  + 1  \begin{vmatrix} 2 & 1 \\ 0 & 3 \end{vmatrix}
+\Big)= 4$$
+où l'on a développé par rapport à la première ligne.
+
+  \item Si un parall\'el\'epip\`ede est construit sur trois vecteurs de $\Rr^3$
+dont les coefficients sont des entiers alors le volume correspond au déterminant d'une matrice à coefficients
+entiers. C'est donc un entier.
+
+\end{enumerate}
+\fincorrection
+\correction{006886}
+\begin{enumerate}
+  \item Par la règle de Sarrus :
+$$\Delta_1 = \begin{vmatrix}
+a&b&c\\c&a&b\\b&c&a
+\end{vmatrix} 
+= a^3+b^3+c^3-3abc.$$
+
+  \item On développe par rapport à la seconde ligne qui ne contient qu'un coefficient non nul et on calcule le déterminant
+$3\times 3$ par la règle de Sarrus :
+$$\Delta_2 = \begin{vmatrix}
+1&0&0&1 \\ 0&1&0&0 \\ 1&0&1&1 \\ 2&3&1&1
+\end{vmatrix}
+= +1 \begin{vmatrix}
+1&0&1 \\ 1&1&1 \\ 2&1&1
+\end{vmatrix}
+= -1.$$
+
+  \item
+$$\Delta_3 = 
+\begin{array}{l|cccc|} 
+_{L_1} & -1 & 1 & 1 & 1 \\ _{L_2} & 1 & -1 & 1 & 1\\ _{L_3} & 1 & 1 & -1& 1\\ _{L_4} & 1 & 1& 1&-1
+\end{array}
+= \begin{array}{l|cccc|} 
+ & -1 & 1 & 1 & 1 \\ _{L_2\leftarrow L_2+L_1} & 0 & 0 & 2 & 2\\
+ _{L_3\leftarrow L_3+L_1} & 0 & 2 & 0 & 2 \\  _{L_4\leftarrow L_4+L_1} &0 & 2 & 2 & 0
+\end{array}
+$$
+On développe par rapport à la première colonne :
+$$\Delta_3 = (-1) \times \begin{array}{|ccc|} 
+  0 & 2 & 2\\  2 & 0 & 2 \\  2 & 2 & 0
+\end{array} = -16$$
+
+  \item Le déterminant est linéaire par rapport à chacune de ses lignes
+et aussi chacune de ses colonnes. 
+Par exemple les coefficients de la première ligne sont tous des multiples
+de $5$ donc 
+$$\Delta_4 = 
+\begin{vmatrix}
+10 & 0 & -5 & 15 \\ -2 & 7 & 3 & 0 \\ 8 & 14 & 0 & 2 \\ 0 & -21 & 1 & -1
+\end{vmatrix}
+= 5 \times \begin{vmatrix}
+2 & 0 & -1 & 3 \\ -2 & 7 & 3 & 0 \\ 8 & 14 & 0 & 2 \\ 0 & -21 & 1 & -1
+\end{vmatrix}
+$$
+On fait la même chose avec la troisième ligne :
+$$\Delta_4 = 5 \times 2 \times \begin{vmatrix}
+2 & 0 & -1 & 3 \\ -2 & 7 & 3 & 0 \\ 4 & 7 & 0 & 1 \\ 0 & -21 & 1 & -1
+\end{vmatrix}
+$$
+Et enfin les coefficients la première colonne sont des multiples de $2$ et 
+ceux de la troisième colonne sont des multiples de $7$ donc :
+$$\Delta_4 = 5 \times 2 \times 2 \times\begin{vmatrix}
+1 & 0 & -1 & 3 \\ -1 & 7 & 3 & 0 \\ 2 & 7 & 0 & 1 \\ 0 & -21 & 1 & -1
+\end{vmatrix}
+= 5 \times 2 \times 2 \times 7  \times
+\begin{vmatrix}
+1 & 0 & -1 & 3 \\ -1 & 1 & 3 & 0 \\ 2 & 1 & 0 & 1 \\ 0 & -3 & 1 & -1
+\end{vmatrix}
+$$
+
+Les coefficients sont plus raisonnables !
+On fait $L_2\leftarrow L_2+L_1$ et $L_3\leftarrow L_3-2L_1$
+pour obtenir :
+$$\Delta_4 = 140 \times 
+\begin{vmatrix}
+1 & 0 & -1 & 3 \\ 0 & 1 & 2 & 3 \\ 0 & 1 & 2 & -5 \\ 0 & -3 & 1 & -1
+\end{vmatrix}
+=140 \times \begin{vmatrix}
+ 1 & 2 & 3 \\  1 & 2 & -5 \\ -3 & 1 & -1
+\end{vmatrix}
+= 140 \times 56 = 7840$$
+
+
+  \item 
+$$\Delta_5 =\begin{array}{l|cccc|} 
+_{L_1} &a&a&b&0 \\ _{L_2} & a&a&0&b \\ _{L_3} & c&0&a&a \\ _{L_4} &0&c&a&a
+\end{array}
+= \begin{array}{l|cccc|} 
+ &a&a&b&0 \\ _{L_2\leftarrow L_2-L_1} & 0&0&-b&b \\  & c&0&a&a \\ _{L_4\leftarrow L_4-L_3} & -c&c&0&0
+\end{array}
+$$
+On fait ensuite les opérations suivantes sur les colonnes :
+$C_2 \leftarrow C_2+C_1$ et $C_3 \leftarrow C_3-C_4$ pour obtenir 
+une dernière ligne facile à développer :
+$$\Delta_5 
+= \begin{array}{|cccc|} 
+ a&2a&b&0 \\ 0&0&-2b&b \\  c&c&0&a \\ -c&0&0&0
+\end{array}
+= +c \times \begin{array}{|ccc|} 
+ 2a&b&0 \\ 0&-2b&b \\  c&0&a \\
+ \end{array} = bc(bc-4a^2)
+$$
+  \item
+On fait d'abord les opérations $C_1 \leftarrow C_1-C_3$ et $C_2 \leftarrow C_2-C_4$
+et on développe par rapport à la première ligne :
+$$\Delta_6 = \begin{vmatrix}
+1&0&3&0&0 \\ 0&1&0&3&0 \\ a&0&a&0&3 \\ b&a&0&a&0 \\ 0&b&0&0&a  
+\end{vmatrix}
+=
+\begin{vmatrix}
+-2&0&3&0&0 \\ 0&-2&0&3&0 \\ 0&0&a&0&3 \\ b&0&0&a&0 \\ 0&b&0&0&a  
+\end{vmatrix}
+= (-2) \times \begin{vmatrix}
+-2&0&3&0 \\ 0&a&0&3 \\ 0&0&a&0 \\ b&0&0&a  
+\end{vmatrix}
++ 3  \times \begin{vmatrix}
+0&-2&3&0 \\ 0&0&0&3 \\ b&0&a&0 \\ 0&b&0&a  
+\end{vmatrix}
+$$
+Le premier déterminant à calculer se développe par rapport à la deuxième colonne et le second déterminant
+par rapport à la première colonne :
+$$\Delta_6 = (-2)\times a \times 
+\begin{vmatrix}
+-2&3&0 \\  0&a&0 \\ b&0&a  
+\end{vmatrix}
++ 3  \times b \times 
+\begin{vmatrix}
+-2&3&0 \\ 0&0&3 \\ b&0&a  
+\end{vmatrix}=4a^3+27b^2$$
+
+  \item Nous allons permuter des lignes et des colonnes pour se ramener à une matrice diagonale par blocs.
+Souvenons-nous que lorsque l'on échange deux lignes (ou deux colonnes) alors le déterminant change de signe.
+Nous allons rassembler les zéros.
+On commence par échanger les colonnes $C_1$ et $C_3$ : $C_1\leftrightarrow C_3$ :
+$$\Delta_7=
+\begin{vmatrix}
+1&0&0&1&0 \\ 0&-4&3&0&0 \\ -3&0&0&-3&-2 \\ 0&1&7&0&0 \\ 4&0&0&7&1  
+\end{vmatrix}=
+- \begin{vmatrix}
+0&0&1&1&0 \\ 3&-4&0&0&0 \\ 0&0&-3&-3&-2 \\ 7&1&0&0&0 \\ 0&0&4&7&1  
+\end{vmatrix}$$
+Puis on échange les lignes $L_1$ et $L_4$ : $L_1\leftrightarrow L_4$ :
+$$\Delta_7=+\begin{array}{|ccccc|} 
+7&1&0&0&0 \\ 3&-4&0&0&0 \\  0&0&-3&-3&-2 \\ 0&0&1&1&0 \\ 0&0&4&7&1  
+\end{array}$$
+Notre matrice est sous la forme d'une matrice diagonale par blocs
+ et son déterminant est le produit des déterminants.
+$$\Delta_7=\begin{array}{|cc|ccc|} 
+7&1&0&0&0 \\ 3&-4&0&0&0 \\ \hline 0&0&-3&-3&-2 \\ 0&0&1&1&0 \\ 0&0&4&7&1  
+\end{array}
+= \begin{vmatrix}
+ 7&1 \\  3&-4 \\  
+  \end{vmatrix} \times
+\begin{vmatrix}
+ -3&-3&-2 \\  1&1&0 \\  4&7&1  
+  \end{vmatrix}
+= (-31)\times (-6) = 186
+$$
+
+\end{enumerate}
+\fincorrection
+\correction{006887}
+\begin{enumerate}
+  \item On retire la première colonne à toutes les autres colonnes 
+$$
+\Delta_1 =   \begin{vmatrix}
+     a_1   &a_2   &\cdots&a_n    \\
+     a_1   &a_1   &\ddots&\vdots \\
+     \vdots&\ddots&\ddots&a_2    \\
+     a_1   &\cdots&a_1   &a_1
+   \end{vmatrix}
+ =  \begin{vmatrix}
+     a_1   &a_2-a_1  & a_3-a_1 &\cdots&a_n -a_1   \\
+     a_1   &0  & &\ddots&\vdots \\
+     \vdots&\vdots &\ddots&\ddots&a_2-a_1    \\
+     a_1   &0&\cdots&0   & 0
+   \end{vmatrix}$$
+On développe par rapport à la dernière ligne :
+$$\Delta_1 = (-1)^{n-1}a_1 \begin{vmatrix}
+     a_2-a_1  &  &\cdots&a_n -a_1   \\
+     0  &\ddots &&\vdots \\
+     \vdots &\ddots&\ddots&    \\
+     0&\cdots&0   & a_2-a_1
+   \end{vmatrix}
+= (-1)^{n-1}a_1(a_2-a_1)^{n-1}
+$$
+Où l'on a reconnu le déterminant d'un matrice triangulaire supérieure.
+Donc 
+$$\Delta_1 = a_1(a_1-a_2)^{n-1}.$$
+
+
+  \item 
+On va transformer la matrice correspondante en une matrice triangulaire supérieure,
+on commence par remplacer la ligne $L_2$ par $L_2-L_1$ (on ne note que les coefficients non nuls) : 
+$$\Delta_2 =   \begin{vmatrix}
+  1 &      &    &   &+1 \\
+  1 &1      && &  \\
+   &1      &1  & &\\
+   & &\ddots &\ddots & \\
+  &  &       &1      &1
+\end{vmatrix}=
+ \begin{vmatrix}
+  1 &      &    &   &+1 \\
+  0 &1      && &  -1\\
+   &1      &1  & &\\
+   & &\ddots &\ddots & \\
+  &  &       &1      &1
+\end{vmatrix}
+$$
+Puis on remplace la ligne $L_3$ par $L_3-L_2$ (attention il s'agit de la nouvelle ligne $L_2$) et on 
+continue ainsi de suite jusqu'à $L_{n-1} \leftarrow L_{n-1}-L_{n-2}$ ($n$ est la taille de la matrice sous-jacente) :
+$$\Delta_2 =   \begin{vmatrix}
+  1 &      &    &   &&+1 \\
+  0 &1      && &  &-1\\
+    & 0      &1  & & &+1\\
+    & & 1      &1  & && \\
+   & &&\ddots &\ddots & \\
+  &  &       &&1      &1                 
+               \end{vmatrix}
+= \cdots = 
+\begin{vmatrix}
+  1 &      &    &   &&+1 \\
+  0 &1      && &  &-1\\
+    & 0      &1  & & &+1\\
+    & & \ddots      &\ddots  & &\vdots& \\
+   & &&0 &1 & (-1)^{n} \\
+  &  &       &&1      &1                 
+               \end{vmatrix}
+$$
+On fait attention pour le dernier remplacement $L_n \leftarrow L_n-L_{n-1}$ légèrement différent et qui conduit au déterminant d'une matrice triangulaire : :
+$$\Delta_2 = \begin{vmatrix}
+  1 &      &    &   &&+1 \\
+  0 &1      && &  &-1\\
+    & 0      &1  & & &+1\\
+    & & \ddots      &\ddots  & &\vdots& \\
+   & && &1 & (-1)^{n}\\
+  &  &       &&0      &1 - (-1)^{n}                 
+               \end{vmatrix}
+= 1 - (-1)^{n}.
+$$
+
+En conclusion $\Delta_2 = \begin{cases}
+                           0 & \text{ si $n$ est pair} \\
+                           2 & \text{ si $n$ est impair} \\                           
+                          \end{cases}$
+
+  \item
+On retire la colonne $C_1$ aux autres colonnes $C_i$ pour faire apparaître des $0$ :
+$$\Delta_3 = \begin{vmatrix}
+    a+b  &    a   & \cdots &  a       \\
+     a   &   a+b  & \ddots & \vdots   \\
+  \vdots & \ddots & \ddots &  a       \\
+     a   & \cdots &    a   & a+b 
+\end{vmatrix}
+= \begin{vmatrix}
+    a+b  &    -b   & & \cdots &  -b       \\
+     a   &   b     &   0 & \cdots        &  0   \\
+     a   &   0 &  \ddots & \ddots & \vdots   \\
+  \vdots & \ddots & \ddots &  b & 0       \\
+     a   &  0 & \cdots &    0   & b 
+\end{vmatrix}$$
+On remplace ensuite $L_1$ par $L_1+L_2+L_3+\cdots +L_n$
+(ou ce qui revient au même : faites les opérations 
+$L_1 \leftarrow L_1+L_2$ puis $L_1 \leftarrow L_1+L_3$,\ldots
+chacune de ces opérations fait apparaître un $0$ sur la première ligne)
+pour obtenir une matrice triangulaire inférieure :
+$$\Delta_3 = \begin{vmatrix}
+   na+b  &    0   & & \cdots &  0       \\
+     a   &   b     &   0 & \cdots        &  0   \\
+     a   &   0 &  \ddots & \ddots & \vdots   \\
+  \vdots & \ddots & \ddots &  b & 0       \\
+     a   &  0 & \cdots &    0   & b 
+\end{vmatrix}=(na+b)b^{n-1}.$$
+\end{enumerate}
+\fincorrection
+\correction{001143}
+
+
+Commençons par un travail préparatoire : le calcul du déterminant de taille $(n-1)\times (n-1)$ :
+{\footnotesize$$\Gamma_k = 
+\begin{array}{|cccc|cccc|} 
+x  &        &        &   &&&&\\
+-1 & x      &        &   &&&&\\
+   & \ddots & \ddots &   &&&&\\
+   &        & -1     & x &&&&\\ 
+   \hline
+&&&&  -1 & x      &       &   \\
+&&&&     &\ddots & \ddots      &   \\
+&&&&     & &\ddots & x  \\
+&&&&     &       &     & -1 \\
+\end{array}
+$$}
+où le bloc en haut à gauche est de taille $k\times k$.
+
+On développe, en commençant par la première ligne, puis encore une fois par la première ligne,...
+pour trouver que 
+$$\Gamma_k = x^k\times (-1)^{n-1-k}$$
+
+Autre méthode : on retrouve le même résultat en utilisant les déterminant par blocs :
+$$\begin{array}{|c|c|} 
+A & B \\
+\hline
+(0) & C \\ 
+\end{array}
+= \det A \times \det C$$
+
+\bigskip
+
+
+Revenons à l'exercice !
+
+Contrairement à l'habitude on développe par rapport à la colonne qui a le moins de $0$.
+En développant par rapport à la dernière colonne on obtient :
+{\footnotesize
+\begin{align*}
+ \Delta_{n}
+& =
+   \begin{vmatrix}
+   x &  0    &        & a_{0}   \\
+    -1 &\ddots &\ddots  &\vdots  \\
+      &\ddots &x      & a_{n-2} \\
+    0 &       & -1      & x+a_{n-1}
+   \end{vmatrix} \\
+ & = (-1)^{n-1} a_0 
+   \begin{vmatrix}
+   -1 &  x    &        &    \\
+     & -1 & x  &  \\
+      & & \ddots & \ddots       \\
+     &       &       & -1
+   \end{vmatrix}
++ (-1)^{n} a_1   
+\begin{vmatrix}
+   x & &&&\\
+   & -1 &  x    &        &    \\
+   &  & -1 & x  &  \\
+    &  & & \ddots & \ddots       \\
+    & &       &       & -1
+   \end{vmatrix} 
+\\
+& \quad + \cdots +
+(-1)^{2n-3} a_{n-2}   
+\begin{vmatrix}
+  x &      &    & &      \\
+    -1 &\ddots &  & & \\
+     &\ddots &\ddots & &  \\
+      && -1 & x    &   \\
+    &&&& -1 \\
+   \end{vmatrix}
++ (-1)^{2n-2}(x+a_{n-1})
+\begin{vmatrix}
+  x &      &    &       \\
+    -1 &\ddots &  &  \\
+     &\ddots &\ddots &   \\
+    &  & -1 & x       \\
+   \end{vmatrix} \\
+ & = \sum_{k=0}^{n-2} (-1)^{n-1+k} a_ k \times \Gamma_k \quad  + \quad (-1)^{2n-2}(x+a_{n-1})\Gamma_{n-1} \\
+ & = \sum_{k=0}^{n-2} (-1)^{n-1+k} a_ k \times x^k\times (-1)^{n-1-k} \quad + \quad (x+a_{n-1})x^{n-1}\\
+ & = a_0+a_1x+a_2x^2+\cdots + a_{n-1}x^{n-1} + x^n\\
+\end{align*}
+}
+\fincorrection
+\correction{001145}
+\begin{enumerate}
+  \item En développant par rapport à la première colonne on trouve la relation suivante :
+
+$$\Delta_n = a \Delta_{n-1} + (-1)^{n-1}(n-1) 
+\left\vert
+\begin{matrix}
+       0   &    0   & \cdots & 0      & n-1 \\
+       a   &    0   & \ddots & \vdots & \vdots \\
+    \vdots & \ddots & \ddots & 0      & 3 \\
+       0   & \cdots &   a    & 0      & 2 \\
+       0  & \cdots &   0    & a      & 1
+\end{matrix}
+\right\vert
+$$
+Notons $\delta$ ce dernier déterminant (dont la matrice est de taille $n-1\times n-1$). 
+On le calcule en développant par rapport à la première ligne 
+$$\delta  = (-1)^{n-2}(n-1)
+\left\vert
+\begin{matrix}
+       a   &    0   & \cdots      & 0 \\
+       0   &    a   & \ddots      & \vdots \\
+    \vdots & \ddots & \ddots      & 0  \\
+       0   & \cdots &   0         & a
+\end{matrix}\right\vert
+= (-1)^{n-2}(n-1) a^{n-2}.
+$$
+Donc 
+$$\Delta_n = a \Delta_{n-1} - a^{n-2}(n-1)^2.$$
+
+  \item Prouvons la formule 
+$$\Delta_n=a^n-a^{n-2}\sum_{i=1}^{n-1}{i^2}$$
+par récurrence sur $n\ge 2$.
+
+\begin{itemize}
+  \item \textbf{Initialisation.} Pour $n=2$,
+$\Delta_2=\begin{vmatrix}a&1\\1&a\end{vmatrix}=a^2-1$
+donc la formule est vraie.
+
+  \item \textbf{Hérédité.} Supposons la formule vraie vraie au rang $n-1$,
+c'est-à-dire $\Delta_{n-1}=a^{n-1}-a^{n-3}\sum_{i=1}^{n-2}{i^2}$.
+Calculons $\Delta_n$ :
+\begin{align*}
+\Delta_n 
+  & = a \Delta_{n-1} - a^{n-2}(n-1)^2  \quad \text{ par la première question } \\
+  & = a\Big(a^{n-1}-a^{n-3}\sum_{i=1}^{n-2}{i^2} \Big) - a^{n-2}(n-1)^2 \quad \text{ par l'hypothèse de récurrence} \\
+  & = a^n -  a^{n-2}\sum_{i=1}^{n-2}{i^2} - a^{n-2}(n-1)^2 \\
+  & = a^n-a^{n-2}\sum_{i=1}^{n-1}{i^2}
+\end{align*}
+La formule est donc vraie au rang $n$.
+
+  \item \textbf{Conclusion.} Par le principe de récurrence la formule est vraie
+pour tout entier $n\ge 2$.
+\end{itemize}
+
+\end{enumerate}
+\fincorrection
+\correction{002453}
+Notons $V_n$ le déterminant à calculer
+et $C_1,\ldots,C_n$ les colonnes de la matrice correspondante.
+
+Nous allons faire les opérations suivantes sur les colonnes
+en partant de la dernière colonne.
+$C_n$ est remplacée par $C_n-t_n C_{n-1}$,
+puis $C_{n-1}$ est remplacée par $C_{n-1}-t_n C_{n-2}$,...
+jusqu'à $C_2$ qui est remplacée par $C_2-t_nC_1$.
+On obtient donc
+
+$$V_n=\begin{vmatrix}
+1 & t_1 & t_1^2 & \ldots & t_1^{n-1} \\
+1 & t_2 & t_2^2 & \ldots & t_2^{n-1} \\\
+\ldots&\ldots&\ldots& \ldots & \ldots \\
+1 & t_n & t_n^2 & \ldots & t_n^{n-1}
+\end{vmatrix} 
+= 
+\begin{vmatrix}
+1 & t_1-t_n & t_1^2-t_1t_n & \ldots & t_1^{n-1}-t_1^{n-2}t_n \\
+1 & t_2-t_n & t_2^2-t_2t_n & \ldots & t_2^{n-1}-t_2^{n-2}t_n \\\
+\ldots&\ldots&\ldots& \ldots & \ldots \\
+1 & 0 & 0 & \ldots & 0
+\end{vmatrix}
+$$
+
+On développe par rapport à la dernière ligne et on écrit $t_i^k-t_i^{k-1}t_n=t_i^{k-1}(t_i-t_n)$ pour obtenir :
+$$V_n = (-1)^{n-1}\begin{vmatrix}
+ t_1-t_n & t_1(t_1-t_n) & \ldots & t_1^{n-2}(t_1-t_n) \\
+ t_2-t_n & t_2(t_2-t_n) & \ldots & t_2^{n-2}(t_2-t_n) \\\
+\ldots&\ldots& \ldots & \ldots \\
+ t_{n-1}-t_n & \ldots & \ldots & \ldots
+\end{vmatrix}$$
+
+Nous utilisons maintenant la linéarité du déterminant par rapport à chacune des lignes :
+on factorise la première ligne par $t_1-t_n$ ; la second par $t_2-t_n$,...
+On obtient 
+$$V_n = (-1)^{n-1}(t_1-t_n)(t_2-t_n)\cdots(t_{n-1}-t_n)
+\begin{vmatrix}
+1 & t_1 & t_1^2 & \ldots & t_1^{n-2} \\
+1 & t_2 & t_2^2 & \ldots & t_2^{n-2} \\\
+\ldots&\ldots&\ldots& \ldots & \ldots \\
+1 & t_{n-1} & t_{n-1}^2 & \ldots & t_{n-1}^{n-2}
+\end{vmatrix} 
+$$
+Donc $$V_n = V_{n-1}\prod_{j=1}^{n-1}(t_n-t_j).$$
+
+Si maintenant on suppose la formule connue pour $V_{n-1}$
+c'est-à-dire $V_{n-1}(t_1,\ldots,t_{n-1})
+= \prod_{1 \le i < j \le n-1} (t_j - t_i)$
+
+Alors on obtient par récurrence que
+$$V_n(t_1,\ldots,t_{n-1},t_n)= V_{n-1}(t_1,\ldots,t_{n-1})\prod_{j=1}^{n-1}(t_n-t_j) =  \prod_{1 \le i < j \le n} (t_j - t_i).$$
+
+\fincorrection
+
+
+\end{document}
+

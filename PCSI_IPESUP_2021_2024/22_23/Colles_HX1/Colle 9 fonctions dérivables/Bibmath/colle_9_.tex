@@ -1,0 +1,130 @@
+\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 330
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Hypothèse affaiblie
+\vskip0.2cm
+Soit $f$ définie sur un intervalle ouvert $I$ contenant $0$, continue sur $I$.
+On suppose en outre que $\lim_{x\to 0}\frac{f(2x)-f(x)}{x}=0$. Montrer que $f$ est dérivable en 0.
+
+
+
+% Exercice 350
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Calcul de dérivée $n$-ième
+\vskip0.2cm
+Soit $n\in\mathbb N$. Montrer que la dérivée d'ordre $n+1$ de $x^ne^{1/x}$ est
+$$\frac{(-1)^{n+1}}{x^{n+2}}e^{1/x}.$$
+
+
+% Exercice 346
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Polynômes de Laguerre
+\vskip0.2cm
+On pose, pour tout entier naturel $n$ et pour tout réel $x$, 
+$$h_n(x)=x^ne^{-x}\textrm{ et }L_n(x)=\frac{e^x}{n!}h_n^{(n)}(x).$$
+\begin{enumerate}
+\item Montrer que, pour tout entier $n$, $L_n$ est une fonction polynômiale. Préciser son degré et son coefficient dominant.
+\item Plus précisément, montrer que, pour tout $k\in\{0,\dots,n\}$, il existe $Q_k\in\mathbb R[X]$ tel que, pour tout $x\in\mathbb R$, on a
+$$h_n^{(k)}(x)=x^{n-k}e^{-x}Q_k(x).$$
+\end{enumerate}
+
+
+% Exercice 3067
+
+
+\vskip0.3cm\noindent\textsc{Exercice 4} - Limite de la dérivée et limite de $f(x)/x$.
+\vskip0.2cm
+Soit $f:]0,+\infty[\to\mathbb R$ une fonction dérivable et $\ell\in\mathbb R$ tel que $\lim_{x\to+\infty}f'(x)=\ell$. L'objectif de cet exercice est de démontrer que $\lim_{x\to+\infty}\frac{f(x)}x=\ell$. 
+\begin{enumerate}
+\item On suppose dans cette question que $\ell=0$. Soit $\veps>0$.
+\begin{enumerate}
+\item Montrer qu'il existe $A>0$ tel que, pour tout $x\geq A$, on a 
+$$\left|\frac{f(x)}{x}\right|\leq \left|\frac{f(A)}{x}\right|+\veps.$$
+\item En déduire le résultat dans ce cas.
+\end{enumerate}
+\item Démontrer le résultat dans le cas général.
+\item Réciproquement, est-il vrai que pour toute fonction dérivable $f:]0,+\infty[\to \mathbb R$ telle que $\lim_{x\to+\infty}\frac{f(x)}x=\ell$, alors on a $\lim_{x\to+\infty}f'(x)=\ell$?
+\end{enumerate}
+
+
+% Exercice 349
+
+
+\vskip0.3cm\noindent\textsc{Exercice 5} - Polynômes
+\vskip0.2cm
+Déterminer la dérivée d'ordre $n$ de la fonction $f$ définie par $f(x)=(x-a)^n (x-b)^n$
+($a,b$ sont des réels). En étudiant le cas $a=b$, trouver la valeur de $\sum_{k=0}^n \binom{n}{k}^2$.
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=26503
+\end{document}

@@ -1,0 +1,298 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\graphicspath{ {./images/} }
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+
+\title{Mathématiques 2 }
+
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+\begin{center}
+\includegraphics[max width=\textwidth]{2023_01_19_45b3a1b19db9481eeb56g-1}
+\end{center}
+
+CONCOURS CENTRALE·SUPÉLEC
+
+MP
+
+4 heures Calculatrice autorisée
+
+\section{Inégalités de Bernstein}
+Le but de ce problème est d'étudier les inégalités dites de Bernstein dans deux cadres différents.
+
+La première partie s'intéresse à la démonstration de l'inégalité de Bernstein pour les polynômes et à certaines applications. La deuxième partie introduit la notion de transformée de Fourier et permet d'établir une inégalité de Bernstein pour des fonctions dont la transformée de Fourier vérifie certaines propriétés.
+
+Les deux parties de ce sujet sont complètement indépendantes et peuvent être traitées dans l'ordre désiré.
+
+\section{Inégalité polynomiale de Bernstein et applications}
+Dans cette partie,
+
+\begin{itemize}
+  \item si $n \in \mathbb{N}$, on note $\mathbb{C}_{n}[X]$ le $\mathbb{C}$-espace vectoriel des polynômes à coefficients complexes de degré inférieur ou égal à $n$;
+
+  \item si $n \in \mathbb{N}^{*}$, on note $\mathcal{S}_{n}$ le $\mathbb{C}$-espace vectoriel des fonctions $f: \mathbb{R} \rightarrow \mathbb{C}$ vérifiant
+
+\end{itemize}
+
+$$
+\exists\left(a_{0}, \ldots, a_{n}\right) \in \mathbb{C}^{n+1}, \quad \exists\left(b_{1}, \ldots, b_{n}\right) \in \mathbb{C}^{n}, \quad \forall t \in \mathbb{R}, \quad f(t)=a_{0}+\sum_{k=1}^{n}\left(a_{k} \cos (k t)+b_{k} \sin (k t)\right) .
+$$
+
+On remarque que les éléments de $\mathcal{S}_{n}$ sont des fonctions bornées ;
+
+\begin{itemize}
+  \item si $I$ est un intervalle non vide de $\mathbb{R}$ et si $f$ est une fonction bornée de $I$ dans $\mathbb{C}$, on note
+\end{itemize}
+
+$$
+\|f\|_{L^{\infty(I)}}=\sup _{x \in I}|f(x)| .
+$$
+
+On admet que $f \mapsto\|f\|_{L^{\infty}(I)}$ définit une norme sur le $\mathbb{C}$-espace vectoriel des fonctions bornées de $I$ dans $\mathbb{C}$.
+
+\section{I.A - Polynômes de Tchebychev}
+On définit la suite de polynômes $\left(T_{n}\right)_{n \in \mathbb{N}}$ par $T_{0}=1, T_{1}=X$ et $\forall n \in \mathbb{N}, T_{n+2}=2 X T_{n+1}-T_{n}$.
+
+Q 1. Pour tout $n$ dans $\mathbb{N}$, déterminer le degré de $T_{n}$, puis montrer que $\left(T_{k}\right)_{0 \leqslant k \leqslant n}$ est une base de $\mathbb{C}_{n}[X]$.
+
+Q 2. Montrer que, pour tous $n \in \mathbb{N}$ et $\theta \in \mathbb{R}, T_{n}(\cos \theta)=\cos (n \theta)$.
+
+Q 3. En déduire que, pour tous $n \in \mathbb{N}$ et $P \in \mathbb{C}_{n}[X]$, la fonction de $\mathbb{R}$ dans $\mathbb{C}, \theta \mapsto P(\cos \theta)$ est dans $\mathcal{S}_{n}$.
+
+Q 4. Pour $n \in \mathbb{N}$, calculer $\left\|T_{n}\right\|_{L^{\infty}([-1,1])}$.
+
+Q 5. Montrer que, pour tout $n \in \mathbb{N},\left\|T_{n}^{\prime}\right\|_{L^{\infty}([-1,1])}=n^{2}$.
+
+On pourra commencer par établir que, pour tous $n \in \mathbb{N}$ et $\theta \in \mathbb{R},|\sin (n \theta)| \leqslant n|\sin \theta|$.
+
+\section{I.B - Inégalité de Bernstein}
+Soit $n$ un entier naturel non nul.
+
+Q 6. Soit $A \in \mathbb{C}_{2 n}[X]$, scindé à racines simples, et $\left(\alpha_{1}, \ldots, \alpha_{2 n}\right)$ ses racines. Montrer que
+
+$$
+\forall B \in \mathbb{C}_{2 n-1}[X], \quad B(X)=\sum_{k=1}^{2 n} B\left(\alpha_{k}\right) \frac{A(X)}{\left(X-\alpha_{k}\right) A^{\prime}\left(\alpha_{k}\right)} .
+$$
+
+Soit $P$ dans $\mathbb{C}_{2 n}[X]$, et, pour tout $\lambda \in \mathbb{C}, P_{\lambda}(X)=P(\lambda X)-P(\lambda)$.
+
+Q 7. Si $\lambda \in \mathbb{C}$, vérifier que $X-1$ divise $P_{\lambda}$.
+
+Pour tout $\lambda$ dans $\mathbb{C}$, on note $Q_{\lambda}$ le quotient de $P_{\lambda} \operatorname{par} X-1$ :
+
+$$
+Q_{\lambda}(X)=\frac{P(\lambda X)-P(\lambda)}{X-1} \in \mathbb{C}_{2 n-1}[X] .
+$$
+
+Q 8. Montrer que, pour tout $\lambda$ dans $\mathbb{C}, Q_{\lambda}(1)=\lambda P^{\prime}(\lambda)$.
+
+On considère le polynôme $R(X)=X^{2 n}+1$. Pour $k$ dans $\llbracket 1,2 n \rrbracket$, on note $\varphi_{k}=\frac{\pi}{2 n}+\frac{k \pi}{n}$ et $\omega_{k}=\mathrm{e}^{\mathrm{i} \varphi_{k}}$.
+
+Q 9. Montrer que
+
+$$
+R(X)=\prod_{k=1}^{2 n}\left(X-\omega_{k}\right) .
+$$
+
+Q 10. À l'aide de la formule (I.1), montrer que
+
+$$
+\forall \lambda \in \mathbb{C}, \quad Q_{\lambda}(X)=-\frac{1}{2 n} \sum_{k=1}^{2 n} \frac{P\left(\lambda \omega_{k}\right)-P(\lambda)}{\omega_{k}-1} \frac{X^{2 n}+1}{X-\omega_{k}} \omega_{k}
+$$
+
+puis en déduire que
+
+$$
+\forall \lambda \in \mathbb{C}, \quad \lambda P^{\prime}(\lambda)=\frac{1}{2 n} \sum_{k=1}^{2 n} P\left(\lambda \omega_{k}\right) \frac{2 \omega_{k}}{\left(1-\omega_{k}\right)^{2}}-\frac{P(\lambda)}{2 n} \sum_{k=1}^{2 n} \frac{2 \omega_{k}}{\left(1-\omega_{k}\right)^{2}} .
+$$
+
+Q 11. Montrer que
+
+$$
+\forall \lambda \in \mathbb{C}, \quad \lambda P^{\prime}(\lambda)=\frac{1}{2 n} \sum_{k=1}^{2 n} P\left(\lambda \omega_{k}\right) \frac{2 \omega_{k}}{\left(1-\omega_{k}\right)^{2}}+n P(\lambda) .
+$$
+
+On pourra appliquer l'égalité (I.2) au polynôme $X^{2 n}$.
+
+Soit maintenant $f$ dans $\mathcal{S}_{n}$.
+
+Q 12. Montrer qu'il existe $U \in \mathbb{C}_{2 n}[X]$ tel que, pour tout $\theta \in \mathbb{R}, f(\theta)=\mathrm{e}^{-\mathrm{i} n \theta} U\left(\mathrm{e}^{\mathrm{i} \theta}\right)$.
+
+Q 13. Vérifier que, pour tout $k \in \llbracket 1,2 n \rrbracket, \frac{2 \omega_{k}}{\left(1-\omega_{k}\right)^{2}}=\frac{-1}{2 \sin \left(\varphi_{k} / 2\right)^{2}}$ et déduire des questions 11 et 12 que
+
+$$
+\forall \theta \in \mathbb{R}, \quad f^{\prime}(\theta)=\frac{1}{2 n} \sum_{k=1}^{2 n} f\left(\theta+\varphi_{k}\right) \frac{(-1)^{k}}{2 \sin \left(\varphi_{k} / 2\right)^{2}} .
+$$
+
+Q 14. En déduire que
+
+$$
+\forall \theta \in \mathbb{R}, \quad\left|f^{\prime}(\theta)\right| \leqslant n\|f\|_{L^{\infty}(\mathbb{R})} .
+$$
+
+\section{C - Quelques conséquences de l'inégalité (I.4)}
+Soit $n$ un entier naturel non nul.
+
+Q 15. Déduire des questions 3 et 14 que
+
+$$
+\forall P \in \mathbb{C}_{n}[X], \quad \forall x \in[-1,1], \quad\left|P^{\prime}(x) \sqrt{1-x^{2}}\right| \leqslant n\|P\|_{L^{\infty}([-1,1])} .
+$$
+
+Q 16. Montrer que
+
+$$
+\forall Q \in \mathbb{C}_{n-1}[X], \quad|Q(1)| \leqslant n \sup _{-1 \leqslant x \leqslant 1}\left|Q(x) \sqrt{1-x^{2}}\right| .
+$$
+
+On pourra considérer $f: \theta \mapsto Q(\cos \theta) \sin \theta$ et vérifier que $f \in \mathcal{S}_{n}$.
+
+Q 17. Soit $R \in \mathbb{C}_{n-1}[X]$ et $t \in[-1,1]$. Montrer que
+
+$$
+|R(t)| \leqslant n \sup _{-1 \leqslant x \leqslant 1}\left|R(x) \sqrt{1-x^{2}}\right| .
+$$
+
+On pourra considérer le polynôme $S_{t}(X)=R(t X)$.
+
+Q 18. En déduire que, pour tout $P$ dans $\mathbb{C}_{n}[X]$
+
+$$
+\left\|P^{\prime}\right\|_{L^{\infty}([-1,1])} \leqslant n^{2}\|P\|_{L^{\infty}([-1,1])} .
+$$
+
+Q 19. Peut-il y avoir égalité dans l'inégalité précédente?
+
+\section{Inégalités de Bernstein et transformée de Fourier}
+Dans cette partie,
+
+\begin{itemize}
+  \item pour $k \in \mathbb{N}$, on dit qu'une fonction $f$ de $\mathbb{R}$ dans $\mathbb{C}$ est de classe $\mathcal{C}^{k}$ si elle est $k$ fois dérivable sur $\mathbb{R}$, de dérivée $k$-ième continue sur $\mathbb{R}$ (si $k=0, f$ est continue) ; on dit que $f$ est $\mathcal{C}^{\infty}$ si $f$ est $\mathcal{C}^{k}$ pour tout $k \in \mathbb{N}$. On note $\mathcal{C}^{k}(\mathbb{R})$ (respectivement $\mathcal{C}^{\infty}(\mathbb{R})$ ) l'ensemble des fonctions de classe $\mathcal{C}^{k}$ (respectivement $\mathcal{C}^{\infty}$ ) sur $\mathbb{R}$;
+
+  \item on note $L^{1}(\mathbb{R})$ l'ensemble des fonctions de $\mathbb{R}$ dans $\mathbb{C}$ continues et intégrables sur $\mathbb{R}$;
+
+  \item pour $f \in L^{1}(\mathbb{R})$, on note $\|f\|_{1}=\int_{-\infty}^{+\infty}|f(t)| \mathrm{d} t$;
+
+  \item on note $L^{\infty}(\mathbb{R})$ l'ensemble des fonctions de $\mathbb{R}$ dans $\mathbb{C}$ continues et bornées sur $\mathbb{R}$;
+
+  \item pour $f \in L^{\infty}(\mathbb{R})$, on note $\|f\|_{\infty}=\sup _{x \in \mathbb{R}}|f(x)|$.
+
+\end{itemize}
+
+On admet que $L^{1}(\mathbb{R}), L^{\infty}(\mathbb{R})$ et $\mathcal{C}^{k}(\mathbb{R})(k \in \mathbb{N})$ sont des sous-espaces vectoriels de $\mathbb{C}^{\mathbb{R}}$. On admet également que $f \mapsto\|f\|_{1}$ définit une norme sur $L^{1}(\mathbb{R})$ et que $f \mapsto\|f\|_{\infty}$ définit une norme sur $L^{\infty}(\mathbb{R})$. On dispose ainsi des espaces vectoriels normés $\left(L^{1}(\mathbb{R}),\|\cdot\|_{1}\right)$ et $\left(L^{\infty}(\mathbb{R}),\|\cdot\|_{\infty}\right)$.
+
+\section{II.A - Transformée de Fourier d'une fonction}
+Soit $f \in L^{1}(\mathbb{R})$. On appelle transformée de Fourier de $f$ et on note $\hat{f}$ la fonction de $\mathbb{R}$ dans $\mathbb{C}$ telle que
+
+$$
+\forall \xi \in \mathbb{R}, \quad \hat{f}(\xi)=\int_{-\infty}^{+\infty} f(x) \mathrm{e}^{-\mathrm{i} x \xi} \mathrm{d} x .
+$$
+
+Q 20. Montrer que, pour toute fonction $f \in L^{1}(\mathbb{R}), \hat{f}$ est définie et continue sur $\mathbb{R}$.
+
+Q 21. Montrer que l'application $f \mapsto \hat{f}$ est une application linéaire continue de l'espace vectoriel normé $\left(L^{1}(\mathbb{R}),\|\cdot\|_{1}\right)$ dans l'espace vectoriel normé $\left(L^{\infty}(\mathbb{R}),\|\cdot\|_{\infty}\right)$.
+
+Q 22. Soit $f \in L^{1}(\mathbb{R}), \lambda \in \mathbb{R}_{+}^{*}$ et soit $g$ la fonction de $\mathbb{R}$ dans $\mathbb{C}$ telle que $g(x)=f(\lambda x)$ pour tout réel $x$. Montrer que $g \in L^{1}(\mathbb{R})$ et, pour tout réel $\xi$, exprimer $\hat{g}(\xi)$ à l'aide de $\hat{f}$, de $\xi$ et de $\lambda$.
+
+\section{II.B - Produit de convolution}
+Si $f$ et $g$ sont deux fonctions continues de $\mathbb{R}$ dans $\mathbb{C}$ telles que, pour tout $x \in \mathbb{R}$, la fonction $t \mapsto f(t) g(x-t)$ soit intégrable sur $\mathbb{R}$, on appelle produit de convolution de $f$ et $g$, et on note $f * g$, la fonction de $\mathbb{R}$ dans $\mathbb{C}$ telle que
+
+$$
+\forall x \in \mathbb{R}, \quad(f * g)(x)=\int_{-\infty}^{+\infty} f(t) g(x-t) \mathrm{d} t .
+$$
+
+On suppose désormais et jusqu'à la fin de la sous-partie II.B que $f \in L^{1}(\mathbb{R})$ et $g \in L^{\infty}(\mathbb{R})$.
+
+Q 23. Montrer que $f * g$ est définie sur $\mathbb{R}$ et que
+
+$$
+\forall x \in \mathbb{R}, \quad(f * g)(x)=\int_{-\infty}^{+\infty} f(x-t) g(t) \mathrm{d} t=(g * f)(x) .
+$$
+
+Q 24. Montrer que $f * g$ est bornée et que $\|f * g\|_{\infty} \leqslant\|f\|_{1}\|g\|_{\infty}$.
+
+Q 25. Soit $k \in \mathbb{N}$. Montrer que, si $g$ est de classe $\mathcal{C}^{k}$ et si les fonctions $g^{(j)}$ sont bornées pour $j \in \llbracket 0, k \rrbracket$, alors $f * g$ est de classe $\mathcal{C}^{k}$ et $(f * g)^{(k)}=f *\left(g^{(k)}\right)$.
+
+Q 26. On suppose toujours que $f \in L^{1}(\mathbb{R})$ et $g \in L^{\infty}(\mathbb{R})$ et on suppose de plus que $g \in L^{1}(\mathbb{R})$ et $f * g \in L^{1}(\mathbb{R})$. En admettant que, pour tout $\xi$ réel,
+
+$$
+\int_{-\infty}^{+\infty}\left(\int_{-\infty}^{+\infty} \mathrm{e}^{-\mathrm{i} x \xi} f(t) g(x-t) \mathrm{d} t\right) \mathrm{d} x \quad \text { et } \int_{-\infty}^{+\infty}\left(\int_{-\infty}^{+\infty} \mathrm{e}^{-\mathrm{i} x \xi} f(t) g(x-t) \mathrm{d} x\right) \mathrm{d} t
+$$
+
+existent et sont égales, montrer que $\widehat{f * g}=\hat{f} \hat{g}$.
+
+\section{II.C - Introduction d'une fonction plateau}
+On cherche dans cette sous-partie à construire une fonction réelle positive $\rho$, définie et de classe $\mathcal{C}^{\infty}$ sur $\mathbb{R}$, telle que $\rho(t)=1$ pour tout $t \in[-1,1]$ et $\rho(t)=0$ pour tout $t \in \mathbb{R} \backslash[-2,2]$.
+
+Soit $\varphi$ la fonction définie sur $\mathbb{R}$ par
+
+$$
+\forall t \in \mathbb{R}, \quad \varphi(t)= \begin{cases}0 & \text { si } t \leqslant 0 \\ \mathrm{e}^{-1 / t} & \text { sinon. }\end{cases}
+$$
+
+Q 27. Montrer que $\varphi$ est de classe $\mathcal{C}^{\infty}$ sur $\mathbb{R}$.
+
+On pourra montrer que : $\forall k \in \mathbb{N}, \exists P_{k} \in \mathbb{R}[X], \forall t>0, \varphi^{(k)}(t)=P_{k}(1 / t) \mathrm{e}^{-1 / t}$.
+
+Soit $\psi$ la fonction définie sur $\mathbb{R}$ par
+
+$$
+\forall t \in \mathbb{R}, \quad \psi(t)= \begin{cases}0 & \text { si } t \notin]-1,1[, \\ \mathrm{e}^{1 /\left(t^{2}-1\right)} & \text { sinon. }\end{cases}
+$$
+
+Q 28. Montrer, en l'exprimant à l'aide de $\varphi$, que $\psi$ est de classe $\mathcal{C}^{\infty}$.
+
+Q 29. Soit $\theta$ l'unique primitive de $\psi$ s'annulant en 0 . Montrer que $\theta$ est de classe $\mathcal{C}^{\infty}$, constante sur $\left.]-\infty,-1\right]$ (on note $A$ cette constante) et constante sur $[1,+\infty[$ (on note $B$ cette constante). Vérifier que $A \neq B$.
+
+Q 30. Construire alors une fonction $\rho \in \mathcal{C}^{\infty}(\mathbb{R})$, constante égale à 1 sur $[-1,1]$ et constante égale à 0 sur $\mathbb{R} \backslash[-2,2]$.
+
+\section{II.D - Inégalités de Bernstein}
+On admet les formules suivantes, dites formules d'inversion de Fourier :
+
+\begin{itemize}
+  \item si $f \in L^{1}(\mathbb{R})$ et si $\hat{f} \in L^{1}(\mathbb{R})$, alors, pour tout $x \in \mathbb{R}, f(x)=\frac{1}{2 \pi} \int_{-\infty}^{+\infty} \mathrm{e}^{\mathrm{i} x \xi} \hat{f}(\xi) \mathrm{d} \xi$;
+
+  \item si $\alpha \in L^{1}(\mathbb{R})$, si $a$ est la fonction de $\mathbb{R}$ dans $\mathbb{C}: x \mapsto \frac{1}{2 \pi} \int_{-\infty}^{+\infty} \mathrm{e}^{\mathrm{i} x \xi} \alpha(\xi) \mathrm{d} \xi$, et si $a \in L^{1}(\mathbb{R})$, alors $\alpha=\hat{a}$.
+
+\end{itemize}
+
+On remarque que ces résultats permettent d'affirmer que, si $f$ et $g$ sont deux fonctions continues telles que $f, g$, $\hat{f}$ et $\hat{g}$ sont intégrables et si $\hat{f}=\hat{g}$, alors $f=g$.
+
+On considère toujours la fonction $\rho$ définie à la question 30 .
+
+Soit $r$ la fonction de $\mathbb{R}$ dans $\mathbb{C}$ telle que, pour tout réel $x$,
+
+$$
+r(x)=\frac{1}{2 \pi} \int_{-\infty}^{+\infty} \mathrm{e}^{\mathrm{i} x \xi} \rho(\xi) \mathrm{d} \xi .
+$$
+
+Q 31. Montrer que $r$ est dérivable sur $\mathbb{R}$ et donner une expression de sa fonction dérivée (faisant éventuellement intervenir une intégrale).
+
+Q 32. Montrer que $x \mapsto x^{2} r(x)$ est bornée sur $\mathbb{R}$ et en déduire que $r$ est intégrable et bornée sur $\mathbb{R}$.
+
+On admet qu'en utilisant la même méthode, on montre que $r^{\prime}$ est intégrable et bornée sur $\mathbb{R}$.
+
+Soit $\lambda>0$ et soit $f \in L^{1}(\mathbb{R}) \cap \mathcal{C}^{1}(\mathbb{R})$ telle que $\hat{f} \in L^{1}(\mathbb{R})$ et telle que $\hat{f}$ soit nulle en dehors du segment $[-\lambda, \lambda]$. On note $r_{\lambda}$ la fonction de $\mathbb{R}$ dans $\mathbb{C}$ telle que $r_{\lambda}(x)=r(\lambda x)$ pour tout réel $x$.
+
+Q 33. On admet que $f * r_{\lambda}$ est intégrable. Montrer que $f=\lambda f * r_{\lambda}$.
+
+Q 34. En déduire que, si $f \in L^{\infty}(\mathbb{R})$, il existe une constante $C \in \mathbb{R}_{+}^{\star}$, indépendante de $\lambda$ et de $f$, telle que
+
+$$
+\left\|f^{\prime}\right\|_{\infty} \leqslant C \lambda\|f\|_{\infty} .
+$$
+
+
+\end{document}

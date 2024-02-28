@@ -1,0 +1,216 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor,multicol}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	
+	
+	\begin{center}
+		\Large \sc colle 11 = espaces vectoriels et dimensions des espaces vectoriels
+	\end{center}
+
+
+
+
+\section*{Espaces vectoriels}
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\
+		Parmi les ensembles suivants reconna\^\i tre ceux qui sont des
+		sous-espaces vectoriels.(Justifier)\\[0.25cm]
+		
+		$ E_1 =\left\{ (x,y,z)\in \R^3 \mid x+y+a=0 \hbox{ et }  x +3az =0\right\}$\\[0.2cm]
+		
+		$ E_2 =\left\{f \in {\mathcal F}(\R,\R) \mid f(1)=0\right\}$\\[0.2cm]
+		
+		$ E_3 =\left\{f \in {\mathcal F}(\R,\R) \mid  f(0)=1\right\}$\\[0.2cm]
+		
+		$E_4 =\left\{(x,y)\in \R^2 \mid x + \alpha y +1 \geqslant 0\right\}$	
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+
+	
+	\begin{exo}\quad\\
+		Soit $E$ un espace vectoriel.
+	\begin{enumerate}
+		\item Soient $F$ et $G$ deux sous-espaces de $E$.\\ Montrer que:\\[0.25cm]
+		$F \cup G \hbox{ est un sous-espace vectoriel de } E$\\ $ \Longleftrightarrow \quad F\subset G \hbox{ ou } G \subset F.$\\[0.25cm]
+		\item Soit $H$ un troisi\`eme sous-espace vectoriel de $E$. Prouver
+		que
+		$$G \subset F \Longrightarrow F\cap(G+H) = G + (F\cap H) .$$
+	\end{enumerate}
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+		\begin{exo}\quad\\
+			Soient $v_1=(0,1,-2,1),
+		v_2=(1,0,2,-1), v_3=(3,2,2,-1),$ $ v_4 = (0,0,1,0)$ et
+		$v_5=(0,0,0,1)$ des vecteurs de $\R^4$.\\[0.25cm]  Les propositions
+		suivantes sont-elles vraies ou fausses ?  Justifier votre r\'eponse.
+		\begin{enumerate}
+			\item$\text{Vect}\{ v_1, v_2, v_3 \}=\text{Vect}\{(1,1,0,0),(-1,1,-4,2)\}$
+			\item $(1,1,0,0) \in \text{Vect}\{ v_1, v_2 \} \cap \text{Vect}\{ v_2, v_3, v_4 \}$.
+			\item $\dim(\text{Vect}\{ v_1, v_2 \} \cap \text{Vect}\{ v_2, v_3, v_4 \})=1$ (c'est-à-dire c'est une droite vectorielle).
+			\item $\text{Vect}\{ v_1, v_2 \} + \text{Vect}\{ v_2, v_3, v_4 \}= \R^4$.
+			\item $\text{Vect}\{ v_4, v_5 \}$ est un sous-espace vectoriel 
+			suppl\'ementaire de $\text{Vect}\{ v_1, v_2, v_3 \}$ dans $\R^4$.
+		\end{enumerate}
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+		\begin{exo}\quad\\
+			Démontrer que les familles suivantes sont libres\\ dans $\mathcal{F}(\R,\R)$:\\[0.25cm]
+			\begin{enumerate}
+				\item $\left(x\longmapsto e^{ax}\right)_{a\in\R}$;\\[0.25cm]
+				\item $\left(x\longmapsto |x-a|\right)_{a\in\R}$;\\[0.25cm]
+				\item $\left(x\longmapsto \cos(ax)\right)_{a\in\R}$;\\[0.25cm]
+				\item $\left(x\longmapsto (\sin x)^n\right)_{n\in\N}$;\\[0.25cm]
+			\end{enumerate} 
+		%Soit $\alpha \in \R$ et $f_\alpha : \R \to \R$, $x\mapsto e^{\alpha x}$.
+		%Montrer que la famille $(f_\alpha)_{\alpha \in \R}$  est libre.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+	
+		
+	
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+	\begin{exo}\quad\\
+		\begin{enumerate}
+			\item Soient $v_1=(2,1,4)$, $v_2=(1,-1,2)$ et $v_3=(3,3,6)$ des vecteurs de $\R^3$, 
+			trouver trois r\'eels non tous nuls $\alpha,\beta,\gamma$ tels que $\alpha v_1+ \beta v_2 + \gamma v_3=0$.
+			
+			\item On considère deux plans vectoriels
+			$$P_1=\{(x,y,z) \in \R^3 \mid x-y+z=0\}$$
+			$$P_2=\{(x,y,z) \in \R^3 \mid x-y=0\}$$
+			trouver un vecteur directeur de la droite $D=P_1\cap P_2$ ainsi qu'une \'equation param\'etr\'ee.
+		\end{enumerate}
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+\begin{exo}\quad\\
+	Soient $E = \mathcal{D} (\R, \R)$ l'espace des fonctions dérivables
+	et $F = \left\{ f \in E \mid f (0) = f' (0) = 0\right\}$.\\[0.25cm] Montrer que $F$
+	est un sous-espace vectoriel de $E$ et d\'eterminer un
+	suppl\'ementaire de $F$ dans $E$.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+	Pour $E=\R^4$, dire si les familles de vecteurs suivantes peuvent être complétées en une base de $E$. Si oui, le faire. 
+	\begin{enumerate}
+		\item $(u,v,w)$ avec $u=(1,2,-1,0)$, $v=(0,1,-4,1)$ et $w=(2,5,-6,1)$;
+		\item $(u,v,w)$ avec $u=(1,0,2,3)$, $v=(0,1,2,3)$ et $w=(1,2,0,3)$;
+	\end{enumerate}
+
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\begin{exo}\quad\\
+	Soit $\mathbf{E}$ l'ensemble des fonctions continues sur $[-1,1]$ qui sont affines sur $[-1,0]$ et sur $[0,1]$. Démontrer que $\mathbf{E}$ est un espace vectoriel et en donner une base.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+	\begin{exo}\quad\\
+	Soit $$E=\big\{(u_{n})_{n\in
+		\N}\in \R^{\N}\ |\ (u_{n})_{n} \text{ converge }\big\}.$$
+	Montrer que
+	l'ensemble des suites constantes et l'ensemble des suites convergeant
+	vers $0$ sont des sous-espaces suppl\'{e}mentaires dans $E.$
+		
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+		\begin{exo}\quad\\
+	Soit $\mathbf{E}$ un espace vectoriel dans lequel tout sous-espace vectoriel admet un supplémentaire. Soit $\mathbf{F}$ un sous-espace vectoriel propre de $\mathbf{E}$ (c'est-à-dire que $\mathbf{F}\neq \{0\}$ et que $\mathbf{E}\neq \mathbf{F}$). Démontrer que $\mathbf{F}$ admet au moins deux supplémentaires distincts.
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+	
+	\end{minipage}
+\end{minipage}
+\end{document}

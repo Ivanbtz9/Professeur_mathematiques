@@ -1,0 +1,241 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace}
+\usepackage{xcolor,multicol}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage/1}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	
+	
+	\begin{center}
+		\Large \sc colle 10 = Développements limités et espaces vectoriels
+	\end{center}
+	
+%\section *{Questions de cours:}
+
+%\begin{enumerate} 
+
+%\item Pour tout $n\in\N$ montrer que:
+%$\dfrac{1}{1-x} \underset{x\rightarrow 0}{=} \  \sum\limits_{k=0}^{n} x^k \ + \  o(x^n)$
+
+%\item Démontrer le théorème suivant:
+%\begin{thm}(\textbf{Unicité des coefficients d’un développement limité})\hfil\\ 
+%	Soient $f : D \rightarrow \R$ une fonction et $a \in D$. 
+%	En cas d’existence d'un développement limité de $f$ en $a$ à l'ordre $n\in\N$, la liste des coefficients de ce développement limité est unique.
+%\end{thm}
+
+%\item Soit $f$ une fonction de $\mathcal{C}^n\left(I,\R\right)$ et $a\in I$. Donner la formule de Taylor-Young correspondant au développement limité d'ordre $n$ de $f$  au voisinage de $a$. Calculer les développements limités suivants à l’ordre 2 :
+%\begin{multicols}{2}
+%\begin{enumerate}[$\square$]
+%\item $\dfrac{\ln(x)}{x}$ en 3.
+%\item $xe^x$ en 1.
+%\end{enumerate}
+%\end{multicols}
+%\end{enumerate}
+
+
+
+\section*{Études locales et asymptotiques}
+\begin{minipage}{1\linewidth}
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+
+
+\begin{exo}\quad\\
+Soient $I$ un intervalle, $g \in\mathcal{D}(I ,\R)$ , $a \in I$  et
+$n \in\N$.\\
+\begin{enumerate}
+	\item  Montrer que: si $g'(x)\underset{x\rightarrow a}{=} o\left((x-a)^n\right)$\\ alors: $g(x)\underset{x\rightarrow a}{=} g(a) + o\left((x-a)^{n+1}\right)$
+	\item Soit $f \in\mathcal{D}(I ,\R)$.Montrer que:\\Si $f'$ possède
+	un D.L. en $a$ à l'ordre $n$ tel que:
+	$$f'(x) \underset{x\rightarrow a}{=} \sum\limits_{k=0}^{n}a_k(x-a)^k \ + o\left((x-a)^n\right)$$
+	Alors $f$ possède
+	un D.L. en $a$ à l'ordre $n+1$ tel que:
+	$$f(x) \underset{x\rightarrow a}{=} f(a) \ + \  \sum\limits_{k=0}^{n}a_k\dfrac{(x-a)^{k+1} }{k+1}\ + o\left((x-a)^{n+1}\right)$$
+	\item En déduire un D.L. à l'ordre $n$ des fonctions suivantes en $0$:
+	\begin{enumerate}[$\square$]
+		\item $ x \longmapsto \ln(1-x)$
+		\item $ x \longmapsto \ln(1+x)$
+	\end{enumerate}
+\item En déduire un D.L. à l'ordre $2n+1$ de la fonction suivante en $0$:
+$ x \longmapsto \arctan(x)$
+\end{enumerate}
+
+\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+	Calculer les limites suivantes
+	$$\lim_{x\rightarrow 0}\frac{\ln (1+x)-\sin x}{x}
+	\quad\quad \lim_{x\rightarrow 0}\frac{\cos x-\sqrt{1-x^2}}{x^4}$$
+	$$\lim_{x\rightarrow 0}\frac{e^{x^2}-\cos x}{x^2}
+	\quad\quad$$ 
+	\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+\end{minipage}	
+\hfill\vrule\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\raggedright
+
+\begin{exo}\quad\\
+	
+	\begin{enumerate}
+		\item Développement limité en $1$ à l'ordre $3$ de $f(x)=\sqrt{x}$.
+		
+		\item Développement limité en $1$ à l'ordre $3$ de $g(x)= e^{\sqrt{x}}$.
+		
+		\item Développement limité à l'ordre $3$ en $\frac\pi 3$ de $h(x)=\ln (\sin x)$.
+	\end{enumerate}
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\quad\\
+	Donner un développement limité à l'ordre $2$ de $f(x)=
+	\displaystyle{\frac{\sqrt{1+x^2}}{1+x+\sqrt{1+x^2}}}$ en $0$.
+	En déduire un développement à l'ordre $2$ en $+\infty$.
+	Calculer un développement à l'ordre $1$ en $-\infty$.
+	\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+\begin{exo}\quad\\
+\begin{enumerate}
+  \item  Montrer que l'équation $\tan x = x$ possède une unique solution
+   $x_n$ dans
+   $\left]n\pi-\frac \pi 2, n\pi+\frac \pi 2\right[$ $(n\in \N)$.
+  \item  Quelle relation lie $x_n$ et $\arctan(x_n)$ ? \label{relation}
+  \item  Donner un DL de $x_n$ en fonction de $n$ à l'ordre $0$ pour $n\to\infty$.
+  \item  En reportant dans la relation trouvée en \ref{relation},
+     obtenir un DL de $x_n$ à l'ordre 2.
+\end{enumerate}
+\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+\begin{exo}\quad\\
+\'Etudier la position du graphe de l'application $x\mapsto \ln(1+x+x^2)$ par rapport 
+à sa tangente en $0$ et $1$.
+	\centering\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\end{minipage}
+\end{minipage}
+
+\hfill\\
+
+\section*{Espaces vectoriels}
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\
+		Parmi les ensembles suivants reconna\^\i tre ceux qui sont des
+		sous-espaces vectoriels.(Justifier)
+		
+		$ E_1 =\left\{ (x,y,z)\in \R^3 \mid x+y+a=0 \hbox{ et }  x +3az =0\right\}$
+		
+		$ E_2 =\left\{f \in {\mathcal F}(\R,\R) \mid f(1)=0\right\}$
+		
+		$ E_3 =\left\{f \in {\mathcal F}(\R,\R) \mid  f(0)=1\right\}$
+		
+		$E_4 =\left\{(x,y)\in \R^2 \mid x + \alpha y +1 \geqslant 0\right\}$	
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	\begin{exo}\quad\\
+		Soit $\alpha \in \R$ et $f_\alpha : \R \to \R$, $x\mapsto e^{\alpha x}$.
+		Montrer que la famille $(f_\alpha)_{\alpha \in \R}$  est libre.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+		
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+	\begin{exo}\quad\\
+		\begin{enumerate}
+			\item Soient $v_1=(2,1,4)$, $v_2=(1,-1,2)$ et $v_3=(3,3,6)$ des vecteurs de $\R^3$, 
+			trouver trois r\'eels non tous nuls $\alpha,\beta,\gamma$ tels que $\alpha v_1+ \beta v_2 + \gamma v_3=0$.
+			
+			\item On considère deux plans vectoriels
+			$$P_1=\{(x,y,z) \in \R^3 \mid x-y+z=0\}$$
+			$$P_2=\{(x,y,z) \in \R^3 \mid x-y=0\}$$
+			trouver un vecteur directeur de la droite $D=P_1\cap P_2$ ainsi qu'une \'equation param\'etr\'ee.
+		\end{enumerate}
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}
+
+	
+	\end{minipage}
+\end{minipage}
+\end{document}

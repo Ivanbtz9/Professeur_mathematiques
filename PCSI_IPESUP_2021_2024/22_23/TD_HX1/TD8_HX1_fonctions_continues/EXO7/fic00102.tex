@@ -1,0 +1,416 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00102, rouget, 2010/07/11}
+
+\titre{Limites. Continuité en un point} 
+
+Exercices de Jean-Louis Rouget.
+Retrouver aussi cette fiche sur \texttt{\href{http://www.maths-france.fr}{www.maths-france.fr}}
+
+\begin{center}
+* très facile\quad** facile\quad*** difficulté moyenne\quad**** difficile\quad***** très difficile\\
+I~:~Incontournable\quad T~:~pour travailler et mémoriser le cours
+\end{center}
+
+
+\exercice{5382, rouget, 2010/07/06}
+\enonce{005382}{***I}
+Soit $f$ une fonction réelle d'une variable réelle définie et continue sur un voisinage de $+\infty$. On suppose que la fonction $f(x+1)-f(x)$ admet dans $\Rr$ une limite $\ell$ quand $x$ tend vers $+\infty$. Etudier l'existence et la valeur eventuelle de $\lim_{x\rightarrow +\infty}\frac{f(x)}{x}$.
+\finenonce{005382}
+
+
+\finexercice
+\exercice{5383, rouget, 2010/07/06}
+\enonce{005383}{***}
+Soit $f$ une fonction définie sur un voisinage de $0$ telle que $\lim_{x\rightarrow 0}f(x)=0$ et $\lim_{x\rightarrow 0}\frac{f(2x)-f(x)}{x}=0$. Montrer que $\lim_{x\rightarrow 0}\frac{f(x)}{x}=0$. (Indication. Considérer $g(x)=\frac{f(2x)-f(x)}{x}$.)
+\finenonce{005383}
+
+
+\finexercice
+\exercice{5384, rouget, 2010/07/06}
+\enonce{005384}{**I}
+Soient $f$ et $g$ deux fonctions continues en $x_0\in\Rr$. Montrer que $\mbox{Min}\{f,g\}$ et $\mbox{Max}\{f,g\}$ sont continues en $x_0$.
+\finenonce{005384}
+
+
+\finexercice
+\exercice{5385, rouget, 2010/07/06}
+\enonce{005385}{***I Distance d'un point à une partie}
+\label{exo:roudist}
+Soit $A$ une partie non vide de $\Rr$. Pour $x\in\Rr$, on pose $f(x)=\mbox{Inf}\{|y-x|,\;y\in A\}$. Montrer que $f$ est continue en tout point de $\Rr$.
+\finenonce{005385}
+
+
+\finexercice
+\exercice{5386, rouget, 2010/07/06}
+\enonce{005386}{**T}
+Montrer en revenant à la définition que $f(x)=\frac{3x-1}{x-5}$ est continue en tout point de $\Rr\setminus\{5\}$.
+\finenonce{005386}
+
+
+\finexercice
+\exercice{5387, rouget, 2010/07/06}
+\enonce{005387}{**IT}
+Montrer que la fonction caractéristique de $\Qq$ est discontinue en chacun de ses points.
+\finenonce{005387}
+
+
+\finexercice
+\exercice{5388, rouget, 2010/07/06}
+\enonce{005388}{****}
+Etudier l'existence d'une limite et la continuité éventuelle en chacun de ses points de la fonction définie sur $]0,+\infty[$ par $f(x)=0$ si $x$ est irrationnel et $f(x)=\frac{1}{p+q}$ si $x$ est rationnel égal à $\frac{p}{q}$, la fraction $\frac{p}{q}$ étant irréductible.
+\finenonce{005388}
+
+
+\finexercice
+\exercice{5389, rouget, 2010/07/06}
+\enonce{005389}{**IT}
+Etudier en chaque point de $\Rr$ l'existence d'une limite à droite, à gauche, la continuité de la fonction $f$ définie par $f(x)=xE(\frac{1}{x})$ si $x\neq0$ et $1$ si $x=0$.
+\finenonce{005389}
+
+
+\finexercice
+\exercice{5390, rouget, 2010/07/06}
+\enonce{005390}{**}
+Trouver $f$  bijective de $[0,1]$ sur lui-même et discontinue en chacun de ses points.
+\finenonce{005390}
+
+
+\finexercice
+\exercice{5391, rouget, 2010/07/06}
+\enonce{005391}{***}
+Soit $f$ une fonction continue et périodique sur $\Rr$ à valeurs dans $\Rr$, admettant une limite réelle quand $x$ tend vers $+\infty$. Montrer que $f$ est constante.
+\finenonce{005391}
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{005382}
+Il existe $a>0$ tel que $f$ est définie et continue sur $[a,+\infty[$.
+
+1er cas. Supposons que $\ell$ est réel. Soit $\varepsilon>0$. 
+
+$$\exists A_1\geq a/\;\forall X\in[a,+\infty[,\;(X\geq A_1\Rightarrow \ell-\frac{\varepsilon}{2}<f(X+1)-f(X)<\ell+\frac{\varepsilon}{2}).$$
+
+Soit $X\geq A_1$ et $n\in\Nn^*$. On a~:
+$$\sum_{k=0}^{n-1}(\ell-\frac{\varepsilon}{2})<\sum_{k=0}^{n-1}(f(X+k+1)-f(X+k))=f(X+n)-f(X)<\sum_{k=0}^{n-1}(\ell+\frac{\varepsilon}{2}),$$ et on a donc montré que 
+
+$$\forall\varepsilon>0,\;\exists A_1\geq a/\;\forall X\geq A_1,\;\forall n\in\Nn^N*,\;n(\ell-\frac{\varepsilon}{2})<f(X+n)-f(X)<n(\ell+\frac{\varepsilon}{2}).$$ 
+
+Soit de nouveau $\varepsilon>0$. Soit ensuite $x\geq A_1+1$ puis $n=E(x-A_1)\in\Nn^*$ puis $X=x-n$.
+
+On a $X=x-E(x-A_1)\geq x-(x-A_1)=A_1$ et donc $n(\ell-\frac{\varepsilon}{2})<f(x)-f(x-n)<n(l+\frac{\varepsilon}{2})$ ou encore
+
+$$\frac{f(x-n)}{x}+\frac{n}{x}(\ell-\frac{\varepsilon}{2})<\frac{f(x)}{x}<\frac{f(x-n)}{x}+\frac{n}{x}(\ell+\frac{\varepsilon}{2}).$$
+
+Ensuite,
+
+$$1-\frac{A_1+1}{x}=\frac{x-A_1-1}{x}\leq\frac{n}{x}=\frac{E(x-A_1)}{x}\leq\frac{x-A_1}{x}=1-\frac{A_1}{x},$$ et comme $1-\frac{A_1+1}{x}$ et $1-\frac{A_1}{x}$ tendent vers $1$ quand $x$ tend vers $+\infty$, on en déduit que $\frac{n}{x}$ tend vers $1$ quand $x$ tend vers $+\infty$.
+
+Puis, puisque $f$ est continue sur le segment $[A_1,A_1+1]$, $f$ est bornée sur ce segment. Or $n\leq x-A_1<n+1$ s'écrit encore $A_1\leq x-n <A_1+1$ et donc, en posant $M=\mbox{sup}\{|f(t)|,\;t\in[A_1,A_1+1]\}$, on a $\left|\frac{x-n)}{x}\right|\leq\frac{M}{x}$ qui tend vers $0$ quand $x$ tend vers $+\infty$. En résumé, $\frac{f(x-n)}{x}+\frac{n}{x}(\ell-\frac{\varepsilon}{2})$ et $\frac{f(x-n)}{x}+\frac{n}{x}(\ell+\frac{\varepsilon}{2})$ tendent respectivement vers $\ell-\frac{\varepsilon}{2}$ et $\ell+\frac{\varepsilon}{2}$ quand $x$ tend vers $+\infty$. On peut donc trouver un réel $A_2\geq a$ tel que $x\geq A_2\Rightarrow\frac{f(x-n)}{x}+\frac{n}{x}(\ell+\frac{\varepsilon}{2})>(\ell-\frac{\varepsilon}{2})-\frac{\varepsilon}{2}=\ell-\varepsilon$ et un réel $A_3\geq a$ tel que $x\geq A_2\Rightarrow\frac{f(x-n)}{x}+\frac{n}{x}(\ell+\frac{\varepsilon}{2})<\ell+\varepsilon$.
+
+Soit $A=\mbox{Max}(A_1,A_2,A_3)$ et $x\geq A$. On a $\ell-\varepsilon<\frac{f(x)}{x}<\ell+\varepsilon$. On a montré que $\forall\varepsilon>0,\;(\exists A\geq a/\;\forall x\geq A,\;\ell-\varepsilon<\frac{f(x)}{x}<\ell+\varepsilon$ et donc $\lim_{x\rightarrow +\infty}=\ell$.
+
+2ème cas. Supposons $\ell=+\infty$ (si $\ell=-\infty$, remplacer $f$ par $-f$).
+
+Soit $B>0$. $\exists A_1\geq a/\;\forall X\geq A_1,\;f(X+1)-f(X)\geq 2B$.
+
+Pour $X\geq A_1$ et $n\in\Nn^*$, on a~:~$f(X+n)-f(X)=\sum_{k=0}^{n-1}(f(X+k+1)-f(X+k))\geq2nB$.
+
+Soient $x\geq1+A_1$, $n=E(x-A_1)$ et $X=x-n$. On a $f(x)-f(x-n)\geq2nB$ et donc,
+
+$$\frac{f(x)}{x}\geq\frac{f(x-n)}{x}+\frac{2nB}{x},$$
+
+qui tend vers $2B$ quand $x$ tend vers $+\infty$ (démarche identique au 1er cas).
+
+Donc $\exists A\geq A_1>a$ tel que $x\geq A\Rightarrow\frac{f(x-n)}{x}+\frac{2nB}{x}>B$.
+
+Finalement~:~($\forall B>0,\;\exists A>a/\;(\forall x\geq A,\;\frac{f(x)}{x}>B$ et donc, $\lim_{x\rightarrow +\infty}\frac{f(x)}{x}=+\infty$.
+
+\fincorrection
+\correction{005383}
+Pour $x\neq 0$, posons $g(x)=\frac{f(2x)-f(x)}{x}$. $f$ est définie sur un voisinage de $0$ et donc il existe $a>0$ tel que $]-a,a[\subset D_f$. Mais alors, $]-\frac{a}{2},\frac{a}{2}[\setminus\{0\}\subset D_g$.
+
+Soit $x\in]-\frac{a}{2},\frac{a}{2}[\setminus\{0\}$ et $n\in\Nn^*$.
+
+$$f(x)=\sum_{k=0}^{n-1}(f(\frac{x}{2^k})-f(\frac{x}{2^{k+1}}))+f(\frac{x}{2^n})=\sum_{k=0}^{n-1}\frac{x}{2^{k+1}}g(\frac{x}{2^{k+1}})+f(\frac{x}{2^n}).$$
+
+Par suite, pour $x\in]-\frac{a}{2},\frac{a}{2}[\setminus\{0\}$ et $n\in\Nn^*$, on a~:
+
+$$\left|\frac{f(x)}{x}\right|\leq\sum_{k=0}^{n-1}\frac{1}{2^{k+1}}\left|g(\frac{x}{2^{k+1}})\right|+\left|\frac{f(x/2^n)}{x}\right|.$$
+
+Soit $\varepsilon>0$. Puisque par hypothèse, $g$ tend vers $0$ quand $x$ tend vers $0$,
+
+$$\exists\alpha\in]0,\frac{a}{2}[/\;\forall X\in]-\alpha,\alpha[,\;|g(X)|<\frac{\varepsilon}{2}.$$
+
+Or, pour $x\in]-\alpha,\alpha[\setminus\{0\}$ et pour $k$ dans $N*$, $\frac{x}{2^k}$ est dans $]-\alpha,\alpha[\setminus\{0\}$ et par suite,
+
+$$\sum_{k=0}^{n-1}\frac{1}{2^{k+1}}\left|g(\frac{x}{2^{k+1}})\right|\leq\frac{\varepsilon}{2}\sum_{k=0}^{n-1}\frac{1}{2^{k+1}}=\frac{\varepsilon}{2}\frac{1}{2}\frac{1-\frac{1}{2^n}}{1-\frac{1}{2}}=\frac{\varepsilon}{2}(1-\frac{1}{2^n})<\frac{\varepsilon}{2},$$
+
+et donc, $\left|\frac{f(x)}{x}\right|\leq\frac{\varepsilon}{2}+\left|\frac{f(x/2^n)}{x}\right|$. On a ainsi montré que 
+
+$$\forall x\in]-\alpha,\alpha[\setminus\{0\},\;\forall n\in\Nn^*,\;\left|\frac{f(x)}{x}\right|\leq\frac{\varepsilon}{2}+\left|\frac{f(x/2^n)}{x}\right|.$$
+
+Mais, à $x$ fixé, $\frac{f(x/2^n)}{x}$ tend vers $0$ quand $n$ tend vers $+\infty$. Donc, on peut choisir $n$ tel que  $\frac{f(x/2^n)}{x}<\frac{\varepsilon}{2}$ et on a alors  $\left|\frac{f(x)}{x}\right|<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon$. On a montré que 
+
+$$\forall\varepsilon>0,\;\exists\alpha>0/\;(\forall x\in D_f,\;0<|x|<\alpha\Rightarrow\left|\frac{f(x)}{x}\right|<\varepsilon,$$ ce qui montre que ($f$ est dérivable en $0$ et que) $\lim_{x\rightarrow 0}\frac{f(x)}{x}=0$.
+
+\fincorrection
+\correction{005384}
+$\mbox{Min}(f,g)=\frac{1}{2}(f+g-|f-g|)$ et $\mbox{Max}(f,g)=\frac{1}{2}(f-g+|f-g|)$ sont continues en $x_0$ en vertu de théorèmes généraux.
+\fincorrection
+\correction{005385}
+Soit $(x,y)\in\Rr^2$ et $z\in A$. $|x-z|\leq|x-y|+|y-z|$. Or, $forall z\in A,\;|x-z|\geq d(x,A)$ et donc $d(x,A)-|x-y|$ est un minorant de $\{|y-z|,\;z\in A\}$. Par suite, $d(x,A)-|x-y|\leq d(y,A)$. On a montré que 
+
+$$\forall(x,y)\in\Rr^2,\;d(x,A)-d(y,A)\leq|y-x|.$$
+
+En échangeant les roles de $x$ et $y$, on a aussi montré que $\forall(x,y)\in\Rr^2,\;d(y,A)-d(x,A)\leq|y-x|$.
+
+Finalement, $\forall(x,y)\in\Rr^2,\|f(y)-f(x)|\leq|y-x|$. Ainsi, $f$ est donc $1$-Lipschitzienne et en particulier continue sur $\Rr$.
+\fincorrection
+\correction{005386}
+Soit $x_0\in\Rr\setminus\{5\}$. Pour $x\neq5$, 
+
+$$|f(x)-f(x_0)|=\left|\frac{3x-1}{x-5}-\frac{3x_0-1}{x_0-5}\right|=\frac{14|x-x_0|}{|x-5|.|x_0-5|}.$$
+
+Puis, pour $x\in]x_0-\frac{|x_0-5|}{2},x_0+\frac{|x_0-5|}{2}[$, on a $|x-5|>\frac{|x_0-5|}{2}[(>0)$, et donc,
+
+$$\forall x\in]x_0-\frac{|x_0-5|}{2},x_0+\frac{|x_0-5|}{2}[,\;|f(x)-f(x_0)|=\frac{28}{(x_0-5)^2}|x-x_0|.$$
+
+Soient $\varepsilon>0$ puis $\alpha=\mbox{Min}\{\frac{|x_0-5|}{2},\frac{(x_0-5)^2\varepsilon}{28}\}(>0)$.
+
+$$|x-x_0|<\alpha\Rightarrow|f(x)-f(x_0)|\leq\frac{28}{(x_0-5)^2}|x-x_0|<\frac{28}{(x_0-5)^2}\frac{(x_0-5)^2\varepsilon}{28}=\varepsilon.$$
+
+On a monté que $\forall\varepsilon>0,\;\exists\alpha>0/\;(\forall x\in\Rr\setminus\{5\},\;|x-x_0|<\alpha\Rightarrow|f(x)-f(x_0)|<\varepsilon)$. $f$ est donc continue sur $\Rr\setminus\{5\}$.
+\fincorrection
+\correction{005387}
+Soit $\chi$ la fonction caractéristique de $\Qq$.
+Soit $x_0$ un réel. On note que
+
+$$x_0\in\Qq\Leftrightarrow\forall n\in\Nn^*,\;x_0+\frac{1}{n}\in\Qq Q\Leftrightarrow\forall n\in\Nn^*,\;x_0+\frac{\pi}{n}\notin\Qq.$$
+
+Donc, $\lim_{n\rightarrow +\infty}\chi(x_0+\frac{1}{n})$ existe, $\lim_{n\rightarrow +\infty}\chi(x_0+\frac{\pi}{n})$ existe et$\lim_{n\rightarrow +\infty}\chi(x_0+\frac{1}{n})\neq\lim_{n\rightarrow +\infty}\chi(x_0+\frac{\pi}{n})$ (bien que $\lim_{n\rightarrow +\infty}x_0+\frac{1}{n}=\lim_{n\rightarrow +\infty}x_0+\frac{\pi}{n}=x_0$. Ainsi, pour tout réel $x_0\in\Rr$, la fonction caractéristique de $\Qq$ n'a pas de limite en $x_0$ et est donc discontinue en $x_0$.
+\fincorrection
+\correction{005388}
+Soit $a$ un réel strcitement positif. On peut déjà noter que $\lim_{x\rightarrow a,\;x\in\Rr\setminus\Qq}f(x)=0$. Donc, si $f$ a une limite quand $x$ tend vers $a$, ce ne peut être que $0$ et $f$ est donc discontinue en tout rationnel strictement positif.
+
+$a$ désigne toujours un réel strictement positif fixé. Soit $\varepsilon>0$.
+
+Soit x un réel strictement positif tel que $f(x)\geq\varepsilon$.
+
+$x$ est nécessairement rationnel, de la forme $\frac{p}{q}$ où $p$ et $q$ sont des entiers naturels non nuls premiers entre eux vérifiant $\frac{1}{p+q}\geq\varepsilon$ et donc 
+
+$$2\leq p+q\leq\frac{1}{\varepsilon}.$$
+
+Mais il n'y a qu'un nombre fini de couples d'entiers naturels non nuls $(p,q)$ vérifiant ces inégalités et donc, il n'y a qu'un nombre fini de réels strictement positifs $x$ tels que $f(x)\geq\varepsilon$.
+
+Par suite, $\exists\alpha>0$ tel que aucun des réels $x$ de $]x_0-\alpha,x_0+\alpha[$ ne vérifie $f(x)\geq\varepsilon$. Donc, 
+
+$$\forall a>0,\;\forall\varepsilon> 0,\;\exists\alpha>0/\;\forall x>0,\;(0<|x-a|<\alpha\Rightarrow|f(x)|<\varepsilon),$$
+
+ou encore 
+
+$$\forall a>0,\;\lim_{x\rightarrow a,\;x\neq a}f(x)=0.$$
+
+Ainsi, $f$ est continue en tout irrationnel et discontinue en tout rationnel.
+\fincorrection
+\correction{005389}
+Donnons tout d'abord une expression plus explicite de $f(x)$ pour chaque réel $x$.
+
+Si $x>1$, alors $\frac{1}{x}\in]0,1[$ et donc, $f(x)=0$.
+
+Si $\exists p\in\Nn^*/\;x\in]\frac{1}{p+1},\frac{1}{p}],\;f(x)=px$.
+
+$f(0)=1$ (et plus généralement, $\forall p\in\Zz^*,\;f(\frac{1}{p})=1)$.
+
+Si $x\leq-1$, alors $\frac{1}{x}\in[-1,0[$ et donc, $f(x)=-x$. 
+
+Enfin, si $\exists p\in\Zz^\setminus\{-1\}$ tel que $x\in]\frac{1}{p+1},\frac{1}{p}]$, alors $\frac{1}{p+1}<x\leq\frac{1}{p}(<0)$ fournit, par décroissance de la fonction $x\mapsto\frac{1}{x}$ sur $]-\infty,0[$, $p\leq\frac{1}{x}<p+1(<0)$ et donc $f(x)=px$.
+
+Etude en $0$. $\forall x\in\Rr^*,\;\frac{1}{x}-1<E(\frac{1}{x})\leq\frac{1}{x}$ et donc $1-x<f(x)\leq1$ si $x>0$ et $1\leq f(x)<1-x$ si $x<0$. Par suite, 
+
+$$\forall x\in\Rr,\;|f(x)-1\leq|x|,$$
+
+et $\lim_{x\rightarrow 0}f(x)=1$. $f$ est donc continue en $0$.
+
+$f$ est affine sur chaque intervalle de la forme $]\frac{1}{p+1},\frac{1}{p}]$ pour $p$ élément de $\Zz\setminus\{-1,0\}$ et donc est continue sur ces intervalles et en particulier continue à gauche en chaque $\frac{1}{p}$. $f$ est affine sur $]-\infty,-1]$ et aussi sur $]1,+\infty[$ et est donc continue sur ces intervalles. Il reste donc à analyser la continuité à droite en $\frac{1}{p}$, pour $p$ entier relatif non nul donné. Mais,
+
+$$f(\frac{1}{p}^+)=\lim_{x \rightarrow\frac{1}{p},\;x>\frac{1}{p}}(x(p-1))=1-\frac{1}{p}\neq 1=f(\frac{1}{p}).$$
+
+$f$ est donc discontinue à droite en tout $\frac{1}{p}$ où $p$ est un entier relatif non nul donné.
+
+Graphe de $f$~:
+
+%$$\includegraphics{../images/img005389-1}$$
+
+\fincorrection
+\correction{005390}
+Soit $f(x)=\left\{
+\begin{array}{l}
+x\;\mbox{si}\;x\in(\Qq\cap[0,1])\setminus\{0,\frac{1}{2}\}\\
+1-x\;\mbox{si}\;x\in(\Rr\setminus\Qq)\cap[0,1]\\
+0\;\mbox{si}\;x=\frac{1}{2}\;\mbox{et}\;\frac{1}{2}\;\mbox{si}\;x=0
+\end{array}
+\right.$. $f$ est bien une application définie sur $[0,1]$ à valeurs dans $[0,1]$. De plus, si $x\in(\Qq\cap[0,1])\setminus\{0,\frac{1}{2}\}$, alors $f(f(x))=f(x)=x$.
+
+Si $x\in(\Rr\setminus\Qq)\cap[0,1]$, alors $1-x\in(\Rr\setminus\Qq)\cap[0,1]$ et donc $f(f(x))=f(1-x)=1-(1-x)=x$.
+
+Enfin, $f(f(0))=f(\frac{1}{2})=0$ et $f(f(\frac{1}{2}))=f(0)=\frac{1}{2}$.
+
+Finalement, $f\circ f=Id_{[0,1]}$ et $f$, étant une involution de $[0,1]$, est une permutation de $[0,1]$.
+
+Soit $a$ un réel de $[0,1]$. On note que $\lim_{x\rightarrow a,\;x\in(\Rr\setminus\Qq)}f(x)=1-a$ et $\lim_{x\rightarrow a,\;x\in\Qq}f(x)=a$. Donc, si $f$ a une limite en $a$, nécessairement $1-a=a$ et donc $a=\frac{1}{2}$. Mais, si $a=\frac{1}{2}$, $\lim_{x\rightarrow a,\;x\in\Qq,\;x\neq a}f(x)=a=\frac{1}{2}\neq0=f(\frac{1}{2})$ et donc $f$ est discontinue en tout point de $[0,1]$.
+\fincorrection
+\correction{005391}
+Soit $T$  une période strictement positive de $f$. On note $\ell$ la limite de $f$ en $+\infty$.
+
+Soit $x$ un réel. $\forall n\in\Nn,\;f(x)=f(x+nT)$ et quand $n$ tend vers $+\infty$, on obtient~:
+ 
+$$f(x)=\lim_{n\rightarrow +\infty}f(x+nT)=\ell.$$ 
+
+Ainsi, $\forall x\in\Rr,\;f(x)=\ell$ et donc, $f$ est constante sur $\Rr$.
+\fincorrection
+
+
+\end{document}
+

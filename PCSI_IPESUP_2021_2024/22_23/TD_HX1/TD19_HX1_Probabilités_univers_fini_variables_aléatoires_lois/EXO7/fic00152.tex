@@ -1,0 +1,458 @@
+
+%%%%%%%%%%%%%%%%%% PREAMBULE %%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{mathptmx}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{ifthen}
+
+\usepackage{tikz}   
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue,
+pdftitle={Exo7 - Exercices de mathématiques}, pdfauthor={Exo7}}
+
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+%----- Ensembles : entiers, reels, complexes -----
+\newcommand{\Nn}{\mathbb{N}} \newcommand{\N}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}} \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}} \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}} \newcommand{\R}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}} \newcommand{\C}{\mathbb{C}}
+\newcommand{\Kk}{\mathbb{K}} \newcommand{\K}{\mathbb{K}}
+
+%----- Modifications de symboles -----
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}\nolimits}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+\newcommand{\llbracket}{\left[\kern-0.15em\left[}
+\newcommand{\rrbracket}{\right]\kern-0.15em\right]}
+\renewcommand{\ge}{\geqslant} \renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant} \renewcommand{\leq}{\leqslant}
+
+%----- Fonctions usuelles -----
+\newcommand{\ch}{\mathop{\mathrm{ch}}\nolimits}
+\newcommand{\sh}{\mathop{\mathrm{sh}}\nolimits}
+\renewcommand{\tanh}{\mathop{\mathrm{th}}\nolimits}
+\newcommand{\cotan}{\mathop{\mathrm{cotan}}\nolimits}
+\newcommand{\Arcsin}{\mathop{\mathrm{arcsin}}\nolimits}
+\newcommand{\Arccos}{\mathop{\mathrm{arccos}}\nolimits}
+\newcommand{\Arctan}{\mathop{\mathrm{arctan}}\nolimits}
+\newcommand{\Argsh}{\mathop{\mathrm{argsh}}\nolimits}
+\newcommand{\Argch}{\mathop{\mathrm{argch}}\nolimits}
+\newcommand{\Argth}{\mathop{\mathrm{argth}}\nolimits}
+\newcommand{\pgcd}{\mathop{\mathrm{pgcd}}\nolimits} 
+
+%----- Structure des exercices ------
+
+\newcommand{\exercice}[1]{\video{0}}
+\newcommand{\finexercice}{}
+\newcommand{\noindication}{}
+\newcommand{\nocorrection}{}
+
+\newcounter{exo}
+\newcommand{\enonce}[2]{\refstepcounter{exo}\hypertarget{exo7:#1}{}\label{exo7:#1}{\bf Exercice \arabic{exo}}\ \  #2\vspace{1mm}\hrule\vspace{1mm}}
+
+\newcommand{\finenonce}[1]{
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}\and\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\par{\footnotesize
+\ifthenelse{\equal{\ref{ind7:#1}}{\ref{bidon}}}{}{\hyperlink{ind7:#1}{\texttt{Indication} $\blacktriangledown$}\qquad}
+\ifthenelse{\equal{\ref{cor7:#1}}{\ref{bidon}}}{}{\hyperlink{cor7:#1}{\texttt{Correction} $\blacktriangledown$}}}}
+\ifthenelse{\equal{\myvideo}{0}}{}{{\footnotesize\qquad\texttt{\href{http://www.youtube.com/watch?v=\myvideo}{Vidéo $\blacksquare$}}}}
+\hfill{\scriptsize\texttt{[#1]}}\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\indication}[1]{\hypertarget{ind7:#1}{}\label{ind7:#1}{\bf Indication pour \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\finindication}{\vspace{1mm}\hrule\vspace*{7mm}}
+\newcommand{\correction}[1]{\hypertarget{cor7:#1}{}\label{cor7:#1}{\bf Correction de \hyperlink{exo7:#1}{l'exercice \ref{exo7:#1} $\blacktriangle$}}\vspace{1mm}\hrule\vspace{1mm}}
+\newcommand{\fincorrection}{\vspace{1mm}\hrule\vspace*{7mm}}
+
+\newcommand{\finenonces}{\newpage}
+\newcommand{\finindications}{\newpage}
+
+
+\newcommand{\fiche}[1]{} \newcommand{\finfiche}{}
+%\newcommand{\titre}[1]{\centerline{\large \bf #1}}
+\newcommand{\addcommand}[1]{}
+
+% variable myvideo : 0 no video, otherwise youtube reference
+\newcommand{\video}[1]{\def\myvideo{#1}}
+
+%----- Presentation ------
+
+\setlength{\parindent}{0cm}
+
+\definecolor{myred}{rgb}{0.93,0.26,0}
+\definecolor{myorange}{rgb}{0.97,0.58,0}
+\definecolor{myyellow}{rgb}{1,0.86,0}
+
+\newcommand{\LogoExoSept}[1]{  % input : echelle       %% NEW
+{\usefont{U}{cmss}{bx}{n}
+\begin{tikzpicture}[scale=0.1*#1,transform shape]
+  \fill[color=myorange] (0,0)--(4,0)--(4,-4)--(0,-4)--cycle;
+  \fill[color=myred] (0,0)--(0,3)--(-3,3)--(-3,0)--cycle;
+  \fill[color=myyellow] (4,0)--(7,4)--(3,7)--(0,3)--cycle;
+  \node[scale=5] at (3.5,3.5) {Exo7};
+\end{tikzpicture}}
+}
+
+
+% titre
+\newcommand{\titre}[1]{%
+\vspace*{-4ex} \hfill \hspace*{1.5cm} \hypersetup{linkcolor=black, urlcolor=black} 
+\href{http://exo7.emath.fr}{\LogoExoSept{3}} 
+ \vspace*{-5.7ex}\newline 
+\hypersetup{linkcolor=blue, urlcolor=blue}  {\Large \bf #1} \newline 
+ \rule{12cm}{1mm} \vspace*{3ex}}
+
+%----- Commandes supplementaires ------
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%% EXERCICES %%%%%%%%%%%%%%%%%%
+\fiche{f00152, quinio, 2011/05/20}
+
+Exercices : Martine Quinio
+
+\titre{Variables aléatoires discrètes}
+
+\exercice{6005, quinio, 2011/05/20}
+
+\enonce{006005}{}
+Une entreprise pharmaceutique décide de faire des économies sur les
+tarifs d'affranchissements des courriers publicitaires à envoyer aux
+clients.
+Pour cela, elle décide d'affranchir, au hasard, une proportion de 3
+lettres sur 5 au tarif urgent, les autres au tarif normal.
+\begin{enumerate}
+\item Quatre lettres sont envoyées dans un cabinet médical de quatre médecins:
+quelle est la probabilité des événements:
+
+A : <<Au moins l'un d'entre eux reçoit une lettre au tarif urgent>>.
+
+B : <<Exactement 2 médecins sur les quatre reçoivent une lettre au tarif urgent>>.
+
+\item Soit $X$ la variable aléatoire: <<nombre de lettres affranchies au tarif
+urgent parmi 10 lettres>>:
+Quelle est la loi de probabilité de $X$, quelle est son espérance,
+quelle est sa variance?
+\end{enumerate}
+\finenonce{006005}
+
+
+\finexercice
+\exercice{6006, quinio, 2011/05/20}
+
+\enonce{006006}{}
+On prend au hasard, en même temps, trois ampoules dans un lot de 15 dont
+5 sont défectueuses. Calculer la probabilité des événements:
+
+$A$ : au moins une ampoule est défectueuse;
+
+$B$ : les 3 ampoules sont défectueuses;
+
+$C$ : exactement une ampoule est défectueuse.
+\finenonce{006006}
+
+
+\finexercice
+\exercice{6007, quinio, 2011/05/20}
+
+\enonce{006007}{}
+Un avion peut accueillir 20 personnes; des statistiques montrent 
+que 25\% clients ayant réservé ne viennent pas.
+Soit $X$ la variable aléatoire: <<nombre de clients qui viennent après
+réservation parmi 20>>.
+Quelle est la loi de $X$ ? (on ne donnera que la forme générale)
+quelle est son espérance, son écart-type ?
+Quelle est la probabilité pour que $X$ soit égal à 15 ?
+\finenonce{006007}
+
+
+\finexercice
+\exercice{6008, quinio, 2011/05/20}
+
+\enonce{006008}{}
+L'oral d'un concours comporte au total 100 sujets; les candidats
+tirent au sort trois sujets et choisissent alors le sujet traité parmi
+ces trois sujets. Un candidat se présente en ayant révisé 60
+sujets sur les 100.
+\begin{enumerate}
+\item Quelle est la probabilité pour que le candidat ait révisé:
+\begin{enumerate}
+\item les trois sujets tirés;
+\item exactement deux sujets sur les trois sujets;
+\item aucun des trois sujets.
+\end{enumerate}
+\item Définir une variable aléatoire associée à ce problème 
+et donner sa loi de probabilité, son espérance.
+\end{enumerate}
+\finenonce{006008}
+
+
+\finexercice
+\exercice{6009, quinio, 2011/05/20}
+\enonce{006009}{}
+Un candidat se présente à un concours où, cette fois, les
+20 questions sont données sous forme de QCM. A chaque question, sont
+proposées 4 réponses, une seule étant exacte. L'examinateur fait
+le compte des réponses exactes données par les candidats.
+Certains candidats répondent au hasard à chaque question; pour
+ceux-la, définir une variable aléatoire associée à ce problème 
+et donner sa loi de probabilité, son espérance.
+\finenonce{006009}
+
+
+\finexercice
+\exercice{6010, quinio, 2011/05/20}
+
+\enonce{006010}{}
+Dans une poste d'un petit village, on remarque qu'entre 10 heures
+et 11 heures, la probabilité pour que deux personnes entrent durant 
+la même minute est considérée comme nulle et que l'arrivée des
+personnes est indépendante de la minute considérée. 
+On a observé que la probabilité pour qu'une personne se présente entre la
+minute $n$ et la minute $n+1$ est: $p = 0.1$. On veut calculer la probabilité 
+pour que : 3,4,5,6,7,8... personnes se présentent au guichet entre 10h et 11h.
+\begin{enumerate}
+\item Définir une variable aléatoire adaptée, puis répondre au problème considéré.
+
+\item Quelle est la probabilité pour que au moins 10 personnes
+se présentent au guichet entre 10h et 11h?
+\end{enumerate}
+\finenonce{006010}
+
+
+\finexercice
+\exercice{6011, quinio, 2011/05/20}
+
+\enonce{006011}{}
+Si dans une population une personne sur cent est un centenaire,
+quelle est la probabilité de trouver au moins un centenaire parmi $100$
+personnes choisies au hasard ? Et parmi $200$ personnes ?
+\finenonce{006011}
+
+
+\finexercice
+\exercice{6012, quinio, 2011/05/20}
+
+\enonce{006012}{}
+Un industriel doit vérifier l'état de marche de ses machines et en
+remplacer certaines le cas échéant. D'après des statistiques précédentes, 
+il évalue à 30\% la probabilité pour une
+machine de tomber en panne en 5 ans; parmi ces dernières, 
+la probabilité de devenir hors d'usage suite à une panne plus grave est 
+évaluée à 75\%; cette probabilité est de 40\% pour une machine
+n'ayant jamais eu de panne.
+\begin{enumerate}
+\item Quelle est la probabilité pour une machine donnée de plus de cinq
+ans d'être hors d'usage ?
+
+\item Quelle est la probabilité pour une machine hors d'usage de n'avoir
+jamais eu de panne auparavant ?
+
+\item Soit $X$ la variable aléatoire <<nombre de machines
+qui tombent en panne au bout de 5 ans, parmi 10 machines choisies au
+hasard>>. Quelle est la loi de probabilité de $X$, (on
+donnera le type de loi et les formules de calcul), son espérance, sa
+variance et son écart-type ?
+
+\item Calculer $P[X=5]$.
+\end{enumerate}
+\finenonce{006012}
+
+
+\finexercice
+\exercice{6013, quinio, 2011/05/20}
+
+\enonce{006013}{}
+Une population comporte en moyenne une personne mesurant plus de 1m90 sur
+80 personnes.
+Sur 100 personnes, calculer la probabilité qu'il y ait au moins une
+personne mesurant plus de 1.90m (utiliser une loi de Poisson).
+Sur 300 personnes, calculer la probabilité qu'il y ait au moins une
+personne mesurant plus de 1.90m.
+\finenonce{006013}
+
+
+\finexercice
+
+\finfiche
+
+ \finenonces 
+
+
+
+ \finindications 
+
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+\noindication
+
+
+\newpage
+
+\correction{006005}
+\begin{enumerate}
+\item On utilise une loi binomiale, loi de la variable aléatoire:
+<<nombre de lettres affranchies au tarif urgent parmi 4 lettres>>
+$n=5$, $p=\frac{3}{5}$. 
+On obtient $P(A)=1-(\frac{2}{5})^{4}=0.9744$, 
+$P(B)=\binom{4}{2}(\frac{2}{5})^{2}(\frac{3}{5})^{2}=0.3456$.
+
+\item La loi de probabilité de $X$ est une loi binomiale, loi de la variable
+aléatoire: <<nombre de lettres affranchies au tarif
+urgent parmi 10 lettres>>.
+$n=10$, $p=\frac{3}{5}$, son espérance est $np=6$, sa variance est $np(1-p)=\frac{12}{5}$.
+\end{enumerate}
+\fincorrection
+\correction{006006}
+On utilise une loi hypergéométrique
+
+$P(A)=1-\frac{\binom{10}{3}}{\binom{15}{3}}=
+0.736\,26$
+
+$P(B)=\frac{\binom{5}{3}}{\binom{15}{3}}=2.\,
+197\,8\times 10^{-2}$
+
+$P(C)=\frac{\binom{5}{1}\binom{10}{2}}{\binom{15}{3}}=0.494\,51$
+\fincorrection
+\correction{006007}
+Soit $X$ la variable aléatoire nombre de clients
+qui viennent après réservation parmi 20.
+La loi de $X$ est une loi binomiale de paramètres $n=20$, $p=0.75$.
+Son espérance est $np=15$, son écart-type est $\sqrt{np(1-p)}=\sqrt{15\cdot 0.25}$.
+La probabilité pour que $X$ soit égal à 15 est $\binom{20}{15}0.75^{15}0.25^{5}=0.202\,33$.
+\fincorrection
+\correction{006008}
+La variable aléatoire associée à ce problème est $X$ 
+<<nombre de sujets révisés parmi les $3$>> ; son support est l'ensemble
+$\{0,1,2,3\}$. La loi de $X$ est une loi hypergéométrique puisque
+l'événement $[X=k]$, pour $k$ compris entre $0$ et $3$, se produit si
+le candidat tire $k$ sujet(s) parmi les $60$ révisés, et $3-k$ sujets
+parmi les $40$ non révisés.
+
+Alors:
+\begin{enumerate}
+\item Les trois sujets tirés ont été révisés : $P[X=3]=\frac{\binom{60}{3}}{\binom{100}{3}}$.
+\item Deux des trois sujets tirés ont été révisés: $P[X=2]=\frac{\binom{60}{2}.\binom{40}{1}}{\binom{100}{3}}$.
+\item Aucun des trois sujets: $P[X=0]=\frac{\binom{40}{3}}{\binom{100}{3}}$.
+\end{enumerate}
+La loi de probabilité de $X$ est donnée sur le support $\{0,1,2,3\}$ par:
+\begin{equation*}
+P[X=k]=\frac{\binom{60}{k}.\binom{40}{3-k}}{\binom{100}{3}}
+\end{equation*}
+
+Résultats numériques:
+
+$k=0:P[X=0]$ $\simeq 6.\,110\times 10^{-2}$
+
+$k=1:P[X=1] \simeq 0.289\,$
+
+$k=2:P[X=2]\simeq 0.438$
+
+$k=3:P[X=3] \simeq 0.212$
+
+L'espérance est $E(X)=1.8$ (selon la formule $E(X)=np$).
+\fincorrection
+\correction{006009}
+Puisque les réponses sont données au hasard, chaque grille-réponses est en fait la 
+répétition indépendante de $20$ épreuves aléatoires (il y a $4^{20}$ grilles-réponses). 
+Pour chaque question la probabilité de succès est de $\frac{1}{4}$ et
+l'examinateur fait le compte des succès: la variable aléatoire $X$,
+nombre de bonnes réponses, obéit à une loi binomiale donc on a
+directement les résultats.
+Pour toute valeur de $k$ comprise entre $0$ et $20$:
+$P[X=k]=C_{20}^{k}(\frac{1}{4})^{k}(1-\frac{1}{4})^{20-k}$, ce qui
+donne la loi de cette variable aléatoire.
+
+Quelle est l'espérance d'un candidat fumiste? C'est $E(X)=np=5$
+\fincorrection
+\correction{006010}
+Une variable aléatoire adaptée à ce problème est le nombre $X$ de personnes 
+se présentant au guichet entre 10h et 11h. Compte tenu
+des hypothèses, on partage l'heure en $60$ minutes. Alors $X$ suit une
+loi binomiale de paramètres $n=60$ et $p=0.1$. On est dans le cas de
+processus poissonnien : on peut approcher la loi de $X$ par la loi de
+Poisson de paramètre $\lambda =60\times 0.1=6$.
+L'espérance de $X$ est donc $E(X)=6$;
+
+On peut alors calculer les probabilités demandées:
+$P[X=k]=\frac{6^{k}e^{-6}}{k!}$. Valeurs lues dans une table ou calculées :
+$P[X=3]\simeq 0.9\%;$ $P[X=4]\simeq 13.4\%;$ $P[X=5]=P[X=6]\simeq
+\,16.1\%;$
+$P[X=7]\,\simeq 13.8\%;P[X=8]\simeq 10.3\,\%.$
+
+Remarque : de façon générale si le paramètre 
+$\lambda$ d'une loi de Poisson est un entier $K$, on a:
+$P[X=K-1]=\frac{K^{K-1}e^{-K}}{(K-1)!}=\frac{K^{K}e^{-K}}{K!}=P[X=K]\,.$
+
+Calculons maintenant la probabilité pour que au moins $10$
+personnes se présentent au guichet entre $10$h et $11$h: C'est $P[X\geq
+10]=1-\sum_{k=0}^{9}\frac{6^{k}e^{-6}}{k!}\simeq 8.392\times
+10^{-2}.$
+
+\fincorrection
+\correction{006011}
+La probabilité $p=\frac{1}{100}$ étant faible, on peut appliquer la
+loi de Poisson d'espérance $100p=1$ au nombre $X$ de centenaires pris
+parmi cent personnes. On cherche donc: $P[X\geq 1]=1-P[X=0]=1-e^{-1}\simeq
+63\%$.
+
+Sur un groupe de $200$ personnes: l'espérance est 2 donc: $P[X'\geq 1]=1-e^{-2}\simeq 86\%.$
+La probabilité des événements : $[X' =1]$ et $[X' =2]$
+sont les mêmes et valent: $0.14$.
+Ainsi, sur 200 personnes, la probabilité de trouver exactement un
+centenaire vaut $0.14$, égale à la probabilité de trouver
+exactement deux centenaires. Cette valeur correspond au maximum de probabilité 
+pour une loi de Poisson d'espérance $2$ et se généralise.
+Si $X$ obeit à une loi de Poisson d'espérance $K$, alors le maximum de
+probabilité est obtenu pour les événements $[X=K-1]$ et $[X=K].$
+\fincorrection
+\correction{006012}
+\begin{enumerate}
+\item 30\% est la probabilité de l'événement Panne, noté $Pa$;
+la probabilité pour une machine donnée de plus de cinq ans, d'être hors d'usage est
+$P(HU)=P(HU/Pa) P(Pa)+P(HU/nonPa) P(nonPa)=0.3\cdot 0.75+0.4\cdot
+0.7=0.505$.
+
+\item La probabilité pour une machine hors d'usage de n'avoir jamais eu de
+panne auparavant est 
+$P(\text{non}\,Pa/HU)=P(HU/\text{non}\,Pa) P(\text{non}\,Pa)/P(HU)=0.4\cdot 0.7/
+0.505\,=0.554\,46$.
+
+\item La loi de probabilité de $X$ est une loi binomiale, $n= 10$, $p=0.3$, espérance $3$.
+
+\item $P[X=5]=\binom{10}{5}(0.3)^{5}(0.7)^{5}=0.102\,92$
+\end{enumerate}
+\fincorrection
+\correction{006013}
+Le nombre $X$ de personnes mesurant plus de 1.90m parmi 100 obéit à
+une loi de Poisson de paramètre $\frac{100}{80}$.
+
+La probabilité qu'il y ait au moins une personne mesurant plus de 1.90m
+est donc $1-P[X=0]=1-e^{-\frac{100}{80}}=1-e^{-\frac{5}{4}}=0.713\,50$.
+
+Sur 300 personnes:
+la probabilité qu'il y ait au moins une personne mesurant plus de 1.90m
+est donc $1-P[Y=0]=1-e^{-\frac{300}{80}}=0.976\,48$.
+
+\fincorrection
+
+
+\end{document}
+

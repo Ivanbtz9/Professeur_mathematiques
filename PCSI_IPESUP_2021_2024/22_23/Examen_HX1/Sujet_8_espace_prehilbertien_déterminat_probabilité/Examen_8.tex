@@ -1,0 +1,392 @@
+\documentclass[a4paper,11pt]{article}
+
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{paralist}
+\usepackage{xspace,multicol}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{lipsum}
+
+\usepackage{stmaryrd}
+
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exer}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\Roman{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}\newcommand{\disp}{\displaystyle}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+\setlist[enumerate]{itemsep=1mm}
+
+
+\pagestyle{fancy}
+
+
+
+\begin{document}
+	\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M.Botcazou \& M.Dupré}\cfoot{\thepage/4}\rfoot{\textbf{Tournez la page S.V.P.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+\raggedright
+	\noindent\shadowbox{
+		\begin{minipage}{1\linewidth}
+		$$\huge{\textbf{ Concours Blanc: Mathématiques}}$$%Examen n°8 
+		$$\left(\text{Temps : }4\text{ heures}\right) $$
+	
+		\end{minipage}
+	}
+\medskip
+
+\bigskip 
+
+
+La présentation, la lisibilité, l'orthographe, la qualité de la rédaction et la précision des raisonnements entreront pour
+une part importante dans l'appréciation des copies. Les étudiants sont invités à encadrer dans la mesure du possible les résultats de leurs calculs. Les réponses doivent toutes être soigneusement justifiées. Les calculatrices sont interdites.
+
+\hfill\\[5cm]
+
+\centering\noindent\fcolorbox{black}{white}{
+	\begin{minipage}{0.95\linewidth}
+		$$\text{Barème indicatif:}$$
+		\hfill\\[0.2cm]
+		\centering
+		\begin{minipage}{0.9\linewidth}
+			\begin{enumerate}
+				\item[$\bullet$] Exercice 1 \dotfill 10 points \hfill\\[0.2cm]
+				\item[$\bullet$] Exercice 2 \dotfill  8 points \hfill\\[0.2cm]
+				\item[$\bullet$] Exercice 3 \dotfill 12 points \hfill\\[0.5cm]
+		\end{enumerate}\end{minipage}
+\end{minipage}}
+
+\hfill\\[4cm]
+
+
+
+
+
+\begin{exer}\textit{(Polynômes de Legendre)}\quad\\[0.2cm]%p300 DM Poulet 
+
+	
+	Dans tout l'exercice, $n$ désigne un entier naturel, $\mathbb{R}[X]$ l'espace vectoriel des polynômes à coefficients réels et $\mathbb{R}_{n}[X]$ l'ensemble des polynômes réels de degré inférieur ou égal à $n$. On identifiera polynômes et fonctions polynomiales associées. Pour tout $k \in \mathbb{N}$, on note $P^{(k)}$ la dérivée $k$-ème du polynôme $P$.
+	
+	Pour tout $n \in \mathbb{N}$, on considère les polynômes définis par :
+	
+	$$
+	U_{n}=\left(X^{2}-1\right)^{n} \text { et } L_{n}=\frac{1}{2^{n} n !} U_{n}^{(n)}
+	$$
+	
+	La famille $\left(L_{n}\right)$ est appelée la famille des polynômes de Legendre.
+	
+	Pour tout polynôme $P$, on note $\mathscr{L}(P)$ le polynôme :
+	
+	$$
+	\mathscr{L}(P)=\left[\left(X^{2}-1\right) P^{\prime}\right]^{\prime}
+	$$
+	\newpage
+	
+
+	
+	\subsection{ Préliminaires}
+	\begin{enumerate}
+		\item \begin{enumerate}
+			\item Calculer $L_{0}, L_{1}, L_{2}$ et $L_{3}$.
+			\item Pour tout $n \in \mathbb{N}$, déterminer le degré et le coefficient dominant de $L_{n}$.
+			\item En déduire que la famille $\left(L_{0}, \ldots, L_{n}\right)$ est une base de $\mathbb{R}_{n}[X]$.
+		\end{enumerate} 
+	\item Montrer que $L_{2 n}$ (respectivement $L_{2 n+1}$ ) est une fonction paire (respectivement impaire).
+	\item \begin{enumerate}
+		\item Montrer que pour tout $\disp n \in \mathbb{N}: L_{n}=\frac{1}{2^{n}} \sum_{k=0}^{n}\binom{n}{k}^{2}(X-1)^{k}(X+1)^{n-k}$.
+		\item En déduire les valeurs de $L_{n}(-1)$ et de $L_{n}(1)$. 
+	\end{enumerate}	
+\begin{enumerate}
+	\item Montrer que pour tout $n \in \mathbb{N}$,
+	
+	$$
+	\begin{gathered}
+	U_{n+1}^{\prime}-2(n+1) X U_{n}=0 \\
+	\left(X^{2}-1\right) U_{n}^{\prime}-2 n X U_{n}=0
+	\end{gathered}
+	$$
+	\item En dérivant les égalités polynomiales précédentes, montrer que la suite $\left(L_{n}\right)$ vérifie :
+	
+	$$
+	\begin{gathered}
+	L_{n+1}^{\prime}=X L_{n}^{\prime}+(n+1) L_{n} \\
+	\mathscr{L}\left(L_{n}\right)=n(n+1) L_{n}
+	\end{gathered}
+	$$
+	
+	\item En déduire que la restriction de $\mathscr{L}$ à $\mathbb{R}_{n}[X]$ est un endomorphisme que nous noterons $\mathscr{L}_{n}$.
+	
+	Exprimer la matrice de $\mathscr{L}_{n}$ dans la base $\left(L_{0}, \ldots, L_{n}\right)$.
+\end{enumerate}
+	\end{enumerate}
+
+	
+	\subsection{Étude d'un produit scalaire et d'une base orthogonale}
+	
+	Pour tous $P, Q \in \mathbb{R}[X]$, on pose: $$\langle P, Q\rangle=\int_{-1}^{1} P(x) Q(x) d x$$
+	
+	\begin{enumerate}
+		\setcounter{enumi}{3}
+		\item Montrer que $\langle\cdot,\cdot\rangle$ est un produit scalaire sur $\mathbb{R}[X]$. On notera $\| \cdot\|$ la norme euclidienne associée.
+		\item Montrer que pour tous $P, Q \in \mathbb{R}[X]:\langle\mathscr{L}(P), Q\rangle=\langle P, \mathscr{L}(Q)\rangle$. On dit que $\mathscr{L}$ est un endomorphisme auto-adjoint.
+		\item \begin{enumerate}
+			\item Montrer que pour tout $m \in \mathbb{N}$, la famille $\left(L_{n}\right)_{n \in \llbracket 0, m \rrbracket}$ est une base orthogonale de $\mathbb{R}_{m}[X]$.
+			\item Montrer que pour tout $n \in \mathbb{N}, L_{n+1} \in \mathbb{R}_{n}[X]^{\perp}$.
+			
+		\end{enumerate}
+	\item Montrer que $\left\|L_{n}\right\|^{2}=\frac{2}{2 n+1}$.
+	\end{enumerate}
+	
+	\subsection{ Deux propriétés supplémentaires}
+	\begin{enumerate}
+		\setcounter{enumi}{7}
+		\item En considérant un polynôme $\disp Q=\prod_{i=1}^{k}\left(X-a_{i}\right)$ de $\mathbb{R}_{n}[X]$, montrer que $L_{n+1}$ possède $n+1$ racines réelles distinctes, toutes dans l'intervalle $] - 1, 1[$.
+		\item Calculer la distance de $X^{n+1}$ au sous-espace vectoriel $\mathbb{R}_{n}[X]$.
+	\end{enumerate}
+\hfill\\[1.5cm]
+
+\end{exer}
+
+
+\begin{exer}\textit{(Temps d'arrêt)}\quad\\[0.2cm]%p107 DS Poulet
+
+	
+	Pour tout entier $n$ tel que $n \geqslant 2$, on considère une urne $U_{n}$ contenant $n$ boules numérotées de 1 à $n$. On effectue, dans $U_{n}$, des tirages indépendants d'une boule avec remise. On suppose que tous les tirages dans $U_{n}$ sont équiprobables. On s'arrête dès que l'on obtient une boule déjà obtenue.
+	
+	On suppose l'expérience modélisée par un espace probabilisé fini $(\Omega, P)$ et on note $T_{n}$ la variable aléatoire égale au nombre de tirages effectués.
+	\newpage 
+	
+	\begin{enumerate}
+		\item 	Déterminer $T_{n}(\Omega)$ et justifier que :
+		$$
+		P\left(T_{n}>n+1\right)=0
+		$$
+		\item Prouver que pour tout entier naturel $k$ tel que $k \leqslant n$, on a :
+		
+		$$
+		P\left(T_{n}>k\right)=\frac{n !}{(n-k) ! n^{k}}
+		$$
+	\end{enumerate}
+
+	Pour tout $n \geqslant 2$, on considère la variable aléatoire $Y_{n}=\dfrac{T_{n}}{\sqrt{n}}$. Soit $\left.y \in\right] 0,+\infty[$ fixé.
+
+Pour tout entier $n \geqslant 2$, on note $k_{n}(y)$ l'entier naturel égal à la partie entière de $y \sqrt{n}$ de sorte que l'on a :
+	$$
+	k_{n}(y) \leqslant y \sqrt{n}<1+k_{n}(y)
+	$$
+	
+	
+		\begin{enumerate}
+		\setcounter{enumi}{2}
+		\item Justifier que pour tout entier $n \geqslant 2$ :
+		
+		$$
+		P\left(Y_{n}>y\right)=P\left(T_{n}>k_{n}(y)\right)
+		$$
+		\item Rappeler la formule de Stirling et montrer que:
+		
+		$$
+		P\left(Y_{n}>y\right) \underset{n \rightarrow+\infty}{\sim} e^{-k_{n}(y)}\left(1-\frac{k_{n}(y)}{n}\right)^{k_{n}(y)-n}
+		$$
+		\item\begin{enumerate}
+			\item Déterminer le développement limité à l'ordre 2 au voisinage de 0 de la fonction $f: t\longmapsto-t+(t-1) \ln (1-t)$.
+			\item En déduire que:
+			
+			$$
+			\lim _{n \rightarrow+\infty}\left(-k_{n}(y)+\left(k_{n}(y)-n\right) \ln \left(1-\frac{k_{n}(y)}{n}\right)\right)=-\frac{y^{2}}{2}
+			$$
+			
+	\end{enumerate}
+	\item Montrer que:
+	
+	$$
+	\lim _{n \rightarrow+\infty} P\left(Y_{n} \leqslant y\right)=1-e^{-\frac{y^{2}}{2}}
+	$$
+\end{enumerate}
+
+\end{exer}
+
+\setcounter{subsection}{0}
+
+\begin{exer}\textit{(Matrices symplectiques)}\quad\\[0.2cm]%p274 DM Poulet
+
+	Dans tout le problème, $n$ désigne un entier naturel non nul : $n \in \mathbb{N}^{*}$.
+	\begin{itemize}
+		\item Dans $\mathscr{E}_{n}=\mathcal{M}_{n, 1}(\mathbb{R})$ espace vectoriel réel de dimension $n$, on utilisera le produit scalaire canonique défini par :
+		
+		$$
+		\forall U, V \in \mathscr{E}_{n}, \ (U \mid V)=U^{\top} V
+		$$
+		\item On notera $\mathscr{M}_{n}=\mathcal{M}_{n}(\mathbb{R})$, l'espace vectoriel des matrices carrées de taille $n$ à coefficients réels.
+		\item Dans $\mathcal{M}_{n}$, on notera $0_{n}$ la matrice nulle et $I_{n}$ la matrice unité. Le déterminant est noté det.
+		\item $\mathscr{G}_{n}=G L_{n}(\mathbb{R})=\left\{M \in \mathscr{M}_{n}\right.$, $\left.\operatorname{det}(M) \neq 0\right\}$ désigne le groupe linéaire des matrices inversibles de $\mathscr{M}_{n}$.
+		
+		\item On sera enfin amené à utiliser des décompositions par blocs. On rappelle en particulier que si $A, B, C, D, A^{\prime}, B^{\prime}$, $C^{\prime}, D^{\prime} \in \mathcal{M}_{n}$ on a alors dans $\mathcal{M}_{2 n}$ :
+			$$
+		\begin{gathered}
+		\left(\begin{array}{ll}
+		A & B \\
+		C & D
+		\end{array}\right)\left(\begin{array}{ll}
+		A^{\prime} & B^{\prime} \\
+		C^{\prime} & D^{\prime}
+		\end{array}\right)=\left(\begin{array}{cc}
+		A A^{\prime}+B C^{\prime} & A B^{\prime}+B D^{\prime} \\
+		C A^{\prime}+D C^{\prime} & C B^{\prime}+D D^{\prime}
+		\end{array}\right) \\
+		\operatorname{det}\left(\begin{array}{cc}
+		A & C \\
+		0_{n} & D
+		\end{array}\right)=\operatorname{det}\left(\begin{array}{cc}
+		A & 0_{n} \\
+		C & D
+		\end{array}\right)=\operatorname{det}(A) \operatorname{det}(D)
+		\end{gathered}
+		$$
+	\end{itemize}
+
+
+	
+	\subsection{Propriétés sur les matrices symplectiques}
+	
+	Soit $n \in \mathbb{N}^{*}$ et soit $J_{n}$ ou simplement $J$ la matrice de $\mathscr{M}_{2 n}$ définie par :
+	
+	$$
+	J=\left(\begin{array}{cc}
+	0_{n} & -I_{n} \\
+	I_{n} & 0_{n}
+	\end{array}\right)
+	$$
+	
+	On note:
+	
+	$$
+	\mathscr{S}p_{2n}=\left\{M \in \mathscr{M}_{2 n}, M^{\top} J M=J\right\}
+	$$
+	\begin{enumerate}
+		\item Calculer $J^{2}$ et $J^{\top}$ en fonction de $I_{2 n}$ et $J$. Montrer que $J$ est inversible et identifier son inverse.
+		\item Vérifier que $J \in \mathscr{S}p_{2n}$ et que pour tout réel $\alpha$,
+		
+		$$
+		K(\alpha)=\left(\begin{array}{cc}
+		I_{n} & 0_{n} \\
+		-\alpha I_{n} & I_{n}
+		\end{array}\right) \in \mathscr{S}p_{2n}
+		$$
+		\item Pour tout $U \in \mathscr{G}_{n}$, vérifier que $L_{U}=\left(\begin{array}{cc}U & 0_{n} \\ 0_{n} & \left(U^{-1}\right)^{\top}\end{array}\right)$ est dans $\mathscr{S}p_{2n}$.
+		\item Si $M \in \mathscr{S}p_{2n}$, préciser les valeurs possibles $\operatorname{de} \operatorname{det}(M)$.
+		\item Montrer que le produit de deux éléments de $\mathscr{S}p_{2n}$ est un élément de $\mathscr{S}p_{2n}$.
+		\item Montrer qu'un élément de $\mathscr{S}p_{2n}$ est inversible et que son inverse appartient à $\mathscr{S}p_{2n}$.
+		\item Montrer que si $M \in \mathscr{S}p_{2n}$ alors $M^{\top} \in \mathscr{S}p_{2n}$.
+		
+		Soit $M$ une matrice de $\mathscr{M}_{2 n}$ écrite sous la forme:
+		
+		$$
+		M=\left(\begin{array}{ll}
+		A & B \\
+		C & D
+		\end{array}\right) \text { avec } A, B, C, D \in \mathcal{M}_{n}
+		$$
+		\item Déterminer les relations sur $A, B, C, D$ caractérisant l'appartenance de $M$ à $\mathscr{S}p_{2n}$. 
+	\end{enumerate}
+
+\subsection{Centre de $\mathscr{S}p_{2n}$}
+
+
+	
+
+	
+	On s'intéresse ici au centre $\mathcal{Z}$ de $\mathscr{S}p_{2n}$ c'est-à-dire: $\mathcal{Z}=\left\{M \in \mathscr{S}p_{2n}, \forall N \in \mathscr{S}p_{2n}, M N=N M\right\}$.
+	
+	\begin{enumerate}
+		\setcounter{enumi}{8}
+		\item Justifier l'inclusion suivante $:\left\{-I_{2 n}, I_{2 n}\right\} \subset \mathcal{Z}$.
+		
+		Réciproquement, soit $M \in \mathcal{Z}$ écrite sous la forme :
+		
+		$$
+		M=\left(\begin{array}{ll}
+		A & B \\
+		C & D
+		\end{array}\right) \text { avec } A, B, C, D \in \mathscr{M}_{n}
+		$$
+		\item En utilisant $L=\left(\begin{array}{cc}I_{n} & I_{n} \\ 0_{n} & I_{n}\end{array}\right)$ et sa transposée, obtenir $B=C=0_{n}$ et $D=A, A$ étant inversible.
+		\item Soit $U \in \mathscr{G}_{n}$. En utilisant $L_{U}=\left(\begin{array}{cc}U & 0_{n} \\ 0_{n} & \left(U^{-1}\right)^{\top}\end{array}\right)$, montrer que $A$ commute avec toute matrice $U \in \mathscr{G}_{n}$.
+		\item Conclure que $A \in\left\{-I_{n}, I_{n}\right\}$ et $\mathcal{Z}=\left\{-I_{2 n}, I_{2 n}\right\}$.
+		
+		Indication : on montrera d'abord que les matrices $I_{n}+E_{i, j}$ commutent avec $A$, où $\left(E_{i, j}, 1 \leqslant i, j \leqslant n\right)$ est la base canonique de $\mathscr{M}_{n}$.
+	\end{enumerate}
+\end{exer}
+
+
+
+\lhead{Groupe IPESUP}\chead{}\rhead{Année~2022-2023}\lfoot{M.Botcazou \& M.Dupré}\cfoot{\thepage/4}\rfoot{\textbf{FIN.}}\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\end{document}

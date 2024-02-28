@@ -1,0 +1,486 @@
+\documentclass[a4paper,10.5pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm}
+\usepackage{paralist}
+\usepackage{enumerate}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{array,multirow,makecell}
+\usepackage{graphicx}
+\usepackage{diagbox}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{setspace}
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.5cm,left=1.5cm]{geometry}
+
+\newtheorem{defi}{Définition}
+\newtheorem{thm}{Théorème}
+\newtheorem{thm-def}{Théorème/Définition}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{ex}{Exemple}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{prop-def}{Propriété-définition}
+\newtheorem{exer}{Exercice}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+%\def\di{\displaystyle}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\setcellgapes{6pt}
+\makegapedcells
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{}\chead{}\rhead{}\lfoot{Chapitre 6 - Cours}\cfoot{\thepage/8}\rfoot{M. Botcazou}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	%\tableofcontents
+
+	$$\fbox{\text{\Large{ Chapitre 6 : Probabilités}}}$$
+	
+	%$$\fbox{\text{\Large{ \begin{minipage}{0.9\linewidth } \centering\hfil\\ ......\hfill \\\hfill \\\end{minipage} }}}$$
+	
+
+
+
+\renewcommand{\arraystretch}{1.5}
+$$\begin{tabular}{|l|l|}
+\hline
+\textbf{Contenus} & \textbf{Capacités attendues} \\
+\hline 
+$\bullet$  Ensemble (univers) des issues. Événements.  & $\bullet$   Utiliser des modèles théoriques de référence (dé, pièce équilibrée,\\
+ Réunion, intersection, complémentaire. &  tirage au sort avec
+ équiprobabilité dans une population).\\
+$\bullet$  Loi (distribution) de probabilité. Probabilité  &  $\bullet$ Construire un modèle à partir de fréquences observées.\\
+d’un événement : somme des probabilités
+des issues.   & $\bullet$ Calculer des probabilités dans des cas simples :\\
+$\bullet$  Relation $P(A \cup B) + P(A \cap B) = P(A) + P(B)$.  &    expérience aléatoire à deux ou trois
+épreuves.\\
+$\bullet$    Dénombrement à l’aide de tableaux et d’arbres. & \\
+
+\hline
+\end{tabular}$$
+
+
+\section{Expérience aléatoire:}
+\subsection{Le vocabulaire:}
+\subsubsection{Expérience aléatoire, univers, issues et évènements:}
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}\begin{defi}\hfill\\[-0.25cm]\begin{enumerate}[$\square$]
+			\item Une $\dots\dots\dots\dots\dots\dots$%\textbf{expérience} 
+			est dite $\dots\dots\dots\dots\dots\dots$ %\textbf{aléatoire}
+			 si on ne peut pas prédire à l'avance le résultat de celle-ci.\\
+ 			 \item Chaque résultat possible d'une expérience aléatoire est appelé une $\dots\dots\dots\dots\dots\dots$\\
+			\item L'$\dots\dots\dots\dots\dots\dots$$\dots\dots\dots\dots\dots\dots$%\textbf{univers d'une expérience aléatoire}
+			 est l'ensemble de toutes les issues possibles. On le note $\dots\dots$ \\%$\Omega$ \\
+			\item Un $\dots\dots\dots\dots\dots\dots$%\textbf{évènement} 
+			est un sous ensemble de l'univers $\Omega$. C'est donc un ensemble d'issues.\\ 
+			\item Soit $A$ un évènement de l'univers $\Omega$, on note $\dots\dots$ l'$\dots\dots\dots\dots\dots\dots$$\dots\dots\dots\dots\dots\dots$%\textbf{évènement contraire} 
+			de l'évènement $A$\\
+		\end{enumerate}
+		\end{defi}
+	\end{minipage}\hfill\\}\hfill\\	\hfill\\
+
+
+\begin{minipage}[c]{0.6\linewidth}
+	\begin{ex}\hfill\\
+		\begin{itemize}[$\square$]
+		\item Une personne majeure achète ce jeu à gratter dans un bureau de vente, donner les issues possibles associées à cette expérience \\aléatoire (Gains/Pertes):\\[0.5cm]
+		.\dotfill\\[0.5cm].\dotfill\\[0.5cm].
+		\item On considère l'évènement $A : "\text{Gagner plus de trois euros}~"$.\\ Expliciter l'évènement $\overline{A}$.\\[0.5cm]
+		.\dotfill\\[0.5cm].\dotfill\\[0.5cm]
+		\end{itemize}
+	\end{ex}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.3\linewidth}
+	\quad\hfill\\
+	\includegraphics[width=50mm,scale=0.2]{mots-croises-2021.jpg}
+\end{minipage}
+
+\begin{exer}\hfill\\[0.25cm]
+\begin{minipage}[t]{1\linewidth}
+	On lance deux dés parfaitement équilibrés à $6$ faces numérotés, on étudie ensuite la valeur de la somme des deux nombres présents sur les faces supérieures.
+	\begin{enumerate}
+		\item Donner les issues possibles associées à cette expérience aléatoire. 
+		\item Donner un évènement possible associé à cette expérience aléatoire et en déduire son évènement contraire. 
+	\end{enumerate} 
+\end{minipage}
+\end{exer}
+\begin{rmq}\hfill\\[-0.25cm]
+	\begin{minipage}[t]{0.9\linewidth}
+		\begin{enumerate}[$\square$]
+		\item Un évènement qui se réalise toujours et qui contient toutes les issues possibles d'une expérience aléatoire est un \textbf{"Évènement certain"}.
+		\item Un évènement qui ne se réalise jamais et qui contient aucune des issues possibles d'une expérience aléatoire est un \textbf{"Évènement impossible"}.
+		\item Soit $A$ un évènement de l'univers $\Omega$ associé à une expérience aléatoire, l'évènement $\overline{A}$ s'appelle aussi \textbf{l'évènement complémentaire} de $A$.
+	\end{enumerate}
+	\end{minipage}
+\end{rmq}
+\subsubsection{Modèle de probabilité et loi de probabilité associée:}
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}\begin{defi}\hfill\\[0.25cm] Choisir un $\dots\dots\dots\dots\dots\dots$$\dots\dots\dots\dots\dots\dots$%\textbf{modèle de probabilité}
+pour une expérience aléatoire , c'est associer à chaque issue \hfill\\[0.25cm]un nombre compris entre $\dots\dots$%$0$
+ et $\dots\dots$%$1$
+  qui est appelé $\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots$\hfill\\[0.25cm]%\textbf{probabilité de l'issue}.
+   La somme des probabilités de chaque issue est égale à $\dots\dots$\\[0.1cm]%$1$.   
+\end{defi}\end{minipage}\hfill\\}\hfill\\[0.5cm]
+
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}\begin{defi}\hfill\\[0.25cm] Pour un modèle de probabilité associé à une expérience aléatoire, on définit la $\dots \dots \dots \dots$$\dots \dots \dots \dots \dots \dots\dots \dots$\\[0.25cm]%\textbf{loi de probabilité} 
+comme l'ensemble des probabilités de chaque issue.\\[0.1cm]     
+	\end{defi}\end{minipage}\hfill\\}
+
+\begin{ex}\hfill\\
+On lance un dé parfaitement équilibré à $6$ faces numérotés, on note $X$ la valeur du nombre présent sur la face \\supérieure. Remplir le tableau suivant:\\
+\begin{center}
+	\begin{tabular*}{0.6\textwidth}{@{\extracolsep{\fill}}|c|c|c|c|c|c|c|}
+	\hline
+	Issue $"a"$ &1&2&3&4&5&6 \\
+	\hline
+	
+	P(\{X=a\}) &&&&&&\\
+	\hline
+\end{tabular*}
+\end{center}
+\end{ex}
+\begin{rmq}\hfill\\[-0.25cm]
+	\begin{minipage}[t]{0.9\linewidth}
+		\begin{enumerate}[$\square$]
+			\item Si pour une expérience aléatoire, deux issues ont la même probabilité, on dira que ces deux issues\\ sont \textbf{équiprobables}.
+			\item Si pour une expérience aléatoire, toutes les issues ont la même probabilité, on dira que l'on est en \textbf{ situation d'équiprobabilité}.\\[0.05cm]
+		\end{enumerate}
+	\end{minipage}
+\end{rmq}
+
+
+\begin{exer}\hfill\\
+	On lance un dé truqué à $6$ faces numérotés, on note $X$ la valeur du nombre présent sur la face supérieure. On sait que la probabilité d'obtenir un $6$ est deux fois plus grande que la probabilité d'obtenir un autre nombre. De plus on sait que les probabilités d'obtenir un autre nombre que 6 sont équiprobables. Remplir le tableau suivant:\\
+	\begin{center}
+		\begin{tabular*}{0.6\textwidth}{@{\extracolsep{\fill}}|c|c|c|c|c|c|c|}
+			\hline
+			Issue $"a"$ &1&2&3&4&5&6 \\
+			\hline
+			
+			P(\{X=a\}) &&&&&&\\
+			\hline
+		\end{tabular*} 
+	\hfill\\[0.5cm]	
+	\end{center}
+	\noindent Utiliser ces lignes pour vos calculs: \\[0.5cm]
+.\dotfill \\[0.5cm]
+.\dotfill \\[0.5cm]
+.\dotfill \\[0.5cm]
+.\dotfill \\[0.5cm]
+\end{exer}
+\hfill\\[-1cm]
+
+\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.png}$ \  Exercices 15, 17 p.331}} \\
+\newpage
+\subsection{Modélisation d'une expérience aléatoire:}
+
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}\begin{defi}\hfill\\[0.25cm]  
+		Quand on répète un grand nombre de fois une expérience aléatoire, la fréquence d'apparition de chaque issue se stabilise autour d'une valeur. On prend alors cette valeur comme probabilité de l'issue. \\[0.1cm]     
+	\end{defi}\end{minipage}\hfill\\}
+\hfill\\
+\begin{ex}
+	\textbf{(Modélisation avec le lancer d'une pièce)}\\[0.25cm]
+On s'aperçoit en lançant une pièce bien équilibrée, un grand nombre de fois, qu'on a autant de chances de tomber sur "Pile" que sur "Face".\\
+	Proposer une loi de probabilité pour cette expérience en donnant l'univers de cette expérience aléatoire ainsi que la probabilité de chacune de ses issues.\\[0.5cm]
+	.\dotfill \\[0.5cm]
+	.\dotfill \\[0.5cm]
+	.\dotfill \\[0.5cm]
+	.\dotfill \\[0.5cm] 
+\end{ex}
+\medskip
+\begin{exer}
+	\textbf{(Modélisation avec le lancer d'une pièce truquée)}\\[0.25cm]
+	Une pièce est truquée. On s'aperçoit en la lançant un grand nombre de fois qu'on a deux fois plus de chances de tomber sur "Pile" que sur "Face".\\
+	Proposer une loi de probabilité pour cette expérience en donnant l'univers de cette expérience aléatoire ainsi que la probabilité de chacune de ses issues.\\[0.5cm]
+	.\dotfill \\[0.5cm]
+	.\dotfill \\[0.5cm]
+	.\dotfill \\[0.5cm]
+	 .\dotfill \\[0.5cm].\dotfill \\ 
+\end{exer}
+\section{Expérience aléatoire:}
+\subsection{Probabilité d'un évènement:}
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}\begin{defi}\hfill\\[0.25cm]  
+			La $\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots$%probabilité d'un évènement
+			 est la somme des probabilités des issues qui constituent cet évènement. \\[0.1cm]     
+	\end{defi}\end{minipage}\hfill\\}
+\hfill\\[0.5cm]
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}\hfill\\[-0.25cm]
+			\begin{itemize}[$\square$]
+			\item Dans une situation d'équiprobabilité, la probabilité d'un évènement $A$ est égale à :\\[0.3cm]
+			$$\mathcal{P}(A) = \dfrac{\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad}{\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad}$$ \\[0.15cm]
+			\end{itemize}
+		\end{prop}
+	\end{minipage}
+}
+
+\newpage
+\begin{ex}
+	\textbf{(Tirage de cartes)}\\[0.25cm]
+	On considère un jeu de 32 cartes (as, roi, dame, valet, 10, 9, 8 et 7) réparties en quatre familles: cœur et carreau (\textbf{Rouges}) et pique et trèfle (\textbf{Noires}). On tire une carte au hasard de ce paquet.  \\[0.2cm]
+	\begin{enumerate}
+		\item Quelle est la probabilité de tirer un cœur ?\\[0.5cm]
+		.\dotfill \\[0.15cm]
+		\item Quelle est la probabilité de tirer un roi ?\\[0.5cm]
+		.\dotfill \\[0.15cm]
+		\item Quelle est la probabilité de tirer un personnage rouge ?\\[0.5cm]
+		.\dotfill \\[0.15cm]
+		\item Quelle est la probabilité de ne pas tirer un as ?\\[0.5cm]
+		.\dotfill \\[0.15cm]
+		\item Quelle est la probabilité de tirer la dame de cœur ? \\[0.5cm]
+		.\dotfill \\[0.15cm]
+	\end{enumerate}
+
+\end{ex}
+\medskip
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}\hfill\\[-0.25cm]
+			\begin{itemize}[$\square$]
+				\item Pour tout évènement $A$ dont on connaît la probabilité, on trouve la probabilité de l'évènement contraire $\overline{A}$ par la formule suivante:\\[0.1cm]
+				$$\mathcal{P}(~\overline{A}~) =  $$ \\[-0.5cm]
+			\end{itemize}
+		\end{prop}
+	\end{minipage}
+}
+\hfill\\[0.1cm]
+\begin{ex}
+	\textbf{(Une urne avec 15 boules)}\\[0.25cm]
+	On numérote 15 boules de 1 à 15 et on les place dans une urne, on procède ensuite à un tirage aléatoire.  
+	\begin{enumerate}
+		
+		\item Sommes-nous dans une situation d'équiprobabilité ?\\[0.50cm]
+		.\dotfill \\
+		\item Donner le nombre d'issues possibles pour cette expérience aléatoire et en déduire la probabilité de l'évènement A: "tirer une boule dont le numéro est un multiple de 3"\\[0.5cm]
+		.\dotfill \\[0.2cm].\dotfill \\[0.2cm].\dotfill \\[0.2cm]
+		\item Expliciter l'évènement $\overline{A}$ et en déduire sa probabilité ?\\[0.5cm]
+		.\dotfill \\[0.2cm].\dotfill \\[0.2cm].\dotfill \\[0.2cm].\dotfill 
+	\end{enumerate} 
+	
+\end{ex}
+\newpage
+\begin{exer}
+	\textbf{(Une date d'anniversaire en commun)}\\[0.25cm]
+Dans un groupe de $5$ amis on s'intéresse aux dates d'anniversaire de chacun d'eux. Nous ferons la supposition que toutes les dates de naissance sont réparties de manière équitable sur les jours d'une année.\\[0.15cm] 
+\begin{enumerate}
+	
+\item Sommes-nous dans une situation d'équiprobabilité ?\\[0.50cm]
+.\dotfill \\
+\item Donner le nombre d'issues possibles pour cette expérience aléatoire ?\\[0.5cm]
+.\dotfill \\
+\item Quelle est la probabilité que deux amis aient la même date de naissance ?\\[0.5cm]
+.\dotfill \\[0.2cm].\dotfill \\[0.2cm].\dotfill \\[0.2cm].\dotfill \\[0.2cm].\dotfill \\[0.2cm]
+\item Votre professeur parie avec vous $10$ euros qu'il y a deux élèves dans votre classe de 35 élèves qui ont la même date de naissance. Quelle est la probabilité pour qu'il gagne son pari ? \\[0.5cm]
+\end{enumerate}  
+\end{exer}
+\hfill\\[-2cm]
+\subsection{Réunion et intersection d'évènements:}
+\medskip
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}\begin{defi}\hfill\\[0.15cm]  
+Soient $A$ et $B$ deux évènements d'une expérience aléatoire.\\[0.25cm]
+\begin{minipage}[t]{0.48\linewidth}
+	$\square$ \quad L'évènement $A\cap B$ est appelé .\dotfill\\[0.15cm]
+	.\dotfill\\[0.15cm] 
+	Il est constitué des issues réalisant simultanément\\[0.15cm] l'évènement $A$ \textbf{et} l'évènement $B$.\hfil\\\hfil\\
+
+\end{minipage}\hfil
+\begin{minipage}[t]{0.48\linewidth}
+		$\square$ \quad L'évènement $A\cup B$ est appelé .\dotfill\\[0.15cm]
+		.\dotfill\\[0.15cm]
+		Il est constitué des issues réalisant uniquement \\[0.15cm] l'évènement $A$ \textbf{ou} uniquement l'évènement $B$ \textbf{ou}\\[0.15cm] les deux.\\
+			
+\end{minipage}
+\begin{minipage}[t]{0.48\linewidth}
+	\quad Hachurer l'évènement $A\cap B$.
+		$$\begin{tikzpicture}[scale=1]
+\draw[red](-1,0) ellipse [x radius=2cm, y radius=1cm];
+\draw[red](-2,0.05) node{\large$B$};
+\draw[blue](2,0.05) node{\large$A$};
+\draw[black](-3.5,-1) node{\large$\Omega$};
+\draw[blue](1,0) ellipse [x radius=2cm, y radius=1cm];
+\draw[black](-4,-1.5) rectangle (4,1.4);
+\end{tikzpicture}$$\hfil\\
+\end{minipage}\hfil\begin{minipage}[t]{0.48\linewidth}
+\quad Hachurer l'évènement $A\cup B$.
+$$\begin{tikzpicture}[scale=1]
+\draw[red](-1,0) ellipse [x radius=2cm, y radius=1cm];
+\draw[red](-2,0.05) node{\large$B$};
+\draw[blue](2,0.05) node{\large$A$};
+\draw[black](-3.5,-1) node{\large$\Omega$};
+\draw[blue](1,0) ellipse [x radius=2cm, y radius=1cm];
+\draw[black](-4,-1.5) rectangle (4,1.4);
+\end{tikzpicture}$$ \hfil\\
+\end{minipage}	   
+\end{defi}\end{minipage}\hfill\\}
+\hfill\\[0.3cm] 
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}\begin{defi}\hfill\\[0.15cm]  
+			
+			\begin{minipage}[c]{0.48\linewidth}
+				 Deux évènements $A$ et $B$  d'une expérience aléatoire sont\\[0.15cm] dits $\dots\dots\dots\dots\dots\dots\dots\dots$ si aucune issue ne les \\[0.15cm] réalise simultanément.\\[0.25cm]
+				 $$ A\cap B = \quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad$$
+				 $$\mathcal{P}(A\cap B) = \quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad$$
+			\end{minipage}\hfil
+			\begin{minipage}[c]{0.48\linewidth}
+				\hfil$\begin{tikzpicture}[scale=1]
+				\draw[red](-1,0) ellipse [x radius=0.7cm, y radius=1.1cm];
+				\draw[red](-1,0.05) node{\large$B$};
+				\draw[blue](1,0.05) node{\large$A$};
+				\draw[black](-2.5,-1) node{\large$\Omega$};
+				\draw[blue](1,0) ellipse [x radius=0.7cm, y radius=1.1cm];
+				\draw[black](-3,-1.5) rectangle (3,1.4);
+				\end{tikzpicture}$
+				
+			\end{minipage}
+			\hfill\\[0.5cm]	   
+	\end{defi}\end{minipage}\hfill\\}
+\newpage
+\begin{ex}
+	Un lycée propose deux options facultatives à ses 300 élèves de Seconde: l'option Latin notée $L$ et l'option Grec ancien notée $G$. Chaque élève peut prendre une option, deux options ou bien aucune. \\
+	80 élèves ont choisi l'option $L$, 180 élèves ont choisi l'option $G$ et 20 élèves ont choisi les deux options.\\ 
+	\begin{enumerate}
+	\item Compléter le diagramme ci-dessous en indiquant le cardinal de chaque évènement. 
+		$$\begin{tikzpicture}[scale=1.5]
+		\draw[red](-1,0) ellipse [x radius=2cm, y radius=1cm];
+		\draw(-2,0.05) node{\large$\dots\dots\dots$};
+		\draw(2,0.05) node{\large$\dots\dots\dots$};
+		\draw(-3,-1) node[]{\large$\dots\dots\dots$};
+		\draw(0,0.05) node{\large$\dots\dots\dots$};
+		\draw[blue](1,0) ellipse [x radius=2cm, y radius=1cm];
+		\draw[black](-4,-1.5) rectangle (4,1.4);
+		\end{tikzpicture}$$ \hfil\\
+		\item On choisit au hasard un élève de Seconde: \\[0.5cm]
+		\begin{enumerate}
+			\item Quelle est la probabilité de tirer un élève qui suit l'option $L$ ?\\[0.5cm]
+			.\dotfill \\[0.15cm]
+			\item Quelle est la probabilité de tirer un élève qui suit les deux options ? ?\\[0.5cm]
+			.\dotfill \\[0.15cm]
+			\item Quelle est la probabilité de tirer un élève qui suit au moins une des deux options ?\\[0.5cm]
+			.\dotfill \\[0.15cm]
+			\item Quelle est la probabilité de tirer un élève qui ne suit pas d'options? \\[0.5cm].\dotfill \\[0.15cm]
+			\item Quelle est la probabilité de tirer un élève qui suit l'option $G$ mais qui ne suit pas l'option $L$? \\[0.5cm]
+			.\dotfill \\[0.15cm]
+		\end{enumerate}
+	\item Calculer $\mathcal{P}(L) + \mathcal{P}(G)$ et comparer avec  $\mathcal{P}(L\cup G) $\\[0.15cm].\dotfill \\[0.15cm].\dotfill \\[0.15cm]
+		
+	\end{enumerate} 
+\end{ex}
+
+\noindent\fcolorbox{rouge}{white}{
+	\begin{minipage}{1\linewidth}
+		\begin{prop}\hfill\\[0.25cm]
+			Soient $A$ et $B$ deux évènements d'une expérience aléatoire.\\[0.25cm]
+				$$\mathcal{P}(A\cup B) = \quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad$$ \\[-0.4cm]
+		\end{prop}
+	\end{minipage}
+}
+\begin{rmq}
+	Si $A$ et $B$ sont deux évènements incompatibles d'une expérience aléatoire alors :
+	$$\mathcal{P}(A\cup B) = \quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad$$ 
+\end{rmq}
+\newpage
+
+
+\section{Dénombrement:}
+\subsection{Tableau à double entrée:}
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}\begin{defi}\hfill\\[0.25cm]  
+			Un \textbf{tableau à double entrée} permet de dénombrer les issues d'une expérience aléatoire, en particulier lorsque l'on étudie simultanément \textbf{deux caractères} d'une même population. \\[0.1cm]     
+	\end{defi}\end{minipage}\hfill\\}
+\hfill\\[-0.2cm]
+\begin{ex}\hfill\\
+	On choisit au hasard une des 67,2 millions de personnes de la population française, on s'intéresse à son rhésus sanguin et à son groupe sanguin.\\[0.15cm]Le tableau ci-dessous donne la répartition en France, en million de personnes, des groupes et rhésus sanguins.
+	\hfill\\
+	\begin{center}
+		\setlength{\extrarowheight}{0.1cm}
+		\begin{tabular*}{0.5\linewidth}{@{\extracolsep{\stretch{0.5}}}|c|c|c|c|c|}
+			\hline
+			\diagbox{Rh\'{e}sus}{Groupes} & 
+			O & A & B & AB  \\ 
+			\hline
+			Rh\'{e}sus +   & 24.2 & 24.7 & 6 & 2 \\[0.2cm] \hline
+			Rh\'{e}sus -&  4 & 4.7 & 0.7& 0.7\\[0.2cm] \hline
+			
+		\end{tabular*}
+	\end{center}\hfil\\
+	\begin{enumerate}
+	\item Quelle est la probabilité d'être du groupe sanguin A ?\\[0.5cm]
+	.\dotfill \\[0.1cm]
+	\item Quel est le groupe sanguin le plus fréquent dans la population française ? Calculer la probabilité de ne pas\\ appartenir à ce groupe.\\[0.5cm]
+	.\dotfill \\[0.1cm].\dotfill \\[0.1cm]
+	\item Quelle est la probabilité de l'évènement "\{Rh\'{e}sus +\} $\cap$ \{Groupe B\}" ?\\[0.5cm]
+	.\dotfill \\[0.1cm].\dotfill \\[0.1cm]
+	\item Quelle est la probabilité de l'évènement "\{Rh\'{e}sus -\} $\cap$ \{Groupe AB\}" ?\\[0.5cm]
+	.\dotfill \\[0.1cm].\dotfill \\[0.1cm]
+	\item Quelle est la probabilité de l'évènement " \{Groupe A\} $\cup$ \{Rh\'{e}sus +\} " ? \\[0.5cm]
+	.\dotfill \\[0.1cm].\dotfill \\[0.1cm]
+	\item Quelle est la probabilité de l'évènement " \{Groupe A\} $\cup$ \{Groupe B\} " ? \\[0.5cm]
+	.\dotfill \\[0.1cm].\dotfill \\[0.1cm]
+\end{enumerate}	 
+\end{ex}
+\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.png}$ \  Exercices 26, 27 p.332}} \\
+\subsection{Arbre de probabilité:}
+\noindent\fcolorbox{vert}{white}{\begin{minipage}{1\linewidth}\begin{defi}\hfill\\[0.25cm]  
+			Un \textbf{arbre} permet de représenter et dénombrer les issues d'une expérience aléatoire, en particulier lorsqu'il y a une succession de plusieurs épreuves. \\[0.1cm]     
+	\end{defi}\end{minipage}\hfill\\}
+\hfill\\[-0.3cm]
+\begin{ex}\hfill\\
+	On lance une pièce équilibrée puis on lance un dé à six faces équilibré.\\[-0.25cm]  
+
+	\begin{enumerate}
+		\item Construire un arbre ci-dessous, sur lequel on représente la première épreuve (le lancer de la pièce) puis la deuxième épreuve (le lancer du dé).\\[10cm]
+	
+		\item Donner le nombre d'issues possible pour cette expérience aléatoire.\\[0.3cm]
+		.\dotfill \\[0.1cm]
+		\item Quelle est la probabilité de l'évènement "\{Tirer un 6\}" ?\\[0.3cm]
+		.\dotfill \\[0.1cm]
+		\item Quelle est la probabilité de l'évènement "\{Tirer un nombre pair-\} $\cap$ \{Pile\}" ?\\[0.3cm]
+		.\dotfill \\[0.1cm].\dotfill \\[0.1cm]
+		\item Quelle est la probabilité de l'évènement " \{Tirer un nombre impair\} $\cup$ \{Face\} " ? \\[0.3cm]
+		.\dotfill \\[0.1cm].\dotfill \\[0.1cm].\dotfill \\[0.1cm]
+	\end{enumerate}	 
+\end{ex}
+
+\begin{exer}
+	De combien de manières peut-on payer 1 euro, avec uniquement des pièces de 50 centimes, 20 centimes et 10 centimes. 
+\end{exer}
+\hfill\\
+\noindent \textbf{\textcolor{purple}{$\includegraphics[scale=0.05]{logo-td.png}$ \  Exercices 28, 29 p.333}} \\
+
+\end{document}\newpage
+
+
+

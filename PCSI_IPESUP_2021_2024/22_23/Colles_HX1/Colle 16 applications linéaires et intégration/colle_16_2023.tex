@@ -1,0 +1,195 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{fancyhdr,fancybox} % pour personnaliser les en-têtes
+\usepackage{lastpage,setspace}
+\usepackage{amsfonts,amssymb,amsmath,amsthm,mathrsfs}
+\usepackage{relsize,exscale,bbold}
+\usepackage{paralist}
+\usepackage{xspace,multicol,diagbox,array}
+\usepackage{xcolor}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,stmaryrd}
+\usepackage{graphicx}
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{tikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{MnSymbol,wasysym}
+\usepackage[top=1.5cm,bottom=1.5cm,right=1.2cm,left=1.5cm]{geometry}
+\usetikzlibrary{calc, arrows, plotmarks, babel,decorations.pathreplacing}
+\setstretch{1.25}
+%\usepackage{lipsum} %\usepackage{enumitem} %\setlist[enumerate]{itemsep=1mm} bug avec enumerate
+
+
+
+\newtheorem{thm}{Théorème}
+\newtheorem{rmq}{Remarque}
+\newtheorem{prop}{Propriété}
+\newtheorem{cor}{Corollaire}
+\newtheorem{lem}{Lemme}
+\newtheorem{prop-def}{Propriété-définition}
+
+\theoremstyle{definition}
+
+\newtheorem{defi}{Définition}
+\newtheorem{ex}{Exemple}
+\newtheorem*{rap}{Rappel}
+\newtheorem{cex}{Contre-exemple}
+\newtheorem{exo}{Exercice} % \large {\fontfamily{ptm}\selectfont EXERCICE}
+\newtheorem{nota}{Notation}
+\newtheorem{ax}{Axiome}
+\newtheorem{appl}{Application}
+\newtheorem{csq}{Conséquence}
+\def\di{\displaystyle}
+
+
+
+\renewcommand{\thesection}{\Roman{section}}\renewcommand{\thesubsection}{\arabic{subsection} }\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+
+
+\newcommand{\bas}{~\backslash}\newcommand{\ba}{\backslash}
+\newcommand{\C}{\mathbb{C}}\newcommand{\R}{\mathbb{R}}\newcommand{\K}{\mathbb{K}}\newcommand{\Q}{\mathbb{Q}}\newcommand{\Z}{\mathbb{Z}}\newcommand{\N}{\mathbb{N}}\newcommand{\V}{\overrightarrow}\newcommand{\Cs}{\mathscr{C}}\newcommand{\Ps}{\mathscr{P}}\newcommand{\Rs}{\mathscr{R}}\newcommand{\Gs}{\mathscr{G}}\newcommand{\Ds}{\mathscr{D}}\newcommand{\happy}{\huge\smiley}\newcommand{\sad}{\huge\frownie}\newcommand{\danger}{\begin{tikzpicture}[x=1.5pt,y=1.5pt,rotate=-14.2]
+	\definecolor{myred}{rgb}{1,0.215686,0}
+	\draw[line width=0.1pt,fill=myred] (13.074200,4.937500)--(5.085940,14.085900)..controls (5.085940,14.085900) and (4.070310,15.429700)..(3.636720,13.773400)
+	..controls (3.203130,12.113300) and (0.917969,2.382810)..(0.917969,2.382810)
+	..controls (0.917969,2.382810) and (0.621094,0.992188)..(2.097660,1.359380)
+	..controls (3.574220,1.726560) and (12.468800,3.984380)..(12.468800,3.984380)
+	..controls (12.468800,3.984380) and (13.437500,4.132810)..(13.074200,4.937500)
+	--cycle;
+	\draw[line width=0.1pt,fill=white] (11.078100,5.511720)--(5.406250,11.875000)..controls (5.406250,11.875000) and (4.683590,12.812500)..(4.367190,11.648400)
+	..controls (4.050780,10.488300) and (2.375000,3.675780)..(2.375000,3.675780)
+	..controls (2.375000,3.675780) and (2.156250,2.703130)..(3.214840,2.964840)
+	..controls (4.273440,3.230470) and (10.640600,4.847660)..(10.640600,4.847660)
+	..controls (10.640600,4.847660) and (11.332000,4.953130)..(11.078100,5.511720)
+	--cycle;
+	\fill (6.144520,8.839900)..controls (6.460940,7.558590) and (6.464840,6.457090)..(6.152340,6.378910)
+	..controls (5.835930,6.300840) and (5.320300,7.277400)..(5.003900,8.554750)
+	..controls (4.683590,9.835940) and (4.679690,10.941400)..(4.996090,11.019600)
+	..controls (5.312490,11.097700) and (5.824210,10.121100)..(6.144520,8.839900)
+	--cycle;
+	\fill (7.292960,5.261780)..controls (7.382800,4.898500) and (7.128900,4.523500)..(6.730460,4.421880)
+	..controls (6.328120,4.324220) and (5.929680,4.535220)..(5.835930,4.898500)
+	..controls (5.746080,5.261780) and (5.999990,5.640630)..(6.402340,5.738340)
+	..controls (6.804690,5.839840) and (7.203110,5.625060)..(7.292960,5.261780)
+	--cycle;
+	\end{tikzpicture}}\newcommand{\alors}{\Large\Rightarrow}\newcommand{\equi}{\Leftrightarrow}
+\newcommand{\fonction}[5]{\begin{array}{l|rcl}
+		#1: & #2 & \longrightarrow & #3 \\
+		& #4 & \longmapsto & #5 \end{array}}
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+\definecolor{bleu}{RGB}{15,5,107}
+
+
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2022-2023}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: i.botcazou@gmx.fr }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+	
+	
+	\begin{center}
+		\Large \sc colle 16 = Représentation matricielle des applications linéaires et Intégration
+	\end{center}
+\raggedright
+
+%bibmath
+
+%(1) https://www.bibmath.net/ressources/index.php?action=affiche&quoi=bde/algebrelineaire/matricesal&type=fexo
+
+%(2) https://www.bibmath.net/ressources/justeunexo.php?id=403
+
+%(3) https://www.bibmath.net/ressources/justeunefeuille.php?id=27976
+
+
+
+
+\section*{Connaître son cours:}
+\begin{enumerate}
+	\item Soit $f$ une fonction continue sur $[a , b ] $, positive et non nulle en au moins un point de $[a , b ] $. Montrer que \quad  $\displaystyle\int_{a}^{b}f(t) ~ dt > 0$
+	\item Soit $b > a $. Calculer $\displaystyle\int_{a}^{b} e^t ~ dt$ avec les sommes de Riemann.
+	\item Montrer que l’intégrale d’une fonction impaire sur un segment symétrique par rapport à $0$ est nulle.
+\end{enumerate}
+
+\section*{Exercices:} 	
+
+\begin{exo}\textbf{(**)}\quad\\[0.25cm]
+	\begin{enumerate}
+		\item Donner un exemple d'une matrice de $\mathcal{M}_2(\C)$ à diagonale strictement dominante, montrer ensuite qu'elle est inversible.
+		\item Soit $n\in\N^*$, et $A \in\mathcal{M}_n(\C)$ telle que $A$ est à diagonale strictement dominante. Montrer que $A\in\mathcal{G}l_n(\C)$.
+	\end{enumerate}
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+	
+\begin{exo}\textbf{(**)}\quad\\[0.25cm]
+\begin{enumerate}
+	\item Soient $f,g:[a,b]\to\mathbb R$ deux fonctions de classe $C^n$. Montrer que
+	$$\int_{a}^b f^{(n)}g=\sum_{k=0}^{n-1}(-1)^k \big(f^{(n-k-1)}(b)g^{(k)}(b)-f^{(n-k-1)}(a)g^{(k)}(a)\big)+(-1)^n \int_a^b fg^{(n)}.$$
+	\item Application : On pose $Q_n(x)=(1-x^2)^n$ et $P_n(x)=Q_n^{(n)}(x)$. Justifier que $P_n$ est un polynôme de degré $n$, puis prouver
+	que $\int_{-1}^1 QP_n=0$ pour tout polynôme $Q$ de degré inférieur ou égal à $n-1$.
+\end{enumerate}	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+	
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.25cm]%An114
+Soit $A\in\mathcal M_{3,2}(\mathbb R)$, $B\in\mathcal M_{2,3}(\mathbb R)$ tels que 
+$$AB=\left(
+\begin{array}{ccc}
+0&0&0\\
+0&1&0\\
+0&0&1
+\end{array}
+\right).$$
+Démontrer que $BA=I_2$.
+	\centering
+\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\begin{exo}\textbf{(**)}\quad\\[0.25cm]%An115
+Soit $f:[a,b]\to\mathbb R$ continue telle que $|f(x)|\leq 1$ pour tout $x\in[a,b]$
+et $\int_a^b f(x)dx=b-a$. Donner une expression de $f$ sur $[a,b]$
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+\newpage
+
+\begin{exo}\textbf{(**)}\quad\\[0.25cm]%An115
+Soit $f\in\mathcal L(\mathbb R^3)$ tel que $f\neq 0$ et $f^2=0$.
+\begin{enumerate}
+	\item Démontrer que $\dim(\ker(f))=2$.
+	\item En déduire qu'il existe une base $\mathcal B$ de $\mathbb R^3$ dans laquelle la matrice de $f$ est $\begin{pmatrix}0&0&1\\0&0&0\\0&0&0\end{pmatrix}$. 
+\end{enumerate}	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+\begin{exo}\textbf{(**)}\quad\\[0.25cm]%An115
+Soit $f:[a,b]\to\mathbb R$ continue. Démontrer que sa valeur moyenne est atteinte : il existe $c\in [a,b]$ tel que 
+$$f(c)=\frac{1}{b-a}\int_a^b f(t)dt.$$	
+	
+	\centering
+	\rule{1\linewidth}{0.6pt}
+\end{exo}
+
+
+
+
+
+\end{document}

@@ -1,0 +1,234 @@
+\documentclass[a4paper,10pt]{article}
+
+
+
+\usepackage{fancyhdr} % pour personnaliser les en-têtes
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lastpage}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts,amssymb}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{paralist}
+\usepackage{xspace,xypic}
+\usepackage{xcolor,multicol,tabularx}
+\usepackage{variations}
+\usepackage{xypic}
+\usepackage{eurosym,multicol}
+\usepackage{graphicx}
+\usepackage{mathdots}%faire des points suspendus en diagonale
+\usepackage[np]{numprint}
+\usepackage{hyperref} 
+\usepackage{listings} % pour écrire des codes avec coloration syntaxique  
+
+\usepackage{tikz}
+\usetikzlibrary{calc, arrows, plotmarks,decorations.pathreplacing}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage[top=2cm,bottom=1.5cm,right=2cm,left=1.5cm]{geometry}
+
+\newtheorem{thm}{Théorème}
+\newtheorem*{pro}{Propriété}
+\newtheorem*{exemple}{Exemple}
+
+\theoremstyle{definition}
+\newtheorem*{remarque}{Remarque}
+\theoremstyle{definition}
+\newtheorem{exo}{Exercice}
+\newtheorem{definition}{Définition}
+
+
+\newcommand{\vtab}{\rule[-0.4em]{0pt}{1.2em}}
+\newcommand{\V}{\overrightarrow}
+\renewcommand{\thesection}{\Roman{section} }
+\renewcommand{\thesubsection}{\arabic{subsection} }
+\renewcommand{\thesubsubsection}{\alph{subsubsection} }
+\newcommand*{\transp}[2][-3mu]{\ensuremath{\mskip1mu\prescript{\smash{\mathrm t\mkern#1}}{}{\mathstrut#2}}}%
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\p}{\mathbb{P}}
+
+\renewcommand{\Im}{\mathop{\mathrm{Im}}\nolimits}
+
+
+
+\definecolor{vert}{RGB}{11,160,78}
+\definecolor{rouge}{RGB}{255,120,120}
+% Set the beginning of a LaTeX document
+\pagestyle{fancy}
+\lhead{Optimal Sup Spé, groupe IPESUP}\chead{Année~2021-2022}\rhead{Niveau: Première année de PCSI }\lfoot{M. Botcazou}\cfoot{\thepage}\rfoot{mail: ibotca52@gmail.com }\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\footrulewidth}{0.4pt}
+
+\begin{document}
+\medskip 	
+	
+	\begin{center}
+		\Large \sc colle 20 = Développements limités,comportement asymptotique et Séries numériques
+	\end{center}
+\medskip 
+\section*{Développements limités,comportement asymptotique:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\[0.25cm]
+			Etudier l'existence et la valeur éventuelle des limites suivantes
+			\begin{enumerate}
+				\item $\lim_{x\rightarrow \pi/2}(\sin x)^{1/(2x-\pi)}$
+				\item $\lim_{n\rightarrow +\infty}\left(\cos(\frac{n\pi}{3n+1})+\sin(\frac{n\pi}{6n+1})\right)^n$
+				\item $\lim_{x\rightarrow 0}(\cos x)^{\ln|x|}$
+				\item $\lim_{x\rightarrow e,\;x<e}(\ln x)^{\ln(e-x)}$
+				\item $\lim_{x\rightarrow +\infty}\left(\frac{\ln(x+1)}{\ln x}\right)^x$
+			\end{enumerate}
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+			\begin{exo}\quad\\[0.25cm]
+			\begin{enumerate}
+				\item  Développement asymptotique à la précision $x^2$ en $0$ de $\frac{1}{x(e^x-1)}-\frac{1}{x^2}$.
+				\item  Développement asymptotique à la précision $\frac{1}{x^3}$ en $+\infty$ de $x\ln(x+1)-(x+1)\ln x$.
+			\end{enumerate}	
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}	
+	
+
+		
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\quad\\[0.25cm]
+			\begin{enumerate}
+				\item  Donner un équivalent simple en $+\infty$ et $-\infty$ de $\sqrt{x^2+3x+5}-x+1$.
+				\item Donner un équivalent simple en $0$ de $(\sin x)^{x-x^2}-(x-x^2)^{\sin x}$.
+				\item  Donner un équivalent simple en $+\infty$ de $x^{\tanh x}$.
+			\end{enumerate}
+			
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}	
+
+		\begin{exo}\quad\\[0.25cm]
+		
+		Soit $u_0\in]0,\frac{\pi}{2}]$. Pour $n\in\N$, on pose $u_{n+1}=\sin(u_n)$.
+		\begin{enumerate}
+			\item  Montrer brièvement que la suite $u$ est strictement positive et converge vers $0$.
+			\item 
+			\begin{enumerate}
+				\item Déterminer un réel $\alpha$ tel que la suite $u_{n+1}^\alpha-u_n^\alpha$ ait une limite finie non nulle.
+				\item En utilisant le lemme de \textsc{Cesaro}, déterminer un équivalent simple de $u_n$.
+			\end{enumerate}
+		\end{enumerate}
+		\centering
+		\rule{1\linewidth}{0.6pt}
+		\end{exo}	
+		
+		
+	\end{minipage}
+\end{minipage}	
+
+\bigskip 
+
+\section*{Séries numériques:}\hfill\\%[-0.25cm]
+\begin{minipage}{1\linewidth}
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		
+		\begin{exo}\quad\\[0.25cm]
+			Donner un développement asymptotique à la précision $\frac{1}{n^3}$ de $u_n=\frac{1}{n!}\sum_{k=0}^{n}k!$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		\begin{exo}\quad\\[0.25cm]
+			Donner la nature de la série de terme général:
+			\begin{multicols}{2}
+				\begin{enumerate}
+					\item $\ln\left(\frac{n^2+n+1}{n^2+n-1}\right)$
+					\item $\frac{1}{n+(-1)^n\sqrt{n}}$
+					\item $\left(\frac{n+3}{2n+1}\right)^{\ln n}$
+					\item $\frac{n^2}{(n-1)!}$
+				\end{enumerate}
+			\end{multicols}
+			 
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}	
+		
+			\begin{exo}\quad\\[0.25cm]
+			
+			Trouver un développement limité à l'ordre $4$ quand $n$ tend vers l'infini de $\left(e-\sum_{k=0}^{n}\frac{1}{k!}\right)\times(n+1)!$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}	
+		
+					\begin{exo}\quad\\[0.25cm]
+						Soit $(u_n)_{n\in\N}$ une suite de réels strictement positifs. Montrer que les séries de termes généraux $u_n$, $\frac{u_n}{1+u_n}$, $\ln(1+u_n)$ et $\int_{0}^{u_n}\frac{dx}{1+x^e}$  sont de mêmes natures.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+		
+		
+		
+	\end{minipage}	
+	\hfill\vrule\hfill
+	\begin{minipage}[t]{0.48\linewidth}
+		\raggedright
+		
+		
+		\begin{exo}\quad\\[0.25cm]
+			Soit $(u_n)_{n\in\N}$ une suite décroissante de nombres réels strictement positifs telle que la série de terme général $u_n$ converge.\\[0.2cm] Montrer que $u_n\underset{n\rightarrow+\infty}{=}o\left(\frac{1}{n}\right)$. Trouver un exemple de suite $(u_n)_{n\in\N}$ de réels strictement positifs telle que la série de terme général $u_n$ converge mais telle que la suite de terme général $nu_n$ ne tende pas vers $0$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}	
+		
+		\begin{exo}\quad\\[0.25cm]
+			Donner la nature de la série de terme général $u_n=\sum_{k=1}^{n}\frac{1}{(n+k)^p}$, $p\in]0,+\infty[$.
+			
+			\centering
+			\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	
+		\begin{exo}\quad\\[0.25cm]
+		 Calculer $\sum_{n=0}^{+\infty}\frac{(-1)^n}{3n+1}$.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+		\end{exo}
+	
+	\begin{exo}\quad\\[0.25cm]
+		Donner un développement limité à l'ordre $4$ de $\sum_{k=n+1}^{+\infty}\frac{1}{k^2}$ quand $n$ tend vers l'infini.
+		
+		\centering
+		\rule{1\linewidth}{0.6pt}
+	\end{exo}	
+		
+		
+	\end{minipage}
+\end{minipage}	
+
+
+
+\end{document}

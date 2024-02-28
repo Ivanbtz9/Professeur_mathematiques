@@ -1,0 +1,120 @@
+\label{key}\documentclass[11pt]{article}
+
+ %Configuration de la feuille 
+ 
+\usepackage{amsmath,amssymb,enumerate,graphicx,pgf,tikz,fancyhdr}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows}
+\usepackage{geometry}
+\usepackage{tabvar}
+\geometry{hmargin=2.2cm,vmargin=1.5cm}\pagestyle{fancy}
+\lfoot{\bfseries http://www.bibmath.net}
+\rfoot{\bfseries\thepage}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.5pt} %Filet en bas de page
+
+ %Macros utilisées dans la base de données d'exercices 
+
+\newcommand{\mtn}{\mathbb{N}}
+\newcommand{\mtns}{\mathbb{N}^*}
+\newcommand{\mtz}{\mathbb{Z}}
+\newcommand{\mtr}{\mathbb{R}}
+\newcommand{\mtk}{\mathbb{K}}
+\newcommand{\mtq}{\mathbb{Q}}
+\newcommand{\mtc}{\mathbb{C}}
+\newcommand{\mch}{\mathcal{H}}
+\newcommand{\mcp}{\mathcal{P}}
+\newcommand{\mcb}{\mathcal{B}}
+\newcommand{\mcl}{\mathcal{L}}
+\newcommand{\mcm}{\mathcal{M}}
+\newcommand{\mcc}{\mathcal{C}}
+\newcommand{\mcmn}{\mathcal{M}}
+\newcommand{\mcmnr}{\mathcal{M}_n(\mtr)}
+\newcommand{\mcmnk}{\mathcal{M}_n(\mtk)}
+\newcommand{\mcsn}{\mathcal{S}_n}
+\newcommand{\mcs}{\mathcal{S}}
+\newcommand{\mcd}{\mathcal{D}}
+\newcommand{\mcsns}{\mathcal{S}_n^{++}}
+\newcommand{\glnk}{GL_n(\mtk)}
+\newcommand{\mnr}{\mathcal{M}_n(\mtr)}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\vect}{vect}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\comat}{comat}
+\DeclareMathOperator{\imv}{Im}
+\DeclareMathOperator{\rang}{rg}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\veps}{\varepsilon}
+\newcommand{\mcu}{\mathcal{U}}
+\newcommand{\mcun}{\mcu_n}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\croouv}{[\![}
+\newcommand{\crofer}{]\!]}
+\newcommand{\rab}{\mathcal{R}(a,b)}
+\newcommand{\pss}[2]{\langle #1,#2\rangle}
+ %Document 
+
+\begin{document} 
+
+\begin{center}\textsc{{\huge }}\end{center}
+
+% Exercice 3095
+
+
+\vskip0.3cm\noindent\textsc{Exercice 1} - Eléments caractéristiques d'une projection
+\vskip0.2cm
+Soit $f$ l'endomorphisme de $\mathbb R^3$ tel que $f(x,y,z)=(-3x+2y-4z,2x+2z,4x-2y+5z)$. Montrer que $f$ est la projection sur un plan $P$ parallèlement à une droite $D$. Donner une équation cartésienne du plan $P$ et un vecteur directeur de $D$.
+
+
+% Exercice 855
+
+
+\vskip0.3cm\noindent\textsc{Exercice 2} - Endomorphismes annulant un polynôme de degré 2
+\vskip0.2cm
+Soit $f\in\mathcal L(E)$ et soient $\alpha,\beta$ deux réels distincts.
+\begin{enumerate}
+\item Démontrer que $E=\textrm{Im}(f-\alpha Id_E)+\textrm{Im}(f-\beta Id_E)$.\newline
+On suppose de plus que $\alpha$ et $\beta$ sont non nuls et que $$(f-\alpha Id_E)\circ (f-\beta Id_E)=0.$$
+\item Démontrer que $f$ est inversible, et calculer $f^{-1}$.
+\item Démontrer que $E=\ker(f-\alpha Id_E)\oplus \ker(f-\beta Id_E)$.
+\item Exprimer en fonction de $f$ le projecteur $p$ sur $\ker(f-\alpha Id_E)$ parallèlement
+à $\ker(f-\beta Id_E)$.
+\end{enumerate}
+
+
+% Exercice 905
+
+
+\vskip0.3cm\noindent\textsc{Exercice 3} - Noyaux itérés
+\vskip0.2cm
+Soit $E$ un espace vectoriel de dimension finie $n$ et soit $f\in\mathcal L(E)$.
+\begin{enumerate}
+\item Soit $k\geq 1$. Démontrer que $\ker(f^{k})\subset \ker(f^{k+1})$ 
+et $\textrm{Im}(f^{k+1})\subset \textrm{Im}(f^k).$
+\item \begin{enumerate}
+\item Démontrer que si $\ker(f^k)=\ker(f^{k+1})$, alors $\ker(f^{k+1})= \ker(f^{k+2})$.
+\item Démontrer qu'il existe $p\in\mathbb N$ tel que
+\begin{itemize}
+\item si $k<p$, alors $\ker(f^k)\neq \ker(f^{k+1})$;
+\item si $k\geq p$, alors $\ker(f^k)= \ker(f^{k+1})$.
+\end{itemize}
+\item Démontrer que $p\leq n$;
+\end{enumerate}
+\item Démontrer que si $k<p$, alors $\textrm{Im}(f^k)\neq \textrm{Im}(f^{k+1})$ et
+si $k\geq p$, alors $\textrm{Im}(f^k)=\textrm{Im}(f^{k+1})$.
+\item Démontrer que $\ker(f^p)$ et $\textrm{Im}(f^p)$ sont supplémentaires.
+\item Démontrer qu'il existe deux sous-espaces $F$ et $G$ de $E$ tels que $F$ et $G$ sont supplémentaires, $f_{|F}$ est nilpotent et $f_{|G}$ induit un automorphisme de $G$.
+\item Soit $d_k=\dim\big(\textrm{Im}(f^k)\big)$. Montrer que la suite $(d_k-d_{k+1})$ est décroissante.
+\end{enumerate}
+
+
+
+
+\vskip0.5cm
+\noindent{\small Cette feuille d'exercices a été conçue à l'aide du site \textsf{https://www.bibmath.net}}
+
+%Vous avez accès aux corrigés de cette feuille par l'url : https://www.bibmath.net/ressources/justeunefeuille.php?id=27491
+\end{document}
